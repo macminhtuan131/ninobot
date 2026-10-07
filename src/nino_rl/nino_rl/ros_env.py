@@ -26,22 +26,32 @@ from nino_rl.core import (
 )
 from nino_rl.ros_interface import RosRobotInterface
 from nino_rl.trajectory_metrics import EpisodeTrajectory
-from nino_rl.task_geometry import approach_speed, goal_overshot
+from nino_rl.task_geometry import approach_speed, goal_overshot, task_succeeded, objective_state
+from nino_rl.flat_curriculum import FlatCourseCurriculum
+from nino_rl.routes import OrderedPathTracker, RouteSet, route_command, route_budget
 from nino_rl.control_v2 import (
     ACTION_SIZE, BASELINE_ACTION, ChallengeRegion, ChallengeTracker,
     ObservationHistory, StallWindow,
-    make_observation, compute_reward, decode_action,
+    make_observation, compute_reward, decode_control, action_size, history_action,
 )
 
 
 class NinoGazeboEnv(gym.Env):
-    """Straight-line AMR environment: speed scale and wheel residuals."""
+    """Reference-path AMR environment: speed scale and wheel residuals."""
 
     metadata = {"render_modes": []}
 
     def __init__(self, config: dict, total_training_steps: int = 1) -> None:
         super().__init__()
         self.config = config
+        if config.get("rough_curriculum", {}).get("enabled", False) and not config.get("rough_runtime", {}).get("bank_digest"):
+            raise ValueError("Use scripts/train_rough_curriculum.py to select and verify the rough curriculum terrain bank")
+        self.route_set = RouteSet(config)  # Validate routes before opening ROS.
+        if config.get("action_mode") == "speed_yaw_reference" and self.route_set.enabled:
+            raise ValueError("speed_yaw_reference currently requires a straight course without drawn routes")
+        self.episode_route = None
+        self.episode_target_seconds = float(config["target_finish_seconds"])
+        self.episode_deadline_seconds = float(config["max_episode_seconds"])
         self.world_paused_for_update = False
         self.total_training_steps = max(1, int(total_training_steps))
         self.control_dt = 1.0 / float(config["control_hz"])
@@ -73,7 +83,7 @@ class NinoGazeboEnv(gym.Env):
         self.action_scale = float(config["max_wheel_torque_nm"])
         self.lookahead = list(config["path"]["lookahead_m"])
         self.history = ObservationHistory(config["policy_v2"]["history_frames"])
-        self.action_space = spaces.Box(-1.0, 1.0, shape=(ACTION_SIZE,), dtype=np.float32)
+        self.action_space = spaces.Box(-1.0, 1.0, shape=(action_size(config),), dtype=np.float32)
         self.observation_space = spaces.Box(
             -5.0, 5.0, shape=(self.history.size,), dtype=np.float32
         )
@@ -107,11 +117,12 @@ class NinoGazeboEnv(gym.Env):
         )
         self.waypoint_slack = float(navigation["waypoint_slack_seconds"])
         self.ros = RosRobotInterface(
-            world_name="long_hall",
+            world_name=str(config.get("world_name", "long_hall")),
             subscribe_plan=False,
             cmd_vel_topic=str(navigation.get("cmd_vel_topic", "/cmd_vel")),
             imu_topic=str(config["policy_v2"].get("imu_topic", "/imu/data")),
             physics_step_seconds=self.physics_dt,
+            terrain_height_threshold_m=float(config["policy_v2"].get("terrain_height_threshold_m", .006)),
         )
         self.ros.imu_includes_gravity = bool(config["policy_v2"]["imu_includes_gravity"])
         # This executor already has its own dedicated Python thread. Using a
@@ -126,18 +137,7 @@ class NinoGazeboEnv(gym.Env):
         self.executor_thread: Thread | None = None
         self._start_executor_spin()
         try:
-            self.ros.wait_for_sensors(self.sensor_timeout)
-            if config["policy_v2"].get("require_terrain_preview", False):
-                self.ros.wait_for_terrain_preview(self.sensor_timeout)
-            # PPO constructs its policy after the environment. Leaving Gazebo
-            # running here floods the Python executor with a 500 Hz clock plus
-            # sensor callbacks and can starve CUDA model initialization for
-            # minutes. reset() deliberately unpauses for episode setup, so the
-            # safe idle state between construction and the first reset is paused.
-            self.ros.set_world_paused(
-                True, timeout=self.simulation_step_timeout
-            )
-            self.world_is_paused = True
+            self._prepare_initial_sensors()
             self._stop_executor_spin()
         except BaseException:
             # __init__ failures bypass train.py's env.close() finally block.
@@ -188,6 +188,19 @@ class NinoGazeboEnv(gym.Env):
             else adaptive.get("advance_success_rate", 0.75)
         )
         self.terrain_feature_count = int(adaptive.get("initial_features", 0))
+        flat_curriculum = config.get("flat_curriculum", {})
+        self.flat_curriculum = (
+            FlatCourseCurriculum(
+                flat_curriculum,
+                config["course_cable_randomization"]["cables"],
+                self.max_terrain_features,
+            )
+            if flat_curriculum.get("enabled", False) else None
+        )
+        if self.flat_curriculum is not None:
+            if config.get("task") != "combined_flat_section" or not self.adaptive_terrain_enabled:
+                raise ValueError("Flat curriculum requires the flat section and adaptive terrain")
+            self.terrain_feature_count = int(self.flat_curriculum.stage["adaptive_features"])
         if (
             self.max_terrain_features < 0
             or self.terrain_features_per_success <= 0
@@ -289,6 +302,9 @@ class NinoGazeboEnv(gym.Env):
         return stage, stage / 5.0, float(self.goal_pose[0])
 
     def _make_curriculum_path(self) -> PathTracker:
+        if self.route_set.enabled:
+            route = self.episode_route or self.route_set.routes[0]
+            return OrderedPathTracker(route["waypoints"], self.route_set.settings)
         spacing = float(self.config["path"]["point_spacing_m"])
         start = np.asarray(self.start_pose[:2], dtype=np.float64)
         goal = np.asarray(self.goal_pose[:2], dtype=np.float64)
@@ -334,15 +350,34 @@ class NinoGazeboEnv(gym.Env):
             float(np.deg2rad(sign * angle_magnitude)),
         )]
 
+    def _random_course_cables(self) -> list[tuple[float, float, float]]:
+        """Keep course cable positions and sizes while resampling each angle."""
+        course = self.config["course_cable_randomization"]
+        minimum, maximum = (float(value) for value in course["angle_range_deg"])
+        if not np.isfinite([minimum, maximum]).all() or not -89.0 < minimum < maximum < 89.0:
+            raise ValueError("Course cable angle range must be finite and inside (-89, 89) degrees")
+        return [
+            (float(cable["x"]), float(cable["radius"]),
+             float(np.deg2rad(self.np_random.uniform(minimum, maximum))))
+            for cable in course["cables"]
+        ]
+
     def _adaptive_terrain_features(self) -> list[tuple[str, float, float, float]]:
         """Return the proven full-size hazards randomized near the route."""
         if not self.adaptive_terrain_enabled:
             return []
         config = self.config["adaptive_terrain"]
         x_min, x_max = (float(value) for value in config["zone_x_m"])
-        max_center_offset = 0.5 * float(config["wheel_separation_m"])
+        half_track = 0.5 * float(config["wheel_separation_m"])
+        spawn_y_min, spawn_y_max = (
+            float(value) for value in config.get(
+                "lateral_spawn_range_m", (-half_track, half_track)
+            )
+        )
         max_lateral = float(config["max_lateral_center_m"])
-        if not x_min < x_max or not 0.0 <= max_center_offset < max_lateral < 1.80:
+        if (not x_min < x_max or not spawn_y_min < spawn_y_max
+                or max(abs(spawn_y_min), abs(spawn_y_max)) >= max_lateral
+                or max_lateral >= 1.80):
             raise ValueError("adaptive terrain bounds must fit inside the hallway")
         features = []
         # Keep the established geometry and placement. Every feature is
@@ -362,7 +397,7 @@ class NinoGazeboEnv(gym.Env):
             )
             fraction = (index + self.np_random.uniform(0.45, 0.55)) / count
             x = x_min + fraction * (x_max - x_min)
-            y = self.np_random.uniform(-max_center_offset, max_center_offset)
+            y = self.np_random.uniform(spawn_y_min, spawn_y_max)
             features.append((kind, float(x), float(y), float(size)))
         return features
 
@@ -407,6 +442,15 @@ class NinoGazeboEnv(gym.Env):
                              else groove_half_length if kind == "groove" else 0.0),
                 angle=(float(np.pi / 2.0) if kind in ("cable", "groove") else 0.0),
             ))
+        for index, feature in enumerate(self.config.get("fixed_terrain_challenges", ())):
+            regions.append(ChallengeRegion(
+                name=f"fixed_{index}_{feature['kind']}",
+                kind=str(feature["kind"]),
+                x=float(feature["x"]), y=float(feature["y"]),
+                radius=float(feature["radius"]),
+                half_length=float(feature.get("half_length", 0.0)),
+                angle=float(np.deg2rad(feature.get("angle_deg", 0.0))),
+            ))
         return ChallengeTracker(
             regions,
             contact_margin=contact_margin,
@@ -416,13 +460,19 @@ class NinoGazeboEnv(gym.Env):
 
     def adaptive_terrain_state(self) -> dict:
         """Return checkpoint-safe rolling curriculum state."""
-        return {
+        state = {
             "schema_version": 1,
-            "terrain_feature_count": self.terrain_feature_count,
+            "terrain_feature_count": (
+                int(self.flat_curriculum.stage["adaptive_features"])
+                if self.flat_curriculum is not None else self.terrain_feature_count
+            ),
             "successful_episodes": self.successful_episodes,
             "episodes_at_level": self.terrain_episodes_at_level,
             "rolling_outcomes": [int(value) for value in self.terrain_success_window],
         }
+        if self.flat_curriculum is not None:
+            state["flat_curriculum"] = self.flat_curriculum.state()
+        return state
 
     def restore_adaptive_terrain_state(self, state: dict) -> None:
         """Restore curriculum progress saved alongside a PPO checkpoint."""
@@ -445,11 +495,22 @@ class NinoGazeboEnv(gym.Env):
         self.terrain_episodes_at_level = episodes
         self.terrain_success_window.clear()
         self.terrain_success_window.extend(bool(value) for value in outcomes)
+        if self.flat_curriculum is not None:
+            self.flat_curriculum.restore(state.get("flat_curriculum"))
+            expected = int(self.flat_curriculum.stage["adaptive_features"])
+            if self.terrain_feature_count != expected:
+                raise ValueError("Flat curriculum and adaptive feature counts disagree")
 
     def _record_adaptive_terrain_outcome(
         self, succeeded: bool
     ) -> tuple[float, int, bool]:
         """Update the rolling gate and return rate, sample count and advance."""
+        if self.flat_curriculum is not None:
+            rate, count, advanced = self.flat_curriculum.record(
+                succeeded, self.episode_flat_stage
+            )
+            self.terrain_feature_count = int(self.flat_curriculum.stage["adaptive_features"])
+            return rate, count, advanced
         if not self.adaptive_terrain_progress:
             return 0.0, 0, False
         self.terrain_success_window.append(bool(succeeded))
@@ -529,7 +590,7 @@ class NinoGazeboEnv(gym.Env):
             budget = self.waypoint_slack + self.waypoint_seconds_per_m * waypoint_s
         else:
             waypoint_distance = tracking.distance_remaining
-            budget = float(self.config["target_finish_seconds"])
+            budget = self.episode_target_seconds
         time_fraction = np.clip((budget - elapsed) / max(budget, 1.0), -1.0, 1.0)
         return NavReference(
             desired_linear_velocity=desired_linear,
@@ -550,7 +611,7 @@ class NinoGazeboEnv(gym.Env):
             raise RuntimeError("Required terrain preview missing/stale; stopped")
         frame, _ = make_observation(
             state, self.path, self.lookahead, action, reference, preview,
-            self.ros.imu_includes_gravity)
+            self.ros.imu_includes_gravity, action_mode=self.config.get("action_mode", "wheel_torque"))
         return frame
 
     def reset(self, *, seed=None, options=None):
@@ -573,6 +634,17 @@ class NinoGazeboEnv(gym.Env):
         self.previous_action = BASELINE_ACTION.copy()
         self.action_before_previous = BASELINE_ACTION.copy()
         self._last_noisy_state = None
+        if self.route_set.enabled:
+            self.episode_route = self.route_set.select(
+                self.np_random, self.attempt_number - 1, (options or {}).get("route_id"))
+            points = np.asarray(self.episode_route["waypoints"], dtype=float)
+            self.goal_pose = (*points[-1], np.deg2rad(self.episode_route["goal_heading_deg"]))
+            length = float(np.linalg.norm(np.diff(points, axis=0), axis=1).sum())
+            self.episode_target_seconds, self.episode_deadline_seconds = route_budget(self.config, length)
+            self.max_steps = int(self.episode_deadline_seconds / self.control_dt)
+            self.ros.get_logger().info(
+                f"Route {self.episode_route['id']}: {length:.2f} m, "
+                f"goal={self.goal_pose[:2]}, deadline={self.episode_deadline_seconds:.1f}s")
         self._sample_randomization()
         stage, level, goal_x = self._curriculum_stage()
         self.episode_curriculum_stage = stage
@@ -582,10 +654,35 @@ class NinoGazeboEnv(gym.Env):
             )
             self._announced_phase = stage
         self.ros.reset_episode(start_pose=self.start_pose)
-        episode_cables = self._curriculum_cables(stage)
-        self.ros.configure_training_cables(episode_cables)
-        episode_features = self._adaptive_terrain_features()
-        self.ros.configure_adaptive_terrain(episode_features)
+        self.episode_flat_stage = (
+            self.flat_curriculum.sample_stage(self.np_random)
+            if self.flat_curriculum is not None else None
+        )
+        if self.config.get("task") == "rocky_tracking":
+            # The rocky world owns its static terrain. Never spawn legacy
+            # cables or adaptive hazards over this caster-sized rock bed.
+            episode_cables, episode_features = [], []
+        else:
+            if self.flat_curriculum is not None:
+                episode_cables = self.flat_curriculum.sample_cables(
+                    self.np_random, self.episode_flat_stage
+                )
+                self.terrain_feature_count = int(
+                    self.flat_curriculum.stages[self.episode_flat_stage]["adaptive_features"]
+                )
+                self.ros.configure_training_cables(episode_cables)
+            elif self.config.get("course_cable_randomization", {}).get("enabled", False):
+                episode_cables = self._random_course_cables()
+                self.ros.configure_training_cables(episode_cables)
+            elif self.config.get("terrain_curriculum", {}).get("enabled", True):
+                episode_cables = self._curriculum_cables(stage)
+                self.ros.configure_training_cables(episode_cables)
+            else:
+                # Keep a world's original static cable_bumps model.
+                # configure_training_cables([]) would delete that model.
+                episode_cables = []
+            episode_features = self._adaptive_terrain_features()
+            self.ros.configure_adaptive_terrain(episode_features)
         self.episode_terrain_layout = episode_features
         self.episode_terrain_height_scale = 1.0
         self.challenge_tracker = self._make_challenge_tracker(
@@ -619,6 +716,7 @@ class NinoGazeboEnv(gym.Env):
                 "Training slip reward received invalid /ground_truth/odom"
             )
         self.path = self._make_curriculum_path()
+        self.scoring_path = self._make_curriculum_path() if self.route_set.enabled else self.path
         self.waypoint_targets = np.arange(
             self.waypoint_spacing, self.path.total_length, self.waypoint_spacing
         )
@@ -670,14 +768,25 @@ class NinoGazeboEnv(gym.Env):
         )
         truth = self.ros.snapshot()
         self.episode_started_sim = self.lockstep_sim_time
+        if self.route_set.enabled:
+            self.path.advance(truth.x, truth.y)
+            scoring_state = objective_state(truth, self.config)
+            self.scoring_path.advance(scoring_state.x, scoring_state.y)
         frame, points = "odom", self.path.points
         self.trajectory = EpisodeTrajectory(
             points, frame, truth.odom_stamp_s,
-            cable_x=episode_cables[0][0],
-            cable_radius=episode_cables[0][1],
-            cable_angle=episode_cables[0][2],
+            cable_x=episode_cables[0][0] if episode_cables else None,
+            cable_radius=episode_cables[0][1] if episode_cables else None,
+            cable_angle=episode_cables[0][2] if episode_cables else None,
+            route_settings=self.route_set.settings if self.route_set.enabled else None,
         )
         self.trajectory.add(0.0, *self.ros.pose_in_frame(truth, frame))
+        # Independent diagnostic: wheel odometry can hide physical drift on
+        # rough ground. World pose never enters the actor observation.
+        self.truth_trajectory = EpisodeTrajectory(
+            points, "world", truth.ground_truth_stamp_s,
+            route_settings=self.route_set.settings if self.route_set.enabled else None)
+        self.truth_trajectory.add(0.0, truth.ground_x, truth.ground_y, truth.ground_yaw)
         self.previous_robot_state = deepcopy(truth)
         _, self.previous_tracking = make_observation(
             truth, self.path, self.lookahead, self.previous_action
@@ -693,9 +802,11 @@ class NinoGazeboEnv(gym.Env):
             "curriculum_stage": stage + 1,
             "curriculum_level": level,
             "goal_x_m": goal_x,
+            "goal_y_m": float(self.goal_pose[1]),
+            "route_id": self.episode_route["id"] if self.episode_route else None,
             "cable_count": len(episode_cables),
-            "cable_diameter_m": 2.0 * episode_cables[0][1],
-            "cable_angle_deg": degrees(episode_cables[0][2]),
+            "cable_diameter_m": 2.0 * episode_cables[0][1] if episode_cables else 0.0,
+            "cable_angle_deg": degrees(episode_cables[0][2]) if episode_cables else 0.0,
             "adaptive_terrain_features": len(episode_features),
             "traversable_challenges": self.challenge_tracker.total,
         }
@@ -704,11 +815,24 @@ class NinoGazeboEnv(gym.Env):
         if not self.world_is_paused:
             raise RuntimeError("Lockstep invariant violated: Gazebo must be paused")
         action = np.clip(np.asarray(action, dtype=np.float32), -1.0, 1.0)
-        scale, torque = decode_action(action, self.action_scale)
+        if self.config.get("evaluation_speed_only", False):
+            # Record the executed action in history/reward as well as masking
+            # actuation; the next observation must not claim torque was applied.
+            action[1:] = 0.0
+        scale, torque, yaw_reference = decode_control(
+            action, self.config,
+            path_remaining=self.previous_tracking.distance_remaining)
+        if self.config.get("action_mode") == "speed_yaw_reference":
+            action = history_action(action, self.config)
         started_sim = self.lockstep_sim_time
-        self.ros.publish_straight_command(
-            self._straight_command(self.previous_tracking)
-        )
+        if self.route_set.enabled:
+            linear, angular = route_command(
+                self.previous_robot_state, self.path, self.previous_tracking, self.config)
+            self.ros.publish_motion_command(linear, angular)
+        elif self.config.get("action_mode", "wheel_torque") in ("yaw_reference", "speed_yaw_reference"):
+            self.ros.publish_motion_command(self._straight_command(self.previous_tracking), yaw_reference)
+        else:
+            self.ros.publish_straight_command(self._straight_command(self.previous_tracking))
         # The horizontal safety LiDAR remains age-bounded instead of being a
         # hard barrier: one dropped 10 Hz packet must not abort an episode.
         # The 20 Hz downward scan is policy input, however, so require a view
@@ -752,7 +876,9 @@ class NinoGazeboEnv(gym.Env):
         torque *= self._randomization["traction"]
         torque += self.np_random.normal(0.0, self._randomization["torque_noise"], size=2)
         torque = np.clip(torque, -self.action_scale, self.action_scale)
-        if self.config.get("evaluation_baseline", False):
+        if (self.config.get("evaluation_baseline", False)
+                or self.config.get("evaluation_speed_only", False)
+                or self.config.get("action_mode") == "speed_yaw_reference"):
             torque[:] = 0.0
         self.ros.publish_control(scale, float(torque[0]), float(torque[1]))
         advance_chunked(self.physics_steps_per_control - delay_steps)
@@ -857,21 +983,32 @@ class NinoGazeboEnv(gym.Env):
             lidar_fresh
             and truth.lidar_stamp_s >= started_sim - 0.5 * self.physics_dt
         )
+        scoring_state = objective_state(truth, self.config)
+        if self.route_set.enabled:
+            self.path.advance(truth.x, truth.y)
+            self.scoring_path.advance(scoring_state.x, scoring_state.y)
         _, tracking = make_observation(truth, self.path, self.lookahead, action)
+        _, scoring_tracking = make_observation(scoring_state, self.scoring_path, self.lookahead, action)
+        previous_scoring_state = objective_state(self.previous_robot_state, self.config)
+        _, previous_scoring_tracking = make_observation(
+            previous_scoring_state,
+            self.scoring_path, self.lookahead, self.previous_action)
         challenge_entry_count, challenge_clear_count = self.challenge_tracker.update(
-            (self.previous_robot_state.x, self.previous_robot_state.y),
-            (truth.x, truth.y),
-            self.previous_robot_state.yaw, truth.yaw,
+            (previous_scoring_state.x, previous_scoring_state.y),
+            (scoring_state.x, scoring_state.y),
+            previous_scoring_state.yaw, scoring_state.yaw,
         )
         # Use the odometry message timestamp, not the end of an IMU wait.
         self.trajectory.add(truth.odom_stamp_s - self.trajectory.clock_origin_sim_s,
                             *self.ros.pose_in_frame(truth, self.trajectory.frame_id))
+        self.truth_trajectory.add(truth.ground_truth_stamp_s - self.truth_trajectory.clock_origin_sim_s,
+                                  truth.ground_x, truth.ground_y, truth.ground_yaw)
 
         reached_waypoints = 0
         waypoint_margin = 0.0
         while (
             self.next_waypoint_index < len(self.waypoint_targets)
-            and tracking.path_s >= self.waypoint_targets[self.next_waypoint_index]
+            and scoring_tracking.path_s >= self.waypoint_targets[self.next_waypoint_index]
         ):
             waypoint_s = float(self.waypoint_targets[self.next_waypoint_index])
             budget = self.waypoint_slack + self.waypoint_seconds_per_m * waypoint_s
@@ -891,14 +1028,17 @@ class NinoGazeboEnv(gym.Env):
             actor_state, action, reference))
 
         min_lidar = min(truth.lidar_ranges, default=truth.lidar_range_max)
-        succeeded = goal_reached(tracking, truth, self.config)
-        missed_goal = not succeeded and goal_overshot(truth, self.path, self.config)
+        succeeded = task_succeeded(scoring_tracking, scoring_state, self.scoring_path, self.config)
+        missed_goal = not succeeded and goal_overshot(scoring_state, self.scoring_path, self.config)
         rolled = max(abs(degrees(truth.roll)), abs(degrees(truth.pitch))) >= float(
             self.config["rollover_limit_deg"]
         )
-        off_path_sample = abs(tracking.lateral_error) >= float(
+        off_path_sample = abs(scoring_tracking.lateral_error) >= float(
             self.config["off_path_limit_m"]
         )
+        if self.route_set.enabled:
+            off_path_sample = self.scoring_path.corridor_distance(
+                scoring_state.x, scoring_state.y) >= float(self.config["off_path_limit_m"])
         self.off_path_steps = self.off_path_steps + 1 if off_path_sample else 0
         self.off_path_seconds = self.off_path_seconds + step_dt if off_path_sample else 0.0
         off_path = self.off_path_seconds >= float(self.config["off_path_hold_seconds"])
@@ -922,7 +1062,7 @@ class NinoGazeboEnv(gym.Env):
         )
         wrong_direction_sample = (
             elapsed >= float(self.config["wrong_direction_grace_seconds"])
-            and is_wrong_direction(tracking, truth, self.config)
+            and is_wrong_direction(scoring_tracking, scoring_state, self.config)
         )
         if wrong_direction_sample:
             self.wrong_direction_steps += 1
@@ -935,7 +1075,7 @@ class NinoGazeboEnv(gym.Env):
                   "navigation_invalid" if navigation_invalid else
                   "goal_missed" if missed_goal else None)
         succeeded = bool(succeeded and not failed)
-        timed_out = elapsed + 0.5 * self.physics_dt >= float(self.config["max_episode_seconds"])
+        timed_out = elapsed + 0.5 * self.physics_dt >= self.episode_deadline_seconds
         terminated = bool(
             succeeded
             or rolled
@@ -951,24 +1091,26 @@ class NinoGazeboEnv(gym.Env):
         truncated = False
         # Keep reward difficulty consistent with geometry until the next reset.
         level = getattr(self, "episode_curriculum_stage", self._curriculum_stage()[0]) / 5.0
-        delta_s = self.previous_tracking.distance_remaining - tracking.distance_remaining
+        delta_s = previous_scoring_tracking.distance_remaining - scoring_tracking.distance_remaining
         stalled = self.stall_window.update(elapsed, delta_s,
             reference.valid and reference.desired_linear_velocity > 0.05
-            and tracking.endpoint_distance > self.config["goal_tolerance_m"])
+            and (scoring_tracking.distance_remaining if self.route_set.enabled else
+                 scoring_tracking.endpoint_distance) > self.config["goal_tolerance_m"])
         completion_fraction = float(np.clip(
-            tracking.path_s / self.path.total_length, 0.0, 1.0
+            scoring_tracking.path_s / self.path.total_length, 0.0, 1.0
         ))
         reward, reward_terms = compute_reward(
-            self.previous_tracking, tracking, truth, action, self.previous_action,
+            previous_scoring_tracking, scoring_tracking, truth, action, self.previous_action,
             torque, step_dt, imu,
             {**self.config["reward_v2"], "torque_scale_nm": self.action_scale},
             timed_out=timed_out,
             succeeded=succeeded,
-            failed=failed, stalled=stalled, impact_scale=min(1.0, 0.25 + level),
+            failed=failed, stalled=stalled,
+            impact_scale=float(self.config["reward_v2"].get("impact_scale", min(1.0, 0.25 + level))),
             reference=reward_reference, previous_state=self.previous_robot_state,
             completion_fraction=completion_fraction,
             elapsed=elapsed,
-            target_finish_seconds=float(self.config["target_finish_seconds"]),
+            target_finish_seconds=self.episode_target_seconds,
             challenge_entry_count=challenge_entry_count,
             challenge_clear_count=challenge_clear_count,
             challenge_cleared_total=len(self.challenge_tracker.cleared),
@@ -1035,6 +1177,11 @@ class NinoGazeboEnv(gym.Env):
             "lidar_lag_seconds": lidar_lag,
             "lidar_fresh": lidar_fresh,
             "lidar_current": lidar_current,
+            "lidar_min_m": float(min_lidar) if np.isfinite(min_lidar) else None,
+            "collision_clearance_m": (
+                float(collision_clearance)
+                if lidar_current and np.isfinite(collision_clearance) else None
+            ),
             "completion_fraction": completion_fraction,
             "difficult_path_chosen": bool(self.challenge_tracker.chosen),
             "challenge_entry_count": challenge_entry_count,
@@ -1077,24 +1224,49 @@ class NinoGazeboEnv(gym.Env):
         f"challenges={len(self.challenge_tracker.cleared)}/"
         f"{self.challenge_tracker.total} | "
         f"lidar_min={min_lidar:.2f}m | "
+        f"collision_clearance={collision_clearance:.2f}m | "
         f"roll={degrees(truth.roll):.1f}deg | "
         f"pitch={degrees(truth.pitch):.1f}deg"
             )
             count = max(1, self.episode_steps)
             info["episode_metrics"] = {
+                **({"rough_curriculum_stage": int(self.config["rough_runtime"]["stage_index"]),
+                    "terrain_variant_id": self.config["rough_runtime"]["terrain_variant_id"],
+                    "terrain_randomization_level": self.config["rough_runtime"]["terrain_level"]}
+                   if self.config.get("rough_curriculum", {}).get("enabled", False) else {}),
+                "route_id": self.episode_route["id"] if self.episode_route else None,
+                "route_length_m": self.path.total_length,
+                "route_gates_passed": self.scoring_path.next_gate if self.route_set.enabled else 0,
+                "route_gates_total": len(self.scoring_path.gate_s) if self.route_set.enabled else 0,
+                "goal_x_m": float(self.goal_pose[0]),
+                "goal_y_m": float(self.goal_pose[1]),
+                "max_episode_seconds": self.episode_deadline_seconds,
                 **self.trajectory.metrics(),
+                **{"truth_" + key: value for key, value in self.truth_trajectory.metrics().items()
+                   if key in ("path_rmse_m", "path_p95_m", "endpoint_error_m", "heading_rmse_deg")},
+                "odom_truth_position_error_m": float(np.hypot(truth.x-truth.ground_x, truth.y-truth.ground_y)),
                 "trajectory_frame": self.trajectory.frame_id,
                 "trajectory_pose_source": "wheel_odometry",
+                "reward_pose_source": self.config.get("reward_pose_source", "wheel_odometry"),
                 **metrics_dict(tracking, truth, elapsed, succeeded),
                 "attempt": self.attempt_number,
                 "episode_start_time_unix": self.episode_start_time_unix,
                 "final_arrival_time_seconds": elapsed if succeeded else None,
                 "goal_reached": succeeded,
+                "lidar_min_m": float(min_lidar) if np.isfinite(min_lidar) else None,
+                "collision_clearance_m": (
+                    float(collision_clearance)
+                    if lidar_current and np.isfinite(collision_clearance) else None
+                ),
                 "adaptive_terrain_features": episode_feature_count,
                 "next_adaptive_terrain_features": self.terrain_feature_count,
                 "adaptive_terrain_rolling_success": terrain_rolling_success,
                 "adaptive_terrain_window_episodes": terrain_window_episodes,
                 "adaptive_terrain_level_advanced": terrain_level_advanced,
+                "flat_curriculum_stage": self.episode_flat_stage,
+                "next_flat_curriculum_stage": (
+                    self.flat_curriculum.stage_index if self.flat_curriculum is not None else None
+                ),
                 "successful_episodes": self.successful_episodes,
                 "difficult_path_chosen": bool(self.challenge_tracker.chosen),
                 "challenges_chosen": len(self.challenge_tracker.chosen),
@@ -1151,15 +1323,13 @@ class NinoGazeboEnv(gym.Env):
                 ],
                 "finished_within_target_time": bool(
                     succeeded
-                    and elapsed <= float(self.config["target_finish_seconds"])
+                    and elapsed <= self.episode_target_seconds
                 ),
                 "time_margin_seconds": float(
-                    self.config["target_finish_seconds"]
+                    self.episode_target_seconds
                 )
                 - elapsed,
-                "target_finish_seconds": float(
-                    self.config["target_finish_seconds"]
-                ),
+                "target_finish_seconds": self.episode_target_seconds,
                 "final_speed_m_s": truth.linear_velocity,
                 "final_yaw_rate_rad_s": truth.yaw_rate,
                 "wrong_direction_duration_seconds": (
@@ -1176,6 +1346,23 @@ class NinoGazeboEnv(gym.Env):
             self.ros.publish_control(0.0, 0.0, 0.0)
             self.ros.publish_straight_command(0.0)
         return observation, reward, terminated, truncated, info
+
+    def _prepare_initial_sensors(self) -> None:
+        """Recover a paused previous session before waiting for sensor samples."""
+        # Discover the motor command subscriber before releasing physics;
+        # startup must replace any previous policy command with a stopped one.
+        self.ros.wait_for_v2_controller(timeout=self.sensor_timeout)
+        self.ros.publish_straight_command(0.0)
+        self.ros.publish_control(0.0, 0.0, 0.0)
+        self.ros.set_world_paused(False, timeout=self.simulation_step_timeout)
+        self.world_is_paused = False
+        self.ros.wait_for_sensors(self.sensor_timeout)
+        if self.config["policy_v2"].get("require_terrain_preview", False):
+            self.ros.wait_for_terrain_preview(self.sensor_timeout)
+        # Keep physics and callback load idle during policy construction.
+        # reset() resumes physics for episode setup.
+        self.ros.set_world_paused(True, timeout=self.simulation_step_timeout)
+        self.world_is_paused = True
 
     def _shutdown_ros_transport(self) -> None:
         """Stop the executor and node, including after partial construction."""

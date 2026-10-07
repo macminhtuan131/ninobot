@@ -1,0 +1,70 @@
+{
+  "matched_settings": {
+    "benchmark_id": "5e6f958df27952e50c54e9a75d45b87e65b2ccd556687f71fe5d473f193d6b9f",
+    "seed": 50000,
+    "episodes": 24,
+    "phase": 1,
+    "randomized": false,
+    "pose_source": "wheel_odometry"
+  },
+  "reports": {
+    "old": {
+      "path": "/home/tuanmac/ninorobot/rl_runs/flat_old_clear_comparison/20261004-164659-061413/summary.json",
+      "success_rate": 0.5,
+      "termination_counts": {
+        "goal_missed": 7,
+        "off_path": 5,
+        "success": 12
+      },
+      "truth_path_rmse_m": 0.17505706858165518,
+      "truth_endpoint_error_m": 0.5413296676540645,
+      "odom_truth_position_error_m": 0.37669903740119404
+    },
+    "pilot": {
+      "path": "/home/tuanmac/ninorobot/rl_runs/flat_pilot_clear_validation/20261004-153537-095341/summary.json",
+      "success_rate": 0.7083333333333334,
+      "termination_counts": {
+        "goal_missed": 5,
+        "success": 17,
+        "timeout": 2
+      },
+      "truth_path_rmse_m": 0.12549589618039805,
+      "truth_endpoint_error_m": 0.2691094511563028,
+      "odom_truth_position_error_m": 0.1946312884570258
+    },
+    "pi": {
+      "path": "/home/tuanmac/ninorobot/rl_runs/flat_clear_pi_comparison/20261004-182112-771935/summary.json",
+      "success_rate": 0.9166666666666666,
+      "termination_counts": {
+        "success": 22,
+        "timeout": 2
+      },
+      "truth_path_rmse_m": 0.05490469386114937,
+      "truth_endpoint_error_m": 0.21835046547234446,
+      "odom_truth_position_error_m": 0.18743756137712805
+    }
+  },
+  "diagnosis": "Five pilot overshoot failures retained approximately 0.19\u20130.22 m/s physical forward speed despite a near-goal 0.03 m/s baseline reference. Residual torque fade is an opt-in mitigation; localization drift is not corrected.",
+  "changes": {
+    "new_profile": "src/nino_rl/config/combined_flat_curriculum_arrival_guard.yaml",
+    "goal_residual_fade_distance_m": 0.5,
+    "physical_goal_tolerance_m": 0.2,
+    "tests_passed": 51,
+    "package_build_passed": true
+  },
+  "targeted_check": {
+    "report": "/home/tuanmac/ninorobot/rl_runs/flat_arrival_guard_targeted/20261004-183803-878376/summary.json",
+    "seeds": [
+      50003,
+      50004
+    ],
+    "previous_pilot_successes": 0,
+    "previous_pilot_episodes": 2,
+    "guard_successes": 2,
+    "guard_episodes": 2,
+    "guard_on_time_successes": 1,
+    "complete": true,
+    "mean_physical_endpoint_error_m": 0.1988968447687478,
+    "scope": "Selected previous failure seeds, unchanged actor weights, new controller guard; not a general or statistically established success-rate improvement."
+  }
+}

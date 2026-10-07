@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "controller": "straight_pi_baseline",
+  "model": null,
+  "phase": 1,
+  "seed": 60000,
+  "randomized": false,
+  "benchmark_id": "4298ac9d5f3ee3935d16e38573fcd457b984c41c2544ca9e23eca09118a9de3f",
+  "pose_source": "wheel_odometry",
+  "metric_weighting": "simulation_time_trapezoid",
+  "reference": "fixed straight line from configured start_pose to goal_pose in odom",
+  "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv"
+}

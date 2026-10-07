@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "/home/tuanmac/ninorobot/install/nino_rl/lib/nino_rl/train",
+    "--config",
+    "/home/tuanmac/ninorobot/rl_runs/rough_curriculum_v1/blocks/block_0005/config.yaml",
+    "--device",
+    "cuda",
+    "--timesteps",
+    "20000",
+    "--checkpoint-every",
+    "10000",
+    "--output",
+    "/home/tuanmac/ninorobot/rl_runs/rough_curriculum_v1/blocks/block_0005/train",
+    "--preflight-timeout",
+    "60",
+    "--resume",
+    "/home/tuanmac/ninorobot/rl_runs/rough_curriculum_v1/blocks/block_0004/train/20261007-054218-393893/nino_ppo_final.zip"
+  ],
+  "python": "3.12.3",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4080",
+  "packages": {
+    "torch": "2.13.0+cu126",
+    "stable-baselines3": "2.9.0",
+    "gymnasium": "1.3.0",
+    "numpy": "1.26.4"
+  }
+}

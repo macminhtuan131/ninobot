@@ -1,0 +1,125 @@
+{
+  "captured_at": "2026-10-06T06:14:24.783862+07:00",
+  "scope": "Static geometry, code and existing logs only; no new Gazebo evaluations.",
+  "world": "src/nino_description/worlds/combined_rough_section.sdf",
+  "world_sha256": "afc6a69007110cad4d01fe9387612af8f3fd9da3823176b824f3992c400fedc5",
+  "mesh": "src/nino_description/terrains/combined_rough_ground.stl",
+  "mesh_sha256": "ef5164f71a14661f1a9249ce4a1fe9d0e51a480f0c65c73c510156ca61e75d95",
+  "geometry": {
+    "bounds": [
+      0.7999996578674318,
+      6.716796342132568,
+      -2.0,
+      2.0
+    ],
+    "height_range_m": [
+      -0.16407185792922974,
+      0.24385902285575867
+    ],
+    "max_grade": 0.546792239366341,
+    "max_surface_angle_deg": 28.669496191950397,
+    "centerline_max_grade": 0.43661621150436436,
+    "max_wheel_height_difference_m": 0.09904666682651997,
+    "same_visual_collision_uri": true,
+    "same_visual_collision_pose": true,
+    "generator_max_height_difference_m": 7.449791700198105e-09,
+    "added_bowls_not_intersecting_straight_drive_wheel_lines": [
+      {
+        "x": 1.35,
+        "y": -0.78,
+        "radius_y": 0.28
+      },
+      {
+        "x": 2.35,
+        "y": 0.78,
+        "radius_y": 0.38
+      },
+      {
+        "x": 2.95,
+        "y": -0.76,
+        "radius_y": 0.43
+      },
+      {
+        "x": 3.9,
+        "y": 0.83,
+        "radius_y": 0.32
+      },
+      {
+        "x": 5.55,
+        "y": 0.82,
+        "radius_y": 0.36
+      }
+    ]
+  },
+  "training": {
+    "run": "rl_runs/rough_specialist/20261005-193508-209000",
+    "checkpoint_steps": 676124,
+    "episodes": 43,
+    "successes": 25,
+    "termination_counts": {
+      "success": 25,
+      "collision": 16,
+      "timeout": 2
+    },
+    "successes_finishing_over_0_1_m_s": 23,
+    "successes_with_peak_tilt_over_10_deg": 25,
+    "all_means": {
+      "truth_path_rmse_m": 0.17083629199907463,
+      "truth_endpoint_error_m": 1.2531367416373376,
+      "odom_truth_position_error_m": 0.2592344951920195,
+      "max_tilt_deg": 20.246336397369816,
+      "peak_vertical_acceleration_m_s2": 10.910396975794722,
+      "rms_vertical_acceleration_m_s2": 1.5246077675589154,
+      "mean_speed_scale": 0.6579165034764034,
+      "final_speed_m_s": 0.24098627016660693
+    },
+    "successful_means": {
+      "truth_path_rmse_m": 0.16773345328588385,
+      "truth_endpoint_error_m": 0.19086059373177272,
+      "odom_truth_position_error_m": 0.26706056583319815,
+      "max_tilt_deg": 19.66405293726245,
+      "peak_vertical_acceleration_m_s2": 12.388034979731891,
+      "rms_vertical_acceleration_m_s2": 1.616269374856909,
+      "mean_speed_scale": 0.6683815948503095,
+      "final_speed_m_s": 0.18026005327078556
+    },
+    "successful_reward_means": {
+      "progress": 28.44287408673573,
+      "lateral": -58.073582866227824,
+      "heading": -9.646745658207772,
+      "impact": -4.614009491819018,
+      "body_rate": -0.7622806740499626,
+      "attitude": -3.1788567529361584,
+      "slip": -1.5538737375306064,
+      "smoothness": -0.4048152803359975,
+      "saturation": 0.0,
+      "effort": -0.041352536917928936,
+      "residual_effort": -0.2525253906895719,
+      "torque_rate": -0.007468478160389887,
+      "velocity": -0.39759532445819135,
+      "yaw_tracking": -2.6595584744005367,
+      "goal_braking": -0.964489965857958,
+      "time": -8.49799999999227,
+      "stall": 0.0,
+      "challenge_entry": 2.0,
+      "challenge_clear": 8.0,
+      "challenge_goal": 90.0,
+      "success_position": -13.249563080686892,
+      "success_heading": -4.758346275663027,
+      "on_time_success": 11.490909090942296,
+      "terminal": 100.0
+    },
+    "adaptive_layout_lengths": {
+      "0": 43
+    }
+  },
+  "settings": {
+    "adaptive_enabled": false,
+    "domain_randomization_enabled": false,
+    "reward_pose_source": "ground_truth",
+    "goal_require_stopped": false,
+    "off_path_limit_m": 1.0,
+    "rollover_limit_deg": 35.0
+  },
+  "caveat": "A peak tilt above 10 degrees during terrain traversal is not automatically a failure. A handoff task may legitimately finish moving. Historical training logs cannot prove the RL increment over PI without matched ablations."
+}

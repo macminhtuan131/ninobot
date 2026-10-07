@@ -20,7 +20,7 @@ from rclpy.qos import (
 )
 from rclpy.time import Time
 from rosgraph_msgs.msg import Clock
-from ros_gz_interfaces.msg import Entity
+from ros_gz_interfaces.msg import Entity, WorldStatistics
 from ros_gz_interfaces.srv import ControlWorld, DeleteEntity, SetEntityPose, SpawnEntity
 from sensor_msgs.msg import Imu, JointState, LaserScan
 from std_msgs.msg import Float64MultiArray
@@ -65,6 +65,7 @@ class RosRobotInterface(Node):
         cmd_vel_topic: str = "/cmd_vel",
         imu_topic: str = "/imu/data",
         physics_step_seconds: float = 0.002,
+        terrain_height_threshold_m: float = TERRAIN_HEIGHT_THRESHOLD_M,
     ) -> None:
         super().__init__(
             node_name,
@@ -75,9 +76,13 @@ class RosRobotInterface(Node):
         self._lock = Lock()
         self._state = RobotState()
         self.imu_includes_gravity = True
+        if not isfinite(terrain_height_threshold_m) or terrain_height_threshold_m <= 0:
+            raise ValueError("terrain_height_threshold_m must be positive")
+        self.terrain_height_threshold = float(terrain_height_threshold_m)
         self.imu_window = ImuWindow()
         self._imu_epoch_min_stamp = -float("inf")
         self._sim_clock_stamp = None
+        self._world_stats_stamp = None
         self._preview = (0.0, 0.0, 0.0)
         self._preview_received_at = -float("inf")
         self._received = set()
@@ -117,6 +122,10 @@ class RosRobotInterface(Node):
             Odometry, "/ground_truth/odom", self._ground_truth_callback, SENSOR_QOS
         )
         self.create_subscription(Clock, "/clock", self._clock_callback, SENSOR_QOS)
+        self.create_subscription(
+            WorldStatistics, f"/world/{world_name}/stats",
+            self._world_stats_callback, SENSOR_QOS,
+        )
         self.create_subscription(Imu, imu_topic, self._imu_callback, IMU_QOS)
         self.create_subscription(JointState, "/joint_states", self._joint_callback, SENSOR_QOS)
         self.create_subscription(LaserScan, "/scan", self._scan_callback, SENSOR_QOS)
@@ -189,16 +198,27 @@ class RosRobotInterface(Node):
     def _ground_truth_callback(self, message: Odometry) -> None:
         with self._lock:
             self._state.ground_truth_stamp_s = message.header.stamp.sec + message.header.stamp.nanosec * 1e-9
+            self._state.ground_x = float(message.pose.pose.position.x)
+            self._state.ground_y = float(message.pose.pose.position.y)
+            q = message.pose.pose.orientation
+            self._state.ground_yaw = quaternion_to_euler(q.x, q.y, q.z, q.w)[2]
             self._state.ground_linear_velocity = float(message.twist.twist.linear.x)
             self._state.ground_yaw_rate = float(message.twist.twist.angular.z)
             self._mark_received("ground_truth")
 
     def _clock_callback(self, message: Clock) -> None:
         with self._lock:
-            self._sim_clock_stamp = (
-                message.clock.sec + message.clock.nanosec * 1e-9
-            )
+            stamp = message.clock.sec + message.clock.nanosec * 1e-9
+            self._sim_clock_stamp = max(self._sim_clock_stamp or stamp, stamp)
             self._mark_received("clock")
+
+    def _world_stats_callback(self, message: WorldStatistics) -> None:
+        # Gazebo publishes a final paused-world stat even when the /clock bridge
+        # misses the last physics tick. Use its authoritative simulation time.
+        stamp = message.sim_time.sec + message.sim_time.nanosec * 1e-9
+        with self._lock:
+            self._world_stats_stamp = stamp
+            self._sim_clock_stamp = max(self._sim_clock_stamp or stamp, stamp)
 
     def _imu_callback(self, message: Imu) -> None:
         stamp = message.header.stamp.sec + message.header.stamp.nanosec * 1e-9
@@ -332,14 +352,20 @@ class RosRobotInterface(Node):
 
     def publish_straight_command(self, linear_m_s: float) -> None:
         """Publish the direct baseline command; angular velocity is always zero."""
+        self.publish_motion_command(linear_m_s, 0.0)
+
+    def publish_motion_command(self, linear_m_s: float, angular_rad_s: float) -> None:
+        """Send a forward/yaw reference to the existing wheel-speed PI loop."""
         if not isfinite(linear_m_s) or linear_m_s < 0.0:
             raise ValueError("straight speed must be finite and non-negative")
+        if not isfinite(angular_rad_s):
+            raise ValueError("yaw reference must be finite")
         message = Twist()
         message.linear.x = float(linear_m_s)
-        message.angular.z = 0.0
+        message.angular.z = float(angular_rad_s)
         self.cmd_vel_publisher.publish(message)
         with self._lock:
-            self._desired_twist = (float(linear_m_s), 0.0)
+            self._desired_twist = (float(linear_m_s), float(angular_rad_s))
             self._mark_received("straight_cmd")
 
     def straight_reference_valid(self, stale_after: float = 2.0) -> bool:
@@ -472,7 +498,7 @@ class RosRobotInterface(Node):
             height = TERRAIN_SENSOR_HEIGHT_M - distance * sin(
                 TERRAIN_SENSOR_PITCH_RAD
             )
-            if forward > 0.0 and abs(height) >= TERRAIN_HEIGHT_THRESHOLD_M:
+            if forward > 0.0 and abs(height) >= getattr(self, "terrain_height_threshold", TERRAIN_HEIGHT_THRESHOLD_M):
                 samples.append((forward, lateral, height))
 
         def strongest(values) -> float:
@@ -825,8 +851,11 @@ class RosRobotInterface(Node):
         request.world_control.multi_step = physics_steps
         with self._lock:
             clock_before = self._sim_clock_stamp
+            stats_before = getattr(self, "_world_stats_stamp", None)
         if clock_before is None:
             raise RuntimeError("Cannot step Gazebo without a /clock baseline")
+        if stats_before is not None:
+            clock_before = max(clock_before, stats_before)
         requested_duration = physics_steps * self.physics_step_seconds
         target = clock_before + requested_duration
         future = self.world_control.call_async(request)
@@ -846,7 +875,10 @@ class RosRobotInterface(Node):
 
             with self._lock:
                 if self._sim_clock_stamp is not None:
-                    clock_after = self._sim_clock_stamp
+                    clock_after = max(clock_after, self._sim_clock_stamp)
+                stats_after = getattr(self, "_world_stats_stamp", None)
+                if stats_after is not None:
+                    clock_after = max(clock_after, stats_after)
             if clock_after >= target - 0.5 * self.physics_step_seconds:
                 # A missing reply is tolerable only after full physical
                 # completion. Allow the service bridge to retire it normally.

@@ -1,0 +1,23 @@
+{
+  "source": "/home/tuanmac/ninorobot/rl_runs/flat_arrival_guard_200k/20261006-230417-364560/nino_ppo_final.zip",
+  "source_sha256": "146398abd63bc28afc7f27532636a93f487d6d89b7002e70b3683b34bc2c4ee5",
+  "source_steps": 952343,
+  "copied": [
+    "pi_features_extractor.temporal.0.weight",
+    "pi_features_extractor.temporal.0.bias",
+    "pi_features_extractor.temporal.2.weight",
+    "pi_features_extractor.temporal.2.bias",
+    "pi_features_extractor.temporal.5.weight",
+    "pi_features_extractor.temporal.5.bias",
+    "mlp_extractor.policy_net.0.weight",
+    "mlp_extractor.policy_net.0.bias",
+    "mlp_extractor.policy_net.2.weight",
+    "mlp_extractor.policy_net.2.bias",
+    "action_net.weight[speed]",
+    "action_net.bias[speed]",
+    "log_std[speed]"
+  ],
+  "yaw_mean": "zero",
+  "critic": "fresh",
+  "optimizer": "fresh"
+}

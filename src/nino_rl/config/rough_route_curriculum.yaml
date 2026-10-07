@@ -1,0 +1,44 @@
+extends: combined_rough_section.yaml
+rough_curriculum:
+  enabled: true
+  revision: evaluation_gated_rough_v1
+  gate:
+    episodes_per_route: 20
+    success_rate: 0.8
+    max_truth_path_rmse_m: 0.25
+    max_rollover_rate: 0.05
+  # Every stage retains all goals introduced earlier. Geometry changes only
+  # after every route qualifies on the fixed map, including the long loop.
+  stages:
+  - name: fixed_E1
+    route_ids: [E1]
+    terrain_level: 0
+    variant_probability: 0.0
+  - name: fixed_add_N1_S1
+    route_ids: [E1, N1, S1]
+    terrain_level: 0
+    variant_probability: 0.0
+  - name: fixed_add_N2_S2
+    route_ids: [E1, N1, S1, N2, S2]
+    terrain_level: 0
+    variant_probability: 0.0
+  - name: fixed_add_N3_S3
+    route_ids: [E1, N1, S1, N2, S2, N3, S3]
+    terrain_level: 0
+    variant_probability: 0.0
+  - name: fixed_add_W1
+    route_ids: [E1, N1, S1, N2, S2, N3, S3, W1]
+    terrain_level: 0
+    variant_probability: 0.0
+  - name: R1_small_relief_variations
+    route_ids: [E1, N1, S1, N2, S2, N3, S3, W1]
+    terrain_level: 1
+    variant_probability: 0.3
+  - name: R2_add_position_angle_variations
+    route_ids: [E1, N1, S1, N2, S2, N3, S3, W1]
+    terrain_level: 2
+    variant_probability: 0.6
+  - name: R3_broader_validated_variations
+    route_ids: [E1, N1, S1, N2, S2, N3, S3, W1]
+    terrain_level: 3
+    variant_probability: 0.8

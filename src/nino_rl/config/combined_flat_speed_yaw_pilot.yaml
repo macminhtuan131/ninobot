@@ -1,0 +1,14 @@
+# New contract: PI motor control; PPO chooses speed and bounded yaw only.
+# Transfer speed/features with --init-speed-model; never resume a torque actor.
+extends: combined_flat_curriculum_arrival_guard.yaml
+action_mode: speed_yaw_reference
+navigation:
+  goal_stop_tolerance_m: 0.02
+  minimum_approach_speed_m_s: 0.06
+  max_policy_yaw_rate_rad_s: 0.25
+flat_curriculum:
+  fixed_stage: 2
+  evaluation_stage: 2
+  replay_probability: 0.0
+ppo:
+  initial_action_std: [0.20, 0.04]

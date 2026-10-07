@@ -1,0 +1,99 @@
+{
+  "terrain": {
+    "seed": 42,
+    "heightmap_pixels": 257,
+    "active_x_m": [
+      0.8,
+      5.2
+    ],
+    "clear_width_m": 4.0,
+    "goal_xy_m": [
+      6.0,
+      0.0
+    ],
+    "caster_radius_m": 0.016,
+    "height_range_m": [
+      -0.005596542340436116,
+      0.007396168840851173
+    ],
+    "maximum_surface_grade": 0.06355487266581875,
+    "floor_join_height_m": 0.0,
+    "terrain_type": "single continuous heightmap",
+    "profile": "rough, adapted from supplied terrain.py"
+  },
+  "old_world_unchanged_from_HEAD": true,
+  "old_world_sha256": "efef6fc55a5b7752a9dad559fff7a52bc620acbb6c51886c9902d23182ac1044",
+  "baseline": {
+    "run": "rl_runs/rocky_terrainpy_baseline3/20260926-184524-294554",
+    "episodes": 3,
+    "complete": true,
+    "success_rate": 1.0,
+    "metrics": {
+      "truth_path_rmse_m": {
+        "mean": 0.016488105580634394,
+        "std": 0.0017539555227943768,
+        "min": 0.01417325332668278,
+        "max": 0.018417305149555887
+      },
+      "truth_endpoint_error_m": {
+        "mean": 0.06002147349453519,
+        "std": 0.010687712890393351,
+        "min": 0.04599538623385141,
+        "max": 0.07191226941030358
+      },
+      "rms_vertical_acceleration_m_s2": {
+        "mean": 1.4227430859319312,
+        "std": 0.8580053974206469,
+        "min": 0.8159265566838667,
+        "max": 2.636145948275061
+      },
+      "peak_vertical_acceleration_m_s2": {
+        "mean": 29.957333479885353,
+        "std": 29.224649703891124,
+        "min": 7.412341102546646,
+        "max": 71.2283748749813
+      },
+      "rms_wheel_slip": {
+        "mean": 0.020924405958907533,
+        "std": 0.006518928082143777,
+        "min": 0.011994113546619228,
+        "max": 0.027372490157908123
+      },
+      "time_seconds": {
+        "mean": 15.533333333332742,
+        "std": 0.047140452079512486,
+        "min": 15.499999999999119,
+        "max": 15.599999999999987
+      }
+    }
+  },
+  "cuda_smoke": {
+    "run": "rl_runs/rocky_terrainpy_smoke/20260926-184649-649519",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4080",
+    "steps": 256,
+    "n_steps": 128,
+    "batch_size": 64,
+    "n_epochs": 2,
+    "check_env": true,
+    "scalar_tags": 119,
+    "all_logged_scalars_finite": true,
+    "completed_episodes": 1,
+    "checkpoint": "rl_runs/rocky_terrainpy_smoke/20260926-184649-649519/nino_ppo_final.zip"
+  },
+  "checks": {
+    "pytest_passed": 151,
+    "gazebo_sdf": "Valid",
+    "colcon_packages": [
+      "nino_description",
+      "nino_rl"
+    ],
+    "git_diff_check": "passed"
+  },
+  "limitations": [
+    "Three baseline traversals on one fixed layout validate basic contact and completion, not robustness.",
+    "One baseline episode showed a 71.2 m/s2 vertical-acceleration peak; inspect impacts during longer training.",
+    "256 PPO steps validate execution only; no learned improvement is claimed.",
+    "The smoke run uses reduced PPO rollout, batch, and epoch settings."
+  ]
+}

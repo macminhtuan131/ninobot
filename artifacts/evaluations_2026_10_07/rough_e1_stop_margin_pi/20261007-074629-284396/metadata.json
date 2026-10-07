@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "controller": "path_pi_baseline",
+  "model": null,
+  "phase": 1,
+  "seed": 10000,
+  "randomized": false,
+  "benchmark_id": "a3116ff9c66a0bf37ec0be0ac433700449732a7d7e55bb266239b5973ea2779a",
+  "pose_source": "wheel_odometry",
+  "metric_weighting": "simulation_time_trapezoid",
+  "reference": "configured drawn routes with ordered spatial gates in odom",
+  "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv"
+}

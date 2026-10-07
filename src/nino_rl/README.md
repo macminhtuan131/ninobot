@@ -1,5 +1,10 @@
 # Nino residual PPO package
 
+For the expanded rough terrain, use the [evaluation-gated route curriculum,
+terrain variants and Laya guide](../../docs/ROUGH_ROUTE_CURRICULUM.md).
+The supervisor script starts E1 first, retains earlier routes while adding
+goal groups, then introduces R1–R3 terrain variation between blocks.
+
 The current implementation uses a 300-value observation history and three
 continuous actions: straight-reference speed scale, common torque residual and
 differential torque residual. Nav2 is disabled: the baseline is a direct forward

@@ -1,0 +1,330 @@
+# Rough approach (x=0.8..6.72 m), then the flat legacy cable section.
+# Uses the old wheel-torque action contract so an old policy can initialize it.
+# This is a fresh 13 m task; it cannot be resumed from a long_hall checkpoint.
+seed: 42
+device: cuda
+control_hz: 10.0
+max_episode_seconds: 45.0
+target_finish_seconds: 35.0
+max_wheel_torque_nm: 2.0
+goal_tolerance_m: 0.20
+goal_overshoot_limit_m: 0.30
+# Success is restricted to this small endpoint circle. Crossing the infinite
+# goal plane is deliberately disabled because it accepted large lateral misses.
+goal_capture_on_crossing: false
+goal_require_stopped: false
+# The robot must also face the path direction. Speed and tilt remain graded by
+# reward/safety terms rather than making the endpoint circle impractical.
+goal_lateral_tolerance_m: 0.25
+goal_heading_tolerance_deg: 20.0
+goal_max_speed_m_s: 0.10
+goal_max_yaw_rate_rad_s: 0.30
+goal_max_tilt_deg: 10.0
+wrong_direction_heading_deg: 90.0
+wrong_direction_reverse_speed_m_s: 0.10
+wrong_direction_grace_seconds: 3.0
+wrong_direction_hold_seconds: 1.0
+off_path_limit_m: 1.00
+off_path_hold_seconds: 1.0
+navigation_invalid_hold_seconds: 2.0
+rollover_limit_deg: 35.0
+lidar_collision_m: 0.10
+sensor_timeout_seconds: 5.0
+
+# v2 is incompatible with old 54-input/two-action checkpoints.
+policy_v2:
+  history_frames: 5
+  imu_includes_gravity: true
+  imu_topic: /imu/data
+  require_terrain_preview: true
+  preview_timeout_seconds: 0.5
+  simulation_step_wall_timeout_seconds: 10.0
+  # A service acknowledgment only queues physics work. Full clock completion
+  # is mandatory before the next command or observation is consumed.
+  lockstep_min_completion_fraction: 1.0
+  # Matches long_hall.sdf. 50 steps per 10 Hz action keeps cable contacts
+  # stable while halving the physics cost of the original 1 ms setting.
+  simulation_physics_step_seconds: 0.002
+  sensor_wait_timeout_seconds: 2.0
+  motion_max_lag_seconds: 0.04
+  # Cap conservative collision-distance extrapolation for the asynchronous
+  # BEST_EFFORT GPU LiDAR. Transport freshness is checked separately.
+  lidar_max_lag_seconds: 0.25
+  imu_wait_timeout_seconds: 0.5
+  imu_min_coverage: 0.8
+  # Trajectory learning must not abort because Gazebo defers an IMU publisher
+  # during a fast lockstep burst. Partial energy is normalized to the action
+  # window; set true only when validating sensor transport itself.
+  imu_strict_coverage: false
+  # Gazebo can expose the final 50 Hz samples after the multi-step response.
+  # This matches ImuWindow's strict 100 ms zero-order-hold ceiling; larger
+  # gaps still fail instead of being scored as a smooth ride.
+  imu_max_latest_lag_seconds: 0.10
+
+reward_v2:
+  # Progress pays up to +130 over 13 m; success and challenge bonuses make
+  # reaching the endpoint more valuable than progress alone.
+  progress_weight: 10.0
+  progress_metric: endpoint
+  # Straight-path tracking dominates small comfort/effort savings. Forward
+  # progress is additionally gated by alignment in compute_reward().
+  progress_lateral_sigma_m: 0.25
+  progress_heading_sigma_rad: 0.35
+  # Keep dense tracking costs useful without letting 200 accumulated samples
+  # overwhelm progress and the sparse terminal outcome.
+  lateral_weight: 0.50
+  lateral_sigma_m: 0.25
+  heading_weight: 0.25
+  heading_sigma_rad: 0.35
+  impact_weight: 0.05
+  impact_acceleration_sigma_m_s2: 2.0
+  body_rate_weight: 0.05
+  attitude_weight: 0.5
+  slip_weight: 0.1
+  smoothness_weight: 0.02
+  # Applied-torque normalization near the 4.0 Nm PI + 2.0 Nm residual envelope.
+  applied_torque_scale_nm: 5.0
+  effort_weight: 0.04
+  saturation_weight: 0.03
+  saturation_fraction: 0.90
+  residual_effort_weight: 0.005
+  torque_rate_weight: 0.02
+  # Bounded negative kernels: no positive standing/survival bonus.
+  velocity_weight: 0.10
+  overspeed_weight: 0.40
+  velocity_sigma_m_s: 1.20
+  yaw_tracking_weight: 0.15
+  yaw_sigma_rad_s: 0.50
+  goal_braking_weight: 0.15
+  goal_braking_distance_m: 0.80
+  goal_speed_sigma_m_s: 1.20
+  goal_yaw_sigma_rad_s: 0.30
+  time_penalty: 0.05
+  stall_penalty: 0.5
+  # Difficult-path shaping is normalized by the number of traversable hazards,
+  # so these are maximum per-episode totals rather than per-object rewards.
+  # Entry and clearing each pay once; the largest bonus is delayed until a
+  # successful goal arrival. Failed/timeout steps cannot earn a new bonus.
+  challenge_entry_bonus: 2.0
+  challenge_clear_bonus: 8.0
+  challenge_goal_bonus: 90.0
+  success_bonus: 100.0
+  # Successful runs earn up to this extra amount in proportion to the positive
+  # margin before target_finish_seconds. Impact costs still discourage blindly
+  # charging over terrain, so speed selection remains a learned trade-off.
+  on_time_success_bonus: 50.0
+  # A reached goal always receives the success bonus, then loses points
+  # smoothly for endpoint position and heading error.
+  success_position_penalty: 30.0
+  success_position_sigma_m: 0.25
+  success_heading_penalty: 20.0
+  success_heading_sigma_rad: 0.20944
+  failure_penalty: 100.0
+  off_path_penalty: 75.0
+  timeout_penalty: 100.0
+  # Progress is already rewarded densely; do not also forgive a deadline
+  # failure as progress increases. Arrival must remain the primary objective.
+  timeout_minimum_fraction: 1.0
+  timeout_completion_scaling: false
+
+path:
+  lookahead_m: [0.5, 1.0, 2.0, 3.5, 5.0, 7.5, 10.0, 12.5, 15.0]
+  default_goal_x_m: 13.0
+  point_spacing_m: 0.25
+
+navigation:
+  # Odometry-frame poses [x, y, yaw]. No Nav2 nodes, map, planner, or AMCL are
+  # used: the baseline command is always linear.x > 0 and angular.z = 0.
+  # The 13 m route crosses the rough approach, then the flat cable course.
+  start_pose: [0.0, 0.0, 0.0]
+  goal_pose: [13.0, 0.0, 0.0]
+  cmd_vel_topic: /cmd_vel
+  # Keep the 16 mm casters below their 30 rad/s configuration on rough ground.
+  straight_speed_m_s: 0.40
+  minimum_approach_speed_m_s: 0.03
+  # Slow near the endpoint while retaining steering authority.
+  goal_slowdown_distance_m: 0.50
+  stale_seconds: 2.0
+  waypoint_spacing_m: 2.0
+  waypoint_budget_seconds_per_m: 2.5
+  waypoint_slack_seconds: 3.0
+
+curriculum:
+  enabled: false
+  # The flat section's six course cables are randomized separately below.
+  phase_steps: 100000
+  phase_order: [6, 5, 4, 3, 2, 1]
+  fixed_phase: 1
+
+terrain_curriculum:
+  # The old single-cable phase curriculum stays disabled for this course.
+  enabled: false
+  cable_x_m: 10.5
+  # Larger diameter and greater skew are treated as harder. The sign of a
+  # nonzero angle is randomized per episode to avoid a left/right wheel bias.
+  phases_hard_to_easy:
+    - {name: hardest, diameter_m: 0.015, angle_deg: 45.0}
+    - {name: very_hard, diameter_m: 0.013, angle_deg: 36.0}
+    - {name: hard, diameter_m: 0.011, angle_deg: 27.0}
+    - {name: medium, diameter_m: 0.009, angle_deg: 18.0}
+    - {name: easy, diameter_m: 0.007, angle_deg: 9.0}
+    - {name: easiest, diameter_m: 0.005, angle_deg: 5.0}
+
+# At the first episode reset, replace the six static display cables in the
+# world with matching full-width cables at independent random angles. Their
+# positions and radii match combined_hall.sdf; later resets respawn them.
+course_cable_randomization:
+  enabled: true
+  angle_range_deg: [-30.0, 30.0]
+  cables:
+    - {x: 7.2, radius: 0.011}
+    - {x: 8.0, radius: 0.012}
+    - {x: 9.0, radius: 0.013}
+    - {x: 10.0, radius: 0.018}
+    - {x: 11.0, radius: 0.010}
+    - {x: 12.0, radius: 0.009}
+
+# Privileged reward geometry only: these values never enter the observation.
+# Powered-wheel swept footprints mark the one-time difficult-path flag;
+# passing a bump between the wheels does not count. Clearance requires the robot
+# center to pass fully beyond the local forward edge of the feature.
+challenge_tracking:
+  robot_contact_margin_m: 0.20
+  robot_clearance_margin_m: 0.30
+
+# Use the old per-episode pothole, bump, short-cable, and groove spawner on the
+# flat course. The dug rough-ground mesh and six course cable positions remain.
+adaptive_terrain:
+  enabled: true
+  progress_on_success: true
+  initial_features: 1
+  add_per_level: 1
+  consecutive_successes: 5
+  max_features: 6
+  evaluation_features: 6
+  zone_x_m: [7.1, 12.2]
+  # Randomize each feature center across the middle metre of the hall.
+  lateral_spawn_range_m: [-0.5, 0.5]
+  # Physical wheel separation still controls challenge contact geometry.
+  wheel_separation_m: 0.34273666
+  max_lateral_center_m: 1.55
+  pothole_radius_m: 0.30
+  bump_radius_m: 0.12
+  cable_radius_m: 0.015
+  cable_length_m: 0.55
+  # Runtime-spawned transverse groove surrogate: two sloped 20 mm shoulders
+  # around a floor-level channel (Gazebo cannot subtract the existing floor).
+  groove_half_width_m: 0.05
+  groove_length_m: 0.70
+
+# The rough mesh provides actual negative-height hollows. These regions only
+# let the challenge reward count crossings; they add no separate collision.
+fixed_terrain_challenges:
+  - {kind: pothole, x: 1.8, y: 0.30, radius: 0.35}
+  - {kind: bump, x: 2.7, y: -0.12, radius: 0.38}
+  - {kind: pothole, x: 3.55, y: 0.0, radius: 0.40}
+  - {kind: bump, x: 4.55, y: 0.10, radius: 0.38}
+  - {kind: pothole, x: 5.45, y: -0.10, radius: 0.38}
+
+domain_randomization:
+  # Disabled by default: phases change cable size/angle without also
+  # perturbing the residual actuator channel.
+  # It can still be enabled explicitly for robustness experiments.
+  enabled: false
+  phase_scales: [1.0, 0.8, 0.6, 0.4, 0.2, 0.0]
+  # Historical names: these affect the residual channel, NOT contact friction
+  # or the PI motor dynamics. Delay uses simulation time.
+
+  traction_scale: [0.30, 1.00]
+  motor_delay_ms: [10.0, 40.0]
+  torque_noise_std_nm: [0.00, 0.12]
+  position_noise_std_m: [0.04, 0.10]
+  heading_noise_std_deg: [0.3, 2.0]
+  position_bias_m: [0.00, 0.01]
+  heading_bias_deg: [-1.0, 1.0]
+  observation_dropout: [0.00, 0.05]
+
+# Legacy v1 coefficients, retained only for historical comparisons/tests.
+# Active training uses reward_v2 above.
+reward:
+  progress_weight: 20.0
+  alignment_weight: 16.0
+  lateral_weight: 0.8
+  heading_weight: 0.2
+  direction_weight: 1.0
+  direction_correction_weight: 10.0
+  wrong_direction_weight: 2.0
+  reverse_weight: 4.0
+  wrong_direction_termination_penalty: 100.0
+  rollover_termination_penalty: 100.0
+  collision_termination_penalty: 100.0
+  off_path_termination_penalty: 75.0
+  navigation_invalid_termination_penalty: 25.0
+  action_rate_weight: 0.05
+  smoothness_weight: 0.2
+  sigma_lateral_m: 0.30
+  sigma_heading_rad: 0.35
+  rough_progress_weight: 50.0
+  stuck_penalty: 0.5
+  stuck_progress_m: 0.01
+  rollover_weight: 20.0
+  rollover_threshold_deg: 30.0
+  timeout_distance_weight: 10.0
+  timeout_constant: 100.0
+  time_penalty: 0.01
+  success_bonus: 100.0
+  early_finish_bonus: 100.0
+  goal_slowdown_distance_m: 2.0
+  endpoint_motion_weight: 1.0
+  waypoint_bonus: 8.0
+  waypoint_early_bonus: 4.0
+  waypoint_late_penalty: 4.0
+  attitude_weight: 1.0
+  attitude_roll_threshold_rad: 0.20
+  attitude_pitch_threshold_rad: 0.30
+  slip_weight: 0.5
+  effort_weight: 0.05
+  # Bounded VDV-inspired impact objective. Acceleration magnitude avoids
+  # treating gravity projection during pitch/roll as a vertical impact.
+  gravity_m_s2: 9.80665
+  impact_weight: 0.25
+  impact_acceleration_sigma_m_s2: 2.0
+  impact_clip_sigma: 3.0
+  body_rate_weight: 0.10
+  body_rate_clip_sigma: 3.0
+  # Stable progress bonus and vibration penalty use the complete IMU stream.
+  imu_stability_weight: 10.0
+  imu_vibration_weight: 0.2
+  imu_vibration_energy_clip: 25.0
+  imu_tilt_sigma_rad: 0.20
+  imu_angular_rate_sigma_rad_s: 1.0
+  imu_acceleration_change_sigma_m_s2: 2.0
+
+ppo:
+  # The 1.5M-step transferred actor hit target_kl in its first 2,048-step
+  # update at 1e-4. Adapt its mature policy more gently on the new course.
+  learning_rate: 0.00003
+  # About 33 seconds effective horizon at the configured 10 Hz.
+  gamma: 0.997
+  gae_lambda: 0.95
+  n_steps: 2048
+  batch_size: 256
+  n_epochs: 5
+  clip_range: 0.2
+  ent_coef: 0.001
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  target_kl: 0.015
+  actor_layers: [128, 128]
+  critic_layers: [256, 128]
+  history_features: 64
+  log_std_init: -1.38629436112  # fallback only when initial_action_std is omitted
+  # Independent, trainable exploration scales: speed, common torque, steering.
+  initial_action_std: [0.20, 0.12, 0.05]
+  initial_speed_scale: 0.70
+  activation: elu
+
+task: combined_course
+reward_pose_source: ground_truth
+world_name: combined_hall
+action_mode: wheel_torque

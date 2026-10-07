@@ -11,7 +11,7 @@ from pathlib import Path
 import numpy as np
 
 from nino_rl.core import load_config
-from nino_rl.control_v2 import BASELINE_ACTION, validate_model
+from nino_rl.control_v2 import baseline_action, action_size, validate_model, validate_action_mode
 from nino_rl.trajectory_metrics import write_csv
 
 METRICS = ("path_rmse_m", "cross_track_rmse_m", "path_p95_m", "path_max_m",
@@ -19,12 +19,15 @@ METRICS = ("path_rmse_m", "cross_track_rmse_m", "path_p95_m", "path_max_m",
            "backtracking_m", "time_seconds", "rms_vertical_acceleration_m_s2",
            "peak_vertical_acceleration_m_s2", "rms_wheel_slip", "rms_wheel_torque_nm",
            "challenge_choice_fraction", "challenge_clear_fraction")
+TRUTH_METRICS = ("truth_path_rmse_m", "truth_path_p95_m", "truth_endpoint_error_m",
+                 "truth_heading_rmse_deg", "odom_truth_position_error_m")
 
 
 def benchmark_id(config):
     # Reward/PPO differences are allowed; geometry, sensing, task and test
     # perturbations must match. This is not a hash of external Gazebo binaries.
-    ignored = {"reward", "reward_v2", "ppo", "device", "seed", "evaluation_baseline"}
+    ignored = {"reward", "reward_v2", "ppo", "device", "seed", "evaluation_baseline",
+               "evaluation_speed_only"}
     task = {k: v for k, v in config.items() if k not in ignored}
     return hashlib.sha256(json.dumps(task, sort_keys=True).encode()).hexdigest()
 
@@ -39,7 +42,20 @@ def summarize(rows, metadata):
                                for reason in sorted({r["termination"] for r in rows})},
         "metrics_all_episodes": {}, "metrics_successful_episodes": {},
     }
-    for name in METRICS:
+    route_ids = sorted({row["route_id"] for row in rows if row.get("route_id")})
+    if route_ids:
+        summary["per_route"] = {}
+        for route_id in route_ids:
+            selected = [row for row in rows if row.get("route_id") == route_id]
+            summary["per_route"][route_id] = {
+                "episodes": len(selected),
+                "success_rate": float(np.mean([row["success"] for row in selected])),
+                "truth_path_rmse_m": float(np.mean([row["truth_path_rmse_m"] for row in selected])),
+                "termination_counts": {reason: sum(row["termination"] == reason for row in selected)
+                    for reason in sorted({row["termination"] for row in selected})},
+            }
+    extra = tuple(name for name in TRUTH_METRICS if all(name in row for row in rows))
+    for name in METRICS + extra:
         values = np.asarray([r[name] for r in rows], float)
         summary["metrics_all_episodes"][name] = {
             "mean": float(values.mean()), "std": float(values.std()),
@@ -58,24 +74,54 @@ def run(baseline=False):
     if not baseline:
         parser.add_argument("--model", required=True, type=Path)
         parser.add_argument("--device", choices=("cuda", "cpu", "auto"), default="cuda")
+        parser.add_argument("--speed-only", action="store_true",
+                            help="Keep PPO speed scaling and disable its torque corrections (evaluation only)")
     parser.add_argument("--episodes", type=int, default=10)
     parser.add_argument("--phase", type=int, choices=range(1, 7), default=1)
     parser.add_argument("--seed", type=int, default=10000)
+    parser.add_argument("--flat-stage", type=int,
+                        help="Evaluate a specific zero-based flat curriculum stage; default is its final stage")
     parser.add_argument("--randomized", action="store_true",
                         help="Enable full-strength residual/sensor perturbations")
+    parser.add_argument("--route", help="Evaluate one drawn route ID; omit for round-robin route coverage")
     parser.add_argument("--output", type=Path, default=Path("rl_runs/baseline" if baseline else "rl_runs/evaluation"))
     args = parser.parse_args()
     if args.episodes < 1:
         parser.error("--episodes must be positive")
     config = deepcopy(load_config(args.config))
+    if config.get("routes", {}).get("enabled", False):
+        config["routes"]["selection"] = "round_robin"
+        if args.route is not None:
+            config["routes"]["fixed_route"] = args.route
+    elif args.route is not None:
+        parser.error("--route requires an enabled routes configuration")
+    from nino_rl.routes import RouteSet
+    RouteSet(config)
     config["curriculum"]["fixed_phase"] = args.phase
     config["domain_randomization"]["enabled"] = args.randomized
     config["domain_randomization"]["phase_scales"] = [1.0] * 6
     config["evaluation_baseline"] = baseline
+    speed_only = not baseline and args.speed_only
+    if speed_only and config.get("action_mode", "wheel_torque") != "wheel_torque":
+        parser.error("--speed-only requires a wheel_torque model/config")
+    config["evaluation_speed_only"] = speed_only
     adaptive = config.get("adaptive_terrain", {})
+    flat_curriculum = config.get("flat_curriculum", {})
+    if flat_curriculum.get("enabled", False):
+        selected_stage = (args.flat_stage if args.flat_stage is not None
+                          else flat_curriculum.get("evaluation_stage", len(flat_curriculum["stages"]) - 1))
+        if not 0 <= selected_stage < len(flat_curriculum["stages"]):
+            parser.error("--flat-stage is outside the configured flat curriculum")
+        flat_curriculum["fixed_stage"] = selected_stage
+    elif args.flat_stage is not None:
+        parser.error("--flat-stage requires an enabled flat_curriculum")
     if adaptive.get("enabled", False):
         adaptive["progress_on_success"] = False
-        adaptive["initial_features"] = int(adaptive.get("evaluation_features", 8))
+        adaptive["initial_features"] = (
+            int(flat_curriculum["stages"][flat_curriculum["fixed_stage"]]["adaptive_features"])
+            if flat_curriculum.get("enabled", False)
+            else int(adaptive.get("evaluation_features", 8))
+        )
     model = None
     if not baseline:
         import torch
@@ -84,19 +130,25 @@ def run(baseline=False):
         if device == "cuda" and not torch.cuda.is_available():
             parser.error("CUDA unavailable; run ros2 run nino_rl check_cuda")
         model = PPO.load(args.model, device=device)
-        validate_model(model, 60 * config["policy_v2"]["history_frames"])
+        validate_model(model, 60 * config["policy_v2"]["history_frames"], action_size(config))
+        validate_action_mode(model, config)
     output = args.output.expanduser().resolve() / datetime.now().strftime("%Y%m%d-%H%M%S-%f")
     output.mkdir(parents=True, exist_ok=False)
     import yaml
     (output / "config.yaml").write_text(yaml.safe_dump(config, sort_keys=False))
     metadata = {
-        "schema_version": 1, "controller": "straight_pi_baseline" if baseline else "ppo",
+        "schema_version": 1, "controller": ("path_pi_baseline" if config.get("routes", {}).get("enabled", False)
+                                             else "straight_pi_baseline") if baseline else (
+                                                 "ppo_speed_only" if speed_only else "ppo"),
+        "action_ablation": "speed_only" if speed_only else "none",
         "model": str(args.model.resolve()) if not baseline else None,
         "phase": args.phase, "seed": args.seed, "randomized": args.randomized,
         "benchmark_id": benchmark_id(config),
         "pose_source": "wheel_odometry",
         "metric_weighting": "simulation_time_trapezoid",
-        "reference": "fixed straight line from configured start_pose to goal_pose in odom",
+        "reference": "configured drawn routes with ordered spatial gates in odom" if
+                     config.get("routes", {}).get("enabled", False) else
+                     "fixed straight line from configured start_pose to goal_pose in odom",
         "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
     }
     (output / "metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
@@ -108,7 +160,7 @@ def run(baseline=False):
         for episode in range(args.episodes):
             observation, reset_info = env.reset(seed=args.seed + episode)
             while True:
-                action = BASELINE_ACTION.copy() if baseline else model.predict(observation, deterministic=True)[0]
+                action = baseline_action(config) if baseline else model.predict(observation, deterministic=True)[0]
                 observation, _, terminated, truncated, info = env.step(action)
                 if terminated or truncated:
                     break
@@ -120,6 +172,7 @@ def run(baseline=False):
                        cable_angle_deg=reset_info["cable_angle_deg"])
             rows.append(row)
             env.trajectory.save(output / f"episode-{episode+1:03d}")
+            env.truth_trajectory.save(output / f"episode-{episode+1:03d}" / "ground_truth")
             # Persist each completed episode, so a later transport failure does
             # not lose previous measurements. No success row for a broken run.
             write_csv(output / "episodes.csv", rows)
@@ -152,7 +205,9 @@ def compare_summaries(baseline, candidate):
               "success_rate": {"baseline": baseline["success_rate"], "candidate": candidate["success_rate"],
                                "delta": candidate["success_rate"] - baseline["success_rate"]},
               "metrics": {}}
-    for name in METRICS:
+    extra = tuple(name for name in TRUTH_METRICS
+                  if name in baseline['metrics_all_episodes'] and name in candidate['metrics_all_episodes'])
+    for name in METRICS + extra:
         b = baseline["metrics_all_episodes"][name]["mean"]
         c = candidate["metrics_all_episodes"][name]["mean"]
         result["metrics"][name] = {"baseline": b, "candidate": c, "delta": c-b}

@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-04",
+  "timezone": "Asia/Bangkok",
+  "checks": {
+    "flat_stage1_old_heldout": {
+      "summary": "rl_runs/flat_stage1_old_heldout/20261004-091451-114479/summary.json",
+      "complete": true,
+      "episodes": 12,
+      "seed": 30000,
+      "randomized": false,
+      "benchmark_id": "c029fbb9c412957eba6f0a594b9fb110b0dbd82de75858979fed6be934e7a62f",
+      "model": "/home/tuanmac/ninorobot/artifacts/old_1_5m/nino_ppo_final.zip",
+      "success_rate": 0.0,
+      "on_time_success_rate": 0.0,
+      "termination_counts": {
+        "off_path": 1,
+        "timeout": 11
+      },
+      "metrics": {
+        "truth_path_rmse_m": 0.23788199631936405,
+        "truth_endpoint_error_m": 0.45998691107610634,
+        "odom_truth_position_error_m": 0.3403980140820966,
+        "time_seconds": 28.78333333291448
+      }
+    },
+    "flat_stage1_tuned_heldout": {
+      "summary": "rl_runs/flat_stage1_tuned_heldout/20261004-092243-677688/summary.json",
+      "complete": true,
+      "episodes": 12,
+      "seed": 30000,
+      "randomized": false,
+      "benchmark_id": "c029fbb9c412957eba6f0a594b9fb110b0dbd82de75858979fed6be934e7a62f",
+      "model": "/home/tuanmac/ninorobot/rl_runs/flat_curriculum_optuna/trial_0006/train/20261003-231617-580414/nino_ppo_final.zip",
+      "success_rate": 0.16666666666666666,
+      "on_time_success_rate": 0.16666666666666666,
+      "termination_counts": {
+        "goal_missed": 2,
+        "off_path": 1,
+        "success": 2,
+        "timeout": 7
+      },
+      "metrics": {
+        "truth_path_rmse_m": 0.17646356719634174,
+        "truth_endpoint_error_m": 0.48686190631340537,
+        "odom_truth_position_error_m": 0.30152854288832937,
+        "time_seconds": 24.533333332976326
+      }
+    },
+    "flat_clear_baseline_heldout": {
+      "summary": "rl_runs/flat_clear_baseline_heldout/20261004-092924-760323/summary.json",
+      "complete": true,
+      "episodes": 12,
+      "seed": 30000,
+      "randomized": false,
+      "benchmark_id": "07f38a917d594e42a6d210531df6324d0fbc4c7ec7f3bf7d8e8d368bb188d3b1",
+      "model": null,
+      "success_rate": 0.5,
+      "on_time_success_rate": 0.5,
+      "termination_counts": {
+        "success": 6,
+        "timeout": 6
+      },
+      "metrics": {
+        "truth_path_rmse_m": 0.03808256732765112,
+        "truth_endpoint_error_m": 0.22783854949386798,
+        "odom_truth_position_error_m": 0.22242482901042115,
+        "time_seconds": 25.26666666629899
+      }
+    },
+    "flat_clear_goal_margin": {
+      "summary": "rl_runs/flat_clear_goal_margin/20261004-110933-452078/summary.json",
+      "complete": true,
+      "episodes": 12,
+      "seed": 30000,
+      "randomized": false,
+      "benchmark_id": "5e6f958df27952e50c54e9a75d45b87e65b2ccd556687f71fe5d473f193d6b9f",
+      "model": null,
+      "success_rate": 0.8333333333333334,
+      "on_time_success_rate": 0.8333333333333334,
+      "termination_counts": {
+        "success": 10,
+        "timeout": 2
+      },
+      "metrics": {
+        "truth_path_rmse_m": 0.08016610079899382,
+        "truth_endpoint_error_m": 0.2618596588420492,
+        "odom_truth_position_error_m": 0.14435269496362885,
+        "time_seconds": 19.683333333046903
+      }
+    },
+    "flat_old_goal_margin": {
+      "summary": "rl_runs/flat_old_goal_margin/20261004-111507-772795/summary.json",
+      "complete": true,
+      "episodes": 12,
+      "seed": 30000,
+      "randomized": false,
+      "benchmark_id": "44b0c628dc68f8c8ba0a59ccd5b8aa5dac65ee9b7c2225133d438a9ab0fff721",
+      "model": "/home/tuanmac/ninorobot/artifacts/old_1_5m/nino_ppo_final.zip",
+      "success_rate": 0.8333333333333334,
+      "on_time_success_rate": 0.8333333333333334,
+      "termination_counts": {
+        "goal_missed": 2,
+        "success": 10
+      },
+      "metrics": {
+        "truth_path_rmse_m": 0.11644178923367889,
+        "truth_endpoint_error_m": 0.23060672088085613,
+        "odom_truth_position_error_m": 0.19447598149765974,
+        "time_seconds": 16.433333333094197
+      }
+    },
+    "flat_tuned_goal_margin": {
+      "summary": "rl_runs/flat_tuned_goal_margin/20261004-112037-022036/summary.json",
+      "complete": true,
+      "episodes": 12,
+      "seed": 30000,
+      "randomized": false,
+      "benchmark_id": "44b0c628dc68f8c8ba0a59ccd5b8aa5dac65ee9b7c2225133d438a9ab0fff721",
+      "model": "/home/tuanmac/ninorobot/rl_runs/flat_curriculum_optuna/trial_0006/train/20261003-231617-580414/nino_ppo_final.zip",
+      "success_rate": 0.6666666666666666,
+      "on_time_success_rate": 0.6666666666666666,
+      "termination_counts": {
+        "goal_missed": 2,
+        "off_path": 2,
+        "success": 8
+      },
+      "metrics": {
+        "truth_path_rmse_m": 0.16158692685313014,
+        "truth_endpoint_error_m": 0.40795042930219444,
+        "odom_truth_position_error_m": 0.3143271103307594,
+        "time_seconds": 16.474999999760257
+      }
+    },
+    "rough_trial3_heldout": {
+      "summary": "rl_runs/rough_trial3_heldout/20261004-110351-994914/summary.json",
+      "complete": true,
+      "episodes": 24,
+      "seed": 30000,
+      "randomized": false,
+      "benchmark_id": "715483d32c3f76d4ffe29ebd5ff0c2154cf202d307d158926c9daf7bc166e19c",
+      "model": "/home/tuanmac/ninorobot/rl_runs/combined_rough_optuna_fresh/trial_0003/train/20261002-201722-758836/nino_ppo_final.zip",
+      "success_rate": 0.625,
+      "on_time_success_rate": 0.4583333333333333,
+      "termination_counts": {
+        "success": 15,
+        "timeout": 9
+      },
+      "metrics": {
+        "truth_path_rmse_m": 0.15653218982147407,
+        "truth_endpoint_error_m": 0.26830865619843586,
+        "odom_truth_position_error_m": 0.19315588482834167,
+        "time_seconds": 24.00416666631736
+      }
+    },
+    "rough_trial6_heldout": {
+      "summary": "rl_runs/rough_trial6_heldout/20261004-111746-996777/summary.json",
+      "complete": true,
+      "episodes": 24,
+      "seed": 30000,
+      "randomized": false,
+      "benchmark_id": "715483d32c3f76d4ffe29ebd5ff0c2154cf202d307d158926c9daf7bc166e19c",
+      "model": "/home/tuanmac/ninorobot/rl_runs/combined_rough_optuna_fresh/trial_0006/train/20261003-024526-879245/nino_ppo_final.zip",
+      "success_rate": 0.875,
+      "on_time_success_rate": 0.8333333333333334,
+      "termination_counts": {
+        "goal_missed": 1,
+        "success": 21,
+        "timeout": 2
+      },
+      "metrics": {
+        "truth_path_rmse_m": 0.12193518492137635,
+        "truth_endpoint_error_m": 0.2641817217676589,
+        "odom_truth_position_error_m": 0.17468617195709593,
+        "time_seconds": 18.229166666401397
+      }
+    }
+  },
+  "flat_profile": {
+    "path": "src/nino_rl/config/combined_flat_curriculum_goal_margin.yaml",
+    "sha256": "2215ec5c5c0be57c12c8185f13348b83bd42af12d87dbbc90905dd49b2532c79",
+    "physical_goal_tolerance_m": 0.2,
+    "estimated_goal_stop_tolerance_m": 0.05,
+    "selected_actor": "artifacts/old_1_5m/nino_ppo_final.zip",
+    "ppo_reward_source": "rl_runs/flat_curriculum_optuna/trial_0006/trial.yaml"
+  },
+  "rough_selected_trial": 6,
+  "odometry_audit": [
+    {
+      "start_sim_s": 53110.694,
+      "encoder_pose": [
+        6.257749644156467,
+        0.018693319534924792,
+        0.005286083306973411
+      ],
+      "timer_odom_pose": [
+        6.257746760896601,
+        0.016127733690877118,
+        0.004587411289089862
+      ],
+      "ground_truth_pose": [
+        6.171087319793832,
+        -0.056201078965321144,
+        -0.014524145208300313
+      ]
+    },
+    {
+      "start_sim_s": 53141.334,
+      "encoder_pose": [
+        6.3391419107278715,
+        -0.298496115699825,
+        -0.07143201778793892
+      ],
+      "timer_odom_pose": [
+        6.339402873638908,
+        -0.301106069213924,
+        -0.07205728508042643
+      ],
+      "ground_truth_pose": [
+        6.255394674725435,
+        -0.019305483258780693,
+        -0.003996724999879339
+      ]
+    },
+    {
+      "start_sim_s": 53162.268,
+      "encoder_pose": [
+        6.272090330815236,
+        0.08156881892681384,
+        0.021943792492417378
+      ],
+      "timer_odom_pose": [
+        6.2721639761505195,
+        0.08237846403195152,
+        0.022164486867112376
+      ],
+      "ground_truth_pose": [
+        6.194796026183507,
+        -0.030518807584990742,
+        -0.007264720933944902
+      ]
+    }
+  ],
+  "verification": {
+    "unit_tests_passed": 55,
+    "colcon_packages": [
+      "nino_rl"
+    ],
+    "build_passed": true,
+    "rough_resume_contract_passed": true
+  },
+  "smoke": {
+    "status": "complete",
+    "requested_steps": 2048,
+    "actual_steps": 2048,
+    "ppo_epoch_updates": 10,
+    "episodes": 11,
+    "physical_successes": 6,
+    "stages": [
+      0
+    ],
+    "checkpoint": "rl_runs/flat_goal_margin_smoke/20261004-112551-204929/nino_ppo_final.zip",
+    "preflight_checks_passed": 12,
+    "checkpoint_resume_contract_passed": true,
+    "saved_curriculum_state": {
+      "stage_index": 0,
+      "outcomes": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    }
+  },
+  "limits": [
+    "Nominal fixed geometry; randomized evaluation disabled.",
+    "Flat checkpoint comparison covers stage 1 only, not stage 15.",
+    "Twelve flat and twenty-four rough episodes are preliminary estimates.",
+    "The goal margin changes stopping behavior; it does not remove wheel-odometry drift."
+  ]
+}

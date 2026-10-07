@@ -32,14 +32,14 @@
 
   <link name="base_link">
     <inertial>
-      <!-- CAD mass and moments; lateral COM and lateral cross-products are
-           made exactly symmetric so equal wheel commands produce straight travel. -->
+      <!-- CAD center of mass and moments scaled to a 2.5 kg chassis;
+           lateral COM and cross-products stay symmetric. -->
       <origin xyz="0.0592774512 0 0.0848297985" rpy="0 0 0"/>
-      <mass value="3.6594075244"/>
+      <mass value="2.5"/>
       <inertia
-        ixx="0.0286794731" ixy="0" ixz="-0.00039888648"
-        iyy="0.0473970329" iyz="0"
-        izz="0.0716779090"/>
+        ixx="0.0195929757" ixy="0" ixz="-0.0002725076"
+        iyy="0.0323802641" iyz="0"
+        izz="0.0489682473"/>
     </inertial>
     <visual>
       <geometry>
@@ -78,9 +78,10 @@
   <link name="laser">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.10"/>
-      <inertia ixx="0.00004" ixy="0" ixz="0"
-               iyy="0.00004" iyz="0" izz="0.00007"/>
+      <mass value="1.3"/>
+      <!-- Solid-cylinder inertia for radius 0.0375 m and height 0.05 m. -->
+      <inertia ixx="0.000727864583" ixy="0" ixz="0"
+               iyy="0.000727864583" iyz="0" izz="0.0009140625"/>
     </inertial>
     <visual>
       <geometry>
@@ -99,14 +100,18 @@
   <joint name="laser_to_base_link" type="fixed">
     <parent link="base_link"/>
     <child link="laser"/>
-    <origin xyz="0.10 0 0.18" rpy="0 0 0"/>
+    <!-- Center of the four-hole top-plate pattern (x=0.1725/0.2275,
+         y=+/-0.015); the cylinder bottom sits on the z=0.14 plate. -->
+    <origin xyz="0.20 0 0.165" rpy="0 0 0"/>
   </joint>
 
   <!-- A shallow downward-looking scan gives the policy deployable preview of
        low cables and terrain before the casters reach them. It is mounted
        just beyond the 0.31 m CAD chassis nose so the robot cannot occlude its
-       rays. At 0.2325 m height and 0.45 rad pitch it observes the floor about
-       0.48 m ahead; the horizontal fan distinguishes left/right terrain. -->
+       rays. Its housing sits above the horizontal /scan plane, so the main
+       LiDAR does not mistake this sensor for an obstacle. At 0.2625 m height
+       and 0.45 rad pitch it observes the floor about 0.54 m ahead; the
+       horizontal fan distinguishes left/right terrain. -->
   <link name="terrain_laser">
     <visual>
       <geometry><box size="0.035 0.055 0.025"/></geometry>
@@ -116,7 +121,7 @@
   <joint name="terrain_laser_to_base_link" type="fixed">
     <parent link="base_link"/>
     <child link="terrain_laser"/>
-    <origin xyz="0.33 0 0.17" rpy="0 0.45 0"/>
+    <origin xyz="0.33 0 0.20" rpy="0 0.45 0"/>
   </joint>
 
   <gazebo reference="terrain_laser">
@@ -234,11 +239,12 @@
     <link name="${side}_wheel_link">
       <inertial>
         <origin xyz="0 0 ${com_z}" rpy="0 0 0"/>
-        <mass value="0.4194392311"/>
+        <!-- Keep the CAD inertia ratios when increasing each wheel to 0.8 kg. -->
+        <mass value="0.8"/>
         <inertia
-          ixx="0.00043046655" ixy="0" ixz="0"
-          iyy="0.00043046655" iyz="0"
-          izz="0.00076090197"/>
+          ixx="0.00082103250" ixy="0" ixz="0"
+          iyy="0.00082103250" iyz="0"
+          izz="0.00145127478"/>
       </inertial>
       <visual>
         <geometry>

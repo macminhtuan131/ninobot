@@ -18,6 +18,23 @@ BASELINE_ACTION = np.array([1.0, 0.0, 0.0], dtype=np.float32)
 STOP_ACTION = np.array([-1.0, 0.0, 0.0], dtype=np.float32)
 
 
+def action_size(config):
+    return 2 if config.get("action_mode") == "speed_yaw_reference" else ACTION_SIZE
+
+
+def baseline_action(config):
+    return np.array([1., 0.], dtype=np.float32) if action_size(config) == 2 else BASELINE_ACTION.copy()
+
+
+def history_action(action, config):
+    """Keep 60-value frames: speed, zero torque, normalized yaw for the new mode."""
+    u = np.asarray(action, dtype=np.float32)
+    if u.shape != (action_size(config),) or not np.all(np.isfinite(u)):
+        raise ValueError(f"Expected {action_size(config)} finite policy actions")
+    u = np.clip(u, -1., 1.)
+    return np.array([u[0], 0., u[1]], dtype=np.float32) if action_size(config) == 2 else u.copy()
+
+
 @dataclass(frozen=True)
 class ChallengeRegion:
     """A traversable circular hazard or finite cable segment in odom."""
@@ -160,6 +177,44 @@ def decode_action(action, max_torque=0.5):
     return float((u[0] + 1.0) / 2.0), torque
 
 
+def decode_control(action, config, *, path_remaining=None):
+    """Decode legacy torque steering or the opt-in PI yaw-reference task."""
+    if config.get("action_mode") == "speed_yaw_reference":
+        u = history_action(action, config)
+        limit = float(config["navigation"]["max_policy_yaw_rate_rad_s"])
+        if not np.isfinite(limit) or limit <= 0:
+            raise ValueError("max_policy_yaw_rate_rad_s must be positive and finite")
+        return float((u[0] + 1.) / 2.), np.zeros(2), float(limit * u[2])
+    scale, torque = decode_action(action, float(config["max_wheel_torque_nm"]))
+    mode = config.get("action_mode", "wheel_torque")
+    if mode == "wheel_torque":
+        nav = config.get("navigation", {})
+        fade = nav.get("goal_residual_fade_distance_m")
+        if fade is not None:
+            fade = float(fade)
+            stop = float(nav.get("goal_stop_tolerance_m", config["goal_tolerance_m"]))
+            if not np.isfinite(fade) or not np.isfinite(stop) or not 0.0 <= stop < fade:
+                raise ValueError("goal_residual_fade_distance_m must be finite and greater than the stop tolerance")
+            if path_remaining is None or not np.isfinite(path_remaining):
+                raise ValueError("Goal residual fade requires finite estimated path_remaining")
+            # A residual can otherwise overpower the PI slowdown reference.
+            # Use estimated along-path distance, not endpoint distance: a
+            # lateral miss or overshoot must not restore full torque authority.
+            factor = float(np.clip((path_remaining - stop) / (fade - stop), 0.0, 1.0))
+            torque *= factor
+        return scale, torque, 0.0
+    if mode != "yaw_reference":
+        raise ValueError(f"Unknown action_mode: {mode}")
+    limit = float(config["navigation"]["max_policy_yaw_rate_rad_s"])
+    if not np.isfinite(limit) or limit <= 0:
+        raise ValueError("max_policy_yaw_rate_rad_s must be positive")
+    u = np.clip(np.asarray(action, dtype=float), -1., 1.)
+    # The PI loop follows differential speed targets instead of opposing
+    # a differential residual. Only common-mode torque remains additive.
+    torque = np.full(2, float(config["max_wheel_torque_nm"]) * u[1])
+    return scale, torque, float(limit * u[2])
+
+
 def vertical_acceleration(state, includes_gravity=True):
     # Third row of body->world rotation, REP-103 z-up. IMU axes must be
     # aligned with base_link (as in this robot's fixed imu joint).
@@ -170,8 +225,9 @@ def vertical_acceleration(state, includes_gravity=True):
 
 
 def make_observation(state, path, lookahead, previous_action, nav_reference=None,
-                     preview=None, includes_gravity=True):
-    _, torque = decode_action(previous_action, 1.0)
+                     preview=None, includes_gravity=True, action_mode="wheel_torque"):
+    # In the two-action mode yaw is a velocity reference, not additive torque.
+    torque = np.zeros(2) if action_mode == "speed_yaw_reference" else decode_action(previous_action, 1.0)[1]
     legacy, tracking = legacy_observation(state, path, lookahead, torque, nav_reference)
     # Drop indices 50,51: slip computed using simulator-only truth velocity.
     # Preview is [distance/1m, left height/0.1m, right height/0.1m, valid].
@@ -371,7 +427,11 @@ def compute_reward(previous, current, state, action, previous_action, torque,
         yaw_cost = -h * cfg.get("yaw_tracking_weight", 0.0) * kernel_cost(
             state.ground_yaw_rate - reference.desired_angular_velocity,
             cfg.get("yaw_sigma_rad_s", 0.50))
-    goal_gate = exp(-(current.endpoint_distance / cfg.get("goal_braking_distance_m", 0.8)) ** 2)
+    braking_metric = cfg.get("goal_braking_metric", "endpoint")
+    if braking_metric not in ("endpoint", "path"):
+        raise ValueError("goal_braking_metric must be endpoint or path")
+    braking_distance = current.distance_remaining if braking_metric == "path" else current.endpoint_distance
+    goal_gate = exp(-(braking_distance / cfg.get("goal_braking_distance_m", 0.8)) ** 2)
     torque_rate = 0.0
     if previous_state is not None:
         old_torque = np.asarray([previous_state.applied_left_torque,
@@ -481,8 +541,17 @@ def compute_reward(previous, current, state, action, previous_action, torque,
     return reward, terms
 
 
-def validate_model(model, history_size):
+def validate_model(model, history_size, actions=ACTION_SIZE):
     if (tuple(model.observation_space.shape) != (history_size,)
-            or tuple(model.action_space.shape) != (ACTION_SIZE,)):
+            or tuple(model.action_space.shape) != (actions,)):
         raise ValueError("Incompatible checkpoint: v2 requires stacked 60-value frames "
-                         "and 3 actions. Train a NEW v2 model; do not resume a v1 checkpoint.")
+                         f"and {actions} actions. Start a new compatible run; do not resume this checkpoint.")
+
+
+def validate_action_mode(model, config):
+    """Identical tensor shapes do not imply identical actuator semantics."""
+    saved = getattr(model, "nino_training_contract", {}) or {}
+    expected = config.get("action_mode", "wheel_torque")
+    if saved.get("action_mode", "wheel_torque") != expected:
+        raise ValueError("Checkpoint action mode differs from config; pair the model "
+                         "with its own config. Changing action meanings requires a new compatible actor.")

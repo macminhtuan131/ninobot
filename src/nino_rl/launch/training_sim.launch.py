@@ -22,8 +22,8 @@ def generate_launch_description():
             )
         ),
         launch_arguments={
-            "world": "long_hall.sdf",
-            "world_name": "long_hall",
+            "world": LaunchConfiguration("world"),
+            "world_name": LaunchConfiguration("world_name"),
             "headless": LaunchConfiguration("headless"),
             "rviz": "false",
             "sensor_monitor": "false",
@@ -43,10 +43,11 @@ def generate_launch_description():
         name="rl_world_control_bridge",
         output="screen",
         arguments=[
-            "/world/long_hall/control@ros_gz_interfaces/srv/ControlWorld",
-            "/world/long_hall/set_pose@ros_gz_interfaces/srv/SetEntityPose",
-            "/world/long_hall/create@ros_gz_interfaces/srv/SpawnEntity",
-            "/world/long_hall/remove@ros_gz_interfaces/srv/DeleteEntity",
+            ["/world/", LaunchConfiguration("world_name"), "/control@ros_gz_interfaces/srv/ControlWorld"],
+            ["/world/", LaunchConfiguration("world_name"), "/set_pose@ros_gz_interfaces/srv/SetEntityPose"],
+            ["/world/", LaunchConfiguration("world_name"), "/create@ros_gz_interfaces/srv/SpawnEntity"],
+            ["/world/", LaunchConfiguration("world_name"), "/remove@ros_gz_interfaces/srv/DeleteEntity"],
+            ["/world/", LaunchConfiguration("world_name"), "/stats@ros_gz_interfaces/msg/WorldStatistics[gz.msgs.WorldStatistics"],
         ],
     )
     return LaunchDescription(
@@ -55,6 +56,8 @@ def generate_launch_description():
                 "ROS_DOMAIN_ID", os.environ.get("NINO_ROS_DOMAIN_ID", "77")
             ),
             SetEnvironmentVariable("ROS_AUTOMATIC_DISCOVERY_RANGE", "LOCALHOST"),
+            DeclareLaunchArgument("world", default_value="long_hall.sdf"),
+            DeclareLaunchArgument("world_name", default_value="long_hall"),
             DeclareLaunchArgument(
                 "headless", default_value="true", description="Disable Gazebo GUI while training"
             ),

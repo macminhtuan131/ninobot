@@ -36,18 +36,27 @@ def _finite_xy(points):
     return points
 
 
-def path_metrics(times, actual_xy, reference_xy, yaw=None):
+def path_metrics(times, actual_xy, reference_xy, yaw=None, route_settings=None):
     """Distance to polyline (including endpoints), cross-track, heading and progress.
 
     These are geometry metrics, not time-aligned position RMSE or localization
-    accuracy. Nearest-segment progress is ambiguous at self-intersections.
+    accuracy. Nearest-segment progress is ambiguous at self-intersections;
+    route_settings enables chronological ordered projection for drawn loops.
     """
     actual = _finite_xy(actual_xy)
     weights = time_weights(times)
     if len(actual) != len(weights):
         raise ValueError("Timestamp/position lengths differ")
-    path = PathTracker(_finite_xy(reference_xy))
-    projection = [path.project(*xy) for xy in actual]
+    if route_settings is not None:
+        from nino_rl.routes import OrderedPathTracker
+        path = OrderedPathTracker(_finite_xy(reference_xy), route_settings)
+        projection = []
+        for xy in actual:
+            path.advance(*xy)
+            projection.append(path.project(*xy))
+    else:
+        path = PathTracker(_finite_xy(reference_xy))
+        projection = [path.project(*xy) for xy in actual]
     progress = np.asarray([p[0] for p in projection])
     headings = np.asarray([p[2] for p in projection])
     errors = actual - np.asarray([p[3] for p in projection])
@@ -199,7 +208,7 @@ def write_trajectory_plot(filename, actual_xy, reference_xy, frame_id,
 class EpisodeTrajectory:
     """Collect estimated poses in the reference frame; never leak truth to actor."""
     def __init__(self, reference_xy, frame_id, clock_origin_sim_s=0.0,
-                 cable_x=None, cable_radius=None, cable_angle=None):
+                 cable_x=None, cable_radius=None, cable_angle=None, route_settings=None):
         self.reference = _finite_xy(reference_xy)
         PathTracker(self.reference)
         if not frame_id or not np.isfinite(clock_origin_sim_s):
@@ -209,6 +218,7 @@ class EpisodeTrajectory:
         self.cable_x = cable_x
         self.cable_radius = cable_radius
         self.cable_angle = cable_angle
+        self.route_settings = route_settings
         self.rows = []
 
     def add(self, time_s, x, y, yaw):
@@ -223,7 +233,7 @@ class EpisodeTrajectory:
         return {"clock_origin_sim_s": self.clock_origin_sim_s,
                 **path_metrics([r["time_s"] for r in self.rows],
                                [[r["x_m"], r["y_m"]] for r in self.rows], self.reference,
-                               [r["yaw_rad"] for r in self.rows])}
+                               [r["yaw_rad"] for r in self.rows], self.route_settings)}
 
     def save(self, directory):
         directory = Path(directory)

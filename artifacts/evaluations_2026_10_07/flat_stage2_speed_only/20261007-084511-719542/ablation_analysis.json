@@ -1,0 +1,141 @@
+{
+  "recorded_test_settings_match": true,
+  "source_model_unchanged": true,
+  "paired_comparisons": {
+    "pi": {
+      "outcomes": {
+        "both_succeed": 19,
+        "only_speed_only_succeeds": 1,
+        "only_reference_succeeds": 4,
+        "both_fail": 0
+      },
+      "common_success_seeds": [
+        60001,
+        60002,
+        60004,
+        60005,
+        60006,
+        60007,
+        60008,
+        60010,
+        60011,
+        60012,
+        60013,
+        60014,
+        60015,
+        60016,
+        60017,
+        60018,
+        60019,
+        60020,
+        60021
+      ],
+      "metrics_common_success": {
+        "pi": {
+          "truth_path_rmse_m": 0.03005648824647333,
+          "truth_endpoint_error_m": 0.19797269926605932,
+          "odom_truth_position_error_m": 0.3343338423008319,
+          "rms_wheel_slip": 0.18895935571682348,
+          "rms_vertical_acceleration_m_s2": 3.7778759370874906,
+          "peak_vertical_acceleration_m_s2": 107.64255387566904,
+          "time_seconds": 20.321052631283237,
+          "mean_speed_scale": 1.0
+        },
+        "speed_only": {
+          "truth_path_rmse_m": 0.02385850541472911,
+          "truth_endpoint_error_m": 0.1991717960689439,
+          "odom_truth_position_error_m": 0.17034696524430967,
+          "rms_wheel_slip": 0.15348545280655526,
+          "rms_vertical_acceleration_m_s2": 1.4238034976724794,
+          "peak_vertical_acceleration_m_s2": 42.64552029396817,
+          "time_seconds": 28.663157894740742,
+          "mean_speed_scale": 0.780101651287413
+        }
+      }
+    },
+    "full_ppo": {
+      "outcomes": {
+        "both_succeed": 9,
+        "only_speed_only_succeeds": 11,
+        "only_reference_succeeds": 2,
+        "both_fail": 2
+      },
+      "common_success_seeds": [
+        60001,
+        60005,
+        60006,
+        60008,
+        60013,
+        60014,
+        60016,
+        60017,
+        60021
+      ],
+      "metrics_common_success": {
+        "full_ppo": {
+          "truth_path_rmse_m": 0.08855835060429346,
+          "truth_endpoint_error_m": 0.199084169489798,
+          "odom_truth_position_error_m": 0.33969670671913405,
+          "rms_wheel_slip": 0.16214113113758308,
+          "rms_vertical_acceleration_m_s2": 4.006794348464581,
+          "peak_vertical_acceleration_m_s2": 108.44152027961827,
+          "time_seconds": 20.44444444414694,
+          "mean_speed_scale": 0.7457961827777504
+        },
+        "speed_only": {
+          "truth_path_rmse_m": 0.023086631325334644,
+          "truth_endpoint_error_m": 0.19926509329841402,
+          "odom_truth_position_error_m": 0.17255324384937504,
+          "rms_wheel_slip": 0.1535615631481897,
+          "rms_vertical_acceleration_m_s2": 1.5427507743286029,
+          "peak_vertical_acceleration_m_s2": 48.35800892123762,
+          "time_seconds": 29.0888888888926,
+          "mean_speed_scale": 0.7742578366269522
+        }
+      }
+    }
+  },
+  "speed_only_failures": [
+    {
+      "seed": "60000",
+      "termination": "timeout",
+      "time_seconds": "30.000000000000313",
+      "truth_endpoint_error_m": "0.22325217208243311",
+      "endpoint_distance_m": "0.046792785612049116",
+      "final_speed_m_s": "-2.3521726537624835e-12",
+      "odom_truth_position_error_m": "0.19007664030623952"
+    },
+    {
+      "seed": "60003",
+      "termination": "timeout",
+      "time_seconds": "29.99999999999831",
+      "truth_endpoint_error_m": "0.21388460638482856",
+      "endpoint_distance_m": "0.14388678068195304",
+      "final_speed_m_s": "0.019201753033795683",
+      "odom_truth_position_error_m": "0.27102949868581694"
+    },
+    {
+      "seed": "60022",
+      "termination": "timeout",
+      "time_seconds": "30.00000000000682",
+      "truth_endpoint_error_m": "0.21061361822479285",
+      "endpoint_distance_m": "0.061168595510777767",
+      "final_speed_m_s": "0.020593448988101525",
+      "odom_truth_position_error_m": "0.23280743350567742"
+    },
+    {
+      "seed": "60023",
+      "termination": "timeout",
+      "time_seconds": "30.00000000000682",
+      "truth_endpoint_error_m": "0.21614320542972362",
+      "endpoint_distance_m": "0.04847301603323744",
+      "final_speed_m_s": "-8.851188589525476e-13",
+      "odom_truth_position_error_m": "0.17015013975898127"
+    }
+  ],
+  "mean_speed_scale_all_episodes": {
+    "pi": 1.0,
+    "full_ppo": 0.7370044628414688,
+    "speed_only": 0.7794003608724772
+  }
+}

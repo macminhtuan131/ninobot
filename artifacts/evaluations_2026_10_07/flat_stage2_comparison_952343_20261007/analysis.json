@@ -1,0 +1,47 @@
+{
+  "model_timesteps": 952343,
+  "recorded_episode_settings_match": true,
+  "matched_success_seeds": [
+    60000,
+    60001,
+    60003,
+    60005,
+    60006,
+    60008,
+    60013,
+    60014,
+    60016,
+    60017,
+    60021
+  ],
+  "metrics_both_successful_episodes": {
+    "ppo": {
+      "truth_path_rmse_m": 0.09024085282477115,
+      "truth_endpoint_error_m": 0.19912926349785176,
+      "odom_truth_position_error_m": 0.33524489187685713,
+      "rms_wheel_slip": 0.16125336766080714,
+      "rms_vertical_acceleration_m_s2": 4.053977708138151,
+      "peak_vertical_acceleration_m_s2": 105.90601389600977,
+      "rms_wheel_torque_nm": 0.3751446482992978,
+      "time_seconds": 20.336363636067702
+    },
+    "pi": {
+      "truth_path_rmse_m": 0.030624266778682768,
+      "truth_endpoint_error_m": 0.19813666857408666,
+      "odom_truth_position_error_m": 0.36764788780456226,
+      "rms_wheel_slip": 0.19812004606035652,
+      "rms_vertical_acceleration_m_s2": 4.40235820051862,
+      "peak_vertical_acceleration_m_s2": 125.75833007285433,
+      "rms_wheel_torque_nm": 0.3878197796479242,
+      "time_seconds": 20.554545454246348
+    }
+  },
+  "success_counts": {
+    "ppo": 11,
+    "pi": 23
+  },
+  "mean_speed_scale": {
+    "ppo": 0.7370044628414688,
+    "pi": 1.0
+  }
+}

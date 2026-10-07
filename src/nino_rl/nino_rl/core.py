@@ -18,11 +18,25 @@ import yaml
 OBSERVATION_SIZE = 54
 
 
-def load_config(path: str | Path) -> dict:
+def load_config(path: str | Path, _parents: tuple[Path, ...] = ()) -> dict:
+    path = Path(path).expanduser().resolve()
+    if path in _parents:
+        raise ValueError(f"Configuration inheritance cycle: {path}")
     with Path(path).open("r", encoding="utf-8") as stream:
         config = yaml.safe_load(stream)
     if not isinstance(config, dict):
         raise ValueError(f"Configuration must be a YAML mapping: {path}")
+    parent = config.pop("extends", None)
+    if parent is not None:
+        base = load_config(path.parent / parent, (*_parents, path))
+        def merge(original, override):
+            for key, value in override.items():
+                if isinstance(value, dict) and isinstance(original.get(key), dict):
+                    merge(original[key], value)
+                else:
+                    original[key] = value
+            return original
+        config = merge(base, config)
     return config
 
 
@@ -91,7 +105,7 @@ class PathTracker:
         index = min(int(np.searchsorted(self.cumulative, path_s, side="right") - 1), len(self.lengths) - 1)
         fraction = (path_s - self.cumulative[index]) / self.lengths[index]
         return self.points[index] + fraction * self.delta[index]
-
+#
     def local_lookahead(
         self, x: float, y: float, yaw: float, distances: Sequence[float]
     ) -> tuple[np.ndarray, float, float, float]:
@@ -146,6 +160,9 @@ def catmull_rom_path(
 class RobotState:
     odom_stamp_s: float = 0.0
     ground_truth_stamp_s: float = -float("inf")
+    ground_x: float = 0.0
+    ground_y: float = 0.0
+    ground_yaw: float = 0.0
     joint_stamp_s: float = -float("inf")
     imu_stamp_s: float = -float("inf")
     x: float = 0.0

@@ -1,0 +1,262 @@
+{
+  "searched_on": "2026-10-04",
+  "scope": "Focused literature review, not exhaustive systematic review",
+  "papers": [
+    {
+      "id": "P01",
+      "title": "Proximal Policy Optimization Algorithms",
+      "url": "https://arxiv.org/abs/1707.06347",
+      "citation": "Schulman và cộng sự, **[Proximal Policy Optimization Algorithms](https://arxiv.org/abs/1707.06347)**, 2017",
+      "relation_to_nino": "Cập nhật policy bằng surrogate objective có clipping. Là nền tảng thuật toán đang dùng, không đảm bảo success tăng đơn điệu.",
+      "access_level": "A"
+    },
+    {
+      "id": "P02",
+      "title": "High-Dimensional Continuous Control Using Generalized Advantage Estimation",
+      "url": "https://arxiv.org/abs/1506.02438",
+      "citation": "Schulman và cộng sự, **[High-Dimensional Continuous Control Using Generalized Advantage Estimation](https://arxiv.org/abs/1506.02438)**, 2015/2016",
+      "relation_to_nino": "GAE cân bằng bias/variance của advantage. Nino dùng `gae_lambda`; thay nó không sửa được lỗi pose hoặc definition của task.",
+      "access_level": "A"
+    },
+    {
+      "id": "P03",
+      "title": "Residual Reinforcement Learning for Robot Control",
+      "url": "https://arxiv.org/html/1812.03201v2",
+      "citation": "Johannink và cộng sự, **[Residual Reinforcement Learning for Robot Control](https://arxiv.org/html/1812.03201v2)**, 2018, công bố ICRA 2019",
+      "relation_to_nino": "Ghép feedback controller với phần bù RL; thực nghiệm lắp ráp có tiếp xúc. Nino áp dụng nguyên lý phần bù cho wheel PI và tiếp xúc bánh–địa hình. Residual RL đã có tiền lệ.",
+      "access_level": "FT"
+    },
+    {
+      "id": "P04",
+      "title": "Residual Policy Learning",
+      "url": "https://arxiv.org/abs/1812.06298",
+      "citation": "Silver, Allen, Tenenbaum, Kaelbling, **[Residual Policy Learning](https://arxiv.org/abs/1812.06298)**, 2018/2019",
+      "relation_to_nino": "Học cải thiện controller có sẵn trong manipulation, gồm controller thiết kế tay và MPC. Bài hỗ trợ hướng giữ baseline tốt; không chứng minh residual luôn cải thiện mọi robot.",
+      "access_level": "A"
+    },
+    {
+      "id": "P05",
+      "title": "Reinforcement Learning for Wheeled Mobility on Vertically Challenging Terrain",
+      "url": "https://arxiv.org/html/2409.02383v2",
+      "citation": "Xu, Pan, Xiao, **[Reinforcement Learning for Wheeled Mobility on Vertically Challenging Terrain](https://arxiv.org/html/2409.02383v2)**, 2024",
+      "relation_to_nino": "PPO, terrain curriculum, elevation encoder SWAE, điều khiển tốc độ/góc lái qua PID trong Chrono; có robot V4W thật. Nino dùng differential drive có caster, history cảm biến và residual torque từng bánh trong Gazebo.",
+      "access_level": "FT"
+    },
+    {
+      "id": "P06",
+      "title": "VertiSelector: Automatic Curriculum Learning for Wheeled Mobility on Vertically Challenging Terrain",
+      "url": "https://cs.gmu.edu/~xxiao2/papers/vs.pdf",
+      "citation": "Xu, Pan, Xiao, **[VertiSelector: Automatic Curriculum Learning for Wheeled Mobility on Vertically Challenging Terrain](https://cs.gmu.edu/~xxiao2/papers/vs.pdf)**, 2025; [trang tác giả](https://xutong05.github.io/publication/vs/)",
+      "relation_to_nino": "Chọn terrain theo learning potential/TD error, có kiểm chứng mô phỏng và vật lý. Curriculum Nino là các stage định trước, chuyển bằng cửa sổ success; chưa tự chọn địa hình theo TD error.",
+      "access_level": "FT"
+    },
+    {
+      "id": "P07",
+      "title": "RMA: Rapid Motor Adaptation for Legged Robots",
+      "url": "https://arxiv.org/abs/2107.04034",
+      "citation": "Kumar, Fu, Pathak, Malik, **[RMA: Rapid Motor Adaptation for Legged Robots](https://arxiv.org/abs/2107.04034)**, 2021",
+      "relation_to_nino": "Base policy và adaptation module cho thay đổi địa hình/payload; robot quadruped thật. History CNN Nino có thể suy luận động học ngắn hạn, nhưng chưa có module adaptation huấn luyện như RMA.",
+      "access_level": "A"
+    },
+    {
+      "id": "P08",
+      "title": "Learning robust perceptive locomotion for quadrupedal robots in the wild",
+      "url": "https://arxiv.org/abs/2201.08117",
+      "citation": "Miki và cộng sự, **[Learning robust perceptive locomotion for quadrupedal robots in the wild](https://arxiv.org/abs/2201.08117)**, 2022",
+      "relation_to_nino": "Kết hợp proprioception/exteroception bằng recurrent encoder có attention, xử lý perception không đáng tin. Gợi ý train robustness cho terrain preview; khác actor feedforward có history của Nino.",
+      "access_level": "A"
+    },
+    {
+      "id": "P09",
+      "title": "Learning Robust Autonomous Navigation and Locomotion for Wheeled-Legged Robots",
+      "url": "https://arxiv.org/abs/2405.01792",
+      "citation": "Lee và cộng sự, **[Learning Robust Autonomous Navigation and Locomotion for Wheeled-Legged Robots](https://arxiv.org/abs/2405.01792)**, 2024",
+      "relation_to_nino": "Hệ phân cấp locomotion/navigation, privileged learning, nhiệm vụ đô thị thực tế. Robot có chân và khả năng đi/lăn; Nino không có chân, hiện chỉ theo đường thẳng và chưa triển khai supervisor switching.",
+      "access_level": "A"
+    },
+    {
+      "id": "P10",
+      "title": "Learning to Walk in Minutes Using Massively Parallel Deep Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2109.11978",
+      "citation": "Rudin, Hoeller, Reist, Hutter, **[Learning to Walk in Minutes Using Massively Parallel Deep Reinforcement Learning](https://arxiv.org/abs/2109.11978)**, 2021/2022",
+      "relation_to_nino": "GPU mô phỏng hàng loạt và curriculum, có transfer robot. Nino dùng Gazebo CPU và ROS; CUDA cho policy không tạo cùng mức parallel physics.",
+      "access_level": "A"
+    },
+    {
+      "id": "P11",
+      "title": "Mobile robot path tracking using a robust PID controller",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0967066101000661",
+      "citation": "Normey-Rico, Alcalá, Gómez-Ortega, Camacho, **[Mobile robot path tracking using a robust PID controller](https://www.sciencedirect.com/science/article/pii/S0967066101000661)**, 2001",
+      "relation_to_nino": "PID path tracking với mô hình đơn giản có trễ và thiết kế robust; có thực nghiệm. Baseline hiện tại của Nino là wheel-speed PI với reference thẳng, chưa phải toàn bộ controller PID bám đường của bài.",
+      "access_level": "I"
+    },
+    {
+      "id": "P12",
+      "title": "Regulated Pure Pursuit for Robot Path Tracking",
+      "url": "https://arxiv.org/html/2305.20026v1",
+      "citation": "Macenski, Singh, Martin, Gines, **[Regulated Pure Pursuit for Robot Path Tracking](https://arxiv.org/html/2305.20026v1)**, 2023",
+      "relation_to_nino": "Điều chỉnh tốc độ theo độ cong và nguy cơ va chạm, có trong Nav2. Là đối chứng thích hợp cho outer path tracking; vẫn cần wheel controller và không mặc nhiên mô hình hóa caster mắc pothole.",
+      "access_level": "FT"
+    },
+    {
+      "id": "P13",
+      "title": "The Dynamic Window Approach to Collision Avoidance",
+      "url": "https://publications.ri.cmu.edu/the-dynamic-window-approach-to-collision-avoidance",
+      "citation": "Fox, Burgard, Thrun, **[The Dynamic Window Approach to Collision Avoidance](https://publications.ri.cmu.edu/the-dynamic-window-approach-to-collision-avoidance)**, 1997",
+      "relation_to_nino": "Local motion/collision avoidance có xét khả năng chuyển động của robot; đã thử trên RHINO. DWA/DWB không tự trở thành bộ bù torque cho va đập và mất tải bánh.",
+      "access_level": "A, trang cơ quan tác giả"
+    },
+    {
+      "id": "P14",
+      "title": "Integrated online trajectory planning and optimization in distinctive topologies",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0921889016300495",
+      "citation": "Rösmann, Hoffmann, Bertram, **[Integrated online trajectory planning and optimization in distinctive topologies](https://www.sciencedirect.com/science/article/pii/S0921889016300495)**, 2017; [danh mục tác giả](https://rst.etit.tu-dortmund.de/lehrstuhl/team/roesmann/)",
+      "relation_to_nino": "TEB tối ưu trajectory và thời gian trong các topology khác nhau, có ràng buộc nonholonomic. Khác lớp điều khiển vật lý bánh của Nino; chưa đọc được toàn văn nguồn xuất bản trong phiên này.",
+      "access_level": "I"
+    },
+    {
+      "id": "P15",
+      "title": "Model Predictive Path Integral Control using Covariance Variable Importance Sampling",
+      "url": "https://arxiv.org/abs/1509.01149",
+      "citation": "Williams, Aldrich, Theodorou, **[Model Predictive Path Integral Control using Covariance Variable Importance Sampling](https://arxiv.org/abs/1509.01149)**, 2015",
+      "relation_to_nino": "Điều khiển dự đoán bằng sampling trajectory, nền tảng MPPI. Cần mô hình/cost; Nino có thể dùng MPPI ở lớp reference và residual ở lớp bánh, nhưng chưa triển khai hoặc đo cách ghép đó.",
+      "access_level": "A"
+    },
+    {
+      "id": "P16",
+      "title": "DWPP: Dynamic Window Pure Pursuit Considering Velocity and Acceleration Constraints",
+      "url": "https://arxiv.org/abs/2601.15006",
+      "citation": "Ohnishi, Takahashi, **[DWPP: Dynamic Window Pure Pursuit Considering Velocity and Acceleration Constraints](https://arxiv.org/abs/2601.15006)**, 2026",
+      "relation_to_nino": "Pure pursuit xét giới hạn vận tốc/gia tốc trực tiếp. Có liên hệ với giới hạn wheel speed/rate của Nino; chức năng rolling mới không đồng nghĩa bản Nav2 Jazzy cài tại máy đã có nó.",
+      "access_level": "A"
+    },
+    {
+      "id": "P17",
+      "title": "Optuna: A Next-generation Hyperparameter Optimization Framework",
+      "url": "https://arxiv.org/abs/1907.10902",
+      "citation": "Akiba và cộng sự, **[Optuna: A Next-generation Hyperparameter Optimization Framework](https://arxiv.org/abs/1907.10902)**, 2019",
+      "relation_to_nino": "Tối ưu search space do người phát triển khai báo. Nino split tuner tìm 5 reward weights và 4 PPO hyperparameters; Optuna không viết lại reward logic.",
+      "access_level": "A"
+    },
+    {
+      "id": "P18",
+      "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+      "url": "https://arxiv.org/abs/1603.06560",
+      "citation": "Li và cộng sự, **[Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization](https://arxiv.org/abs/1603.06560)**, 2016/2018",
+      "relation_to_nino": "Phân bổ ngân sách và dừng sớm cấu hình yếu. Có thể giảm chi phí tuning; RL học chậm khiến cắt quá sớm loại nhầm cấu hình. Split tuner hiện chưa triển khai pruning trung gian.",
+      "access_level": "A"
+    },
+    {
+      "id": "P19",
+      "title": "Eureka: Human-Level Reward Design via Coding Large Language Models",
+      "url": "https://arxiv.org/abs/2310.12931",
+      "citation": "Ma và cộng sự, **[Eureka: Human-Level Reward Design via Coding Large Language Models](https://arxiv.org/abs/2310.12931)**, 2023/2024",
+      "relation_to_nino": "LLM tạo và sửa mã reward qua vòng đánh giá. Có thể đề xuất candidate, nhưng cần evaluator cố định độc lập và chi phí train; Nino chưa tích hợp Eureka.",
+      "access_level": "A"
+    },
+    {
+      "id": "P20",
+      "title": "Reverse Curriculum Generation for Reinforcement Learning",
+      "url": "https://arxiv.org/abs/1707.05300",
+      "citation": "Florensa và cộng sự, **[Reverse Curriculum Generation for Reinforcement Learning](https://arxiv.org/abs/1707.05300)**, 2017",
+      "relation_to_nino": "Mở rộng trạng thái bắt đầu từ gần đích ra xa. Gợi ý học arrival trước, sau đó tăng khoảng cách; khác curriculum thêm cable hiện có.",
+      "access_level": "A"
+    },
+    {
+      "id": "P21",
+      "title": "Curriculum Learning for Reinforcement Learning Domains: A Framework and Survey",
+      "url": "https://jmlr.org/papers/v21/20-212.html",
+      "citation": "Narvekar và cộng sự, **[Curriculum Learning for Reinforcement Learning Domains: A Framework and Survey](https://jmlr.org/papers/v21/20-212.html)**, 2020",
+      "relation_to_nino": "Khung phân loại curriculum/transfer. Hỗ trợ thiết kế difficulty, tiêu chí chuyển stage và replay; survey không cung cấp một lịch tối ưu riêng cho Nino.",
+      "access_level": "A"
+    },
+    {
+      "id": "P22",
+      "title": "Sim-to-Real Transfer of Robotic Control with Dynamics Randomization",
+      "url": "https://arxiv.org/abs/1710.06537",
+      "citation": "Peng, Andrychowicz, Zaremba, Abbeel, **[Sim-to-Real Transfer of Robotic Control with Dynamics Randomization](https://arxiv.org/abs/1710.06537)**, 2017/2018",
+      "relation_to_nino": "Randomize dynamics khi train; thử trên thao tác robot. Gợi ý friction, delay, mass/payload, motor uncertainty; tính hiệu quả trên Nino cần đo riêng.",
+      "access_level": "A"
+    },
+    {
+      "id": "P23",
+      "title": "Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World",
+      "url": "https://arxiv.org/abs/1703.06907",
+      "citation": "Tobin và cộng sự, **[Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World](https://arxiv.org/abs/1703.06907)**, 2017",
+      "relation_to_nino": "Randomization thị giác để transfer perception. Không đồng nhất với randomization động lực học wheel contact; Nino không dùng image actor.",
+      "access_level": "A"
+    },
+    {
+      "id": "P24",
+      "title": "The Option-Critic Architecture",
+      "url": "https://arxiv.org/abs/1609.05140",
+      "citation": "Bacon, Harb, Precup, **[The Option-Critic Architecture](https://arxiv.org/abs/1609.05140)**, 2016/2017",
+      "relation_to_nino": "Học policy, termination và lựa chọn options. Switch theo vị trí có latch dự kiến ở Nino là supervisor thiết kế tay, chưa phải Option-Critic.",
+      "access_level": "A"
+    },
+    {
+      "id": "P25",
+      "title": "Deep Reinforcement Learning that Matters",
+      "url": "https://arxiv.org/abs/1709.06560",
+      "citation": "Henderson và cộng sự, **[Deep Reinforcement Learning that Matters](https://arxiv.org/abs/1709.06560)**, 2017/2018",
+      "relation_to_nino": "Nhấn mạnh biến thiên, tái lập và báo cáo đánh giá. Cần nhiều seed huấn luyện, protocol cố định; không chọn riêng seed thành công để công bố tỷ lệ.",
+      "access_level": "A"
+    },
+    {
+      "id": "P26",
+      "title": "Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor",
+      "url": "https://arxiv.org/abs/1801.01290",
+      "citation": "Haarnoja, Zhou, Abbeel, Levine, **[Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor](https://arxiv.org/abs/1801.01290)**, 2018",
+      "relation_to_nino": "Replay/off-policy là hướng thử khi sampling vật lý đắt. Chưa có benchmark SAC trong Nino; không suy ra đổi PPO sang SAC sẽ chữa current failure.",
+      "access_level": "A"
+    },
+    {
+      "id": "P27",
+      "title": "Learning to Drive in a Day",
+      "url": "https://arxiv.org/abs/1807.00412",
+      "citation": "Kendall và cộng sự, **[Learning to Drive in a Day](https://arxiv.org/abs/1807.00412)**, 2018",
+      "relation_to_nino": "Học lane following từ ảnh trực tiếp trên xe, có safety driver. Chứng minh hướng feedback từ môi trường, nhưng không cùng wheel/caster terrain-control task.",
+      "access_level": "A"
+    },
+    {
+      "id": "P28",
+      "title": "Motion Planning and Control for Mobile Robot Navigation Using Machine Learning: a Survey",
+      "url": "https://arxiv.org/abs/2011.13112",
+      "citation": "Xiao, Liu, Warnell, Stone, **[Motion Planning and Control for Mobile Robot Navigation Using Machine Learning: a Survey](https://arxiv.org/abs/2011.13112)**, 2020/2022",
+      "relation_to_nino": "Phân loại quan hệ giữa navigation cổ điển và học máy. Giúp xác định Nino thuộc lớp learned control augmentation; không phải đã thay mọi lớp navigation.",
+      "access_level": "A"
+    },
+    {
+      "id": "P29",
+      "title": "Research on reinforcement learning based warehouse robot navigation algorithm in complex warehouse layout",
+      "url": "https://arxiv.org/abs/2411.06128",
+      "citation": "Li và cộng sự, **[Research on reinforcement learning based warehouse robot navigation algorithm in complex warehouse layout](https://arxiv.org/abs/2411.06128)**, 2024",
+      "relation_to_nino": "PP-D kết hợp Dijkstra với PPO để navigation trong kho. Nino tập trung ổn định trajectory và tương tác vật lý bằng wheel torque. PDF đã đọc phần phương pháp/thực nghiệm; metric của bài chưa đủ để so head-to-head với Nino.",
+      "access_level": "FT, PDF người dùng"
+    },
+    {
+      "id": "P30",
+      "title": "CTBC: Contact-Triggered Blind Climbing for Wheeled Bipedal Robots with Instruction Learning and Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2509.02986",
+      "citation": "Li và cộng sự, **[CTBC: Contact-Triggered Blind Climbing for Wheeled Bipedal Robots with Instruction Learning and Reinforcement Learning](https://arxiv.org/abs/2509.02986)**, 2025, bản sửa 2026",
+      "relation_to_nino": "Contact trigger và motion chân để vượt vật cản từ proprioception. Nino không có chân; không thể chuyển cơ chế nâng chân sang caster robot.",
+      "access_level": "A"
+    },
+    {
+      "id": "P31",
+      "title": "ATRos: Learning Energy-Efficient Agile Locomotion for Wheeled-legged Robots",
+      "url": "https://arxiv.org/abs/2510.09980",
+      "citation": "Sun và cộng sự, **[ATRos: Learning Energy-Efficient Agile Locomotion for Wheeled-legged Robots](https://arxiv.org/abs/2510.09980)**, 2025",
+      "relation_to_nino": "Ước lượng trạng thái ngoài từ proprioception, phối hợp chân/bánh; trang bài ghi submitted workshop. Cần phân biệt preprint/workshop với công trình đã được kiểm chứng độc lập.",
+      "access_level": "A"
+    },
+    {
+      "id": "P32",
+      "title": "Energy-Efficient Omnidirectional Locomotion for Wheeled Quadrupeds via Predictive Energy-Aware Nominal Gait Selection",
+      "url": "https://arxiv.org/abs/2601.10723",
+      "citation": "Yang và cộng sự, **[Energy-Efficient Omnidirectional Locomotion for Wheeled Quadrupeds via Predictive Energy-Aware Nominal Gait Selection](https://arxiv.org/abs/2601.10723)**, IROS 2025, trang arXiv 2025/2026",
+      "relation_to_nino": "Chọn nominal gait bằng dự đoán công suất, cộng residual RL. Nino chỉ phạt effort/torque proxy, chưa đo công suất hay năng lượng điện thật.",
+      "access_level": "A"
+    }
+  ]
+}

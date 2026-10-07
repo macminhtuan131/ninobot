@@ -1,0 +1,31 @@
+{
+  "seed": 42,
+  "heightmap_pixels": 513,
+  "active_x_m": [
+    0.8,
+    30.5
+  ],
+  "clear_width_m": 4.0,
+  "goal_xy_m": [
+    6.0,
+    0.0
+  ],
+  "caster_radius_m": 0.016,
+  "height_range_m": [
+    -0.16981179081646858,
+    0.24916363629144067
+  ],
+  "maximum_surface_grade": 0.5963079589405602,
+  "floor_join_height_m": 0.0,
+  "terrain_type": "shared collision and visual mesh",
+  "profile": "rolling hills with dense mounds and shallow hollows",
+  "dense_spot_shape": "asymmetric mounds and shallow rimmed bowls",
+  "local_spot_count": 12,
+  "track_spot_count": 15,
+  "dense_spot_count": 128,
+  "dense_mound_count": 63,
+  "dense_hollow_count": 65,
+  "route_dense_mound_count": 16,
+  "route_dense_hollow_count": 16,
+  "dense_relief_scale": 1.0
+}

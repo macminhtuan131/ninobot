@@ -154,6 +154,7 @@ def test_comparison_requires_matching_completed_experiments():
     changed = deepcopy(config)
     changed['reward_v2']['a'] = 2
     changed['evaluation_baseline'] = False
+    changed['evaluation_speed_only'] = True
     assert benchmark_id(config) == benchmark_id(changed)
     row = {m: 1 for m in METRICS}
     row.update(success=True, finished_within_target_time=True, termination='success')

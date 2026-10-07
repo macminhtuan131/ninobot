@@ -131,6 +131,7 @@ def test_adaptive_terrain_advances_only_after_rolling_success_gate():
     record = method('ros_env.py', '_record_adaptive_terrain_outcome', dict(np=np))
     env = SimpleNamespace(
         adaptive_terrain_progress=True,
+        flat_curriculum=None,
         terrain_success_window=deque(maxlen=4),
         terrain_success_window_size=4,
         terrain_advance_success_rate=.75,
@@ -153,6 +154,7 @@ def test_adaptive_terrain_checkpoint_state_round_trip():
     restore = method('ros_env.py', 'restore_adaptive_terrain_state', {})
     source = SimpleNamespace(
         terrain_feature_count=3,
+        flat_curriculum=None,
         successful_episodes=41,
         terrain_episodes_at_level=12,
         terrain_success_window=deque([True, False, True], maxlen=50),
@@ -160,6 +162,7 @@ def test_adaptive_terrain_checkpoint_state_round_trip():
     saved = state(source)
     target = SimpleNamespace(
         max_terrain_features=20,
+        flat_curriculum=None,
         terrain_success_window_size=50,
         terrain_success_window=deque(maxlen=50),
     )
@@ -187,7 +190,7 @@ def test_five_success_streak_failure_reset_cap_and_checkpoint():
     record = method('ros_env.py', '_record_adaptive_terrain_outcome', dict(np=np))
     save = method('ros_env.py', 'adaptive_terrain_state', {})
     restore = method('ros_env.py', 'restore_adaptive_terrain_state', {})
-    env = SimpleNamespace(adaptive_terrain_progress=True,
+    env = SimpleNamespace(adaptive_terrain_progress=True, flat_curriculum=None,
         terrain_success_window=deque(maxlen=5), terrain_success_window_size=5,
         terrain_advance_success_rate=1.0, terrain_episodes_at_level=0,
         terrain_feature_count=7, terrain_features_per_success=1,

@@ -1,4 +1,4 @@
-"""Train a PPO wheel-torque policy against the running Gazebo world."""
+"""Train a PPO motor or PI-reference policy against the running Gazebo world."""
 
 from __future__ import annotations
 
@@ -12,22 +12,29 @@ from ament_index_python.packages import get_package_share_directory
 import numpy as np
 
 from nino_rl.core import load_config
-from nino_rl.control_v2 import validate_model
+from nino_rl.control_v2 import validate_model, validate_action_mode, action_size
 from nino_rl.training_contract import training_contract, validate_resume
 
 
 def arguments() -> argparse.Namespace:
     default_config = Path(get_package_share_directory("nino_rl")) / "config" / "ppo.yaml"
-    parser = argparse.ArgumentParser(description="Train PPO for Nino wheel torques")
+    parser = argparse.ArgumentParser(description="Train a Nino PPO control policy")
     parser.add_argument("--config", type=Path, default=default_config)
     parser.add_argument("--timesteps", type=int, default=600_000)
     parser.add_argument("--output", type=Path, default=Path("rl_runs"))
-    parser.add_argument("--resume", type=Path)
+    checkpoint_group = parser.add_mutually_exclusive_group()
+    checkpoint_group.add_argument("--resume", type=Path,
+                                  help="Continue the same task, optimizer and step count")
+    checkpoint_group.add_argument("--init-model", type=Path,
+                                  help="Copy a compatible actor into a fresh task/run; critic stays fresh")
+    checkpoint_group.add_argument("--init-speed-model", type=Path,
+                                  help="Transfer torque-policy features/speed only into a new two-action PI yaw policy")
     parser.add_argument("--checkpoint-every", type=int, default=25_000)
     parser.add_argument("--check-env", action="store_true")
     parser.add_argument("--phase", type=int, choices=range(1, 7),
                         help="Fixed hard-to-easy cable phase (1=hardest, 6=easiest)")
     parser.add_argument("--device", choices=("cpu", "cuda", "auto"))
+    parser.add_argument("--route", help="Train one configured route ID; omit to sample all drawn routes")
     parser.add_argument("--preflight-timeout", type=float, default=30.0)
     return parser.parse_args(sys.argv[1:])
 
@@ -50,8 +57,16 @@ def main() -> None:
         ) from error
 
     config = load_config(args.config)
+    if args.route is not None:
+        if not config.get("routes", {}).get("enabled", False):
+            raise SystemExit("--route requires an enabled routes configuration")
+        config["routes"]["fixed_route"] = args.route
+    from nino_rl.routes import RouteSet
+    RouteSet(config)
     if args.phase is not None:
         config["curriculum"]["fixed_phase"] = args.phase
+    if args.init_speed_model and config.get("action_mode") != "speed_yaw_reference":
+        raise SystemExit("--init-speed-model requires action_mode: speed_yaw_reference")
     # auto means CUDA for this GPU training workflow; never silently fall back.
     device = args.device or str(config.get("device", "cuda"))
     if device == "auto":
@@ -74,6 +89,12 @@ def main() -> None:
             f"CUDA ready: {th.cuda.get_device_name(th.cuda.current_device())}",
             flush=True,
         )
+
+    speed_source = None
+    if args.init_speed_model:
+        speed_source = PPO.load(args.init_speed_model, device=device)
+        validate_model(speed_source, 60 * config["policy_v2"]["history_frames"], 3)
+        validate_action_mode(speed_source, {"action_mode": "wheel_torque"})
 
     from nino_rl.ros_env import NinoGazeboEnv
     from nino_rl.preflight import run_preflight
@@ -98,6 +119,9 @@ def main() -> None:
             self.reward_terms.clear()
 
         def _on_step(self) -> bool:
+            actions = self.locals.get("actions")
+            if actions is not None:
+                self.logger.record_mean("policy/action_clip_fraction", float(np.mean(np.abs(actions) > 1.0)))
             for info in self.locals.get("infos", []):
                 for name, value in info.get("reward_terms", {}).items():
                     self.reward_terms.setdefault(name, []).append(float(value))
@@ -112,6 +136,14 @@ def main() -> None:
                                    "wrong_direction", "navigation_invalid", "goal_missed"):
                         self.logger.record_mean(
                             f"episode/{reason}_failure", float(metrics["termination"] == reason))
+                    if metrics.get("route_id"):
+                        route_id = metrics["route_id"]
+                        for name in ("success", "truth_path_rmse_m", "time_seconds",
+                                     "route_gates_passed", "route_gates_total"):
+                            self.logger.record_mean(f"routes/{route_id}/{name}", float(metrics[name]))
+                    if "rough_curriculum_stage" in metrics:
+                        self.logger.record_mean("curriculum/rough_stage", metrics["rough_curriculum_stage"])
+                        self.logger.record_mean("curriculum/terrain_level", metrics["terrain_randomization_level"])
                     for name, value in metrics["reward_totals"].items():
                         self.logger.record_mean(f"episode_reward/{name}", float(value))
                     for name in (
@@ -132,6 +164,11 @@ def main() -> None:
                         "rms_path_deviation_m",
                         "max_path_deviation_m",
                         "path_rmse_m",
+                        "truth_path_rmse_m",
+                        "truth_path_p95_m",
+                        "truth_endpoint_error_m",
+                        "truth_heading_rmse_deg",
+                        "odom_truth_position_error_m",
                         "path_p95_m",
                         "heading_rmse_deg",
                         "final_progress_fraction",
@@ -158,11 +195,26 @@ def main() -> None:
                         "mean_ground_speed_m_s",
                     ):
                         self.logger.record_mean(f"episode/{name}", float(metrics[name]))
+                    if metrics.get("flat_curriculum_stage") is not None:
+                        self.logger.record_mean(
+                            "episode/flat_curriculum_stage", float(metrics["flat_curriculum_stage"])
+                        )
+                        self.logger.record_mean(
+                            "episode/next_flat_curriculum_stage",
+                            float(metrics["next_flat_curriculum_stage"]),
+                        )
             return True
 
         def _on_rollout_end(self) -> None:
-            for index, name in enumerate(("speed", "common_torque", "steering")):
+            labels = (("speed", "yaw_reference") if action_size(config) == 2
+                      else ("speed", "common_torque", "steering"))
+            for index, name in enumerate(labels):
                 self.logger.record(f"policy/std_{name}", float(self.model.policy.log_std[index].detach().exp().cpu()))
+            if config.get("action_mode") in ("yaw_reference", "speed_yaw_reference"):
+                yaw_index = 1 if action_size(config) == 2 else 2
+                self.logger.record("policy/std_yaw_reference_rad_s", float(
+                    self.model.policy.log_std[yaw_index].detach().exp().cpu())
+                    * float(config["navigation"]["max_policy_yaw_rate_rad_s"]))
             # Do not leave the policy driving during an arbitrarily long PPO update.
             env.ros.publish_control(0.0, 0.0, 0.0)
             # The lockstep environment is already paused between every action,
@@ -212,7 +264,7 @@ def main() -> None:
         ppo = config["ppo"]
         if args.resume:
             model = PPO.load(args.resume, device=device)
-            validate_model(model, env.history.size)
+            validate_model(model, env.history.size, action_size(config))
             validate_resume(model, config)
             env.restore_adaptive_terrain_state(
                 getattr(model, "nino_adaptive_terrain_state", None)
@@ -244,6 +296,26 @@ def main() -> None:
                 seed=int(config["seed"]),
                 verbose=1,
             )
+            if args.init_model:
+                source = PPO.load(args.init_model, device=device)
+                validate_model(source, env.history.size, action_size(config))
+                from nino_rl.model_transfer import initialize_actor
+                validate_action_mode(source, config)
+                actor_keys = initialize_actor(model, source)
+                print(f"Initialized {len(actor_keys)} actor tensors from {args.init_model}; "
+                      "critic and optimizer are fresh; starting new task at step 0.",
+                      flush=True)
+            if speed_source is not None:
+                from nino_rl.model_transfer import initialize_speed_yaw_actor
+                actor_keys = initialize_speed_yaw_actor(model, speed_source)
+                import hashlib
+                transfer = dict(source=str(args.init_speed_model.resolve()),
+                                source_sha256=hashlib.sha256(args.init_speed_model.read_bytes()).hexdigest(),
+                                source_steps=int(speed_source.num_timesteps),
+                                copied=list(actor_keys), yaw_mean="zero", critic="fresh", optimizer="fresh")
+                (run_dir / "actor_transfer.json").write_text(json.dumps(transfer, indent=2) + "\n")
+                print(f"Transferred speed/features from {args.init_speed_model}; "
+                      "new zero-mean yaw head, fresh critic/optimizer, new step count.", flush=True)
             model.nino_training_contract = training_contract(config)
             sync_adaptive_terrain_state(model, env)
             reset_num_timesteps = True

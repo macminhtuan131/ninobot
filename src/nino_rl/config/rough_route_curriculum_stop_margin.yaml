@@ -1,0 +1,6 @@
+# Fresh curriculum with the evaluated estimated goal stopping margin.
+# Initialize an actor with --init-model; do not resume rough_curriculum_v1.
+# The speed-only ablation is evaluation only. This profile retains wheel_torque.
+extends: rough_route_curriculum.yaml
+navigation:
+  goal_stop_tolerance_m: 0.05

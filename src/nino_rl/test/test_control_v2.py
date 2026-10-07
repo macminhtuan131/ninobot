@@ -11,12 +11,12 @@ import numpy as np
 import yaml
 
 from nino_rl.trajectory_metrics import EpisodeTrajectory
-from nino_rl.task_geometry import goal_overshot
+from nino_rl.task_geometry import goal_overshot, task_succeeded, objective_state
 from nino_rl.core import RobotState, PathTracker, TrackingState, NavReference, goal_reached, is_wrong_direction, metrics_dict, wheel_slip_ratios
 from nino_rl.control_v2 import (
     BASELINE_ACTION, STOP_ACTION, ChallengeRegion, ChallengeTracker, FRAME_SIZE,
-    ImuWindow, ObservationHistory, StallWindow, compute_reward, decode_action, make_observation,
-    validate_model, vertical_acceleration,
+    ImuWindow, ObservationHistory, StallWindow, compute_reward, decode_action, decode_control, make_observation,
+    validate_model, vertical_acceleration, history_action,
 )
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -100,7 +100,7 @@ class TestV2(unittest.TestCase):
     def test_checkpoint_rejection(self):
         model = SimpleNamespace(observation_space=SimpleNamespace(shape=(54,)),
                                 action_space=SimpleNamespace(shape=(2,)))
-        with self.assertRaisesRegex(ValueError, "NEW v2"):
+        with self.assertRaisesRegex(ValueError, "Incompatible checkpoint"):
             validate_model(model, 300)
 
     def test_stall_uses_window_and_clears_during_nav_stop(self):
@@ -286,7 +286,8 @@ class TestEnvironmentContract(unittest.TestCase):
     def run_step(self, collision=False, timed_out=False, torque_fresh=True,
                  baseline=False, torque_noise=0., navigation_invalid=False,
                  goal_reached_position=False, goal_crossed=False, lidar_stale=False,
-                 lidar_sim_lag=False, goal_missed=False):
+                 lidar_sim_lag=False, goal_missed=False, route_id=None,
+                 speed_only=False, action=None, action_mode="wheel_torque"):
         source = ROOT / "src/nino_rl/nino_rl/ros_env.py"
         cls = next(x for x in ast.parse(source.read_text()).body if isinstance(x, ast.ClassDef))
         step = next(x for x in cls.body if isinstance(x, ast.FunctionDef) and x.name == "step")
@@ -295,12 +296,12 @@ class TestEnvironmentContract(unittest.TestCase):
         def sleep(dt):
             clock[0] += dt
         namespace = dict(np=np, sleep=sleep, monotonic=lambda: clock[0],
-            degrees=degrees, deepcopy=deepcopy, decode_action=decode_action,
-            make_observation=make_observation, compute_reward=compute_reward,
-            goal_reached=goal_reached, goal_overshot=goal_overshot, is_wrong_direction=is_wrong_direction,
+            degrees=degrees, deepcopy=deepcopy, decode_action=decode_action, decode_control=decode_control,
+            make_observation=make_observation, compute_reward=compute_reward, history_action=history_action,
+            goal_reached=goal_reached, goal_overshot=goal_overshot, task_succeeded=task_succeeded, objective_state=objective_state, is_wrong_direction=is_wrong_direction,
             metrics_dict=metrics_dict, wheel_slip_ratios=wheel_slip_ratios)
         exec(compile(ast.Module(body=[step], type_ignores=[]), str(source), "exec"), namespace)
-        state = RobotState(odom_stamp_s=.1,
+        state = RobotState(odom_stamp_s=.1, ground_truth_stamp_s=.1,
                            lidar_stamp_s=.8 if (lidar_stale or lidar_sim_lag) else 1.0,
                            x=30.31 if goal_missed else 29.95 if goal_reached_position else 30.201 if goal_crossed else .02,
                            yaw=.05 if goal_reached_position else .30 if goal_crossed else 0.0,
@@ -337,6 +338,10 @@ class TestEnvironmentContract(unittest.TestCase):
                 square_integral=0., impact_integral=0., peak=0.),
             get_logger=lambda: SimpleNamespace(warn=lambda _: None))
         env = SimpleNamespace(config=deepcopy(CONFIG), action_scale=.5, control_dt=.1,
+            route_set=SimpleNamespace(enabled=False), episode_route=None,
+            scoring_path=path, goal_pose=(30., 0., 0.),
+            episode_target_seconds=float(CONFIG["target_finish_seconds"]),
+            episode_deadline_seconds=float(CONFIG["max_episode_seconds"]),
             physics_dt=.005, physics_steps_per_control=20, world_is_paused=True,
             simulation_step_timeout=10.0, straight_speed=0.75,
             lockstep_min_completion_fraction=0.80,
@@ -356,10 +361,13 @@ class TestEnvironmentContract(unittest.TestCase):
             _actor_observation=lambda truth, action, ref: make_observation(
                 truth, path, CONFIG["path"]["lookahead_m"], action, ref)[0],
             trajectory=EpisodeTrajectory([(0, 0), (30, 0)], "odom"),
+            truth_trajectory=EpisodeTrajectory([(0, 0), (30, 0)], "world"),
             history=history, _curriculum_stage=lambda: (0, 0., 30), stall_window=StallWindow(),
             off_path_steps=0, off_path_seconds=0., nav_invalid_steps=0, nav_invalid_seconds=0.,
             wrong_direction_steps=0, wrong_direction_seconds=0., attempt_number=1)
         env.challenge_tracker = ChallengeTracker()
+        env.flat_curriculum = None
+        env.episode_flat_stage = None
         env.terrain_feature_count = 0
         env.terrain_features_per_success = 1
         env.max_terrain_features = 20
@@ -386,12 +394,66 @@ class TestEnvironmentContract(unittest.TestCase):
         env.episode_terrain_height_scale = 1.0
         env.episode_terrain_layout = []
         env.config["evaluation_baseline"] = baseline
+        env.config["evaluation_speed_only"] = speed_only
+        env.config["action_mode"] = action_mode
+        if action_mode == "speed_yaw_reference":
+            env.config["navigation"]["max_policy_yaw_rate_rad_s"] = .25
+            ros.publish_motion_command = lambda linear, angular: commands.append(("motion", linear, angular))
+            env._actor_observation = lambda truth, previous, ref: make_observation(
+                truth, path, env.lookahead, previous, ref, action_mode=action_mode)[0]
         if navigation_invalid:
             env.config["navigation_invalid_hold_seconds"] = .05
         env.trajectory.add(0.0, 0.0, 0.0, 0.0)
+        env.truth_trajectory.add(0.0, 0.0, 0.0, 0.0)
         if timed_out:
             env.config["max_episode_seconds"] = .05
-        return namespace["step"](env, BASELINE_ACTION.copy()), commands
+            env.episode_deadline_seconds = .05
+        if route_id is not None:
+            from nino_rl.routes import RouteSet, OrderedPathTracker, route_command
+            rough = yaml.safe_load((ROOT / "src/nino_rl/config/combined_rough_section.yaml").read_text())
+            env.config = rough
+            env.route_set = RouteSet(rough)
+            env.episode_route = env.route_set.select(np.random.default_rng(42), 0, route_id)
+            points = env.episode_route["waypoints"]
+            env.path = OrderedPathTracker(points, rough["routes"])
+            env.scoring_path = OrderedPathTracker(points, rough["routes"])
+            # Approach the first corner on N1, with independently advanced
+            # estimated and simulator-pose cursors.
+            for x in np.arange(0., 2.3, .03):
+                env.path.advance(x, 0.)
+                env.scoring_path.advance(x, 0.)
+            state.x = state.ground_x = 2.3
+            env.previous_robot_state.x = env.previous_robot_state.ground_x = 2.28
+            env.previous_tracking = make_observation(
+                env.previous_robot_state, env.path, env.lookahead, BASELINE_ACTION)[1]
+            env.goal_pose = (*points[-1], np.deg2rad(env.episode_route["goal_heading_deg"]))
+            env._actor_observation = lambda truth, action, ref: make_observation(
+                truth, env.path, env.lookahead, action, ref)[0]
+            ros.publish_motion_command = lambda linear, angular: commands.append(("motion", linear, angular))
+            namespace["route_command"] = route_command
+        return namespace["step"](env, BASELINE_ACTION.copy() if action is None else action), commands
+
+    def test_drawn_route_step_commands_turn_and_records_physical_gate_progress(self):
+        (obs, _, terminated, _, info), commands = self.run_step(route_id="N1", timed_out=True)
+        self.assertEqual(obs.shape, (300,))
+        self.assertTrue(terminated)
+        motion = next(command for command in commands if command[0] == "motion")
+        self.assertGreater(motion[2], 0.)
+        metrics = info["episode_metrics"]
+        self.assertEqual(metrics["route_id"], "N1")
+        self.assertEqual((metrics["goal_x_m"], metrics["goal_y_m"]), (2.5, 6.2))
+        self.assertGreaterEqual(metrics["route_gates_passed"], 1)
+        self.assertLess(metrics["route_gates_passed"], metrics["route_gates_total"])
+        self.assertFalse(metrics["success"])
+
+    def test_speed_yaw_step_uses_pi_and_keeps_canonical_history(self):
+        (obs, _, _, _, _), commands = self.run_step(
+            action_mode="speed_yaw_reference", action=[.4, -.8], torque_noise=.12)
+        motion = next(command for command in commands if command[0] == "motion")
+        self.assertAlmostEqual(motion[2], -.20)
+        control = next(command for command in commands if command[0] != "motion")
+        np.testing.assert_allclose(control, [.7, 0., 0.])
+        np.testing.assert_allclose(obs[-8:-5], [.4, 0., -.8])
 
     def test_step_emits_300_values_and_atomic_3_value_command(self):
         (obs, reward, terminated, truncated, info), commands = self.run_step()
@@ -425,6 +487,20 @@ class TestEnvironmentContract(unittest.TestCase):
         self.assertEqual(commands[0], (1., 0., 0.))
         _, rl_commands = self.run_step(baseline=False, torque_noise=.12)
         self.assertNotEqual(rl_commands[0][1:], (0., 0.))
+
+    def test_speed_only_preserves_speed_and_masks_torque_even_with_noise(self):
+        action = np.array([.4, .6, -.2], dtype=np.float32)
+        original = action.copy()
+        (obs, _, _, _, info), commands = self.run_step(
+            speed_only=True, torque_noise=.12, action=action)
+        self.assertAlmostEqual(commands[0][0], .7)
+        self.assertEqual(commands[0][1:], (0., 0.))
+        self.assertEqual(info["residual_torque_nm"], [0., 0.])
+        np.testing.assert_allclose(obs[-8:-5], [.4, 0., 0.])
+        np.testing.assert_array_equal(action, original)
+        (_, _, _, _, unmasked_info), unmasked = self.run_step(action=action)
+        self.assertAlmostEqual(unmasked[0][0], .7)
+        self.assertNotEqual(unmasked_info["residual_torque_nm"], [0., 0.])
 
     def test_missing_effort_feedback_aborts(self):
         with self.assertRaisesRegex(RuntimeError, "torque feedback is invalid"):

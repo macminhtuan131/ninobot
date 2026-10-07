@@ -1,5 +1,7 @@
 # Nino-RL: điều khiển bám quỹ đạo thẳng bằng PPO dư mô-men trong ROS 2/Gazebo
 
+> Tài liệu tổng quan của giai đoạn trước. Thông số và kết quả mới nhất được khóa tại 04/10/2026 trong [báo cáo tiến độ, roadmap và đối chiếu nghiên cứu](BAO_CAO_TIEN_DO_VA_DOI_CHIEU_RL_NINO_2026-10-04.md). Khi chạy lại, dùng `ppo.yaml` của run tương ứng.
+
 ## Tóm tắt
 
 Dự án này xây dựng bộ điều khiển học tăng cường cho robot di động Nino nhằm đi

@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "controller": "straight_pi_baseline",
+  "model": null,
+  "phase": 1,
+  "seed": 60000,
+  "randomized": false,
+  "benchmark_id": "4298ac9d5f3ee3935d16e38573fcd457b984c41c2544ca9e23eca09118a9de3f",
+  "pose_source": "wheel_odometry",
+  "metric_weighting": "simulation_time_trapezoid",
+  "reference": "fixed straight line from configured start_pose to goal_pose in odom",
+  "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
+  "complete": true,
+  "requested_episodes": 24,
+  "episodes": 24,
+  "success_rate": 0.9583333333333334,
+  "on_time_success_rate": 0.8333333333333334,
+  "termination_counts": {
+    "success": 23,
+    "timeout": 1
+  },
+  "metrics_all_episodes": {
+    "path_rmse_m": {
+      "mean": 0.11539594112240116,
+      "std": 0.0813872897281068,
+      "min": 0.023144928914137813,
+      "max": 0.39966076498274694
+    },
+    "cross_track_rmse_m": {
+      "mean": 0.11477678310555621,
+      "std": 0.08148629230016174,
+      "min": 0.023144928914137813,
+      "max": 0.39966076498274694
+    },
+    "path_p95_m": {
+      "mean": 0.21561675279960216,
+      "std": 0.15971715342066942,
+      "min": 0.03453172261120539,
+      "max": 0.8092398210568196
+    },
+    "path_max_m": {
+      "mean": 0.22561563367181423,
+      "std": 0.16062321672688878,
+      "min": 0.0345757321770964,
+      "max": 0.8242473843667358
+    },
+    "heading_rmse_deg": {
+      "mean": 2.9747488415768175,
+      "std": 1.930607485844434,
+      "min": 0.5258624946979494,
+      "max": 9.9575421540599
+    },
+    "endpoint_error_m": {
+      "mean": 0.22551642508989678,
+      "std": 0.1611592107536602,
+      "min": 0.045177266283118335,
+      "max": 0.8255197301537469
+    },
+    "final_progress_fraction": {
+      "mean": 0.9982127730396994,
+      "std": 0.003175901994503095,
+      "min": 0.9874256492337424,
+      "max": 1.0
+    },
+    "backtracking_m": {
+      "mean": 4.699043183433357e-05,
+      "std": 8.414393312044014e-05,
+      "min": 0.0,
+      "max": 0.0003979760305119484
+    },
+    "time_seconds": {
+      "mean": 20.89583333302926,
+      "std": 2.308585275026052,
+      "min": 17.999999999738066,
+      "max": 29.999999999563443
+    },
+    "rms_vertical_acceleration_m_s2": {
+      "mean": 3.300419741194824,
+      "std": 2.4080929269222366,
+      "min": 0.8654655037067581,
+      "max": 7.493152539476318
+    },
+    "peak_vertical_acceleration_m_s2": {
+      "mean": 93.09864415004692,
+      "std": 75.494676732082,
+      "min": 8.03632191034008,
+      "max": 222.56667379145722
+    },
+    "rms_wheel_slip": {
+      "mean": 0.1904563351973055,
+      "std": 0.02955738995056813,
+      "min": 0.13102493162360787,
+      "max": 0.2439849622179603
+    },
+    "rms_wheel_torque_nm": {
+      "mean": 0.3785320143727315,
+      "std": 0.029676805503717506,
+      "min": 0.3203327461784437,
+      "max": 0.43489233964932145
+    },
+    "challenge_choice_fraction": {
+      "mean": 1.0,
+      "std": 0.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "challenge_clear_fraction": {
+      "mean": 1.0,
+      "std": 0.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "truth_path_rmse_m": {
+      "mean": 0.03233489837940282,
+      "std": 0.021418997365393426,
+      "min": 0.005508956075482739,
+      "max": 0.08558938484357001
+    },
+    "truth_path_p95_m": {
+      "mean": 0.05859638107715435,
+      "std": 0.035649970277685634,
+      "min": 0.00916239608076874,
+      "max": 0.16345986538805035
+    },
+    "truth_endpoint_error_m": {
+      "mean": 0.20223501997336477,
+      "std": 0.019991258617115443,
+      "min": 0.19555004544424084,
+      "max": 0.2979316840897902
+    },
+    "truth_heading_rmse_deg": {
+      "mean": 1.095227097294645,
+      "std": 0.8239267329108354,
+      "min": 0.11447876931004183,
+      "max": 4.658142480805007
+    },
+    "odom_truth_position_error_m": {
+      "mean": 0.3279433340068172,
+      "std": 0.12600479868086772,
+      "min": 0.12050040600140151,
+      "max": 0.729191718449071
+    }
+  },
+  "metrics_successful_episodes": {
+    "path_rmse_m": 0.1186828849447286,
+    "cross_track_rmse_m": 0.11803680701410778,
+    "path_p95_m": 0.22091446294675296,
+    "path_max_m": 0.23087767122285352,
+    "heading_rmse_deg": 2.970811755218234,
+    "endpoint_error_m": 0.23327894826680112,
+    "final_progress_fraction": 0.9983929004380052,
+    "backtracking_m": 4.3326574369504186e-05,
+    "time_seconds": 20.499999999701686,
+    "rms_vertical_acceleration_m_s2": 3.3156968096525294,
+    "peak_vertical_acceleration_m_s2": 93.23035483644324,
+    "rms_wheel_slip": 0.19157263736924648,
+    "rms_wheel_torque_nm": 0.3803501399043963,
+    "challenge_choice_fraction": 1.0,
+    "challenge_clear_fraction": 1.0,
+    "truth_path_rmse_m": 0.03294214630538363,
+    "truth_path_p95_m": 0.05949703055557334,
+    "truth_endpoint_error_m": 0.19807429544656366,
+    "truth_heading_rmse_deg": 1.0774329374687601,
+    "odom_truth_position_error_m": 0.33076753628772704
+  }
+}

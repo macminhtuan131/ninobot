@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "controller": "ppo_speed_only",
+  "action_ablation": "speed_only",
+  "model": "/home/tuanmac/ninorobot/rl_runs/flat_arrival_guard_200k/20261006-230417-364560/nino_ppo_final.zip",
+  "phase": 1,
+  "seed": 60000,
+  "randomized": false,
+  "benchmark_id": "4298ac9d5f3ee3935d16e38573fcd457b984c41c2544ca9e23eca09118a9de3f",
+  "pose_source": "wheel_odometry",
+  "metric_weighting": "simulation_time_trapezoid",
+  "reference": "fixed straight line from configured start_pose to goal_pose in odom",
+  "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
+  "complete": true,
+  "requested_episodes": 24,
+  "episodes": 24,
+  "success_rate": 0.8333333333333334,
+  "on_time_success_rate": 0.0,
+  "termination_counts": {
+    "success": 20,
+    "timeout": 4
+  },
+  "metrics_all_episodes": {
+    "path_rmse_m": {
+      "mean": 0.04373827192998753,
+      "std": 0.03366995244436602,
+      "min": 0.003235937115748268,
+      "max": 0.14373846020624512
+    },
+    "cross_track_rmse_m": {
+      "mean": 0.04373827192998753,
+      "std": 0.03366995244436602,
+      "min": 0.003235937115748268,
+      "max": 0.14373846020624512
+    },
+    "path_p95_m": {
+      "mean": 0.07903381155155347,
+      "std": 0.06376840068919114,
+      "min": 0.005808895068401539,
+      "max": 0.2599903852137308
+    },
+    "path_max_m": {
+      "mean": 0.07980923263982,
+      "std": 0.06434327335309813,
+      "min": 0.00607407232281435,
+      "max": 0.2621814114807666
+    },
+    "heading_rmse_deg": {
+      "mean": 1.1811222381600133,
+      "std": 0.8438977202177377,
+      "min": 0.1911135424371221,
+      "max": 3.3745291473082406
+    },
+    "endpoint_error_m": {
+      "mean": 0.105471118568694,
+      "std": 0.05332632717683041,
+      "min": 0.046792785612049116,
+      "max": 0.26753755579951555
+    },
+    "final_progress_fraction": {
+      "mean": 0.9912151687623697,
+      "std": 0.0025185872792083163,
+      "min": 0.9848574103406438,
+      "max": 0.9959134252583138
+    },
+    "backtracking_m": {
+      "mean": 7.508808389881476e-14,
+      "std": 2.5325586221185575e-13,
+      "min": 0.0,
+      "max": 1.0604850331219495e-12
+    },
+    "time_seconds": {
+      "mean": 28.837500000003857,
+      "std": 1.1160990472779577,
+      "min": 25.90000000000589,
+      "max": 30.00000000000682
+    },
+    "rms_vertical_acceleration_m_s2": {
+      "mean": 1.4453789783413338,
+      "std": 1.0731480653969334,
+      "min": 0.4788007390923753,
+      "max": 4.184647931733016
+    },
+    "peak_vertical_acceleration_m_s2": {
+      "mean": 43.167990632466285,
+      "std": 40.208892070952515,
+      "min": 6.774507664210006,
+      "max": 142.68565944171658
+    },
+    "rms_wheel_slip": {
+      "mean": 0.1513948652071583,
+      "std": 0.018709643010697392,
+      "min": 0.10681603901806513,
+      "max": 0.1939156331690385
+    },
+    "rms_wheel_torque_nm": {
+      "mean": 0.37613401320036194,
+      "std": 0.020538806416740232,
+      "min": 0.3177498024774506,
+      "max": 0.42151375191229246
+    },
+    "challenge_choice_fraction": {
+      "mean": 1.0,
+      "std": 0.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "challenge_clear_fraction": {
+      "mean": 1.0,
+      "std": 0.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "truth_path_rmse_m": {
+      "mean": 0.0309366710791434,
+      "std": 0.020125644110297127,
+      "min": 0.005810626249949546,
+      "max": 0.0820281986089116
+    },
+    "truth_path_p95_m": {
+      "mean": 0.05604781863844133,
+      "std": 0.031668717922652634,
+      "min": 0.012328891158395536,
+      "max": 0.13240394241705455
+    },
+    "truth_endpoint_error_m": {
+      "mean": 0.20198724444323882,
+      "std": 0.0065601649004704485,
+      "min": 0.19805197464301813,
+      "max": 0.22325217208243311
+    },
+    "truth_heading_rmse_deg": {
+      "mean": 1.0631109281393687,
+      "std": 0.42300283793622806,
+      "min": 0.24948039321287377,
+      "max": 2.151142440325868
+    },
+    "odom_truth_position_error_m": {
+      "mean": 0.17683361203462492,
+      "std": 0.047651175330430263,
+      "min": 0.10965980665557193,
+      "max": 0.27102949868581694
+    }
+  },
+  "metrics_successful_episodes": {
+    "path_rmse_m": 0.046467589542246654,
+    "cross_track_rmse_m": 0.046467589542246654,
+    "path_p95_m": 0.0844910909116372,
+    "path_max_m": 0.08532281710932747,
+    "heading_rmse_deg": 1.272041522055175,
+    "endpoint_error_m": 0.11154928339053194,
+    "final_progress_fraction": 0.9908986022647415,
+    "backtracking_m": 0.0,
+    "time_seconds": 28.605000000004015,
+    "rms_vertical_acceleration_m_s2": 1.3801794405960741,
+    "peak_vertical_acceleration_m_s2": 40.85196966248026,
+    "rms_wheel_slip": 0.1528496049511257,
+    "rms_wheel_torque_nm": 0.37630971218421194,
+    "challenge_choice_fraction": 1.0,
+    "challenge_clear_fraction": 1.0,
+    "truth_path_rmse_m": 0.02357880864951902,
+    "truth_path_p95_m": 0.045005669027036,
+    "truth_endpoint_error_m": 0.19919001322579766,
+    "truth_heading_rmse_deg": 1.0103111557778164,
+    "odom_truth_position_error_m": 0.16899714882871414
+  }
+}

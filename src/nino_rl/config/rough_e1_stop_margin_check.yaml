@@ -1,0 +1,9 @@
+# PI diagnostic on the original expanded rough map, route E1 only.
+# The controller targets inside the estimated goal circle; physical scoring
+# still requires the original 0.20 m tolerance and all ordered route gates.
+extends: combined_rough_section.yaml
+navigation:
+  goal_stop_tolerance_m: 0.05
+routes:
+  fixed_route: E1
+  selection: round_robin

@@ -32,7 +32,7 @@ def run_preflight(config: dict, timeout: float = 30.0) -> list[str]:
         rclpy.init(args=[])
     nav = config["navigation"]
     node = RosRobotInterface(
-        world_name="long_hall",
+        world_name=str(config.get("world_name", "long_hall")),
         subscribe_plan=False,
         node_name="nino_rl_preflight",
         cmd_vel_topic=str(nav.get("cmd_vel_topic", "/cmd_vel")),
@@ -40,6 +40,7 @@ def run_preflight(config: dict, timeout: float = 30.0) -> list[str]:
         physics_step_seconds=float(
             config["policy_v2"].get("simulation_physics_step_seconds", 0.002)
         ),
+        terrain_height_threshold_m=float(config["policy_v2"].get("terrain_height_threshold_m", .006)),
     )
     # Keep the same ordered, backpressured callback model used by the Gym
     # environment.  A MultiThreadedExecutor can queue the 500 Hz /clock stream
@@ -123,10 +124,14 @@ def run_preflight(config: dict, timeout: float = 30.0) -> list[str]:
         passed.append("8 direct straight command has a controller subscriber")
         if start[:2] == goal[:2]:
             raise RuntimeError("straight trajectory start_pose and goal_pose are identical")
-        passed.append("9 fixed straight start and goal are configured")
+        from nino_rl.routes import RouteSet
+        routes = RouteSet(config)
+        passed.append(f"9 {len(routes.routes)} drawn routes validated" if routes.enabled else
+                      "9 fixed straight start and goal are configured")
         if abs(node.desired_twist()[1]) > 0.0:
             raise RuntimeError("straight command unexpectedly contains angular velocity")
-        passed.append("10 angular velocity is fixed to zero; Nav2 is not required")
+        passed.append("10 stopped reference is zero; path steering is computed from odometry without Nav2"
+                      if routes.enabled else "10 angular velocity is fixed to zero; Nav2 is not required")
         stale_after = float(nav["stale_seconds"])
 
         def straight_reference_ready() -> bool:

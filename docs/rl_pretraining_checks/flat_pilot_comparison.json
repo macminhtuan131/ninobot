@@ -1,0 +1,58 @@
+{
+  "old_report": "/home/tuanmac/ninorobot/rl_runs/flat_old_clear_comparison/20261004-164659-061413/summary.json",
+  "pilot_report": "/home/tuanmac/ninorobot/rl_runs/flat_pilot_clear_validation/20261004-153537-095341/summary.json",
+  "matching_settings": {
+    "schema_version": 1,
+    "benchmark_id": "5e6f958df27952e50c54e9a75d45b87e65b2ccd556687f71fe5d473f193d6b9f",
+    "phase": 1,
+    "seed": 50000,
+    "episodes": 24,
+    "randomized": false,
+    "pose_source": "wheel_odometry"
+  },
+  "successes": {
+    "old": 12,
+    "pilot": 17
+  },
+  "success_rate_change_percentage_points": 20.833333333333336,
+  "metrics": {
+    "truth_path_rmse_m": {
+      "old": 0.17505706858165518,
+      "pilot": 0.12549589618039805,
+      "change": -0.049561172401257125
+    },
+    "truth_endpoint_error_m": {
+      "old": 0.5413296676540645,
+      "pilot": 0.2691094511563028,
+      "change": -0.27222021649776174
+    },
+    "odom_truth_position_error_m": {
+      "old": 0.37669903740119404,
+      "pilot": 0.1946312884570258,
+      "change": -0.18206774894416825
+    },
+    "rms_vertical_acceleration_m_s2": {
+      "old": 1.7367264314267106,
+      "pilot": 2.1511725839125293,
+      "change": 0.41444615248581873
+    },
+    "time_seconds": {
+      "old": 16.67916666763752,
+      "pilot": 17.720833334364823,
+      "change": 1.041666666727302
+    }
+  },
+  "termination_counts": {
+    "old": {
+      "goal_missed": 7,
+      "off_path": 5,
+      "success": 12
+    },
+    "pilot": {
+      "goal_missed": 5,
+      "success": 17,
+      "timeout": 2
+    }
+  },
+  "scope": "24 deterministic clear-floor episodes; no domain perturbations; curriculum advancement uses stochastic training outcomes."
+}

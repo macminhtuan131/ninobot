@@ -3,11 +3,29 @@ from copy import deepcopy
 
 
 def training_contract(config):
-    return {"revision": 30,
+    revision = {"rocky_tracking": 31, "combined_course": 32}.get(config.get("task"), 30)
+    contract = {"revision": revision,
             "phase_schedule": {key: deepcopy(config.get("curriculum", {}).get(key))
                                for key in ("enabled", "phase_steps", "phase_order")},
             **{key: deepcopy(value) for key, value in config.items()
             if key not in ("device", "seed", "curriculum", "terrain_curriculum", "reward")}}
+    if config.get("task") == "combined_course":
+        contract["dynamic_cables_enabled"] = bool(
+            config.get("terrain_curriculum", {}).get("enabled", True))
+    if config.get("rough_curriculum", {}).get("enabled", False):
+        contract["revision"] = 33
+        # These are selections inside the same declared curriculum. Terrain
+        # bank contents, route definitions, reward and PPO remain immutable.
+        runtime = contract.pop("rough_runtime", {})
+        contract["rough_bank_digest"] = runtime.get("bank_digest")
+    if config.get("action_mode") == "speed_yaw_reference":
+        contract["revision"] = 34
+        contract["action_interface"] = {
+            "outputs": ["speed_scale", "yaw_reference"],
+            "additive_torque": False,
+            "history": "60 values; zero residual torque; previous speed/zero/yaw slots",
+        }
+    return contract
 
 
 def validate_resume(model, config):

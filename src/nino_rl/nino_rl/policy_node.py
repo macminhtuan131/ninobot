@@ -1,4 +1,4 @@
-"""Deploy a trained PPO policy as a safe ROS 2 torque-control node."""
+"""Deploy a PPO motor or PI-reference policy through ROS 2."""
 
 from __future__ import annotations
 
@@ -20,20 +20,22 @@ from nino_rl.core import (
     load_config,
 )
 from nino_rl.ros_interface import RosRobotInterface
-from nino_rl.task_geometry import approach_speed, goal_overshot
+from nino_rl.task_geometry import approach_speed, goal_overshot, task_succeeded
+from nino_rl.routes import OrderedPathTracker, RouteSet, route_command, route_budget
 from nino_rl.control_v2 import (
     BASELINE_ACTION, STOP_ACTION, ObservationHistory, make_observation,
-    decode_action, validate_model,
+    decode_control, validate_model, validate_action_mode, action_size, history_action,
 )
 
 
 def arguments() -> argparse.Namespace:
     share = Path(get_package_share_directory("nino_rl"))
-    parser = argparse.ArgumentParser(description="Run a trained Nino PPO torque policy")
+    parser = argparse.ArgumentParser(description="Run a trained Nino PPO control policy")
     parser.add_argument("--model", type=Path,
                         default=share / "models" / "completed_train" / "nino_ppo_final.zip")
     parser.add_argument("--config", type=Path, default=share / "models" / "completed_train" / "ppo.yaml")
     parser.add_argument("--path", type=Path, default=share / "config" / "path.yaml")
+    parser.add_argument("--route", help="Run a configured drawn route (default: E1 when routes are enabled)")
     parser.add_argument("--use-sim-time", action="store_true")
     parser.add_argument("--device", default="cpu", help="cuda, cpu, or auto (default: cpu)")
     return parser.parse_args(sys.argv[1:])
@@ -42,11 +44,16 @@ def arguments() -> argparse.Namespace:
 class PolicyNode(RosRobotInterface):
     def __init__(self, args: argparse.Namespace) -> None:
         self.config = load_config(args.config)
+        if (self.config.get("action_mode") == "speed_yaw_reference"
+                and self.config.get("routes", {}).get("enabled", False)):
+            raise ValueError("speed_yaw_reference requires a straight course without drawn routes")
         super().__init__(
+            world_name=str(self.config.get("world_name", "long_hall")),
             subscribe_plan=False,
             use_sim_time=args.use_sim_time,
             node_name="nino_rl_policy",
             cmd_vel_topic=str(self.config["navigation"].get("cmd_vel_topic", "/cmd_vel")),
+            terrain_height_threshold_m=float(self.config["policy_v2"].get("terrain_height_threshold_m", .006)),
         )
         self.imu_includes_gravity = bool(self.config["policy_v2"]["imu_includes_gravity"])
         self.history = ObservationHistory(self.config["policy_v2"]["history_frames"])
@@ -55,9 +62,23 @@ class PolicyNode(RosRobotInterface):
         except ImportError as error:
             raise RuntimeError("Thiếu stable-baselines3; xem README_VI.md") from error
 
-        path_config = load_config(args.path)
-        self.path = PathTracker(path_config["waypoints"])
-        self.path_source = "YAML"
+        self.route_set = RouteSet(self.config)
+        self.route_id = None
+        self.target_seconds = float(self.config["target_finish_seconds"])
+        self.deadline_seconds = float(self.config["max_episode_seconds"])
+        if self.route_set.enabled:
+            selected = self.route_set.select(np.random.default_rng(0), 0,
+                                            args.route or self.route_set.settings.get("fixed_route") or "E1")
+            self.route_id = selected["id"]
+            self.path = OrderedPathTracker(selected["waypoints"], self.route_set.settings)
+            self.target_seconds, self.deadline_seconds = route_budget(self.config, self.path.total_length)
+            self.path_source = f"drawn route {self.route_id}"
+        else:
+            if args.route is not None:
+                raise ValueError("--route requires an enabled routes configuration")
+            path_config = load_config(args.path)
+            self.path = PathTracker(path_config["waypoints"])
+            self.path_source = "YAML"
         self.path_started_at = None
         self.deadline_reported = False
         self.wrong_direction_reported = False
@@ -84,10 +105,11 @@ class PolicyNode(RosRobotInterface):
         self.rollover_limit = np.deg2rad(float(self.config["rollover_limit_deg"]))
         device = args.device or str(self.config.get("device", "cuda"))
         self.model = PPO.load(args.model, device=device)
-        validate_model(self.model, self.history.size)
+        validate_model(self.model, self.history.size, action_size(self.config))
+        validate_action_mode(self.model, self.config)
         self.timer = self.create_timer(1.0 / float(self.config["control_hz"]), self._control)
         self.get_logger().info(
-            f"PPO policy loaded on {self.model.device}; fixed straight path, Nav2 disabled"
+            f"PPO policy loaded on {self.model.device}; {self.path_source}, Nav2 disabled"
         )
 
     def _control(self) -> None:
@@ -97,6 +119,8 @@ class PolicyNode(RosRobotInterface):
         if self.path_started_at is None:
             self.path_started_at = self.get_clock().now().nanoseconds * 1e-9
         state = self.snapshot()
+        if self.route_set.enabled:
+            self.path.advance(state.x, state.y)
         finite_ranges = [value for value in state.lidar_ranges if np.isfinite(value)]
         if finite_ranges and min(finite_ranges) <= self.collision_distance:
             self._stop_policy()
@@ -106,16 +130,26 @@ class PolicyNode(RosRobotInterface):
         )
         speed = approach_speed(tracking.endpoint_distance, tracking.distance_remaining,
                                tracking.heading_error, self.config)
-        self.publish_straight_command(speed)
+        if self.route_set.enabled:
+            speed, angular = route_command(state, self.path, tracking, self.config)
+            self.publish_motion_command(speed, angular)
+        elif self.config.get("action_mode", "wheel_torque") in ("yaw_reference", "speed_yaw_reference"):
+            # Match the training observation's previous executed yaw reference.
+            previous = (self.previous_action[[0, 2]]
+                        if action_size(self.config) == 2 else self.previous_action)
+            _, _, previous_yaw = decode_control(previous, self.config)
+            self.publish_motion_command(speed, previous_yaw)
+        else:
+            self.publish_straight_command(speed)
         elapsed = self.get_clock().now().nanoseconds * 1e-9 - self.path_started_at
         desired_linear, desired_angular = self.desired_twist()
-        # Match the environment's 5m waypoint reference/budget convention.
+        # Match the environment's configured waypoint reference/budget.
         spacing = self.config["navigation"]["waypoint_spacing_m"]
         waypoint_s = min(self.path.total_length, (int(tracking.path_s / spacing) + 1) * spacing)
         budget = (self.config["navigation"]["waypoint_slack_seconds"]
                   + self.config["navigation"]["waypoint_budget_seconds_per_m"] * waypoint_s)
         if waypoint_s >= self.path.total_length:
-            budget = self.config["target_finish_seconds"]
+            budget = self.target_seconds
         reference = NavReference(
             desired_linear_velocity=desired_linear,
             desired_angular_velocity=desired_angular,
@@ -144,14 +178,13 @@ class PolicyNode(RosRobotInterface):
         try:
             frame, tracking = make_observation(
                 state, self.path, self.lookahead, self.previous_action, reference,
-                preview, self.imu_includes_gravity)
+                preview, self.imu_includes_gravity,
+                action_mode=self.config.get("action_mode", "wheel_torque"))
         except ValueError:
             self._stop_policy()
             return
         observation = self.history.append(frame)
-        timed_out = elapsed >= float(
-            self.config["max_episode_seconds"]
-        )
+        timed_out = elapsed >= self.deadline_seconds
         wrong_direction_sample = (
             elapsed
             >= float(self.config["wrong_direction_grace_seconds"])
@@ -166,11 +199,12 @@ class PolicyNode(RosRobotInterface):
             self.wrong_direction_steps >= self.wrong_direction_required_steps
         )
         if (
-            goal_reached(tracking, state, self.config)
+            task_succeeded(tracking, state, self.path, self.config)
             or goal_overshot(state, self.path, self.config)
             or timed_out
             or wrong_direction
-            or abs(tracking.lateral_error) >= self.off_path_limit
+            or (self.path.corridor_distance(state.x, state.y) if self.route_set.enabled
+                else abs(tracking.lateral_error)) >= self.off_path_limit
             or max(abs(state.roll), abs(state.pitch)) >= self.rollover_limit
             or not reference.valid
         ):
@@ -192,9 +226,12 @@ class PolicyNode(RosRobotInterface):
             self.get_logger().error("Policy returned non-finite action; commanding zero torque")
             self._stop_policy()
             return
-        scale, torque = decode_action(action, self.action_scale)
+        scale, torque, yaw_reference = decode_control(
+            action, self.config, path_remaining=tracking.distance_remaining)
+        if self.config.get("action_mode", "wheel_torque") in ("yaw_reference", "speed_yaw_reference"):
+            self.publish_motion_command(speed, yaw_reference)
         self.publish_control(scale, float(torque[0]), float(torque[1]))
-        self.previous_action = action
+        self.previous_action = history_action(action, self.config)
 
     def _stop_policy(self):
         self.publish_control(0.0, 0.0, 0.0)

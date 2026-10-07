@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "/home/tuanmac/ninorobot/install/nino_rl/lib/nino_rl/train",
+    "--device",
+    "cuda",
+    "--config",
+    "src/nino_rl/config/combined_flat_speed_yaw_pilot.yaml",
+    "--init-speed-model",
+    "rl_runs/flat_arrival_guard_200k/20261006-230417-364560/nino_ppo_final.zip",
+    "--timesteps",
+    "20000",
+    "--checkpoint-every",
+    "5000",
+    "--check-env",
+    "--output",
+    "rl_runs/flat_speed_yaw_pilot"
+  ],
+  "python": "3.12.3",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4080",
+  "packages": {
+    "torch": "2.13.0+cu126",
+    "stable-baselines3": "2.9.0",
+    "gymnasium": "1.3.0",
+    "numpy": "1.26.4"
+  }
+}

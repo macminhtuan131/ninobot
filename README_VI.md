@@ -101,7 +101,7 @@ Với checkout mới:
 
 ```bash
 cd ~
-git clone --branch add_rl https://github.com/macminhtuan131/Ninobot_controlled_with_torque.git ninorobot
+git clone --branch removed_nav2 https://github.com/macminhtuan131/Ninobot_controlled_with_torque.git ninorobot
 cd ~/ninorobot
 ```
 

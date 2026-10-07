@@ -15,6 +15,45 @@ from nino_rl.core import RobotState
 ROOT = Path(__file__).parents[3]
 
 
+@pytest.mark.parametrize("controller_ready", [True, False])
+def test_startup_recovers_paused_world_only_after_stopping_discovered_controller(controller_ready):
+    source = ROOT / "src/nino_rl/nino_rl/ros_env.py"
+    cls = next(node for node in ast.parse(source.read_text()).body if isinstance(node, ast.ClassDef))
+    helper = next(node for node in cls.body if isinstance(node, ast.FunctionDef)
+                  and node.name == "_prepare_initial_sensors")
+    namespace = {}
+    exec(compile(ast.Module(body=[helper], type_ignores=[]), str(source), "exec"), namespace)
+    world = {"paused": True, "stopped": False, "sensors": False}
+    def discover(**kwargs):
+        if not controller_ready:
+            raise RuntimeError("No v2 effort_drive")
+    def control(*command):
+        assert command == (0., 0., 0.)
+        world["stopped"] = True
+    def pause(value, **kwargs):
+        assert world["stopped"]
+        world["paused"] = value
+    def sensors(timeout):
+        # A paused prior session cannot generate the initial sensor samples.
+        assert not world["paused"]
+        world["sensors"] = True
+    def preview(timeout):
+        assert not world["paused"] and world["sensors"]
+    env = SimpleNamespace(config={"policy_v2": {"require_terrain_preview": True}},
+                          sensor_timeout=5., simulation_step_timeout=10., world_is_paused=False,
+                          ros=SimpleNamespace(wait_for_v2_controller=discover,
+                              publish_control=control, publish_straight_command=lambda speed: None,
+                              set_world_paused=pause, wait_for_sensors=sensors,
+                              wait_for_terrain_preview=preview))
+    if controller_ready:
+        namespace["_prepare_initial_sensors"](env)
+        assert world["sensors"] and world["paused"] and env.world_is_paused
+    else:
+        with pytest.raises(RuntimeError, match="No v2"):
+            namespace["_prepare_initial_sensors"](env)
+        assert world == {"paused": True, "stopped": False, "sensors": False}
+
+
 def test_sensor_wait_accepts_complete_snapshot_at_deadline():
     ros = SimpleNamespace(
         _lock=Lock(),
@@ -140,6 +179,26 @@ def test_lockstep_acknowledgment_cannot_complete_physics(monkeypatch):
     monkeypatch.setattr(transport, "sleep", tick)
     assert RosRobotInterface.advance_world(ros, 25, timeout=1.) == .05
     assert len(ticks) == 25  # An already-successful future is only acceptance.
+
+
+def test_lockstep_accepts_authoritative_stats_when_last_clock_tick_is_missing(monkeypatch):
+    import nino_rl.ros_interface as transport
+    from concurrent.futures import Future
+    future = Future()
+    future.set_result(SimpleNamespace(success=True))
+    ros = SimpleNamespace(
+        _lock=Lock(), _sim_clock_stamp=1.0, _world_stats_stamp=1.0,
+        physics_step_seconds=.002,
+        world_control=SimpleNamespace(wait_for_service=lambda timeout_sec: True,
+                                      call_async=lambda request: future),
+    )
+
+    def deliver(_):
+        ros._sim_clock_stamp = 1.048
+        ros._world_stats_stamp = 1.05
+
+    monkeypatch.setattr(transport, "sleep", deliver)
+    assert RosRobotInterface.advance_world(ros, 25, timeout=1.) == .05
 
 
 def test_motion_barrier_waits_for_action_end_not_wall_freshness(monkeypatch):
@@ -330,8 +389,7 @@ def test_episode_reset_and_step_require_fresh_terrain_preview():
     constructor = source[source.index("    def __init__("):source.index("    def _spin_executor(")]
     reset = source[source.index("    def reset("):source.index("    def step(")]
     step = source[source.index("    def step("):]
-    assert "self.ros.set_world_paused(" in constructor
-    assert "self.world_is_paused = True" in constructor
+    assert "self._prepare_initial_sensors()" in constructor
     assert "self._stop_executor_spin()" in constructor
     assert "self._start_executor_spin()" in reset
     assert "SingleThreadedExecutor()" in constructor

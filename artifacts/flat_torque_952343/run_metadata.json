@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "/home/tuanmac/ninorobot/install/nino_rl/lib/nino_rl/train",
+    "--device",
+    "cuda",
+    "--config",
+    "rl_runs/flat_arrival_guard_200k/20261006-200532-809815/ppo.yaml",
+    "--resume",
+    "rl_runs/flat_arrival_guard_200k/20261006-200532-809815/nino_ppo_final.zip",
+    "--timesteps",
+    "200000",
+    "--checkpoint-every",
+    "10000",
+    "--output",
+    "rl_runs/flat_arrival_guard_200k"
+  ],
+  "python": "3.12.3",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4080",
+  "packages": {
+    "torch": "2.13.0+cu126",
+    "stable-baselines3": "2.9.0",
+    "gymnasium": "1.3.0",
+    "numpy": "1.26.4"
+  }
+}

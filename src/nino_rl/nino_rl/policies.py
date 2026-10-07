@@ -1,4 +1,4 @@
-"""Compact CUDA-capable history policy with the existing 300-in/3-out contract."""
+"""Compact CUDA-capable history policy for two or three action contracts."""
 import torch as th
 from torch import nn
 from stable_baselines3.common.policies import ActorCriticPolicy
@@ -47,15 +47,17 @@ class HistoryActorCriticPolicy(ActorCriticPolicy):
         self.initial_speed_scale = initial_speed_scale
         if initial_action_std is not None:
             std = th.as_tensor(initial_action_std)
-            if std.shape != (3,) or not th.isfinite(std).all() or (std <= 0).any():
-                raise ValueError("initial_action_std needs three positive finite values")
+            if std.shape not in ((2,), (3,)) or not th.isfinite(std).all() or (std <= 0).any():
+                raise ValueError("initial_action_std needs two or three positive finite values")
         self.initial_action_std = initial_action_std
         super().__init__(*args, **kwargs)
 
     def _build(self, lr_schedule):
         super()._build(lr_schedule)
-        if self.action_space.shape != (3,) or self.use_sde:
-            raise ValueError("History policy requires three actions and standard Gaussian PPO")
+        if self.action_space.shape not in ((2,), (3,)) or self.use_sde:
+            raise ValueError("History policy requires two or three actions and standard Gaussian PPO")
+        if self.initial_action_std is not None and len(self.initial_action_std) != self.action_space.shape[0]:
+            raise ValueError("initial_action_std must match the policy action space")
         with th.no_grad():
             self.action_net.bias.zero_()
             self.action_net.bias[0] = 2.0 * self.initial_speed_scale - 1.0

@@ -1,0 +1,12 @@
+{
+  "model": "/home/tuanmac/ninorobot/rl_runs/flat_arrival_guard_200k/20261006-230417-364560/nino_ppo_final.zip",
+  "model_sha256": "146398abd63bc28afc7f27532636a93f487d6d89b7002e70b3683b34bc2c4ee5",
+  "config": "/home/tuanmac/ninorobot/rl_runs/flat_arrival_guard_200k/20261006-230417-364560/ppo.yaml",
+  "config_sha256": "7bc60209ad3508dc2bf250dea166d01248eb7efa4800b39f6a8a52394f84bf31",
+  "domain": 79,
+  "gazebo_partition": "nino_flat_79",
+  "flat_stage": 2,
+  "episodes_per_controller": 24,
+  "seed": 60000,
+  "policy_weight_updates": false
+}

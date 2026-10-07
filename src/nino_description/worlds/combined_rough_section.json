@@ -1,0 +1,650 @@
+{
+  "revision": "rough_diverse_v5",
+  "world_name": "combined_rough_section",
+  "seed": 42,
+  "mesh": "rough_diverse_ground.stl",
+  "mesh_x_m": [
+    0.8,
+    10.0
+  ],
+  "mesh_y_m": [
+    -5.2,
+    5.2
+  ],
+  "rough_y_m": [
+    -4.0,
+    4.0
+  ],
+  "world_x_m": [
+    -2.0,
+    12.0
+  ],
+  "world_y_m": [
+    -7.2,
+    7.2
+  ],
+  "side_transition_width_m": 1.2,
+  "goal_halls": [
+    {
+      "name": "spawn_floor",
+      "side": "west",
+      "x_m": [
+        -2.0,
+        0.8
+      ],
+      "y_m": [
+        -7.2,
+        7.2
+      ]
+    },
+    {
+      "name": "rough_landing_floor",
+      "side": "east",
+      "x_m": [
+        10.0,
+        12.0
+      ],
+      "y_m": [
+        -7.2,
+        7.2
+      ]
+    },
+    {
+      "name": "north_goal_hall",
+      "side": "north",
+      "x_m": [
+        0.8,
+        10.0
+      ],
+      "y_m": [
+        5.2,
+        7.2
+      ]
+    },
+    {
+      "name": "south_goal_hall",
+      "side": "south",
+      "x_m": [
+        0.8,
+        10.0
+      ],
+      "y_m": [
+        -7.2,
+        -5.2
+      ]
+    }
+  ],
+  "goal_stations": [
+    {
+      "id": "W1",
+      "hall": "west",
+      "pose": [
+        -0.75,
+        0.0,
+        3.141592653589793
+      ]
+    },
+    {
+      "id": "E1",
+      "hall": "east",
+      "pose": [
+        10.5,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "N1",
+      "hall": "north",
+      "pose": [
+        2.5,
+        6.2,
+        1.5707963267948966
+      ]
+    },
+    {
+      "id": "N2",
+      "hall": "north",
+      "pose": [
+        5.4,
+        6.2,
+        1.5707963267948966
+      ]
+    },
+    {
+      "id": "N3",
+      "hall": "north",
+      "pose": [
+        8.4,
+        6.2,
+        1.5707963267948966
+      ]
+    },
+    {
+      "id": "S1",
+      "hall": "south",
+      "pose": [
+        2.5,
+        -6.2,
+        -1.5707963267948966
+      ]
+    },
+    {
+      "id": "S2",
+      "hall": "south",
+      "pose": [
+        5.4,
+        -6.2,
+        -1.5707963267948966
+      ]
+    },
+    {
+      "id": "S3",
+      "hall": "south",
+      "pose": [
+        8.4,
+        -6.2,
+        -1.5707963267948966
+      ]
+    }
+  ],
+  "preserved_rough_x_m": [
+    0.8,
+    5.7
+  ],
+  "preserved_core_y_m": [
+    -2.0,
+    2.0
+  ],
+  "original_rough_x_m": [
+    0.8,
+    6.716796875
+  ],
+  "flat_landing_x_m": [
+    10.0,
+    12.0
+  ],
+  "start_xy_m": [
+    0.0,
+    0.0
+  ],
+  "goal_xy_m": [
+    10.5,
+    0.0
+  ],
+  "height_range_m": [
+    -0.16407186109517125,
+    0.24385902417323257
+  ],
+  "maximum_surface_angle_deg": 30.11372760816532,
+  "extension_maximum_surface_angle_deg": 30.11372760816532,
+  "maximum_mesh_spacing_m": [
+    0.0199891786317572,
+    0.015625
+  ],
+  "legacy_bowls": [
+    {
+      "id": "L1",
+      "kind": "legacy_bowl",
+      "x_m": 1.8,
+      "y_m": 0.3,
+      "radius_x_m": 0.55,
+      "radius_y_m": 0.42,
+      "height_m": -0.07,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "L2",
+      "kind": "legacy_bowl",
+      "x_m": 3.55,
+      "y_m": 0.0,
+      "radius_x_m": 0.9,
+      "radius_y_m": 0.45,
+      "height_m": -0.07,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "L3",
+      "kind": "legacy_bowl",
+      "x_m": 5.45,
+      "y_m": -0.1,
+      "radius_x_m": 0.55,
+      "radius_y_m": 0.42,
+      "height_m": -0.07,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "L4",
+      "kind": "legacy_bowl",
+      "x_m": 1.35,
+      "y_m": -0.78,
+      "radius_x_m": 0.32,
+      "radius_y_m": 0.28,
+      "height_m": -0.025,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "L5",
+      "kind": "legacy_bowl",
+      "x_m": 2.35,
+      "y_m": 0.78,
+      "radius_x_m": 0.43,
+      "radius_y_m": 0.38,
+      "height_m": -0.055,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "L6",
+      "kind": "legacy_bowl",
+      "x_m": 2.95,
+      "y_m": -0.76,
+      "radius_x_m": 0.44,
+      "radius_y_m": 0.43,
+      "height_m": -0.055,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "L7",
+      "kind": "legacy_bowl",
+      "x_m": 3.9,
+      "y_m": 0.83,
+      "radius_x_m": 0.36,
+      "radius_y_m": 0.32,
+      "height_m": -0.03,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "L8",
+      "kind": "legacy_bowl",
+      "x_m": 4.72,
+      "y_m": -0.4,
+      "radius_x_m": 0.46,
+      "radius_y_m": 0.4,
+      "height_m": -0.075,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "L9",
+      "kind": "legacy_bowl",
+      "x_m": 5.55,
+      "y_m": 0.82,
+      "radius_x_m": 0.4,
+      "radius_y_m": 0.36,
+      "height_m": -0.045,
+      "angle_deg": 0.0
+    }
+  ],
+  "legacy_wheel_bowls": [
+    {
+      "id": "LW1",
+      "kind": "drive_bowl",
+      "x_m": 2.55,
+      "y_m": 0.171,
+      "radius_x_m": 0.15,
+      "radius_y_m": 0.125,
+      "height_m": -0.022,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "LW2",
+      "kind": "drive_bowl",
+      "x_m": 4.65,
+      "y_m": -0.171,
+      "radius_x_m": 0.15,
+      "radius_y_m": 0.125,
+      "height_m": -0.022,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "LW3",
+      "kind": "caster_bowl",
+      "x_m": 1.1,
+      "y_m": 0.088,
+      "radius_x_m": 0.06,
+      "radius_y_m": 0.056,
+      "height_m": -0.006,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "LW4",
+      "kind": "caster_bowl",
+      "x_m": 4.35,
+      "y_m": -0.088,
+      "radius_x_m": 0.06,
+      "radius_y_m": 0.056,
+      "height_m": -0.006,
+      "angle_deg": 0.0
+    }
+  ],
+  "features": [
+    {
+      "id": "D1",
+      "kind": "round_bowl",
+      "x_m": 7.45,
+      "y_m": -1.05,
+      "radius_x_m": 0.48,
+      "radius_y_m": 0.43,
+      "height_m": -0.025,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "M1",
+      "kind": "rounded_mound",
+      "x_m": 7.5,
+      "y_m": 0,
+      "radius_x_m": 0.42,
+      "radius_y_m": 0.4,
+      "height_m": 0.035,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "D2",
+      "kind": "flat_bottom_bowl",
+      "x_m": 7.45,
+      "y_m": 1.05,
+      "radius_x_m": 0.48,
+      "radius_y_m": 0.45,
+      "height_m": -0.04,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "D3",
+      "kind": "angled_trough",
+      "x_m": 8.3,
+      "y_m": -1.12,
+      "radius_x_m": 0.48,
+      "radius_y_m": 0.32,
+      "height_m": -0.045,
+      "angle_deg": 25
+    },
+    {
+      "id": "D5",
+      "kind": "broad_bowl",
+      "x_m": 8.38,
+      "y_m": 0,
+      "radius_x_m": 0.5,
+      "radius_y_m": 0.45,
+      "height_m": -0.1,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "M4",
+      "kind": "angled_ridge",
+      "x_m": 8.28,
+      "y_m": 1.05,
+      "radius_x_m": 0.48,
+      "radius_y_m": 0.36,
+      "height_m": 0.07,
+      "angle_deg": -25
+    },
+    {
+      "id": "M3",
+      "kind": "low_plateau",
+      "x_m": 9.13,
+      "y_m": -0.98,
+      "radius_x_m": 0.5,
+      "radius_y_m": 0.45,
+      "height_m": 0.08,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "S1+",
+      "kind": "saddle_mound",
+      "x_m": 9.15,
+      "y_m": 0.3,
+      "radius_x_m": 0.36,
+      "radius_y_m": 0.38,
+      "height_m": 0.06,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "S1-",
+      "kind": "saddle_bowl",
+      "x_m": 9.55,
+      "y_m": -0.24,
+      "radius_x_m": 0.25,
+      "radius_y_m": 0.32,
+      "height_m": -0.04,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "M6",
+      "kind": "rounded_mound",
+      "x_m": 9.15,
+      "y_m": 1.08,
+      "radius_x_m": 0.52,
+      "radius_y_m": 0.48,
+      "height_m": 0.14,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "W1",
+      "kind": "drive_bowl",
+      "x_m": 7.98,
+      "y_m": 0.171,
+      "radius_x_m": 0.16,
+      "radius_y_m": 0.13,
+      "height_m": -0.012,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "W2",
+      "kind": "drive_bowl",
+      "x_m": 8.98,
+      "y_m": -0.171,
+      "radius_x_m": 0.17,
+      "radius_y_m": 0.14,
+      "height_m": -0.02,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "C1",
+      "kind": "caster_bowl",
+      "x_m": 8.0,
+      "y_m": -0.088,
+      "radius_x_m": 0.075,
+      "radius_y_m": 0.065,
+      "height_m": -0.006,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "D9",
+      "kind": "broad_bowl",
+      "x_m": 6.2,
+      "y_m": 1.25,
+      "radius_x_m": 0.5,
+      "radius_y_m": 0.55,
+      "height_m": -0.05,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "M7",
+      "kind": "rounded_mound",
+      "x_m": 6.2,
+      "y_m": -1.25,
+      "radius_x_m": 0.5,
+      "radius_y_m": 0.55,
+      "height_m": 0.06,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "D4",
+      "kind": "broad_bowl",
+      "x_m": 1.75,
+      "y_m": 2.9,
+      "radius_x_m": 0.52,
+      "radius_y_m": 0.48,
+      "height_m": -0.07,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "M2",
+      "kind": "rounded_mound",
+      "x_m": 3.15,
+      "y_m": 3.03,
+      "radius_x_m": 0.65,
+      "radius_y_m": 0.52,
+      "height_m": 0.06,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "D6",
+      "kind": "broad_bowl",
+      "x_m": 4.8,
+      "y_m": 2.95,
+      "radius_x_m": 0.78,
+      "radius_y_m": 0.58,
+      "height_m": -0.12,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "M5",
+      "kind": "rounded_mound",
+      "x_m": 6.3,
+      "y_m": 3.05,
+      "radius_x_m": 0.66,
+      "radius_y_m": 0.54,
+      "height_m": 0.1,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "D7",
+      "kind": "flat_bottom_bowl",
+      "x_m": 7.8,
+      "y_m": 2.85,
+      "radius_x_m": 0.57,
+      "radius_y_m": 0.52,
+      "height_m": -0.08,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "D8",
+      "kind": "angled_trough",
+      "x_m": 9.05,
+      "y_m": 3.0,
+      "radius_x_m": 0.58,
+      "radius_y_m": 0.36,
+      "height_m": -0.06,
+      "angle_deg": -25
+    },
+    {
+      "id": "M8",
+      "kind": "banked_mound",
+      "x_m": 1.65,
+      "y_m": -2.95,
+      "radius_x_m": 0.52,
+      "radius_y_m": 0.48,
+      "height_m": 0.045,
+      "angle_deg": 15
+    },
+    {
+      "id": "D10",
+      "kind": "round_bowl",
+      "x_m": 3.0,
+      "y_m": -3.05,
+      "radius_x_m": 0.55,
+      "radius_y_m": 0.48,
+      "height_m": -0.045,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "M9",
+      "kind": "rounded_mound",
+      "x_m": 4.6,
+      "y_m": -2.9,
+      "radius_x_m": 0.68,
+      "radius_y_m": 0.56,
+      "height_m": 0.12,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "D11",
+      "kind": "broad_bowl",
+      "x_m": 6.1,
+      "y_m": -3.05,
+      "radius_x_m": 0.72,
+      "radius_y_m": 0.55,
+      "height_m": -0.09,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "M10",
+      "kind": "low_plateau",
+      "x_m": 7.6,
+      "y_m": -2.95,
+      "radius_x_m": 0.6,
+      "radius_y_m": 0.55,
+      "height_m": 0.09,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "D12",
+      "kind": "angled_trough",
+      "x_m": 9.1,
+      "y_m": -3.0,
+      "radius_x_m": 0.56,
+      "radius_y_m": 0.48,
+      "height_m": -0.055,
+      "angle_deg": 20
+    },
+    {
+      "id": "W3",
+      "kind": "drive_bowl",
+      "x_m": 2.5,
+      "y_m": 2.471,
+      "radius_x_m": 0.18,
+      "radius_y_m": 0.145,
+      "height_m": -0.03,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "W4",
+      "kind": "drive_bowl",
+      "x_m": 3.93,
+      "y_m": -3.6,
+      "radius_x_m": 0.24,
+      "radius_y_m": 0.2,
+      "height_m": -0.04,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "C2",
+      "kind": "caster_bowl",
+      "x_m": 6.9,
+      "y_m": 2.488,
+      "radius_x_m": 0.085,
+      "radius_y_m": 0.075,
+      "height_m": -0.01,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "W5",
+      "kind": "drive_bowl",
+      "x_m": 5.5,
+      "y_m": 3.35,
+      "radius_x_m": 0.17,
+      "radius_y_m": 0.14,
+      "height_m": -0.018,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "C3",
+      "kind": "caster_bowl",
+      "x_m": 8.55,
+      "y_m": -3.388,
+      "radius_x_m": 0.075,
+      "radius_y_m": 0.065,
+      "height_m": -0.008,
+      "angle_deg": 0.0
+    }
+  ],
+  "terrain_style": "wide rolling hills, asymmetric basins, banked mounds and embedded wheel-scale relief",
+  "notes": [
+    "One shared mesh for visual and collision; no floor below its bowls.",
+    "Connected flat goal halls surround the rough patch, joined by smooth side ramps.",
+    "Goal station markers are visual only; station selection is not automatic in the current trainer.",
+    "Extension heights are added relief relative to its rolling background, not absolute elevations.",
+    "Feature footprints are route-planning annotations, not mandatory reward checkpoints.",
+    "The default RL route is still straight; custom drawn trajectories need explicit path integration."
+  ]
+}
