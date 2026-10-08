@@ -1,0 +1,31 @@
+# New fixed-terrain route contract. Actor initialization, not old optimizer resume.
+extends: rough_e1_imu_assisted.yaml
+routes:
+  revision: fixed_e1_n1_s1_replay_v1
+  fixed_route: null
+  selection: balanced_shuffle
+  # One E1 replay in every three episodes; no route is dropped after promotion.
+  definitions:
+  - id: E1
+    goal_heading_deg: 0.0
+    waypoints: [[0.0, 0.0], [10.5, 0.0]]
+  - id: N1
+    goal_heading_deg: 90.0
+    waypoints: [[0.0, 0.0], [2.5, 0.0], [2.5, 6.2]]
+  - id: S1
+    goal_heading_deg: -90.0
+    waypoints: [[0.0, 0.0], [2.5, 0.0], [2.5, -6.2]]
+domain_randomization:
+  enabled: false
+drive_controller:
+  parameters:
+    pi_integrator_profile: legacy
+    velocity_kp: 0.30
+    velocity_ki: 0.10
+    integral_limit: 4.0
+    max_wheel_torque: 4.0
+    max_velocity_control_torque: 4.0
+    max_wheel_acceleration: 12.0
+    max_effort_rate: 10.0
+    wheel_radius: 0.0625
+    wheel_separation: 0.34273666

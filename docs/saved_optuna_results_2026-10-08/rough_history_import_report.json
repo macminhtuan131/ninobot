@@ -1,0 +1,59 @@
+{
+  "imported": 0,
+  "sources": [
+    {
+      "database": "/home/tuanmac/ninorobot/rl_runs/combined_rough_optuna_fresh/study.db",
+      "studies": [
+        {
+          "study": "combined_rough_section",
+          "states": {
+            "COMPLETE": 16,
+            "FAIL": 2
+          },
+          "reasons": [
+            "Missing or different fixed evaluation objective; legacy scores cannot be imported",
+            "Missing or different comparable training conditions/checkpoint/budget/assets",
+            "Missing or different base/search-space contract"
+          ],
+          "trials": [],
+          "historical_best_not_a_current_score": {
+            "trial": 3,
+            "stored_score": 93.12324237165178,
+            "params": {
+              "ent_coef": 0.0006866589181058187,
+              "gamma": 0.997,
+              "learning_rate": 4.356774084491371e-05,
+              "n_steps": 2048,
+              "reward_v2.attitude_weight": 0.3148098198824639,
+              "reward_v2.impact_weight": 0.03272851984291978,
+              "reward_v2.lateral_weight": 0.6864341294411154,
+              "reward_v2.progress_weight": 13.037431564834606,
+              "reward_v2.slip_weight": 0.12819102280689748
+            }
+          },
+          "role": "incompatible diagnostic record; no scores imported"
+        }
+      ]
+    },
+    {
+      "database": "/home/tuanmac/ninorobot/rl_runs/combined_rough_optuna/study.db",
+      "studies": [
+        {
+          "study": "combined_rough_section",
+          "states": {
+            "FAIL": 2
+          },
+          "reasons": [
+            "Missing or different fixed evaluation objective; legacy scores cannot be imported",
+            "Missing or different comparable training conditions/checkpoint/budget/assets",
+            "Missing or different base/search-space contract"
+          ],
+          "trials": [],
+          "role": "incompatible diagnostic record; no scores imported"
+        }
+      ]
+    }
+  ],
+  "pi_scores_imported": 0,
+  "starting_candidate": "queued once; no score until trained/evaluated"
+}

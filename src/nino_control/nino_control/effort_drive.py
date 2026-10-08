@@ -15,12 +15,14 @@ from math import cos, isfinite, sin
 import rclpy
 from geometry_msgs.msg import TransformStamped, Twist
 from nav_msgs.msg import Odometry
+from rcl_interfaces.msg import ParameterDescriptor
 from rclpy.node import Node
 from rclpy.qos import HistoryPolicy, QoSProfile, ReliabilityPolicy
 from sensor_msgs.msg import JointState
-from std_msgs.msg import Float64MultiArray
+from std_msgs.msg import Float64MultiArray, MultiArrayDimension
 from std_srvs.srv import Trigger
 from tf2_ros import TransformBroadcaster
+from nino_control.velocity_pi import conditional_integral
 
 from nino_control.kinematics import (
     clamp,
@@ -39,24 +41,29 @@ class EffortDrive(Node):
         # ---------------------------------------------------------
         # Parameters
         # ---------------------------------------------------------
+        # These values are cached by the control loop. Make their ROS service
+        # values immutable too, so profile verification cannot read a setting
+        # which was changed externally but never applied by the controller.
+        static_controller = ParameterDescriptor(read_only=True)
         self.declare_parameter("left_wheel_joint", "left_wheel_joint")
         self.declare_parameter("right_wheel_joint", "right_wheel_joint")
-        self.declare_parameter("wheel_radius", 0.0625)
-        self.declare_parameter("wheel_separation", 0.34273666)
+        self.declare_parameter("wheel_radius", 0.0625, static_controller)
+        self.declare_parameter("wheel_separation", 0.34273666, static_controller)
 
         # The URDF hard limit is 24 rad/s. Keep a margin so direct torque
         # cannot drive controller_manager into that hard limit.
         self.declare_parameter("max_wheel_speed", 12.0)
-        self.declare_parameter("max_wheel_acceleration", 12.0)
-        self.declare_parameter("max_wheel_torque", 12.0)
+        self.declare_parameter("max_wheel_acceleration", 12.0, static_controller)
+        self.declare_parameter("max_wheel_torque", 12.0, static_controller)
 
         # Maximum torque produced by the baseline velocity PI controller.
-        self.declare_parameter("max_velocity_control_torque", 2.0)
+        self.declare_parameter("max_velocity_control_torque", 2.0, static_controller)
 
-        self.declare_parameter("max_effort_rate", 10.0)
-        self.declare_parameter("velocity_kp", 0.30)
-        self.declare_parameter("velocity_ki", 0.10)
-        self.declare_parameter("integral_limit", 4.0)
+        self.declare_parameter("max_effort_rate", 10.0, static_controller)
+        self.declare_parameter("velocity_kp", 0.30, static_controller)
+        self.declare_parameter("velocity_ki", 0.10, static_controller)
+        self.declare_parameter("integral_limit", 4.0, static_controller)
+        self.declare_parameter("pi_integrator_profile", "legacy", static_controller)
 
         self.declare_parameter("command_timeout", 0.5)
         self.declare_parameter("torque_command_timeout", 0.25)
@@ -113,6 +120,9 @@ class EffortDrive(Node):
         self.kp = float(self.get_parameter("velocity_kp").value)
         self.ki = float(self.get_parameter("velocity_ki").value)
         self.integral_limit = float(self.get_parameter("integral_limit").value)
+        self.pi_integrator_profile = str(self.get_parameter("pi_integrator_profile").value)
+        if self.pi_integrator_profile not in ("legacy", "conditional_v1"):
+            raise ValueError("pi_integrator_profile must be legacy or conditional_v1")
 
         self.command_timeout = float(self.get_parameter("command_timeout").value)
         self.torque_timeout = float(
@@ -151,6 +161,7 @@ class EffortDrive(Node):
             "max_wheel_torque": self.max_torque,
             "max_velocity_control_torque": self.max_velocity_torque,
             "max_effort_rate": self.max_effort_rate,
+            "integral_limit": self.integral_limit,
             "control_rate": self.control_rate,
             "odom_publish_rate": self.odom_publish_rate,
             "torque_status_publish_rate": self.torque_status_publish_rate,
@@ -190,6 +201,8 @@ class EffortDrive(Node):
             "/wheel_torque_applied",
             10,
         )
+        self.diagnostic_publisher = self.create_publisher(
+            Float64MultiArray, "/nino_drive/diagnostics", 100)
 
         self.odom_publisher = self.create_publisher(
             Odometry,
@@ -448,6 +461,9 @@ class EffortDrive(Node):
             and (now_ns - self.last_torque_ns) * 1.0e-9
             <= self.torque_timeout
         )
+        linear = angular = 0.0
+        command_is_fresh = False
+        base_efforts = [0.0, 0.0]
 
         # ---------------------------------------------------------
         # Without wheel feedback, do not drive the robot.
@@ -491,7 +507,7 @@ class EffortDrive(Node):
                         scale - self.filtered_speed_scale, -2.0 * dt, 2.0 * dt)
                 linear *= self.filtered_speed_scale
                 angular *= self.filtered_speed_scale
-                if self.filtered_speed_scale < 1.0:
+                if self.filtered_speed_scale < 1.0 and self.pi_integrator_profile == "legacy":
                     # Bleed accumulated PI torque while the policy slows down.
                     self.error_integral = [i * max(0.0, 1.0 - 5.0 * dt)
                                            for i in self.error_integral]
@@ -536,11 +552,14 @@ class EffortDrive(Node):
                     - self.wheel_velocity[index]
                 )
 
-                self.error_integral[index] = clamp(
-                    self.error_integral[index] + error * dt,
-                    -self.integral_limit,
-                    self.integral_limit,
-                )
+                if self.pi_integrator_profile == "conditional_v1":
+                    self.error_integral[index] = conditional_integral(
+                        self.error_integral[index], error, dt, self.kp, self.ki,
+                        self.integral_limit, self.max_velocity_torque)
+                else:
+                    self.error_integral[index] = clamp(
+                        self.error_integral[index] + error * dt,
+                        -self.integral_limit, self.integral_limit)
 
                 effort = (
                     self.kp * error
@@ -584,6 +603,7 @@ class EffortDrive(Node):
         # ---------------------------------------------------------
         # Final torque/rate/speed safety limits
         # ---------------------------------------------------------
+        requested_efforts = list(efforts)
         efforts = limit_effort_commands(
             efforts,
             self.applied_effort,
@@ -612,6 +632,27 @@ class EffortDrive(Node):
             >= torque_status_period_ns
         ):
             self.applied_torque_publisher.publish(command)
+            fields = (
+                "sim_time_s", "requested_linear_m_s", "requested_yaw_rad_s",
+                "executed_linear_m_s", "executed_yaw_rad_s", "speed_scale",
+                "filtered_speed_scale", "left_target_rad_s", "right_target_rad_s",
+                "left_actual_rad_s", "right_actual_rad_s", "left_pi_nm", "right_pi_nm",
+                "left_residual_nm", "right_residual_nm", "left_requested_effort_nm",
+                "right_requested_effort_nm", "left_applied_nm", "right_applied_nm",
+                "left_limited", "right_limited", "cmd_fresh", "policy_fresh",
+                "have_wheel_state")
+            diagnostic = Float64MultiArray()
+            diagnostic.layout.dim = [MultiArrayDimension(
+                label=",".join(fields), size=len(fields), stride=len(fields))]
+            diagnostic.data = [float(value) for value in (
+                now_ns * 1e-9, self.requested_linear, self.requested_angular,
+                linear, angular, self.speed_scale, self.filtered_speed_scale,
+                *self.target_velocity, *self.wheel_velocity, *base_efforts,
+                *self.override_torque, *requested_efforts, *efforts,
+                abs(requested_efforts[0] - efforts[0]) > 1e-9,
+                abs(requested_efforts[1] - efforts[1]) > 1e-9,
+                command_is_fresh, residual_torque_active, self.have_wheel_state)]
+            self.diagnostic_publisher.publish(diagnostic)
             self.last_torque_status_publish_ns = now_ns
 
         # ---------------------------------------------------------

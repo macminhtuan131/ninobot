@@ -1,0 +1,9 @@
+# New estimator contract: initialize the preserved actor, never resume raw-odom training.
+extends: rough_e1_stop_margin_check.yaml
+odometry_assistance:
+  enabled: true
+  revision: imu_encoder_v1
+  wheel_radius_m: 0.0625
+  pitch_projection: true
+  max_imu_gap_seconds: 0.10
+  max_encoder_gap_seconds: 0.25

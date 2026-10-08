@@ -28,7 +28,7 @@ def arguments() -> argparse.Namespace:
     checkpoint_group.add_argument("--init-model", type=Path,
                                   help="Copy a compatible actor into a fresh task/run; critic stays fresh")
     checkpoint_group.add_argument("--init-speed-model", type=Path,
-                                  help="Transfer torque-policy features/speed only into a new two-action PI yaw policy")
+                                  help="Transfer two-/three-action features and speed into a new two-action policy; reset yaw, critic and optimizer")
     parser.add_argument("--checkpoint-every", type=int, default=25_000)
     parser.add_argument("--check-env", action="store_true")
     parser.add_argument("--phase", type=int, choices=range(1, 7),
@@ -93,8 +93,12 @@ def main() -> None:
     speed_source = None
     if args.init_speed_model:
         speed_source = PPO.load(args.init_speed_model, device=device)
-        validate_model(speed_source, 60 * config["policy_v2"]["history_frames"], 3)
-        validate_action_mode(speed_source, {"action_mode": "wheel_torque"})
+        source_actions = speed_source.action_space.shape[0]
+        if source_actions not in (2, 3):
+            raise SystemExit('Speed initialization requires a two- or three-action checkpoint')
+        validate_model(speed_source, 60 * config["policy_v2"]["history_frames"], source_actions)
+        validate_action_mode(speed_source, {'action_mode': 'speed_yaw_reference' if source_actions == 2 else 'wheel_torque',
+            'navigation': getattr(speed_source, 'nino_training_contract', {}).get('navigation', {})})
 
     from nino_rl.ros_env import NinoGazeboEnv
     from nino_rl.preflight import run_preflight
@@ -302,6 +306,13 @@ def main() -> None:
                 from nino_rl.model_transfer import initialize_actor
                 validate_action_mode(source, config)
                 actor_keys = initialize_actor(model, source)
+                import hashlib
+                actor_transfer = dict(source=str(args.init_model.resolve()),
+                    source_sha256=hashlib.sha256(args.init_model.read_bytes()).hexdigest(),
+                    source_steps=int(source.num_timesteps), copied=list(actor_keys),
+                    critic="fresh", optimizer="fresh", training_counter=0)
+                (run_dir / "actor_transfer.json").write_text(
+                    json.dumps(actor_transfer, indent=2) + "\n")
                 print(f"Initialized {len(actor_keys)} actor tensors from {args.init_model}; "
                       "critic and optimizer are fresh; starting new task at step 0.",
                       flush=True)
@@ -312,7 +323,9 @@ def main() -> None:
                 transfer = dict(source=str(args.init_speed_model.resolve()),
                                 source_sha256=hashlib.sha256(args.init_speed_model.read_bytes()).hexdigest(),
                                 source_steps=int(speed_source.num_timesteps),
-                                copied=list(actor_keys), yaw_mean="zero", critic="fresh", optimizer="fresh")
+                                copied=list(actor_keys), source_actions=int(speed_source.action_space.shape[0]),
+                                yaw_mean="zero", source_yaw_discarded=True,
+                                critic="fresh", optimizer="fresh", training_counter=0)
                 (run_dir / "actor_transfer.json").write_text(json.dumps(transfer, indent=2) + "\n")
                 print(f"Transferred speed/features from {args.init_speed_model}; "
                       "new zero-mean yaw head, fresh critic/optimizer, new step count.", flush=True)

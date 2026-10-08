@@ -1,0 +1,111 @@
+{
+  "imported": 0,
+  "sources": [
+    {
+      "database": "/home/tuanmac/ninorobot/rl_runs/combined_flat_optuna_fresh/study.db",
+      "studies": [
+        {
+          "study": "combined_flat_section",
+          "states": {
+            "COMPLETE": 10,
+            "FAIL": 1
+          },
+          "reasons": [
+            "Missing or different fixed evaluation objective; legacy scores cannot be imported",
+            "Missing or different comparable training conditions/checkpoint/budget/assets",
+            "Missing or different base/search-space contract"
+          ],
+          "trials": [],
+          "historical_best_not_a_current_score": {
+            "trial": 7,
+            "stored_score": 7.685000957905665,
+            "params": {
+              "ent_coef": 0.00031943654843363096,
+              "gamma": 0.999,
+              "learning_rate": 2.2091838857956597e-05,
+              "n_steps": 2048,
+              "reward_v2.goal_braking_weight": 0.2817772359023002,
+              "reward_v2.heading_weight": 0.15163508992030386,
+              "reward_v2.lateral_weight": 0.687402041754925,
+              "reward_v2.progress_weight": 10.1463297494263,
+              "reward_v2.slip_weight": 0.23205888014014708
+            }
+          },
+          "role": "incompatible diagnostic record; no scores imported"
+        }
+      ]
+    },
+    {
+      "database": "/home/tuanmac/ninorobot/rl_runs/combined_flat_optuna_v2/study.db",
+      "studies": [
+        {
+          "study": "combined_flat_section",
+          "states": {
+            "FAIL": 1
+          },
+          "reasons": [
+            "Missing or different fixed evaluation objective; legacy scores cannot be imported",
+            "Missing or different comparable training conditions/checkpoint/budget/assets",
+            "Missing or different base/search-space contract"
+          ],
+          "trials": [],
+          "role": "incompatible diagnostic record; no scores imported"
+        }
+      ]
+    },
+    {
+      "database": "/home/tuanmac/ninorobot/rl_runs/combined_flat_optuna/study.db",
+      "studies": [
+        {
+          "study": "combined_flat_section",
+          "states": {
+            "FAIL": 1
+          },
+          "reasons": [
+            "Missing or different fixed evaluation objective; legacy scores cannot be imported",
+            "Missing or different comparable training conditions/checkpoint/budget/assets",
+            "Missing or different base/search-space contract"
+          ],
+          "trials": [],
+          "role": "incompatible diagnostic record; no scores imported"
+        }
+      ]
+    },
+    {
+      "database": "/home/tuanmac/ninorobot/rl_runs/flat_curriculum_optuna/study.db",
+      "studies": [
+        {
+          "study": "combined_flat_section",
+          "states": {
+            "COMPLETE": 8,
+            "FAIL": 1
+          },
+          "reasons": [
+            "Missing or different fixed evaluation objective; legacy scores cannot be imported",
+            "Missing or different comparable training conditions/checkpoint/budget/assets",
+            "Missing or different base/search-space contract"
+          ],
+          "trials": [],
+          "historical_best_not_a_current_score": {
+            "trial": 6,
+            "stored_score": 43.06549153256916,
+            "params": {
+              "ent_coef": 0.0007249253652592024,
+              "gamma": 0.997,
+              "learning_rate": 6.781612720853196e-05,
+              "n_steps": 1024,
+              "reward_v2.goal_braking_weight": 0.18825124306020435,
+              "reward_v2.heading_weight": 0.46099338892672503,
+              "reward_v2.lateral_weight": 0.349864173659184,
+              "reward_v2.progress_weight": 11.734693991937018,
+              "reward_v2.slip_weight": 0.217492906207788
+            }
+          },
+          "role": "incompatible diagnostic record; no scores imported"
+        }
+      ]
+    }
+  ],
+  "pi_scores_imported": 0,
+  "starting_candidate": "queued once; no score until trained/evaluated"
+}

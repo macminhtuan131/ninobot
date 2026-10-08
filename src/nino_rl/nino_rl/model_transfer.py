@@ -40,8 +40,13 @@ def initialize_speed_yaw_actor(target, source) -> tuple[str, ...]:
     from nino_rl.control_v2 import validate_model, validate_action_mode
     size = target.observation_space.shape[0]
     validate_model(target, size, 2)
-    validate_model(source, size, 3)
-    validate_action_mode(source, {"action_mode": "wheel_torque"})
+    source_actions = source.action_space.shape[0]
+    if source_actions not in (2, 3):
+        raise ValueError('Speed transfer requires a two- or three-action source')
+    validate_model(source, size, source_actions)
+    source_config = {'action_mode': 'speed_yaw_reference' if source_actions == 2 else 'wheel_torque'}
+    source_config['navigation'] = deepcopy(getattr(source, 'nino_training_contract', {}).get('navigation', {}))
+    validate_action_mode(source, source_config)
     destination, original = target.policy.state_dict(), source.policy.state_dict()
     head = {"action_net.weight", "action_net.bias", "log_std"}
     if set(destination) != set(original) or any(

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 from copy import deepcopy
 from datetime import datetime
 import hashlib
@@ -27,9 +28,47 @@ def benchmark_id(config):
     # Reward/PPO differences are allowed; geometry, sensing, task and test
     # perturbations must match. This is not a hash of external Gazebo binaries.
     ignored = {"reward", "reward_v2", "ppo", "device", "seed", "evaluation_baseline",
-               "evaluation_speed_only"}
+               "evaluation_speed_only", "evaluation_control_trace"}
     task = {k: v for k, v in config.items() if k not in ignored}
     return hashlib.sha256(json.dumps(task, sort_keys=True).encode()).hexdigest()
+
+
+def prepare_evaluation_config(config, *, phase=1, randomized=False, route=None,
+                              flat_stage=None, baseline=False, speed_only=False,
+                              control_trace=False):
+    """Freeze task settings identically for CLI evaluation and tuning scores."""
+    config = deepcopy(config)
+    if config.get("routes", {}).get("enabled", False):
+        config["routes"]["selection"] = "round_robin"
+        if route is not None:
+            config["routes"]["fixed_route"] = route
+    elif route is not None:
+        raise ValueError("--route requires an enabled routes configuration")
+    from nino_rl.routes import RouteSet
+    RouteSet(config)
+    config["curriculum"]["fixed_phase"] = phase
+    config["domain_randomization"]["enabled"] = randomized
+    config["domain_randomization"]["phase_scales"] = [1.0] * 6
+    config["evaluation_baseline"] = baseline
+    if speed_only and config.get("action_mode", "wheel_torque") != "wheel_torque":
+        raise ValueError("--speed-only requires a wheel_torque model/config")
+    config["evaluation_speed_only"] = speed_only
+    if control_trace:
+        config["evaluation_control_trace"] = True
+    adaptive = config.get("adaptive_terrain", {})
+    flat = config.get("flat_curriculum", {})
+    if flat.get("enabled", False):
+        selected = flat_stage if flat_stage is not None else flat.get("evaluation_stage", len(flat["stages"]) - 1)
+        if not 0 <= selected < len(flat["stages"]):
+            raise ValueError("--flat-stage is outside the configured flat curriculum")
+        flat["fixed_stage"] = selected
+    elif flat_stage is not None:
+        raise ValueError("--flat-stage requires an enabled flat_curriculum")
+    if adaptive.get("enabled", False):
+        adaptive["progress_on_success"] = False
+        adaptive["initial_features"] = (int(flat["stages"][flat["fixed_stage"]]["adaptive_features"])
+            if flat.get("enabled", False) else int(adaptive.get("evaluation_features", 8)))
+    return config
 
 
 def summarize(rows, metadata):
@@ -71,6 +110,9 @@ def run(baseline=False):
     parser = argparse.ArgumentParser(description="Evaluate PI baseline or deterministic PPO on matching seeds")
     parser.add_argument("--config", type=Path,
         default=Path(get_package_share_directory("nino_rl")) / "config/ppo.yaml")
+    if baseline:
+        parser.add_argument("--baseline-speed-scale", type=float, default=1.0,
+                            help="Fixed PI speed/yaw scaling in (0,1]; preserves task references and deadlines")
     if not baseline:
         parser.add_argument("--model", required=True, type=Path)
         parser.add_argument("--device", choices=("cuda", "cpu", "auto"), default="cuda")
@@ -79,6 +121,10 @@ def run(baseline=False):
     parser.add_argument("--episodes", type=int, default=10)
     parser.add_argument("--phase", type=int, choices=range(1, 7), default=1)
     parser.add_argument("--seed", type=int, default=10000)
+    parser.add_argument("--seeds", type=int, nargs="+",
+                        help="Explicit scenario seeds for a targeted replay")
+    parser.add_argument("--control-trace", action="store_true",
+                        help="Save policy and stamped motor-controller diagnostic CSVs")
     parser.add_argument("--flat-stage", type=int,
                         help="Evaluate a specific zero-based flat curriculum stage; default is its final stage")
     parser.add_argument("--randomized", action="store_true",
@@ -88,40 +134,20 @@ def run(baseline=False):
     args = parser.parse_args()
     if args.episodes < 1:
         parser.error("--episodes must be positive")
-    config = deepcopy(load_config(args.config))
-    if config.get("routes", {}).get("enabled", False):
-        config["routes"]["selection"] = "round_robin"
-        if args.route is not None:
-            config["routes"]["fixed_route"] = args.route
-    elif args.route is not None:
-        parser.error("--route requires an enabled routes configuration")
-    from nino_rl.routes import RouteSet
-    RouteSet(config)
-    config["curriculum"]["fixed_phase"] = args.phase
-    config["domain_randomization"]["enabled"] = args.randomized
-    config["domain_randomization"]["phase_scales"] = [1.0] * 6
-    config["evaluation_baseline"] = baseline
+    if baseline and not 0.0 < args.baseline_speed_scale <= 1.0:
+        parser.error("--baseline-speed-scale must be finite and in (0,1]")
+    seeds = args.seeds if args.seeds is not None else list(range(args.seed, args.seed + args.episodes))
+    if len(set(seeds)) != len(seeds) or any(seed < 0 for seed in seeds):
+        parser.error("--seeds must contain distinct nonnegative integers")
+    args.episodes = len(seeds)
+    args.seed = seeds[0]
     speed_only = not baseline and args.speed_only
-    if speed_only and config.get("action_mode", "wheel_torque") != "wheel_torque":
-        parser.error("--speed-only requires a wheel_torque model/config")
-    config["evaluation_speed_only"] = speed_only
-    adaptive = config.get("adaptive_terrain", {})
-    flat_curriculum = config.get("flat_curriculum", {})
-    if flat_curriculum.get("enabled", False):
-        selected_stage = (args.flat_stage if args.flat_stage is not None
-                          else flat_curriculum.get("evaluation_stage", len(flat_curriculum["stages"]) - 1))
-        if not 0 <= selected_stage < len(flat_curriculum["stages"]):
-            parser.error("--flat-stage is outside the configured flat curriculum")
-        flat_curriculum["fixed_stage"] = selected_stage
-    elif args.flat_stage is not None:
-        parser.error("--flat-stage requires an enabled flat_curriculum")
-    if adaptive.get("enabled", False):
-        adaptive["progress_on_success"] = False
-        adaptive["initial_features"] = (
-            int(flat_curriculum["stages"][flat_curriculum["fixed_stage"]]["adaptive_features"])
-            if flat_curriculum.get("enabled", False)
-            else int(adaptive.get("evaluation_features", 8))
-        )
+    try:
+        config = prepare_evaluation_config(load_config(args.config), phase=args.phase,
+            randomized=args.randomized, route=args.route, flat_stage=args.flat_stage,
+            baseline=baseline, speed_only=speed_only, control_trace=args.control_trace)
+    except ValueError as error:
+        parser.error(str(error))
     model = None
     if not baseline:
         import torch
@@ -141,31 +167,66 @@ def run(baseline=False):
                                              else "straight_pi_baseline") if baseline else (
                                                  "ppo_speed_only" if speed_only else "ppo"),
         "action_ablation": "speed_only" if speed_only else "none",
+        "baseline_speed_scale": args.baseline_speed_scale if baseline else None,
         "model": str(args.model.resolve()) if not baseline else None,
         "phase": args.phase, "seed": args.seed, "randomized": args.randomized,
+        "evaluation_seeds": seeds, "control_trace": args.control_trace,
         "benchmark_id": benchmark_id(config),
-        "pose_source": "wheel_odometry",
+        "pose_source": ("imu_encoder_odometry" if config.get("odometry_assistance", {}).get("enabled", False)
+                        else "wheel_odometry"),
         "metric_weighting": "simulation_time_trapezoid",
         "reference": "configured drawn routes with ordered spatial gates in odom" if
                      config.get("routes", {}).get("enabled", False) else
                      "fixed straight line from configured start_pose to goal_pose in odom",
         "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
     }
+    if config.get('odometry_assistance', {}).get('corridor_lidar', {}).get('enabled', False):
+        metadata['pose_source'] = 'imu_encoder_lidar_odometry'
     (output / "metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
     # Create ROS only after validating the model/config.
     from nino_rl.ros_env import NinoGazeboEnv
     env = NinoGazeboEnv(config, total_training_steps=1)
     rows = []
     try:
-        for episode in range(args.episodes):
-            observation, reset_info = env.reset(seed=args.seed + episode)
+        for episode, scenario_seed in enumerate(seeds):
+            observation, reset_info = env.reset(seed=scenario_seed)
+            episode_output = output / f"episode-{episode+1:03d}"
+            trace_files = []
+            if args.control_trace:
+                episode_output.mkdir(parents=True, exist_ok=True)
+                trace_files = [(episode_output / name).open("w", newline="", encoding="utf-8")
+                               for name in ("control_trace.csv", "drive_trace.csv")]
+            trace_writers = [None, None]
             while True:
                 action = baseline_action(config) if baseline else model.predict(observation, deterministic=True)[0]
-                observation, _, terminated, truncated, info = env.step(action)
+                if baseline:
+                    action[0] = 2.0 * args.baseline_speed_scale - 1.0
+                start_sim = env.lockstep_sim_time
+                try:
+                    observation, _, terminated, truncated, info = env.step(action)
+                    if args.control_trace:
+                        samples = env.ros.drive_diagnostics(start_sim, env.lockstep_sim_time)
+                        if not samples:
+                            raise RuntimeError("No stamped drive diagnostics for this action; restart the flat simulator with the updated effort_drive")
+                        sample_sets = ([info["control_trace"]], samples)
+                        for index, sample_rows in enumerate(sample_sets):
+                            for sample in sample_rows:
+                                sample = {"seed": scenario_seed, **sample}
+                                if trace_writers[index] is None:
+                                    trace_writers[index] = csv.DictWriter(trace_files[index], fieldnames=list(sample))
+                                    trace_writers[index].writeheader()
+                                trace_writers[index].writerow(sample)
+                            trace_files[index].flush()
+                except BaseException:
+                    for stream in trace_files:
+                        stream.close()
+                    raise
                 if terminated or truncated:
                     break
+            for stream in trace_files:
+                stream.close()
             row = dict(info["episode_metrics"])
-            row.update(episode=episode + 1, seed=args.seed + episode,
+            row.update(episode=episode + 1, seed=scenario_seed,
                        controller=metadata["controller"], phase=args.phase,
                        cable_count=reset_info["cable_count"],
                        cable_diameter_m=reset_info["cable_diameter_m"],
@@ -200,7 +261,11 @@ def compare_summaries(baseline, candidate):
     for key in ("schema_version", "benchmark_id", "phase", "seed", "episodes", "randomized", "pose_source"):
         if baseline.get(key) != candidate.get(key):
             raise ValueError(f"Evaluation mismatch: {key}; rerun with identical test settings")
+    expected_seeds = lambda report: report.get("evaluation_seeds", list(range(report["seed"], report["seed"] + report["episodes"])))
+    if expected_seeds(baseline) != expected_seeds(candidate):
+        raise ValueError("Evaluation mismatch: evaluation_seeds")
     result = {"phase": baseline["phase"], "episodes": baseline["episodes"],
+              "baseline_speed_scale": baseline.get("baseline_speed_scale", 1.0),
               "delta_convention": "candidate minus baseline; negative error/time is better",
               "success_rate": {"baseline": baseline["success_rate"], "candidate": candidate["success_rate"],
                                "delta": candidate["success_rate"] - baseline["success_rate"]},

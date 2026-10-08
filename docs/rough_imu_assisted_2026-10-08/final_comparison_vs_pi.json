@@ -1,0 +1,114 @@
+{
+  "phase": 1,
+  "episodes": 20,
+  "baseline_speed_scale": 1.0,
+  "delta_convention": "candidate minus baseline; negative error/time is better",
+  "success_rate": {
+    "baseline": 1.0,
+    "candidate": 1.0,
+    "delta": 0.0
+  },
+  "metrics": {
+    "path_rmse_m": {
+      "baseline": 0.02224729580375987,
+      "candidate": 0.030839438988057317,
+      "delta": 0.008592143184297445
+    },
+    "cross_track_rmse_m": {
+      "baseline": 0.02224729580375987,
+      "candidate": 0.030839438988057317,
+      "delta": 0.008592143184297445
+    },
+    "path_p95_m": {
+      "baseline": 0.04466104253760002,
+      "candidate": 0.060730130822013104,
+      "delta": 0.016069088284413086
+    },
+    "path_max_m": {
+      "baseline": 0.06665735654043266,
+      "candidate": 0.08767755193444471,
+      "delta": 0.02102019539401205
+    },
+    "heading_rmse_deg": {
+      "baseline": 4.04239188086572,
+      "candidate": 5.162016243758461,
+      "delta": 1.1196243628927407
+    },
+    "endpoint_error_m": {
+      "baseline": 0.2651881349874987,
+      "candidate": 0.22498666550478194,
+      "delta": -0.04020146948271677
+    },
+    "final_progress_fraction": {
+      "baseline": 0.9749252936404756,
+      "candidate": 0.9791290496615297,
+      "delta": 0.00420375602105405
+    },
+    "backtracking_m": {
+      "baseline": 0.0,
+      "candidate": 0.0,
+      "delta": 0.0
+    },
+    "time_seconds": {
+      "baseline": 26.934999999608046,
+      "candidate": 42.424999999382635,
+      "delta": 15.48999999977459
+    },
+    "rms_vertical_acceleration_m_s2": {
+      "baseline": 1.5694506236655603,
+      "candidate": 1.0699186944069463,
+      "delta": -0.499531929258614
+    },
+    "peak_vertical_acceleration_m_s2": {
+      "baseline": 14.810109009993942,
+      "candidate": 11.029745250025819,
+      "delta": -3.7803637599681235
+    },
+    "rms_wheel_slip": {
+      "baseline": 0.04502606393491575,
+      "candidate": 0.03225340936953351,
+      "delta": -0.012772654565382235
+    },
+    "rms_wheel_torque_nm": {
+      "baseline": 0.3424982653191642,
+      "candidate": 0.2984336756880774,
+      "delta": -0.04406458963108684
+    },
+    "challenge_choice_fraction": {
+      "baseline": 0.0,
+      "candidate": 0.0,
+      "delta": 0.0
+    },
+    "challenge_clear_fraction": {
+      "baseline": 0.0,
+      "candidate": 0.0,
+      "delta": 0.0
+    },
+    "truth_path_rmse_m": {
+      "baseline": 0.02408667465664461,
+      "candidate": 0.031350383824285254,
+      "delta": 0.0072637091676406446
+    },
+    "truth_path_p95_m": {
+      "baseline": 0.049768513829085745,
+      "candidate": 0.06576141591615485,
+      "delta": 0.015992902087069105
+    },
+    "truth_endpoint_error_m": {
+      "baseline": 0.19126183821533477,
+      "candidate": 0.196299450184309,
+      "delta": 0.005037611968974232
+    },
+    "truth_heading_rmse_deg": {
+      "baseline": 4.041939095023485,
+      "candidate": 5.161906278378778,
+      "delta": 1.1199671833552927
+    },
+    "odom_truth_position_error_m": {
+      "baseline": 0.07617247759117418,
+      "candidate": 0.03287472655772335,
+      "delta": -0.043297751033450835
+    }
+  },
+  "interpretation": "Compare success first, then errors and comfort. Early failure can lower RMSE/time. Seeds match terrain draws; ROS/Gazebo transport is still asynchronous. No statistical significance or physical ground-truth accuracy is claimed."
+}

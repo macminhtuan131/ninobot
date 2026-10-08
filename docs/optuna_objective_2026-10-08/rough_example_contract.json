@@ -1,0 +1,84 @@
+{
+  "revision": "physical_arrival_quality_v1",
+  "implementation_sha256": "e006ff01907bb89fa27997bd1686c81248a58e5618957562bc87983b6db789cf",
+  "evaluator_sha256": "9c8525769399d70856a83d8a26a17a2a0e78d23b18c4378c24941edd41edac4a",
+  "benchmark_id": "a9d090d1e96b609ecefb1a79c78d01c9da7d44be844397ae218b88ecfc5c9a8a",
+  "scenarios": [
+    {
+      "seed": 10000,
+      "route_id": "E1"
+    },
+    {
+      "seed": 10001,
+      "route_id": "N1"
+    },
+    {
+      "seed": 10002,
+      "route_id": "S1"
+    },
+    {
+      "seed": 10003,
+      "route_id": "E1"
+    },
+    {
+      "seed": 10004,
+      "route_id": "N1"
+    },
+    {
+      "seed": 10005,
+      "route_id": "S1"
+    },
+    {
+      "seed": 10006,
+      "route_id": "E1"
+    },
+    {
+      "seed": 10007,
+      "route_id": "N1"
+    },
+    {
+      "seed": 10008,
+      "route_id": "S1"
+    },
+    {
+      "seed": 10009,
+      "route_id": "E1"
+    },
+    {
+      "seed": 10010,
+      "route_id": "N1"
+    },
+    {
+      "seed": 10011,
+      "route_id": "S1"
+    }
+  ],
+  "minimum_physical_arrival_rate": 0.95,
+  "weights": {
+    "duration": 1.0,
+    "lateness": 4.0,
+    "path_error": 4.0,
+    "vibration": 1.0,
+    "slip": 1.0
+  },
+  "term_cap": 5.0,
+  "scales": {
+    "path_rmse_m": 0.05,
+    "vibration_m_s2": 1.6,
+    "slip": 0.05
+  },
+  "time_targets_seconds": {
+    "E1": 67.5,
+    "N1": 58.5,
+    "S1": 58.5
+  },
+  "arrival_geometry": {
+    "task": "combined_rough_section",
+    "circle_radius_m": 0.2,
+    "ordered_route_gates": true
+  },
+  "aggregation": "equal route means; failed episode terms charged at maximum",
+  "ranking": "feasible > 0; infeasible < -1000",
+  "physical_scoring": "unchanged task geometry, ground-truth arrival and ordered route gates",
+  "sha256": "d27475cb77c19249f5c651167b1f45e9daed3f42f9edac877447c0a1aa5e9cd5"
+}

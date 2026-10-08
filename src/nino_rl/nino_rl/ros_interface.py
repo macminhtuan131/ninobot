@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from collections import deque
 from math import atan2, cos, sin, sqrt, isfinite
 from threading import Lock
 from time import monotonic, sleep
@@ -66,6 +67,7 @@ class RosRobotInterface(Node):
         imu_topic: str = "/imu/data",
         physics_step_seconds: float = 0.002,
         terrain_height_threshold_m: float = TERRAIN_HEIGHT_THRESHOLD_M,
+        odometry_assistance: dict | None = None,
     ) -> None:
         super().__init__(
             node_name,
@@ -74,7 +76,23 @@ class RosRobotInterface(Node):
             ],
         )
         self._lock = Lock()
+        self._drive_diagnostics = deque(maxlen=20000)
         self._state = RobotState()
+        from nino_rl.assisted_odometry import ImuEncoderOdometry
+        self._assisted_odometry = (ImuEncoderOdometry(odometry_assistance)
+            if odometry_assistance and odometry_assistance.get("enabled", False) else None)
+        if self._assisted_odometry and odometry_assistance.get('corridor_lidar', {}).get('enabled', False):
+            from nino_rl.corridor_odometry import CorridorOdometry
+            self._assisted_odometry = CorridorOdometry(odometry_assistance)
+        self._assisted_error = None
+        self.estimated_pose_source = "imu_encoder_odometry" if self._assisted_odometry else "wheel_odometry"
+        if self._assisted_odometry and odometry_assistance.get('corridor_lidar', {}).get('enabled', False):
+            self.estimated_pose_source = 'imu_encoder_lidar_odometry'
+        self.estimated_frame = "odom_imu" if self._assisted_odometry else "odom"
+        if subscribe_plan and self._assisted_odometry:
+            raise ValueError("Internal assisted odometry supports direct drawn/YAML routes, not Nav2 TF localization")
+        self._assisted_publisher = (self.create_publisher(Odometry, "/nino_rl/assisted_odom", 10)
+                                    if self._assisted_odometry else None)
         self.imu_includes_gravity = True
         if not isfinite(terrain_height_threshold_m) or terrain_height_threshold_m <= 0:
             raise ValueError("terrain_height_threshold_m must be positive")
@@ -135,6 +153,8 @@ class RosRobotInterface(Node):
             self._applied_torque_callback,
             10,
         )
+        self.create_subscription(Float64MultiArray, "/nino_drive/diagnostics",
+                                 self._drive_diagnostic_callback, 100)
 
         if subscribe_plan:
             self.create_subscription(Path, plan_topic, self._plan_callback, 10)
@@ -238,7 +258,7 @@ class RosRobotInterface(Node):
                 quaternion.z / norm,
                 quaternion.w / norm,
             )
-        roll, pitch, _ = quaternion_to_euler(
+        roll, pitch, imu_yaw = quaternion_to_euler(
             *orientation
         )
         with self._lock:
@@ -263,6 +283,16 @@ class RosRobotInterface(Node):
             self.imu_window.add(stamp, vertical_acceleration(
                 self._state, self.imu_includes_gravity))
             self._mark_received("imu")
+            if (getattr(self, "_assisted_odometry", None)
+                    and (not isfinite(norm) or norm < 1.e-12
+                         or getattr(message, "orientation_covariance", [0.])[0] < 0)):
+                self._assisted_error = "IMU-assisted odometry requires an available, valid orientation"
+            else:
+                estimator = getattr(self, '_assisted_odometry', None)
+                if estimator and hasattr(estimator, 'add_scan'):
+                    RosRobotInterface._update_assisted(self, "imu", stamp, imu_yaw, pitch, roll)
+                else:
+                    RosRobotInterface._update_assisted(self, "imu", stamp, imu_yaw, pitch)
 
     def _joint_callback(self, message: JointState) -> None:
         velocity = dict(zip(message.name, message.velocity))
@@ -273,6 +303,43 @@ class RosRobotInterface(Node):
             self._state.left_wheel_velocity = float(velocity["left_wheel_joint"])
             self._state.right_wheel_velocity = float(velocity["right_wheel_joint"])
             self._mark_received("joint")
+            if getattr(self, "_assisted_odometry", None):
+                positions = dict(zip(message.name, message.position))
+                if "left_wheel_joint" not in positions or "right_wheel_joint" not in positions:
+                    self._assisted_error = "Joint feedback lacks encoder positions"
+                else:
+                    self._update_assisted("joint", self._state.joint_stamp_s,
+                        float(positions["left_wheel_joint"]), float(positions["right_wheel_joint"]))
+
+    def _update_assisted(self, sensor, *values):
+        """Called under the transport lock; latch faults instead of killing spin."""
+        estimator = getattr(self, "_assisted_odometry", None)
+        if estimator is None or self._assisted_error:
+            return
+        previous = estimator.stamp
+        try:
+            getattr(estimator, "add_" + sensor)(*values)
+        except (ValueError, RuntimeError) as error:
+            self._assisted_error = str(error)
+            return
+        if estimator.ready:
+            self._mark_received("assisted_odom")
+            if estimator.stamp > previous and self._assisted_publisher:
+                msg = Odometry()
+                ns = int(round(estimator.stamp * 1e9))
+                msg.header.stamp.sec, msg.header.stamp.nanosec = divmod(ns, 10**9)
+                msg.header.frame_id = "odom_imu"
+                msg.child_frame_id = "base_footprint"
+                msg.pose.pose.position.x, msg.pose.pose.position.y = estimator.x, estimator.y
+                msg.pose.pose.orientation.z, msg.pose.pose.orientation.w = sin(.5 * estimator.yaw), cos(.5 * estimator.yaw)
+                msg.twist.twist.linear.x, msg.twist.twist.angular.z = estimator.velocity, estimator.yaw_rate
+                # Diagnostic covariance uses the raw driver's conservative
+                # fixed defaults. This estimator is not a covariance filter.
+                for covariance in (msg.pose.covariance, msg.twist.covariance):
+                    covariance[0] = covariance[7] = .02
+                    covariance[14] = covariance[21] = covariance[28] = 1.e6
+                    covariance[35] = .05
+                self._assisted_publisher.publish(msg)
 
     def _scan_callback(self, message: LaserScan) -> None:
         with self._lock:
@@ -282,6 +349,11 @@ class RosRobotInterface(Node):
             self._state.lidar_ranges = tuple(float(value) for value in message.ranges)
             self._state.lidar_range_max = float(message.range_max)
             self._mark_received("scan")
+            estimator = getattr(self, '_assisted_odometry', None)
+            if estimator and hasattr(estimator, 'add_scan'):
+                self._update_assisted('scan', self._state.lidar_stamp_s,
+                    self._state.lidar_ranges, float(message.angle_min), float(message.angle_increment),
+                    float(message.range_min), float(message.range_max))
 
     def _applied_torque_callback(self, message: Float64MultiArray) -> None:
         if len(message.data) != 2:
@@ -290,6 +362,22 @@ class RosRobotInterface(Node):
             self._state.applied_left_torque = float(message.data[0])
             self._state.applied_right_torque = float(message.data[1])
             self._mark_received("torque")
+
+    def _drive_diagnostic_callback(self, message: Float64MultiArray) -> None:
+        if not message.layout.dim:
+            return
+        fields = message.layout.dim[0].label.split(",")
+        if (len(fields) != len(message.data) or not fields or fields[0] != "sim_time_s"
+                or not all(isfinite(value) for value in message.data)):
+            return
+        with self._lock:
+            self._drive_diagnostics.append(dict(zip(fields, message.data)))
+
+    def drive_diagnostics(self, start: float, end: float) -> list[dict]:
+        """Copy stamped controller samples from one action interval."""
+        with self._lock:
+            return [dict(row) for row in self._drive_diagnostics
+                    if start < row["sim_time_s"] <= end]
 
     def _plan_callback(self, message: Path) -> None:
         points = [(pose.pose.position.x, pose.pose.position.y) for pose in message.poses]
@@ -312,7 +400,25 @@ class RosRobotInterface(Node):
 
     def snapshot(self) -> RobotState:
         with self._lock:
-            return deepcopy(self._state)
+            state = deepcopy(self._state)
+            estimator = getattr(self, "_assisted_odometry", None)
+            if estimator:
+                if self._assisted_error:
+                    raise RuntimeError("Assisted odometry fault: " + self._assisted_error)
+                for name, value in estimator.pose().items():
+                    setattr(state, name, value)
+            return state
+
+    def raw_wheel_pose(self):
+        with self._lock:
+            result = dict(raw_wheel_x_m=self._state.x, raw_wheel_y_m=self._state.y,
+                        raw_wheel_yaw_rad=self._state.yaw, raw_wheel_stamp_s=self._state.odom_stamp_s)
+            estimator = getattr(self, '_assisted_odometry', None)
+            if estimator and hasattr(estimator, 'last_fix'):
+                result.update(wall_fix_stamp_s=estimator.last_fix,
+                    wall_fix_age_s=estimator.stamp-estimator.last_fix,
+                    wall_scans_accepted=estimator.accepted_scans)
+            return result
 
     def nav_path(self) -> tuple[str, list[tuple[float, float]]] | None:
         with self._lock:
@@ -437,13 +543,25 @@ class RosRobotInterface(Node):
 
     def sensors_ready(self) -> bool:
         with self._lock:
-            return {"odom", "imu", "joint", "scan"}.issubset(self._received)
+            if not {"odom", "imu", "joint", "scan"}.issubset(self._received):
+                return False
+            estimator = getattr(self, '_assisted_odometry', None)
+            if estimator:
+                if self._assisted_error or not estimator.ready:
+                    return False
+                if hasattr(estimator, 'last_fix') and estimator.stamp - estimator.last_fix > estimator.max_scan_age:
+                    return False
+            return True
 
-    def wait_for_sensors(self, timeout: float) -> None:
+    def wait_for_sensors(self, timeout: float, *, require_assisted: bool = True) -> None:
         required = {"odom", "imu", "joint", "scan"}
+        if require_assisted and getattr(self, "_assisted_odometry", None):
+            required.add("assisted_odom")
         deadline = monotonic() + timeout
         while monotonic() < deadline:
             with self._lock:
+                if getattr(self, "_assisted_error", None):
+                    raise RuntimeError("Assisted odometry fault: " + self._assisted_error)
                 missing = sorted(required - self._received)
             if not missing:
                 return
@@ -615,8 +733,10 @@ class RosRobotInterface(Node):
                                  max_latest_lag)
 
     def pose_in_frame(self, state, frame):
-        if frame == "odom":
+        if frame == getattr(self, "estimated_frame", "odom"):
             return state.x, state.y, state.yaw
+        if getattr(self, "_assisted_odometry", None):
+            raise RuntimeError("Assisted odometry has no map/TF transform; use its local odom_imu frame")
         try:
             transform = self.tf_buffer.lookup_transform(frame, "odom", Time())
         except TransformException as error:
@@ -725,6 +845,11 @@ class RosRobotInterface(Node):
             with self._lock:
                 lags = {name: end - getattr(self._state, name + "_stamp_s")
                         for name in ("odom", "ground_truth", "joint", "imu")}
+                estimator = getattr(self, "_assisted_odometry", None)
+                if estimator:
+                    if self._assisted_error:
+                        raise RuntimeError("Assisted odometry fault: " + self._assisted_error)
+                    lags["assisted_odom"] = end - estimator.stamp
             missing = {name: lag for name, lag in lags.items()
                        if not isfinite(lag) or lag > max_lag + 1e-9 or lag < -max_lag - 1e-9}
             if not missing:
@@ -935,6 +1060,43 @@ class RosRobotInterface(Node):
         if response is None or not response.success:
             message = response.message if response is not None else "no response"
             raise RuntimeError(f"Wheel odometry reset failed: {message}")
+        with self._lock:
+            estimator = getattr(self, "_assisted_odometry", None)
+            if estimator:
+                # Reset only after the raw reset transaction completes. Never
+                # carry wheel positions or IMU anchors across episodes.
+                estimator.reset(min_stamp=self._sim_clock_stamp or 0.)
+                self._assisted_error = None
+                self._received.discard("assisted_odom")
+                self._received_at.pop("assisted_odom", None)
+
+    def verify_drive_controller(self, config, timeout=5.0):
+        """Reject a live controller that differs from the saved training profile.
+
+        Call while the node's executor is spinning. This reads parameters and
+        never changes the controller or imports physical pose into control.
+        """
+        expected = config.get("drive_controller", {}).get("parameters", {})
+        if not expected:
+            return
+        from rcl_interfaces.srv import GetParameters
+        client = self.create_client(GetParameters, "/effort_drive/get_parameters")
+        try:
+            if not client.wait_for_service(timeout_sec=timeout):
+                raise TimeoutError("Missing /effort_drive/get_parameters")
+            request = GetParameters.Request(names=list(expected))
+            response = self._wait_future(client.call_async(request), timeout)
+            if len(response.values) != len(expected):
+                raise RuntimeError("Incomplete effort_drive parameter response")
+            for (name, wanted), actual in zip(expected.items(), response.values):
+                value = rclpy.parameter.parameter_value_to_python(actual)
+                matches = (value == wanted if isinstance(wanted, (str, bool)) else
+                           isinstance(value, (float, int)) and abs(value - wanted) < 1e-9)
+                if not matches:
+                    raise RuntimeError(f"Controller mismatch: {name}={value!r}; profile requires {wanted!r}. "
+                                       "Restart Gazebo with the matching PI profile.")
+        finally:
+            self.destroy_client(client)
 
     @staticmethod
     def _wait_future(future, timeout: float):

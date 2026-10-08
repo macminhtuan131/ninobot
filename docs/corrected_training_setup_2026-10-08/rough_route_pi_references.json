@@ -1,0 +1,89 @@
+{
+  "profile": "src/nino_rl/config/rough_e1_n1_s1_fixed.yaml",
+  "run": "/home/tuanmac/ninorobot/rl_runs/rough_e1_n1_s1_route_pi/20261008-104043-455255",
+  "summary": "/home/tuanmac/ninorobot/rl_runs/rough_e1_n1_s1_route_pi/20261008-104043-455255/summary.json",
+  "benchmark_id": "a9d090d1e96b609ecefb1a79c78d01c9da7d44be844397ae218b88ecfc5c9a8a",
+  "complete": true,
+  "terrain_world": "/home/tuanmac/ninorobot/rl_runs/rough_terrain_bank_v1/worlds/original.sdf",
+  "terrain_world_sha256": "0ff01d587e0be97b52a367389738a76d81f0d5ecf3d5bc8c1ceb35c7eefbd291",
+  "evaluation_seeds": [
+    10000,
+    10001,
+    10002,
+    10003,
+    10004,
+    10005,
+    10006,
+    10007,
+    10008,
+    10009,
+    10010,
+    10011
+  ],
+  "phase": 1,
+  "pose_source": "imu_encoder_odometry",
+  "baseline_speed_scale": 1.0,
+  "per_route": {
+    "E1": {
+      "seeds": [
+        10000,
+        10003,
+        10006,
+        10009
+      ],
+      "episodes": 4,
+      "physical_successes": 4,
+      "termination_counts": {
+        "success": 4
+      },
+      "time_all_episodes_mean_s": 26.975000000002783,
+      "time_successful_episodes_mean_s": 26.975000000002783,
+      "physical_path_rmse_mean_m": 0.03446972348833988,
+      "position_error_mean_m": 0.08979764009954892,
+      "position_error_max_m": 0.1011977126116971,
+      "physical_endpoint_error_mean_m": 0.19056810473456984
+    },
+    "N1": {
+      "seeds": [
+        10001,
+        10004,
+        10007,
+        10010
+      ],
+      "episodes": 4,
+      "physical_successes": 0,
+      "termination_counts": {
+        "wrong_direction": 4
+      },
+      "time_all_episodes_mean_s": 42.40000000000452,
+      "time_successful_episodes_mean_s": null,
+      "physical_path_rmse_mean_m": 0.1910077597197631,
+      "position_error_mean_m": 3.87913267352183,
+      "position_error_max_m": 6.998079099141815,
+      "physical_endpoint_error_mean_m": 3.6309418750771134
+    },
+    "S1": {
+      "seeds": [
+        10002,
+        10005,
+        10008,
+        10011
+      ],
+      "episodes": 4,
+      "physical_successes": 0,
+      "termination_counts": {
+        "timeout": 4
+      },
+      "time_all_episodes_mean_s": 98.5000000000151,
+      "time_successful_episodes_mean_s": null,
+      "physical_path_rmse_mean_m": 0.16199012490438494,
+      "position_error_mean_m": 10.573776814505685,
+      "position_error_max_m": 12.525042061711197,
+      "physical_endpoint_error_mean_m": 5.489566294001445
+    }
+  },
+  "ready_for_long_training": false,
+  "interpretation": "E1 reference succeeds; N1/S1 reference failures expose terrain stall and encoder-distance drift. Fixed replay profile is prepared for a short diagnostic pilot, not qualified multi-route reliability.",
+  "terrain_mesh": "/home/tuanmac/ninorobot/rl_runs/rough_terrain_bank_v1/meshes/original.stl",
+  "terrain_mesh_sha256": "d1cc2e5a4605119214bee16ccfb288633f8a0d12ee8f20cedb5c10404dcb4f31"
+}

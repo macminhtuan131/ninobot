@@ -1,0 +1,181 @@
+{
+  "runs": {
+    "PI": "/home/tuanmac/ninorobot/rl_runs/flat_speed_yaw_pilot_pi/20261007-155635-991948",
+    "Slower PI": "/home/tuanmac/ninorobot/rl_runs/flat_pi_slow_078_check/20261007-171835-555212",
+    "PPO speed/yaw": "/home/tuanmac/ninorobot/rl_runs/flat_speed_yaw_pilot_eval/20261007-160707-136898"
+  },
+  "limitations": [
+    "Speeds are finite differences of saved physical poses, not motor feedback or commands.",
+    "Physical and odometry coordinates assume the common reset origin and heading of these evaluations.",
+    "No time-resolved policy actions, commanded yaw or controller saturation were saved.",
+    "Terminal outcome/endpoint metrics come from episodes.csv; the last overlapping pose sample can precede the scoring sample.",
+    "Plots identify motion and estimation differences; they cannot prove the cause of insufficient steering.",
+    "Comparisons describe one checkpoint on fixed terrain; they are not independent training replicas."
+  ],
+  "seeds": {
+    "61000": {
+      "PI": {
+        "episode": 1,
+        "termination": "success",
+        "time_seconds": 18.600000000000165,
+        "mean_speed_scale": 1.0,
+        "physical_path_rmse_m": 0.024521916686725834,
+        "physical_endpoint_error_m": 0.1930760168584329,
+        "position_error_max_m": 0.19184745853784596,
+        "physical_goal_distance_at_target_m": 0.20131873489512728,
+        "target_sample_time_s": 18.5,
+        "physical_goal_distance_last_paired_sample_m": 0.20131873489512728,
+        "estimated_goal_distance_last_paired_sample_m": 0.05028078389651895
+      },
+      "Slower PI": {
+        "episode": 1,
+        "termination": "success",
+        "time_seconds": 27.50000000000031,
+        "mean_speed_scale": 0.7800000011920929,
+        "physical_path_rmse_m": 0.03625844184343043,
+        "physical_endpoint_error_m": 0.19861751672720054,
+        "position_error_max_m": 0.15273777436189487,
+        "physical_goal_distance_at_target_m": 1.0586084631821735,
+        "target_sample_time_s": 22.0,
+        "physical_goal_distance_last_paired_sample_m": 0.20282019389114425,
+        "estimated_goal_distance_last_paired_sample_m": 0.07865984393666507
+      },
+      "PPO speed/yaw": {
+        "episode": 1,
+        "termination": "success",
+        "time_seconds": 28.00000000000631,
+        "mean_speed_scale": 0.7974876861487116,
+        "physical_path_rmse_m": 0.016866606886402964,
+        "physical_endpoint_error_m": 0.1973688271212414,
+        "position_error_max_m": 0.19789154514027657,
+        "physical_goal_distance_at_target_m": 1.0074880163623048,
+        "target_sample_time_s": 22.0,
+        "physical_goal_distance_last_paired_sample_m": 0.1973688271212414,
+        "estimated_goal_distance_last_paired_sample_m": 0.07637443559751296
+      }
+    },
+    "61005": {
+      "PI": {
+        "episode": 6,
+        "termination": "timeout",
+        "time_seconds": 29.999999999998295,
+        "mean_speed_scale": 1.0,
+        "physical_path_rmse_m": 0.04535650846018611,
+        "physical_endpoint_error_m": 0.20179438429626642,
+        "position_error_max_m": 0.20754736848276645,
+        "physical_goal_distance_at_target_m": 0.20179438429626642,
+        "target_sample_time_s": 22.0,
+        "physical_goal_distance_last_paired_sample_m": 0.20179438429626642,
+        "estimated_goal_distance_last_paired_sample_m": 0.016393914400173105
+      },
+      "Slower PI": {
+        "episode": 6,
+        "termination": "success",
+        "time_seconds": 28.29999999999839,
+        "mean_speed_scale": 0.7800000011920929,
+        "physical_path_rmse_m": 0.04774680226142786,
+        "physical_endpoint_error_m": 0.1985794007923929,
+        "position_error_max_m": 0.15396367649706247,
+        "physical_goal_distance_at_target_m": 1.1095418739949403,
+        "target_sample_time_s": 22.0,
+        "physical_goal_distance_last_paired_sample_m": 0.1985794007923929,
+        "estimated_goal_distance_last_paired_sample_m": 0.20386374430802912
+      },
+      "PPO speed/yaw": {
+        "episode": 6,
+        "termination": "timeout",
+        "time_seconds": 30.00000000000682,
+        "mean_speed_scale": 0.7857692149778207,
+        "physical_path_rmse_m": 0.1338543657917139,
+        "physical_endpoint_error_m": 0.20951328727988328,
+        "position_error_max_m": 0.18234033828293572,
+        "physical_goal_distance_at_target_m": 0.7721542046259445,
+        "target_sample_time_s": 22.0,
+        "physical_goal_distance_last_paired_sample_m": 0.20951328727988328,
+        "estimated_goal_distance_last_paired_sample_m": 0.1349223684297796
+      }
+    },
+    "61019": {
+      "PI": {
+        "episode": 20,
+        "termination": "success",
+        "time_seconds": 22.000000000005002,
+        "mean_speed_scale": 1.0,
+        "physical_path_rmse_m": 0.04816056523188651,
+        "physical_endpoint_error_m": 0.1982031407101747,
+        "position_error_max_m": 0.8525326979072785,
+        "physical_goal_distance_at_target_m": 0.1982031407101747,
+        "target_sample_time_s": 22.0,
+        "physical_goal_distance_last_paired_sample_m": 0.1982031407101747,
+        "estimated_goal_distance_last_paired_sample_m": 0.7017065895086838
+      },
+      "Slower PI": {
+        "episode": 20,
+        "termination": "success",
+        "time_seconds": 27.00000000000614,
+        "mean_speed_scale": 0.7800000011920929,
+        "physical_path_rmse_m": 0.007722803571946025,
+        "physical_endpoint_error_m": 0.1999903395241293,
+        "position_error_max_m": 0.14518682059837099,
+        "physical_goal_distance_at_target_m": 0.9814983876127785,
+        "target_sample_time_s": 22.0,
+        "physical_goal_distance_last_paired_sample_m": 0.1999903395241293,
+        "estimated_goal_distance_last_paired_sample_m": 0.10368293665675125
+      },
+      "PPO speed/yaw": {
+        "episode": 20,
+        "termination": "timeout",
+        "time_seconds": 29.999999999972715,
+        "mean_speed_scale": 0.7825217979649702,
+        "physical_path_rmse_m": 0.20614600414150994,
+        "physical_endpoint_error_m": 0.43518477305376785,
+        "position_error_max_m": 0.19015729006710727,
+        "physical_goal_distance_at_target_m": 0.7432979814386048,
+        "target_sample_time_s": 22.0,
+        "physical_goal_distance_last_paired_sample_m": 0.43518477305376785,
+        "estimated_goal_distance_last_paired_sample_m": 0.3179554355381255
+      }
+    },
+    "61022": {
+      "PI": {
+        "episode": 23,
+        "termination": "timeout",
+        "time_seconds": 30.00000000000682,
+        "mean_speed_scale": 1.0,
+        "physical_path_rmse_m": 0.09804864462890094,
+        "physical_endpoint_error_m": 0.29321036089591723,
+        "position_error_max_m": 0.2886604379829916,
+        "physical_goal_distance_at_target_m": 0.29321036089591723,
+        "target_sample_time_s": 22.0,
+        "physical_goal_distance_last_paired_sample_m": 0.29321036089591723,
+        "estimated_goal_distance_last_paired_sample_m": 0.015464995073836724
+      },
+      "Slower PI": {
+        "episode": 23,
+        "termination": "timeout",
+        "time_seconds": 30.00000000000682,
+        "mean_speed_scale": 0.7800000011920929,
+        "physical_path_rmse_m": 0.11423697885481986,
+        "physical_endpoint_error_m": 0.23203532321578238,
+        "position_error_max_m": 0.19639369613163632,
+        "physical_goal_distance_at_target_m": 0.9985866061630985,
+        "target_sample_time_s": 22.0,
+        "physical_goal_distance_last_paired_sample_m": 0.23203532321578238,
+        "estimated_goal_distance_last_paired_sample_m": 0.09507973411037277
+      },
+      "PPO speed/yaw": {
+        "episode": 23,
+        "termination": "success",
+        "time_seconds": 28.699999999973898,
+        "mean_speed_scale": 0.794564110580637,
+        "physical_path_rmse_m": 0.07522639125472938,
+        "physical_endpoint_error_m": 0.19806269549927666,
+        "position_error_max_m": 0.22465679157652957,
+        "physical_goal_distance_at_target_m": 0.9570761479098528,
+        "target_sample_time_s": 22.0,
+        "physical_goal_distance_last_paired_sample_m": 0.19806269549927666,
+        "estimated_goal_distance_last_paired_sample_m": 0.030762328631256903
+      }
+    }
+  }
+}

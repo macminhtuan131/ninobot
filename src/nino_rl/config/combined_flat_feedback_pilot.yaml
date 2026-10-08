@@ -1,0 +1,27 @@
+# New estimated-pose and yaw-residual contract; never optimizer-resume the old actor.
+extends: combined_flat_speed_yaw_timing_pilot.yaml
+navigation:
+  path_feedback:
+    enabled: true
+    lookahead_m: 0.45
+    max_yaw_rate_rad_s: 0.8
+    residual_fade_distance_m: 1.0
+odometry_assistance:
+  enabled: true
+  revision: imu_encoder_corridor_v1
+  wheel_radius_m: 0.0625
+  pitch_projection: true
+  max_imu_gap_seconds: 0.10
+  max_encoder_gap_seconds: 0.25
+  corridor_lidar:
+    enabled: true
+    bounds_xy_m: [-2.0, 32.0, -2.0, 2.0]
+    # laser relative to base_footprint: base_link z=0.0625 + laser z=0.165.
+    laser_xyz_m: [0.20, 0.0, 0.2275]
+    max_tilt_rad: 0.05
+    association_gate_m: 0.5
+    minimum_rays: 8
+    inlier_gate_m: 0.03
+    max_correction_m: 0.4
+    correction_gain: 0.5
+    max_age_seconds: 0.6

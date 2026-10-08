@@ -213,6 +213,49 @@ issues and stage progress; numerical evaluation controls advancement. Maps
 change between training blocks. The direct `combined_rough_section.yaml`
 workflow still selects all routes at once.
 
+**Optional IMU-assisted rough E1 pilot:**
+[profile, PI validation, training and monitoring](docs/rough_imu_assisted_2026-10-08/README.md).
+The profile aligns encoder increments with IMU heading/pitch, retains raw wheel
+odometry for diagnostics, and requires a new training contract. Physical
+arrival continues to use the original 0.20 m goal radius.
+
+**Corrected specialist training setup:**
+[reduced-speed flat PI checks, fixed E1/N1/S1 replay, matching PI references and commands](docs/corrected_training_setup_2026-10-08/README.md).
+The optional flat controller profile retains bounded integral correction at
+reduced speed. Both new profiles verify live controller settings and require
+actor initialization into a new training contract. Physical arrival scoring
+keeps the original 0.20 m goal radius; rough turn-route failures remain failures.
+
+**Fixed Optuna evaluation objective:**
+[physical-arrival gate, timing, tracking, vibration and slip scoring](docs/optuna_objective_2026-10-08/README.md).
+Each route must achieve at least 95% physical arrival in the evaluation sample.
+The quality weights, scales, targets and seeds stay fixed across trials,
+including trials that change the training reward weights. Use a new study
+directory for this objective; legacy scores cannot be mixed with it.
+
+**Comparable Optuna trials:**
+[prepared flat/rough inputs, checkpoint audits, aligned budgets and preparation commands](docs/comparable_optuna_trials_2026-10-08/README.md).
+All tuners accept `--world` and `--prepare-only`. Trial plans freeze the actual
+world/assets, controller/estimator profile, starting actor, initialization,
+training seed and evaluation scenarios. Changed reward/controller contracts
+use actor initialization with a fresh critic/optimizer; incompatible checkpoint
+resume is rejected. PPO rollout rounding is aligned across trials.
+
+**Saved results and starting candidates:**
+[queued flat/rough configurations, PI references and guarded historical import](docs/saved_optuna_results_2026-10-08/README.md).
+The current configurations are queued in `flat_comparable_optuna_v2` and
+`rough_comparable_optuna_v2`; each has one waiting candidate and no scored trials
+at preparation. `--prepare-study` queues without training. PI reports are
+reference metadata; only completed PPO observations with matching contracts
+and verified artifacts can be imported using `--history-study`. Earlier
+incompatible studies remain diagnostic records.
+
+**Corrected flat two-cable pilot:**
+[localization, path feedback, PI validation and training](docs/FLAT_FEEDBACK_PILOT_2026-10-08.md).
+The optional profile combines encoder/IMU odometry with known-wall LiDAR
+position corrections. PI follows the path; PPO adjusts speed and bounded yaw
+residuals. Use a new contract and explicit speed/features initialization.
+
 **E1 arrival diagnostic:** [PI test with a 0.05 m estimated stop margin](docs/ROUGH_E1_STOP_MARGIN_CHECK.md).
 Use this check when both PI and PPO stop near the estimated goal and time out
 outside the physical 0.20 m success circle. It evaluates the original bank
@@ -471,10 +514,14 @@ shape stays fixed so the old actor can transfer. To tune actor/critic widths,
 history features, activation, and initial action scales too, add
 `--from-scratch`; those trials do not use the old checkpoint. Task geometry,
 sensors, and terminal success criteria stay fixed so trials
-share a comparable task. The score uses held-out physical goal success first,
-then progress and ground-truth path error; it does not maximize the reward being
-tuned. The study persists in `study.db`; rerun the same command to add trials.
-Read `best_trial.yaml` and the best trial's evaluation report before training a
+share a comparable task. The [fixed evaluation objective](docs/optuna_objective_2026-10-08/README.md)
+requires at least 95% physical arrival on every evaluated route, then ranks
+completion time, lateness, physical path error, vibration and slip. It does not
+maximize the training reward being tuned. The study persists in `study.db`;
+rerun the same command to add trials with unchanged inputs. Legacy-score
+studies require a new output directory. A qualified `best_trial.yaml` is
+exported only after a trial meets the arrival requirement. Read it and the
+best trial's evaluation report before training a
 longer run. Validate the selected policy on **new** seeds, since the trial
 evaluation seeds were used to select it. Twelve trials are an initial search
 in a large parameter space, so retest the selected configuration. To train
@@ -653,8 +700,13 @@ budget, evaluation seeds or episode count, or device. The 4096-step smoke test
 above is too short to rank policies reliably. Keep one tuning process on the
 world; parallel trials need separate Gazebo and ROS instances.
 
-The score gives most weight to evaluation success rate, then progress and
-ground-truth path error. After tuning, run `ros2 run nino_rl evaluate` again
+The [fixed evaluation objective](docs/optuna_objective_2026-10-08/README.md)
+requires at least 95% physical arrival on every evaluated route and scores
+completion time, lateness, physical path error, vibration and slip using
+frozen weights and scales. Training reward weights do not change that score.
+Legacy-score studies require a new output directory; no qualified best model
+is exported until a trial passes the arrival requirement.
+After tuning, run `ros2 run nino_rl evaluate` again
 with the printed best model and its sibling `ppo.yaml`, using new seeds and
 more episodes. Compare that report with a baseline report made with the same
 seeds and episode count; the tuning evaluations are already used for model

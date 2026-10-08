@@ -1,0 +1,75 @@
+{
+  "profile": "src/nino_rl/config/rough_e1_imu_assisted.yaml",
+  "physical_goal_radius_m": 0.2,
+  "contract_revision": 35,
+  "cases": {
+    "normal_pi": {
+      "run": "/home/tuanmac/ninorobot/rl_runs/rough_imu_assisted_validation/normal_pi/20261008-012332-155275",
+      "complete": true,
+      "episodes": 5,
+      "successes": 5,
+      "seeds": [
+        10000,
+        10001,
+        10002,
+        10003,
+        10004
+      ],
+      "mean_time_seconds": 26.920000000097936,
+      "mean_truth_path_rmse_m": 0.023239318536142493,
+      "mean_estimated_truth_error_m": 0.07668879209410029,
+      "max_physical_goal_distance_m": 0.19784064126119214,
+      "max_clock_error_seconds": 9.822542779147625e-11,
+      "max_motion_sensor_lag_seconds": 0.024000000003070454,
+      "pose_source": "imu_encoder_odometry"
+    },
+    "slow_pi": {
+      "run": "/home/tuanmac/ninorobot/rl_runs/rough_imu_assisted_validation/slow_pi/20261008-012742-217644",
+      "complete": true,
+      "episodes": 3,
+      "successes": 3,
+      "seeds": [
+        10000,
+        10002,
+        10001
+      ],
+      "mean_time_seconds": 57.500000000209184,
+      "mean_truth_path_rmse_m": 0.03932824890999657,
+      "mean_estimated_truth_error_m": 0.017593639828283155,
+      "max_physical_goal_distance_m": 0.19933804907715272,
+      "max_clock_error_seconds": 2.091837814077735e-10,
+      "max_motion_sensor_lag_seconds": 0.024000000150408596,
+      "pose_source": "imu_encoder_odometry"
+    },
+    "perturbed_pi": {
+      "run": "/home/tuanmac/ninorobot/rl_runs/rough_imu_assisted_validation/perturbed_pi/20261008-013409-650115",
+      "complete": true,
+      "episodes": 3,
+      "successes": 3,
+      "seeds": [
+        10000,
+        10001,
+        10002
+      ],
+      "mean_time_seconds": 26.900000000004486,
+      "mean_truth_path_rmse_m": 0.03386983677002758,
+      "mean_estimated_truth_error_m": 0.10516299450497113,
+      "max_physical_goal_distance_m": 0.19603287754535872,
+      "max_clock_error_seconds": 1.8189894035458565e-10,
+      "max_motion_sensor_lag_seconds": 0.03200000009564974,
+      "pose_source": "imu_encoder_odometry"
+    }
+  },
+  "gates": {
+    "all_completed": true,
+    "all_physical_arrivals": true,
+    "physical_path_rmse_under_8cm": true,
+    "bounded_clock_and_sensor_timing": true
+  },
+  "pilot_ready": true,
+  "limitations": [
+    "11 physical arrivals on fixed E1 are a pilot gate, not broad route/terrain or hardware validation.",
+    "Estimator changes benchmark identity; raw/assisted historical comparisons are descriptive, not identical-contract tests.",
+    "Perturbations affect the assisted estimator, not all actor sensor channels."
+  ]
+}

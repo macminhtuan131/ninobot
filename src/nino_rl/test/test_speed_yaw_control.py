@@ -121,3 +121,25 @@ def test_transfer_keeps_speed_mean_but_discards_torque_and_value(tmp_path):
     loaded.learn(8)
     assert loaded.num_timesteps == 8
     assert np.isfinite(loaded.predict(obs, deterministic=True)[0]).all()
+
+
+def test_absolute_yaw_actor_transfers_speed_to_feedback_with_fresh_yaw_and_critic():
+    th.set_num_threads(1)
+    old = load_config(PROFILE.parent / 'combined_flat_speed_yaw_timing_pilot.yaml')
+    config = load_config(PROFILE.parent / 'combined_flat_feedback_pilot.yaml')
+    source, target = new_model(old, 2), new_model(config, 2)
+    source.nino_training_contract = training_contract(old)
+    with th.no_grad():
+        for param in source.policy.parameters():
+            param.add_(.015)
+    before = deepcopy(target.policy.state_dict())
+    initialize_speed_yaw_actor(target, source)
+    obs = np.random.default_rng(8).normal(0., .1, (4, 300)).astype(np.float32)
+    previous, _ = source.predict(obs, deterministic=True)
+    new, _ = target.predict(obs, deterministic=True)
+    np.testing.assert_allclose(new[:,0], previous[:,0], atol=1e-7)
+    np.testing.assert_array_equal(new[:,1], np.zeros(4))
+    for key, tensor in target.policy.state_dict().items():
+        if key.startswith(('vf_features_extractor.', 'mlp_extractor.value_net.', 'value_net.')):
+            assert th.equal(tensor, before[key]), key
+    assert not target.policy.optimizer.state and target.num_timesteps == 0

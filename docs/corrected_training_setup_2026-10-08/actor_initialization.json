@@ -1,0 +1,24 @@
+{
+  "flat": {
+    "profile": "combined_flat_pi_tracking.yaml",
+    "source": "rl_runs/flat_feedback_pilot/20261008-035120-161159/nino_ppo_final.zip",
+    "source_sha256": "05561e628c9017648e67b2054b50fca9b8d2d6fadd359501b55dff3a2e52486f",
+    "source_steps": 10240,
+    "copied_actor_tensors": 13,
+    "critic": "fresh",
+    "optimizer": "fresh",
+    "training_counter": 0,
+    "contract_revision": 37
+  },
+  "rough": {
+    "profile": "rough_e1_n1_s1_fixed.yaml",
+    "source": "rl_runs/rough_e1_imu_assisted_pilot/20261008-013943-771247/nino_ppo_final.zip",
+    "source_sha256": "98a89e99f6d20501697088e51a8248b2ce87704feb8d731c22f4ff18e1512ad2",
+    "source_steps": 20480,
+    "copied_actor_tensors": 13,
+    "critic": "fresh",
+    "optimizer": "fresh",
+    "training_counter": 0,
+    "contract_revision": 37
+  }
+}

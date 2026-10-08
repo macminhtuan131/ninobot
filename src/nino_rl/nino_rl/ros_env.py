@@ -27,6 +27,7 @@ from nino_rl.core import (
 from nino_rl.ros_interface import RosRobotInterface
 from nino_rl.trajectory_metrics import EpisodeTrajectory
 from nino_rl.task_geometry import approach_speed, goal_overshot, task_succeeded, objective_state
+from nino_rl.flat_feedback import flat_motion_command
 from nino_rl.flat_curriculum import FlatCourseCurriculum
 from nino_rl.routes import OrderedPathTracker, RouteSet, route_command, route_budget
 from nino_rl.control_v2 import (
@@ -123,6 +124,7 @@ class NinoGazeboEnv(gym.Env):
             imu_topic=str(config["policy_v2"].get("imu_topic", "/imu/data")),
             physics_step_seconds=self.physics_dt,
             terrain_height_threshold_m=float(config["policy_v2"].get("terrain_height_threshold_m", .006)),
+            odometry_assistance=config.get("odometry_assistance"),
         )
         self.ros.imu_includes_gravity = bool(config["policy_v2"]["imu_includes_gravity"])
         # This executor already has its own dedicated Python thread. Using a
@@ -137,6 +139,7 @@ class NinoGazeboEnv(gym.Env):
         self.executor_thread: Thread | None = None
         self._start_executor_spin()
         try:
+            self.ros.verify_drive_controller(config, self.sensor_timeout)
             self._prepare_initial_sensors()
             self._stop_executor_spin()
         except BaseException:
@@ -772,7 +775,7 @@ class NinoGazeboEnv(gym.Env):
             self.path.advance(truth.x, truth.y)
             scoring_state = objective_state(truth, self.config)
             self.scoring_path.advance(scoring_state.x, scoring_state.y)
-        frame, points = "odom", self.path.points
+        frame, points = self.ros.estimated_frame, self.path.points
         self.trajectory = EpisodeTrajectory(
             points, frame, truth.odom_stamp_s,
             cable_x=episode_cables[0][0] if episode_cables else None,
@@ -822,6 +825,7 @@ class NinoGazeboEnv(gym.Env):
         scale, torque, yaw_reference = decode_control(
             action, self.config,
             path_remaining=self.previous_tracking.distance_remaining)
+        raw_action = action.copy()
         if self.config.get("action_mode") == "speed_yaw_reference":
             action = history_action(action, self.config)
         started_sim = self.lockstep_sim_time
@@ -830,7 +834,9 @@ class NinoGazeboEnv(gym.Env):
                 self.previous_robot_state, self.path, self.previous_tracking, self.config)
             self.ros.publish_motion_command(linear, angular)
         elif self.config.get("action_mode", "wheel_torque") in ("yaw_reference", "speed_yaw_reference"):
-            self.ros.publish_motion_command(self._straight_command(self.previous_tracking), yaw_reference)
+            linear, angular = flat_motion_command(self.previous_robot_state, self.path,
+                self.previous_tracking, self.config, yaw_reference)
+            self.ros.publish_motion_command(linear, angular)
         else:
             self.ros.publish_straight_command(self._straight_command(self.previous_tracking))
         # The horizontal safety LiDAR remains age-bounded instead of being a
@@ -1246,7 +1252,7 @@ class NinoGazeboEnv(gym.Env):
                    if key in ("path_rmse_m", "path_p95_m", "endpoint_error_m", "heading_rmse_deg")},
                 "odom_truth_position_error_m": float(np.hypot(truth.x-truth.ground_x, truth.y-truth.ground_y)),
                 "trajectory_frame": self.trajectory.frame_id,
-                "trajectory_pose_source": "wheel_odometry",
+                "trajectory_pose_source": self.ros.estimated_pose_source,
                 "reward_pose_source": self.config.get("reward_pose_source", "wheel_odometry"),
                 **metrics_dict(tracking, truth, elapsed, succeeded),
                 "attempt": self.attempt_number,
@@ -1345,6 +1351,28 @@ class NinoGazeboEnv(gym.Env):
             }
             self.ros.publish_control(0.0, 0.0, 0.0)
             self.ros.publish_straight_command(0.0)
+        if self.config.get("evaluation_control_trace", False):
+            info["control_trace"] = {
+                "sim_time_s": ended_sim, "elapsed_s": elapsed,
+                "action_speed": float(raw_action[0]),
+                "action_yaw": float(raw_action[-1]),
+                "speed_scale": scale, "yaw_reference_rad_s": yaw_reference,
+                "estimated_x_m": truth.x, "estimated_y_m": truth.y,
+                "estimated_yaw_rad": truth.yaw,
+                "physical_x_m": truth.ground_x, "physical_y_m": truth.ground_y,
+                "physical_yaw_rad": truth.ground_yaw,
+                "estimated_speed_m_s": truth.linear_velocity,
+                "physical_speed_m_s": truth.ground_linear_velocity,
+                "physical_yaw_rate_rad_s": truth.ground_yaw_rate,
+                "estimated_goal_distance_m": tracking.endpoint_distance,
+                "physical_goal_distance_m": float(np.hypot(
+                    truth.ground_x - self.goal_pose[0], truth.ground_y - self.goal_pose[1])),
+            }
+            if self.config.get("odometry_assistance", {}).get("enabled", False):
+                info["control_trace"].update(self.ros.raw_wheel_pose())
+            if self.config.get('navigation', {}).get('path_feedback', {}).get('enabled', False):
+                info['control_trace']['policy_yaw_residual_rad_s'] = yaw_reference
+                info['control_trace']['yaw_reference_rad_s'] = self.ros.desired_twist()[1]
         return observation, reward, terminated, truncated, info
 
     def _prepare_initial_sensors(self) -> None:
@@ -1356,7 +1384,14 @@ class NinoGazeboEnv(gym.Env):
         self.ros.publish_control(0.0, 0.0, 0.0)
         self.ros.set_world_paused(False, timeout=self.simulation_step_timeout)
         self.world_is_paused = False
-        self.ros.wait_for_sensors(self.sensor_timeout)
+        # A previous session may leave the robot at the goal while the new
+        # local estimator starts at zero. Verify transport while commanding
+        # stop; require wall localization after reset establishes the origin.
+        corridor = self.config.get('odometry_assistance', {}).get('corridor_lidar', {}).get('enabled', False)
+        if corridor:
+            self.ros.wait_for_sensors(self.sensor_timeout, require_assisted=False)
+        else:
+            self.ros.wait_for_sensors(self.sensor_timeout)
         if self.config["policy_v2"].get("require_terrain_preview", False):
             self.ros.wait_for_terrain_preview(self.sensor_timeout)
         # Keep physics and callback load idle during policy construction.

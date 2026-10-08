@@ -1,0 +1,111 @@
+{
+  "profile": "src/nino_rl/config/combined_flat_feedback_pilot.yaml",
+  "cases": {
+    "targeted_pi": {
+      "run": "/home/tuanmac/ninorobot/rl_runs/flat_feedback_pi_targeted/20261008-033715-000826",
+      "complete": true,
+      "episodes": 4,
+      "seeds": [
+        61000,
+        61001,
+        61010,
+        61015
+      ],
+      "success_rate": 1.0,
+      "on_time_success_rate": 1.0,
+      "benchmark_id": "e423a6d0867d8997583509c2018e111468efa6158c38a6dbcb876671220c6df5",
+      "pose_source": "imu_encoder_lidar_odometry",
+      "metrics": {
+        "time_seconds": 17.424999999746433,
+        "truth_path_rmse_m": 0.03345993687171212,
+        "odom_truth_position_error_m": 0.0013678521663210578,
+        "rms_vertical_acceleration_m_s2": 1.6513802017821437,
+        "rms_wheel_slip": 0.1610202016677551
+      },
+      "max_clock_error_seconds": 2.582964953035116e-10,
+      "max_motion_sensor_lag_seconds": 0.021999999986292096,
+      "max_physical_endpoint_m": 0.19966894055918466
+    },
+    "full_pi": {
+      "run": "/home/tuanmac/ninorobot/rl_runs/flat_feedback_pi_validation/20261008-033904-874087",
+      "complete": true,
+      "episodes": 24,
+      "seeds": [
+        61000,
+        61001,
+        61002,
+        61003,
+        61004,
+        61005,
+        61006,
+        61007,
+        61008,
+        61009,
+        61010,
+        61011,
+        61012,
+        61013,
+        61014,
+        61015,
+        61016,
+        61017,
+        61018,
+        61019,
+        61020,
+        61021,
+        61022,
+        61023
+      ],
+      "success_rate": 1.0,
+      "on_time_success_rate": 1.0,
+      "benchmark_id": "e423a6d0867d8997583509c2018e111468efa6158c38a6dbcb876671220c6df5",
+      "pose_source": "imu_encoder_lidar_odometry",
+      "metrics": {
+        "time_seconds": 17.63749999974334,
+        "truth_path_rmse_m": 0.03771872520794022,
+        "odom_truth_position_error_m": 0.0010835063253337176,
+        "rms_vertical_acceleration_m_s2": 3.293976576068483,
+        "rms_wheel_slip": 0.18464291848132253
+      },
+      "max_clock_error_seconds": 2.764863893389702e-10,
+      "max_motion_sensor_lag_seconds": 0.02399999998306157,
+      "max_physical_endpoint_m": 0.19997566584367021
+    },
+    "slow_pi": {
+      "run": "/home/tuanmac/ninorobot/rl_runs/flat_feedback_slow_pi_targeted/20261008-034901-633974",
+      "complete": true,
+      "episodes": 2,
+      "seeds": [
+        61001,
+        61015
+      ],
+      "success_rate": 1.0,
+      "on_time_success_rate": 0.0,
+      "benchmark_id": "e423a6d0867d8997583509c2018e111468efa6158c38a6dbcb876671220c6df5",
+      "pose_source": "imu_encoder_lidar_odometry",
+      "metrics": {
+        "time_seconds": 26.149999999619467,
+        "truth_path_rmse_m": 0.07551787184595052,
+        "odom_truth_position_error_m": 0.0007991080119159621,
+        "rms_vertical_acceleration_m_s2": 1.2999619907342017,
+        "rms_wheel_slip": 0.1738378885525017
+      },
+      "max_clock_error_seconds": 3.8562575355172157e-10,
+      "max_motion_sensor_lag_seconds": 0.011999999729596311,
+      "max_physical_endpoint_m": 0.1944325907010318
+    }
+  },
+  "gates": {
+    "evaluations_complete": true,
+    "targeted_all_arrive": true,
+    "full_arrivals_at_least_22_of_24": true,
+    "full_on_time_at_least_21_of_24": true,
+    "full_physical_path_rmse_le_0_04664_m": true,
+    "full_final_pose_error_le_0_05_m": true,
+    "slow_targeted_all_arrive": true,
+    "timing_valid": true,
+    "physical_arrival_radius_preserved": true
+  },
+  "pilot_ready": true,
+  "interpretation": "PI simulation gate on reused scenarios; not learned-policy improvement or hardware validation."
+}

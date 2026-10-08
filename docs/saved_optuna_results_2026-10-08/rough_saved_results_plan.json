@@ -1,0 +1,323 @@
+{
+  "candidate": {
+    "revision": "saved_results_v1",
+    "params": {
+      "reward_v2.progress_weight": 10.0,
+      "reward_v2.lateral_weight": 0.5,
+      "reward_v2.impact_weight": 0.05,
+      "reward_v2.attitude_weight": 0.5,
+      "reward_v2.slip_weight": 0.1,
+      "learning_rate": 3e-05,
+      "gamma": 0.997,
+      "n_steps": 2048,
+      "ent_coef": 0.001
+    },
+    "distributions": {
+      "reward_v2.progress_weight": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 7.0,
+          "high": 15.0,
+          "log": false
+        }
+      },
+      "reward_v2.lateral_weight": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 0.3,
+          "high": 0.8,
+          "log": false
+        }
+      },
+      "reward_v2.impact_weight": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 0.02,
+          "high": 0.12,
+          "log": false
+        }
+      },
+      "reward_v2.attitude_weight": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 0.3,
+          "high": 0.9,
+          "log": false
+        }
+      },
+      "reward_v2.slip_weight": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 0.05,
+          "high": 0.25,
+          "log": false
+        }
+      },
+      "learning_rate": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 1e-05,
+          "high": 7e-05,
+          "log": true
+        }
+      },
+      "gamma": {
+        "name": "CategoricalDistribution",
+        "attributes": {
+          "choices": [
+            0.995,
+            0.997,
+            0.999
+          ]
+        }
+      },
+      "n_steps": {
+        "name": "CategoricalDistribution",
+        "attributes": {
+          "choices": [
+            1024,
+            2048
+          ]
+        }
+      },
+      "ent_coef": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 0.0001,
+          "high": 0.003,
+          "log": true
+        }
+      }
+    },
+    "base_config_sha256": "f812c3a1c4779f6e8c84be790cf357dc9560ef18dc66a25209d9ef1350218deb",
+    "meaning": "parameters queued for new training; no inherited score"
+  },
+  "pi_references": [
+    {
+      "summary": "/home/tuanmac/ninorobot/rl_runs/rough_e1_n1_s1_route_pi/20261008-104043-455255/summary.json",
+      "role": "PI reference only; never an Optuna trial",
+      "baseline_speed_scale": 1.0,
+      "episodes": 12,
+      "success_rate": 0.3333333333333333,
+      "on_time_success_rate": 0.3333333333333333,
+      "metrics": {
+        "path_rmse_m": {
+          "mean": 1.6244731160044512,
+          "std": 1.8150372343667318,
+          "min": 0.02234988462897086,
+          "max": 4.542564280853066
+        },
+        "cross_track_rmse_m": {
+          "mean": 0.6926318409345651,
+          "std": 0.7058727299387582,
+          "min": 0.02234988462897086,
+          "max": 1.9584540951523601
+        },
+        "path_p95_m": {
+          "mean": 3.0305291973962145,
+          "std": 3.3245077746769183,
+          "min": 0.04502705655607378,
+          "max": 8.39745985301159
+        },
+        "path_max_m": {
+          "mean": 3.2268251808496147,
+          "std": 3.5500131511235877,
+          "min": 0.0654088588192157,
+          "max": 8.989096190462083
+        },
+        "heading_rmse_deg": {
+          "mean": 14.239701438019871,
+          "std": 8.444711150327526,
+          "min": 4.168648210325752,
+          "max": 25.941271374327233
+        },
+        "endpoint_error_m": {
+          "mean": 2.188746283564193,
+          "std": 2.491019688027125,
+          "min": 0.10947734339651488,
+          "max": 7.175769252855525
+        },
+        "final_progress_fraction": {
+          "mean": 0.844113480979055,
+          "std": 0.14588774650008893,
+          "min": 0.614223600339885,
+          "max": 1.0
+        },
+        "backtracking_m": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "time_seconds": {
+          "mean": 55.958333333340796,
+          "std": 31.129740825924795,
+          "min": 26.89999999999847,
+          "max": 98.5000000000224
+        },
+        "rms_vertical_acceleration_m_s2": {
+          "mean": 0.9955358256017725,
+          "std": 0.5088384089042666,
+          "min": 0.424991429504026,
+          "max": 1.7136550258499605
+        },
+        "peak_vertical_acceleration_m_s2": {
+          "mean": 13.788882833406275,
+          "std": 5.048488991373887,
+          "min": 7.300188267497797,
+          "max": 20.580249385340117
+        },
+        "rms_wheel_slip": {
+          "mean": 0.4449974601242188,
+          "std": 0.30405981016256867,
+          "min": 0.03824252512895922,
+          "max": 0.7408546376237771
+        },
+        "rms_wheel_torque_nm": {
+          "mean": 0.3308351763603036,
+          "std": 0.06714862760029179,
+          "min": 0.1442585381735434,
+          "max": 0.4249815025470544
+        },
+        "challenge_choice_fraction": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "challenge_clear_fraction": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "truth_path_rmse_m": {
+          "mean": 0.12915586937082932,
+          "std": 0.07431469150956643,
+          "min": 0.026364777585528437,
+          "max": 0.23468031003497494
+        },
+        "truth_path_p95_m": {
+          "mean": 0.1626606637396628,
+          "std": 0.0817528859312634,
+          "min": 0.053170436726669185,
+          "max": 0.3252779013226994
+        },
+        "truth_endpoint_error_m": {
+          "mean": 3.103692091271043,
+          "std": 2.4424211705555408,
+          "min": 0.18211287432096354,
+          "max": 5.512322829280005
+        },
+        "truth_heading_rmse_deg": {
+          "mean": 14.290623957010595,
+          "std": 8.364319598927421,
+          "min": 4.168910357073555,
+          "max": 25.945010117211336
+        },
+        "odom_truth_position_error_m": {
+          "mean": 4.847569042709021,
+          "std": 4.562495728598692,
+          "min": 0.07752253494304483,
+          "max": 12.525042061711197
+        }
+      },
+      "per_route": {
+        "E1": {
+          "episodes": 4,
+          "success_rate": 1.0,
+          "truth_path_rmse_m": 0.03446972348833988,
+          "termination_counts": {
+            "success": 4
+          }
+        },
+        "N1": {
+          "episodes": 4,
+          "success_rate": 0.0,
+          "truth_path_rmse_m": 0.1910077597197631,
+          "termination_counts": {
+            "wrong_direction": 4
+          }
+        },
+        "S1": {
+          "episodes": 4,
+          "success_rate": 0.0,
+          "truth_path_rmse_m": 0.16199012490438494,
+          "termination_counts": {
+            "timeout": 4
+          }
+        }
+      },
+      "benchmark_id": "a9d090d1e96b609ecefb1a79c78d01c9da7d44be844397ae218b88ecfc5c9a8a",
+      "summary_sha256": "a39fd618fbddce3fe9e8a875fe02f8787f61dd933298ded4c3bac61efe224476",
+      "task_and_scenarios_match": true,
+      "objective_breakdown": {
+        "score": -2097.762385345333,
+        "arrival_feasible": false,
+        "minimum_route_arrival_rate": 0,
+        "quality_cost": 43.6904473884393,
+        "terms": {
+          "duration": 3.4665432098765567,
+          "lateness": 4.0,
+          "path_error": 4.2241162058139,
+          "vibration": 3.679315114246855,
+          "slip": 3.648124241060292
+        },
+        "per_route": {
+          "E1": {
+            "episodes": 4,
+            "physical_arrival_rate": 1,
+            "terms": {
+              "duration": 0.39962962962967086,
+              "lateness": 0.0,
+              "path_error": 0.1723486174416994,
+              "vibration": 1.0379453427405652,
+              "slip": 0.9443727231808757
+            }
+          },
+          "N1": {
+            "episodes": 4,
+            "physical_arrival_rate": 0,
+            "terms": {
+              "duration": 5.0,
+              "lateness": 6.0,
+              "path_error": 6.25,
+              "vibration": 5.0,
+              "slip": 5.0
+            }
+          },
+          "S1": {
+            "episodes": 4,
+            "physical_arrival_rate": 0,
+            "terms": {
+              "duration": 5.0,
+              "lateness": 6.0,
+              "path_error": 6.25,
+              "vibration": 5.0,
+              "slip": 5.0
+            }
+          }
+        },
+        "objective_sha256": "d27475cb77c19249f5c651167b1f45e9daed3f42f9edac877447c0a1aa5e9cd5",
+        "objective_revision": "physical_arrival_quality_v1"
+      },
+      "files": {
+        "/home/tuanmac/ninorobot/rl_runs/rough_e1_n1_s1_route_pi/20261008-104043-455255/summary.json": "a39fd618fbddce3fe9e8a875fe02f8787f61dd933298ded4c3bac61efe224476",
+        "/home/tuanmac/ninorobot/rl_runs/rough_e1_n1_s1_route_pi/20261008-104043-455255/config.yaml": "a335f195cad15ccffa8816383250d83afa23d5835f5dddc87591484989f56811",
+        "/home/tuanmac/ninorobot/rl_runs/rough_e1_n1_s1_route_pi/20261008-104043-455255/episodes.csv": "bdcd957fa60a27bd16d71330aa5e7fcc73e72a5121df1bbb8056b8375243a986"
+      }
+    }
+  ],
+  "history_sources": [
+    "/home/tuanmac/ninorobot/rl_runs/combined_rough_optuna_fresh",
+    "/home/tuanmac/ninorobot/rl_runs/combined_rough_optuna"
+  ],
+  "history_policy": "read-only audit; import only fully matching completed PPO trials"
+}

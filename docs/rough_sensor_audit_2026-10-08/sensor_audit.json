@@ -1,0 +1,140 @@
+{
+  "bag": "/home/tuanmac/ninorobot/rl_runs/rough_odometry_bags/20261008-002701",
+  "run": "/home/tuanmac/ninorobot/rl_runs/rough_odometry_timestamp_check/20261008-002720-659085",
+  "seed": 10000,
+  "termination": "success",
+  "episode_start_sim_s": 12420.04,
+  "episode_end_sim_s": 12482.84000000023,
+  "common_window_seconds": 62.800000000228465,
+  "wheel_radius_m": 0.0625,
+  "wheel_separation_m": 0.34273666,
+  "sensor_timing": {
+    "/joint_states": {
+      "samples_in_window": 31650,
+      "backwards_header_timestamps": 0,
+      "duplicate_header_timestamps": 619,
+      "positive_header_gap_p99_s": 0.004000000000814907,
+      "positive_header_gap_max_s": 0.0059999999994033715,
+      "recording_time_minus_header_s": {
+        "mean": 6.078989018724415e-05,
+        "rms": 0.0003597436336164598,
+        "p99_abs": 0.0020000000004074536,
+        "max_abs": 0.002000000002226443
+      }
+    },
+    "/imu/data": {
+      "samples_in_window": 3165,
+      "backwards_header_timestamps": 0,
+      "duplicate_header_timestamps": 0,
+      "positive_header_gap_p99_s": 0.020000000000436557,
+      "positive_header_gap_max_s": 0.020000000000436557,
+      "recording_time_minus_header_s": {
+        "mean": 1.3902054513598818e-05,
+        "rms": 0.0002011028047997932,
+        "p99_abs": 0.000720000000656255,
+        "max_abs": 0.002000000002226443
+      }
+    },
+    "/odom": {
+      "samples_in_window": 3165,
+      "backwards_header_timestamps": 0,
+      "duplicate_header_timestamps": 0,
+      "positive_header_gap_p99_s": 0.020000000000436557,
+      "positive_header_gap_max_s": 0.020000000000436557,
+      "recording_time_minus_header_s": {
+        "mean": 9.478673785424676e-06,
+        "rms": 0.00013768567821739798,
+        "p99_abs": 1.8189894035458565e-12,
+        "max_abs": 0.002000000002226443
+      }
+    },
+    "/ground_truth/odom": {
+      "samples_in_window": 3165,
+      "backwards_header_timestamps": 0,
+      "duplicate_header_timestamps": 0,
+      "positive_header_gap_p99_s": 0.020000000000436557,
+      "positive_header_gap_max_s": 0.020000000000436557,
+      "recording_time_minus_header_s": {
+        "mean": 3.159558462006802e-06,
+        "rms": 0.00017049319780266167,
+        "p99_abs": 1.8189894035458565e-12,
+        "max_abs": 0.002000000002226443
+      }
+    },
+    "/nino_drive/diagnostics": {
+      "samples_in_window": 3165,
+      "backwards_header_timestamps": 0,
+      "duplicate_header_timestamps": 0,
+      "positive_header_gap_p99_s": 0.020000000000436557,
+      "positive_header_gap_max_s": 0.02199999999902502,
+      "recording_time_minus_header_s": {
+        "mean": 1.0742496051017296e-05,
+        "rms": 0.00014657759754806783,
+        "p99_abs": 0.0,
+        "max_abs": 0.0020000000004074536
+      }
+    }
+  },
+  "estimated_vs_physical_position_m": {
+    "mean": 0.15809942217441617,
+    "rms": 0.1957981044591076,
+    "p99_abs": 0.31628383280865474,
+    "max_abs": 0.3164212024606754
+  },
+  "estimated_vs_physical_heading_deg": {
+    "mean": -0.9633198101215237,
+    "rms": 5.96997563724287,
+    "p99_abs": 11.4686973909816,
+    "max_abs": 11.68955383162892
+  },
+  "imu_relative_vs_physical_heading_deg": {
+    "mean": -9.714119472012641e-11,
+    "rms": 7.442065281048003e-10,
+    "p99_abs": 2.057088210079923e-09,
+    "max_abs": 2.1022067000414e-09
+  },
+  "encoder_position_vs_odometry_yaw_change_deg": {
+    "mean": 0.007507572868781396,
+    "rms": 0.016230322945100212,
+    "p99_abs": 0.043449103997817026,
+    "max_abs": 0.05569599942242774
+  },
+  "diagnostic_vs_latest_timestamp_joint_velocity_rad_s": {
+    "mean": 4.181254259157339e-05,
+    "rms": 0.06740633547400114,
+    "p99_abs": 0.29348201912901867,
+    "max_abs": 1.8409977685303507
+  },
+  "final_pose_disagreement_m": 0.13283968641051594,
+  "final_encoder_vs_odometry_yaw_change_deg": 0.009515744921935283,
+  "final_estimated_goal_distance_m": 0.09920964487590032,
+  "final_physical_goal_distance_m": 0.1997332801152259,
+  "offline_reconstructions": {
+    "encoder_distance_with_imu_heading": {
+      "position_error_m": {
+        "mean": 0.05306123366911791,
+        "rms": 0.060292406839013296,
+        "p99_abs": 0.08155216731036685,
+        "max_abs": 0.08169213730869523
+      },
+      "final_position_error_m": 0.0815296869248425
+    },
+    "encoder_distance_with_imu_heading_and_pitch": {
+      "position_error_m": {
+        "mean": 0.012127466387194157,
+        "rms": 0.013372509640370777,
+        "p99_abs": 0.02095424869350574,
+        "max_abs": 0.0214106005711767
+      },
+      "final_position_error_m": 0.0165690095280234
+    }
+  },
+  "limitations": [
+    "Bag receipt time is recorder ROS time, not a measurement of controller callback latency.",
+    "Recorded joint messages and diagnostics do not establish which joint packet the controller consumed.",
+    "Interpolated comparisons use the common timestamp interval; poses are not extrapolated.",
+    "IMU relative yaw comparison aligns the initial heading; simulator orientation accuracy is not a hardware guarantee.",
+    "Wheel position/yaw consistency does not prove translational slip or fix localization.",
+    "Offline pose reconstruction follows the already-executed motion; it does not measure closed-loop performance after a controller change."
+  ]
+}

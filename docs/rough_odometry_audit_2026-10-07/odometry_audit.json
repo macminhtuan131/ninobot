@@ -1,0 +1,56 @@
+{
+  "source": "/home/tuanmac/ninorobot/rl_runs/rough_arrival_control_trace/20261007-205907-107617",
+  "wheel_radius_m": 0.0625,
+  "wheel_separation_m": 0.34273666,
+  "episodes": [
+    {
+      "seed": 10000,
+      "termination": "timeout",
+      "final_estimated_goal_distance_m": 0.048549489811340205,
+      "final_physical_goal_distance_m": 0.3777375303534645,
+      "final_pose_disagreement_m": 0.3836450665330244,
+      "final_heading_disagreement_deg": -1.917020688117022,
+      "max_controller_sample_gap_s": 0.020000000000010232,
+      "fresh_zero_command_samples_outside_physical_goal": 2190,
+      "classification": "premature_estimated_stop",
+      "overlap_seconds": 107.39800000000001,
+      "reconstructed_vs_estimated_position_m": 0.0195671541392791,
+      "reconstructed_vs_estimated_heading_deg": 0.09565958688267479
+    },
+    {
+      "seed": 10002,
+      "termination": "success",
+      "final_estimated_goal_distance_m": 0.09729796207193755,
+      "final_physical_goal_distance_m": 0.19934234212500776,
+      "final_pose_disagreement_m": 0.17838372961441126,
+      "final_heading_disagreement_deg": -12.05515414969526,
+      "max_controller_sample_gap_s": 0.020000000000010232,
+      "fresh_zero_command_samples_outside_physical_goal": 0,
+      "classification": "success",
+      "overlap_seconds": 63.38800000000002,
+      "reconstructed_vs_estimated_position_m": 0.05646195131622727,
+      "reconstructed_vs_estimated_heading_deg": -0.37626759173194235
+    },
+    {
+      "seed": 10001,
+      "termination": "timeout",
+      "final_estimated_goal_distance_m": 0.047937442572953404,
+      "final_physical_goal_distance_m": 0.3401861911899949,
+      "final_pose_disagreement_m": 0.33540553871259493,
+      "final_heading_disagreement_deg": -3.1097342648247257,
+      "max_controller_sample_gap_s": 0.020000000000038654,
+      "fresh_zero_command_samples_outside_physical_goal": 2205,
+      "classification": "premature_estimated_stop",
+      "overlap_seconds": 107.38600000000002,
+      "reconstructed_vs_estimated_position_m": 0.03210628416529045,
+      "reconstructed_vs_estimated_heading_deg": 0.17579755121735866
+    }
+  ],
+  "limitations": [
+    "50 Hz wheel feedback reconstruction approximates the 500 Hz odometry integrator; differences do not prove a software bug.",
+    "Control trace poses are latest sensor snapshots, not exactly synchronized pose measurements.",
+    "Joint message header timestamps and IMU samples were not recorded in these CSVs; sensor latency, pitch effects and slip causes cannot be isolated.",
+    "Geometry uses the current effort_drive defaults; pass overrides if the launch used other values.",
+    "Physical and estimated poses are compared in the common reset frame used by this E1 evaluation."
+  ]
+}

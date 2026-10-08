@@ -58,6 +58,7 @@ def run_preflight(config: dict, timeout: float = 30.0) -> list[str]:
     thread.start()
     passed: list[str] = []
     try:
+        node.verify_drive_controller(config, timeout)
         node.set_world_paused(False, timeout=timeout)
         node.wait_for_sensors(timeout)
         if config["policy_v2"].get("require_terrain_preview", False):
@@ -131,7 +132,8 @@ def run_preflight(config: dict, timeout: float = 30.0) -> list[str]:
         if abs(node.desired_twist()[1]) > 0.0:
             raise RuntimeError("straight command unexpectedly contains angular velocity")
         passed.append("10 stopped reference is zero; path steering is computed from odometry without Nav2"
-                      if routes.enabled else "10 angular velocity is fixed to zero; Nav2 is not required")
+                      if routes.enabled or nav.get('path_feedback', {}).get('enabled', False)
+                      else "10 angular velocity is fixed to zero; Nav2 is not required")
         stale_after = float(nav["stale_seconds"])
 
         def straight_reference_ready() -> bool:

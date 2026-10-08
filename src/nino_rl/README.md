@@ -5,6 +5,25 @@ terrain variants and Laya guide](../../docs/ROUGH_ROUTE_CURRICULUM.md).
 The supervisor script starts E1 first, retains earlier routes while adding
 goal groups, then introduces R1–R3 terrain variation between blocks.
 
+All four Optuna scripts use the
+[fixed physical-arrival and motion-quality objective](../../docs/optuna_objective_2026-10-08/README.md).
+Every evaluated route must achieve at least 95% physical arrival in the sample;
+qualified trials are ranked by time, lateness, physical path error, vibration
+and slip. Objective weights stay fixed when training rewards change. Use a
+new study directory for this objective, and inspect the metric breakdown
+before choosing a policy.
+
+Use the [comparable trial preparation guide](../../docs/comparable_optuna_trials_2026-10-08/README.md)
+to audit the flat/rough starting actors and freeze world/profile, initialization,
+training budget and scenarios. `--prepare-only` creates a plan without training;
+each trial uses a fresh critic/optimizer and an aligned environment-step budget.
+
+[Saved-result reuse and the queued specialist studies](../../docs/saved_optuna_results_2026-10-08/README.md)
+use PI performance as references, enqueue the exact current parameters once,
+and import completed historical PPO scores only after contract/artifact checks.
+`--prepare-study` creates the queue without starting training; historical
+databases are audited read-only.
+
 The current implementation uses a 300-value observation history and three
 continuous actions: straight-reference speed scale, common torque residual and
 differential torque residual. Nav2 is disabled: the baseline is a direct forward

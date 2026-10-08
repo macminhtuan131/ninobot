@@ -1,0 +1,305 @@
+[
+  {
+    "database": "rl_runs/combined_flat_optuna/study.db",
+    "study": "combined_flat_section",
+    "states": {
+      "FAIL": 1
+    },
+    "fixed_objective_present": false,
+    "comparable_contract_present": false,
+    "role": "incompatible diagnostic record; original database preserved",
+    "completed_stored_scores_not_current_objective": []
+  },
+  {
+    "database": "rl_runs/combined_flat_optuna_fresh/study.db",
+    "study": "combined_flat_section",
+    "states": {
+      "COMPLETE": 10,
+      "FAIL": 1
+    },
+    "fixed_objective_present": false,
+    "comparable_contract_present": false,
+    "role": "incompatible diagnostic record; original database preserved",
+    "completed_stored_scores_not_current_objective": [
+      {
+        "number": 0,
+        "stored_score": 7.661493523331003
+      },
+      {
+        "number": 1,
+        "stored_score": 6.5575585968791
+      },
+      {
+        "number": 2,
+        "stored_score": 6.905304283128832
+      },
+      {
+        "number": 3,
+        "stored_score": 7.299484108287206
+      },
+      {
+        "number": 4,
+        "stored_score": 6.904557470150997
+      },
+      {
+        "number": 5,
+        "stored_score": 6.033961894156237
+      },
+      {
+        "number": 6,
+        "stored_score": 6.488012767726313
+      },
+      {
+        "number": 7,
+        "stored_score": 7.685000957905665
+      },
+      {
+        "number": 8,
+        "stored_score": 6.232704037248616
+      },
+      {
+        "number": 9,
+        "stored_score": 5.833325907120091
+      }
+    ]
+  },
+  {
+    "database": "rl_runs/combined_flat_optuna_v2/study.db",
+    "study": "combined_flat_section",
+    "states": {
+      "FAIL": 1
+    },
+    "fixed_objective_present": false,
+    "comparable_contract_present": false,
+    "role": "incompatible diagnostic record; original database preserved",
+    "completed_stored_scores_not_current_objective": []
+  },
+  {
+    "database": "rl_runs/combined_optuna_2day_v1/study.db",
+    "study": "combined_course",
+    "states": {
+      "FAIL": 2,
+      "COMPLETE": 5
+    },
+    "fixed_objective_present": false,
+    "comparable_contract_present": false,
+    "role": "incompatible diagnostic record; original database preserved",
+    "completed_stored_scores_not_current_objective": [
+      {
+        "number": 1,
+        "stored_score": 2.3634157962546296
+      },
+      {
+        "number": 2,
+        "stored_score": 4.447323887562355
+      },
+      {
+        "number": 3,
+        "stored_score": 3.4551300103878386
+      },
+      {
+        "number": 4,
+        "stored_score": 3.1390459510588644
+      },
+      {
+        "number": 5,
+        "stored_score": 4.970671246580902
+      }
+    ]
+  },
+  {
+    "database": "rl_runs/combined_rough_optuna/study.db",
+    "study": "combined_rough_section",
+    "states": {
+      "FAIL": 2
+    },
+    "fixed_objective_present": false,
+    "comparable_contract_present": false,
+    "role": "incompatible diagnostic record; original database preserved",
+    "completed_stored_scores_not_current_objective": []
+  },
+  {
+    "database": "rl_runs/combined_rough_optuna_fresh/study.db",
+    "study": "combined_rough_section",
+    "states": {
+      "COMPLETE": 16,
+      "FAIL": 2
+    },
+    "fixed_objective_present": false,
+    "comparable_contract_present": false,
+    "role": "incompatible diagnostic record; original database preserved",
+    "completed_stored_scores_not_current_objective": [
+      {
+        "number": 0,
+        "stored_score": 42.98620339037968
+      },
+      {
+        "number": 1,
+        "stored_score": 34.69045474136692
+      },
+      {
+        "number": 2,
+        "stored_score": 17.990390008513895
+      },
+      {
+        "number": 3,
+        "stored_score": 93.12324237165178
+      },
+      {
+        "number": 4,
+        "stored_score": 68.1170602472894
+      },
+      {
+        "number": 5,
+        "stored_score": 43.078346449862686
+      },
+      {
+        "number": 6,
+        "stored_score": 93.04448052569032
+      },
+      {
+        "number": 7,
+        "stored_score": 51.38938599216699
+      },
+      {
+        "number": 8,
+        "stored_score": 43.11892534225173
+      },
+      {
+        "number": 9,
+        "stored_score": 51.4053218173789
+      },
+      {
+        "number": 10,
+        "stored_score": 59.77862469198264
+      },
+      {
+        "number": 12,
+        "stored_score": 68.0740641695047
+      },
+      {
+        "number": 13,
+        "stored_score": 84.70062591053102
+      },
+      {
+        "number": 14,
+        "stored_score": 42.94954287920517
+      },
+      {
+        "number": 15,
+        "stored_score": 26.317818747322704
+      },
+      {
+        "number": 16,
+        "stored_score": 17.969668863449943
+      }
+    ]
+  },
+  {
+    "database": "rl_runs/flat_curriculum_optuna/study.db",
+    "study": "combined_flat_section",
+    "states": {
+      "COMPLETE": 8,
+      "FAIL": 1
+    },
+    "fixed_objective_present": false,
+    "comparable_contract_present": false,
+    "role": "incompatible diagnostic record; original database preserved",
+    "completed_stored_scores_not_current_objective": [
+      {
+        "number": 0,
+        "stored_score": 17.9664000504985
+      },
+      {
+        "number": 2,
+        "stored_score": 9.59340388764233
+      },
+      {
+        "number": 3,
+        "stored_score": 34.5331273321978
+      },
+      {
+        "number": 4,
+        "stored_score": 9.336426090144396
+      },
+      {
+        "number": 5,
+        "stored_score": 9.59767201087963
+      },
+      {
+        "number": 6,
+        "stored_score": 43.06549153256916
+      },
+      {
+        "number": 7,
+        "stored_score": 17.910422534450483
+      },
+      {
+        "number": 8,
+        "stored_score": 9.605129131931765
+      }
+    ]
+  },
+  {
+    "database": "rl_runs/rocky_optuna/study.db",
+    "study": "rocky_ppo",
+    "states": {
+      "COMPLETE": 12,
+      "FAIL": 2,
+      "RUNNING": 1
+    },
+    "fixed_objective_present": false,
+    "comparable_contract_present": false,
+    "role": "incompatible diagnostic record; original database preserved",
+    "completed_stored_scores_not_current_objective": [
+      {
+        "number": 0,
+        "stored_score": 80.8897787750148
+      },
+      {
+        "number": 1,
+        "stored_score": 0.9466771203689129
+      },
+      {
+        "number": 2,
+        "stored_score": 0.8910858818725828
+      },
+      {
+        "number": 3,
+        "stored_score": 0.8974030100114235
+      },
+      {
+        "number": 4,
+        "stored_score": 0.9078269005040968
+      },
+      {
+        "number": 5,
+        "stored_score": 0.9829271502741732
+      },
+      {
+        "number": 6,
+        "stored_score": 0.9820117836950882
+      },
+      {
+        "number": 8,
+        "stored_score": 0.8899984215431017
+      },
+      {
+        "number": 11,
+        "stored_score": 20.987048576461383
+      },
+      {
+        "number": 12,
+        "stored_score": 0.8967114266658366
+      },
+      {
+        "number": 13,
+        "stored_score": 0.9741985505577626
+      },
+      {
+        "number": 14,
+        "stored_score": 100.99232436753638
+      }
+    ]
+  }
+]

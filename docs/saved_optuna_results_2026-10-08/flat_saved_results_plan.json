@@ -1,0 +1,413 @@
+{
+  "candidate": {
+    "revision": "saved_results_v1",
+    "params": {
+      "reward_v2.progress_weight": 11.734693991937018,
+      "reward_v2.lateral_weight": 0.349864173659184,
+      "reward_v2.heading_weight": 0.46099338892672503,
+      "reward_v2.slip_weight": 0.217492906207788,
+      "reward_v2.goal_braking_weight": 0.18825124306020435,
+      "learning_rate": 6.781612720853196e-05,
+      "gamma": 0.997,
+      "n_steps": 1024,
+      "ent_coef": 0.0007249253652592024
+    },
+    "distributions": {
+      "reward_v2.progress_weight": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 7.0,
+          "high": 15.0,
+          "log": false
+        }
+      },
+      "reward_v2.lateral_weight": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 0.3,
+          "high": 0.8,
+          "log": false
+        }
+      },
+      "reward_v2.heading_weight": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 0.15,
+          "high": 0.5,
+          "log": false
+        }
+      },
+      "reward_v2.slip_weight": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 0.05,
+          "high": 0.25,
+          "log": false
+        }
+      },
+      "reward_v2.goal_braking_weight": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 0.08,
+          "high": 0.3,
+          "log": false
+        }
+      },
+      "learning_rate": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 1e-05,
+          "high": 7e-05,
+          "log": true
+        }
+      },
+      "gamma": {
+        "name": "CategoricalDistribution",
+        "attributes": {
+          "choices": [
+            0.995,
+            0.997,
+            0.999
+          ]
+        }
+      },
+      "n_steps": {
+        "name": "CategoricalDistribution",
+        "attributes": {
+          "choices": [
+            1024,
+            2048
+          ]
+        }
+      },
+      "ent_coef": {
+        "name": "FloatDistribution",
+        "attributes": {
+          "step": null,
+          "low": 0.0001,
+          "high": 0.003,
+          "log": true
+        }
+      }
+    },
+    "base_config_sha256": "640b5545e817999e33c639934299d8ecd60ce822978ee3a82f5b143736ea8d0b",
+    "meaning": "parameters queued for new training; no inherited score"
+  },
+  "pi_references": [
+    {
+      "summary": "/home/tuanmac/ninorobot/rl_runs/flat_pi_tracking_slow_complete/20261008-validation/summary.json",
+      "role": "PI reference only; never an Optuna trial",
+      "baseline_speed_scale": 0.78,
+      "episodes": 24,
+      "success_rate": 1.0,
+      "on_time_success_rate": 0.125,
+      "metrics": {
+        "path_rmse_m": {
+          "mean": 0.051540423733784646,
+          "std": 0.013672341859972043,
+          "min": 0.005287015375446695,
+          "max": 0.06281681296461203
+        },
+        "cross_track_rmse_m": {
+          "mean": 0.0515404233071457,
+          "std": 0.013672342777722302,
+          "min": 0.005287015375446695,
+          "max": 0.06281681296461203
+        },
+        "path_p95_m": {
+          "mean": 0.08850841241120273,
+          "std": 0.02136489553103264,
+          "min": 0.009851536513459668,
+          "max": 0.1049693671131011
+        },
+        "path_max_m": {
+          "mean": 0.0929317673211142,
+          "std": 0.022527845030690982,
+          "min": 0.010297366682878902,
+          "max": 0.1117579653047013
+        },
+        "heading_rmse_deg": {
+          "mean": 4.1192478210325945,
+          "std": 1.1125577684072132,
+          "min": 0.2667367059635999,
+          "max": 5.1229482542660625
+        },
+        "endpoint_error_m": {
+          "mean": 0.19328754347703223,
+          "std": 0.0036237839794838566,
+          "min": 0.1869889116735528,
+          "max": 0.19915267587319588
+        },
+        "final_progress_fraction": {
+          "mean": 0.9720266696507801,
+          "std": 0.001105090465752255,
+          "min": 0.9694927871520967,
+          "max": 0.9741129278676652
+        },
+        "backtracking_m": {
+          "mean": 0.023935344912591083,
+          "std": 0.040677819557348775,
+          "min": 0.0,
+          "max": 0.1401785089586043
+        },
+        "time_seconds": {
+          "mean": 22.354166666669922,
+          "std": 0.29436254101863213,
+          "min": 21.700000000004934,
+          "max": 22.999999999998693
+        },
+        "rms_vertical_acceleration_m_s2": {
+          "mean": 2.1126028192857524,
+          "std": 0.7413771399991355,
+          "min": 0.8226468365647998,
+          "max": 3.509515224596098
+        },
+        "peak_vertical_acceleration_m_s2": {
+          "mean": 56.54183565927886,
+          "std": 23.349587849723417,
+          "min": 13.976128573162429,
+          "max": 103.35593199432012
+        },
+        "rms_wheel_slip": {
+          "mean": 0.19236251509716107,
+          "std": 0.020081329596863654,
+          "min": 0.15918548903672014,
+          "max": 0.23269825509230074
+        },
+        "rms_wheel_torque_nm": {
+          "mean": 0.4518900108062249,
+          "std": 0.03323926505473074,
+          "min": 0.35876174602947214,
+          "max": 0.49981008360089363
+        },
+        "challenge_choice_fraction": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "challenge_clear_fraction": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "truth_path_rmse_m": {
+          "mean": 0.051542292082459196,
+          "std": 0.013648942811810293,
+          "min": 0.005285326055853752,
+          "max": 0.06274258237544368
+        },
+        "truth_path_p95_m": {
+          "mean": 0.08849040830336441,
+          "std": 0.02131792488444586,
+          "min": 0.00978318080678735,
+          "max": 0.10448171526557992
+        },
+        "truth_endpoint_error_m": {
+          "mean": 0.1939737156152946,
+          "std": 0.003782640860775006,
+          "min": 0.1881860012560908,
+          "max": 0.19987620567175704
+        },
+        "truth_heading_rmse_deg": {
+          "mean": 4.124690767775346,
+          "std": 1.1136350126992867,
+          "min": 0.26673826538409073,
+          "max": 5.12586005787967
+        },
+        "odom_truth_position_error_m": {
+          "mean": 0.0011124671365311913,
+          "std": 0.0005853863134600593,
+          "min": 0.00019520419291659864,
+          "max": 0.0024035164772016294
+        }
+      },
+      "per_route": null,
+      "benchmark_id": "658a669289ad1e30fc0b8987db24bce9b848869e288c935ea62967bb4ef1f51a",
+      "summary_sha256": "2b92f25c7b47426c4fb13fdfa35348bd3e3e44bcbd4e9a47336a53064d9e89fe",
+      "task_and_scenarios_match": true,
+      "objective_breakdown": {
+        "score": 11.454692292512402,
+        "arrival_feasible": true,
+        "minimum_route_arrival_rate": 1,
+        "quality_cost": 7.730046818050895,
+        "terms": {
+          "duration": 1.0160984848486327,
+          "lateness": 0.8926136363637561,
+          "path_error": 0.3693700681248788,
+          "vibration": 0.7042009397619176,
+          "slip": 0.9618125754858055
+        },
+        "per_route": {
+          "straight": {
+            "episodes": 24,
+            "physical_arrival_rate": 1,
+            "terms": {
+              "duration": 1.0160984848486327,
+              "lateness": 0.8926136363637561,
+              "path_error": 0.3693700681248788,
+              "vibration": 0.7042009397619176,
+              "slip": 0.9618125754858055
+            }
+          }
+        },
+        "objective_sha256": "147c7ba20dd8b2d9979bcd80126457518408fd26746622c66a2ad294a30f9de6",
+        "objective_revision": "physical_arrival_quality_v1"
+      },
+      "files": {
+        "/home/tuanmac/ninorobot/rl_runs/flat_pi_tracking_slow_complete/20261008-validation/summary.json": "2b92f25c7b47426c4fb13fdfa35348bd3e3e44bcbd4e9a47336a53064d9e89fe",
+        "/home/tuanmac/ninorobot/rl_runs/flat_pi_tracking_slow_complete/20261008-validation/config.yaml": "75b285b12308edc91c17e7acd98fd2ac05a03022a2eb6f935ff6d2e00d1d1fe6",
+        "/home/tuanmac/ninorobot/rl_runs/flat_pi_tracking_slow_complete/20261008-validation/episodes.csv": "3b62e20374eae14b4793db3c1a14ea0a59d8b03acc3e64b5f1145049015a0ba2"
+      }
+    },
+    {
+      "summary": "/home/tuanmac/ninorobot/rl_runs/flat_pi_tracking_normal_targeted/20261008-110002-871004/summary.json",
+      "role": "PI reference only; never an Optuna trial",
+      "baseline_speed_scale": 1.0,
+      "episodes": 4,
+      "success_rate": 1.0,
+      "on_time_success_rate": 1.0,
+      "metrics": {
+        "path_rmse_m": {
+          "mean": 0.04688800114904544,
+          "std": 0.0005598975786716536,
+          "min": 0.04625199004422579,
+          "max": 0.04778387584421213
+        },
+        "cross_track_rmse_m": {
+          "mean": 0.04688800114904544,
+          "std": 0.0005598975786716536,
+          "min": 0.04625199004422579,
+          "max": 0.04778387584421213
+        },
+        "path_p95_m": {
+          "mean": 0.08041914774492093,
+          "std": 0.0018894729687876882,
+          "min": 0.07721797162457653,
+          "max": 0.08210853562609402
+        },
+        "path_max_m": {
+          "mean": 0.08345081013226895,
+          "std": 0.0025227127336875745,
+          "min": 0.0795497251942191,
+          "max": 0.08658405792204416
+        },
+        "heading_rmse_deg": {
+          "mean": 3.834630315670699,
+          "std": 0.3638892067196094,
+          "min": 3.457312718128576,
+          "max": 4.39897915274794
+        },
+        "endpoint_error_m": {
+          "mean": 0.1926538032546931,
+          "std": 0.004118323248549812,
+          "min": 0.1889012378620567,
+          "max": 0.19897795248657688
+        },
+        "final_progress_fraction": {
+          "mean": 0.9717407376160347,
+          "std": 0.0007339501137249658,
+          "min": 0.9706629421365731,
+          "max": 0.9727355012564662
+        },
+        "backtracking_m": {
+          "mean": 0.015934864957588002,
+          "std": 0.007157038133443453,
+          "min": 0.009819265951170664,
+          "max": 0.028109096933174094
+        },
+        "time_seconds": {
+          "mean": 17.499999999994486,
+          "std": 0.07071067812566466,
+          "min": 17.399999999984175,
+          "max": 17.600000000004002
+        },
+        "rms_vertical_acceleration_m_s2": {
+          "mean": 2.542529303361939,
+          "std": 1.1643210475212156,
+          "min": 0.7926776819286747,
+          "max": 3.9497722937649966
+        },
+        "peak_vertical_acceleration_m_s2": {
+          "mean": 52.05922927024395,
+          "std": 26.633536788513048,
+          "min": 7.071845030452442,
+          "max": 76.62449002456368
+        },
+        "rms_wheel_slip": {
+          "mean": 0.16146697107692531,
+          "std": 0.011614676361959982,
+          "min": 0.1479067647556515,
+          "max": 0.17684138904121308
+        },
+        "rms_wheel_torque_nm": {
+          "mean": 0.43730570380915307,
+          "std": 0.003816221842053085,
+          "min": 0.43090146738386426,
+          "max": 0.4403725854442727
+        },
+        "challenge_choice_fraction": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "challenge_clear_fraction": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "truth_path_rmse_m": {
+          "mean": 0.046786742641987525,
+          "std": 0.0005080742780216893,
+          "min": 0.04617586473305118,
+          "max": 0.047579959306975214
+        },
+        "truth_path_p95_m": {
+          "mean": 0.08019227382418108,
+          "std": 0.001905154235806306,
+          "min": 0.0771409945707409,
+          "max": 0.08216923462126229
+        },
+        "truth_endpoint_error_m": {
+          "mean": 0.19227082125640557,
+          "std": 0.004682729803043867,
+          "min": 0.18812635443646727,
+          "max": 0.19956038542058738
+        },
+        "truth_heading_rmse_deg": {
+          "mean": 3.843964158275499,
+          "std": 0.35778061731413685,
+          "min": 3.4860071759861606,
+          "max": 4.403816912815451
+        },
+        "odom_truth_position_error_m": {
+          "mean": 0.0008076936909249614,
+          "std": 0.00017979632445313463,
+          "min": 0.0006597834381391178,
+          "max": 0.0011002918456551668
+        }
+      },
+      "per_route": null,
+      "benchmark_id": "658a669289ad1e30fc0b8987db24bce9b848869e288c935ea62967bb4ef1f51a",
+      "summary_sha256": "90df756ddf796ac93156e0f7ff7441653a8c525498ce1ee3cd7dbd94da339068",
+      "task_and_scenarios_match": false,
+      "diagnostic_reason": "Evaluation scenarios/count differ"
+    }
+  ],
+  "history_sources": [
+    "/home/tuanmac/ninorobot/rl_runs/combined_flat_optuna_fresh",
+    "/home/tuanmac/ninorobot/rl_runs/combined_flat_optuna_v2",
+    "/home/tuanmac/ninorobot/rl_runs/combined_flat_optuna",
+    "/home/tuanmac/ninorobot/rl_runs/flat_curriculum_optuna"
+  ],
+  "history_policy": "read-only audit; import only fully matching completed PPO trials"
+}

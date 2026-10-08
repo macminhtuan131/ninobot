@@ -25,6 +25,19 @@ def training_contract(config):
             "additive_torque": False,
             "history": "60 values; zero residual torque; previous speed/zero/yaw slots",
         }
+    if config.get("odometry_assistance", {}).get("enabled", False):
+        contract["revision"] = 35
+        contract["estimated_pose_source"] = "imu_encoder_odometry"
+        if config['odometry_assistance'].get('corridor_lidar', {}).get('enabled', False):
+            contract['estimated_pose_source'] = 'imu_encoder_lidar_odometry'
+    if config.get('navigation', {}).get('path_feedback', {}).get('enabled', False):
+        if config.get('action_mode') != 'speed_yaw_reference':
+            raise ValueError('Flat path feedback requires the two-action speed/yaw reference mode')
+        contract['revision'] = 36
+        contract['action_interface']['outputs'] = ['speed_scale', 'yaw_residual']
+        contract['action_interface']['yaw_baseline'] = 'estimated_pose_pure_pursuit'
+    if config.get('drive_controller', {}).get('parameters'):
+        contract['revision'] = 37
     return contract
 
 

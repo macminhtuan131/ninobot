@@ -1,0 +1,14 @@
+# Sustained bounded wheel PI correction at reduced speed. New controller contract.
+extends: combined_flat_feedback_pilot.yaml
+drive_controller:
+  parameters:
+    pi_integrator_profile: conditional_v1
+    velocity_kp: 0.30
+    velocity_ki: 0.10
+    integral_limit: 4.0
+    max_wheel_torque: 4.0
+    max_velocity_control_torque: 4.0
+    max_wheel_acceleration: 12.0
+    max_effort_rate: 10.0
+    wheel_radius: 0.0625
+    wheel_separation: 0.34273666

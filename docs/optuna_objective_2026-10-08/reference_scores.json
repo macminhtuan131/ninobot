@@ -1,0 +1,88 @@
+{
+  "flat": {
+    "reference_run": "rl_runs/flat_pi_tracking_slow_complete/20261008-validation",
+    "reference_kind": "PI evaluation, not an Optuna trial",
+    "result": {
+      "score": 11.454692292512402,
+      "arrival_feasible": true,
+      "minimum_route_arrival_rate": 1,
+      "quality_cost": 7.730046818050895,
+      "terms": {
+        "duration": 1.0160984848486327,
+        "lateness": 0.8926136363637561,
+        "path_error": 0.3693700681248788,
+        "vibration": 0.7042009397619176,
+        "slip": 0.9618125754858055
+      },
+      "per_route": {
+        "straight": {
+          "episodes": 24,
+          "physical_arrival_rate": 1,
+          "terms": {
+            "duration": 1.0160984848486327,
+            "lateness": 0.8926136363637561,
+            "path_error": 0.3693700681248788,
+            "vibration": 0.7042009397619176,
+            "slip": 0.9618125754858055
+          }
+        }
+      },
+      "objective_sha256": "147c7ba20dd8b2d9979bcd80126457518408fd26746622c66a2ad294a30f9de6",
+      "objective_revision": "physical_arrival_quality_v1"
+    }
+  },
+  "rough": {
+    "reference_run": "rl_runs/rough_e1_n1_s1_route_pi/20261008-104043-455255",
+    "reference_kind": "PI evaluation, not an Optuna trial",
+    "result": {
+      "score": -2097.762385345333,
+      "arrival_feasible": false,
+      "minimum_route_arrival_rate": 0,
+      "quality_cost": 43.6904473884393,
+      "terms": {
+        "duration": 3.4665432098765567,
+        "lateness": 4.0,
+        "path_error": 4.2241162058139,
+        "vibration": 3.679315114246855,
+        "slip": 3.648124241060292
+      },
+      "per_route": {
+        "E1": {
+          "episodes": 4,
+          "physical_arrival_rate": 1,
+          "terms": {
+            "duration": 0.39962962962967086,
+            "lateness": 0.0,
+            "path_error": 0.1723486174416994,
+            "vibration": 1.0379453427405652,
+            "slip": 0.9443727231808757
+          }
+        },
+        "N1": {
+          "episodes": 4,
+          "physical_arrival_rate": 0,
+          "terms": {
+            "duration": 5.0,
+            "lateness": 6.0,
+            "path_error": 6.25,
+            "vibration": 5.0,
+            "slip": 5.0
+          }
+        },
+        "S1": {
+          "episodes": 4,
+          "physical_arrival_rate": 0,
+          "terms": {
+            "duration": 5.0,
+            "lateness": 6.0,
+            "path_error": 6.25,
+            "vibration": 5.0,
+            "slip": 5.0
+          }
+        }
+      },
+      "objective_sha256": "d27475cb77c19249f5c651167b1f45e9daed3f42f9edac877447c0a1aa5e9cd5",
+      "objective_revision": "physical_arrival_quality_v1"
+    }
+  }
+}

@@ -555,3 +555,8 @@ def validate_action_mode(model, config):
     if saved.get("action_mode", "wheel_torque") != expected:
         raise ValueError("Checkpoint action mode differs from config; pair the model "
                          "with its own config. Changing action meanings requires a new compatible actor.")
+    old_feedback = saved.get('navigation', {}).get('path_feedback', {}).get('enabled', False)
+    new_feedback = config.get('navigation', {}).get('path_feedback', {}).get('enabled', False)
+    if bool(old_feedback) != bool(new_feedback):
+        raise ValueError('Checkpoint yaw semantics differ: absolute yaw versus feedback residual. '
+                         'Use explicit speed/trunk initialization with a fresh yaw head.')

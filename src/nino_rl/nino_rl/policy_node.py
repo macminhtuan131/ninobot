@@ -21,6 +21,7 @@ from nino_rl.core import (
 )
 from nino_rl.ros_interface import RosRobotInterface
 from nino_rl.task_geometry import approach_speed, goal_overshot, task_succeeded
+from nino_rl.flat_feedback import flat_motion_command
 from nino_rl.routes import OrderedPathTracker, RouteSet, route_command, route_budget
 from nino_rl.control_v2 import (
     BASELINE_ACTION, STOP_ACTION, ObservationHistory, make_observation,
@@ -54,6 +55,7 @@ class PolicyNode(RosRobotInterface):
             node_name="nino_rl_policy",
             cmd_vel_topic=str(self.config["navigation"].get("cmd_vel_topic", "/cmd_vel")),
             terrain_height_threshold_m=float(self.config["policy_v2"].get("terrain_height_threshold_m", .006)),
+            odometry_assistance=self.config.get("odometry_assistance"),
         )
         self.imu_includes_gravity = bool(self.config["policy_v2"]["imu_includes_gravity"])
         self.history = ObservationHistory(self.config["policy_v2"]["history_frames"])
@@ -138,7 +140,8 @@ class PolicyNode(RosRobotInterface):
             previous = (self.previous_action[[0, 2]]
                         if action_size(self.config) == 2 else self.previous_action)
             _, _, previous_yaw = decode_control(previous, self.config)
-            self.publish_motion_command(speed, previous_yaw)
+            linear, angular = flat_motion_command(state, self.path, tracking, self.config, previous_yaw)
+            self.publish_motion_command(linear, angular)
         else:
             self.publish_straight_command(speed)
         elapsed = self.get_clock().now().nanoseconds * 1e-9 - self.path_started_at
@@ -229,7 +232,8 @@ class PolicyNode(RosRobotInterface):
         scale, torque, yaw_reference = decode_control(
             action, self.config, path_remaining=tracking.distance_remaining)
         if self.config.get("action_mode", "wheel_torque") in ("yaw_reference", "speed_yaw_reference"):
-            self.publish_motion_command(speed, yaw_reference)
+            linear, angular = flat_motion_command(state, self.path, tracking, self.config, yaw_reference)
+            self.publish_motion_command(linear, angular)
         self.publish_control(scale, float(torque[0]), float(torque[1]))
         self.previous_action = history_action(action, self.config)
 

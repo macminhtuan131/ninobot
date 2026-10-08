@@ -213,11 +213,13 @@ class TestActuator(unittest.TestCase):
     """Execute actual production controller methods with a fake ROS clock/I/O."""
     def setUp(self):
         from nino_control.kinematics import clamp, wheel_angular_targets, limit_effort_commands
+        from nino_control.velocity_pi import conditional_integral
         source = ROOT / "src/nino_control/nino_control/effort_drive.py"
         cls = next(x for x in ast.parse(source.read_text()).body if isinstance(x, ast.ClassDef))
         methods = [x for x in cls.body if isinstance(x, ast.FunctionDef)
                    and x.name in ("_control_update", "_control_v2_callback", "_torque_callback")]
         namespace = dict(isfinite=isfinite, clamp=clamp,
+                         conditional_integral=conditional_integral,
                          wheel_angular_targets=wheel_angular_targets,
                          limit_effort_commands=limit_effort_commands,
                          Float64MultiArray=SimpleNamespace)
@@ -235,6 +237,7 @@ class TestActuator(unittest.TestCase):
             error_integral=[0., 0.], target_velocity=[0., 0.], wheel_velocity=[0., 0.],
             wheel_radius=.0625, wheel_separation=.34273666, max_wheel_acceleration=100.,
             max_wheel_speed=12., kp=.3, ki=.1, integral_limit=4., max_velocity_torque=2.,
+            pi_integrator_profile="legacy",
             max_torque=12., override_torque=[0., 0.], applied_effort=[0., 0.],
             max_effort_rate=100., torque_status_publish_rate=50., last_torque_status_publish_ns=self.now,
         )
@@ -270,6 +273,25 @@ class TestActuator(unittest.TestCase):
         self.update()
         np.testing.assert_allclose(self.commands[-1], [0, 0])
 
+    def test_corrected_profile_retains_integral_at_steady_reduced_speed(self):
+        self.drive.pi_integrator_profile = "conditional_v1"
+        self.command([.5, 0., 0.])
+        self.drive.filtered_speed_scale = .5
+        self.drive.error_integral = [2., 2.]
+        self.drive.wheel_velocity = [4., 4.]
+        self.update()
+        np.testing.assert_allclose(self.drive.error_integral, [2., 2.])
+        np.testing.assert_allclose(self.commands[-1], [.2, .2])
+
+    def test_corrected_watchdog_discards_accumulated_integral(self):
+        self.drive.pi_integrator_profile = "conditional_v1"
+        self.command([.5, 0., 0.])
+        self.drive.error_integral = [2., -2.]
+        self.drive.last_torque_ns = self.now - 300_000_000
+        self.update()
+        np.testing.assert_allclose(self.drive.error_integral, [0., 0.])
+        np.testing.assert_allclose(self.commands[-1], [0., 0.])
+
     def test_legacy_command_cannot_override_v2_ownership(self):
         self.command([0, 0, 0])
         self.methods["_torque_callback"](self.drive, SimpleNamespace(data=[5., 5.]))
@@ -300,6 +322,8 @@ class TestEnvironmentContract(unittest.TestCase):
             make_observation=make_observation, compute_reward=compute_reward, history_action=history_action,
             goal_reached=goal_reached, goal_overshot=goal_overshot, task_succeeded=task_succeeded, objective_state=objective_state, is_wrong_direction=is_wrong_direction,
             metrics_dict=metrics_dict, wheel_slip_ratios=wheel_slip_ratios)
+        from nino_rl.flat_feedback import flat_motion_command
+        namespace['flat_motion_command'] = flat_motion_command
         exec(compile(ast.Module(body=[step], type_ignores=[]), str(source), "exec"), namespace)
         state = RobotState(odom_stamp_s=.1, ground_truth_stamp_s=.1,
                            lidar_stamp_s=.8 if (lidar_stale or lidar_sim_lag) else 1.0,
@@ -319,6 +343,7 @@ class TestEnvironmentContract(unittest.TestCase):
             return steps * .005
 
         ros = SimpleNamespace(
+            estimated_pose_source="wheel_odometry",
             publish_control=lambda *args: commands.append(args),
             publish_straight_command=lambda speed: None,
             advance_world=advance_world,

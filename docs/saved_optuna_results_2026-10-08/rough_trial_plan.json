@@ -1,0 +1,464 @@
+{
+  "trials": {
+    "revision": "comparable_trials_v1",
+    "world": "/home/tuanmac/ninorobot/rl_runs/rough_terrain_bank_v1/worlds/original.sdf",
+    "world_name": "combined_rough_section",
+    "assets": {
+      "/home/tuanmac/ninorobot/rl_runs/rough_terrain_bank_v1/worlds/original.sdf": "0ff01d587e0be97b52a367389738a76d81f0d5ecf3d5bc8c1ceb35c7eefbd291",
+      "/home/tuanmac/ninorobot/rl_runs/rough_terrain_bank_v1/meshes/original.stl": "d1cc2e5a4605119214bee16ccfb288633f8a0d12ee8f20cedb5c10404dcb4f31",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/__init__.py": "f13de39e4c7e548e198ed309d706683818ab5583d12be6b4d046923c097b6ff1",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/assisted_odometry.py": "f4a648e8c7677dbb25ec356327dcb228e2f43b96d0ede3580c89fe2d46fb9c82",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/check_cuda.py": "ac27f114837f82ad48522043cf47ea7e11f4caff2468513adccca7fdf8c320c4",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/control_v2.py": "f2b6e78aa6535861a402365e47d3f43a76168e2f920aeaf7009bebf7e308dd1c",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/core.py": "dc0668707c6b8fda40519aeccd317ff665227a964e5fa8e8e953c256639b1c2a",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/corridor_odometry.py": "897b9bb5367d86115a1e83240cbeaa54ab717068e719bafed5476286419e0ef2",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/evaluate.py": "11911e654a076f3a15e7bc910ab9a42f944244ae0918c2dbe1a404691b36eaed",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/evaluate_baseline.py": "c3ee25ba6977392b6d71e411a8f0ae5ff43cf22f351ff6aee55d9a5c84f76b56",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/evaluation.py": "9c8525769399d70856a83d8a26a17a2a0e78d23b18c4378c24941edd41edac4a",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/flat_curriculum.py": "03901d5b4e4fb6dc64e6e9f43f840cb7415d87547fdf18c0045d0197d386c957",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/flat_feedback.py": "48f7cb1393465093cb9d3daf4d23d623c37dc0b43d2bcecc83f48b5dc5431d28",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/model_transfer.py": "c5ba5273df4c136f62aec8f4fd37d91fa345be5af2bc29c20e36011eef1e9750",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/policies.py": "f7437f0efd37539f75e371638b1f0a6186d32c69941fcf18ae90265c98ecb06c",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/policy_node.py": "19f741cdce59a46f133e6a9d5cdd123e71c58113d52e482735093e4d4c8b0866",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/preflight.py": "f64e10f06ee399f29e5f530d670227443c6cf9b4e52af290e888cf289a05de00",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/ros_env.py": "c4438f6f529ea78af5b8b0ba16325ef2cfcce4b4bea1db7e3b8f3e431ae3666f",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/ros_interface.py": "8cdb10dd642e97bdb5ac143ad628ab0c5102a5263bb76dc6d255b419bc340ffc",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/rough_curriculum.py": "5ec3103b635f0ebaceaa2eb57dbf91260a84eb0270c5420cb05422bc4becfb55",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/routes.py": "d7c4cab8fc0f15e06ce1b120f3d03917e0e92025c922c0b7f8a62e0e5f9cf201",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/task_geometry.py": "755e55076d14346bb0f4e1d7baeeef5fefa4d6b6964c155b5916e48d6bbb9712",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/timing.py": "fcbffa7383d509d41697a6bdafb02bb07d04d6b89cda80260d7cab6366c14611",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/train.py": "e0497790090a4cb517ce6513de38a7452cb5307f7912712671736d4bcd53886a",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/training_contract.py": "902f2010d3e35ef7006992cb6a39b7431f46eb5cf11c0cd20974980d251dcb82",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/trajectory_metrics.py": "b62363e0c3c959535b887b0e6c87e7c5f88bebdea8805039c84a69f88aab3dec",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/tuning_history.py": "ddc711d759495860259a74d9494576fccdaf672ce11dc9a2b3d98f535ae97f0e",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/tuning_objective.py": "e006ff01907bb89fa27997bd1686c81248a58e5618957562bc87983b6db789cf",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/tuning_trials.py": "659ebc7b310ebc88ffa3196b02955a1183893feb6b0f016ae06f555f1f55ab05",
+      "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/wait_for_sim.py": "bce73e5d04971d3d380cbdcb68abdb735cf0c93f257e08c7f249f7f0f5b0f1b9",
+      "/home/tuanmac/ninorobot/src/nino_control/nino_control/__init__.py": "eebe3e01e2946ff9772fb66610cd07e1eb79d84fd6cc81620d8d2d0f3b16b988",
+      "/home/tuanmac/ninorobot/src/nino_control/nino_control/effort_drive.py": "c6f2f84dc4fe0df46e1538c24b73e1d96b676f9d19bb89943edeed8c552a7e88",
+      "/home/tuanmac/ninorobot/src/nino_control/nino_control/kinematics.py": "4676fda60d947d6e75777cf0cc7e55b94080bd9899450f6d68ceadecba6eb7d6",
+      "/home/tuanmac/ninorobot/src/nino_control/nino_control/sensor_monitor.py": "a9d4f9f1b0418df88f20dd3a6c4fc8cbd3fb3c21e4a64052a61c827bd3d2f619",
+      "/home/tuanmac/ninorobot/src/nino_control/nino_control/velocity_pi.py": "76196fec937af3c3d4cb45016fa172246f75fba5f1e711ea787cc36b48c4618b",
+      "/home/tuanmac/ninorobot/src/nino_description/urdf/nino.urdf.xacro": "3cad35445b3eef066f701387cd6b22cdcb0baf1cbd85526895e5c93dd4db8f4d",
+      "/home/tuanmac/ninorobot/src/nino_description/meshes/base_link.STL": "7747d4e7b19f850261eed80cb9b9d531815067049dfa96f387c3e8e2ce34ff65",
+      "/home/tuanmac/ninorobot/src/nino_description/meshes/caster_bracket_front1.STL": "db16e864cb27d8ffc2047ac282d84db30d36806fba976816c973599ead76819b",
+      "/home/tuanmac/ninorobot/src/nino_description/meshes/caster_wheel_front.STL": "60134f0324ce19592f0f56e570014ca9d7d08662546be6c726857221ae284281",
+      "/home/tuanmac/ninorobot/src/nino_description/meshes/left_wheel_link.STL": "f2dc8e80be42ef9ad9146b968f5d42ee8397c8912ed3cb1bca17fe34ebc7ed3b",
+      "/home/tuanmac/ninorobot/src/nino_description/meshes/right_wheel_link.STL": "c129d1137ee218c7810c9ec150bee8a26c047ea31ab2d776618532201fa89bbd",
+      "/home/tuanmac/ninorobot/src/nino_description/config/bridge.yaml": "33c1388bf0c4237b4327eebaf6381c48cb08cad126ae8d61b6a908134582e9af",
+      "/home/tuanmac/ninorobot/src/nino_rl/scripts/tune_split_optuna.py": "d892e5d57fbee5d02dd4d6edbfdc8a68d336ad1b4c57d44372c68c6d5601ce87"
+    },
+    "fixed_training_config": {
+      "terrain_geometry_id": "rough_diverse_v5",
+      "seed": 42,
+      "control_hz": 10.0,
+      "max_episode_seconds": 60.0,
+      "target_finish_seconds": 45.0,
+      "max_wheel_torque_nm": 2.0,
+      "goal_tolerance_m": 0.2,
+      "goal_overshoot_limit_m": 0.3,
+      "goal_capture_on_crossing": false,
+      "goal_require_stopped": false,
+      "goal_lateral_tolerance_m": 0.25,
+      "goal_heading_tolerance_deg": 20.0,
+      "goal_max_speed_m_s": 0.1,
+      "goal_max_yaw_rate_rad_s": 0.3,
+      "goal_max_tilt_deg": 10.0,
+      "wrong_direction_heading_deg": 90.0,
+      "wrong_direction_reverse_speed_m_s": 0.1,
+      "wrong_direction_grace_seconds": 3.0,
+      "wrong_direction_hold_seconds": 1.0,
+      "off_path_limit_m": 1.0,
+      "off_path_hold_seconds": 1.0,
+      "navigation_invalid_hold_seconds": 2.0,
+      "rollover_limit_deg": 35.0,
+      "lidar_collision_m": 0.1,
+      "sensor_timeout_seconds": 5.0,
+      "policy_v2": {
+        "history_frames": 5,
+        "imu_includes_gravity": true,
+        "imu_topic": "/imu/data",
+        "require_terrain_preview": true,
+        "preview_timeout_seconds": 0.5,
+        "simulation_step_wall_timeout_seconds": 10.0,
+        "lockstep_min_completion_fraction": 1.0,
+        "simulation_physics_step_seconds": 0.002,
+        "sensor_wait_timeout_seconds": 2.0,
+        "motion_max_lag_seconds": 0.04,
+        "lidar_max_lag_seconds": 0.25,
+        "imu_wait_timeout_seconds": 0.5,
+        "imu_min_coverage": 0.8,
+        "imu_strict_coverage": false,
+        "imu_max_latest_lag_seconds": 0.1
+      },
+      "path": {
+        "lookahead_m": [
+          0.5,
+          1.0,
+          2.0,
+          3.5,
+          5.0,
+          7.5,
+          10.0,
+          12.5,
+          15.0
+        ],
+        "default_goal_x_m": 10.5,
+        "point_spacing_m": 0.25
+      },
+      "navigation": {
+        "start_pose": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "goal_pose": [
+          10.5,
+          0.0,
+          0.0
+        ],
+        "cmd_vel_topic": "/cmd_vel",
+        "straight_speed_m_s": 0.4,
+        "minimum_approach_speed_m_s": 0.03,
+        "goal_slowdown_distance_m": 0.5,
+        "stale_seconds": 2.0,
+        "waypoint_spacing_m": 2.0,
+        "waypoint_budget_seconds_per_m": 5.0,
+        "waypoint_slack_seconds": 10.0,
+        "goal_stop_tolerance_m": 0.05
+      },
+      "routes": {
+        "enabled": true,
+        "revision": "fixed_e1_n1_s1_replay_v1",
+        "selection": "balanced_shuffle",
+        "projection_forward_m": 0.8,
+        "projection_backward_m": 0.5,
+        "gate_spacing_m": 1.0,
+        "gate_radius_m": 0.6,
+        "steering_lookahead_m": 0.45,
+        "max_yaw_rate_rad_s": 0.8,
+        "turn_speed_m_s": 0.12,
+        "target_seconds_per_m": 5.0,
+        "target_slack_seconds": 15.0,
+        "deadline_slack_seconds": 40.0,
+        "definitions": [
+          {
+            "id": "E1",
+            "goal_heading_deg": 0.0,
+            "waypoints": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                10.5,
+                0.0
+              ]
+            ]
+          },
+          {
+            "id": "N1",
+            "goal_heading_deg": 90.0,
+            "waypoints": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                2.5,
+                0.0
+              ],
+              [
+                2.5,
+                6.2
+              ]
+            ]
+          },
+          {
+            "id": "S1",
+            "goal_heading_deg": -90.0,
+            "waypoints": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                2.5,
+                0.0
+              ],
+              [
+                2.5,
+                -6.2
+              ]
+            ]
+          }
+        ],
+        "fixed_route": null
+      },
+      "curriculum": {
+        "enabled": false,
+        "phase_steps": 100000,
+        "phase_order": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "fixed_phase": 1
+      },
+      "terrain_curriculum": {
+        "enabled": false,
+        "cable_x_m": 10.5,
+        "phases_hard_to_easy": [
+          {
+            "name": "hardest",
+            "diameter_m": 0.015,
+            "angle_deg": 45.0
+          },
+          {
+            "name": "very_hard",
+            "diameter_m": 0.013,
+            "angle_deg": 36.0
+          },
+          {
+            "name": "hard",
+            "diameter_m": 0.011,
+            "angle_deg": 27.0
+          },
+          {
+            "name": "medium",
+            "diameter_m": 0.009,
+            "angle_deg": 18.0
+          },
+          {
+            "name": "easy",
+            "diameter_m": 0.007,
+            "angle_deg": 9.0
+          },
+          {
+            "name": "easiest",
+            "diameter_m": 0.005,
+            "angle_deg": 5.0
+          }
+        ]
+      },
+      "course_cable_randomization": {
+        "enabled": false,
+        "angle_range_deg": [
+          -30.0,
+          30.0
+        ],
+        "cables": []
+      },
+      "challenge_tracking": {
+        "robot_contact_margin_m": 0.2,
+        "robot_clearance_margin_m": 0.3
+      },
+      "adaptive_terrain": {
+        "enabled": false,
+        "progress_on_success": false,
+        "initial_features": 0,
+        "add_per_level": 1,
+        "consecutive_successes": 5,
+        "max_features": 6,
+        "evaluation_features": 0,
+        "zone_x_m": [
+          7.1,
+          12.2
+        ],
+        "lateral_spawn_range_m": [
+          -0.5,
+          0.5
+        ],
+        "wheel_separation_m": 0.34273666,
+        "max_lateral_center_m": 1.55,
+        "pothole_radius_m": 0.3,
+        "bump_radius_m": 0.12,
+        "cable_radius_m": 0.015,
+        "cable_length_m": 0.55,
+        "groove_half_width_m": 0.05,
+        "groove_length_m": 0.7
+      },
+      "fixed_terrain_challenges": [],
+      "domain_randomization": {
+        "enabled": false,
+        "phase_scales": [
+          1.0,
+          0.8,
+          0.6,
+          0.4,
+          0.2,
+          0.0
+        ],
+        "traction_scale": [
+          0.3,
+          1.0
+        ],
+        "motor_delay_ms": [
+          10.0,
+          40.0
+        ],
+        "torque_noise_std_nm": [
+          0.0,
+          0.12
+        ],
+        "position_noise_std_m": [
+          0.04,
+          0.1
+        ],
+        "heading_noise_std_deg": [
+          0.3,
+          2.0
+        ],
+        "position_bias_m": [
+          0.0,
+          0.01
+        ],
+        "heading_bias_deg": [
+          -1.0,
+          1.0
+        ],
+        "observation_dropout": [
+          0.0,
+          0.05
+        ]
+      },
+      "task": "combined_rough_section",
+      "reward_pose_source": "ground_truth",
+      "world_name": "combined_rough_section",
+      "action_mode": "wheel_torque",
+      "odometry_assistance": {
+        "enabled": true,
+        "revision": "imu_encoder_v1",
+        "wheel_radius_m": 0.0625,
+        "pitch_projection": true,
+        "max_imu_gap_seconds": 0.1,
+        "max_encoder_gap_seconds": 0.25
+      },
+      "drive_controller": {
+        "parameters": {
+          "pi_integrator_profile": "legacy",
+          "velocity_kp": 0.3,
+          "velocity_ki": 0.1,
+          "integral_limit": 4.0,
+          "max_wheel_torque": 4.0,
+          "max_velocity_control_torque": 4.0,
+          "max_wheel_acceleration": 12.0,
+          "max_effort_rate": 10.0,
+          "wheel_radius": 0.0625,
+          "wheel_separation": 0.34273666
+        }
+      }
+    },
+    "initialization": {
+      "method": "actor_only",
+      "critic": "fresh",
+      "optimizer": "fresh",
+      "training_counter": 0,
+      "source": "/home/tuanmac/ninorobot/rl_runs/rough_e1_imu_assisted_pilot/20261008-013943-771247/nino_ppo_final.zip",
+      "source_sha256": "98a89e99f6d20501697088e51a8248b2ce87704feb8d731c22f4ff18e1512ad2",
+      "source_steps": 20480,
+      "copied_actor_tensors": 13,
+      "source_actions": 3,
+      "target_contract_revision": 37
+    },
+    "training_seed": 42,
+    "requested_steps": 20000,
+    "training_steps": 20480,
+    "rollout_sizes": [
+      1024,
+      2048
+    ],
+    "device": "cuda",
+    "ros_domain_id": "78",
+    "gz_partition": "nino_rough_78",
+    "budget_unit": "completed environment steps; each trial starts at zero",
+    "sha256": "21a2bddca3bb8571467cec61e801cb4470ffa5c44e29b514fc940e42f4caf9e3"
+  },
+  "evaluation_objective": {
+    "revision": "physical_arrival_quality_v1",
+    "implementation_sha256": "e006ff01907bb89fa27997bd1686c81248a58e5618957562bc87983b6db789cf",
+    "evaluator_sha256": "9c8525769399d70856a83d8a26a17a2a0e78d23b18c4378c24941edd41edac4a",
+    "benchmark_id": "a9d090d1e96b609ecefb1a79c78d01c9da7d44be844397ae218b88ecfc5c9a8a",
+    "scenarios": [
+      {
+        "seed": 10000,
+        "route_id": "E1"
+      },
+      {
+        "seed": 10001,
+        "route_id": "N1"
+      },
+      {
+        "seed": 10002,
+        "route_id": "S1"
+      },
+      {
+        "seed": 10003,
+        "route_id": "E1"
+      },
+      {
+        "seed": 10004,
+        "route_id": "N1"
+      },
+      {
+        "seed": 10005,
+        "route_id": "S1"
+      },
+      {
+        "seed": 10006,
+        "route_id": "E1"
+      },
+      {
+        "seed": 10007,
+        "route_id": "N1"
+      },
+      {
+        "seed": 10008,
+        "route_id": "S1"
+      },
+      {
+        "seed": 10009,
+        "route_id": "E1"
+      },
+      {
+        "seed": 10010,
+        "route_id": "N1"
+      },
+      {
+        "seed": 10011,
+        "route_id": "S1"
+      }
+    ],
+    "minimum_physical_arrival_rate": 0.95,
+    "weights": {
+      "duration": 1.0,
+      "lateness": 4.0,
+      "path_error": 4.0,
+      "vibration": 1.0,
+      "slip": 1.0
+    },
+    "term_cap": 5.0,
+    "scales": {
+      "path_rmse_m": 0.05,
+      "vibration_m_s2": 1.6,
+      "slip": 0.05
+    },
+    "time_targets_seconds": {
+      "E1": 67.5,
+      "N1": 58.5,
+      "S1": 58.5
+    },
+    "arrival_geometry": {
+      "task": "combined_rough_section",
+      "circle_radius_m": 0.2,
+      "ordered_route_gates": true
+    },
+    "aggregation": "equal route means; failed episode terms charged at maximum",
+    "ranking": "feasible > 0; infeasible < -1000",
+    "physical_scoring": "unchanged task geometry, ground-truth arrival and ordered route gates",
+    "sha256": "d27475cb77c19249f5c651167b1f45e9daed3f42f9edac877447c0a1aa5e9cd5"
+  }
+}

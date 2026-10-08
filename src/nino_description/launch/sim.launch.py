@@ -135,6 +135,7 @@ def generate_launch_description():
         condition=IfCondition(LaunchConfiguration("start_effort_drive")),
         parameters=[effort_drive_config, {
             "use_sim_time": True,
+            "pi_integrator_profile": LaunchConfiguration("pi_integrator_profile"),
             "max_wheel_torque": ParameterValue(
                 LaunchConfiguration("max_wheel_torque"), value_type=float
             ),
@@ -161,6 +162,8 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        DeclareLaunchArgument("pi_integrator_profile", default_value="legacy",
+                              description="Wheel PI integrator: legacy or conditional_v1"),
         DeclareLaunchArgument(
             "verbosity",
             default_value="2",

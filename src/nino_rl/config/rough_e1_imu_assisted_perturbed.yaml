@@ -1,0 +1,7 @@
+# Estimator-only robustness check: one-degree orientation noise, 20 ms delivery delay.
+extends: rough_e1_imu_assisted.yaml
+odometry_assistance:
+  imu_yaw_noise_std_rad: 0.017453292519943295
+  imu_pitch_noise_std_rad: 0.017453292519943295
+  imu_delay_seconds: 0.02
+  noise_seed: 20261008

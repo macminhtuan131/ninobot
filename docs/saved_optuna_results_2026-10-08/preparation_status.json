@@ -1,0 +1,62 @@
+{
+  "flat": {
+    "study": "rl_runs/flat_comparable_optuna_v2",
+    "states": {
+      "WAITING": 1
+    },
+    "scored_trials": 0,
+    "candidate": {
+      "reward_v2.progress_weight": 11.734693991937018,
+      "reward_v2.lateral_weight": 0.349864173659184,
+      "reward_v2.heading_weight": 0.46099338892672503,
+      "reward_v2.slip_weight": 0.217492906207788,
+      "reward_v2.goal_braking_weight": 0.18825124306020435,
+      "learning_rate": 6.781612720853196e-05,
+      "gamma": 0.997,
+      "n_steps": 1024,
+      "ent_coef": 0.0007249253652592024
+    },
+    "imported_historical_trials": 0,
+    "pi_references": [
+      {
+        "summary": "/home/tuanmac/ninorobot/rl_runs/flat_pi_tracking_slow_complete/20261008-validation/summary.json",
+        "episodes": 24,
+        "success_rate": 1.0,
+        "matching_full_scenarios": true
+      },
+      {
+        "summary": "/home/tuanmac/ninorobot/rl_runs/flat_pi_tracking_normal_targeted/20261008-110002-871004/summary.json",
+        "episodes": 4,
+        "success_rate": 1.0,
+        "matching_full_scenarios": false
+      }
+    ]
+  },
+  "rough": {
+    "study": "rl_runs/rough_comparable_optuna_v2",
+    "states": {
+      "WAITING": 1
+    },
+    "scored_trials": 0,
+    "candidate": {
+      "reward_v2.progress_weight": 10.0,
+      "reward_v2.lateral_weight": 0.5,
+      "reward_v2.impact_weight": 0.05,
+      "reward_v2.attitude_weight": 0.5,
+      "reward_v2.slip_weight": 0.1,
+      "learning_rate": 3e-05,
+      "gamma": 0.997,
+      "n_steps": 2048,
+      "ent_coef": 0.001
+    },
+    "imported_historical_trials": 0,
+    "pi_references": [
+      {
+        "summary": "/home/tuanmac/ninorobot/rl_runs/rough_e1_n1_s1_route_pi/20261008-104043-455255/summary.json",
+        "episodes": 12,
+        "success_rate": 0.3333333333333333,
+        "matching_full_scenarios": true
+      }
+    ]
+  }
+}

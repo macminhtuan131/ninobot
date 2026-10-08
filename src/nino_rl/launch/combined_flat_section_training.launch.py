@@ -10,6 +10,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument("headless", default_value="true"),
+        DeclareLaunchArgument("pi_integrator_profile", default_value="legacy"),
         DeclareLaunchArgument("verbosity", default_value="1"),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(PathJoinSubstitution([
@@ -18,6 +19,7 @@ def generate_launch_description():
                 "world": "combined_flat_section.sdf",
                 "world_name": "combined_flat_section",
                 "headless": LaunchConfiguration("headless"),
+                "pi_integrator_profile": LaunchConfiguration("pi_integrator_profile"),
                 "verbosity": LaunchConfiguration("verbosity"),
             }.items(),
         ),
