@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(nino_rough_contact_probe LANGUAGES CXX)
+find_package(gz-sim8 REQUIRED)
+add_library(nino_rough_contact_probe SHARED probe.cc)
+target_compile_features(nino_rough_contact_probe PRIVATE cxx_std_17)
+target_link_libraries(nino_rough_contact_probe PRIVATE gz-sim8::gz-sim8)

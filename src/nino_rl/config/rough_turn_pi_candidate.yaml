@@ -1,0 +1,6 @@
+# New controller candidate, not an old-study resume. Validate before training.
+# Isolate the PI integrator change; retain IMU/encoder estimator and all task criteria.
+extends: rough_e1_n1_s1_fixed.yaml
+drive_controller:
+  parameters:
+    pi_integrator_profile: conditional_v1

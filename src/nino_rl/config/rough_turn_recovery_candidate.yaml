@@ -1,0 +1,20 @@
+# New controller contract: localization and physical task criteria unchanged.
+extends: rough_turn_cloud_candidate.yaml
+routes:
+  curvature_speed_limit: true
+  stop_align_route_ids: [S1]
+rough_stall_recovery:
+  revision: bounded_backoff_v1
+  window_seconds: 0.50
+  trigger_seconds: 0.60
+  stationary_speed_m_s: 0.025
+  wheel_spin_speed_m_s: 0.05
+  wheel_radius_m: 0.0625
+  goal_exclusion_m: 0.50
+  maximum_tilt_rad: 0.50
+  maximum_attempts: 3
+  backoff_speed_m_s: 0.08
+  backoff_distance_m: 0.15
+  backoff_seconds: 2.50
+  retry_speed_m_s: 0.18
+  retry_seconds: 1.00

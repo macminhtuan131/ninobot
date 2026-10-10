@@ -1,0 +1,301 @@
+{
+  "experiment": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16",
+  "profiles": {
+    "E1": {
+      "summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/E1/20261009-100125-597593/summary.json",
+      "episodes": [
+        {
+          "seed": 10000,
+          "success": true,
+          "termination": "success",
+          "time_s": 27.09999999999846,
+          "endpoint_m": 0.1873138550661263,
+          "path_rmse_m": 0.020574077975033918,
+          "pose_disagreement_m": 0.0007251363999821016,
+          "maximum_feedback_lag_s": 0.01999999999998181,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 26.999999999998465
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/E1/20261009-100125-597593/episode-001/control_trace.csv"
+        },
+        {
+          "seed": 10003,
+          "success": true,
+          "termination": "success",
+          "time_s": 27.09999999999846,
+          "endpoint_m": 0.19148108249878054,
+          "path_rmse_m": 0.02105502925141015,
+          "pose_disagreement_m": 0.0007816142746027418,
+          "maximum_feedback_lag_s": 0.018000000000000682,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 26.999999999998465
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/E1/20261009-100125-597593/episode-002/control_trace.csv"
+        },
+        {
+          "seed": 10006,
+          "success": true,
+          "termination": "success",
+          "time_s": 27.09999999999846,
+          "endpoint_m": 0.19712423371508037,
+          "path_rmse_m": 0.02071122788803127,
+          "pose_disagreement_m": 0.0004823720569330952,
+          "maximum_feedback_lag_s": 0.01799999999997226,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 26.999999999998465
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/E1/20261009-100125-597593/episode-003/control_trace.csv"
+        }
+      ],
+      "successes": 3,
+      "mean_time_s": 27.09999999999846,
+      "maximum_physical_stall_s": 0.0
+    },
+    "N1": {
+      "summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/N1/20261009-100322-237329/summary.json",
+      "episodes": [
+        {
+          "seed": 10001,
+          "success": true,
+          "termination": "success",
+          "time_s": 24.399999999999494,
+          "endpoint_m": 0.18694777975035845,
+          "path_rmse_m": 0.12002639469135971,
+          "pose_disagreement_m": 0.0009016362081504648,
+          "maximum_feedback_lag_s": 0.01999999999998181,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 24.2999999999995
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/N1/20261009-100322-237329/episode-001/control_trace.csv"
+        },
+        {
+          "seed": 10004,
+          "success": true,
+          "termination": "success",
+          "time_s": 24.200000000005502,
+          "endpoint_m": 0.19835929957349835,
+          "path_rmse_m": 0.11560387572140396,
+          "pose_disagreement_m": 0.001016664474640116,
+          "maximum_feedback_lag_s": 0.02000000000543878,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 24.10000000000548
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/N1/20261009-100322-237329/episode-002/control_trace.csv"
+        },
+        {
+          "seed": 10007,
+          "success": true,
+          "termination": "success",
+          "time_s": 24.200000000005502,
+          "endpoint_m": 0.18825039458231724,
+          "path_rmse_m": 0.11314266032192494,
+          "pose_disagreement_m": 0.0011952988809858765,
+          "maximum_feedback_lag_s": 0.018000000005486072,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 24.10000000000548
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/N1/20261009-100322-237329/episode-003/control_trace.csv"
+        }
+      ],
+      "successes": 3,
+      "mean_time_s": 24.266666666670165,
+      "maximum_physical_stall_s": 0.0
+    },
+    "S1": {
+      "summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/S1/20261009-100506-461797/summary.json",
+      "episodes": [
+        {
+          "seed": 10002,
+          "success": true,
+          "termination": "success",
+          "time_s": 27.80000000000632,
+          "endpoint_m": 0.19195123357686264,
+          "path_rmse_m": 0.02989737118899363,
+          "pose_disagreement_m": 0.0007280614177688768,
+          "maximum_feedback_lag_s": 0.024000000005059974,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 27.7000000000063
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/S1/20261009-100506-461797/episode-001/control_trace.csv"
+        },
+        {
+          "seed": 10005,
+          "success": true,
+          "termination": "success",
+          "time_s": 27.7000000000063,
+          "endpoint_m": 0.19140726016809356,
+          "path_rmse_m": 0.029519007669989144,
+          "pose_disagreement_m": 0.0024854971297979538,
+          "maximum_feedback_lag_s": 0.018000000006338723,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 27.600000000006276
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/S1/20261009-100506-461797/episode-002/control_trace.csv"
+        },
+        {
+          "seed": 10008,
+          "success": true,
+          "termination": "success",
+          "time_s": 27.7000000000063,
+          "endpoint_m": 0.19101168707133817,
+          "path_rmse_m": 0.029592950373362858,
+          "pose_disagreement_m": 0.0026528793118492586,
+          "maximum_feedback_lag_s": 0.02000000000629143,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 27.600000000006276
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/S1/20261009-100506-461797/episode-003/control_trace.csv"
+        }
+      ],
+      "successes": 3,
+      "mean_time_s": 27.73333333333964,
+      "maximum_physical_stall_s": 0.0
+    },
+    "E1_slow": {
+      "summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/slow_e1/20261009-095830-176324/summary.json",
+      "episodes": [
+        {
+          "seed": 10000,
+          "success": true,
+          "termination": "success",
+          "time_s": 41.700000000000514,
+          "endpoint_m": 0.19686746406825315,
+          "path_rmse_m": 0.028360754197901787,
+          "pose_disagreement_m": 0.00021174407157341092,
+          "maximum_feedback_lag_s": 0.018000000000476746,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 41.60000000000052
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/slow_e1/20261009-095830-176324/episode-001/control_trace.csv"
+        },
+        {
+          "seed": 10003,
+          "success": true,
+          "termination": "success",
+          "time_s": 41.69999999999831,
+          "endpoint_m": 0.19844745461703028,
+          "path_rmse_m": 0.02739010231054176,
+          "pose_disagreement_m": 0.0014482565044966237,
+          "maximum_feedback_lag_s": 0.02000000000013813,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 41.59999999999832
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/slow_e1/20261009-095830-176324/episode-002/control_trace.csv"
+        },
+        {
+          "seed": 10006,
+          "success": true,
+          "termination": "success",
+          "time_s": 41.699999999997644,
+          "endpoint_m": 0.1933701813489243,
+          "path_rmse_m": 0.02598032254575548,
+          "pose_disagreement_m": 0.0010147457435166368,
+          "maximum_feedback_lag_s": 0.018000000000000682,
+          "attempts": 0,
+          "longest_physical_stall_s": 0.0,
+          "mode_seconds": {
+            "tracking": 41.59999999999765
+          },
+          "trace": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/slow_e1/20261009-095830-176324/episode-003/control_trace.csv"
+        }
+      ],
+      "successes": 3,
+      "mean_time_s": 41.69999999999882,
+      "maximum_physical_stall_s": 0.0
+    }
+  },
+  "gate": {
+    "schema": 2,
+    "maximum_pi_commanded_stall_seconds": 2.0,
+    "passed": true,
+    "routes": {
+      "E1": {
+        "passed": true,
+        "episodes": 3,
+        "speed_scale": 1.0,
+        "summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/E1/20261009-100125-597593/summary.json",
+        "summary_sha256": "3fd37145493292281d3658fa3a62bef9817ef9334309653ab94be955b6b365ac",
+        "episodes_sha256": "583cd7bbb724f6c77359d6cefb20650d5a9de2c54afd419d4863f044502fedab",
+        "physical_arrival_passed": true,
+        "stall_passed": true,
+        "longest_commanded_stall_seconds": 0.0,
+        "control_trace_sha256": [
+          "48e74b409521308443ed7a4d21dd8df02b0d282f26c9684603e76f4396c1109c",
+          "f55f419a993c427bdd9fe387ad42a40f5cdbfe77a9364621473b0399ecba4b97",
+          "18350cf33624133897aeb1c261efe094e745f9a4a8ad6f54731a03b7bafda2a9"
+        ]
+      },
+      "N1": {
+        "passed": true,
+        "episodes": 3,
+        "speed_scale": 1.0,
+        "summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/N1/20261009-100322-237329/summary.json",
+        "summary_sha256": "31c67a478d74b9bb7ea6faf0a2f10a95ca90d0f77887c350c891dce23ebf4ec8",
+        "episodes_sha256": "fd5879417608a4b21b78a06b753faff5a425c3fd161ff42a6f4a1464562f4268",
+        "physical_arrival_passed": true,
+        "stall_passed": true,
+        "longest_commanded_stall_seconds": 0.0,
+        "control_trace_sha256": [
+          "88f6407c3f3b87ba7bde27a8684acda0f7cf9e8ec77cf19211d57df1e8cde961",
+          "46296a63a8c26b90455293cceca7ec1d102802548faae384534ef88e65f73f73",
+          "05ae7d90d77051db9bcbc6637c40464d8d10d19581ac065eb8b14ab5c623758d"
+        ]
+      },
+      "S1": {
+        "passed": true,
+        "episodes": 3,
+        "speed_scale": 1.0,
+        "summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/pi/S1/20261009-100506-461797/summary.json",
+        "summary_sha256": "eb0f607c74b58c76db549d47dda8dda84e66e998be18db728cb604b3ca7c70ce",
+        "episodes_sha256": "ef4476eb232d2df5de478ee1c7e086803e9ba3754375d770d927f58466699858",
+        "physical_arrival_passed": true,
+        "stall_passed": true,
+        "longest_commanded_stall_seconds": 0.0,
+        "control_trace_sha256": [
+          "10b257b0971aa8c6bb511f14580ea13f9f05832572ba1dbd3c07118bd0df2130",
+          "53cfa3d53c81d38584f1de426430cce010cd9100a6bb43cce78b0c426d7a80d8",
+          "b63a2b8953c13d8f2001dbf4fd21aa3f48984cca0700be2e8d087fcc1326c679"
+        ]
+      },
+      "E1_slow": {
+        "passed": true,
+        "episodes": 3,
+        "speed_scale": 0.65,
+        "summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_recovery_v16/slow_e1/20261009-095830-176324/summary.json",
+        "summary_sha256": "8be05016f62b886cb2e63eb4b0c2972e972ad24478549d41fc4d0fc05da05f48",
+        "episodes_sha256": "8f0813849edc146a6c4cf94330b5af5ac768767ff9470b20e06900fbc949d5fc",
+        "physical_arrival_passed": true,
+        "stall_passed": true,
+        "longest_commanded_stall_seconds": 0.0,
+        "control_trace_sha256": [
+          "84bc2bd81e9f29f7da4a97b434ac2895f2af9b9f6ef1e1c198b779cbd8a70e4c",
+          "27bd121cda419784f9f50160bcf95ea51785ecfb16bafb9acf317b8f307ec854",
+          "00ae37feff2e28d4f330aaf60e0d0c4f46326f239f5295ee762d34955500295a"
+        ]
+      }
+    },
+    "note": "Three seed checks are a pilot qualification, not statistical proof of reliability."
+  }
+}

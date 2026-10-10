@@ -1,0 +1,17 @@
+# Evaluation only: never sampled as training reward parameters.
+revision: physical_arrival_quality_v1
+minimum_physical_arrival_rate: 0.95
+term_cap: 5.0
+weights:
+  duration: 1.0
+  lateness: 4.0
+  path_error: 4.0
+  vibration: 1.0
+  slip: 2.0
+scales:
+  rough: {path_rmse_m: 0.05, vibration_m_s2: 1.153, slip: 0.041123}
+# PI takes 27.1 s; this is a fixed quality target, not the physical deadline.
+time_targets_seconds: {E1: 31.0}
+peak_acceleration_weight: 1.0
+peak_acceleration_scale_m_s2: 11.70
+maximum_rollover_rate: 0.0

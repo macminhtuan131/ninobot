@@ -109,8 +109,11 @@ def assert_isolated(domain, partition):
 
 
 class Processes:
-    def __init__(self, env):
+    def __init__(self, env, pi_integrator_profile="legacy"):
         self.env, self.children, self.world = env, [], None
+        if pi_integrator_profile not in ("legacy", "conditional_v1"):
+            raise ValueError("Unknown PI integrator profile")
+        self.pi_integrator_profile = pi_integrator_profile
 
     def start(self, command, log):
         log = Path(log)
@@ -173,6 +176,7 @@ class Processes:
             "ros2", "launch", "nino_rl", "training_sim.launch.py",
             f"world:={world}", "world_name:=combined_rough_section",
             f"headless:={str(not gui).lower()}",
+            f"pi_integrator_profile:={self.pi_integrator_profile}",
         ], directory / "gazebo.log")
         self.run(["ros2", "run", "nino_rl", "wait_for_sim"],
                  directory / "readiness.log", timeout=90)
@@ -187,7 +191,12 @@ class CurriculumRunner:
         env = os.environ.copy()
         env.update(ROS_DOMAIN_ID=str(args.domain), NINO_ROS_DOMAIN_ID=str(args.domain),
                    ROS_AUTOMATIC_DISCOVERY_RANGE="LOCALHOST", GZ_PARTITION=f"nino_rough_{args.domain}")
-        self.processes = Processes(env)
+        profile = config.get("drive_controller", {}).get("parameters", {}).get("pi_integrator_profile", "legacy")
+        if config.get('rough_experiment', {}).get('imu_transport') == 'reliable_v1':
+            from rough_localized_processes import ReliableRoughProcesses
+            self.processes = ReliableRoughProcesses(env, pi_integrator_profile=profile)
+        else:
+            self.processes = Processes(env, pi_integrator_profile=profile)
 
     def save(self):
         self.state["updated_at"] = time.strftime("%Y-%m-%d %H:%M:%S %z")

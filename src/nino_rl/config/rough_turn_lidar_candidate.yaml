@@ -1,0 +1,26 @@
+# Experimental estimator + gentler turns. New contract, actor initialization only.
+extends: rough_turn_pi_candidate.yaml
+sensor_timeout_seconds: 30.0
+odometry_assistance:
+  revision: rough_wall_slip_v7
+  corridor_lidar:
+    enabled: true
+    bounds_xy_m: [-2.0, 12.0, -7.2, 7.2]
+    laser_xyz_m: [0.20, 0.0, 0.2275]
+    max_tilt_rad: 0.60
+    association_gate_m: 0.40
+    minimum_rays: 8
+    inlier_gate_m: 0.025
+    max_correction_m: 0.30
+    # Three consecutive scans lose X-wall coverage over the E1 uphill crest.
+    # Bound the outage at six scan periods; reject longer loss of localization.
+    max_age_seconds: 0.60
+    minimum_hit_height_relative_m: 0.10
+    maximum_hit_height_relative_m: 2.5
+    loss_as_terminal: true
+    max_sensor_age_seconds: 0.25
+routes:
+  max_yaw_rate_rad_s: 0.45
+  turn_speed_m_s: 0.18
+policy_v2:
+  imu_topic: /rough/imu/data

@@ -1,5 +1,42 @@
 # Separate focused Optuna studies
 
+## Flat action comparison and pilot — 2026-10-10
+
+Both 24-seed speed/yaw ablations arrived reliably, but neither improved the
+selected actor's fixed quality score. Removing yaw worsened tracking; forcing
+full speed recovered PI-like time but increased vibration. A single 20,480-step
+pilot completed PI-centered action-head initialization, retaining actor
+features with a fresh critic/optimizer and unchanged reward/controller.
+On 24 new matching seeds, both it and PI arrived 24/24 times. The pilot took
+18.20 s versus PI's 17.53 s, with 24.5% higher physical path RMSE and 33.8%
+higher RMS vibration. It failed the tracking and quality promotion gates;
+withhold a longer run or next-stage promotion pending a targeted correction.
+See the [experiment, results and commands](FLAT_SPEED_YAW_TARGETED_PILOT_2026-10-10.md).
+
+## Flat result — evaluated 2026-10-09
+
+Flat tuning finished 12 completed trials. Trial 13 was selected. In the new
+24-seed held-out two-cable comparison, both PPO and normal-speed PI arrived
+24/24 times, but PI was faster and had lower mean vibration and slip. The
+selected PPO policy is arrival-qualified; superiority over PI is not established.
+See the [complete result and next steps](FLAT_OPTUNA_RESULT_2026-10-09.md).
+Further identical flat tuning or a long unchanged training run is not recommended
+from this evidence alone.
+
+## Current rough status — 2026-10-09
+
+The [S1 controller and bounded recovery correction](ROUGH_S1_RECOVERY_2026-10-09.md)
+is the current rough candidate. It uses the new v16 contract; check its complete
+PI gate before an actor-initialized PPO pilot or a new Optuna study.
+
+The old rough study remains held. Its saved scores and models are diagnostic
+records, not candidates for the changed estimator contract. The v7 rough
+pilot exposed repeated loss of 2D wall coverage at the E1 crest and was saved
+at 6,326 steps. Use the [rough localization robustness profile](ROUGH_LOCALIZATION_ROBUSTNESS_2026-10-09.md)
+for slow/normal PI qualification and the new actor-initialized pilot. Further
+rough Optuna tuning requires a separate study after that setup is validated.
+The existing flat study continues independently on its original contract.
+
 These commands create independent flat and rough studies. They use the corrected
 profiles, fixed evaluation objective and comparable-trial checks implemented on
 2026-10-08. The earlier comparable studies remain preparation records: their
@@ -137,6 +174,119 @@ output directory when intentionally changing them.
 When both worlds run concurrently, CPU contention may reduce throughput. Retain
 the timing checks; run one study at a time if a simulator cannot meet them.
 
+## Recovery after a shutdown
+
+With all tuner/training/evaluation processes stopped, preview recovery:
+
+```bash
+cd ~/ninorobot
+.venv/bin/python src/nino_rl/scripts/recover_focused_optuna.py
+```
+
+Apply recovery before restarting the simulators and tuners:
+
+```bash
+.venv/bin/python src/nino_rl/scripts/recover_focused_optuna.py --apply
+```
+
+The helper checks SQLite integrity and frozen input hashes, creates a consistent
+database backup, queues each abandoned trial's exact parameters, and marks the
+old unfinished trial FAIL without inventing a score. Completed trials remain
+unchanged. Repeating recovery does not duplicate a queued retry. An incomplete
+parameter set is rejected for inspection.
+
+It prints the remaining trial count to reach 12 completed observations. After
+launching each simulator with the commands above, run its printed `tune --trials N`
+command. Interrupted parameter sets restart training from the frozen starting
+actor with fresh critic/optimizer; they do not resume a partial checkpoint or
+unfinished rollout. Their earlier log/checkpoint directories are preserved.
+
+The shutdown inspected on 2026-10-08 left flat with two completed trials and
+trial 2 abandoned, rough with one completed trial and trial 1 abandoned. At that
+snapshot, the recovery commands were:
+
+```bash
+bash src/nino_rl/scripts/run_focused_optuna.sh flat tune --trials 10
+bash src/nino_rl/scripts/run_focused_optuna.sh rough tune --trials 11
+```
+
 Before a long training run, evaluate shortlisted policies on new seeds against
 matching PI references. Then apply a qualified configuration to training; this
 search itself does not deploy a policy to hardware.
+
+## Recover an evaluation failure without retraining
+
+On 2026-10-08, rough trial 2 completed all 20,480 training steps, then evaluation
+failed during initial sensor setup with `Assisted odometry encoder gap exceeded
+its bound`. The configured encoder gap is 0.25 s. No evaluation episodes were
+written, so this is an infrastructure/startup failure, not an evaluated poor
+policy score. The exact cause of the timestamp gap has not been established.
+
+Restart rough Gazebo using Ctrl+C in its simulator terminal, then:
+
+```bash
+cd ~/ninorobot
+bash src/nino_rl/scripts/run_focused_optuna.sh rough sim
+```
+
+Once its controllers are ready, in the rough tuner terminal:
+
+```bash
+cd ~/ninorobot
+bash src/nino_rl/scripts/run_focused_optuna.sh rough recover-eval --trial 2 --evaluate
+```
+
+This checks the intact completed model, frozen assets and original training
+evidence, reruns the exact 12 evaluation seeds, and appends a completed
+observation only after the full report passes the objective checks. The original
+FAIL record is preserved; it is not rewritten as COMPLETE. A consistent database
+backup is made before appending. Repeating recovery cannot add the same score
+twice. No PPO training, model weights, estimator bounds or physical arrival
+criteria are changed.
+
+The helper prints the number of remaining trials. At the failed-trial snapshot,
+after successful score recovery the continuation command is:
+
+```bash
+bash src/nino_rl/scripts/run_focused_optuna.sh rough tune --trials 10
+```
+
+The flat tuner can continue independently. If the same sensor gap occurs again,
+inspect the new `trial_0002/eval_recovery_*/evaluate.log`; this retry does not
+establish that restarting transport permanently fixes the startup fault. A source
+or estimator change requires a new study contract, rather than weakening the
+timestamp guard inside this study.
+
+## Rough speed-matched comparison — completed 2026-10-09
+
+The frozen v16 E1 pilot and PI both reached 20/20 physical goals. A further
+20-seed PI evaluation at speed scale 0.70 matched PPO completion time within
+0.4%. Most of PPO's RMS vibration advantage over full-speed PI was reproduced
+by simply slowing PI. PPO retained lower peak acceleration and slightly better
+tracking than slow PI, but had higher slip. See the
+[complete comparison](ROUGH_SPEED_MATCHED_PI_2026-10-09.md) before a long rough
+continuation. Rough Optuna remains held; the earlier study and models are preserved.
+
+## New validated E1 study — prepared 2026-10-09
+
+A separate `rough_e1_v16_quality_v1` study is now prepared in
+`rl_runs/rough_e1_v16_optuna_v1`. It fixes the v16 E1 terrain/controller/scoring,
+copies the same pilot actor into a fresh critic/optimizer for every trial, and
+tunes learning/update settings plus time, tracking, impact and slip rewards.
+Its independent fixed evaluation objective includes a 31 s quality target,
+peak acceleration, slip costs, at least 19/20 physical arrivals and zero
+rollovers. Trial 0 is queued; preparation launched no training. See
+[setup and start commands](ROUGH_E1_V16_OPTUNA_2026-10-09.md). The older rough
+study remains held; its scores are not mixed into the new study.
+
+## Flat critic and impact correction — prepared 2026-10-10
+
+The completed flat pilot remains below matching PI on tracking and vibration.
+A read-only probe confirmed weak value predictions and critic-dominated global
+gradient clipping. The old clipped impact reward also assigned lower impact
+cost to PPO despite its higher RMS vibration. Two new isolated revision-38
+profiles are prepared: reward units ×0.01 with the old task reward, then the same
+units with timestamped acceleration energy and an episode-peak cost. Both use
+the same saved actor and a fresh critic/optimizer. No new pilot training has
+started. Physical scoring and historical studies remain unchanged. See the
+[diagnosis, checks and controlled run commands](FLAT_REWARD_CRITIC_CORRECTION_2026-10-10.md).

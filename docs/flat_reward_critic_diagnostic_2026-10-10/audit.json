@@ -1,0 +1,1658 @@
+{
+  "source_model": "/home/tuanmac/ninorobot/rl_runs/flat_targeted_actor_pilot_v1/train/20261010-002632-975129/nino_ppo_final.zip",
+  "source_sha256": "370a21320cc65206bfcd1db30b1c8535a8f822639b0ea964cca6ef7453b06668",
+  "learning_curves": {
+    "episode/return": [
+      {
+        "step": 1024,
+        "value": 209.220703125
+      },
+      {
+        "step": 2048,
+        "value": 208.39120483398438
+      },
+      {
+        "step": 3072,
+        "value": 202.70510864257812
+      },
+      {
+        "step": 4096,
+        "value": 208.2028350830078
+      },
+      {
+        "step": 5120,
+        "value": 204.39463806152344
+      },
+      {
+        "step": 6144,
+        "value": 196.0780487060547
+      },
+      {
+        "step": 7168,
+        "value": 210.77615356445312
+      },
+      {
+        "step": 8192,
+        "value": 207.7285919189453
+      },
+      {
+        "step": 9216,
+        "value": 194.09873962402344
+      },
+      {
+        "step": 10240,
+        "value": 199.02822875976562
+      },
+      {
+        "step": 11264,
+        "value": 204.20042419433594
+      },
+      {
+        "step": 12288,
+        "value": 200.247802734375
+      },
+      {
+        "step": 13312,
+        "value": 207.95777893066406
+      },
+      {
+        "step": 14336,
+        "value": 215.95382690429688
+      },
+      {
+        "step": 15360,
+        "value": 205.75086975097656
+      },
+      {
+        "step": 16384,
+        "value": 205.32708740234375
+      },
+      {
+        "step": 17408,
+        "value": 203.31370544433594
+      },
+      {
+        "step": 18432,
+        "value": 207.523681640625
+      },
+      {
+        "step": 19456,
+        "value": 200.16798400878906
+      },
+      {
+        "step": 20480,
+        "value": 196.57809448242188
+      }
+    ],
+    "episode_reward/challenge_goal": [
+      {
+        "step": 1024,
+        "value": 90.0
+      },
+      {
+        "step": 2048,
+        "value": 90.0
+      },
+      {
+        "step": 3072,
+        "value": 90.0
+      },
+      {
+        "step": 4096,
+        "value": 90.0
+      },
+      {
+        "step": 5120,
+        "value": 90.0
+      },
+      {
+        "step": 6144,
+        "value": 90.0
+      },
+      {
+        "step": 7168,
+        "value": 90.0
+      },
+      {
+        "step": 8192,
+        "value": 90.0
+      },
+      {
+        "step": 9216,
+        "value": 90.0
+      },
+      {
+        "step": 10240,
+        "value": 90.0
+      },
+      {
+        "step": 11264,
+        "value": 90.0
+      },
+      {
+        "step": 12288,
+        "value": 90.0
+      },
+      {
+        "step": 13312,
+        "value": 90.0
+      },
+      {
+        "step": 14336,
+        "value": 90.0
+      },
+      {
+        "step": 15360,
+        "value": 90.0
+      },
+      {
+        "step": 16384,
+        "value": 90.0
+      },
+      {
+        "step": 17408,
+        "value": 90.0
+      },
+      {
+        "step": 18432,
+        "value": 90.0
+      },
+      {
+        "step": 19456,
+        "value": 90.0
+      },
+      {
+        "step": 20480,
+        "value": 90.0
+      }
+    ],
+    "episode_reward/impact": [
+      {
+        "step": 1024,
+        "value": -1.3439565896987915
+      },
+      {
+        "step": 2048,
+        "value": -1.471513271331787
+      },
+      {
+        "step": 3072,
+        "value": -1.3381668329238892
+      },
+      {
+        "step": 4096,
+        "value": -1.393786072731018
+      },
+      {
+        "step": 5120,
+        "value": -1.3208144903182983
+      },
+      {
+        "step": 6144,
+        "value": -1.4668620824813843
+      },
+      {
+        "step": 7168,
+        "value": -1.4348821640014648
+      },
+      {
+        "step": 8192,
+        "value": -1.3412853479385376
+      },
+      {
+        "step": 9216,
+        "value": -1.4329403638839722
+      },
+      {
+        "step": 10240,
+        "value": -1.4663469791412354
+      },
+      {
+        "step": 11264,
+        "value": -1.545092225074768
+      },
+      {
+        "step": 12288,
+        "value": -1.4879586696624756
+      },
+      {
+        "step": 13312,
+        "value": -1.3679109811782837
+      },
+      {
+        "step": 14336,
+        "value": -1.4650201797485352
+      },
+      {
+        "step": 15360,
+        "value": -1.3952574729919434
+      },
+      {
+        "step": 16384,
+        "value": -1.2877017259597778
+      },
+      {
+        "step": 17408,
+        "value": -1.3827711343765259
+      },
+      {
+        "step": 18432,
+        "value": -1.247027039527893
+      },
+      {
+        "step": 19456,
+        "value": -1.3654816150665283
+      },
+      {
+        "step": 20480,
+        "value": -1.3437193632125854
+      }
+    ],
+    "episode_reward/terminal": [
+      {
+        "step": 1024,
+        "value": 100.0
+      },
+      {
+        "step": 2048,
+        "value": 100.0
+      },
+      {
+        "step": 3072,
+        "value": 100.0
+      },
+      {
+        "step": 4096,
+        "value": 100.0
+      },
+      {
+        "step": 5120,
+        "value": 100.0
+      },
+      {
+        "step": 6144,
+        "value": 100.0
+      },
+      {
+        "step": 7168,
+        "value": 100.0
+      },
+      {
+        "step": 8192,
+        "value": 100.0
+      },
+      {
+        "step": 9216,
+        "value": 100.0
+      },
+      {
+        "step": 10240,
+        "value": 100.0
+      },
+      {
+        "step": 11264,
+        "value": 100.0
+      },
+      {
+        "step": 12288,
+        "value": 100.0
+      },
+      {
+        "step": 13312,
+        "value": 100.0
+      },
+      {
+        "step": 14336,
+        "value": 100.0
+      },
+      {
+        "step": 15360,
+        "value": 100.0
+      },
+      {
+        "step": 16384,
+        "value": 100.0
+      },
+      {
+        "step": 17408,
+        "value": 100.0
+      },
+      {
+        "step": 18432,
+        "value": 100.0
+      },
+      {
+        "step": 19456,
+        "value": 100.0
+      },
+      {
+        "step": 20480,
+        "value": 100.0
+      }
+    ],
+    "train/approx_kl": [
+      {
+        "step": 2048,
+        "value": 0.01051959116011858
+      },
+      {
+        "step": 3072,
+        "value": 0.00045156647684052587
+      },
+      {
+        "step": 4096,
+        "value": 0.000510035955812782
+      },
+      {
+        "step": 5120,
+        "value": 0.001556352828629315
+      },
+      {
+        "step": 6144,
+        "value": 5.179928848519921e-05
+      },
+      {
+        "step": 7168,
+        "value": 0.0049610137939453125
+      },
+      {
+        "step": 8192,
+        "value": 0.0017470570746809244
+      },
+      {
+        "step": 9216,
+        "value": 9.419926209375262e-05
+      },
+      {
+        "step": 10240,
+        "value": 0.001789531554095447
+      },
+      {
+        "step": 11264,
+        "value": 0.0013620128156617284
+      },
+      {
+        "step": 12288,
+        "value": 0.005464719608426094
+      },
+      {
+        "step": 13312,
+        "value": 0.0006838659173808992
+      },
+      {
+        "step": 14336,
+        "value": 0.00023948581656441092
+      },
+      {
+        "step": 15360,
+        "value": 0.0003729850286617875
+      },
+      {
+        "step": 16384,
+        "value": 3.459345316514373e-05
+      },
+      {
+        "step": 17408,
+        "value": 0.0023464697878807783
+      },
+      {
+        "step": 18432,
+        "value": 0.004092251881957054
+      },
+      {
+        "step": 19456,
+        "value": 4.938285565003753e-05
+      },
+      {
+        "step": 20480,
+        "value": 0.00015734881162643433
+      }
+    ],
+    "train/clip_fraction": [
+      {
+        "step": 2048,
+        "value": 0.0546875
+      },
+      {
+        "step": 3072,
+        "value": 0.0
+      },
+      {
+        "step": 4096,
+        "value": 0.0
+      },
+      {
+        "step": 5120,
+        "value": 0.0
+      },
+      {
+        "step": 6144,
+        "value": 0.0
+      },
+      {
+        "step": 7168,
+        "value": 0.005859375
+      },
+      {
+        "step": 8192,
+        "value": 0.0
+      },
+      {
+        "step": 9216,
+        "value": 0.0
+      },
+      {
+        "step": 10240,
+        "value": 0.0
+      },
+      {
+        "step": 11264,
+        "value": 0.0
+      },
+      {
+        "step": 12288,
+        "value": 0.008593750186264515
+      },
+      {
+        "step": 13312,
+        "value": 0.0
+      },
+      {
+        "step": 14336,
+        "value": 0.0
+      },
+      {
+        "step": 15360,
+        "value": 0.0
+      },
+      {
+        "step": 16384,
+        "value": 0.0
+      },
+      {
+        "step": 17408,
+        "value": 0.0003906250058207661
+      },
+      {
+        "step": 18432,
+        "value": 0.0033203125931322575
+      },
+      {
+        "step": 19456,
+        "value": 0.0
+      },
+      {
+        "step": 20480,
+        "value": 0.0
+      }
+    ],
+    "train/clip_range": [
+      {
+        "step": 2048,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 3072,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 4096,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 5120,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 6144,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 7168,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 8192,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 9216,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 10240,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 11264,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 12288,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 13312,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 14336,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 15360,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 16384,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 17408,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 18432,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 19456,
+        "value": 0.2231222689151764
+      },
+      {
+        "step": 20480,
+        "value": 0.2231222689151764
+      }
+    ],
+    "train/entropy_loss": [
+      {
+        "step": 2048,
+        "value": 2.9065616130828857
+      },
+      {
+        "step": 3072,
+        "value": 2.9064199924468994
+      },
+      {
+        "step": 4096,
+        "value": 2.906630754470825
+      },
+      {
+        "step": 5120,
+        "value": 2.9067001342773438
+      },
+      {
+        "step": 6144,
+        "value": 2.9064524173736572
+      },
+      {
+        "step": 7168,
+        "value": 2.9063429832458496
+      },
+      {
+        "step": 8192,
+        "value": 2.9062774181365967
+      },
+      {
+        "step": 9216,
+        "value": 2.9062323570251465
+      },
+      {
+        "step": 10240,
+        "value": 2.906400680541992
+      },
+      {
+        "step": 11264,
+        "value": 2.9065210819244385
+      },
+      {
+        "step": 12288,
+        "value": 2.906437635421753
+      },
+      {
+        "step": 13312,
+        "value": 2.906421422958374
+      },
+      {
+        "step": 14336,
+        "value": 2.9065146446228027
+      },
+      {
+        "step": 15360,
+        "value": 2.9065182209014893
+      },
+      {
+        "step": 16384,
+        "value": 2.9065330028533936
+      },
+      {
+        "step": 17408,
+        "value": 2.906663417816162
+      },
+      {
+        "step": 18432,
+        "value": 2.9067294597625732
+      },
+      {
+        "step": 19456,
+        "value": 2.906703233718872
+      },
+      {
+        "step": 20480,
+        "value": 2.906790256500244
+      }
+    ],
+    "train/explained_variance": [
+      {
+        "step": 2048,
+        "value": -0.0013746023178100586
+      },
+      {
+        "step": 3072,
+        "value": -0.0016109943389892578
+      },
+      {
+        "step": 4096,
+        "value": -0.0017679929733276367
+      },
+      {
+        "step": 5120,
+        "value": -0.0023773908615112305
+      },
+      {
+        "step": 6144,
+        "value": -0.002592325210571289
+      },
+      {
+        "step": 7168,
+        "value": -0.0032041072845458984
+      },
+      {
+        "step": 8192,
+        "value": -0.003612518310546875
+      },
+      {
+        "step": 9216,
+        "value": -0.00438535213470459
+      },
+      {
+        "step": 10240,
+        "value": -0.004440665245056152
+      },
+      {
+        "step": 11264,
+        "value": -0.0058863162994384766
+      },
+      {
+        "step": 12288,
+        "value": -0.006346344947814941
+      },
+      {
+        "step": 13312,
+        "value": -0.007007598876953125
+      },
+      {
+        "step": 14336,
+        "value": -0.008543968200683594
+      },
+      {
+        "step": 15360,
+        "value": -0.006705880165100098
+      },
+      {
+        "step": 16384,
+        "value": -0.010281562805175781
+      },
+      {
+        "step": 17408,
+        "value": -0.011429667472839355
+      },
+      {
+        "step": 18432,
+        "value": -0.012628912925720215
+      },
+      {
+        "step": 19456,
+        "value": -0.01345515251159668
+      },
+      {
+        "step": 20480,
+        "value": -0.012489080429077148
+      }
+    ],
+    "train/learning_rate": [
+      {
+        "step": 2048,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 3072,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 4096,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 5120,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 6144,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 7168,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 8192,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 9216,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 10240,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 11264,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 12288,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 13312,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 14336,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 15360,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 16384,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 17408,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 18432,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 19456,
+        "value": 1.5996640286175534e-05
+      },
+      {
+        "step": 20480,
+        "value": 1.5996640286175534e-05
+      }
+    ],
+    "train/loss": [
+      {
+        "step": 2048,
+        "value": 878.6271362304688
+      },
+      {
+        "step": 3072,
+        "value": 967.01416015625
+      },
+      {
+        "step": 4096,
+        "value": 886.3016967773438
+      },
+      {
+        "step": 5120,
+        "value": 853.9995727539062
+      },
+      {
+        "step": 6144,
+        "value": 1191.0517578125
+      },
+      {
+        "step": 7168,
+        "value": 731.526123046875
+      },
+      {
+        "step": 8192,
+        "value": 944.3074340820312
+      },
+      {
+        "step": 9216,
+        "value": 837.56884765625
+      },
+      {
+        "step": 10240,
+        "value": 775.5562744140625
+      },
+      {
+        "step": 11264,
+        "value": 973.2513427734375
+      },
+      {
+        "step": 12288,
+        "value": 844.18701171875
+      },
+      {
+        "step": 13312,
+        "value": 1016.3406372070312
+      },
+      {
+        "step": 14336,
+        "value": 867.010009765625
+      },
+      {
+        "step": 15360,
+        "value": 606.5823364257812
+      },
+      {
+        "step": 16384,
+        "value": 925.7265625
+      },
+      {
+        "step": 17408,
+        "value": 955.3777465820312
+      },
+      {
+        "step": 18432,
+        "value": 814.49365234375
+      },
+      {
+        "step": 19456,
+        "value": 801.8232421875
+      },
+      {
+        "step": 20480,
+        "value": 723.4722900390625
+      }
+    ],
+    "train/policy_gradient_loss": [
+      {
+        "step": 2048,
+        "value": -0.0049829245544970036
+      },
+      {
+        "step": 3072,
+        "value": -0.00017282662156503648
+      },
+      {
+        "step": 4096,
+        "value": -0.000317328522214666
+      },
+      {
+        "step": 5120,
+        "value": -0.001052893465384841
+      },
+      {
+        "step": 6144,
+        "value": 0.0002319075574632734
+      },
+      {
+        "step": 7168,
+        "value": -0.0031266913283616304
+      },
+      {
+        "step": 8192,
+        "value": -0.00026128831086680293
+      },
+      {
+        "step": 9216,
+        "value": -0.000136810980620794
+      },
+      {
+        "step": 10240,
+        "value": -0.0007338899886235595
+      },
+      {
+        "step": 11264,
+        "value": -0.0018755976343527436
+      },
+      {
+        "step": 12288,
+        "value": -0.004354837816208601
+      },
+      {
+        "step": 13312,
+        "value": 0.00020424924150574952
+      },
+      {
+        "step": 14336,
+        "value": -0.0002556993567850441
+      },
+      {
+        "step": 15360,
+        "value": -0.00020907330326735973
+      },
+      {
+        "step": 16384,
+        "value": 2.7474481612443924e-05
+      },
+      {
+        "step": 17408,
+        "value": -0.0018140925094485283
+      },
+      {
+        "step": 18432,
+        "value": -0.0019176964415237308
+      },
+      {
+        "step": 19456,
+        "value": 0.00041209618211723864
+      },
+      {
+        "step": 20480,
+        "value": -8.602512389188632e-05
+      }
+    ],
+    "train/std": [
+      {
+        "step": 2048,
+        "value": 0.06000985950231552
+      },
+      {
+        "step": 3072,
+        "value": 0.06000740826129913
+      },
+      {
+        "step": 4096,
+        "value": 0.06000335142016411
+      },
+      {
+        "step": 5120,
+        "value": 0.06001006066799164
+      },
+      {
+        "step": 6144,
+        "value": 0.06001713126897812
+      },
+      {
+        "step": 7168,
+        "value": 0.06002260744571686
+      },
+      {
+        "step": 8192,
+        "value": 0.06002485752105713
+      },
+      {
+        "step": 9216,
+        "value": 0.060021813958883286
+      },
+      {
+        "step": 10240,
+        "value": 0.060015350580215454
+      },
+      {
+        "step": 11264,
+        "value": 0.060015719383955
+      },
+      {
+        "step": 12288,
+        "value": 0.06001809239387512
+      },
+      {
+        "step": 13312,
+        "value": 0.06001565605401993
+      },
+      {
+        "step": 14336,
+        "value": 0.06001482158899307
+      },
+      {
+        "step": 15360,
+        "value": 0.06001540273427963
+      },
+      {
+        "step": 16384,
+        "value": 0.06001175194978714
+      },
+      {
+        "step": 17408,
+        "value": 0.060007914900779724
+      },
+      {
+        "step": 18432,
+        "value": 0.06000901758670807
+      },
+      {
+        "step": 19456,
+        "value": 0.06000827997922897
+      },
+      {
+        "step": 20480,
+        "value": 0.06000529229640961
+      }
+    ],
+    "train/value_loss": [
+      {
+        "step": 2048,
+        "value": 1686.5052490234375
+      },
+      {
+        "step": 3072,
+        "value": 2004.384033203125
+      },
+      {
+        "step": 4096,
+        "value": 1614.892822265625
+      },
+      {
+        "step": 5120,
+        "value": 1859.675048828125
+      },
+      {
+        "step": 6144,
+        "value": 1955.6038818359375
+      },
+      {
+        "step": 7168,
+        "value": 1564.48291015625
+      },
+      {
+        "step": 8192,
+        "value": 1941.647705078125
+      },
+      {
+        "step": 9216,
+        "value": 1884.282958984375
+      },
+      {
+        "step": 10240,
+        "value": 1582.6451416015625
+      },
+      {
+        "step": 11264,
+        "value": 1892.8077392578125
+      },
+      {
+        "step": 12288,
+        "value": 1550.4940185546875
+      },
+      {
+        "step": 13312,
+        "value": 1707.2598876953125
+      },
+      {
+        "step": 14336,
+        "value": 1849.2889404296875
+      },
+      {
+        "step": 15360,
+        "value": 1587.24755859375
+      },
+      {
+        "step": 16384,
+        "value": 1844.360107421875
+      },
+      {
+        "step": 17408,
+        "value": 1817.76513671875
+      },
+      {
+        "step": 18432,
+        "value": 1496.1163330078125
+      },
+      {
+        "step": 19456,
+        "value": 1797.6922607421875
+      },
+      {
+        "step": 20480,
+        "value": 1546.944580078125
+      }
+    ]
+  },
+  "saved_rollout_observations_available": false,
+  "reconstruction": "Energy inferred as episode time * RMS squared; estimated-window coverage is full by the frozen profile",
+  "saved_reward_audit": {
+    "ppo": {
+      "episodes": 24,
+      "old_impact_cost": 1.3731024381246255,
+      "proposed_energy_cost": 8.848031076333557,
+      "proposed_peak_cost": 1.1242864495733673,
+      "repriced_mean_return": 197.0539721665414,
+      "note": "Offline repricing of saved outcomes, not a new trained policy result"
+    },
+    "pi": {
+      "episodes": 24,
+      "old_impact_cost": 1.4966223203303974,
+      "proposed_energy_cost": 5.561626291244257,
+      "proposed_peak_cost": 0.8238003783844329,
+      "repriced_mean_return": 207.8120654474059,
+      "note": "Offline repricing of saved outcomes, not a new trained policy result"
+    }
+  },
+  "probe": {
+    "seeds": [
+      63000,
+      63001,
+      63002
+    ],
+    "observations": 547,
+    "behavior": "Stochastic frozen actor, raw Gaussian actions stored, clipped only for execution",
+    "training_updates": 0,
+    "episodes": [
+      {
+        "route_id": null,
+        "route_length_m": 6.45,
+        "route_gates_passed": 0,
+        "route_gates_total": 0,
+        "goal_x_m": 6.45,
+        "goal_y_m": 0.0,
+        "max_episode_seconds": 30.0,
+        "clock_origin_sim_s": 5.72,
+        "duration_s": 18.198,
+        "samples": 183,
+        "path_rmse_m": 0.0348256936721932,
+        "cross_track_rmse_m": 0.0348256936721932,
+        "path_mae_m": 0.024079998356906638,
+        "path_p95_m": 0.07071013621845948,
+        "path_max_m": 0.0752054259710405,
+        "endpoint_error_m": 0.19633301750773233,
+        "final_progress_fraction": 0.9705579184849834,
+        "max_progress_fraction": 0.9705579184849834,
+        "backtracking_m": 0.020196321411245055,
+        "reference_length_m": 6.45,
+        "travelled_distance_m": 6.310605943969408,
+        "heading_rmse_deg": 3.0078408937386407,
+        "truth_path_rmse_m": 0.0348982853689275,
+        "truth_path_p95_m": 0.07111826165432773,
+        "truth_endpoint_error_m": 0.19579004055126586,
+        "truth_heading_rmse_deg": 3.008446998313242,
+        "odom_truth_position_error_m": 0.0006155688951360271,
+        "trajectory_frame": "odom_imu",
+        "trajectory_pose_source": "imu_encoder_lidar_odometry",
+        "reward_pose_source": "ground_truth",
+        "success": true,
+        "time_seconds": 18.200000000000077,
+        "progress_m": 6.260098574228143,
+        "remaining_m": 0.18990142577185676,
+        "endpoint_distance_m": 0.19633301750773233,
+        "lateral_error_m": -0.04984076898992933,
+        "heading_error_deg": -5.374446601930858,
+        "roll_deg": -1.398318518091256e-09,
+        "pitch_deg": -2.3431368829834483e-06,
+        "attempt": 1,
+        "episode_start_time_unix": 1791574445.4207346,
+        "final_arrival_time_seconds": 18.200000000000077,
+        "goal_reached": true,
+        "lidar_min_m": 1.9653531312942505,
+        "collision_clearance_m": 1.9509531312942188,
+        "adaptive_terrain_features": 0,
+        "next_adaptive_terrain_features": 0,
+        "adaptive_terrain_rolling_success": 0.0,
+        "adaptive_terrain_window_episodes": 0,
+        "adaptive_terrain_level_advanced": false,
+        "flat_curriculum_stage": 2,
+        "next_flat_curriculum_stage": 2,
+        "successful_episodes": 1,
+        "difficult_path_chosen": true,
+        "challenges_chosen": 2,
+        "challenges_cleared": 2,
+        "traversable_challenges": 2,
+        "challenge_choice_fraction": 1.0,
+        "challenge_clear_fraction": 1.0,
+        "final_lateral_drift_m": -0.04984076898992933,
+        "final_abs_lateral_drift_m": 0.04984076898992933,
+        "return": 200.40473721323718,
+        "reward_totals": {
+          "progress": 70.32380862158496,
+          "lateral": -2.467226578765306,
+          "heading": -0.9266857964322722,
+          "impact": -1.5506823439207635,
+          "body_rate": -0.42086252306466043,
+          "attitude": 0.0,
+          "slip": -34.18005782643864,
+          "smoothness": -0.04633611265806374,
+          "saturation": 0.0,
+          "effort": -0.05624176073305312,
+          "residual_effort": 0.0,
+          "torque_rate": -0.007388599693086724,
+          "velocity": -0.1962433119739078,
+          "yaw_tracking": -2.2829774781858956,
+          "goal_braking": -0.4154908289194311,
+          "time": -18.613521970137448,
+          "stall": 0.0,
+          "challenge_entry": 2.0,
+          "challenge_clear": 8.0,
+          "challenge_goal": 90.0,
+          "success_position": -13.75382426008356,
+          "success_heading": -3.6378956537051454,
+          "on_time_success": 8.63636363636346,
+          "terminal": 100.0
+        },
+        "clock_elapsed_seconds": 18.2,
+        "max_clock_error_seconds": 7.815970093361102e-14,
+        "max_motion_sensor_lag_seconds": 0.02000000000004931,
+        "curriculum_phase": 1,
+        "terrain_height_scale": 1.0,
+        "terrain_layout": [],
+        "peak_vertical_acceleration_m_s2": 29.572762761474195,
+        "rms_vertical_acceleration_m_s2": 1.490248729481644,
+        "mean_abs_lateral_error_m": 0.02421600628768247,
+        "rms_path_deviation_m": 0.03492213127365892,
+        "max_path_deviation_m": 0.0752054259710405,
+        "mean_abs_roll_deg": 0.009396091626418388,
+        "mean_abs_pitch_deg": 0.27043491066613323,
+        "mean_imu_angular_xy_rad_s": 0.04302102104414804,
+        "mean_imu_acceleration_change_m_s2": 1.1599291409676706,
+        "max_tilt_deg": 6.374711111948894,
+        "rms_wheel_slip": 0.2089839115196069,
+        "max_abs_wheel_slip": 1.0045539661626859,
+        "rms_wheel_torque_nm": 0.43947458926002014,
+        "max_abs_wheel_torque_nm": 1.523149461352706,
+        "rms_imu_acceleration_m_s2": 6.08352320892822,
+        "mean_speed_scale": 0.9591567346027919,
+        "min_speed_scale": 0.8699549436569214,
+        "max_speed_scale": 1.0,
+        "mean_ground_speed_m_s": 0.34413344353150027,
+        "waypoint_arrival_times_seconds": [
+          5.79999999999998,
+          11.39999999999998,
+          17.200000000000063
+        ],
+        "waypoint_time_budgets_seconds": [
+          8.0,
+          13.0,
+          18.0
+        ],
+        "finished_within_target_time": true,
+        "time_margin_seconds": 3.7999999999999226,
+        "target_finish_seconds": 22.0,
+        "final_speed_m_s": 0.1590268598526726,
+        "final_yaw_rate_rad_s": 0.020715397645370105,
+        "wrong_direction_duration_seconds": 0.0,
+        "termination": "success"
+      },
+      {
+        "route_id": null,
+        "route_length_m": 6.45,
+        "route_gates_passed": 0,
+        "route_gates_total": 0,
+        "goal_x_m": 6.45,
+        "goal_y_m": 0.0,
+        "max_episode_seconds": 30.0,
+        "clock_origin_sim_s": 24.56,
+        "duration_s": 18.400000000000002,
+        "samples": 185,
+        "path_rmse_m": 0.04934927502404014,
+        "cross_track_rmse_m": 0.04934927502404014,
+        "path_mae_m": 0.04195357252484676,
+        "path_p95_m": 0.08279733066117313,
+        "path_max_m": 0.08906029908626828,
+        "endpoint_error_m": 0.1914979705162013,
+        "final_progress_fraction": 0.9709255844021836,
+        "max_progress_fraction": 0.9709255844021836,
+        "backtracking_m": 0.012453441118166708,
+        "reference_length_m": 6.45,
+        "travelled_distance_m": 6.306370006057865,
+        "heading_rmse_deg": 4.4575258281450045,
+        "truth_path_rmse_m": 0.04942006483289019,
+        "truth_path_p95_m": 0.08260516083976847,
+        "truth_endpoint_error_m": 0.1932681252260801,
+        "truth_heading_rmse_deg": 4.458182990875412,
+        "odom_truth_position_error_m": 0.001890600205351305,
+        "trajectory_frame": "odom_imu",
+        "trajectory_pose_source": "imu_encoder_lidar_odometry",
+        "reward_pose_source": "ground_truth",
+        "success": true,
+        "time_seconds": 18.40000000000026,
+        "progress_m": 6.262470019394084,
+        "remaining_m": 0.18752998060591608,
+        "endpoint_distance_m": 0.1914979705162013,
+        "lateral_error_m": 0.03878116921611105,
+        "heading_error_deg": 7.064144016720474,
+        "roll_deg": -1.4704822419364146e-09,
+        "pitch_deg": -2.414689329831299e-06,
+        "attempt": 2,
+        "episode_start_time_unix": 1791574473.5596447,
+        "final_arrival_time_seconds": 18.40000000000026,
+        "goal_reached": true,
+        "lidar_min_m": 1.9765303134918213,
+        "collision_clearance_m": 1.948530313491716,
+        "adaptive_terrain_features": 0,
+        "next_adaptive_terrain_features": 0,
+        "adaptive_terrain_rolling_success": 0.0,
+        "adaptive_terrain_window_episodes": 0,
+        "adaptive_terrain_level_advanced": false,
+        "flat_curriculum_stage": 2,
+        "next_flat_curriculum_stage": 2,
+        "successful_episodes": 2,
+        "difficult_path_chosen": true,
+        "challenges_chosen": 2,
+        "challenges_cleared": 2,
+        "traversable_challenges": 2,
+        "challenge_choice_fraction": 1.0,
+        "challenge_clear_fraction": 1.0,
+        "final_lateral_drift_m": 0.03878116921611105,
+        "final_abs_lateral_drift_m": 0.03878116921611105,
+        "return": 188.27977276556265,
+        "reward_totals": {
+          "progress": 67.00857043432688,
+          "lateral": -4.982905850826128,
+          "heading": -2.05328949619123,
+          "impact": -1.4383798001245867,
+          "body_rate": -0.5044521598397665,
+          "attitude": 0.0,
+          "slip": -35.0720229949382,
+          "smoothness": -0.0486173935371328,
+          "saturation": 0.0,
+          "effort": -0.06490359614333376,
+          "residual_effort": 0.0,
+          "torque_rate": -0.006572301165614893,
+          "velocity": -0.18734602697607908,
+          "yaw_tracking": -3.940415448428444,
+          "goal_braking": -0.4699920664777577,
+          "time": -18.818066167611672,
+          "stall": 0.0,
+          "challenge_entry": 2.0,
+          "challenge_clear": 8.0,
+          "challenge_goal": 90.0,
+          "success_position": -13.496767183172082,
+          "success_heading": -5.826885365149752,
+          "on_time_success": 8.181818181817588,
+          "terminal": 100.0
+        },
+        "clock_elapsed_seconds": 18.4,
+        "max_clock_error_seconds": 2.6290081223123707e-13,
+        "max_motion_sensor_lag_seconds": 0.01400000000018764,
+        "curriculum_phase": 1,
+        "terrain_height_scale": 1.0,
+        "terrain_layout": [],
+        "peak_vertical_acceleration_m_s2": 123.4477660876786,
+        "rms_vertical_acceleration_m_s2": 5.211262380558562,
+        "mean_abs_lateral_error_m": 0.04205776615781802,
+        "rms_path_deviation_m": 0.04938889291237366,
+        "max_path_deviation_m": 0.08906029908626828,
+        "mean_abs_roll_deg": 0.02926288484655356,
+        "mean_abs_pitch_deg": 0.2598293645271553,
+        "mean_imu_angular_xy_rad_s": 0.047309667342626684,
+        "mean_imu_acceleration_change_m_s2": 2.6023178674890213,
+        "max_tilt_deg": 6.051180570817932,
+        "rms_wheel_slip": 0.21439444978817634,
+        "max_abs_wheel_slip": 1.143158008185571,
+        "rms_wheel_torque_nm": 0.4695323042411403,
+        "max_abs_wheel_torque_nm": 1.700000000000001,
+        "rms_imu_acceleration_m_s2": 8.204293476037924,
+        "mean_speed_scale": 0.9592694492767686,
+        "min_speed_scale": 0.8514940440654755,
+        "max_speed_scale": 1.0,
+        "mean_ground_speed_m_s": 0.34242996916236756,
+        "waypoint_arrival_times_seconds": [
+          5.800000000000082,
+          11.600000000000165,
+          17.400000000000247
+        ],
+        "waypoint_time_budgets_seconds": [
+          8.0,
+          13.0,
+          18.0
+        ],
+        "finished_within_target_time": true,
+        "time_margin_seconds": 3.5999999999997385,
+        "target_finish_seconds": 22.0,
+        "final_speed_m_s": 0.16611019697101106,
+        "final_yaw_rate_rad_s": -0.008236256315953186,
+        "wrong_direction_duration_seconds": 0.0,
+        "termination": "success"
+      },
+      {
+        "route_id": null,
+        "route_length_m": 6.45,
+        "route_gates_passed": 0,
+        "route_gates_total": 0,
+        "goal_x_m": 6.45,
+        "goal_y_m": 0.0,
+        "max_episode_seconds": 30.0,
+        "clock_origin_sim_s": 43.6,
+        "duration_s": 18.1,
+        "samples": 182,
+        "path_rmse_m": 0.012075041554773699,
+        "cross_track_rmse_m": 0.012075041554773699,
+        "path_mae_m": 0.009646463570005894,
+        "path_p95_m": 0.022899177346941732,
+        "path_max_m": 0.02419610644832105,
+        "endpoint_error_m": 0.18862455867045122,
+        "final_progress_fraction": 0.9708477711104899,
+        "max_progress_fraction": 0.9708477711104899,
+        "backtracking_m": 0.011075695963203902,
+        "reference_length_m": 6.45,
+        "travelled_distance_m": 6.283887806600412,
+        "heading_rmse_deg": 0.8880285303815897,
+        "truth_path_rmse_m": 0.012146268933728777,
+        "truth_path_p95_m": 0.023030308310515526,
+        "truth_endpoint_error_m": 0.18984479622498857,
+        "truth_heading_rmse_deg": 0.8873652107623565,
+        "odom_truth_position_error_m": 0.001224855467961243,
+        "trajectory_frame": "odom_imu",
+        "trajectory_pose_source": "imu_encoder_lidar_odometry",
+        "reward_pose_source": "ground_truth",
+        "success": true,
+        "time_seconds": 18.100000000000257,
+        "progress_m": 6.26196812366266,
+        "remaining_m": 0.1880318763373401,
+        "endpoint_distance_m": 0.18862455867045122,
+        "lateral_error_m": 0.014941138332862546,
+        "heading_error_deg": -0.863580422292632,
+        "roll_deg": 5.765879450511022e-11,
+        "pitch_deg": -2.3939920168517193e-06,
+        "attempt": 3,
+        "episode_start_time_unix": 1791574501.0121336,
+        "final_arrival_time_seconds": 18.100000000000257,
+        "goal_reached": true,
+        "lidar_min_m": 1.9775452613830566,
+        "collision_clearance_m": 1.971945261382956,
+        "adaptive_terrain_features": 0,
+        "next_adaptive_terrain_features": 0,
+        "adaptive_terrain_rolling_success": 0.0,
+        "adaptive_terrain_window_episodes": 0,
+        "adaptive_terrain_level_advanced": false,
+        "flat_curriculum_stage": 2,
+        "next_flat_curriculum_stage": 2,
+        "successful_episodes": 3,
+        "difficult_path_chosen": true,
+        "challenges_chosen": 2,
+        "challenges_cleared": 2,
+        "traversable_challenges": 2,
+        "challenge_choice_fraction": 1.0,
+        "challenge_clear_fraction": 1.0,
+        "final_lateral_drift_m": 0.014941138332862546,
+        "final_abs_lateral_drift_m": 0.014941138332862546,
+        "return": 215.63375748562098,
+        "reward_totals": {
+          "progress": 73.11442680991931,
+          "lateral": -0.29683608909957676,
+          "heading": -0.0796844850052195,
+          "impact": -1.441897667481249,
+          "body_rate": -0.33436349556817624,
+          "attitude": 0.0,
+          "slip": -31.39658406317478,
+          "smoothness": -0.05304943364537319,
+          "saturation": 0.0,
+          "effort": -0.04694305791005813,
+          "residual_effort": 0.0,
+          "torque_rate": -0.008022101583120623,
+          "velocity": -0.1824937297130809,
+          "yaw_tracking": -0.5065275464508115,
+          "goal_braking": -0.2389212972889582,
+          "time": -18.511249871400608,
+          "stall": 0.0,
+          "challenge_entry": 2.0,
+          "challenge_clear": 8.0,
+          "challenge_goal": 90.0,
+          "success_position": -13.146798559792131,
+          "success_heading": -0.10093428982099333,
+          "on_time_success": 8.863636363635779,
+          "terminal": 100.0
+        },
+        "clock_elapsed_seconds": 18.1,
+        "max_clock_error_seconds": 2.5579538487363607e-13,
+        "max_motion_sensor_lag_seconds": 0.01800000000011437,
+        "curriculum_phase": 1,
+        "terrain_height_scale": 1.0,
+        "terrain_layout": [],
+        "peak_vertical_acceleration_m_s2": 183.58368085193027,
+        "rms_vertical_acceleration_m_s2": 6.289015417519756,
+        "mean_abs_lateral_error_m": 0.009686982326561467,
+        "rms_path_deviation_m": 0.012101013979432458,
+        "max_path_deviation_m": 0.02419610644832105,
+        "mean_abs_roll_deg": 0.00782013498516281,
+        "mean_abs_pitch_deg": 0.28705659692899016,
+        "mean_imu_angular_xy_rad_s": 0.03575436920992633,
+        "mean_imu_acceleration_change_m_s2": 2.810165706774455,
+        "max_tilt_deg": 6.887985255347562,
+        "rms_wheel_slip": 0.20200242564078152,
+        "max_abs_wheel_slip": 1.0986114219930003,
+        "rms_wheel_torque_nm": 0.40261171672072116,
+        "max_abs_wheel_torque_nm": 1.620000000000001,
+        "rms_imu_acceleration_m_s2": 10.084910523852518,
+        "mean_speed_scale": 0.955020680282656,
+        "min_speed_scale": 0.86113041639328,
+        "max_speed_scale": 1.0,
+        "mean_ground_speed_m_s": 0.3472399866614458,
+        "waypoint_arrival_times_seconds": [
+          5.900000000000084,
+          11.500000000000163,
+          17.100000000000243
+        ],
+        "waypoint_time_budgets_seconds": [
+          8.0,
+          13.0,
+          18.0
+        ],
+        "finished_within_target_time": true,
+        "time_margin_seconds": 3.899999999999743,
+        "target_finish_seconds": 22.0,
+        "final_speed_m_s": 0.1677985339776535,
+        "final_yaw_rate_rad_s": -1.0336629256515874e-05,
+        "wrong_direction_duration_seconds": 0.0,
+        "termination": "success"
+      }
+    ],
+    "raw_units": {
+      "scale": 1.0,
+      "counterfactual": "Value output and target uniformly rescaled at identical model weights",
+      "explained_variance": -0.017541883545877157,
+      "prediction_mean": 11.564527356428464,
+      "prediction_std": 0.48368476217787343,
+      "target_mean": 30.24090019042826,
+      "target_std": 35.43711677035148,
+      "target_min": 0.9575229294171468,
+      "target_max": 185.70015218319836,
+      "batches": [
+        {
+          "samples": 256,
+          "value_mse": 1847.9232177734375,
+          "actor_gradient_norm": 9.964336752669508,
+          "critic_gradient_norm": 484.6233287326902,
+          "global_gradient_norm": 484.72575623632144,
+          "clip_retained_fraction": 0.0010315111019698335
+        },
+        {
+          "samples": 256,
+          "value_mse": 1529.580810546875,
+          "actor_gradient_norm": 4.407932936405538,
+          "critic_gradient_norm": 432.28524873067505,
+          "global_gradient_norm": 432.30772158604043,
+          "clip_retained_fraction": 0.001156583548887418
+        },
+        {
+          "samples": 35,
+          "value_mse": 717.7959594726562,
+          "actor_gradient_norm": 26.36844902070514,
+          "critic_gradient_norm": 337.4692483187039,
+          "global_gradient_norm": 338.4978414473991,
+          "clip_retained_fraction": 0.0014771142893700942
+        }
+      ]
+    },
+    "scaled_units_sensitivity": {
+      "scale": 0.01,
+      "counterfactual": "Value output and target uniformly rescaled at identical model weights",
+      "explained_variance": -0.017541883545877157,
+      "prediction_mean": 0.11564527356428464,
+      "prediction_std": 0.004836847621778734,
+      "target_mean": 0.30240900190428266,
+      "target_std": 0.35437116770351484,
+      "target_min": 0.009575229294171468,
+      "target_max": 1.8570015218319835,
+      "batches": [
+        {
+          "samples": 256,
+          "value_mse": 0.18479233980178833,
+          "actor_gradient_norm": 9.964337542092595,
+          "critic_gradient_norm": 0.048462287272749885,
+          "global_gradient_norm": 9.964455391341948,
+          "clip_retained_fraction": 0.050178351970554744
+        },
+        {
+          "samples": 256,
+          "value_mse": 0.15295809507369995,
+          "actor_gradient_norm": 4.407932963791484,
+          "critic_gradient_norm": 0.04322851556134101,
+          "global_gradient_norm": 4.408144929314055,
+          "clip_retained_fraction": 0.11342637199803506
+        },
+        {
+          "samples": 35,
+          "value_mse": 0.07177959382534027,
+          "actor_gradient_norm": 26.36844779014331,
+          "critic_gradient_norm": 0.03374692480423291,
+          "global_gradient_norm": 26.368469385166204,
+          "clip_retained_fraction": 0.018962040372325843
+        }
+      ]
+    },
+    "fresh_scaled_critic": {
+      "scale": 1.0,
+      "counterfactual": "Actual proposed fresh critic with scaled raw reward; no optimizer steps",
+      "explained_variance": -0.2894230687783639,
+      "prediction_mean": 0.43603670597076416,
+      "prediction_std": 0.0976523905992508,
+      "target_mean": 0.5705811877575153,
+      "target_std": 0.284602555450169,
+      "target_min": 0.3002989555072687,
+      "target_max": 1.8570015218319835,
+      "batches": [
+        {
+          "samples": 256,
+          "value_mse": 0.137841135263443,
+          "actor_gradient_norm": 8.602072822457636,
+          "critic_gradient_norm": 1.104121909231578,
+          "global_gradient_norm": 8.672643312930001,
+          "clip_retained_fraction": 0.05765254309513796
+        },
+        {
+          "samples": 256,
+          "value_mse": 0.11598098278045654,
+          "actor_gradient_norm": 7.7514472566122565,
+          "critic_gradient_norm": 1.0411385536078495,
+          "global_gradient_norm": 7.821055175604524,
+          "clip_retained_fraction": 0.06392998448976782
+        },
+        {
+          "samples": 35,
+          "value_mse": 0.05865537002682686,
+          "actor_gradient_norm": 23.67161065919188,
+          "critic_gradient_norm": 0.5913660642067826,
+          "global_gradient_norm": 23.67899628409663,
+          "clip_retained_fraction": 0.021115758999466237
+        }
+      ],
+      "training_reward_multiplier": 0.01,
+      "actor": "unchanged copied actor",
+      "critic": "fresh",
+      "optimizer": "fresh",
+      "training_updates": 0
+    }
+  }
+}

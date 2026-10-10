@@ -1,0 +1,22 @@
+# Separate multi-layer localization sensor; immutable new rough-only contract.
+extends: rough_turn_lidar_candidate.yaml
+odometry_assistance:
+  revision: rough_wall_cloud_v11
+  corridor_lidar:
+    pointcloud_topic: /rough/localization/points
+    cloud_range_min_m: 0.08
+    cloud_range_max_m: 16.0
+    cloud_max_vertical_direction: 0.025
+    displacement_window_seconds: 0.50
+    minimum_displacement_span_seconds: 0.30
+    # Real beams near world-horizontal keep endpoints above the floor and
+    # below the ceiling. Preserve the existing height/correction/age gates.
+rough_experiment_sensor:
+  type: gpu_lidar
+  horizontal_samples: 360
+  vertical_samples: 33
+  vertical_min_rad: -0.65
+  vertical_max_rad: 0.65
+  rate_hz: 10
+  range_max_m: 16.0
+  range_noise_stddev_m: 0.005

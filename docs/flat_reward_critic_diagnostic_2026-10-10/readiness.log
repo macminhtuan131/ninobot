@@ -1,0 +1,5 @@
+
+COMMAND ros2 run nino_rl wait_for_sim
+[INFO] [1791574432.297764042] [nino_sim_readiness]: Waiting for odom, joint_states, imu, scan, TF odom->base_footprint
+[INFO] [1791574437.358399860] [nino_sim_readiness]: Waiting for odom, joint_states, scan, TF odom->base_footprint
+[INFO] [1791574439.577875076] [nino_sim_readiness]: Simulator controllers, sensors, odometry, and TF are ready; starting Nav2

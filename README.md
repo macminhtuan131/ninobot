@@ -219,6 +219,18 @@ The profile aligns encoder increments with IMU heading/pitch, retains raw wheel
 odometry for diagnostics, and requires a new training contract. Physical
 arrival continues to use the original 0.20 m goal radius.
 
+**Current rough localization correction (2026-10-09):**
+[sensor profile, strict PI qualification and new-contract pilot commands](docs/ROUGH_LOCALIZATION_ROBUSTNESS_2026-10-09.md).
+The rough-only snapshot adds multi-layer localization LiDAR coverage and retains
+encoder history for IMU alignment. Normal E1/N1/S1 and slow E1 must pass before
+training. This sensor profile requires equivalent hardware coverage for real
+deployment; the old 2D profile and its saved models remain diagnostic records.
+
+**Current S1 controller correction:**
+[stop-and-align turns, bounded stall recovery, PI evidence and next pilot commands](docs/ROUGH_S1_RECOVERY_2026-10-09.md).
+The v16 rough contract qualifies normal E1/N1/S1 plus slow E1 before PPO startup;
+old rough checkpoints are actor-transfer sources rather than optimizer resumes.
+
 **Corrected specialist training setup:**
 [reduced-speed flat PI checks, fixed E1/N1/S1 replay, matching PI references and commands](docs/corrected_training_setup_2026-10-08/README.md).
 The optional flat controller profile retains bounded integral correction at

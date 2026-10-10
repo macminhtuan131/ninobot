@@ -1,0 +1,123 @@
+{
+  "E1": {
+    "original": {
+      "successes": 3,
+      "episodes": 3,
+      "maximum_motion_feedback_lag_s": 0.024000000000100385,
+      "truth_endpoint_error_m": 0.19022288028029413,
+      "truth_path_rmse_m": 0.025068361773271947,
+      "odom_truth_position_error_m": 0.07195835746190406,
+      "time_seconds": 26.933333333333056,
+      "rms_wheel_slip": 0.04265143092905401,
+      "rms_vertical_acceleration_m_s2": 1.5670976187182457
+    },
+    "corrected": {
+      "successes": 3,
+      "episodes": 3,
+      "maximum_motion_feedback_lag_s": 0.021999999999536612,
+      "truth_endpoint_error_m": 0.19255064907428898,
+      "truth_path_rmse_m": 0.02043258541540997,
+      "odom_truth_position_error_m": 0.0017743043110939078,
+      "time_seconds": 27.09999999999846,
+      "rms_wheel_slip": 0.05370923658856402,
+      "rms_vertical_acceleration_m_s2": 1.6341891713708125
+    },
+    "original_summary": "/home/tuanmac/ninorobot/rl_runs/rough_turn_pi_candidate_20261009/E1/20261009-070751-735953/summary.json",
+    "corrected_summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_cloud_v11/pi/E1/20261009-090314-863470/summary.json"
+  },
+  "N1": {
+    "original": {
+      "successes": 0,
+      "episodes": 3,
+      "maximum_motion_feedback_lag_s": 0.023999999997982968,
+      "truth_endpoint_error_m": 2.698253647825146,
+      "truth_path_rmse_m": 0.17386421391126103,
+      "odom_truth_position_error_m": 2.5991771950847258,
+      "time_seconds": 58.4999999999981,
+      "rms_wheel_slip": 0.43506151901279716,
+      "rms_vertical_acceleration_m_s2": 0.8196297319378294
+    },
+    "corrected": {
+      "successes": 3,
+      "episodes": 3,
+      "maximum_motion_feedback_lag_s": 0.018000000005542915,
+      "truth_endpoint_error_m": 0.19501510727158586,
+      "truth_path_rmse_m": 0.1151114889564702,
+      "odom_truth_position_error_m": 0.0009656645848515718,
+      "time_seconds": 24.200000000003342,
+      "rms_wheel_slip": 0.02558450124357614,
+      "rms_vertical_acceleration_m_s2": 1.307229630340906
+    },
+    "original_summary": "/home/tuanmac/ninorobot/rl_runs/rough_turn_pi_candidate_20261009/N1/20261009-070948-383819/summary.json",
+    "corrected_summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_cloud_v11/pi/N1/20261009-090511-227511/summary.json"
+  },
+  "S1": {
+    "original": {
+      "successes": 0,
+      "episodes": 3,
+      "maximum_motion_feedback_lag_s": 0.01800000002242541,
+      "truth_endpoint_error_m": 5.492959034114008,
+      "truth_path_rmse_m": 0.14329648726410202,
+      "odom_truth_position_error_m": 10.104826539555281,
+      "time_seconds": 98.5000000000224,
+      "rms_wheel_slip": 0.7179800752501251,
+      "rms_vertical_acceleration_m_s2": 0.49199589193288223
+    },
+    "corrected": {
+      "successes": 2,
+      "episodes": 3,
+      "maximum_motion_feedback_lag_s": 0.02000000002226443,
+      "truth_endpoint_error_m": 1.947584562769159,
+      "truth_path_rmse_m": 0.28864599193681834,
+      "odom_truth_position_error_m": 0.0010355484958147288,
+      "time_seconds": 73.63333333335005,
+      "rms_wheel_slip": 0.6137632925580093,
+      "rms_vertical_acceleration_m_s2": 0.7996153630376974
+    },
+    "original_summary": "/home/tuanmac/ninorobot/rl_runs/rough_turn_pi_candidate_20261009/S1/20261009-071341-681937/summary.json",
+    "corrected_summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_cloud_v11/pi/S1/20261009-090650-907424/summary.json"
+  },
+  "E1_slow": {
+    "corrected": {
+      "successes": 3,
+      "episodes": 3,
+      "maximum_motion_feedback_lag_s": 0.022000000000119257,
+      "truth_endpoint_error_m": 0.1948180915300218,
+      "truth_path_rmse_m": 0.028025711389839142,
+      "odom_truth_position_error_m": 0.0013885792171761766,
+      "time_seconds": 41.766666666665486,
+      "rms_wheel_slip": 0.0514920697015716,
+      "rms_vertical_acceleration_m_s2": 1.0698370291105639
+    },
+    "corrected_summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_cloud_v11/slow_e1/20261009-090019-871806/summary.json",
+    "baseline_speed_scale": 0.65
+  },
+  "coverage": {
+    "previous_ppo_2d": {
+      "source": "/home/tuanmac/ninorobot/rl_runs/rough_wall_slip_v7/curriculum/blocks/block_0000/wall_observations.jsonl",
+      "crest_x_interval_m": [
+        7.7,
+        8.6
+      ],
+      "observations": 370,
+      "accepted_fixes": 209,
+      "minimum_axis_rays": [
+        10,
+        37
+      ]
+    },
+    "cloud_qualification": {
+      "source": "/home/tuanmac/ninorobot/rl_runs/rough_wall_cloud_v11/qualification_logs/wall_observations.jsonl",
+      "crest_x_interval_m": [
+        7.7,
+        8.6
+      ],
+      "observations": 182,
+      "accepted_fixes": 182,
+      "minimum_axis_rays": [
+        55,
+        81
+      ]
+    }
+  }
+}

@@ -1,0 +1,3 @@
+
+COMMAND /home/tuanmac/ninorobot/.venv/bin/python src/nino_rl/scripts/wait_for_drive_profile.py --config /home/tuanmac/ninorobot/rl_runs/flat_targeted_actor_pilot_v1/train/20261010-002632-975129/ppo.yaml --timeout 60
+Controller service responded; all saved profile parameters match.

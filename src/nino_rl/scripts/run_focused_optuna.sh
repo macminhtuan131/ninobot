@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Separate, fixed-contract studies. Usage: bash ... flat|rough sim|prepare|tune [tuner args]
+# Separate studies. Usage: bash ... flat|rough sim|prepare|tune|recover-eval [args]
 set -e
 course="${1:-}"
 operation="${2:-}"
 if [[ "$course" != flat && "$course" != rough ]] ||
-   [[ "$operation" != sim && "$operation" != prepare && "$operation" != tune ]]; then
-  echo "Usage: bash $0 flat|rough sim|prepare|tune [extra tuner arguments]" >&2
+   [[ "$operation" != sim && "$operation" != prepare && "$operation" != tune && "$operation" != recover-eval && "$operation" != check && "$operation" != continue ]]; then
+  echo "Usage: bash $0 flat|rough sim|prepare|tune|recover-eval|check|continue [extra arguments]" >&2
   exit 2
 fi
 shift 2
@@ -39,6 +39,19 @@ else
       world:="$project_dir/$world" world_name:=combined_rough_section \
       headless:=true pi_integrator_profile:=legacy "$@"
   fi
+fi
+if [[ "$operation" == check ]]; then
+  exec python src/nino_rl/scripts/wait_for_drive_profile.py --config "$profile" "$@"
+fi
+if [[ "$operation" == continue ]]; then
+  if [[ "$course" != flat ]]; then
+    echo "Rough tuning is held; validate the turning PI/odometry candidate first." >&2
+    exit 2
+  fi
+  exec python src/nino_rl/scripts/continue_flat_optuna.py "$@"
+fi
+if [[ "$operation" == recover-eval ]]; then
+  exec python src/nino_rl/scripts/recover_optuna_evaluation.py --section "$course" "$@"
 fi
 preparation=()
 if [[ "$operation" == prepare ]]; then

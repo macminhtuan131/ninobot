@@ -1,0 +1,24 @@
+# FUTURE contract: do not start until turning PI and odometry validation pass.
+# Fixed terrain only; previously introduced routes remain in every stage.
+extends: rough_turn_pi_candidate.yaml
+rough_curriculum:
+  enabled: true
+  revision: fixed_turn_pi_candidate_v1
+  gate:
+    episodes_per_route: 20
+    success_rate: 0.95
+    max_truth_path_rmse_m: 0.05
+    max_rollover_rate: 0.0
+  stages:
+  - name: fixed_E1
+    route_ids: [E1]
+    terrain_level: 0
+    variant_probability: 0.0
+  - name: fixed_add_N1
+    route_ids: [E1, N1]
+    terrain_level: 0
+    variant_probability: 0.0
+  - name: fixed_add_S1
+    route_ids: [E1, N1, S1]
+    terrain_level: 0
+    variant_probability: 0.0

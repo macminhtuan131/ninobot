@@ -1,0 +1,10 @@
+# Explicit opt-in: scripts/run_flat_reward_pilot.py supplies the frozen code.
+# Energy uses the same timestamped vertical acceleration samples as RMS scoring.
+extends: combined_flat_value_scaled_pilot.yaml
+reward_v2:
+  impact_mode: vertical_energy_peak_v1
+  impact_acceleration_sigma_m_s2: 3.0
+  impact_reference_seconds: 0.1
+  impact_scale: 1.0
+  peak_impact_weight: 0.25
+  peak_acceleration_sigma_m_s2: 20.0

@@ -1,0 +1,9 @@
+Saved log/reward audit: /home/tuanmac/ninorobot/docs/flat_reward_critic_diagnostic_2026-10-10/audit.json
+[INFO] [1791574444.640238913] [nino_rl_interface]: Curriculum phase 1 at training step 0
+[WARN] [1791574472.744181412] [nino_rl_interface]: EPISODE END: success | t=18.20s | goal_dist=0.20m | heading_err=-5.4deg | lateral=-0.05m | v=0.16m/s | reference_valid=True | challenges=2/2 | lidar_min=1.97m | collision_clearance=1.95m | roll=-0.0deg | pitch=-0.0deg
+Probe seed 63000 completed: success
+[WARN] [1791574500.189191673] [nino_rl_interface]: EPISODE END: success | t=18.40s | goal_dist=0.19m | heading_err=7.1deg | lateral=0.04m | v=0.17m/s | reference_valid=True | challenges=2/2 | lidar_min=1.98m | collision_clearance=1.95m | roll=-0.0deg | pitch=-0.0deg
+Probe seed 63001 completed: success
+[WARN] [1791574526.817683755] [nino_rl_interface]: EPISODE END: success | t=18.10s | goal_dist=0.19m | heading_err=-0.9deg | lateral=0.01m | v=0.17m/s | reference_valid=True | challenges=2/2 | lidar_min=1.98m | collision_clearance=1.97m | roll=0.0deg | pitch=-0.0deg
+Probe seed 63002 completed: success
+Read-only critic/gradient probe finished: /home/tuanmac/ninorobot/docs/flat_reward_critic_diagnostic_2026-10-10/audit.json

@@ -1,0 +1,74 @@
+{
+  "E1": {
+    "original": {
+      "successes": 3,
+      "episodes": 3,
+      "truth_endpoint_error_m": 0.19022288028029413,
+      "truth_path_rmse_m": 0.025068361773271947,
+      "odom_truth_position_error_m": 0.07195835746190406,
+      "time_seconds": 26.933333333333056,
+      "rms_wheel_slip": 0.04265143092905401,
+      "rms_vertical_acceleration_m_s2": 1.5670976187182457
+    },
+    "corrected": {
+      "successes": 3,
+      "episodes": 3,
+      "truth_endpoint_error_m": 0.19189520183751693,
+      "truth_path_rmse_m": 0.023681285842437356,
+      "odom_truth_position_error_m": 0.0016090882335172661,
+      "time_seconds": 27.099999999999607,
+      "rms_wheel_slip": 0.06076237696540061,
+      "rms_vertical_acceleration_m_s2": 1.584195738959184
+    },
+    "original_summary": "/home/tuanmac/ninorobot/rl_runs/rough_turn_pi_candidate_20261009/E1/20261009-070751-735953/summary.json",
+    "corrected_summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_slip_v7/pi/E1/20261009-081136-889840/summary.json"
+  },
+  "N1": {
+    "original": {
+      "successes": 0,
+      "episodes": 3,
+      "truth_endpoint_error_m": 2.698253647825146,
+      "truth_path_rmse_m": 0.17386421391126103,
+      "odom_truth_position_error_m": 2.5991771950847258,
+      "time_seconds": 58.4999999999981,
+      "rms_wheel_slip": 0.43506151901279716,
+      "rms_vertical_acceleration_m_s2": 0.8196297319378294
+    },
+    "corrected": {
+      "successes": 3,
+      "episodes": 3,
+      "truth_endpoint_error_m": 0.19423988220211252,
+      "truth_path_rmse_m": 0.10937063347552271,
+      "odom_truth_position_error_m": 0.0012916609064612813,
+      "time_seconds": 23.933333333331973,
+      "rms_wheel_slip": 0.027094266917968627,
+      "rms_vertical_acceleration_m_s2": 1.2638465603470186
+    },
+    "original_summary": "/home/tuanmac/ninorobot/rl_runs/rough_turn_pi_candidate_20261009/N1/20261009-070948-383819/summary.json",
+    "corrected_summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_slip_v7/pi/N1/20261009-081330-461535/summary.json"
+  },
+  "S1": {
+    "original": {
+      "successes": 0,
+      "episodes": 3,
+      "truth_endpoint_error_m": 5.492959034114008,
+      "truth_path_rmse_m": 0.14329648726410202,
+      "odom_truth_position_error_m": 10.104826539555281,
+      "time_seconds": 98.5000000000224,
+      "rms_wheel_slip": 0.7179800752501251,
+      "rms_vertical_acceleration_m_s2": 0.49199589193288223
+    },
+    "corrected": {
+      "successes": 3,
+      "episodes": 3,
+      "truth_endpoint_error_m": 0.19328688730921184,
+      "truth_path_rmse_m": 0.1965324992801292,
+      "odom_truth_position_error_m": 0.001554379220823846,
+      "time_seconds": 27.633333333332644,
+      "rms_wheel_slip": 0.08141451530163765,
+      "rms_vertical_acceleration_m_s2": 1.312385886425629
+    },
+    "original_summary": "/home/tuanmac/ninorobot/rl_runs/rough_turn_pi_candidate_20261009/S1/20261009-071341-681937/summary.json",
+    "corrected_summary": "/home/tuanmac/ninorobot/rl_runs/rough_wall_slip_v7/pi/S1/20261009-081510-697086/summary.json"
+  }
+}
