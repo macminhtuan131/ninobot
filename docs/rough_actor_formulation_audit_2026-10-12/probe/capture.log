@@ -1,0 +1,13 @@
+
+COMMAND /home/tuanmac/ninorobot/.venv/bin/python /home/tuanmac/ninorobot/src/nino_rl/scripts/probe_rough_actor_gradients.py --capture
+[INFO] [1791742019.164490340] [nino_rl_interface]: Route E1: 10.50 m, goal=(10.5, 0.0), deadline=107.5s
+[INFO] [1791742019.172951595] [nino_rl_interface]: Curriculum phase 1 at training step 0
+[WARN] [1791742058.869874858] [nino_rl_interface]: EPISODE END: success | t=28.30s | goal_dist=0.19m | heading_err=-3.9deg | lateral=-0.02m | v=0.14m/s | reference_valid=True | challenges=0/0 | lidar_min=1.50m | collision_clearance=1.46m | roll=-0.0deg | pitch=-0.0deg
+Frozen probe 17100 success
+[INFO] [1791742059.014649157] [nino_rl_interface]: Route E1: 10.50 m, goal=(10.5, 0.0), deadline=107.5s
+[WARN] [1791742101.332234059] [nino_rl_interface]: EPISODE END: success | t=28.60s | goal_dist=0.19m | heading_err=-2.1deg | lateral=-0.02m | v=0.13m/s | reference_valid=True | challenges=0/0 | lidar_min=1.49m | collision_clearance=1.47m | roll=0.0deg | pitch=-0.0deg
+Frozen probe 17101 success
+[INFO] [1791742101.523964797] [nino_rl_interface]: Route E1: 10.50 m, goal=(10.5, 0.0), deadline=107.5s
+[WARN] [1791742143.184212720] [nino_rl_interface]: EPISODE END: success | t=28.10s | goal_dist=0.19m | heading_err=-2.2deg | lateral=-0.02m | v=0.14m/s | reference_valid=True | challenges=0/0 | lidar_min=1.51m | collision_clearance=1.47m | roll=0.0deg | pitch=-0.0deg
+Frozen probe 17102 success
+Backward-only gradient audit saved

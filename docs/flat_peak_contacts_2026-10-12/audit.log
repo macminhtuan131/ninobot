@@ -1,0 +1,30 @@
+# Saved flat impact/contact audit
+
+Saved four cold-start seed-65004 episodes; 1 ms physics, unchanged 100 ms control.
+
+| Repeat/profile | Elapsed s | Physical x m | Scale | IMU peak m/s² | IMU energy | Bracket during interval | Max solver force kN / link | Motor torque Nm | Wheel error rad/s |
+|---|---:|---:|---:|---:|---:|---|---|---:|---:|
+| 1/full | 7.7 | 2.400 | 1.00 | 95.92 | 184.12 | False | 0.67 / right_wheel_link | 0.864 | 2.837 |
+| 1/full | 7.5 | 2.321 | 1.00 | 47.88 | 46.08 | False | 0.67 / caster_right_wheel_link | 0.942 | 3.027 |
+| 1/full | 6.9 | 2.197 | 1.00 | 23.03 | 10.98 | True | 63.14 / caster_right_wheel_link | 0.720 | 5.191 |
+| 1/full | 12.5 | 4.222 | 1.00 | 5.72 | 1.60 | False | 0.26 / caster_right_wheel_link | 1.873 | 1.977 |
+| 1/full | 12.9 | 4.409 | 1.00 | 5.26 | 0.94 | False | 0.57 / right_wheel_link | 0.806 | 2.033 |
+| 1/full | 12.7 | 4.330 | 1.00 | 6.25 | 0.85 | False | 0.64 / caster_right_wheel_link | 0.453 | 3.165 |
+| 1/schedule | 7.0 | 2.328 | 1.00 | 163.13 | 532.26 | False | 0.68 / caster_left_wheel_link | 0.908 | 2.969 |
+| 1/schedule | 13.0 | 4.413 | 0.70 | 54.39 | 35.76 | False | 0.09 / left_wheel_link | 0.981 | 2.118 |
+| 1/schedule | 12.9 | 4.401 | 0.70 | 54.39 | 24.11 | False | 0.45 / left_wheel_link | 0.177 | 0.610 |
+| 1/schedule | 6.6 | 2.197 | 1.00 | 20.48 | 12.66 | True | 27.78 / caster_bracket_left_link | 1.280 | 5.376 |
+| 1/schedule | 6.5 | 2.197 | 1.00 | 12.48 | 4.52 | True | 13.75 / caster_left_wheel_link | 1.966 | 5.189 |
+| 1/schedule | 11.7 | 4.197 | 0.70 | 9.87 | 2.06 | True | 0.75 / caster_bracket_left_link | 0.511 | 1.351 |
+| 2/full | 6.6 | 2.198 | 1.00 | 21.58 | 9.65 | True | 19.00 / caster_left_wheel_link | 1.502 | 4.988 |
+| 2/full | 6.1 | 2.186 | 1.00 | 14.62 | 4.87 | True | 0.79 / caster_bracket_left_link | 0.488 | 4.963 |
+| 2/full | 8.0 | 2.518 | 1.00 | 9.42 | 3.22 | False | 1.04 / left_wheel_link | 0.607 | 2.020 |
+| 2/full | 12.1 | 4.197 | 1.00 | 6.41 | 2.38 | True | 1.11 / caster_bracket_left_link | 0.532 | 4.310 |
+| 2/full | 12.7 | 4.395 | 1.00 | 7.92 | 2.23 | False | 0.64 / right_wheel_link | 0.387 | 2.146 |
+| 2/full | 13.0 | 4.492 | 1.00 | 6.53 | 1.18 | False | 0.11 / caster_left_wheel_link | 0.436 | 2.354 |
+| 2/schedule | 12.8 | 4.283 | 0.70 | 28.50 | 16.30 | False | 0.50 / caster_right_wheel_link | 0.626 | 2.832 |
+| 2/schedule | 6.7 | 2.197 | 1.00 | 19.07 | 8.13 | True | 40.30 / caster_left_wheel_link | 1.860 | 5.394 |
+| 2/schedule | 6.5 | 2.196 | 1.00 | 14.81 | 5.47 | True | 18.54 / caster_right_wheel_link | 1.534 | 6.374 |
+| 2/schedule | 7.4 | 2.404 | 1.00 | 16.00 | 4.16 | False | 0.60 / left_wheel_link | 1.133 | 2.942 |
+| 2/schedule | 13.4 | 4.441 | 0.70 | 7.04 | 1.43 | False | 0.23 / left_wheel_link | 0.751 | 0.816 |
+| 2/schedule | 11.9 | 4.197 | 0.70 | 5.85 | 1.11 | True | 0.55 / caster_bracket_right_link | 0.153 | 1.490 |

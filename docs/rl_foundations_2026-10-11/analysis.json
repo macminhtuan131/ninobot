@@ -1,0 +1,1272 @@
+{
+  "old_n1_contact": {
+    "window_elapsed_s": [
+      15.100000000000197,
+      29.900000000000407
+    ],
+    "x_span_m": 3.9371220106332316e-07,
+    "y_span_m": 1.285523691940682e-07,
+    "collisions": {
+      "combined_rough_section::nino::base_footprint::base_footprint_fixed_joint_lump__base_link_collision": {
+        "samples": 692,
+        "contact_fraction": 1.0,
+        "mean_reported_z_force_n": 15.811188789637427
+      },
+      "combined_rough_section::nino::base_footprint::base_footprint_fixed_joint_lump__laser_collision_1": {
+        "samples": 692,
+        "contact_fraction": 0.0,
+        "mean_reported_z_force_n": 0.0
+      },
+      "combined_rough_section::nino::caster_bracket_left_link::caster_bracket_left_link_collision": {
+        "samples": 692,
+        "contact_fraction": 0.0,
+        "mean_reported_z_force_n": 0.0
+      },
+      "combined_rough_section::nino::caster_bracket_right_link::caster_bracket_right_link_collision": {
+        "samples": 692,
+        "contact_fraction": 0.0,
+        "mean_reported_z_force_n": 0.0
+      },
+      "combined_rough_section::nino::caster_left_wheel_link::caster_left_wheel_link_collision": {
+        "samples": 692,
+        "contact_fraction": 0.0,
+        "mean_reported_z_force_n": 0.0
+      },
+      "combined_rough_section::nino::caster_right_wheel_link::caster_right_wheel_link_collision": {
+        "samples": 692,
+        "contact_fraction": 1.0,
+        "mean_reported_z_force_n": 30.708537530264884
+      },
+      "combined_rough_section::nino::left_wheel_link::left_wheel_link_collision": {
+        "samples": 692,
+        "contact_fraction": 1.0,
+        "mean_reported_z_force_n": 8.305147393911286
+      },
+      "combined_rough_section::nino::right_wheel_link::right_wheel_link_collision": {
+        "samples": 692,
+        "contact_fraction": 0.0,
+        "mean_reported_z_force_n": 0.0
+      }
+    },
+    "force_caveat": "Probe body-1 wrench Z; no calibrated support-load fraction claimed"
+  },
+  "flat": {
+    "full": {
+      "episodes": [
+        {
+          "seed": 65000,
+          "success": true,
+          "time_s": 17.400000000000055,
+          "path_rmse_m": 0.017574750696943496,
+          "crossing_speed_m_s": 0.2880232079891714,
+          "crossing_slip": 0.23922441018734966,
+          "crossing_vibration_m_s2": 2.220733520291628,
+          "mean_requested_scale": 1.0
+        },
+        {
+          "seed": 65001,
+          "success": true,
+          "time_s": 17.400000000000247,
+          "path_rmse_m": 0.03637854238321764,
+          "crossing_speed_m_s": 0.33093794923198366,
+          "crossing_slip": 0.26688022317545834,
+          "crossing_vibration_m_s2": 11.506133670063408,
+          "mean_requested_scale": 1.0
+        },
+        {
+          "seed": 65002,
+          "success": true,
+          "time_s": 17.800000000000253,
+          "path_rmse_m": 0.03959195705522059,
+          "crossing_speed_m_s": 0.2648758632298536,
+          "crossing_slip": 0.49716277991540486,
+          "crossing_vibration_m_s2": 0.988209201440423,
+          "mean_requested_scale": 1.0
+        }
+      ],
+      "arrivals": 3,
+      "means": {
+        "time_s": 17.53333333333352,
+        "path_rmse_m": 0.031181750045127243,
+        "crossing_speed_m_s": 0.2946123401503362,
+        "crossing_slip": 0.33442247109273765,
+        "crossing_vibration_m_s2": 4.905025463931819,
+        "mean_requested_scale": 1.0
+      }
+    },
+    "constant": {
+      "episodes": [
+        {
+          "seed": 65000,
+          "success": true,
+          "time_s": 24.300000000000157,
+          "path_rmse_m": 0.024831997030324366,
+          "crossing_speed_m_s": 0.20196628233713396,
+          "crossing_slip": 0.41821998541598404,
+          "crossing_vibration_m_s2": 2.253167946992355,
+          "mean_requested_scale": 0.7000000029802322
+        },
+        {
+          "seed": 65001,
+          "success": true,
+          "time_s": 25.100000000000353,
+          "path_rmse_m": 0.05332645692477095,
+          "crossing_speed_m_s": 0.19911603215253124,
+          "crossing_slip": 0.33144616185326,
+          "crossing_vibration_m_s2": 1.0193441890995742,
+          "mean_requested_scale": 0.7000000029802322
+        },
+        {
+          "seed": 65002,
+          "success": true,
+          "time_s": 24.99999999999914,
+          "path_rmse_m": 0.06611059560364922,
+          "crossing_speed_m_s": 0.19452704035619084,
+          "crossing_slip": 0.38549672445064515,
+          "crossing_vibration_m_s2": 5.860793214220914,
+          "mean_requested_scale": 0.7000000029802322
+        }
+      ],
+      "arrivals": 3,
+      "means": {
+        "time_s": 24.799999999999883,
+        "path_rmse_m": 0.04808968318624818,
+        "crossing_speed_m_s": 0.19853645161528535,
+        "crossing_slip": 0.3783876239066297,
+        "crossing_vibration_m_s2": 3.044435116770948,
+        "mean_requested_scale": 0.7000000029802322
+      }
+    },
+    "anticipatory": {
+      "episodes": [
+        {
+          "seed": 65000,
+          "success": true,
+          "time_s": 21.100000000000108,
+          "path_rmse_m": 0.019474103586925688,
+          "crossing_speed_m_s": 0.1709179077990933,
+          "crossing_slip": 0.28124915898674513,
+          "crossing_vibration_m_s2": 1.5834627228039597,
+          "mean_requested_scale": 0.6066666681851659
+        },
+        {
+          "seed": 65001,
+          "success": true,
+          "time_s": 21.000000000000295,
+          "path_rmse_m": 0.03465562367579101,
+          "crossing_speed_m_s": 0.16636118379198472,
+          "crossing_slip": 0.35692028288501315,
+          "crossing_vibration_m_s2": 3.467502850575171,
+          "mean_requested_scale": 0.6104761917321455
+        },
+        {
+          "seed": 65002,
+          "success": true,
+          "time_s": 20.999999999999908,
+          "path_rmse_m": 0.009925744562554299,
+          "crossing_speed_m_s": 0.17831758109112336,
+          "crossing_slip": 0.2584552289732693,
+          "crossing_vibration_m_s2": 4.188135157032223,
+          "mean_requested_scale": 0.6100000012665987
+        }
+      ],
+      "arrivals": 3,
+      "means": {
+        "time_s": 21.033333333333438,
+        "path_rmse_m": 0.021351823941756998,
+        "crossing_speed_m_s": 0.17186555756073382,
+        "crossing_slip": 0.29887489028167585,
+        "crossing_vibration_m_s2": 3.0797002434704512,
+        "mean_requested_scale": 0.6090476203946368
+      }
+    }
+  },
+  "rough": {
+    "contact_screen": {
+      "summary": {
+        "schema_version": 1,
+        "controller": "path_pi_baseline",
+        "action_ablation": "none",
+        "baseline_speed_scale": 1.0,
+        "model": null,
+        "phase": 1,
+        "seed": 13000,
+        "randomized": false,
+        "evaluation_seeds": [
+          13000
+        ],
+        "control_trace": true,
+        "benchmark_id": "1ef19a386df6bf033c4c1bc8068a6063f4f93f0107314d014fdc0e1b85ce47a6",
+        "pose_source": "imu_encoder_lidar_odometry",
+        "metric_weighting": "simulation_time_trapezoid",
+        "reference": "configured drawn routes with ordered spatial gates in odom",
+        "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
+        "complete": true,
+        "requested_episodes": 1,
+        "episodes": 1,
+        "success_rate": 1.0,
+        "on_time_success_rate": 1.0,
+        "termination_counts": {
+          "success": 1
+        },
+        "metrics_all_episodes": {
+          "path_rmse_m": {
+            "mean": 0.031985430781415435,
+            "std": 0.0,
+            "min": 0.031985430781415435,
+            "max": 0.031985430781415435
+          },
+          "cross_track_rmse_m": {
+            "mean": 0.031985415963100484,
+            "std": 0.0,
+            "min": 0.031985415963100484,
+            "max": 0.031985415963100484
+          },
+          "path_p95_m": {
+            "mean": 0.08038999543419179,
+            "std": 0.0,
+            "min": 0.08038999543419179,
+            "max": 0.08038999543419179
+          },
+          "path_max_m": {
+            "mean": 0.11844779911983538,
+            "std": 0.0,
+            "min": 0.11844779911983538,
+            "max": 0.11844779911983538
+          },
+          "heading_rmse_deg": {
+            "mean": 12.518487057604963,
+            "std": 0.0,
+            "min": 12.518487057604963,
+            "max": 12.518487057604963
+          },
+          "endpoint_error_m": {
+            "mean": 0.19594314776110316,
+            "std": 0.0,
+            "min": 0.19594314776110316,
+            "max": 0.19594314776110316
+          },
+          "final_progress_fraction": {
+            "mean": 0.9774833918493497,
+            "std": 0.0,
+            "min": 0.9774833918493497,
+            "max": 0.9774833918493497
+          },
+          "backtracking_m": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "time_seconds": {
+            "mean": 28.300000000000377,
+            "std": 0.0,
+            "min": 28.300000000000377,
+            "max": 28.300000000000377
+          },
+          "rms_vertical_acceleration_m_s2": {
+            "mean": 1.1631267859577767,
+            "std": 0.0,
+            "min": 1.1631267859577767,
+            "max": 1.1631267859577767
+          },
+          "peak_vertical_acceleration_m_s2": {
+            "mean": 9.849079059205325,
+            "std": 0.0,
+            "min": 9.849079059205325,
+            "max": 9.849079059205325
+          },
+          "rms_wheel_slip": {
+            "mean": 0.03014054976720343,
+            "std": 0.0,
+            "min": 0.03014054976720343,
+            "max": 0.03014054976720343
+          },
+          "rms_wheel_torque_nm": {
+            "mean": 0.2009327992604671,
+            "std": 0.0,
+            "min": 0.2009327992604671,
+            "max": 0.2009327992604671
+          },
+          "challenge_choice_fraction": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "challenge_clear_fraction": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "truth_path_rmse_m": {
+            "mean": 0.031882601809446263,
+            "std": 0.0,
+            "min": 0.031882601809446263,
+            "max": 0.031882601809446263
+          },
+          "truth_path_p95_m": {
+            "mean": 0.08176234121371806,
+            "std": 0.0,
+            "min": 0.08176234121371806,
+            "max": 0.08176234121371806
+          },
+          "truth_endpoint_error_m": {
+            "mean": 0.1960913475071738,
+            "std": 0.0,
+            "min": 0.1960913475071738,
+            "max": 0.1960913475071738
+          },
+          "truth_heading_rmse_deg": {
+            "mean": 12.518481692370074,
+            "std": 0.0,
+            "min": 12.518481692370074,
+            "max": 12.518481692370074
+          },
+          "odom_truth_position_error_m": {
+            "mean": 0.00021320732625227954,
+            "std": 0.0,
+            "min": 0.00021320732625227954,
+            "max": 0.00021320732625227954
+          }
+        },
+        "metrics_successful_episodes": {
+          "path_rmse_m": 0.031985430781415435,
+          "cross_track_rmse_m": 0.031985415963100484,
+          "path_p95_m": 0.08038999543419179,
+          "path_max_m": 0.11844779911983538,
+          "heading_rmse_deg": 12.518487057604963,
+          "endpoint_error_m": 0.19594314776110316,
+          "final_progress_fraction": 0.9774833918493497,
+          "backtracking_m": 0.0,
+          "time_seconds": 28.300000000000377,
+          "rms_vertical_acceleration_m_s2": 1.1631267859577767,
+          "peak_vertical_acceleration_m_s2": 9.849079059205325,
+          "rms_wheel_slip": 0.03014054976720343,
+          "rms_wheel_torque_nm": 0.2009327992604671,
+          "challenge_choice_fraction": 0.0,
+          "challenge_clear_fraction": 0.0,
+          "truth_path_rmse_m": 0.031882601809446263,
+          "truth_path_p95_m": 0.08176234121371806,
+          "truth_endpoint_error_m": 0.1960913475071738,
+          "truth_heading_rmse_deg": 12.518481692370074,
+          "odom_truth_position_error_m": 0.00021320732625227954
+        },
+        "per_route": {
+          "N1": {
+            "episodes": 1,
+            "success_rate": 1.0,
+            "truth_path_rmse_m": 0.031882601809446263,
+            "termination_counts": {
+              "success": 1
+            }
+          }
+        }
+      },
+      "passed": true,
+      "qualification": "single-seed mechanical screen only; not curriculum or training approval"
+    },
+    "terminal_contacts": {
+      "window_elapsed_s": [
+        13.50000000000017,
+        28.300000000000377
+      ],
+      "x_span_m": 0.0563178921774079,
+      "y_span_m": 5.554690494469844,
+      "collisions": {
+        "combined_rough_section::nino::base_footprint::base_footprint_fixed_joint_lump__base_link_collision": {
+          "samples": 690,
+          "contact_fraction": 0.0,
+          "mean_reported_z_force_n": 0.0
+        },
+        "combined_rough_section::nino::base_footprint::base_footprint_fixed_joint_lump__laser_collision_1": {
+          "samples": 690,
+          "contact_fraction": 0.0,
+          "mean_reported_z_force_n": 0.0
+        },
+        "combined_rough_section::nino::caster_bracket_left_link::caster_bracket_left_link_collision": {
+          "samples": 690,
+          "contact_fraction": 0.0,
+          "mean_reported_z_force_n": 0.0
+        },
+        "combined_rough_section::nino::caster_bracket_right_link::caster_bracket_right_link_collision": {
+          "samples": 690,
+          "contact_fraction": 0.0,
+          "mean_reported_z_force_n": 0.0
+        },
+        "combined_rough_section::nino::caster_left_wheel_link::caster_left_wheel_link_collision": {
+          "samples": 690,
+          "contact_fraction": 0.4449275362318841,
+          "mean_reported_z_force_n": 15.82746425461521
+        },
+        "combined_rough_section::nino::caster_right_wheel_link::caster_right_wheel_link_collision": {
+          "samples": 690,
+          "contact_fraction": 0.6855072463768116,
+          "mean_reported_z_force_n": 18.07953170998789
+        },
+        "combined_rough_section::nino::left_wheel_link::left_wheel_link_collision": {
+          "samples": 691,
+          "contact_fraction": 0.9667149059334298,
+          "mean_reported_z_force_n": 18.642862796622193
+        },
+        "combined_rough_section::nino::right_wheel_link::right_wheel_link_collision": {
+          "samples": 690,
+          "contact_fraction": 0.9623188405797102,
+          "mean_reported_z_force_n": 18.091697419155768
+        }
+      },
+      "force_caveat": "Probe body-1 wrench Z; no calibrated support-load fraction claimed"
+    },
+    "preview": {
+      "samples": 601,
+      "valid_both_fraction": 0.9633943427620633,
+      "valid_left_fraction": 1.0,
+      "valid_right_fraction": 0.9633943427620633,
+      "invalid_mask_preserved": true,
+      "limitation": "Single-plane fan coverage; nominal axle height cannot correct body heave. PI contact screen does not consume preview."
+    },
+    "low_friction_screen": {
+      "summary": {
+        "schema_version": 1,
+        "controller": "path_pi_baseline",
+        "action_ablation": "none",
+        "baseline_speed_scale": 1.0,
+        "model": null,
+        "phase": 1,
+        "seed": 13000,
+        "randomized": false,
+        "evaluation_seeds": [
+          13000
+        ],
+        "control_trace": true,
+        "benchmark_id": "549709c8c6bae5c3863fa739b5231f13c7e54c2bdecbf71a863d690c3d389c1c",
+        "pose_source": "imu_encoder_lidar_odometry",
+        "metric_weighting": "simulation_time_trapezoid",
+        "reference": "configured drawn routes with ordered spatial gates in odom",
+        "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
+        "complete": true,
+        "requested_episodes": 1,
+        "episodes": 1,
+        "success_rate": 1.0,
+        "on_time_success_rate": 1.0,
+        "termination_counts": {
+          "success": 1
+        },
+        "metrics_all_episodes": {
+          "path_rmse_m": {
+            "mean": 0.03194724967554595,
+            "std": 0.0,
+            "min": 0.03194724967554595,
+            "max": 0.03194724967554595
+          },
+          "cross_track_rmse_m": {
+            "mean": 0.031947244185040156,
+            "std": 0.0,
+            "min": 0.031947244185040156,
+            "max": 0.031947244185040156
+          },
+          "path_p95_m": {
+            "mean": 0.08072733807341664,
+            "std": 0.0,
+            "min": 0.08072733807341664,
+            "max": 0.08072733807341664
+          },
+          "path_max_m": {
+            "mean": 0.11844454098230006,
+            "std": 0.0,
+            "min": 0.11844454098230006,
+            "max": 0.11844454098230006
+          },
+          "heading_rmse_deg": {
+            "mean": 12.57890057152912,
+            "std": 0.0,
+            "min": 12.57890057152912,
+            "max": 12.57890057152912
+          },
+          "endpoint_error_m": {
+            "mean": 0.19558450677807007,
+            "std": 0.0,
+            "min": 0.19558450677807007,
+            "max": 0.19558450677807007
+          },
+          "final_progress_fraction": {
+            "mean": 0.9775534843948385,
+            "std": 0.0,
+            "min": 0.9775534843948385,
+            "max": 0.9775534843948385
+          },
+          "backtracking_m": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "time_seconds": {
+            "mean": 28.30000000000028,
+            "std": 0.0,
+            "min": 28.30000000000028,
+            "max": 28.30000000000028
+          },
+          "rms_vertical_acceleration_m_s2": {
+            "mean": 0.9906233528482158,
+            "std": 0.0,
+            "min": 0.9906233528482158,
+            "max": 0.9906233528482158
+          },
+          "peak_vertical_acceleration_m_s2": {
+            "mean": 8.660919176466717,
+            "std": 0.0,
+            "min": 8.660919176466717,
+            "max": 8.660919176466717
+          },
+          "rms_wheel_slip": {
+            "mean": 0.031448197830039035,
+            "std": 0.0,
+            "min": 0.031448197830039035,
+            "max": 0.031448197830039035
+          },
+          "rms_wheel_torque_nm": {
+            "mean": 0.19907504775848342,
+            "std": 0.0,
+            "min": 0.19907504775848342,
+            "max": 0.19907504775848342
+          },
+          "challenge_choice_fraction": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "challenge_clear_fraction": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "truth_path_rmse_m": {
+            "mean": 0.03196581930086462,
+            "std": 0.0,
+            "min": 0.03196581930086462,
+            "max": 0.03196581930086462
+          },
+          "truth_path_p95_m": {
+            "mean": 0.0813255089410636,
+            "std": 0.0,
+            "min": 0.0813255089410636,
+            "max": 0.0813255089410636
+          },
+          "truth_endpoint_error_m": {
+            "mean": 0.19557803736681234,
+            "std": 0.0,
+            "min": 0.19557803736681234,
+            "max": 0.19557803736681234
+          },
+          "truth_heading_rmse_deg": {
+            "mean": 12.580192703580746,
+            "std": 0.0,
+            "min": 12.580192703580746,
+            "max": 12.580192703580746
+          },
+          "odom_truth_position_error_m": {
+            "mean": 0.002104157103595622,
+            "std": 0.0,
+            "min": 0.002104157103595622,
+            "max": 0.002104157103595622
+          }
+        },
+        "metrics_successful_episodes": {
+          "path_rmse_m": 0.03194724967554595,
+          "cross_track_rmse_m": 0.031947244185040156,
+          "path_p95_m": 0.08072733807341664,
+          "path_max_m": 0.11844454098230006,
+          "heading_rmse_deg": 12.57890057152912,
+          "endpoint_error_m": 0.19558450677807007,
+          "final_progress_fraction": 0.9775534843948385,
+          "backtracking_m": 0.0,
+          "time_seconds": 28.30000000000028,
+          "rms_vertical_acceleration_m_s2": 0.9906233528482158,
+          "peak_vertical_acceleration_m_s2": 8.660919176466717,
+          "rms_wheel_slip": 0.031448197830039035,
+          "rms_wheel_torque_nm": 0.19907504775848342,
+          "challenge_choice_fraction": 0.0,
+          "challenge_clear_fraction": 0.0,
+          "truth_path_rmse_m": 0.03196581930086462,
+          "truth_path_p95_m": 0.0813255089410636,
+          "truth_endpoint_error_m": 0.19557803736681234,
+          "truth_heading_rmse_deg": 12.580192703580746,
+          "odom_truth_position_error_m": 0.002104157103595622
+        },
+        "per_route": {
+          "N1": {
+            "episodes": 1,
+            "success_rate": 1.0,
+            "truth_path_rmse_m": 0.03196581930086462,
+            "termination_counts": {
+              "success": 1
+            }
+          }
+        }
+      },
+      "passed": true,
+      "qualification": "single-seed mechanical screen only; not curriculum or training approval"
+    },
+    "physics_response": {
+      "zero_rl_residual": true,
+      "drive_mu_nominal": 1.2,
+      "drive_mu_low": 0.6,
+      "nominal_evidence": "/home/tuanmac/ninorobot/rl_runs/foundations_20261011/rough_v5/screen_nominal/screen_result.json",
+      "low_friction_evidence": "/home/tuanmac/ninorobot/rl_runs/foundations_20261011/rough_v6/screen_low_friction/screen_result.json",
+      "same_seed": 13000,
+      "qualification": "Two one-seed screens with identical terrain triangles and controller. Preliminary motion evidence only; mass variation and randomized training remain unvalidated."
+    }
+  },
+  "training_started": false,
+  "optuna_started": false,
+  "physical_robot_sensors": [
+    "horizontal_lidar",
+    "imu",
+    "wheel_encoders"
+  ],
+  "hardware_sensor_preflight": {
+    "started": true,
+    "sensor_integrity": {
+      "preview_injection_no_effect": true,
+      "ground_truth_velocity_injection_no_effect": true,
+      "actor_calls_no_preview_api": true,
+      "wall_estimator_uses_no_cloud": true,
+      "training_disabled": true,
+      "frame_size": 56,
+      "history_size": 280,
+      "active_sensors": [
+        "imu_sensor",
+        "gpu_lidar"
+      ]
+    },
+    "screen_results": {
+      "routes": {
+        "E1": {
+          "summary": {
+            "schema_version": 1,
+            "controller": "path_pi_baseline",
+            "action_ablation": "none",
+            "baseline_speed_scale": 1.0,
+            "model": null,
+            "phase": 1,
+            "seed": 13000,
+            "randomized": false,
+            "evaluation_seeds": [
+              13000
+            ],
+            "control_trace": true,
+            "benchmark_id": "908e4a98a319e0e93759eacddddf6487af08dbe1ede9152424feca25231eaf98",
+            "pose_source": "imu_encoder_lidar_odometry",
+            "metric_weighting": "simulation_time_trapezoid",
+            "reference": "configured drawn routes with ordered spatial gates in odom",
+            "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
+            "complete": true,
+            "requested_episodes": 1,
+            "episodes": 1,
+            "success_rate": 1.0,
+            "on_time_success_rate": 1.0,
+            "termination_counts": {
+              "success": 1
+            },
+            "metrics_all_episodes": {
+              "path_rmse_m": {
+                "mean": 0.017077092225473073,
+                "std": 0.0,
+                "min": 0.017077092225473073,
+                "max": 0.017077092225473073
+              },
+              "cross_track_rmse_m": {
+                "mean": 0.017077092225473073,
+                "std": 0.0,
+                "min": 0.017077092225473073,
+                "max": 0.017077092225473073
+              },
+              "path_p95_m": {
+                "mean": 0.031514042192510444,
+                "std": 0.0,
+                "min": 0.031514042192510444,
+                "max": 0.031514042192510444
+              },
+              "path_max_m": {
+                "mean": 0.0460101737923965,
+                "std": 0.0,
+                "min": 0.0460101737923965,
+                "max": 0.0460101737923965
+              },
+              "heading_rmse_deg": {
+                "mean": 3.074638962588304,
+                "std": 0.0,
+                "min": 3.074638962588304,
+                "max": 3.074638962588304
+              },
+              "endpoint_error_m": {
+                "mean": 0.18676370285813326,
+                "std": 0.0,
+                "min": 0.18676370285813326,
+                "max": 0.18676370285813326
+              },
+              "final_progress_fraction": {
+                "mean": 0.9822956997436795,
+                "std": 0.0,
+                "min": 0.9822956997436795,
+                "max": 0.9822956997436795
+              },
+              "backtracking_m": {
+                "mean": 0.0,
+                "std": 0.0,
+                "min": 0.0,
+                "max": 0.0
+              },
+              "time_seconds": {
+                "mean": 27.00000000000026,
+                "std": 0.0,
+                "min": 27.00000000000026,
+                "max": 27.00000000000026
+              },
+              "rms_vertical_acceleration_m_s2": {
+                "mean": 1.3262113737217494,
+                "std": 0.0,
+                "min": 1.3262113737217494,
+                "max": 1.3262113737217494
+              },
+              "peak_vertical_acceleration_m_s2": {
+                "mean": 8.443652770968676,
+                "std": 0.0,
+                "min": 8.443652770968676,
+                "max": 8.443652770968676
+              },
+              "rms_wheel_slip": {
+                "mean": 0.02178315563183969,
+                "std": 0.0,
+                "min": 0.02178315563183969,
+                "max": 0.02178315563183969
+              },
+              "rms_wheel_torque_nm": {
+                "mean": 0.23459314161361977,
+                "std": 0.0,
+                "min": 0.23459314161361977,
+                "max": 0.23459314161361977
+              },
+              "challenge_choice_fraction": {
+                "mean": 0.0,
+                "std": 0.0,
+                "min": 0.0,
+                "max": 0.0
+              },
+              "challenge_clear_fraction": {
+                "mean": 0.0,
+                "std": 0.0,
+                "min": 0.0,
+                "max": 0.0
+              },
+              "truth_path_rmse_m": {
+                "mean": 0.017065196189736682,
+                "std": 0.0,
+                "min": 0.017065196189736682,
+                "max": 0.017065196189736682
+              },
+              "truth_path_p95_m": {
+                "mean": 0.031514164154278095,
+                "std": 0.0,
+                "min": 0.031514164154278095,
+                "max": 0.031514164154278095
+              },
+              "truth_endpoint_error_m": {
+                "mean": 0.1878522822215601,
+                "std": 0.0,
+                "min": 0.1878522822215601,
+                "max": 0.1878522822215601
+              },
+              "truth_heading_rmse_deg": {
+                "mean": 3.074656008782849,
+                "std": 0.0,
+                "min": 3.074656008782849,
+                "max": 3.074656008782849
+              },
+              "odom_truth_position_error_m": {
+                "mean": 0.0016588868844727173,
+                "std": 0.0,
+                "min": 0.0016588868844727173,
+                "max": 0.0016588868844727173
+              }
+            },
+            "metrics_successful_episodes": {
+              "path_rmse_m": 0.017077092225473073,
+              "cross_track_rmse_m": 0.017077092225473073,
+              "path_p95_m": 0.031514042192510444,
+              "path_max_m": 0.0460101737923965,
+              "heading_rmse_deg": 3.074638962588304,
+              "endpoint_error_m": 0.18676370285813326,
+              "final_progress_fraction": 0.9822956997436795,
+              "backtracking_m": 0.0,
+              "time_seconds": 27.00000000000026,
+              "rms_vertical_acceleration_m_s2": 1.3262113737217494,
+              "peak_vertical_acceleration_m_s2": 8.443652770968676,
+              "rms_wheel_slip": 0.02178315563183969,
+              "rms_wheel_torque_nm": 0.23459314161361977,
+              "challenge_choice_fraction": 0.0,
+              "challenge_clear_fraction": 0.0,
+              "truth_path_rmse_m": 0.017065196189736682,
+              "truth_path_p95_m": 0.031514164154278095,
+              "truth_endpoint_error_m": 0.1878522822215601,
+              "truth_heading_rmse_deg": 3.074656008782849,
+              "odom_truth_position_error_m": 0.0016588868844727173
+            },
+            "per_route": {
+              "E1": {
+                "episodes": 1,
+                "success_rate": 1.0,
+                "truth_path_rmse_m": 0.017065196189736682,
+                "termination_counts": {
+                  "success": 1
+                }
+              }
+            }
+          },
+          "gate": {
+            "passed": true,
+            "episodes": 1,
+            "physical_arrival_rate": 1.0,
+            "truth_path_rmse_m": 0.017065196189736682,
+            "max_episode_mean_pose_disagreement_m": 0.0016588868844727173,
+            "physical_success_consistent": true,
+            "rollovers": 0
+          }
+        },
+        "N1": {
+          "summary": {
+            "schema_version": 1,
+            "controller": "path_pi_baseline",
+            "action_ablation": "none",
+            "baseline_speed_scale": 1.0,
+            "model": null,
+            "phase": 1,
+            "seed": 13000,
+            "randomized": false,
+            "evaluation_seeds": [
+              13000
+            ],
+            "control_trace": true,
+            "benchmark_id": "445c618d5cb1bc6d7babc77357a6ea250916c65c1bc7d3a6274a953924c11abc",
+            "pose_source": "imu_encoder_lidar_odometry",
+            "metric_weighting": "simulation_time_trapezoid",
+            "reference": "configured drawn routes with ordered spatial gates in odom",
+            "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
+            "complete": true,
+            "requested_episodes": 1,
+            "episodes": 1,
+            "success_rate": 1.0,
+            "on_time_success_rate": 1.0,
+            "termination_counts": {
+              "success": 1
+            },
+            "metrics_all_episodes": {
+              "path_rmse_m": {
+                "mean": 0.033246491766872104,
+                "std": 0.0,
+                "min": 0.033246491766872104,
+                "max": 0.033246491766872104
+              },
+              "cross_track_rmse_m": {
+                "mean": 0.033246484561778776,
+                "std": 0.0,
+                "min": 0.033246484561778776,
+                "max": 0.033246484561778776
+              },
+              "path_p95_m": {
+                "mean": 0.08332906851542221,
+                "std": 0.0,
+                "min": 0.08332906851542221,
+                "max": 0.08332906851542221
+              },
+              "path_max_m": {
+                "mean": 0.11949591315825205,
+                "std": 0.0,
+                "min": 0.11949591315825205,
+                "max": 0.11949591315825205
+              },
+              "heading_rmse_deg": {
+                "mean": 12.741026443104731,
+                "std": 0.0,
+                "min": 12.741026443104731,
+                "max": 12.741026443104731
+              },
+              "endpoint_error_m": {
+                "mean": 0.19669434200811964,
+                "std": 0.0,
+                "min": 0.19669434200811964,
+                "max": 0.19669434200811964
+              },
+              "final_progress_fraction": {
+                "mean": 0.9774035419364603,
+                "std": 0.0,
+                "min": 0.9774035419364603,
+                "max": 0.9774035419364603
+              },
+              "backtracking_m": {
+                "mean": 0.0,
+                "std": 0.0,
+                "min": 0.0,
+                "max": 0.0
+              },
+              "time_seconds": {
+                "mean": 28.600000000000243,
+                "std": 0.0,
+                "min": 28.600000000000243,
+                "max": 28.600000000000243
+              },
+              "rms_vertical_acceleration_m_s2": {
+                "mean": 1.2357068054639062,
+                "std": 0.0,
+                "min": 1.2357068054639062,
+                "max": 1.2357068054639062
+              },
+              "peak_vertical_acceleration_m_s2": {
+                "mean": 9.838242024902856,
+                "std": 0.0,
+                "min": 9.838242024902856,
+                "max": 9.838242024902856
+              },
+              "rms_wheel_slip": {
+                "mean": 0.03121476141572759,
+                "std": 0.0,
+                "min": 0.03121476141572759,
+                "max": 0.03121476141572759
+              },
+              "rms_wheel_torque_nm": {
+                "mean": 0.19950867884824916,
+                "std": 0.0,
+                "min": 0.19950867884824916,
+                "max": 0.19950867884824916
+              },
+              "challenge_choice_fraction": {
+                "mean": 0.0,
+                "std": 0.0,
+                "min": 0.0,
+                "max": 0.0
+              },
+              "challenge_clear_fraction": {
+                "mean": 0.0,
+                "std": 0.0,
+                "min": 0.0,
+                "max": 0.0
+              },
+              "truth_path_rmse_m": {
+                "mean": 0.034062523212982,
+                "std": 0.0,
+                "min": 0.034062523212982,
+                "max": 0.034062523212982
+              },
+              "truth_path_p95_m": {
+                "mean": 0.0856901197702733,
+                "std": 0.0,
+                "min": 0.0856901197702733,
+                "max": 0.0856901197702733
+              },
+              "truth_endpoint_error_m": {
+                "mean": 0.1970869265850136,
+                "std": 0.0,
+                "min": 0.1970869265850136,
+                "max": 0.1970869265850136
+              },
+              "truth_heading_rmse_deg": {
+                "mean": 12.624464409703071,
+                "std": 0.0,
+                "min": 12.624464409703071,
+                "max": 12.624464409703071
+              },
+              "odom_truth_position_error_m": {
+                "mean": 0.0008705408499187465,
+                "std": 0.0,
+                "min": 0.0008705408499187465,
+                "max": 0.0008705408499187465
+              }
+            },
+            "metrics_successful_episodes": {
+              "path_rmse_m": 0.033246491766872104,
+              "cross_track_rmse_m": 0.033246484561778776,
+              "path_p95_m": 0.08332906851542221,
+              "path_max_m": 0.11949591315825205,
+              "heading_rmse_deg": 12.741026443104731,
+              "endpoint_error_m": 0.19669434200811964,
+              "final_progress_fraction": 0.9774035419364603,
+              "backtracking_m": 0.0,
+              "time_seconds": 28.600000000000243,
+              "rms_vertical_acceleration_m_s2": 1.2357068054639062,
+              "peak_vertical_acceleration_m_s2": 9.838242024902856,
+              "rms_wheel_slip": 0.03121476141572759,
+              "rms_wheel_torque_nm": 0.19950867884824916,
+              "challenge_choice_fraction": 0.0,
+              "challenge_clear_fraction": 0.0,
+              "truth_path_rmse_m": 0.034062523212982,
+              "truth_path_p95_m": 0.0856901197702733,
+              "truth_endpoint_error_m": 0.1970869265850136,
+              "truth_heading_rmse_deg": 12.624464409703071,
+              "odom_truth_position_error_m": 0.0008705408499187465
+            },
+            "per_route": {
+              "N1": {
+                "episodes": 1,
+                "success_rate": 1.0,
+                "truth_path_rmse_m": 0.034062523212982,
+                "termination_counts": {
+                  "success": 1
+                }
+              }
+            }
+          },
+          "gate": {
+            "passed": true,
+            "episodes": 1,
+            "physical_arrival_rate": 1.0,
+            "truth_path_rmse_m": 0.034062523212982,
+            "max_episode_mean_pose_disagreement_m": 0.0008705408499187465,
+            "physical_success_consistent": true,
+            "rollovers": 0
+          }
+        },
+        "S1": {
+          "summary": {
+            "schema_version": 1,
+            "controller": "path_pi_baseline",
+            "action_ablation": "none",
+            "baseline_speed_scale": 1.0,
+            "model": null,
+            "phase": 1,
+            "seed": 13000,
+            "randomized": false,
+            "evaluation_seeds": [
+              13000
+            ],
+            "control_trace": true,
+            "benchmark_id": "5a49adcf47be0f889686621022bfbfcb54571df7263561a5e8913b4316a1df62",
+            "pose_source": "imu_encoder_lidar_odometry",
+            "metric_weighting": "simulation_time_trapezoid",
+            "reference": "configured drawn routes with ordered spatial gates in odom",
+            "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
+            "complete": true,
+            "requested_episodes": 1,
+            "episodes": 1,
+            "success_rate": 1.0,
+            "on_time_success_rate": 1.0,
+            "termination_counts": {
+              "success": 1
+            },
+            "metrics_all_episodes": {
+              "path_rmse_m": {
+                "mean": 0.02142675125196085,
+                "std": 0.0,
+                "min": 0.02142675125196085,
+                "max": 0.02142675125196085
+              },
+              "cross_track_rmse_m": {
+                "mean": 0.02142675125196085,
+                "std": 0.0,
+                "min": 0.02142675125196085,
+                "max": 0.02142675125196085
+              },
+              "path_p95_m": {
+                "mean": 0.040453056017885736,
+                "std": 0.0,
+                "min": 0.040453056017885736,
+                "max": 0.040453056017885736
+              },
+              "path_max_m": {
+                "mean": 0.04816129034311745,
+                "std": 0.0,
+                "min": 0.04816129034311745,
+                "max": 0.04816129034311745
+              },
+              "heading_rmse_deg": {
+                "mean": 18.567975824163753,
+                "std": 0.0,
+                "min": 18.567975824163753,
+                "max": 18.567975824163753
+              },
+              "endpoint_error_m": {
+                "mean": 0.19013358485840806,
+                "std": 0.0,
+                "min": 0.19013358485840806,
+                "max": 0.19013358485840806
+              },
+              "final_progress_fraction": {
+                "mean": 0.9788442106644314,
+                "std": 0.0,
+                "min": 0.9788442106644314,
+                "max": 0.9788442106644314
+              },
+              "backtracking_m": {
+                "mean": 0.03873378927284321,
+                "std": 0.0,
+                "min": 0.03873378927284321,
+                "max": 0.03873378927284321
+              },
+              "time_seconds": {
+                "mean": 27.500000000000252,
+                "std": 0.0,
+                "min": 27.500000000000252,
+                "max": 27.500000000000252
+              },
+              "rms_vertical_acceleration_m_s2": {
+                "mean": 1.0947116377350787,
+                "std": 0.0,
+                "min": 1.0947116377350787,
+                "max": 1.0947116377350787
+              },
+              "peak_vertical_acceleration_m_s2": {
+                "mean": 7.446612839784645,
+                "std": 0.0,
+                "min": 7.446612839784645,
+                "max": 7.446612839784645
+              },
+              "rms_wheel_slip": {
+                "mean": 0.04007031024636775,
+                "std": 0.0,
+                "min": 0.04007031024636775,
+                "max": 0.04007031024636775
+              },
+              "rms_wheel_torque_nm": {
+                "mean": 0.21802029644144355,
+                "std": 0.0,
+                "min": 0.21802029644144355,
+                "max": 0.21802029644144355
+              },
+              "challenge_choice_fraction": {
+                "mean": 0.0,
+                "std": 0.0,
+                "min": 0.0,
+                "max": 0.0
+              },
+              "challenge_clear_fraction": {
+                "mean": 0.0,
+                "std": 0.0,
+                "min": 0.0,
+                "max": 0.0
+              },
+              "truth_path_rmse_m": {
+                "mean": 0.02130911554738292,
+                "std": 0.0,
+                "min": 0.02130911554738292,
+                "max": 0.02130911554738292
+              },
+              "truth_path_p95_m": {
+                "mean": 0.03788651596637438,
+                "std": 0.0,
+                "min": 0.03788651596637438,
+                "max": 0.03788651596637438
+              },
+              "truth_endpoint_error_m": {
+                "mean": 0.19016123711356045,
+                "std": 0.0,
+                "min": 0.19016123711356045,
+                "max": 0.19016123711356045
+              },
+              "truth_heading_rmse_deg": {
+                "mean": 15.600881147088327,
+                "std": 0.0,
+                "min": 15.600881147088327,
+                "max": 15.600881147088327
+              },
+              "odom_truth_position_error_m": {
+                "mean": 0.0003023182727044858,
+                "std": 0.0,
+                "min": 0.0003023182727044858,
+                "max": 0.0003023182727044858
+              }
+            },
+            "metrics_successful_episodes": {
+              "path_rmse_m": 0.02142675125196085,
+              "cross_track_rmse_m": 0.02142675125196085,
+              "path_p95_m": 0.040453056017885736,
+              "path_max_m": 0.04816129034311745,
+              "heading_rmse_deg": 18.567975824163753,
+              "endpoint_error_m": 0.19013358485840806,
+              "final_progress_fraction": 0.9788442106644314,
+              "backtracking_m": 0.03873378927284321,
+              "time_seconds": 27.500000000000252,
+              "rms_vertical_acceleration_m_s2": 1.0947116377350787,
+              "peak_vertical_acceleration_m_s2": 7.446612839784645,
+              "rms_wheel_slip": 0.04007031024636775,
+              "rms_wheel_torque_nm": 0.21802029644144355,
+              "challenge_choice_fraction": 0.0,
+              "challenge_clear_fraction": 0.0,
+              "truth_path_rmse_m": 0.02130911554738292,
+              "truth_path_p95_m": 0.03788651596637438,
+              "truth_endpoint_error_m": 0.19016123711356045,
+              "truth_heading_rmse_deg": 15.600881147088327,
+              "odom_truth_position_error_m": 0.0003023182727044858
+            },
+            "per_route": {
+              "S1": {
+                "episodes": 1,
+                "success_rate": 1.0,
+                "truth_path_rmse_m": 0.02130911554738292,
+                "termination_counts": {
+                  "success": 1
+                }
+              }
+            }
+          },
+          "gate": {
+            "passed": true,
+            "episodes": 1,
+            "physical_arrival_rate": 1.0,
+            "truth_path_rmse_m": 0.02130911554738292,
+            "max_episode_mean_pose_disagreement_m": 0.0003023182727044858,
+            "physical_success_consistent": true,
+            "rollovers": 0
+          }
+        }
+      },
+      "qualification": "One seed per route; hardware sensor feasibility screen only, not robust training approval",
+      "pilot_allowed": false,
+      "optuna_allowed": false
+    },
+    "wall_coverage": {
+      "E1": {
+        "observations": 270,
+        "two_axis_fix_fraction": 1.0,
+        "maximum_interval_between_wall_candidates_s": 0.10000000000000142,
+        "sensors": [
+          "scan"
+        ],
+        "limitation": "Candidates before bounded correction acceptance; controller freshness and physical scoring remain independent checks"
+      },
+      "N1": {
+        "observations": 286,
+        "two_axis_fix_fraction": 1.0,
+        "maximum_interval_between_wall_candidates_s": 0.10000000000000142,
+        "sensors": [
+          "scan"
+        ],
+        "limitation": "Candidates before bounded correction acceptance; controller freshness and physical scoring remain independent checks"
+      },
+      "S1": {
+        "observations": 275,
+        "two_axis_fix_fraction": 1.0,
+        "maximum_interval_between_wall_candidates_s": 0.10000000000000142,
+        "sensors": [
+          "scan"
+        ],
+        "limitation": "Candidates before bounded correction acceptance; controller freshness and physical scoring remain independent checks"
+      }
+    }
+  },
+  "gate": {
+    "foundation_ready": false,
+    "pilot_allowed": false,
+    "optuna_allowed": false,
+    "reason": "Qualify horizontal-only localization, feasible terrain/routes and physical train/holdout profiles; freeze the deployable learning task before a pilot"
+  },
+  "authority_screen": {
+    "speed_responds": true,
+    "arrivals_preserved": true,
+    "crossing_slip_ratio": 0.8937045686705538,
+    "crossing_vibration_ratio": 0.6278663110143763,
+    "limitation": "Three paired reset seeds on fixed two-cable course; scripted intervention, not learned improvement or training-seed robustness"
+  }
+}

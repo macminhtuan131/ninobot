@@ -1,0 +1,2576 @@
+{
+  "frozen_assets_verified": true,
+  "optuna_held": true,
+  "accounting_checks": [
+    {
+      "controller": "ppo",
+      "seed": 16100,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "ppo",
+      "seed": 16101,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "ppo",
+      "seed": 16102,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "ppo",
+      "seed": 16103,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "ppo",
+      "seed": 16104,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "pi_full",
+      "seed": 16100,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "pi_full",
+      "seed": 16101,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "pi_full",
+      "seed": 16102,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "pi_full",
+      "seed": 16103,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "pi_full",
+      "seed": 16104,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "pi_matched",
+      "seed": 16100,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "pi_matched",
+      "seed": 16101,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "pi_matched",
+      "seed": 16102,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "pi_matched",
+      "seed": 16103,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    },
+    {
+      "controller": "pi_matched",
+      "seed": 16104,
+      "reward_sum_matches": true,
+      "vibration_trace_matches": true,
+      "slip_trace_matches": true
+    }
+  ],
+  "reward_groups": {
+    "ppo": {
+      "mean_terms": {
+        "progress": 20.60398094089658,
+        "time": -1.3799999999999564,
+        "command_velocity": -0.07889549884019023,
+        "vibration": -9.654833271282644,
+        "slip": -0.27138479907123697,
+        "lateral": -0.6014560597465186,
+        "heading": -0.10424544247301185,
+        "action_rate": -0.00024750994949565054,
+        "terminal": 10.0,
+        "late_time": 0.0
+      },
+      "mean_raw_return": 18.512918359533522,
+      "episodes": 5
+    },
+    "pi_full": {
+      "mean_terms": {
+        "progress": 20.612952532589155,
+        "time": -1.3479999999999608,
+        "command_velocity": -0.06719161846924407,
+        "vibration": -9.337744716711901,
+        "slip": -0.390959650709395,
+        "lateral": -0.6071071145728899,
+        "heading": -0.10227269814151893,
+        "action_rate": 0.0,
+        "terminal": 10.0,
+        "late_time": 0.0
+      },
+      "mean_raw_return": 18.759676733984243,
+      "episodes": 5
+    },
+    "pi_matched": {
+      "mean_terms": {
+        "progress": 20.616125698522833,
+        "time": -1.3799999999999568,
+        "command_velocity": -0.07962292912716931,
+        "vibration": -8.362388397710216,
+        "slip": -0.4096526385727934,
+        "lateral": -0.609806545213593,
+        "heading": -0.10325795037326793,
+        "action_rate": -1.6131067576466163e-05,
+        "terminal": 10.0,
+        "late_time": 0.0
+      },
+      "mean_raw_return": 19.67138110645826,
+      "episodes": 5
+    }
+  },
+  "ppo_minus_reference_terms": {
+    "pi_full": {
+      "progress": -0.008971591692574776,
+      "time": -0.03199999999999559,
+      "command_velocity": -0.011703880370946163,
+      "vibration": -0.31708855457074314,
+      "slip": 0.11957485163815801,
+      "lateral": 0.005651054826371293,
+      "heading": -0.001972744331492915,
+      "action_rate": -0.00024750994949565054,
+      "terminal": 0.0,
+      "late_time": 0.0
+    },
+    "pi_matched": {
+      "progress": -0.012144757626252556,
+      "time": 4.440892098500626e-16,
+      "command_velocity": 0.0007274302869790805,
+      "vibration": -1.2924448735724283,
+      "slip": 0.1382678395015564,
+      "lateral": 0.008350485467074398,
+      "heading": -0.000987492099743914,
+      "action_rate": -0.00023137888191918438,
+      "terminal": 0.0,
+      "late_time": 0.0
+    }
+  },
+  "training": {
+    "all": {
+      "episodes": 71,
+      "mean_terms": {
+        "progress": 20.610334956180168,
+        "time": -1.4301408450698645,
+        "command_velocity": -0.11007439994234267,
+        "vibration": -8.963943683229756,
+        "slip": -0.33524985740989216,
+        "lateral": -0.6391684073753725,
+        "heading": -0.11809328639269832,
+        "action_rate": -0.008314989034720124,
+        "terminal": 10.0,
+        "late_time": 0.0
+      },
+      "mean_raw_return": 19.005349487725518,
+      "mean_time_s": 28.60281690139726,
+      "mean_speed_scale": 0.9419074236138304,
+      "lowest_episode_min_scale": 0.7971955387294292
+    },
+    "first_10": {
+      "episodes": 10,
+      "mean_terms": {
+        "progress": 20.60056849590563,
+        "time": -1.4850000000000205,
+        "command_velocity": -0.1588409747673151,
+        "vibration": -9.06399024821914,
+        "slip": -0.3286136868604818,
+        "lateral": -0.6719476776102438,
+        "heading": -0.1300782530559465,
+        "action_rate": -0.008960865259169797,
+        "terminal": 10.0,
+        "late_time": 0.0
+      },
+      "mean_raw_return": 18.753136790133308,
+      "mean_time_s": 29.700000000000465,
+      "mean_speed_scale": 0.9059766552566104,
+      "lowest_episode_min_scale": 0.7971955387294292
+    },
+    "last_10": {
+      "episodes": 10,
+      "mean_terms": {
+        "progress": 20.612801102786555,
+        "time": -1.4004999999987262,
+        "command_velocity": -0.09895839297020588,
+        "vibration": -8.72147456047126,
+        "slip": -0.3461217741499294,
+        "lateral": -0.6243739035683867,
+        "heading": -0.11089826203356574,
+        "action_rate": -0.007673901614479886,
+        "terminal": 10.0,
+        "late_time": 0.0
+      },
+      "mean_raw_return": 19.302800307979993,
+      "mean_time_s": 28.009999999974525,
+      "mean_speed_scale": 0.9618389632473006,
+      "lowest_episode_min_scale": 0.8572140601277352
+    }
+  },
+  "detection": {
+    "ppo": [
+      {
+        "seed": 16100,
+        "duration_s": 27.600000000000293,
+        "trigger_count": 3,
+        "triggers": [
+          {
+            "time_s": 4.399999999999984,
+            "x_m": 1.5501324683746396,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 19.600000000000186,
+            "x_m": 7.416655749551896,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 22.60000000000022,
+            "x_m": 8.584852378862626,
+            "causes": [
+              "wheel_command_error"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "cooldown": 2.4000000000000306,
+          "recovering": 16.400000000000226,
+          "holding": 1.800000000000015,
+          "ready": 7.000000000000021
+        },
+        "longest_recovering_seconds": 11.900000000000164,
+        "disturbed_seconds": 5.700000000000069,
+        "disturbed_in_recovering_seconds": 3.600000000000051,
+        "holding_scale_mean": 0.9737501896917821,
+        "quiet_scale_mean": 0.9746987711593331,
+        "minimum_scale": 0.967913243174553,
+        "mean_scale": 0.9745636426236318,
+        "interval_peaks_above_1_5": 144,
+        "high_intervals_with_next_endpoint_below_1_5": 112,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 0.8573921918869019,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 4.399999999999984
+          },
+          {
+            "phase": "holding",
+            "start_s": 4.399999999999984,
+            "duration_s": 0.5999999999999979
+          },
+          {
+            "phase": "recovering",
+            "start_s": 4.999999999999982,
+            "duration_s": 11.900000000000164
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 16.900000000000148,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 18.100000000000165,
+            "duration_s": 1.5000000000000213
+          },
+          {
+            "phase": "holding",
+            "start_s": 19.600000000000186,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 20.200000000000195,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 20.300000000000196,
+            "duration_s": 1.2000000000000135
+          },
+          {
+            "phase": "ready",
+            "start_s": 21.500000000000206,
+            "duration_s": 1.1000000000000156
+          },
+          {
+            "phase": "holding",
+            "start_s": 22.60000000000022,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 23.20000000000023,
+            "duration_s": 4.4000000000000625
+          }
+        ]
+      },
+      {
+        "seed": 16101,
+        "duration_s": 27.600000000000207,
+        "trigger_count": 4,
+        "triggers": [
+          {
+            "time_s": 3.800000000000054,
+            "x_m": 1.30965684634711,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 15.100000000000215,
+            "x_m": 5.663825981823704,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 17.800000000000253,
+            "x_m": 6.719958022255219,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 22.50000000000032,
+            "x_m": 8.54582143728869,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "cooldown": 3.600000000000051,
+          "recovering": 16.60000000000005,
+          "holding": 2.400000000000034,
+          "ready": 5.000000000000071
+        },
+        "longest_recovering_seconds": 9.10000000000013,
+        "disturbed_seconds": 6.10000000000008,
+        "disturbed_in_recovering_seconds": 3.5000000000000426,
+        "holding_scale_mean": 0.974489713460207,
+        "quiet_scale_mean": 0.9748153980659402,
+        "minimum_scale": 0.9626334086060524,
+        "mean_scale": 0.9744962652416335,
+        "interval_peaks_above_1_5": 147,
+        "high_intervals_with_next_endpoint_below_1_5": 109,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 0.833926260471344,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 3.800000000000054
+          },
+          {
+            "phase": "holding",
+            "start_s": 3.800000000000054,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 4.4000000000000625,
+            "duration_s": 9.10000000000013
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 13.500000000000192,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 14.700000000000209,
+            "duration_s": 0.4000000000000057
+          },
+          {
+            "phase": "holding",
+            "start_s": 15.100000000000215,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 15.700000000000223,
+            "duration_s": 0.70000000000001
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 16.400000000000233,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 17.60000000000025,
+            "duration_s": 0.20000000000000284
+          },
+          {
+            "phase": "holding",
+            "start_s": 17.800000000000253,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 18.40000000000026,
+            "duration_s": 2.3000000000000327
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 20.700000000000294,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 21.90000000000031,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "holding",
+            "start_s": 22.50000000000032,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 23.10000000000033,
+            "duration_s": 4.499999999999879
+          }
+        ]
+      },
+      {
+        "seed": 16102,
+        "duration_s": 27.59999999999843,
+        "trigger_count": 2,
+        "triggers": [
+          {
+            "time_s": 3.8999999999997783,
+            "x_m": 1.3507028782407076,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 19.999999999998863,
+            "x_m": 7.571927094563105,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "cooldown": 1.1999999999999318,
+          "recovering": 19.799999999998875,
+          "holding": 1.1999999999999318,
+          "ready": 5.399999999999693
+        },
+        "longest_recovering_seconds": 12.799999999999272,
+        "disturbed_seconds": 5.599999999999682,
+        "disturbed_in_recovering_seconds": 4.499999999999744,
+        "holding_scale_mean": 0.9758506093174218,
+        "quiet_scale_mean": 0.9741412153253791,
+        "minimum_scale": 0.9651162087917328,
+        "mean_scale": 0.974568916760061,
+        "interval_peaks_above_1_5": 150,
+        "high_intervals_with_next_endpoint_below_1_5": 113,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 0.8449609279632568,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 3.8999999999997783
+          },
+          {
+            "phase": "holding",
+            "start_s": 3.8999999999997783,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 4.499999999999744,
+            "duration_s": 12.799999999999272
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 17.299999999999017,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 18.49999999999895,
+            "duration_s": 1.4999999999999147
+          },
+          {
+            "phase": "holding",
+            "start_s": 19.999999999998863,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 20.59999999999883,
+            "duration_s": 6.999999999999602
+          }
+        ]
+      },
+      {
+        "seed": 16103,
+        "duration_s": 27.59999999999843,
+        "trigger_count": 9,
+        "triggers": [
+          {
+            "time_s": 3.3999999999998067,
+            "x_m": 1.1663695036793074,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 5.499999999999687,
+            "x_m": 1.966779287713551,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 7.499999999999574,
+            "x_m": 2.7706215979932796,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 10.299999999999415,
+            "x_m": 3.8326359558492165,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 12.899999999999267,
+            "x_m": 4.79486257604159,
+            "causes": [
+              "body_rate"
+            ]
+          },
+          {
+            "time_s": 15.099999999999142,
+            "x_m": 5.6833083729531415,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 19.49999999999889,
+            "x_m": 7.398748319077018,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 21.499999999998778,
+            "x_m": 8.20638083035997,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 23.89999999999864,
+            "x_m": 9.088145640369067,
+            "causes": [
+              "body_rate"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "cooldown": 10.799999999999386,
+          "recovering": 2.599999999999852,
+          "holding": 5.399999999999693,
+          "ready": 8.7999999999995
+        },
+        "longest_recovering_seconds": 0.6999999999999602,
+        "disturbed_seconds": 7.399999999999579,
+        "disturbed_in_recovering_seconds": 0.8999999999999488,
+        "holding_scale_mean": 0.9766936101019382,
+        "quiet_scale_mean": 0.9777656644311818,
+        "minimum_scale": 0.96058339625597,
+        "mean_scale": 0.9775856313984033,
+        "interval_peaks_above_1_5": 153,
+        "high_intervals_with_next_endpoint_below_1_5": 108,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 0.8248150944709778,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 3.3999999999998067
+          },
+          {
+            "phase": "holding",
+            "start_s": 3.3999999999998067,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 3.9999999999997726,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 4.099999999999767,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 5.299999999999699,
+            "duration_s": 0.19999999999998863
+          },
+          {
+            "phase": "holding",
+            "start_s": 5.499999999999687,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 6.099999999999653,
+            "duration_s": 0.19999999999998863
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 6.299999999999642,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "holding",
+            "start_s": 7.499999999999574,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 8.09999999999954,
+            "duration_s": 0.39999999999997726
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 8.499999999999517,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 9.699999999999449,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "holding",
+            "start_s": 10.299999999999415,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 10.89999999999938,
+            "duration_s": 0.6999999999999602
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 11.59999999999934,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 12.799999999999272,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "holding",
+            "start_s": 12.899999999999267,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 13.499999999999233,
+            "duration_s": 0.29999999999998295
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 13.799999999999216,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 14.999999999999147,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "holding",
+            "start_s": 15.099999999999142,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 15.699999999999108,
+            "duration_s": 0.19999999999998863
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 15.899999999999096,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 17.099999999999028,
+            "duration_s": 2.3999999999998636
+          },
+          {
+            "phase": "holding",
+            "start_s": 19.49999999999889,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 20.099999999998857,
+            "duration_s": 0.19999999999998863
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 20.299999999998846,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "holding",
+            "start_s": 21.499999999998778,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 22.099999999998744,
+            "duration_s": 0.29999999999998295
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 22.399999999998727,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 23.59999999999866,
+            "duration_s": 0.29999999999998295
+          },
+          {
+            "phase": "holding",
+            "start_s": 23.89999999999864,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 24.499999999998607,
+            "duration_s": 0.19999999999998863
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 24.699999999998596,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 25.899999999998528,
+            "duration_s": 1.6999999999999034
+          }
+        ]
+      },
+      {
+        "seed": 16104,
+        "duration_s": 27.599999999998445,
+        "trigger_count": 2,
+        "triggers": [
+          {
+            "time_s": 4.499999999999758,
+            "x_m": 1.5818846838591496,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 19.299999999998917,
+            "x_m": 7.302385637015492,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "cooldown": 1.1999999999999318,
+          "recovering": 18.79999999999893,
+          "holding": 1.1999999999999318,
+          "ready": 6.39999999999965
+        },
+        "longest_recovering_seconds": 11.099999999999369,
+        "disturbed_seconds": 6.599999999999625,
+        "disturbed_in_recovering_seconds": 5.699999999999676,
+        "holding_scale_mean": 0.9731012970209122,
+        "quiet_scale_mean": 0.9745838715136054,
+        "minimum_scale": 0.9689168989658355,
+        "mean_scale": 0.9745202630920253,
+        "interval_peaks_above_1_5": 146,
+        "high_intervals_with_next_endpoint_below_1_5": 110,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 0.8618528842926025,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 4.499999999999758
+          },
+          {
+            "phase": "holding",
+            "start_s": 4.499999999999758,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 5.099999999999724,
+            "duration_s": 11.099999999999369
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 16.199999999999093,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 17.399999999999025,
+            "duration_s": 1.899999999999892
+          },
+          {
+            "phase": "holding",
+            "start_s": 19.299999999998917,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 19.899999999998883,
+            "duration_s": 7.699999999999562
+          }
+        ]
+      }
+    ],
+    "pi_full": [
+      {
+        "seed": 16100,
+        "duration_s": 27.000000000000206,
+        "trigger_count": 9,
+        "triggers": [
+          {
+            "time_s": 5.399999999999981,
+            "x_m": 1.9753281622844612,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 7.399999999999974,
+            "x_m": 2.7989542367201357,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 9.599999999999966,
+            "x_m": 3.6671667241118153,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 11.699999999999994,
+            "x_m": 4.4240372860397805,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 13.600000000000021,
+            "x_m": 5.225059091844688,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 15.500000000000048,
+            "x_m": 5.96168958241116,
+            "causes": [
+              "body_rate"
+            ]
+          },
+          {
+            "time_s": 18.600000000000094,
+            "x_m": 7.215277426243667,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 22.000000000000142,
+            "x_m": 8.567515379826276,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 23.90000000000017,
+            "x_m": 9.306527946314587,
+            "causes": [
+              "filtered_acceleration",
+              "wheel_command_error"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "cooldown": 10.800000000000107,
+          "recovering": 0.9000000000000092,
+          "holding": 5.400000000000054,
+          "ready": 9.900000000000038
+        },
+        "longest_recovering_seconds": 0.10000000000000142,
+        "disturbed_seconds": 5.200000000000044,
+        "disturbed_in_recovering_seconds": 0.20000000000000284,
+        "holding_scale_mean": 1.0,
+        "quiet_scale_mean": 1.0,
+        "minimum_scale": 1.0,
+        "mean_scale": 1.0,
+        "interval_peaks_above_1_5": 131,
+        "high_intervals_with_next_endpoint_below_1_5": 107,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 1.0,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 5.399999999999981
+          },
+          {
+            "phase": "holding",
+            "start_s": 5.399999999999981,
+            "duration_s": 0.5999999999999979
+          },
+          {
+            "phase": "recovering",
+            "start_s": 5.999999999999979,
+            "duration_s": 0.09999999999999964
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 6.099999999999978,
+            "duration_s": 1.1999999999999957
+          },
+          {
+            "phase": "ready",
+            "start_s": 7.299999999999974,
+            "duration_s": 0.09999999999999964
+          },
+          {
+            "phase": "holding",
+            "start_s": 7.399999999999974,
+            "duration_s": 0.5999999999999979
+          },
+          {
+            "phase": "recovering",
+            "start_s": 7.999999999999972,
+            "duration_s": 0.09999999999999964
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 8.099999999999971,
+            "duration_s": 1.1999999999999957
+          },
+          {
+            "phase": "ready",
+            "start_s": 9.299999999999967,
+            "duration_s": 0.29999999999999893
+          },
+          {
+            "phase": "holding",
+            "start_s": 9.599999999999966,
+            "duration_s": 0.6000000000000068
+          },
+          {
+            "phase": "recovering",
+            "start_s": 10.199999999999973,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 10.299999999999974,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 11.499999999999991,
+            "duration_s": 0.20000000000000284
+          },
+          {
+            "phase": "holding",
+            "start_s": 11.699999999999994,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 12.300000000000002,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 12.400000000000004,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "holding",
+            "start_s": 13.600000000000021,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 14.20000000000003,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 14.300000000000031,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "holding",
+            "start_s": 15.500000000000048,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 16.10000000000006,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 16.20000000000006,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 17.400000000000077,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "holding",
+            "start_s": 18.600000000000094,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 19.200000000000102,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 19.300000000000104,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 20.50000000000012,
+            "duration_s": 1.5000000000000213
+          },
+          {
+            "phase": "holding",
+            "start_s": 22.000000000000142,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 22.60000000000015,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 22.700000000000152,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "holding",
+            "start_s": 23.90000000000017,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 24.500000000000178,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 24.60000000000018,
+            "duration_s": 1.2000000000000135
+          },
+          {
+            "phase": "ready",
+            "start_s": 25.80000000000019,
+            "duration_s": 1.200000000000017
+          }
+        ]
+      },
+      {
+        "seed": 16101,
+        "duration_s": 26.900000000000382,
+        "trigger_count": 9,
+        "triggers": [
+          {
+            "time_s": 2.7000000000000384,
+            "x_m": 0.9346070603370583,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 5.400000000000077,
+            "x_m": 1.973758037454523,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 7.300000000000104,
+            "x_m": 2.7528817368672702,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 10.100000000000144,
+            "x_m": 3.841836503442787,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 12.300000000000175,
+            "x_m": 4.668437989928717,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 14.700000000000209,
+            "x_m": 5.658166781998998,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 17.00000000000024,
+            "x_m": 6.5802787288236715,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 21.300000000000303,
+            "x_m": 8.31061046934501,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 23.400000000000333,
+            "x_m": 9.095462337615288,
+            "causes": [
+              "body_rate"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "cooldown": 10.800000000000153,
+          "recovering": 0.9000000000000128,
+          "holding": 5.400000000000077,
+          "ready": 9.80000000000014
+        },
+        "longest_recovering_seconds": 0.10000000000000142,
+        "disturbed_seconds": 5.800000000000082,
+        "disturbed_in_recovering_seconds": 0.20000000000000284,
+        "holding_scale_mean": 1.0,
+        "quiet_scale_mean": 1.0,
+        "minimum_scale": 1.0,
+        "mean_scale": 1.0,
+        "interval_peaks_above_1_5": 149,
+        "high_intervals_with_next_endpoint_below_1_5": 110,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 1.0,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 2.7000000000000384
+          },
+          {
+            "phase": "holding",
+            "start_s": 2.7000000000000384,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 3.300000000000047,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 3.4000000000000483,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 4.600000000000065,
+            "duration_s": 0.8000000000000114
+          },
+          {
+            "phase": "holding",
+            "start_s": 5.400000000000077,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 6.000000000000085,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 6.100000000000087,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "holding",
+            "start_s": 7.300000000000104,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 7.900000000000112,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 8.000000000000114,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 9.20000000000013,
+            "duration_s": 0.9000000000000128
+          },
+          {
+            "phase": "holding",
+            "start_s": 10.100000000000144,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 10.700000000000152,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 10.800000000000153,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 12.00000000000017,
+            "duration_s": 0.30000000000000426
+          },
+          {
+            "phase": "holding",
+            "start_s": 12.300000000000175,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 12.900000000000183,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 13.000000000000185,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 14.200000000000202,
+            "duration_s": 0.5000000000000071
+          },
+          {
+            "phase": "holding",
+            "start_s": 14.700000000000209,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 15.300000000000217,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 15.400000000000219,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 16.600000000000236,
+            "duration_s": 0.4000000000000057
+          },
+          {
+            "phase": "holding",
+            "start_s": 17.00000000000024,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 17.60000000000025,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 17.70000000000025,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 18.90000000000027,
+            "duration_s": 2.400000000000034
+          },
+          {
+            "phase": "holding",
+            "start_s": 21.300000000000303,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 21.90000000000031,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 22.000000000000313,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 23.20000000000033,
+            "duration_s": 0.20000000000000284
+          },
+          {
+            "phase": "holding",
+            "start_s": 23.400000000000333,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 24.00000000000034,
+            "duration_s": 0.10000000000000142
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 24.100000000000342,
+            "duration_s": 1.200000000000017
+          },
+          {
+            "phase": "ready",
+            "start_s": 25.30000000000036,
+            "duration_s": 1.6000000000000227
+          }
+        ]
+      },
+      {
+        "seed": 16102,
+        "duration_s": 26.999999999998636,
+        "trigger_count": 9,
+        "triggers": [
+          {
+            "time_s": 4.599999999999909,
+            "x_m": 1.673882598298313,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 7.299999999999756,
+            "x_m": 2.757806564367138,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 10.19999999999959,
+            "x_m": 3.8803709701265396,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 12.199999999999477,
+            "x_m": 4.632481555706487,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 14.699999999999335,
+            "x_m": 5.661662925826104,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 17.299999999999187,
+            "x_m": 6.703607071627598,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 19.599999999999056,
+            "x_m": 7.614730432214577,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 21.899999999998926,
+            "x_m": 8.535560051465652,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 23.899999999998812,
+            "x_m": 9.310574265708011,
+            "causes": [
+              "filtered_acceleration",
+              "wheel_command_error"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "cooldown": 10.799999999999386,
+          "recovering": 0.8999999999999488,
+          "holding": 5.399999999999693,
+          "ready": 9.899999999999608
+        },
+        "longest_recovering_seconds": 0.09999999999999432,
+        "disturbed_seconds": 5.599999999999717,
+        "disturbed_in_recovering_seconds": 0.29999999999998295,
+        "holding_scale_mean": 1.0,
+        "quiet_scale_mean": 1.0,
+        "minimum_scale": 1.0,
+        "mean_scale": 1.0,
+        "interval_peaks_above_1_5": 149,
+        "high_intervals_with_next_endpoint_below_1_5": 121,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 1.0,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 4.599999999999909
+          },
+          {
+            "phase": "holding",
+            "start_s": 4.599999999999909,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 5.199999999999875,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 5.299999999999869,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 6.499999999999801,
+            "duration_s": 0.7999999999999545
+          },
+          {
+            "phase": "holding",
+            "start_s": 7.299999999999756,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 7.8999999999997215,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 7.999999999999716,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 9.199999999999648,
+            "duration_s": 0.9999999999999432
+          },
+          {
+            "phase": "holding",
+            "start_s": 10.19999999999959,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 10.799999999999557,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 10.899999999999551,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 12.099999999999483,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "holding",
+            "start_s": 12.199999999999477,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 12.799999999999443,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 12.899999999999437,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 14.099999999999369,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "holding",
+            "start_s": 14.699999999999335,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 15.2999999999993,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 15.399999999999295,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 16.599999999999227,
+            "duration_s": 0.6999999999999602
+          },
+          {
+            "phase": "holding",
+            "start_s": 17.299999999999187,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 17.899999999999153,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 17.999999999999147,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 19.19999999999908,
+            "duration_s": 0.39999999999997726
+          },
+          {
+            "phase": "holding",
+            "start_s": 19.599999999999056,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 20.199999999999022,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 20.299999999999017,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 21.49999999999895,
+            "duration_s": 0.39999999999997726
+          },
+          {
+            "phase": "holding",
+            "start_s": 21.899999999998926,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 22.49999999999889,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 22.599999999998886,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 23.799999999998818,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "holding",
+            "start_s": 23.899999999998812,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 24.499999999998778,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 24.599999999998772,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 25.799999999998704,
+            "duration_s": 1.1999999999999318
+          }
+        ]
+      },
+      {
+        "seed": 16103,
+        "duration_s": 26.89999999999847,
+        "trigger_count": 10,
+        "triggers": [
+          {
+            "time_s": 3.199999999999818,
+            "x_m": 1.1157975396094195,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 5.399999999999693,
+            "x_m": 1.9708605956939693,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 7.299999999999585,
+            "x_m": 2.7497661520291667,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 10.19999999999942,
+            "x_m": 3.87394318802708,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 12.099999999999312,
+            "x_m": 4.584257035914384,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 14.499999999999176,
+            "x_m": 5.580238073207427,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 16.399999999999068,
+            "x_m": 6.333599416147935,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 19.89999999999887,
+            "x_m": 7.729161906595812,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 21.99999999999875,
+            "x_m": 8.563958211470426,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 23.89999999999864,
+            "x_m": 9.302016661970569,
+            "causes": [
+              "wheel_command_error"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "cooldown": 11.999999999999318,
+          "recovering": 0.9999999999999432,
+          "holding": 5.999999999999659,
+          "ready": 7.899999999999551
+        },
+        "longest_recovering_seconds": 0.09999999999999432,
+        "disturbed_seconds": 5.699999999999676,
+        "disturbed_in_recovering_seconds": 0.09999999999999432,
+        "holding_scale_mean": 1.0,
+        "quiet_scale_mean": 1.0,
+        "minimum_scale": 1.0,
+        "mean_scale": 1.0,
+        "interval_peaks_above_1_5": 162,
+        "high_intervals_with_next_endpoint_below_1_5": 116,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 1.0,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 3.199999999999818
+          },
+          {
+            "phase": "holding",
+            "start_s": 3.199999999999818,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 3.799999999999784,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 3.8999999999997783,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 5.09999999999971,
+            "duration_s": 0.29999999999998295
+          },
+          {
+            "phase": "holding",
+            "start_s": 5.399999999999693,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 5.999999999999659,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 6.099999999999653,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "holding",
+            "start_s": 7.299999999999585,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 7.899999999999551,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 7.999999999999545,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 9.199999999999477,
+            "duration_s": 0.9999999999999432
+          },
+          {
+            "phase": "holding",
+            "start_s": 10.19999999999942,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 10.799999999999386,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 10.89999999999938,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "holding",
+            "start_s": 12.099999999999312,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 12.699999999999278,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 12.799999999999272,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 13.999999999999204,
+            "duration_s": 0.4999999999999716
+          },
+          {
+            "phase": "holding",
+            "start_s": 14.499999999999176,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 15.099999999999142,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 15.199999999999136,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "holding",
+            "start_s": 16.399999999999068,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 16.999999999999034,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 17.099999999999028,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 18.29999999999896,
+            "duration_s": 1.599999999999909
+          },
+          {
+            "phase": "holding",
+            "start_s": 19.89999999999887,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 20.499999999998835,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 20.59999999999883,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 21.79999999999876,
+            "duration_s": 0.19999999999998863
+          },
+          {
+            "phase": "holding",
+            "start_s": 21.99999999999875,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 22.599999999998715,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 22.69999999999871,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "holding",
+            "start_s": 23.89999999999864,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 24.499999999998607,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 24.5999999999986,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 25.799999999998533,
+            "duration_s": 1.0999999999999375
+          }
+        ]
+      },
+      {
+        "seed": 16104,
+        "duration_s": 26.99999999999848,
+        "trigger_count": 10,
+        "triggers": [
+          {
+            "time_s": 3.6999999999997897,
+            "x_m": 1.3081152988547113,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 5.599999999999682,
+            "x_m": 2.047348359087488,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 7.799999999999557,
+            "x_m": 2.975336387568845,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 10.19999999999942,
+            "x_m": 3.87761650113627,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 12.099999999999326,
+            "x_m": 4.588472445774231,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 14.699999999999179,
+            "x_m": 5.658754979610937,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 16.59999999999907,
+            "x_m": 6.420563521156325,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 19.79999999999889,
+            "x_m": 7.693251505538378,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          },
+          {
+            "time_s": 21.999999999998764,
+            "x_m": 8.567897409732213,
+            "causes": [
+              "wheel_command_error"
+            ]
+          },
+          {
+            "time_s": 23.899999999998656,
+            "x_m": 9.307098572671299,
+            "causes": [
+              "filtered_acceleration",
+              "wheel_command_error"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "cooldown": 11.999999999999332,
+          "recovering": 0.9999999999999432,
+          "holding": 5.999999999999659,
+          "ready": 7.999999999999545
+        },
+        "longest_recovering_seconds": 0.09999999999999432,
+        "disturbed_seconds": 6.199999999999662,
+        "disturbed_in_recovering_seconds": 0.39999999999997726,
+        "holding_scale_mean": 1.0,
+        "quiet_scale_mean": 1.0,
+        "minimum_scale": 1.0,
+        "mean_scale": 1.0,
+        "interval_peaks_above_1_5": 153,
+        "high_intervals_with_next_endpoint_below_1_5": 111,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 1.0,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 3.6999999999997897
+          },
+          {
+            "phase": "holding",
+            "start_s": 3.6999999999997897,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 4.299999999999756,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 4.39999999999975,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "holding",
+            "start_s": 5.599999999999682,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 6.199999999999648,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 6.299999999999642,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 7.499999999999574,
+            "duration_s": 0.29999999999998295
+          },
+          {
+            "phase": "holding",
+            "start_s": 7.799999999999557,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 8.399999999999523,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 8.499999999999517,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 9.699999999999449,
+            "duration_s": 0.4999999999999716
+          },
+          {
+            "phase": "holding",
+            "start_s": 10.19999999999942,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 10.799999999999386,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 10.89999999999938,
+            "duration_s": 1.199999999999946
+          },
+          {
+            "phase": "holding",
+            "start_s": 12.099999999999326,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 12.699999999999292,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 12.799999999999287,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 13.999999999999218,
+            "duration_s": 0.6999999999999602
+          },
+          {
+            "phase": "holding",
+            "start_s": 14.699999999999179,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 15.299999999999145,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 15.399999999999139,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "holding",
+            "start_s": 16.59999999999907,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 17.199999999999037,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 17.29999999999903,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 18.499999999998963,
+            "duration_s": 1.299999999999926
+          },
+          {
+            "phase": "holding",
+            "start_s": 19.79999999999889,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 20.399999999998855,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 20.49999999999885,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 21.69999999999878,
+            "duration_s": 0.29999999999998295
+          },
+          {
+            "phase": "holding",
+            "start_s": 21.999999999998764,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 22.59999999999873,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 22.699999999998724,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "holding",
+            "start_s": 23.899999999998656,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 24.49999999999862,
+            "duration_s": 0.09999999999999432
+          },
+          {
+            "phase": "cooldown",
+            "start_s": 24.599999999998616,
+            "duration_s": 1.1999999999999318
+          },
+          {
+            "phase": "ready",
+            "start_s": 25.799999999998548,
+            "duration_s": 1.1999999999999318
+          }
+        ]
+      }
+    ],
+    "pi_matched": [
+      {
+        "seed": 16100,
+        "duration_s": 27.60000000000028,
+        "trigger_count": 1,
+        "triggers": [
+          {
+            "time_s": 3.2999999999999883,
+            "x_m": 1.1343382220126694,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "recovering": 23.700000000000294,
+          "holding": 0.5999999999999979,
+          "ready": 3.2999999999999883
+        },
+        "longest_recovering_seconds": 23.70000000000029,
+        "disturbed_seconds": 5.800000000000061,
+        "disturbed_in_recovering_seconds": 5.200000000000063,
+        "holding_scale_mean": 0.9768115922808648,
+        "quiet_scale_mean": 0.9768115922808646,
+        "minimum_scale": 0.9768115922808647,
+        "mean_scale": 0.9768115922808649,
+        "interval_peaks_above_1_5": 151,
+        "high_intervals_with_next_endpoint_below_1_5": 120,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 0.8969404101371765,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 3.2999999999999883
+          },
+          {
+            "phase": "holding",
+            "start_s": 3.2999999999999883,
+            "duration_s": 0.5999999999999979
+          },
+          {
+            "phase": "recovering",
+            "start_s": 3.899999999999986,
+            "duration_s": 23.70000000000029
+          }
+        ]
+      },
+      {
+        "seed": 16101,
+        "duration_s": 27.600000000000264,
+        "trigger_count": 1,
+        "triggers": [
+          {
+            "time_s": 2.600000000000037,
+            "x_m": 0.8795006425443261,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "recovering": 24.40000000000022,
+          "holding": 0.6000000000000085,
+          "ready": 2.600000000000037
+        },
+        "longest_recovering_seconds": 24.40000000000022,
+        "disturbed_seconds": 6.100000000000087,
+        "disturbed_in_recovering_seconds": 5.500000000000078,
+        "holding_scale_mean": 0.9768115922808648,
+        "quiet_scale_mean": 0.9768115922808646,
+        "minimum_scale": 0.9768115922808647,
+        "mean_scale": 0.9768115922808649,
+        "interval_peaks_above_1_5": 152,
+        "high_intervals_with_next_endpoint_below_1_5": 107,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 0.8969404101371765,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 2.600000000000037
+          },
+          {
+            "phase": "holding",
+            "start_s": 2.600000000000037,
+            "duration_s": 0.6000000000000085
+          },
+          {
+            "phase": "recovering",
+            "start_s": 3.2000000000000455,
+            "duration_s": 24.40000000000022
+          }
+        ]
+      },
+      {
+        "seed": 16102,
+        "duration_s": 27.59999999999843,
+        "trigger_count": 1,
+        "triggers": [
+          {
+            "time_s": 2.9999999999998295,
+            "x_m": 1.0261742582486206,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "recovering": 23.999999999998636,
+          "holding": 0.5999999999999659,
+          "ready": 2.9999999999998295
+        },
+        "longest_recovering_seconds": 23.999999999998636,
+        "disturbed_seconds": 5.899999999999665,
+        "disturbed_in_recovering_seconds": 5.299999999999699,
+        "holding_scale_mean": 0.9768115922808648,
+        "quiet_scale_mean": 0.9768115922808646,
+        "minimum_scale": 0.9768115922808647,
+        "mean_scale": 0.9768115922808649,
+        "interval_peaks_above_1_5": 143,
+        "high_intervals_with_next_endpoint_below_1_5": 99,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 0.8969404101371765,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 2.9999999999998295
+          },
+          {
+            "phase": "holding",
+            "start_s": 2.9999999999998295,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 3.5999999999997954,
+            "duration_s": 23.999999999998636
+          }
+        ]
+      },
+      {
+        "seed": 16103,
+        "duration_s": 27.59999999999843,
+        "trigger_count": 1,
+        "triggers": [
+          {
+            "time_s": 5.499999999999687,
+            "x_m": 1.9670201892334813,
+            "causes": [
+              "wheel_command_error"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "recovering": 21.499999999998778,
+          "holding": 0.5999999999999659,
+          "ready": 5.499999999999687
+        },
+        "longest_recovering_seconds": 21.499999999998778,
+        "disturbed_seconds": 3.8999999999997783,
+        "disturbed_in_recovering_seconds": 2.899999999999835,
+        "holding_scale_mean": 0.9768115922808648,
+        "quiet_scale_mean": 0.9768115922808649,
+        "minimum_scale": 0.9768115922808647,
+        "mean_scale": 0.9768115922808649,
+        "interval_peaks_above_1_5": 123,
+        "high_intervals_with_next_endpoint_below_1_5": 104,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 0.8969404101371765,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 5.499999999999687
+          },
+          {
+            "phase": "holding",
+            "start_s": 5.499999999999687,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 6.099999999999653,
+            "duration_s": 21.499999999998778
+          }
+        ]
+      },
+      {
+        "seed": 16104,
+        "duration_s": 27.599999999998445,
+        "trigger_count": 1,
+        "triggers": [
+          {
+            "time_s": 3.8999999999997783,
+            "x_m": 1.353060370108942,
+            "causes": [
+              "filtered_acceleration"
+            ]
+          }
+        ],
+        "phase_seconds": {
+          "recovering": 23.0999999999987,
+          "holding": 0.5999999999999659,
+          "ready": 3.8999999999997783
+        },
+        "longest_recovering_seconds": 23.0999999999987,
+        "disturbed_seconds": 5.999999999999659,
+        "disturbed_in_recovering_seconds": 5.399999999999693,
+        "holding_scale_mean": 0.9768115922808648,
+        "quiet_scale_mean": 0.9768115922808649,
+        "minimum_scale": 0.9768115922808647,
+        "mean_scale": 0.9768115922808649,
+        "interval_peaks_above_1_5": 148,
+        "high_intervals_with_next_endpoint_below_1_5": 106,
+        "endpoint_vs_peak_qualification": "Endpoint and integrated peak differ; this is not a false-negative rate for the EMA/body-rate/encoder detector.",
+        "raw_target_min": 0.8969404101371765,
+        "phase_runs": [
+          {
+            "phase": "ready",
+            "start_s": 0.0,
+            "duration_s": 3.8999999999997783
+          },
+          {
+            "phase": "holding",
+            "start_s": 3.8999999999997783,
+            "duration_s": 0.5999999999999659
+          },
+          {
+            "phase": "recovering",
+            "start_s": 4.499999999999744,
+            "duration_s": 23.0999999999987
+          }
+        ]
+      }
+    ]
+  },
+  "observation": {
+    "frame_size": 56,
+    "history_frames": 5,
+    "control_hz": 10,
+    "oldest_to_newest_span_s": 0.4,
+    "imu_update_hz": 50,
+    "reset_duplicates_first_frame": true,
+    "hardware_features": "IMU quaternion, gyro XYZ, accel XYZ, tilt-compensated vertical accel, encoder velocities, estimated motion, horizontal LiDAR; route/reference and previous raw action.",
+    "missing": [
+      "cue EMA",
+      "cue phase/remaining hold/cooldown",
+      "executed ramp scale",
+      "IMU interval energy/peak",
+      "exact previously executed linear/yaw command"
+    ],
+    "caveat": "No complete actor observation histories saved; causal dependence cannot be measured from these traces. No terrain preview or ground-truth velocity supplied to actor."
+  },
+  "exploration": {
+    "initial_actual_scale": 0.901,
+    "final_mean_raw_action": 0.8895419725473376,
+    "raw_action_std_approx": 0.2,
+    "scale_std_before_clipping": 0.045,
+    "probability_one_target_at_or_below_scale": {
+      "initial_bias": {
+        "0.7": 3.9723886033777146e-06,
+        "0.76": 0.0008641652090980685,
+        "0.9": 0.4911353455982687
+      },
+      "final_mean_action": {
+        "0.7": 4.84675935505309e-10,
+        "0.76": 8.719394139708224e-07,
+        "0.9": 0.04746640071136787
+      }
+    },
+    "qualification": "Gaussian tails at initialization bias or mean final action, not measured event-conditioned rollout frequencies. Sustained slowdown also requires repeated low actions through the ramp."
+  },
+  "prior_authority_reward": {
+    "pairs": 10,
+    "reactive_better_count": 5,
+    "mean_gain": 0.3407564582377468,
+    "median_gain": -0.10577604757491166,
+    "qualification": "Offline E1 trace reconstruction using captured energy/slip and reconstructed previous estimated PI reference; not a new rollout or PPO result"
+  },
+  "limits": [
+    "One training seed, five paired fixed-map reset seeds.",
+    "Endpoint trace cues omit original 50Hz IMU samples and full actor tensors.",
+    "Reward totals are exact saved raw episode totals; only prior authority returns were reconstructed.",
+    "No new simulation, policy training or hyperparameter tuning."
+  ],
+  "sources_sha256": {
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/config.yaml": "3f9334386b48cbcecd80334e6fa3a161ecc41b940a8006628c4592a7d2977ff0",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/pilot_contract.json": "998c3a882a14a9074d1e7d3e53ecae38fc0af71304c75dc5443222f1d024a4e6",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/comparison.json": "8080f873fcf2becc1e03bfba0b609f670ba549118bb4f1c91e80d6da76eb6de3",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/reward_audit.json": "b1f829c257294988c4f79f523dda1f31dc97675d1af245ebb6c73a2a974ca797",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/train/20261011-144616-193015/episodes.jsonl": "3cf00748fb58c1107a7b9e62150abbdd4a43d01f09065826115aeac3036595fd",
+    "/home/tuanmac/ninorobot/src/nino_rl/scripts/audit_rough_reactive_pilot.py": "c223634b2f1b6270d5915d8d2e5bd923531aae6ce45e257ad675b03b261fcc5f",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/ppo/20261011-154515-255045/episodes.csv": "35dbf583e169f2e4f593f55e84f6944409cb84ee8ee8cc920b933525787d9b72",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/ppo/20261011-154515-255045/episode-001/control_trace.csv": "f0162d9d3ab40eaef10092bd754c873d70ddc8872e5c0be65fd2fb819f6a2b5c",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/ppo/20261011-154515-255045/episode-002/control_trace.csv": "37a1e63d7097241b2445e9b89791bc39103e6367dd044bf1a0ca2b602c214883",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/ppo/20261011-154515-255045/episode-003/control_trace.csv": "e5dabfe7f0fa5eb677bb42c153d98befef999efd498bd178178b4efdbf288866",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/ppo/20261011-154515-255045/episode-004/control_trace.csv": "e0a9c23bb0d579c7d6e2de66352c9bfaa5d2106db59ec6a8c3ba488f407218dc",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/ppo/20261011-154515-255045/episode-005/control_trace.csv": "1e983f4971193e2fe86ee833b5d62208c8cc233c57528f8b87b3a2760ceab045",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_full/20261011-154834-311397/episodes.csv": "2c268186b06064e705e77f7c41b884ad286fbceb30c038fb11d9ecb79e0ccbca",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_full/20261011-154834-311397/episode-001/control_trace.csv": "248aebc49a7578499e2addb3b3448602eed1f6466f7ae47754683599a1a09b57",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_full/20261011-154834-311397/episode-002/control_trace.csv": "592fe69f0e9fee114350a45c966ac3afb0935bfde833c78f2d71fde72dd95647",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_full/20261011-154834-311397/episode-003/control_trace.csv": "36c2885d2bc6dd5ca60ec6d230a37ec8d8ab5f34f78bae921f85db68eaba7ffc",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_full/20261011-154834-311397/episode-004/control_trace.csv": "3a8306e8d3f9f371afa0e94221bba6849c36908a51a820cf3f61853779c5e778",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_full/20261011-154834-311397/episode-005/control_trace.csv": "a1a9db3db4b541a78866858349751a5b527601e358a28577579b4fd786a7791b",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_matched/20261011-155147-392435/episodes.csv": "16717877623ff7644f047ce91898bd36d1d7e578e0c6e5cb0af61ada40d5b8ed",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_matched/20261011-155147-392435/episode-001/control_trace.csv": "a2915e5adb0d60fe6c5dc1255e78334598e3bb4b85511b374c6da88b71897ffc",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_matched/20261011-155147-392435/episode-002/control_trace.csv": "45e9c33ba28a2fb989ddf9f7670d147e2e76bf64aad9f8e4da51be9c012be126",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_matched/20261011-155147-392435/episode-003/control_trace.csv": "3ab20a8b6dc7ce6871dfbf09209d9e0cdcec669bddcfc49a7018a9d85e19e2d9",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_matched/20261011-155147-392435/episode-004/control_trace.csv": "0e9dfc12f53fc1df276e4e3ee6141b083d6f272fa0bb891de149d4f0695e72cc",
+    "/home/tuanmac/ninorobot/rl_runs/rough_reactive_reward_pilot_v1/evaluation/pi_matched/20261011-155147-392435/episode-005/control_trace.csv": "675244f4710fb4eee16f177cd2b7129fd7ef5054d4730a88f95fd3ae4c8d124e"
+  }
+}

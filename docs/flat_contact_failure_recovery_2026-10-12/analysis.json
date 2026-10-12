@@ -1,0 +1,2621 @@
+{
+  "complete": true,
+  "episodes": 16,
+  "arrivals": 15,
+  "groups": {
+    "1/2ms/full": {
+      "65001": {
+        "seed": 65001,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 17.300000000000153,
+          "truth_path_rmse_m": 0.007349247843352648,
+          "rms_vertical_acceleration_m_s2": 2.252473400775859,
+          "rms_wheel_slip": 0.14332279089565444,
+          "truth_endpoint_error_m": 0.1888021544277146
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000692880836142,
+            "last_velocity_rad_s": 1.26592442342e-10,
+            "maximum_abs_velocity_rad_s": 5.51760511439e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.123792059068,
+            "last_velocity_rad_s": -0.0167229937092,
+            "maximum_abs_velocity_rad_s": 0.0167229937092,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": 1.61706332074e-06,
+            "last_velocity_rad_s": -1.24488347398e-10,
+            "maximum_abs_velocity_rad_s": 5.51179430087e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.126157105134,
+            "last_velocity_rad_s": -0.0167281221611,
+            "maximum_abs_velocity_rad_s": 0.0167281221611,
+            "samples": 51,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.0305403253376,
+            "last_velocity_rad_s": -0.00428009917032,
+            "maximum_abs_velocity_rad_s": 0.00428009917032,
+            "samples": 51,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.0304905191141,
+            "last_velocity_rad_s": -0.00428182008405,
+            "maximum_abs_velocity_rad_s": 0.00428182008405,
+            "samples": 51,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.0075632128270220755,
+            "duration_s": 11.049999999999999
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.009631567924670067,
+            "duration_s": 2.4000000000000004
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.004549065755177915,
+            "duration_s": 3.849999999999998
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.7681231220807656,
+            "mean_executed_speed_m_s": 0.3940110091743119,
+            "maximum_abs_torque_nm": 2.1987492007158536
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 2.5075913114786763,
+            "mean_executed_speed_m_s": 0.4,
+            "maximum_abs_torque_nm": 2.050353509702177
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.3988126753416122,
+            "mean_executed_speed_m_s": 0.35764799834921873,
+            "maximum_abs_torque_nm": 0.23220697231143728
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.314,
+            "maximum_penetration_m": 0.00185943685938,
+            "maximum_solver_force_n": 290.4781067847814
+          },
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.324,
+            "maximum_penetration_m": 0.000682494603097,
+            "maximum_solver_force_n": 539.9271463876403
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.378,
+            "maximum_penetration_m": 0.0017064625863,
+            "maximum_solver_force_n": 1034.9500201163462
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.362,
+            "maximum_penetration_m": 0.00198134081438,
+            "maximum_solver_force_n": 991.0825960168223
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.37,
+            "maximum_penetration_m": 0.000503057963215,
+            "maximum_solver_force_n": 335.9446470077421
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.276,
+            "maximum_penetration_m": 0.00061660411302,
+            "maximum_solver_force_n": 286.54431063837694
+          }
+        },
+        "crossing": {
+          "vibration_rms": 5.4897058445911755,
+          "slip_rms": 0.23343134775706326,
+          "vibration_energy_per_m": 85.87201907846111,
+          "slip_energy_per_m": 0.15526439700939038,
+          "imu_energy": 60.11041335492279,
+          "slip_energy": 0.1086850779065733,
+          "coverage_s": 1.9945804868274504,
+          "duration_s": 1.9945804868274504,
+          "distance_m": 0.7000000000000002,
+          "peak_acceleration_m_s2": 38.93655363210941,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 2.376683431673818,
+          "slip_rms": 0.3029847343507442,
+          "vibration_energy_per_m": 21.517124029569406,
+          "slip_energy_per_m": 0.3496898613699565,
+          "imu_energy": 15.068125565293435,
+          "slip_energy": 0.24488266799928857,
+          "coverage_s": 2.6675744759768993,
+          "duration_s": 2.6675744759768993,
+          "distance_m": 0.700285295775886,
+          "peak_acceleration_m_s2": 19.367513627077756,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      },
+      "65004": {
+        "seed": 65004,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 17.000000000000107,
+          "truth_path_rmse_m": 0.004567316326885546,
+          "rms_vertical_acceleration_m_s2": 5.910269344038323,
+          "rms_wheel_slip": 0.14825650281793587,
+          "truth_endpoint_error_m": 0.18742371595655535
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000692905023772,
+            "last_velocity_rad_s": 4.71541302487e-10,
+            "maximum_abs_velocity_rad_s": 5.17823059562e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.0898232549431,
+            "last_velocity_rad_s": -0.0158303296589,
+            "maximum_abs_velocity_rad_s": 0.0160804094971,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": 1.5875282982e-06,
+            "last_velocity_rad_s": -4.6056861322e-10,
+            "maximum_abs_velocity_rad_s": 5.30027330619e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.0917604825988,
+            "last_velocity_rad_s": -0.0158302577183,
+            "maximum_abs_velocity_rad_s": 0.0160875561817,
+            "samples": 51,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.0218170429355,
+            "last_velocity_rad_s": -0.00405061181224,
+            "maximum_abs_velocity_rad_s": 0.00411733091618,
+            "samples": 51,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.0217634483768,
+            "last_velocity_rad_s": -0.00405251627392,
+            "maximum_abs_velocity_rad_s": 0.00411838934821,
+            "samples": 51,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.005620928076934654,
+            "duration_s": 10.65
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.002360286227315533,
+            "duration_s": 2.5
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.0010461110722323613,
+            "duration_s": 3.8499999999999996
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.5624601585287046,
+            "mean_executed_speed_m_s": 0.3937207547169812,
+            "maximum_abs_torque_nm": 2.0630563419321497
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 2.489178181357576,
+            "mean_executed_speed_m_s": 0.4,
+            "maximum_abs_torque_nm": 2.0509926516861183
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.39603971617040173,
+            "mean_executed_speed_m_s": 0.3574910947818116,
+            "maximum_abs_torque_nm": 0.20520564000753397
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.316,
+            "maximum_penetration_m": 0.000933764560614,
+            "maximum_solver_force_n": 205.96368353300946
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.372,
+            "maximum_penetration_m": 0.00209232117049,
+            "maximum_solver_force_n": 1082.1472865211024
+          },
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.292,
+            "maximum_penetration_m": 0.000947015709244,
+            "maximum_solver_force_n": 969.9693987204133
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.336,
+            "maximum_penetration_m": 0.00224920501933,
+            "maximum_solver_force_n": 91.09238117515649
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.318,
+            "maximum_penetration_m": 0.000555981998332,
+            "maximum_solver_force_n": 290.3798672954056
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.314,
+            "maximum_penetration_m": 0.000859000894707,
+            "maximum_solver_force_n": 308.3862067271287
+          }
+        },
+        "crossing": {
+          "vibration_rms": 11.02160378829526,
+          "slip_rms": 0.1333332189326987,
+          "vibration_energy_per_m": 349.1321877811665,
+          "slip_energy_per_m": 0.051094838230251766,
+          "imu_energy": 244.39253144681663,
+          "slip_energy": 0.035766386761176244,
+          "coverage_s": 2.0118627076902413,
+          "duration_s": 2.0118627076902413,
+          "distance_m": 0.7000000000000002,
+          "peak_acceleration_m_s2": 78.42818805575786,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 12.043726324044398,
+          "slip_rms": 0.3789058796104732,
+          "vibration_energy_per_m": 483.15287048529484,
+          "slip_energy_per_m": 0.4782175348999661,
+          "imu_energy": 338.20700933970625,
+          "slip_energy": 0.3347522744299761,
+          "coverage_s": 2.331636512651181,
+          "duration_s": 2.331636512651181,
+          "distance_m": 0.6999999999999997,
+          "peak_acceleration_m_s2": 126.94255213568086,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      }
+    },
+    "1/2ms/schedule": {
+      "65001": {
+        "seed": 65001,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 18.300000000000125,
+          "truth_path_rmse_m": 0.004741364402678068,
+          "rms_vertical_acceleration_m_s2": 2.8356241173817325,
+          "rms_wheel_slip": 0.11798669102125761,
+          "truth_endpoint_error_m": 0.18778157690711697
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000692830017187,
+            "last_velocity_rad_s": 8.55593805414e-11,
+            "maximum_abs_velocity_rad_s": 5.61969979754e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.0834956639252,
+            "last_velocity_rad_s": -0.0152633826994,
+            "maximum_abs_velocity_rad_s": 0.0168640667951,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": 1.61937135469e-06,
+            "last_velocity_rad_s": -8.82167400983e-11,
+            "maximum_abs_velocity_rad_s": 5.60995892458e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.0865100284805,
+            "last_velocity_rad_s": -0.0152688908372,
+            "maximum_abs_velocity_rad_s": 0.0168800057225,
+            "samples": 51,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.0202704413533,
+            "last_velocity_rad_s": -0.00390675347947,
+            "maximum_abs_velocity_rad_s": 0.00431795177663,
+            "samples": 51,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.0202145426543,
+            "last_velocity_rad_s": -0.00390880054323,
+            "maximum_abs_velocity_rad_s": 0.00432037177798,
+            "samples": 51,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.003528698143739011,
+            "duration_s": 11.05
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.003252985858287071,
+            "duration_s": 3.4000000000000004
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.007859533301872064,
+            "duration_s": 3.849999999999996
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.8372305713322026,
+            "mean_executed_speed_m_s": 0.394080586080586,
+            "maximum_abs_torque_nm": 2.3288419392946627
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 2.0951829711314542,
+            "mean_executed_speed_m_s": 0.3029023263465527,
+            "maximum_abs_torque_nm": 1.7797272626058387
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.37933505628468506,
+            "mean_executed_speed_m_s": 0.3570473907790103,
+            "maximum_abs_torque_nm": 0.28300064177127393
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.66,
+            "maximum_penetration_m": 0.000877113896422,
+            "maximum_solver_force_n": 429.76914303286077
+          },
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.664,
+            "maximum_penetration_m": 0.00112536048982,
+            "maximum_solver_force_n": 512.3706429449591
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.872,
+            "maximum_penetration_m": 0.00153523834888,
+            "maximum_solver_force_n": 237.22593315391845
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.836,
+            "maximum_penetration_m": 0.00197570584714,
+            "maximum_solver_force_n": 196.60026388164903
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.41600000000000004,
+            "maximum_penetration_m": 0.000761149451137,
+            "maximum_solver_force_n": 241.9960512981178
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.42,
+            "maximum_penetration_m": 0.00126332999207,
+            "maximum_solver_force_n": 204.46404102955992
+          }
+        },
+        "crossing": {
+          "vibration_rms": 1.628276999144413,
+          "slip_rms": 0.10464590202441505,
+          "vibration_energy_per_m": 11.08146536809947,
+          "slip_energy_per_m": 0.045770438061078215,
+          "imu_energy": 7.75885292118587,
+          "slip_energy": 0.032046853485322005,
+          "coverage_s": 2.9264488864361438,
+          "duration_s": 2.9264488864361438,
+          "distance_m": 0.7001648846479727,
+          "peak_acceleration_m_s2": 11.857421423202053,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 6.866160064724719,
+          "slip_rms": 0.28736615605363663,
+          "vibration_energy_per_m": 180.1353327679485,
+          "slip_energy_per_m": 0.3155311908137298,
+          "imu_energy": 126.17611391334424,
+          "slip_energy": 0.22101438326157283,
+          "coverage_s": 2.6763893954109648,
+          "duration_s": 2.6763893954109648,
+          "distance_m": 0.7004517768642597,
+          "peak_acceleration_m_s2": 76.89089475677808,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      },
+      "65004": {
+        "seed": 65004,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 17.60000000000012,
+          "truth_path_rmse_m": 0.006619135172166452,
+          "rms_vertical_acceleration_m_s2": 2.536896824490758,
+          "rms_wheel_slip": 0.15594023725245137,
+          "truth_endpoint_error_m": 0.18428080859604554
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000692798843336,
+            "last_velocity_rad_s": 1.04294626487e-10,
+            "maximum_abs_velocity_rad_s": 5.19067191222e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.0563585560095,
+            "last_velocity_rad_s": -0.0162439752515,
+            "maximum_abs_velocity_rad_s": 0.0166805807761,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": 1.58088930283e-06,
+            "last_velocity_rad_s": -9.82660028257e-11,
+            "maximum_abs_velocity_rad_s": 5.12348365483e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.0587264826439,
+            "last_velocity_rad_s": -0.0162460443499,
+            "maximum_abs_velocity_rad_s": 0.0166832543811,
+            "samples": 51,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.0132710201924,
+            "last_velocity_rad_s": -0.00415766852124,
+            "maximum_abs_velocity_rad_s": 0.00426906312299,
+            "samples": 51,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.0132116675566,
+            "last_velocity_rad_s": -0.0041596566976,
+            "maximum_abs_velocity_rad_s": 0.0042716843711,
+            "samples": 51,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.007978052992851823,
+            "duration_s": 10.55
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.0036387268785345083,
+            "duration_s": 3.0999999999999996
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.0038504180557718346,
+            "duration_s": 3.950000000000001
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.4471674010808044,
+            "mean_executed_speed_m_s": 0.3939193857965452,
+            "maximum_abs_torque_nm": 1.9200000000000013
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 1.5793921216765419,
+            "mean_executed_speed_m_s": 0.3026126589778103,
+            "maximum_abs_torque_nm": 1.5825383623366125
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.32027349368230296,
+            "mean_executed_speed_m_s": 0.35567276401444203,
+            "maximum_abs_torque_nm": 0.24602597380203167
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.316,
+            "maximum_penetration_m": 0.00128838943783,
+            "maximum_solver_force_n": 3315.473986006653
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.524,
+            "maximum_penetration_m": 0.00185761146713,
+            "maximum_solver_force_n": 4219.85930316624
+          },
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.278,
+            "maximum_penetration_m": 0.000465158867883,
+            "maximum_solver_force_n": 137.4962164474984
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.38,
+            "maximum_penetration_m": 0.00180135399569,
+            "maximum_solver_force_n": 6591.062457785233
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.456,
+            "maximum_penetration_m": 0.000783509924076,
+            "maximum_solver_force_n": 226.13530113178766
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.446,
+            "maximum_penetration_m": 0.000768762838561,
+            "maximum_solver_force_n": 224.41886865349585
+          }
+        },
+        "crossing": {
+          "vibration_rms": 2.985249956888887,
+          "slip_rms": 0.2540444291874056,
+          "vibration_energy_per_m": 33.61106025852749,
+          "slip_energy_per_m": 0.24341097885673388,
+          "imu_energy": 23.52774218096925,
+          "slip_energy": 0.17038768519971376,
+          "coverage_s": 2.6400907227489494,
+          "duration_s": 2.6400907227489494,
+          "distance_m": 0.7000000000000002,
+          "peak_acceleration_m_s2": 27.485834067791195,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 5.988612675829533,
+          "slip_rms": 0.34205966586805064,
+          "vibration_energy_per_m": 111.60964124183909,
+          "slip_energy_per_m": 0.36412709471319477,
+          "imu_energy": 78.12674886928733,
+          "slip_energy": 0.25488896629923624,
+          "coverage_s": 2.178448521706183,
+          "duration_s": 2.178448521706183,
+          "distance_m": 0.6999999999999997,
+          "peak_acceleration_m_s2": 58.679703013144255,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      }
+    },
+    "1/1ms/full": {
+      "65001": {
+        "seed": 65001,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 17.200000000000216,
+          "truth_path_rmse_m": 0.010634841782180297,
+          "rms_vertical_acceleration_m_s2": 1.7264800949756773,
+          "rms_wheel_slip": 0.144033192003609,
+          "truth_endpoint_error_m": 0.19863212503525837
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000178692231579,
+            "last_velocity_rad_s": 1.02552424901e-10,
+            "maximum_abs_velocity_rad_s": 1.33621623589e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.487179382239,
+            "last_velocity_rad_s": -0.0150481739572,
+            "maximum_abs_velocity_rad_s": 0.0157802241627,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": -2.1318033089e-06,
+            "last_velocity_rad_s": -1.01986488517e-10,
+            "maximum_abs_velocity_rad_s": 1.35825743686e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.479931622852,
+            "last_velocity_rad_s": -0.0150514846301,
+            "maximum_abs_velocity_rad_s": 0.0157801427586,
+            "samples": 101,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.14943850218,
+            "last_velocity_rad_s": -0.00385268073472,
+            "maximum_abs_velocity_rad_s": 0.00403975401123,
+            "samples": 101,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.149440228379,
+            "last_velocity_rad_s": -0.0038531008681,
+            "maximum_abs_velocity_rad_s": 0.00403998881021,
+            "samples": 101,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.008593055442597575,
+            "duration_s": 10.85
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.011561498541817582,
+            "duration_s": 2.59
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.014567758489591189,
+            "duration_s": 3.7600000000000033
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.5331806299469015,
+            "mean_executed_speed_m_s": 0.3940298507462686,
+            "maximum_abs_torque_nm": 2.0600000000000014
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 2.5890418921997105,
+            "mean_executed_speed_m_s": 0.3999999999999999,
+            "maximum_abs_torque_nm": 2.030685373680863
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.3758836885985987,
+            "mean_executed_speed_m_s": 0.3617318634875502,
+            "maximum_abs_torque_nm": 0.26678897247114014
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.335,
+            "maximum_penetration_m": 0.000812981917989,
+            "maximum_solver_force_n": 373.11627374166784
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.434,
+            "maximum_penetration_m": 0.00173241994344,
+            "maximum_solver_force_n": 1244.0327098504627
+          },
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.305,
+            "maximum_penetration_m": 0.000238393433392,
+            "maximum_solver_force_n": 525.6002160282753
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.201,
+            "maximum_penetration_m": 0.00104893464595,
+            "maximum_solver_force_n": 432.7327037981054
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.327,
+            "maximum_penetration_m": 0.000375189847546,
+            "maximum_solver_force_n": 579.1196949926493
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.403,
+            "maximum_penetration_m": 0.000550184049644,
+            "maximum_solver_force_n": 1712.4756726765404
+          }
+        },
+        "crossing": {
+          "vibration_rms": 2.420368797390116,
+          "slip_rms": 0.2382078211731769,
+          "vibration_energy_per_m": 17.81488302096975,
+          "slip_energy_per_m": 0.17255673606347735,
+          "imu_energy": 12.470418114678827,
+          "slip_energy": 0.12078971524443417,
+          "coverage_s": 2.128716977881059,
+          "duration_s": 2.128716977881059,
+          "distance_m": 0.7000000000000002,
+          "peak_acceleration_m_s2": 12.163853592502575,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 2.41822381965641,
+          "slip_rms": 0.3137326099638513,
+          "vibration_energy_per_m": 19.975123672162365,
+          "slip_energy_per_m": 0.3362140145486945,
+          "imu_energy": 13.98258657051365,
+          "slip_energy": 0.23534981018408604,
+          "coverage_s": 2.3910823159602286,
+          "duration_s": 2.3910823159602286,
+          "distance_m": 0.6999999999999997,
+          "peak_acceleration_m_s2": 11.68371781774495,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      },
+      "65004": {
+        "seed": 65004,
+        "arrival": false,
+        "episode": {
+          "time_seconds": 8.400000000000095,
+          "truth_path_rmse_m": 0.004203215929059318,
+          "rms_vertical_acceleration_m_s2": 3.4251093755144413,
+          "rms_wheel_slip": 0.29588499785860134,
+          "truth_endpoint_error_m": 4.251593597537804
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000179008516372,
+            "last_velocity_rad_s": 7.95178438201e-11,
+            "maximum_abs_velocity_rad_s": 1.34820435454e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.533779524176,
+            "last_velocity_rad_s": -0.0153181587612,
+            "maximum_abs_velocity_rad_s": 0.0159716263611,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": -2.46110801264e-06,
+            "last_velocity_rad_s": -7.36284203408e-11,
+            "maximum_abs_velocity_rad_s": 1.31288960362e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.523225481691,
+            "last_velocity_rad_s": -0.0153206709529,
+            "maximum_abs_velocity_rad_s": 0.0159728334233,
+            "samples": 101,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.164598420041,
+            "last_velocity_rad_s": -0.00392108332642,
+            "maximum_abs_velocity_rad_s": 0.00408832293547,
+            "samples": 101,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.16460230555,
+            "last_velocity_rad_s": -0.00392170244109,
+            "maximum_abs_velocity_rad_s": 0.00408888454063,
+            "samples": 101,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.004203206800961375,
+            "duration_s": 8.4
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 2.9852230651499085,
+            "mean_executed_speed_m_s": 0.3920578313253012,
+            "maximum_abs_torque_nm": 2.2759494861756435
+          }
+        },
+        "second_cable_contacts": {},
+        "crossing": {
+          "available": false,
+          "reason": "No covered reference disturbance windows",
+          "duration_s": null,
+          "coverage_s": null,
+          "distance_m": null,
+          "vibration_energy_per_m": null,
+          "slip_energy_per_m": null
+        },
+        "first_cable": {
+          "vibration_rms": 5.78171317418421,
+          "slip_rms": 0.5314127802919503,
+          "vibration_energy_per_m": 842.470560351341,
+          "slip_energy_per_m": 7.117142108644908,
+          "imu_energy": 86.92445340826518,
+          "slip_energy": 0.7343327075606123,
+          "coverage_s": 2.6003324920776496,
+          "duration_s": 2.6003324920776496,
+          "distance_m": 0.10317803078129462,
+          "peak_acceleration_m_s2": 52.855567418636134,
+          "available": true,
+          "reason": null
+        },
+        "termination": "navigation_invalid"
+      }
+    },
+    "1/1ms/schedule": {
+      "65001": {
+        "seed": 65001,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 19.000000000000195,
+          "truth_path_rmse_m": 0.00799937193506793,
+          "rms_vertical_acceleration_m_s2": 7.574391228052751,
+          "rms_wheel_slip": 0.12360060371536985,
+          "truth_endpoint_error_m": 0.18922710919620256
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000178924766354,
+            "last_velocity_rad_s": 7.69013288785e-11,
+            "maximum_abs_velocity_rad_s": 1.36994591479e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.49060528939,
+            "last_velocity_rad_s": -0.015423287877,
+            "maximum_abs_velocity_rad_s": 0.0162376658917,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": -2.44679850485e-06,
+            "last_velocity_rad_s": -8.01336176018e-11,
+            "maximum_abs_velocity_rad_s": 1.37894188277e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.481685183463,
+            "last_velocity_rad_s": -0.0154229711558,
+            "maximum_abs_velocity_rad_s": 0.0162410587084,
+            "samples": 101,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.153018308417,
+            "last_velocity_rad_s": -0.00394818489194,
+            "maximum_abs_velocity_rad_s": 0.00415660613716,
+            "samples": 101,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.153020661841,
+            "last_velocity_rad_s": -0.00394894077865,
+            "maximum_abs_velocity_rad_s": 0.0041573836823,
+            "samples": 101,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.00765953230965562,
+            "duration_s": 10.85
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.005887843153859831,
+            "duration_s": 4.299999999999999
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.010570593013634314,
+            "duration_s": 3.8500000000000014
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.4827032316098634,
+            "mean_executed_speed_m_s": 0.3938507462686567,
+            "maximum_abs_torque_nm": 2.0544096512450163
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 2.7477156900397173,
+            "mean_executed_speed_m_s": 0.29780740826946717,
+            "maximum_abs_torque_nm": 1.8040826154926934
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.34043764159963297,
+            "mean_executed_speed_m_s": 0.3580450972242846,
+            "maximum_abs_torque_nm": 0.31834336502381466
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_left_link": {
+            "contact_duration_s": 1.437,
+            "maximum_penetration_m": 0.000689949374646,
+            "maximum_solver_force_n": 459.91126744184237
+          },
+          "caster_bracket_right_link": {
+            "contact_duration_s": 1.4000000000000001,
+            "maximum_penetration_m": 0.000760338327382,
+            "maximum_solver_force_n": 1132.183030423766
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 1.617,
+            "maximum_penetration_m": 0.00177942111623,
+            "maximum_solver_force_n": 988.0713574117186
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 1.6,
+            "maximum_penetration_m": 0.00142570165917,
+            "maximum_solver_force_n": 426.52277086987584
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.656,
+            "maximum_penetration_m": 0.000524209754076,
+            "maximum_solver_force_n": 1215.8289270316923
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.433,
+            "maximum_penetration_m": 0.00103342835791,
+            "maximum_solver_force_n": 444.9197223912666
+          }
+        },
+        "crossing": {
+          "vibration_rms": 16.170909519355554,
+          "slip_rms": 0.1825912086895986,
+          "vibration_energy_per_m": 1418.8548047103347,
+          "slip_energy_per_m": 0.18089592676384517,
+          "imu_energy": 994.9881535747899,
+          "slip_energy": 0.12685533682687447,
+          "coverage_s": 3.8049505396631673,
+          "duration_s": 3.8049505396631673,
+          "distance_m": 0.7012614330033022,
+          "peak_acceleration_m_s2": 221.82276052818466,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 5.491195260984261,
+          "slip_rms": 0.26005864711556087,
+          "vibration_energy_per_m": 103.32864973182826,
+          "slip_energy_per_m": 0.23175524833824449,
+          "imu_energy": 72.33005481227976,
+          "slip_energy": 0.1622286738367711,
+          "coverage_s": 2.398750179012629,
+          "duration_s": 2.398750179012629,
+          "distance_m": 0.6999999999999997,
+          "peak_acceleration_m_s2": 45.753349748170955,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      },
+      "65004": {
+        "seed": 65004,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 18.100000000000136,
+          "truth_path_rmse_m": 0.0040136884729876764,
+          "rms_vertical_acceleration_m_s2": 2.179070354907532,
+          "rms_wheel_slip": 0.11395754773345866,
+          "truth_endpoint_error_m": 0.18786610713894428
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.00017742871045,
+            "last_velocity_rad_s": 3.68613316484e-11,
+            "maximum_abs_velocity_rad_s": 1.39450702712e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.21756498725,
+            "last_velocity_rad_s": -0.0152876660327,
+            "maximum_abs_velocity_rad_s": 0.0160142830054,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": -3.91335968052e-07,
+            "last_velocity_rad_s": -3.54860406308e-11,
+            "maximum_abs_velocity_rad_s": 1.33104438054e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.210859355084,
+            "last_velocity_rad_s": -0.0152894572511,
+            "maximum_abs_velocity_rad_s": 0.0160145458372,
+            "samples": 101,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.0625078942339,
+            "last_velocity_rad_s": -0.00391377282373,
+            "maximum_abs_velocity_rad_s": 0.00409950045317,
+            "samples": 101,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.0624982352824,
+            "last_velocity_rad_s": -0.00391437700161,
+            "maximum_abs_velocity_rad_s": 0.0041002683006,
+            "samples": 101,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.004282267699037682,
+            "duration_s": 11.049999999999999
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.0035383109948779194,
+            "duration_s": 3.200000000000001
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.003563490671709395,
+            "duration_s": 3.8500000000000014
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.7517661404150329,
+            "mean_executed_speed_m_s": 0.39432541133455207,
+            "maximum_abs_torque_nm": 2.063757881476715
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 1.6714020459166314,
+            "mean_executed_speed_m_s": 0.30276226492617864,
+            "maximum_abs_torque_nm": 1.7045828055868826
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.33136139775365203,
+            "mean_executed_speed_m_s": 0.35755314392814824,
+            "maximum_abs_torque_nm": 0.292872592400767
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.36,
+            "maximum_penetration_m": 0.000740975723602,
+            "maximum_solver_force_n": 752.1155004793173
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.551,
+            "maximum_penetration_m": 0.00175974098966,
+            "maximum_solver_force_n": 11026.387001898935
+          },
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.321,
+            "maximum_penetration_m": 0.000217829685425,
+            "maximum_solver_force_n": 164.10655615536385
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.422,
+            "maximum_penetration_m": 0.00162349175662,
+            "maximum_solver_force_n": 11094.722091611471
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.428,
+            "maximum_penetration_m": 0.000524292874616,
+            "maximum_solver_force_n": 452.06116862666244
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.425,
+            "maximum_penetration_m": 0.0005898004747,
+            "maximum_solver_force_n": 406.55753311603945
+          }
+        },
+        "crossing": {
+          "vibration_rms": 1.8375246994707546,
+          "slip_rms": 0.19183758467125903,
+          "vibration_energy_per_m": 12.80651447381968,
+          "slip_energy_per_m": 0.13958282039436884,
+          "imu_energy": 8.964560131673778,
+          "slip_energy": 0.09770797427605821,
+          "coverage_s": 2.6549883134742074,
+          "duration_s": 2.6549883134742074,
+          "distance_m": 0.7000000000000002,
+          "peak_acceleration_m_s2": 9.554431609262112,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 4.44795799909798,
+          "slip_rms": 0.22689354013022361,
+          "vibration_energy_per_m": 74.41417897792581,
+          "slip_energy_per_m": 0.1936326556264678,
+          "imu_energy": 52.08992528454805,
+          "slip_energy": 0.1355428589385274,
+          "coverage_s": 2.6328879639658216,
+          "duration_s": 2.6328879639658216,
+          "distance_m": 0.6999999999999997,
+          "peak_acceleration_m_s2": 28.789963402796538,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      }
+    },
+    "2/2ms/full": {
+      "65001": {
+        "seed": 65001,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 16.800000000000104,
+          "truth_path_rmse_m": 0.005341383509234985,
+          "rms_vertical_acceleration_m_s2": 3.411949246402139,
+          "rms_wheel_slip": 0.13410146415556778,
+          "truth_endpoint_error_m": 0.19695397093292435
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000692820175687,
+            "last_velocity_rad_s": 1.09497103536e-10,
+            "maximum_abs_velocity_rad_s": 5.26931564416e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.0930974238371,
+            "last_velocity_rad_s": -0.0150192347157,
+            "maximum_abs_velocity_rad_s": 0.017405415577,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": 1.53395785526e-06,
+            "last_velocity_rad_s": -1.09151568491e-10,
+            "maximum_abs_velocity_rad_s": 5.20249560319e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.0958693946936,
+            "last_velocity_rad_s": -0.0150271623166,
+            "maximum_abs_velocity_rad_s": 0.0174031347339,
+            "samples": 51,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.0228555835869,
+            "last_velocity_rad_s": -0.00384523531103,
+            "maximum_abs_velocity_rad_s": 0.00445405602606,
+            "samples": 51,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.0228016545479,
+            "last_velocity_rad_s": -0.00384709300867,
+            "maximum_abs_velocity_rad_s": 0.00445529707994,
+            "samples": 51,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.004646890672526708,
+            "duration_s": 10.55
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.004605926811624069,
+            "duration_s": 2.4000000000000004
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.007217981527370548,
+            "duration_s": 3.8499999999999996
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.4866871361874938,
+            "mean_executed_speed_m_s": 0.3940650095602295,
+            "maximum_abs_torque_nm": 2.1400000000000015
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 2.3956485802167244,
+            "mean_executed_speed_m_s": 0.4,
+            "maximum_abs_torque_nm": 1.9825652851152187
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.33375319464121656,
+            "mean_executed_speed_m_s": 0.36101476564534063,
+            "maximum_abs_torque_nm": 0.22791794908042182
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.278,
+            "maximum_penetration_m": 0.000711980159394,
+            "maximum_solver_force_n": 684.3368806661861
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.338,
+            "maximum_penetration_m": 0.00173180445563,
+            "maximum_solver_force_n": 462.94319345562695
+          },
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.242,
+            "maximum_penetration_m": 0.000290615746053,
+            "maximum_solver_force_n": 25.457453271867916
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.272,
+            "maximum_penetration_m": 0.00160839559976,
+            "maximum_solver_force_n": 507.19329694304315
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.322,
+            "maximum_penetration_m": 0.00148070161231,
+            "maximum_solver_force_n": 406.29896923789664
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.304,
+            "maximum_penetration_m": 0.000858180574141,
+            "maximum_solver_force_n": 360.38961461546324
+          }
+        },
+        "crossing": {
+          "vibration_rms": 1.9828826364833527,
+          "slip_rms": 0.1674200207480945,
+          "vibration_energy_per_m": 10.860868706169342,
+          "slip_energy_per_m": 0.0774257332362048,
+          "imu_energy": 7.6026080943185415,
+          "slip_energy": 0.054198013265343375,
+          "coverage_s": 1.933608667201929,
+          "duration_s": 1.933608667201929,
+          "distance_m": 0.7000000000000002,
+          "peak_acceleration_m_s2": 6.870283580141333,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 8.967339396284547,
+          "slip_rms": 0.33094995168781777,
+          "vibration_energy_per_m": 252.30507705337808,
+          "slip_energy_per_m": 0.3436555952443661,
+          "imu_energy": 176.80548088898868,
+          "slip_energy": 0.24082033341135373,
+          "coverage_s": 2.198712823167786,
+          "duration_s": 2.198712823167786,
+          "distance_m": 0.7007606939736033,
+          "peak_acceleration_m_s2": 87.37251623310252,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      },
+      "65004": {
+        "seed": 65004,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 17.000000000000107,
+          "truth_path_rmse_m": 0.004357395703521567,
+          "rms_vertical_acceleration_m_s2": 2.705521868502447,
+          "rms_wheel_slip": 0.1643436763960591,
+          "truth_endpoint_error_m": 0.19203264055595978
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000692787120848,
+            "last_velocity_rad_s": 8.78668147166e-11,
+            "maximum_abs_velocity_rad_s": 5.69045993465e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.0893945187105,
+            "last_velocity_rad_s": -0.0156226255154,
+            "maximum_abs_velocity_rad_s": 0.016747973253,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": 1.54299355074e-06,
+            "last_velocity_rad_s": -8.95315847375e-11,
+            "maximum_abs_velocity_rad_s": 5.65415394281e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.0919451838422,
+            "last_velocity_rad_s": -0.015626057342,
+            "maximum_abs_velocity_rad_s": 0.0167520637447,
+            "samples": 51,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.0216934864822,
+            "last_velocity_rad_s": -0.00399862870796,
+            "maximum_abs_velocity_rad_s": 0.00428689759445,
+            "samples": 51,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.0216391757423,
+            "last_velocity_rad_s": -0.00400080583634,
+            "maximum_abs_velocity_rad_s": 0.00428902869289,
+            "samples": 51,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.004178993070737884,
+            "duration_s": 10.75
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.0045142887146919644,
+            "duration_s": 2.4000000000000004
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.004729830152728256,
+            "duration_s": 3.8499999999999996
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.6681430935216979,
+            "mean_executed_speed_m_s": 0.39398496240601505,
+            "maximum_abs_torque_nm": 2.2200000000000015
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 2.3884927968011036,
+            "mean_executed_speed_m_s": 0.4,
+            "maximum_abs_torque_nm": 1.7887433833003388
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.32472290046217567,
+            "mean_executed_speed_m_s": 0.35986002731981914,
+            "maximum_abs_torque_nm": 0.2249678789188278
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.274,
+            "maximum_penetration_m": 0.00145543192048,
+            "maximum_solver_force_n": 539.2116128928741
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.332,
+            "maximum_penetration_m": 0.00321891764179,
+            "maximum_solver_force_n": 317.89677122181035
+          },
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.266,
+            "maximum_penetration_m": 0.000929545378312,
+            "maximum_solver_force_n": 331.47465577920156
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.3,
+            "maximum_penetration_m": 0.00262979418039,
+            "maximum_solver_force_n": 144.74661770558566
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.33,
+            "maximum_penetration_m": 0.000735105713829,
+            "maximum_solver_force_n": 319.26646979263023
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.322,
+            "maximum_penetration_m": 0.00133003725205,
+            "maximum_solver_force_n": 331.2932141209315
+          }
+        },
+        "crossing": {
+          "vibration_rms": 4.188383769673741,
+          "slip_rms": 0.28230904784350713,
+          "vibration_energy_per_m": 48.27317213609562,
+          "slip_energy_per_m": 0.21931205115276997,
+          "imu_energy": 33.79122049526694,
+          "slip_energy": 0.15351843580693902,
+          "coverage_s": 1.9262424177557844,
+          "duration_s": 1.9262424177557844,
+          "distance_m": 0.7000000000000002,
+          "peak_acceleration_m_s2": 36.86820333637371,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 5.647688201385511,
+          "slip_rms": 0.3572365004639876,
+          "vibration_energy_per_m": 108.41036550956314,
+          "slip_energy_per_m": 0.4337515473519233,
+          "imu_energy": 75.9023976132053,
+          "slip_energy": 0.3036866655480885,
+          "coverage_s": 2.379655396823619,
+          "duration_s": 2.379655396823619,
+          "distance_m": 0.7001396707449508,
+          "peak_acceleration_m_s2": 54.155061649705324,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      }
+    },
+    "2/2ms/schedule": {
+      "65001": {
+        "seed": 65001,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 17.700000000000124,
+          "truth_path_rmse_m": 0.004914985317725967,
+          "rms_vertical_acceleration_m_s2": 1.6446176097285934,
+          "rms_wheel_slip": 0.13881919459234612,
+          "truth_endpoint_error_m": 0.19693285380661094
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000692871654896,
+            "last_velocity_rad_s": 1.15527635314e-10,
+            "maximum_abs_velocity_rad_s": 5.36354804298e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.0952028647201,
+            "last_velocity_rad_s": -0.0165643400557,
+            "maximum_abs_velocity_rad_s": 0.0170138076991,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": 1.53334960654e-06,
+            "last_velocity_rad_s": -1.13793440565e-10,
+            "maximum_abs_velocity_rad_s": 5.36936487711e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.0982446655702,
+            "last_velocity_rad_s": -0.0165675984528,
+            "maximum_abs_velocity_rad_s": 0.0170183512345,
+            "samples": 51,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.0234021105446,
+            "last_velocity_rad_s": -0.00423945864237,
+            "maximum_abs_velocity_rad_s": 0.00435697708691,
+            "samples": 51,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.0233485218404,
+            "last_velocity_rad_s": -0.00424133784473,
+            "maximum_abs_velocity_rad_s": 0.00435878580853,
+            "samples": 51,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.005400679040229919,
+            "duration_s": 10.55
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.003543572867987566,
+            "duration_s": 3.4000000000000004
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.0045363894519826605,
+            "duration_s": 3.7500000000000018
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.3808109556611026,
+            "mean_executed_speed_m_s": 0.3936737044145874,
+            "maximum_abs_torque_nm": 2.159867329669131
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 2.0437432988772075,
+            "mean_executed_speed_m_s": 0.30168994160432083,
+            "maximum_abs_torque_nm": 1.7588264357909473
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.3625025528802166,
+            "mean_executed_speed_m_s": 0.3598433262480174,
+            "maximum_abs_torque_nm": 0.2696456117272545
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.588,
+            "maximum_penetration_m": 0.00128073943779,
+            "maximum_solver_force_n": 173.4028461832517
+          },
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.588,
+            "maximum_penetration_m": 0.000632739625871,
+            "maximum_solver_force_n": 88.27980787001252
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.776,
+            "maximum_penetration_m": 0.0015536203282,
+            "maximum_solver_force_n": 219.8553322902312
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.78,
+            "maximum_penetration_m": 0.00119045656174,
+            "maximum_solver_force_n": 175.34042029581934
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.424,
+            "maximum_penetration_m": 0.00108463212382,
+            "maximum_solver_force_n": 266.3435465322242
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.42,
+            "maximum_penetration_m": 0.000835786166135,
+            "maximum_solver_force_n": 266.04192197743424
+          }
+        },
+        "crossing": {
+          "vibration_rms": 0.9935338812390436,
+          "slip_rms": 0.17362695546023202,
+          "vibration_energy_per_m": 4.030733940799993,
+          "slip_energy_per_m": 0.12309858718438592,
+          "imu_energy": 2.822258847349529,
+          "slip_energy": 0.08619176603564355,
+          "coverage_s": 2.8591140477813135,
+          "duration_s": 2.8591140477813135,
+          "distance_m": 0.7001848518906177,
+          "peak_acceleration_m_s2": 6.133498638408586,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 4.051879245501876,
+          "slip_rms": 0.34036656635057544,
+          "vibration_energy_per_m": 50.798201257094206,
+          "slip_energy_per_m": 0.35845045279870436,
+          "imu_energy": 35.55874087996593,
+          "slip_energy": 0.25091531695909297,
+          "coverage_s": 2.1658749899891343,
+          "duration_s": 2.1658749899891343,
+          "distance_m": 0.6999999999999997,
+          "peak_acceleration_m_s2": 37.363793688398175,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      },
+      "65004": {
+        "seed": 65004,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 17.600000000000122,
+          "truth_path_rmse_m": 0.006715996353656057,
+          "rms_vertical_acceleration_m_s2": 2.573534185954769,
+          "rms_wheel_slip": 0.11474184904260884,
+          "truth_endpoint_error_m": 0.19418779388261478
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000692832521091,
+            "last_velocity_rad_s": 5.54557387941e-10,
+            "maximum_abs_velocity_rad_s": 5.54557387941e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.0970635092059,
+            "last_velocity_rad_s": -0.0162612660987,
+            "maximum_abs_velocity_rad_s": 0.016685439645,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": 1.54460226817e-06,
+            "last_velocity_rad_s": -5.47969619563e-10,
+            "maximum_abs_velocity_rad_s": 5.47969619563e-10,
+            "samples": 51,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.0997000082856,
+            "last_velocity_rad_s": -0.0162652642073,
+            "maximum_abs_velocity_rad_s": 0.0166889078082,
+            "samples": 51,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.0238256421594,
+            "last_velocity_rad_s": -0.00416242398696,
+            "maximum_abs_velocity_rad_s": 0.00427055593458,
+            "samples": 51,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.0237724526182,
+            "last_velocity_rad_s": -0.00416444292678,
+            "maximum_abs_velocity_rad_s": 0.00427257345406,
+            "samples": 51,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.007748833216635289,
+            "duration_s": 10.65
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.004456193929004811,
+            "duration_s": 3.0999999999999996
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.004909796634571793,
+            "duration_s": 3.8500000000000014
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.5049074504812616,
+            "mean_executed_speed_m_s": 0.3938671726755219,
+            "maximum_abs_torque_nm": 2.264445874180286
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 1.566419841806809,
+            "mean_executed_speed_m_s": 0.30448205201106193,
+            "maximum_abs_torque_nm": 1.602183285825224
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.31511950223623114,
+            "mean_executed_speed_m_s": 0.3590354048355661,
+            "maximum_abs_torque_nm": 0.2603552069102506
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.31,
+            "maximum_penetration_m": 0.000865972950123,
+            "maximum_solver_force_n": 2737.392918477557
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.502,
+            "maximum_penetration_m": 0.00268243160099,
+            "maximum_solver_force_n": 1070.952107644445
+          },
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.274,
+            "maximum_penetration_m": 0.000283826317172,
+            "maximum_solver_force_n": 170.37541184119374
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.47800000000000004,
+            "maximum_penetration_m": 0.00148517126217,
+            "maximum_solver_force_n": 2554.446017388141
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.442,
+            "maximum_penetration_m": 0.00141985423397,
+            "maximum_solver_force_n": 238.3475753433813
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.434,
+            "maximum_penetration_m": 0.000899961567484,
+            "maximum_solver_force_n": 178.08431435893112
+          }
+        },
+        "crossing": {
+          "vibration_rms": 1.6318608227137583,
+          "slip_rms": 0.10889250284883548,
+          "vibration_energy_per_m": 9.889690980682351,
+          "slip_energy_per_m": 0.044036465036838286,
+          "imu_energy": 6.922783686477648,
+          "slip_energy": 0.03082552552578681,
+          "coverage_s": 2.5996478931970297,
+          "duration_s": 2.5996478931970297,
+          "distance_m": 0.7000000000000002,
+          "peak_acceleration_m_s2": 10.364268934264212,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 6.546575694284349,
+          "slip_rms": 0.2948130670870167,
+          "vibration_energy_per_m": 140.56133752849075,
+          "slip_energy_per_m": 0.28505650204212407,
+          "imu_energy": 98.39293626994349,
+          "slip_energy": 0.19953955142948676,
+          "coverage_s": 2.2958078346707778,
+          "duration_s": 2.2958078346707778,
+          "distance_m": 0.6999999999999997,
+          "peak_acceleration_m_s2": 59.484577648810934,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      }
+    },
+    "2/1ms/full": {
+      "65001": {
+        "seed": 65001,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 17.9000000000002,
+          "truth_path_rmse_m": 0.006456512822771811,
+          "rms_vertical_acceleration_m_s2": 4.6094254127547165,
+          "rms_wheel_slip": 0.20018361381243382,
+          "truth_endpoint_error_m": 0.1875262890284597
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000179020088747,
+            "last_velocity_rad_s": 9.72619543442e-11,
+            "maximum_abs_velocity_rad_s": 1.36128544897e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.513651610611,
+            "last_velocity_rad_s": -0.0149468861439,
+            "maximum_abs_velocity_rad_s": 0.015698316765,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": -2.49032716972e-06,
+            "last_velocity_rad_s": -9.98191815028e-11,
+            "maximum_abs_velocity_rad_s": 1.35322702879e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.503209933691,
+            "last_velocity_rad_s": -0.0149496655102,
+            "maximum_abs_velocity_rad_s": 0.015701185355,
+            "samples": 101,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.159380440632,
+            "last_velocity_rad_s": -0.00382679466551,
+            "maximum_abs_velocity_rad_s": 0.00401917695598,
+            "samples": 101,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.159383647872,
+            "last_velocity_rad_s": -0.00382714844289,
+            "maximum_abs_velocity_rad_s": 0.00401957721495,
+            "samples": 101,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.004377454702443144,
+            "duration_s": 11.25
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.008129396988159676,
+            "duration_s": 2.8000000000000007
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.00947410870635992,
+            "duration_s": 3.8500000000000014
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.8156002450358002,
+            "mean_executed_speed_m_s": 0.39414003590664265,
+            "maximum_abs_torque_nm": 2.187062812563855
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 2.999882997573727,
+            "mean_executed_speed_m_s": 0.39999999999999997,
+            "maximum_abs_torque_nm": 2.1400000000000015
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.3918788647431508,
+            "mean_executed_speed_m_s": 0.3573880531452673,
+            "maximum_abs_torque_nm": 0.2957280303443139
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.605,
+            "maximum_penetration_m": 0.00131137855351,
+            "maximum_solver_force_n": 936.9987686981334
+          },
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.606,
+            "maximum_penetration_m": 0.000720170675777,
+            "maximum_solver_force_n": 6665.875526725532
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.674,
+            "maximum_penetration_m": 0.00176645244937,
+            "maximum_solver_force_n": 16163.732258329568
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.667,
+            "maximum_penetration_m": 0.00158940872643,
+            "maximum_solver_force_n": 16127.991870679914
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.355,
+            "maximum_penetration_m": 0.000600666855462,
+            "maximum_solver_force_n": 619.2822832985887
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.28,
+            "maximum_penetration_m": 0.000651129055768,
+            "maximum_solver_force_n": 533.4867617546192
+          }
+        },
+        "crossing": {
+          "vibration_rms": 11.056814119545539,
+          "slip_rms": 0.42091088988655734,
+          "vibration_energy_per_m": 404.978103726751,
+          "slip_energy_per_m": 0.5868834321719074,
+          "imu_energy": 283.8653080073326,
+          "slip_energy": 0.41137000915557015,
+          "coverage_s": 2.321946999072597,
+          "duration_s": 2.321946999072597,
+          "distance_m": 0.7009398913054907,
+          "peak_acceleration_m_s2": 117.24573458300873,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 5.026448442159304,
+          "slip_rms": 0.3285772620811239,
+          "vibration_energy_per_m": 102.08832847940684,
+          "slip_energy_per_m": 0.43624317101997206,
+          "imu_energy": 71.46206875600457,
+          "slip_energy": 0.305371240239821,
+          "coverage_s": 2.828480050687358,
+          "duration_s": 2.828480050687358,
+          "distance_m": 0.7000023393508674,
+          "peak_acceleration_m_s2": 47.91256820022052,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      },
+      "65004": {
+        "seed": 65004,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 17.700000000000173,
+          "truth_path_rmse_m": 0.004034315804040866,
+          "rms_vertical_acceleration_m_s2": 5.861419109103427,
+          "rms_wheel_slip": 0.2014496204427549,
+          "truth_endpoint_error_m": 0.19752501437796868
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000178989372465,
+            "last_velocity_rad_s": 7.14592583135e-11,
+            "maximum_abs_velocity_rad_s": 1.35843664365e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.489644000636,
+            "last_velocity_rad_s": -0.0146449714841,
+            "maximum_abs_velocity_rad_s": 0.0153838051416,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": -2.47628199193e-06,
+            "last_velocity_rad_s": -7.47365708714e-11,
+            "maximum_abs_velocity_rad_s": 1.35057897796e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.480114725825,
+            "last_velocity_rad_s": -0.014645976212,
+            "maximum_abs_velocity_rad_s": 0.0153841288373,
+            "samples": 101,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.152973238793,
+            "last_velocity_rad_s": -0.00374864406914,
+            "maximum_abs_velocity_rad_s": 0.00393792976185,
+            "samples": 101,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.152975518024,
+            "last_velocity_rad_s": -0.00374902778122,
+            "maximum_abs_velocity_rad_s": 0.00393839543574,
+            "samples": 101,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.004415707288087492,
+            "duration_s": 11.049999999999999
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.00445340042048827,
+            "duration_s": 2.9000000000000004
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.0020070707450944225,
+            "duration_s": 3.7500000000000036
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.7343529523519214,
+            "mean_executed_speed_m_s": 0.3941406193078324,
+            "maximum_abs_torque_nm": 2.2833281323257903
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 2.9214304257694717,
+            "mean_executed_speed_m_s": 0.3999999999999999,
+            "maximum_abs_torque_nm": 2.1738837905221784
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.38826004144021026,
+            "mean_executed_speed_m_s": 0.3614742125469633,
+            "maximum_abs_torque_nm": 0.2576198500149296
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.5630000000000001,
+            "maximum_penetration_m": 0.000953345093876,
+            "maximum_solver_force_n": 1144.9261680155064
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.557,
+            "maximum_penetration_m": 0.00120755890384,
+            "maximum_solver_force_n": 156.65961643442276
+          },
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.611,
+            "maximum_penetration_m": 0.000906897068489,
+            "maximum_solver_force_n": 221.86698217650977
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.657,
+            "maximum_penetration_m": 0.00221042172052,
+            "maximum_solver_force_n": 576.695400349801
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.307,
+            "maximum_penetration_m": 0.000459117727587,
+            "maximum_solver_force_n": 569.4495057581867
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.303,
+            "maximum_penetration_m": 0.000529448734596,
+            "maximum_solver_force_n": 553.7236885750992
+          }
+        },
+        "crossing": {
+          "vibration_rms": 2.2122902068433365,
+          "slip_rms": 0.37159349192693025,
+          "vibration_energy_per_m": 16.63535731634159,
+          "slip_energy_per_m": 0.4693362924854959,
+          "imu_energy": 11.644750121439117,
+          "slip_energy": 0.3285354047398472,
+          "coverage_s": 2.3792823338610223,
+          "duration_s": 2.3792823338610223,
+          "distance_m": 0.7000000000000002,
+          "peak_acceleration_m_s2": 14.692530301690754,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 14.693349372129944,
+          "slip_rms": 0.38184473020096155,
+          "vibration_energy_per_m": 817.445261057114,
+          "slip_energy_per_m": 0.5520655825426131,
+          "imu_energy": 572.6335152763016,
+          "slip_energy": 0.3867307944089336,
+          "coverage_s": 2.6523763849677655,
+          "duration_s": 2.6523763849677655,
+          "distance_m": 0.7005160376558748,
+          "peak_acceleration_m_s2": 165.3942025255816,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      }
+    },
+    "2/1ms/schedule": {
+      "65001": {
+        "seed": 65001,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 18.000000000000124,
+          "truth_path_rmse_m": 0.004207483552807216,
+          "rms_vertical_acceleration_m_s2": 1.8734950566133912,
+          "rms_wheel_slip": 0.11694415316915123,
+          "truth_endpoint_error_m": 0.18272085163719454
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000177535312595,
+            "last_velocity_rad_s": -4.00776429802e-13,
+            "maximum_abs_velocity_rad_s": 7.95662325536e-11,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.227446161561,
+            "last_velocity_rad_s": -0.0156706283534,
+            "maximum_abs_velocity_rad_s": 0.0163954159815,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": 7.75247251926e-05,
+            "last_velocity_rad_s": 2.9184017613e-16,
+            "maximum_abs_velocity_rad_s": 7.79104064243e-11,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.218206962385,
+            "last_velocity_rad_s": -0.00252404980525,
+            "maximum_abs_velocity_rad_s": 0.0163959364195,
+            "samples": 101,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.0662107825529,
+            "last_velocity_rad_s": -0.00401142004725,
+            "maximum_abs_velocity_rad_s": 0.00419690938884,
+            "samples": 101,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.0662077390381,
+            "last_velocity_rad_s": -0.0040125385145,
+            "maximum_abs_velocity_rad_s": 0.00419753256441,
+            "samples": 101,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.004773552385327447,
+            "duration_s": 10.950000000000001
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.0033516215953384512,
+            "duration_s": 3.1999999999999993
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.0029360948882420695,
+            "duration_s": 3.8499999999999996
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.6086563254778437,
+            "mean_executed_speed_m_s": 0.39402587800369687,
+            "maximum_abs_torque_nm": 2.2337240317126006
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 1.7752506886527588,
+            "mean_executed_speed_m_s": 0.30342000075995923,
+            "maximum_abs_torque_nm": 1.7056336778089372
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.3365385999433885,
+            "mean_executed_speed_m_s": 0.3560493617088897,
+            "maximum_abs_torque_nm": 0.285086742895913
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.372,
+            "maximum_penetration_m": 0.000931936083362,
+            "maximum_solver_force_n": 666.7802230299872
+          },
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.373,
+            "maximum_penetration_m": 0.000303191161947,
+            "maximum_solver_force_n": 390.991378233069
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 0.5720000000000001,
+            "maximum_penetration_m": 0.0012382264249,
+            "maximum_solver_force_n": 352.6015095392443
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 0.5650000000000001,
+            "maximum_penetration_m": 0.00117353477981,
+            "maximum_solver_force_n": 182.14918786033917
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.427,
+            "maximum_penetration_m": 0.000763910473324,
+            "maximum_solver_force_n": 610.9632388978395
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.426,
+            "maximum_penetration_m": 0.00114385853522,
+            "maximum_solver_force_n": 400.6231577554105
+          }
+        },
+        "crossing": {
+          "vibration_rms": 3.0529383029406003,
+          "slip_rms": 0.10081788921390167,
+          "vibration_energy_per_m": 35.64025774037644,
+          "slip_energy_per_m": 0.03886690705218752,
+          "imu_energy": 24.948180418263515,
+          "slip_energy": 0.02720683493653127,
+          "coverage_s": 2.676719240546097,
+          "duration_s": 2.676719240546097,
+          "distance_m": 0.7000000000000002,
+          "peak_acceleration_m_s2": 27.909231422526503,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 2.5885064432521725,
+          "slip_rms": 0.2943145524588628,
+          "vibration_energy_per_m": 23.854778977573663,
+          "slip_energy_per_m": 0.30839005838248823,
+          "imu_energy": 16.698345284301556,
+          "slip_energy": 0.21587304086774167,
+          "coverage_s": 2.492154348631296,
+          "duration_s": 2.492154348631296,
+          "distance_m": 0.6999999999999997,
+          "peak_acceleration_m_s2": 10.935488960483129,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      },
+      "65004": {
+        "seed": 65004,
+        "arrival": true,
+        "episode": {
+          "time_seconds": 18.300000000000125,
+          "truth_path_rmse_m": 0.004065867177813194,
+          "rms_vertical_acceleration_m_s2": 2.0434141965251467,
+          "rms_wheel_slip": 0.15306673913065794,
+          "truth_endpoint_error_m": 0.19328384451896044
+        },
+        "reset_joints": {
+          "caster_left_swivel_joint": {
+            "angle_rad": 0.000177479163846,
+            "last_velocity_rad_s": 1.09441031802e-10,
+            "maximum_abs_velocity_rad_s": 1.24768360104e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_left_wheel_joint": {
+            "angle_rad": -0.21420173104,
+            "last_velocity_rad_s": -0.0142196579266,
+            "maximum_abs_velocity_rad_s": 0.0153367747997,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_swivel_joint": {
+            "angle_rad": -4.70327595722e-07,
+            "last_velocity_rad_s": -1.12230275841e-10,
+            "maximum_abs_velocity_rad_s": 1.25683010598e-10,
+            "samples": 101,
+            "stationary": true
+          },
+          "caster_right_wheel_joint": {
+            "angle_rad": -0.208379223117,
+            "last_velocity_rad_s": -0.014219579553,
+            "maximum_abs_velocity_rad_s": 0.0153378015961,
+            "samples": 101,
+            "stationary": true
+          },
+          "left_wheel_joint": {
+            "angle_rad": -0.0621303908684,
+            "last_velocity_rad_s": -0.00364006974799,
+            "maximum_abs_velocity_rad_s": 0.00392636135575,
+            "samples": 101,
+            "stationary": true
+          },
+          "right_wheel_joint": {
+            "angle_rad": -0.0621206560932,
+            "last_velocity_rad_s": -0.00364059616903,
+            "maximum_abs_velocity_rad_s": 0.00392677136932,
+            "samples": 101,
+            "stationary": true
+          }
+        },
+        "reset_stationary": true,
+        "caster_reset_angles_valid": true,
+        "tracking_regions": {
+          "before_braking": {
+            "lateral_rmse_m": 0.00431212200807398,
+            "duration_s": 10.75
+          },
+          "crossing": {
+            "lateral_rmse_m": 0.0037173299864892294,
+            "duration_s": 3.6999999999999993
+          },
+          "after_crossing": {
+            "lateral_rmse_m": 0.0036575254359418642,
+            "duration_s": 3.8500000000000014
+          }
+        },
+        "motor_regions": {
+          "before_braking": {
+            "wheel_tracking_rmse_rad_s": 1.4213281988214428,
+            "mean_executed_speed_m_s": 0.39420377358490566,
+            "maximum_abs_torque_nm": 2.118934043251379
+          },
+          "crossing": {
+            "wheel_tracking_rmse_rad_s": 2.2617885283828234,
+            "mean_executed_speed_m_s": 0.3015404263359435,
+            "maximum_abs_torque_nm": 1.7673302699443458
+          },
+          "after_crossing": {
+            "wheel_tracking_rmse_rad_s": 0.32636793536583353,
+            "mean_executed_speed_m_s": 0.35935895590634975,
+            "maximum_abs_torque_nm": 0.2902176440038111
+          }
+        },
+        "second_cable_contacts": {
+          "caster_bracket_left_link": {
+            "contact_duration_s": 0.967,
+            "maximum_penetration_m": 0.000931588292588,
+            "maximum_solver_force_n": 2250.796591440686
+          },
+          "caster_left_wheel_link": {
+            "contact_duration_s": 1.157,
+            "maximum_penetration_m": 0.00288707506843,
+            "maximum_solver_force_n": 29997.29185703772
+          },
+          "caster_bracket_right_link": {
+            "contact_duration_s": 0.903,
+            "maximum_penetration_m": 0.0,
+            "maximum_solver_force_n": 0.0
+          },
+          "caster_right_wheel_link": {
+            "contact_duration_s": 1.0070000000000001,
+            "maximum_penetration_m": 0.00266037951224,
+            "maximum_solver_force_n": 30096.376103760507
+          },
+          "left_wheel_link": {
+            "contact_duration_s": 0.44,
+            "maximum_penetration_m": 0.00102879782207,
+            "maximum_solver_force_n": 452.1891636966396
+          },
+          "right_wheel_link": {
+            "contact_duration_s": 0.434,
+            "maximum_penetration_m": 0.000673614442348,
+            "maximum_solver_force_n": 414.385314999011
+          }
+        },
+        "crossing": {
+          "vibration_rms": 2.9913532558404214,
+          "slip_rms": 0.2568584517654153,
+          "vibration_energy_per_m": 41.231978007455915,
+          "slip_energy_per_m": 0.30400903072946,
+          "imu_energy": 28.873541555880564,
+          "slip_energy": 0.21288858323854254,
+          "coverage_s": 3.226745037478797,
+          "duration_s": 3.226745037478797,
+          "distance_m": 0.7002705897509793,
+          "peak_acceleration_m_s2": 30.271857107209485,
+          "available": true,
+          "reason": null
+        },
+        "first_cable": {
+          "vibration_rms": 3.0511613451562414,
+          "slip_rms": 0.30576659684115776,
+          "vibration_energy_per_m": 30.601988622540546,
+          "slip_energy_per_m": 0.3073260550020902,
+          "imu_energy": 21.421392035778375,
+          "slip_energy": 0.21512823850146306,
+          "coverage_s": 2.301003832138392,
+          "duration_s": 2.301003832138392,
+          "distance_m": 0.6999999999999997,
+          "peak_acceleration_m_s2": 22.126336509362034,
+          "available": true,
+          "reason": null
+        },
+        "termination": "success"
+      }
+    }
+  },
+  "table": {
+    "2ms/full": {
+      "episodes": 4,
+      "arrivals": 4,
+      "means": {
+        "time_seconds": 17.02500000000012,
+        "truth_path_rmse_m": 0.005403835845748686,
+        "rms_vertical_acceleration_m_s2": 3.5700534649296918,
+        "rms_wheel_slip": 0.1475061085663043,
+        "truth_endpoint_error_m": 0.19130312046828854
+      },
+      "crossing_available": 4,
+      "window_means": {
+        "vibration_energy_per_m": 123.53456192547316,
+        "slip_energy_per_m": 0.12577425490715421
+      }
+    },
+    "2ms/schedule": {
+      "episodes": 4,
+      "arrivals": 4,
+      "means": {
+        "time_seconds": 17.800000000000125,
+        "truth_path_rmse_m": 0.005747870311556636,
+        "rms_vertical_acceleration_m_s2": 2.397668184388963,
+        "rms_wheel_slip": 0.131871992977166,
+        "truth_endpoint_error_m": 0.19079575829809706
+      },
+      "crossing_available": 4,
+      "window_means": {
+        "vibration_energy_per_m": 14.653237637027326,
+        "slip_energy_per_m": 0.11407911728475907
+      }
+    },
+    "1ms/full": {
+      "episodes": 4,
+      "arrivals": 3,
+      "means": {
+        "time_seconds": 15.300000000000171,
+        "truth_path_rmse_m": 0.006332221584513072,
+        "rms_vertical_acceleration_m_s2": 3.905608498087066,
+        "rms_wheel_slip": 0.21038785602934978,
+        "truth_endpoint_error_m": 1.2088192564948728
+      },
+      "crossing_available": 3,
+      "window_means": {
+        "vibration_energy_per_m": null,
+        "slip_energy_per_m": null
+      }
+    },
+    "1ms/schedule": {
+      "episodes": 4,
+      "arrivals": 4,
+      "means": {
+        "time_seconds": 18.350000000000147,
+        "truth_path_rmse_m": 0.005071602784669005,
+        "rms_vertical_acceleration_m_s2": 3.4175927090247056,
+        "rms_wheel_slip": 0.12689226093715944,
+        "truth_endpoint_error_m": 0.18827447812282544
+      },
+      "crossing_available": 4,
+      "window_means": {
+        "vibration_energy_per_m": 377.1333887329967,
+        "slip_energy_per_m": 0.16583867123496537
+      }
+    }
+  },
+  "gates": [
+    {
+      "step": "2ms",
+      "repeat": 1,
+      "physical": true,
+      "reset_stationary": true,
+      "timing": true,
+      "tracking": true,
+      "tracking_ratio": 0.9533368353956878,
+      "crossing_coverage": true,
+      "local_quality": false,
+      "window_ratios": {
+        "vibration_energy_per_m": 0.10274044462528355,
+        "slip_energy_per_m": 1.4013495280789816
+      },
+      "global_quality": true,
+      "global_ratios": {
+        "rms_vertical_acceleration_m_s2": 0.6581759476967067,
+        "rms_wheel_slip": 0.9394594684174635
+      },
+      "passed": false
+    },
+    {
+      "step": "2ms",
+      "repeat": 2,
+      "physical": true,
+      "reset_stationary": true,
+      "timing": true,
+      "tracking": false,
+      "tracking_ratio": 1.199221202611159,
+      "crossing_coverage": true,
+      "local_quality": true,
+      "window_ratios": {
+        "vibration_energy_per_m": 0.23540459476824688,
+        "slip_energy_per_m": 0.5632415587565938
+      },
+      "global_quality": true,
+      "global_ratios": {
+        "rms_vertical_acceleration_m_s2": 0.6895254127814796,
+        "rms_wheel_slip": 0.8496068763803257
+      },
+      "passed": false
+    },
+    {
+      "step": "1ms",
+      "repeat": 1,
+      "physical": false,
+      "reset_stationary": true,
+      "timing": false,
+      "tracking": true,
+      "tracking_ratio": 0.8096113818829459,
+      "crossing_coverage": false,
+      "local_quality": false,
+      "window_ratios": {
+        "vibration_energy_per_m": null,
+        "slip_energy_per_m": null
+      },
+      "global_quality": false,
+      "global_ratios": {
+        "rms_vertical_acceleration_m_s2": 1.893291699354364,
+        "rms_wheel_slip": 0.5400052939916753
+      },
+      "passed": false
+    },
+    {
+      "step": "1ms",
+      "repeat": 2,
+      "physical": true,
+      "reset_stationary": true,
+      "timing": true,
+      "tracking": true,
+      "tracking_ratio": 0.788627002206023,
+      "crossing_coverage": true,
+      "local_quality": true,
+      "window_ratios": {
+        "vibration_energy_per_m": 0.1823287035419757,
+        "slip_energy_per_m": 0.32462557721392976
+      },
+      "global_quality": true,
+      "global_ratios": {
+        "rms_vertical_acceleration_m_s2": 0.3740776825557761,
+        "rms_wheel_slip": 0.6722822447712341
+      },
+      "passed": true
+    }
+  ],
+  "step_pairs": [
+    {
+      "repeat": 1,
+      "control": "full",
+      "seed": 65001,
+      "crossing_coverage": true,
+      "relative_crossing_change": {
+        "vibration_energy_per_m": -0.7925414679641768,
+        "slip_energy_per_m": 0.11137349828525811
+      },
+      "tracking_delta_m": 0.003285593938827649,
+      "maximum_penetration_delta_m": -0.00024892087093999994,
+      "material_change": true
+    },
+    {
+      "repeat": 1,
+      "control": "full",
+      "seed": 65004,
+      "crossing_coverage": false,
+      "relative_crossing_change": {
+        "vibration_energy_per_m": null,
+        "slip_energy_per_m": null
+      },
+      "tracking_delta_m": -0.0003641003978262277,
+      "maximum_penetration_delta_m": null,
+      "material_change": null
+    },
+    {
+      "repeat": 1,
+      "control": "schedule",
+      "seed": 65001,
+      "crossing_coverage": true,
+      "relative_crossing_change": {
+        "vibration_energy_per_m": 127.0385542506709,
+        "slip_energy_per_m": 2.9522437281996114
+      },
+      "tracking_delta_m": 0.0032580075323898616,
+      "maximum_penetration_delta_m": -0.00019628473090999997,
+      "material_change": true
+    },
+    {
+      "repeat": 1,
+      "control": "schedule",
+      "seed": 65004,
+      "crossing_coverage": true,
+      "relative_crossing_change": {
+        "vibration_energy_per_m": -0.6189791581903302,
+        "slip_energy_per_m": -0.4265549522459129
+      },
+      "tracking_delta_m": -0.0026054466991787756,
+      "maximum_penetration_delta_m": -9.787047746999985e-05,
+      "material_change": true
+    },
+    {
+      "repeat": 2,
+      "control": "full",
+      "seed": 65001,
+      "crossing_coverage": true,
+      "relative_crossing_change": {
+        "vibration_energy_per_m": 36.28781874480351,
+        "slip_energy_per_m": 6.5799531711438375
+      },
+      "tracking_delta_m": 0.0011151293135368261,
+      "maximum_penetration_delta_m": 3.464799373999986e-05,
+      "material_change": true
+    },
+    {
+      "repeat": 2,
+      "control": "full",
+      "seed": 65004,
+      "crossing_coverage": true,
+      "relative_crossing_change": {
+        "vibration_energy_per_m": -0.6553912539776369,
+        "slip_energy_per_m": 1.1400387713238898
+      },
+      "tracking_delta_m": -0.0003230798994807013,
+      "maximum_penetration_delta_m": -0.0010084959212699998,
+      "material_change": true
+    },
+    {
+      "repeat": 2,
+      "control": "schedule",
+      "seed": 65001,
+      "crossing_coverage": true,
+      "relative_crossing_change": {
+        "vibration_energy_per_m": 7.842126090143971,
+        "slip_energy_per_m": -0.6842619566870425
+      },
+      "tracking_delta_m": -0.0007075017649187509,
+      "maximum_penetration_delta_m": -0.0003153939033000001,
+      "material_change": true
+    },
+    {
+      "repeat": 2,
+      "control": "schedule",
+      "seed": 65004,
+      "crossing_coverage": true,
+      "relative_crossing_change": {
+        "vibration_energy_per_m": 3.169187701415021,
+        "slip_energy_per_m": 5.903574809538961
+      },
+      "tracking_delta_m": -0.002650129175842863,
+      "maximum_penetration_delta_m": 0.00020464346744000035,
+      "material_change": true
+    }
+  ],
+  "material_step_dependence": true,
+  "complete_paired_crossing_coverage": false,
+  "screening_gates_passed": false,
+  "source": "/home/tuanmac/ninorobot/rl_runs/flat_bullet_contact_candidate_v3",
+  "source_contract_sha256": "5ebdd7bb91eea5c06d07a27bb28e75c8b76a8886d2eb9770c178ac3dee6712af",
+  "analyzer_sha256": "7f55733566cc4c8ac19c74d1aa7234bd0a465da2c39f1f0921e7f210485ba870",
+  "failed_arrivals_retained": true,
+  "missing_windows": "Unavailable/null; no zero substitution and no scenario exclusion",
+  "flat_ppo_started": false,
+  "optuna_held": true
+}

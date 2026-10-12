@@ -1,0 +1,6 @@
+# One reward-weight change; use run_course_targeted_corrections.py.
+# Same actor and training seed as the completed seed-43 control experiment.
+extends: combined_flat_value_scaled_pilot.yaml
+seed: 43
+reward_v2:
+  slip_weight: 0.3180808323510665

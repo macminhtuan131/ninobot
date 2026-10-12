@@ -1,0 +1,15 @@
+# Rough revision-57 saved sequence audit
+
+Final checkpoint preserved byte-for-byte. Saved-data analysis only; no new simulation/training.
+
+| Seed | Controller | Cue events | Mean braking s/event | Mean minimum holding scale | HOLD instead of BRAKE | Delayed recovery HOLD |
+|---|---|---:|---:|---:|---:|---:|
+| 17400 | PPO | 6 | 0.617 | 0.753 | 9 | 1 |
+| 17400 | Reactive PI | 8 | 0.800 | 0.700 | n/a | n/a |
+| 17401 | PPO | 8 | 0.563 | 0.775 | 19 | 1 |
+| 17401 | Reactive PI | 7 | 0.800 | 0.700 | n/a | n/a |
+| 17404 | PPO | 9 | 0.633 | 0.747 | 12 | 0 |
+| 17404 | Reactive PI | 8 | 0.800 | 0.700 | n/a | n/a |
+
+## Nearby cue-event comparison
+

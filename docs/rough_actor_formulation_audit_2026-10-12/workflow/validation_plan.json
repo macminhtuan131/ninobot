@@ -1,0 +1,73 @@
+{
+  "revision": "rough_trial8_audit_fixed_routes_v1",
+  "source_model": "/home/tuanmac/ninorobot/rl_runs/rough_e1_v16_optuna_v1/trial_0008/train/20261010-030720-658073/nino_ppo_final.zip",
+  "source_sha256": "e4b694ebbe835671f08bc351f6ebc668796424138444c57029e7a3500db93d47",
+  "source_config_sha256": "935b297f1e894972ec8e3141dde95524d3a4a3a52dea6fb3184e686ac6821ef8",
+  "original_trial_contract": "1513aa6270645f4ceaeb454df559180e2dd0878a5acfee74aa262f37fc5dc240",
+  "probe_seeds": [
+    11000,
+    11001,
+    11002
+  ],
+  "heldout_seeds": [
+    12000,
+    12001,
+    12002,
+    12003,
+    12004,
+    12005,
+    12006,
+    12007,
+    12008,
+    12009,
+    12010,
+    12011,
+    12012,
+    12013,
+    12014,
+    12015,
+    12016,
+    12017,
+    12018,
+    12019
+  ],
+  "speed_matched_pi_scale": 0.7,
+  "duration_match_relative_tolerance": 0.05,
+  "possible_correction_steps": 20480,
+  "numerical_gate": {
+    "max_explained_variance": 0.1,
+    "minimum_critic_actor_ratio": 5.0,
+    "maximum_clip_retained_fraction": 0.01,
+    "candidate_multipliers": [
+      0.1,
+      0.03,
+      0.01
+    ]
+  },
+  "route_pi_screen_episodes": 3,
+  "route_pi_confirmation_episodes": 20,
+  "curriculum": {
+    "fixed_map": true,
+    "stages": [
+      [
+        "E1",
+        "N1"
+      ],
+      [
+        "E1",
+        "N1",
+        "S1"
+      ]
+    ],
+    "steps_per_stage": 20480,
+    "max_additional_steps": 40960,
+    "gate": {
+      "episodes_per_route": 20,
+      "success_rate": 0.95,
+      "max_truth_path_rmse_m": 0.05,
+      "max_rollover_rate": 0.0
+    }
+  },
+  "physical_scoring": "unchanged independent physical arrival and ordered route gates",
+  "old_studies": "preserved; no historical score import or Optuna started"
+}

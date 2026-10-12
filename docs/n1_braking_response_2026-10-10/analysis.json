@@ -1,0 +1,29 @@
+{
+  "v18 late turn": {
+    "summary": "/home/tuanmac/ninorobot/rl_runs/rough_n1_continuous_v18/route_pi/N1/screen/20261010-220306-164723/summary.json",
+    "physical_arrivals": 3,
+    "mean_physical_rmse_m": 0.40470504169653304,
+    "first_episode_peak_turn_x_m": 3.477925745740012,
+    "first_episode_x_overshoot_m": 0.9779257457400119,
+    "matching_seed": 13000,
+    "settings": "Geometry and 0.05m readiness RMSE limit unchanged"
+  },
+  "v19 early braking": {
+    "summary": "/home/tuanmac/ninorobot/rl_runs/rough_n1_anticipation_v19/route_pi/N1/screen/20261010-223912-451905/summary.json",
+    "physical_arrivals": 3,
+    "mean_physical_rmse_m": 0.09327333708587537,
+    "first_episode_peak_turn_x_m": 2.7444567082662576,
+    "first_episode_x_overshoot_m": 0.24445670826625765,
+    "matching_seed": 13000,
+    "settings": "Geometry and 0.05m readiness RMSE limit unchanged"
+  },
+  "v20 heading + braking": {
+    "summary": "/home/tuanmac/ninorobot/rl_runs/rough_n1_heading_braking_v20/route_pi/N1/screen/20261010-224321-056387/summary.json",
+    "physical_arrivals": 0,
+    "mean_physical_rmse_m": 0.03546556787363626,
+    "first_episode_peak_turn_x_m": 2.5259247905710644,
+    "first_episode_x_overshoot_m": 0.02592479057106445,
+    "matching_seed": 13000,
+    "settings": "Geometry and 0.05m readiness RMSE limit unchanged"
+  }
+}

@@ -1,0 +1,5 @@
+# Controller override only, merged into the frozen v16 configuration by the runner.
+# Route geometry and physical qualification gates remain unchanged.
+routes:
+  revision: fixed_n1_s1_alignment_v17
+  stop_align_route_ids: [N1, S1]

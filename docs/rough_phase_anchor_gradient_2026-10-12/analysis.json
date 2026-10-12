@@ -1,0 +1,91 @@
+{
+  "passed": true,
+  "source_actor": "/home/tuanmac/ninorobot/rl_runs/rough_rate_bc_pilot_v2/bc_actor.zip",
+  "actor_sha256": "6012ea2fb6f5eaaf1d530a700b0871c7d186c87b8c64042d65432dc18fbe44a1",
+  "source_capture_offset": 11,
+  "source_rollout_steps": 1024,
+  "reconstruction_checks": {
+    "prediction_mean": {
+      "reconstructed": 0.4605913758277893,
+      "recorded": 0.4605768918991089,
+      "difference": 1.4483928680419922e-05
+    },
+    "prediction_std": {
+      "reconstructed": 0.18427753448486328,
+      "recorded": 0.1842757612466812,
+      "difference": 1.773238182067871e-06
+    },
+    "target_mean": {
+      "reconstructed": 0.5254024593551048,
+      "recorded": 0.525387704372406,
+      "difference": 1.475498269876141e-05
+    },
+    "target_std": {
+      "reconstructed": 0.11382912129964057,
+      "recorded": 0.11382827162742615,
+      "difference": 8.496722144202273e-07
+    }
+  },
+  "coefficient": 0.03748637704186674,
+  "intended_median_gradient_ratio": 0.25,
+  "maximum_actor_gradient_ratio": 0.5,
+  "phase_filter": "Demonstrated pre-action holding/recovering only; 64 samples/action class",
+  "demonstration_class_counts": [
+    168,
+    24,
+    168
+  ],
+  "demonstrations": {
+    "/home/tuanmac/ninorobot/rl_runs/rough_rate_bc_pilot_v2/demo_17200.npz": "b31027fe1cddb047fc2d025e1e81952a9750ce4f6e171e06e8172941055a5586",
+    "/home/tuanmac/ninorobot/rl_runs/rough_rate_bc_pilot_v2/demo_17201.npz": "f8fe7a387131311682acbd9bc434270d107ff8e36c9e996b11f29ce7a70c33cb",
+    "/home/tuanmac/ninorobot/rl_runs/rough_rate_bc_pilot_v2/demo_17202.npz": "20db6959367588e3a3b20cad91f3ab130ea02341d77f8f9590d30b8b121f02ac"
+  },
+  "batches": [
+    {
+      "ppo_actor_gradient": 0.21458101272583008,
+      "bc_actor_gradient": 3.201824903488159,
+      "critic_gradient": 0.4144604206085205,
+      "cosine": -0.6814458966255188,
+      "bc_loss": 0.3793175518512726,
+      "samples": 256,
+      "effective_coefficient": 0.03350917354850658,
+      "weighted_gradient_ratio": 0.5000000000000001
+    },
+    {
+      "ppo_actor_gradient": 0.5555629134178162,
+      "bc_actor_gradient": 3.57430362701416,
+      "critic_gradient": 0.5106667280197144,
+      "cosine": 0.6511924862861633,
+      "bc_loss": 0.4842379093170166,
+      "samples": 256,
+      "effective_coefficient": 0.03748637704186674,
+      "weighted_gradient_ratio": 0.24117465401006344
+    },
+    {
+      "ppo_actor_gradient": 0.5281926393508911,
+      "bc_actor_gradient": 3.6563618183135986,
+      "critic_gradient": 0.5684117078781128,
+      "cosine": 0.9099102020263672,
+      "bc_loss": 0.4984450340270996,
+      "samples": 256,
+      "effective_coefficient": 0.03748637704186674,
+      "weighted_gradient_ratio": 0.25949577391163575
+    },
+    {
+      "ppo_actor_gradient": 0.7211090326309204,
+      "bc_actor_gradient": 3.182060718536377,
+      "critic_gradient": 0.6207178235054016,
+      "cosine": -0.5416210293769836,
+      "bc_loss": 0.40557968616485596,
+      "samples": 256,
+      "effective_coefficient": 0.03748637704186674,
+      "weighted_gradient_ratio": 0.1654173259069689
+    }
+  ],
+  "critic_untouched": true,
+  "parameters_unchanged": true,
+  "optimizer_empty": true,
+  "ppo_steps": 0,
+  "qualification": "Reconstructed first initial-BC on-policy rollout; GAE statistics checked against original TensorBoard. Not a claim about later updates.",
+  "reward_scale": 0.1
+}

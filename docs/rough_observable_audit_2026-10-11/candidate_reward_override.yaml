@@ -1,0 +1,5 @@
+# Proposed single change; NOT a standalone training config.
+# Apply only to a new frozen contract with a fresh critic/optimizer.
+reward_v2:
+  longitudinal_weights:
+    velocity_sigma_m_s: 0.1

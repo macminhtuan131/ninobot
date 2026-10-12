@@ -1,0 +1,69 @@
+{
+  "revision": "rough_incremental_speed_formulation_proposal_v1",
+  "status": "selected proposal; not integrated or trained",
+  "starting_model_preserved": "/home/tuanmac/ninorobot/rl_runs/rough_holding_reference_candidate_v1/train/20261011-224651-888921/nino_ppo_final.zip",
+  "source_sha256": "8d5990d631734f8372ea4abbdb4a575055b1c10a4eb543bd4b4006ecf7be0f04",
+  "action_space": "Discrete(3): BRAKE, HOLD, RECOVER",
+  "action_mapping": {
+    "brake_scale_rate_per_s": -0.4,
+    "hold_scale_rate_per_s": 0.0,
+    "recover_scale_rate_per_s": 0.4,
+    "control_dt_s": 0.1,
+    "minimum_scale": 0.55,
+    "maximum_scale": 1.0,
+    "update": "s_next = clip(s_previous + selected_rate * dt, .55, 1.)"
+  },
+  "policy": "Categorical PPO head, not clipped Gaussian/gSDE. Actor freely chooses every action; cue does not force actions.",
+  "exploration": "Categorical probabilities/entropy replace gSDE; no Gaussian std or raw action clipping",
+  "observations": "Same 360 hardware-only causal history, including previous executed speed and cue state",
+  "reward": "Existing revision-49 weights and executed-command reward; no penalty increase",
+  "fixed": "Same physical speed-rate limit, unscaled PI yaw, terrain, estimator, timing and physical scoring",
+  "initialization": "Fresh categorical actor, fresh critic and optimizer; old Gaussian checkpoint cannot be resumed as this policy",
+  "evidence": {
+    "deterministic_clip_fraction": 0.39546783625730997,
+    "stochastic_clip_fraction": 0.5117647058823529,
+    "ramp_limited_fraction": 0.27294117647058824,
+    "holding_executed_scale": 0.9663416909456738,
+    "gradient_balance": {
+      "median_critic_actor_norm_ratio": 0.2009200603745172,
+      "median_global_clip_retained_fraction": 0.453472139128604,
+      "explained_variance": 0.9329127742025763,
+      "critic_dominance_supported": false
+    },
+    "sustained_training_exposure": 66
+  },
+  "hypothesis": "Separate explicit speed changes from absolute noisy targets: each interior action has distinct execution; deterministic decisions can sustain braking and recovery.",
+  "limitations": [
+    "This proposal is not evidence that the categorical policy will learn or outperform PI.",
+    "State saturation at .55/1 remains a physical constraint; HOLD and outward commands can coincide there.",
+    "Six .1 s braking actions can only reach .76 from 1 under the unchanged .4/s ramp, not the .70 holding target.",
+    "Holding and recovery rewards still compete with progress/comfort; no causal optimum claimed.",
+    "Changing action meanings requires a new training contract and new likelihood/rollout verification."
+  ],
+  "next_gate": "Verify all action executions and exploration sequences offline/live; then one bounded fresh pilot, comparing reactive reference and full/time-matched PI",
+  "optuna_held": true,
+  "training_started": false,
+  "offline_execution_example": [
+    0.96,
+    0.9199999999999999,
+    0.8799999999999999,
+    0.8399999999999999,
+    0.7999999999999998,
+    0.7599999999999998,
+    0.7999999999999998,
+    0.8399999999999999,
+    0.8799999999999999,
+    0.9199999999999999,
+    0.96,
+    1.0
+  ],
+  "offline_categorical_verification": {
+    "samples": 32,
+    "three_probabilities_normalized": true,
+    "likelihood_replay_matched": true,
+    "optimizer_empty": true,
+    "training_steps": 0,
+    "initialization": "Fresh categorical actor and critic; original hardware HistoryFeatures extractor",
+    "limitation": "Space-only construction; ROS action decoding, contract enforcement and live exploration still need integration/verification"
+  }
+}

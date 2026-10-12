@@ -1,0 +1,5 @@
+
+COMMAND ros2 topic echo /rough/imu/data sensor_msgs/msg/Imu --once --qos-reliability reliable --field header.stamp
+sec: 3
+nanosec: 620000000
+---

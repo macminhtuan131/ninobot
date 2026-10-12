@@ -1,0 +1,4 @@
+
+COMMAND ros2 run ros_gz_bridge parameter_bridge --ros-args -r __node:=hardware_imu_bridge -p config_file:=/home/tuanmac/ninorobot/rl_runs/foundations_20261011/hardware_sensors_v2/imu_bridge.yaml
+[INFO] [1791742008.868203307] [hardware_imu_bridge]: Creating GZ->ROS Bridge: [/imu/data (gz.msgs.IMU) -> /rough/imu/data (sensor_msgs/msg/Imu)] (Lazy 0)
+[INFO] [1791742145.096898462] [rclcpp]: signal_handler(SIGINT/SIGTERM)
