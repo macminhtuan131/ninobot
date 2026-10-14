@@ -57,6 +57,8 @@ def main() -> None:
         ) from error
 
     config = load_config(args.config)
+    if config.get("governor",{}).get("enabled",False):
+        raise SystemExit("Reactive governor is a PI foundation experiment. Use evaluate_baseline; PPO/Optuna remain held.")
     if args.route is not None:
         if not config.get("routes", {}).get("enabled", False):
             raise SystemExit("--route requires an enabled routes configuration")

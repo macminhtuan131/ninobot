@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "qualification": "Timing/coverage associations, not causal benefit or sim-to-real proof",
+  "failures_retained": true,
+  "horizon_seconds": 2.0,
+  "logger_closed": true,
+  "instrumented_components": "legacy_four_wheels",
+  "missing_contact": "Unavailable; absence of a message is not proof of no contact",
+  "physical_slip": "Use saved independently scored episodes.csv; wheel error is a separate proxy",
+  "results": [
+    {
+      "attempt": 1,
+      "run_id": null,
+      "seed": 76000,
+      "success": false,
+      "termination": "rollover",
+      "time_seconds": 19.700000000000244,
+      "truth_endpoint_error_m": 0.30431935383809394,
+      "governor_events": 0,
+      "first_recorded_positive_contact": {
+        "time_s": 21.459,
+        "component": "caster_right_wheel",
+        "event": "begin",
+        "collisions": [
+          "cable_bumps::cables::C1_collision",
+          "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+        ],
+        "named_positive_obstacle": true,
+        "episode": {
+          "event": "reset",
+          "attempt": 1,
+          "seed": 76000,
+          "time_s": 14.229,
+          "route": "E1",
+          "settings": {
+            "enabled": true,
+            "revision": "nino_reactive_governor_v1",
+            "execution": "inline_PI_evaluation",
+            "parameters": {
+              "profile": "full",
+              "target_scale": 0.7,
+              "scale_rate_per_second": 0.4,
+              "vertical_trigger_m_s2": 1.5,
+              "body_rate_trigger_rad_s": 0.35,
+              "wheel_error_trigger_m_s": 0.06,
+              "wheel_error_acceleration_allowance_s": 0.1,
+              "release_ratio": 0.6,
+              "confirmation_seconds": 0.04,
+              "quiet_seconds": 0.3,
+              "minimum_hold_seconds": 0.8,
+              "maximum_hold_seconds": 2.5,
+              "startup_seconds": 0.8,
+              "wheel_stall_seconds": 1.2,
+              "stall_recovery_enabled": false
+            }
+          }
+        },
+        "end_time_is_upper_bound": false
+      },
+      "first_hold_time_s": null,
+      "contact_to_hold_s": null,
+      "post_contact_acceleration": {
+        "available": true,
+        "reason": null,
+        "rms": 2.0793456533776595,
+        "peak": 13.692581373476775,
+        "coverage_s": 1.9800000000000004,
+        "coverage_fraction": 0.9900000000000002,
+        "maximum_gap_s": 0.1
+      },
+      "body_slowdown_time_s": 21.46,
+      "approach_body_speed_m_s": 0.39463173850771127
+    }
+  ]
+}

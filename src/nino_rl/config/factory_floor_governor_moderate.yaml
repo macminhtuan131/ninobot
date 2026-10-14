@@ -1,0 +1,4 @@
+extends: factory_floor_governor_pi_check.yaml
+governor:
+  parameters:
+    profile: moderate

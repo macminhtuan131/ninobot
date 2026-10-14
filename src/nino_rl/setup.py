@@ -34,6 +34,7 @@ setup(
             "check_cuda = nino_rl.check_cuda:main",
             "evaluate = nino_rl.evaluate:main",
             "evaluate_baseline = nino_rl.evaluate_baseline:main",
+            "governor_logger = nino_rl.governor_logger:main",
             "trajectory_metrics = nino_rl.trajectory_metrics:main",
             "compare_evaluations = nino_rl.evaluation:compare_main",
             "policy_node = nino_rl.policy_node:main",

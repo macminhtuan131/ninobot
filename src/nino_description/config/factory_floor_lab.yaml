@@ -1,0 +1,66 @@
+# Preserve the original flat-course corridor and adaptive-item mechanics.
+revision: factory_floor_contact_v6_four_goal_halls
+floor:
+  x_m: [-2.0, 8.0]
+  y_m: [-3.5, 3.5]
+  start_xy_m: [0.0, 0.0]
+  goal_xy_m: [6.45, 0.0]
+  mesh_spacing_m: 0.005
+  flat_mesh_spacing_m: 0.04
+  representation: continuous_mesh
+  # The dedicated brown ground model is copied from combined_rough_section.
+  # Aprons are visual only; all physical support remains the continuous mesh.
+  terrain_view_bounds_xy_m: [0.20, 6.20, -1.80, 1.80]
+  physics_step_seconds: 0.001
+# Flat, open halls surrounding the original cable corridor (y=-2..2).
+# Visual regions share the same continuous collision mesh; no internal walls.
+goal_halls:
+  - {id: W1, direction: west, bounds_xy_m: [-2.0, 0.20, -3.5, 3.5], goal_pose: [-1.0, 0.0, 3.141592653589793]}
+  - {id: E1, direction: east, bounds_xy_m: [6.20, 8.0, -3.5, 3.5], goal_pose: [6.45, 0.0, 0.0]}
+  - {id: N1, direction: north, bounds_xy_m: [0.20, 6.20, 2.0, 3.5], goal_pose: [3.20, 2.75, 1.5707963267948966]}
+  - {id: S1, direction: south, bounds_xy_m: [0.20, 6.20, -3.5, -2.0], goal_pose: [3.20, -2.75, -1.5707963267948966]}
+adaptive_zone:
+  x_m: [0.55, 5.65]
+  y_m: [-0.5, 0.5]
+  initial_features: 1
+  maximum_features: 6
+# Editable shallow-depression catalogue shown in the mixed viewing world.
+# Runtime curriculum replaces this catalogue with its sampled 1..6 items.
+depressions:
+  - {id: P1, kind: round_bowl, x_m: 1.03, y_m: 0.18, radius_x_m: 0.19, radius_y_m: 0.19, depth_m: 0.008, angle_deg: 0.0}
+  - {id: P2, kind: flat_bottom_bowl, x_m: 1.95, y_m: 0.24, radius_x_m: 0.26, radius_y_m: 0.21, depth_m: 0.014, angle_deg: -15.0}
+  - {id: P3, kind: angled_trough, x_m: 3.95, y_m: 0.22, radius_x_m: 0.29, radius_y_m: 0.21, depth_m: 0.018, angle_deg: 20.0}
+  - {id: P4, kind: flat_bottom_bowl, x_m: 4.98, y_m: -0.04, radius_x_m: 0.27, radius_y_m: 0.30, depth_m: 0.022, angle_deg: 30.0}
+grooves:
+  - {id: G1, kind: groove, x_m: 2.94, y_m: 0.0, radius_x_m: 0.05, radius_y_m: 0.38, depth_m: 0.010, angle_deg: 12.0}
+display_items:
+  - {id: A1, kind: cable, x_m: 1.95, y_m: -0.32, radius_m: 0.015, length_m: 0.55}
+  - {id: A2, kind: bump, x_m: 3.95, y_m: -0.28, radius_m: 0.12}
+single_pothole:
+  {id: SP1, kind: round_bowl, x_m: 2.9, y_m: 0.17, radius_x_m: 0.30, radius_y_m: 0.25, depth_m: 0.018, angle_deg: 0.0}
+# Nominal transverse cables. Their six x positions and radii match the flat
+# course. Optional episode angle variation retains its existing spawn API.
+cables:
+  - {id: C1, x_m: 0.65, y_m: 0.0, radius_m: 0.011, length_m: 4.0, angle_deg: 0.0}
+  - {id: C2, x_m: 1.45, y_m: 0.0, radius_m: 0.012, length_m: 4.0, angle_deg: 0.0}
+  - {id: C3, x_m: 2.45, y_m: 0.0, radius_m: 0.013, length_m: 4.0, angle_deg: 0.0}
+  - {id: C4, x_m: 3.45, y_m: 0.0, radius_m: 0.018, length_m: 4.0, angle_deg: 0.0}
+  - {id: C5, x_m: 4.45, y_m: 0.0, radius_m: 0.010, length_m: 4.0, angle_deg: 0.0}
+  - {id: C6, x_m: 5.45, y_m: 0.0, radius_m: 0.009, length_m: 4.0, angle_deg: 0.0}
+# Optional local bump/threshold item; no broad mound or rolling terrain.
+threshold:
+  id: T1
+  x_m: 2.9
+  y_m: 0.0
+  height_m: 0.008
+  length_m: 0.7
+  angle_deg: 0.0
+single_obstacle_x_m: 2.9
+randomized_single:
+  x_range_m: [1.2, 5.2]
+  y_range_m: [-0.18, 0.18]
+  angle_range_deg: [-30.0, 30.0]
+  depth_range_m: [0.006, 0.024]
+  cable_radius_range_m: [0.006, 0.012]
+training_allowed: false
+optuna_allowed: false

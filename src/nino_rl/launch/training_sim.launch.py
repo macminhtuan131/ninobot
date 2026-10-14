@@ -32,10 +32,13 @@ def generate_launch_description():
             # A direct /cmd_vel straight reference supplies the PI baseline;
             # RL adds bounded residual wheel torque.
             "accept_cmd_vel": "true",
-            "accept_torque": "true",
+            "accept_torque": LaunchConfiguration("accept_torque"),
+            "contact_lab": LaunchConfiguration("contact_lab"),
+            "terrain_preview": LaunchConfiguration("terrain_preview"),
             "verbosity": LaunchConfiguration("verbosity"),
             "max_wheel_torque": LaunchConfiguration("max_wheel_torque"),
             "pi_integrator_profile": LaunchConfiguration("pi_integrator_profile"),
+            "controller_startup_timeout": LaunchConfiguration("controller_startup_timeout"),
         }.items(),
     )
     reset_bridge = Node(
@@ -59,6 +62,10 @@ def generate_launch_description():
             SetEnvironmentVariable("ROS_AUTOMATIC_DISCOVERY_RANGE", "LOCALHOST"),
             DeclareLaunchArgument("world", default_value="long_hall.sdf"),
             DeclareLaunchArgument("pi_integrator_profile", default_value="legacy"),
+            DeclareLaunchArgument("controller_startup_timeout", default_value="30"),
+            DeclareLaunchArgument("accept_torque",default_value="true"),
+            DeclareLaunchArgument("contact_lab",default_value="false"),
+            DeclareLaunchArgument("terrain_preview",default_value="true"),
             DeclareLaunchArgument("world_name", default_value="long_hall"),
             DeclareLaunchArgument(
                 "headless", default_value="true", description="Disable Gazebo GUI while training"

@@ -28,7 +28,7 @@ def benchmark_id(config):
     # Reward/PPO differences are allowed; geometry, sensing, task and test
     # perturbations must match. This is not a hash of external Gazebo binaries.
     ignored = {"reward", "reward_v2", "ppo", "device", "seed", "evaluation_baseline",
-               "evaluation_speed_only", "evaluation_control_trace"}
+               "evaluation_speed_only", "evaluation_control_trace", "governor"}
     task = {k: v for k, v in config.items() if k not in ignored}
     return hashlib.sha256(json.dumps(task, sort_keys=True).encode()).hexdigest()
 
@@ -182,6 +182,10 @@ def run(baseline=False):
     }
     if config.get('odometry_assistance', {}).get('corridor_lidar', {}).get('enabled', False):
         metadata['pose_source'] = 'imu_encoder_lidar_odometry'
+    if config.get("governor",{}).get("enabled",False):
+        metadata["controller"]=config["governor"].get("parameters",{}).get("profile","reactive")+"_governor_pi"
+        metadata["governor"]=config["governor"]
+        metadata["qualification"]="Reactive PI/contact-authority experiment; no predictor or sim-to-real claim"
     (output / "metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
     # Create ROS only after validating the model/config.
     from nino_rl.ros_env import NinoGazeboEnv

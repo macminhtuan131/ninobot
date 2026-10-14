@@ -1,0 +1,51 @@
+# Geometry/PI inspection only. Not the future sensor-only predictor/PPO contract.
+extends: combined_flat_pi_tracking.yaml
+task: factory_floor_lab
+world_name: factory_floor_lab
+action_mode: speed_yaw_reference
+control_hz: 10.0
+max_episode_seconds: 30.0
+target_finish_seconds: 22.0
+reward_pose_source: ground_truth
+policy_v2:
+  require_terrain_preview: false
+  simulation_physics_step_seconds: 0.001
+  imu_strict_coverage: true
+navigation:
+  start_pose: [0.0, 0.0, 0.0]
+  goal_pose: [6.45, 0.0, 0.0]
+path:
+  default_goal_x_m: 6.45
+odometry_assistance:
+  corridor_lidar:
+    bounds_xy_m: [-2.0, 8.0, -3.5, 3.5]
+curriculum:
+  enabled: false
+terrain_curriculum:
+  enabled: false
+flat_curriculum:
+  enabled: false
+course_cable_randomization:
+  enabled: false
+adaptive_terrain:
+  enabled: false
+  initial_features: 0
+  evaluation_features: 0
+domain_randomization:
+  enabled: false
+routes:
+  enabled: false
+# Retain the selected world's static physical items. Old per-episode surrogate
+# spawning and old cable curricula would overwrite or add conflicting geometry.
+fixed_terrain_challenges: []
+reward_v2:
+  challenge_entry_bonus: 0.0
+  challenge_clear_bonus: 0.0
+  challenge_goal_bonus: 0.0
+research_map:
+  revision: factory_floor_contact_v6_four_goal_halls
+  stage: geometry_and_PI_feasibility
+  training_allowed: false
+  optuna_allowed: false
+  # A new sensor-only controller/data contract is required before learning.
+  geometry_information_is_analysis_only: true

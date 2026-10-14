@@ -1,0 +1,53 @@
+nino_command_gate:
+  ros__parameters:
+    use_sim_time: false
+    command_timeout: 0.3
+    max_forward: 0.2
+    max_reverse: 0.1
+    max_yaw: 0.6
+    publish_rate: 20.0
+
+velocity_smoother:
+  ros__parameters:
+    use_sim_time: false
+    enable_stamped_cmd_vel: false
+    smoothing_frequency: 20.0
+    feedback: OPEN_LOOP
+    scale_velocities: false
+    max_velocity: [0.2, 0.0, 0.6]
+    min_velocity: [-0.1, 0.0, -0.6]
+    max_accel: [0.25, 0.0, 1.0]
+    max_decel: [-0.5, 0.0, -1.5]
+    velocity_timeout: 0.3
+    deadband_velocity: [0.0, 0.0, 0.0]
+    odom_topic: /odom
+
+collision_monitor:
+  ros__parameters:
+    use_sim_time: false
+    enable_stamped_cmd_vel: false
+    base_frame_id: base_footprint
+    odom_frame_id: odom
+    cmd_vel_in_topic: /cmd_vel_smoothed
+    cmd_vel_out_topic: /cmd_vel
+    state_topic: /collision_monitor_state
+    transform_tolerance: 0.2
+    source_timeout: 0.5
+    base_shift_correction: true
+    stop_pub_timeout: 1.0
+    polygons: [StopZone]
+    StopZone:
+      type: polygon
+      action_type: stop
+      # Initial CAD envelope + margin. Measure and update for real hardware.
+      points: '[[0.46, 0.34], [0.46, -0.34], [-0.40, -0.34], [-0.40, 0.34]]'
+      min_points: 3
+      visualize: true
+      polygon_pub_topic: /stop_zone
+      enabled: true
+    observation_sources: [scan]
+    scan:
+      type: scan
+      topic: /scan
+      enabled: true
+

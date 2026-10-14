@@ -1,12 +1,14 @@
 """Spawn Nino at world origin in Gazebo Sim and bridge its ROS interfaces."""
 
 import os
+from functools import partial
 from pathlib import Path
 
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
     ExecuteProcess,
+    LogInfo,
     RegisterEventHandler,
     SetEnvironmentVariable,
     Shutdown,
@@ -60,6 +62,14 @@ SNAP_DESKTOP_ENVIRONMENT = (
 NVIDIA_EGL_VENDOR = Path("/usr/share/glvnd/egl_vendor.d/10_nvidia.json")
 
 
+def after_required_process(event, context, *, label, success_actions):
+    """Do not start actuation after a failed robot/controller startup."""
+    if event.returncode != 0:
+        message = f"{label} failed (exit {event.returncode}); stopping simulation startup"
+        return [LogInfo(msg=f"ERROR: {message}"), Shutdown(reason=message)]
+    return list(success_actions)
+
+
 def generate_launch_description():
     package_share = FindPackageShare("nino_description")
     control_share = FindPackageShare("nino_control")
@@ -72,7 +82,9 @@ def generate_launch_description():
     )
     rviz_config = PathJoinSubstitution([package_share, "rviz", "sensors.rviz"])
     bridge_config = PathJoinSubstitution([package_share, "config", "bridge.yaml"])
-    robot_description = ParameterValue(Command(["xacro ", xacro_file]), value_type=str)
+    robot_description = ParameterValue(Command(["xacro ", xacro_file,
+        " contact_lab:=",LaunchConfiguration("contact_lab"),
+        " terrain_preview:=",LaunchConfiguration("terrain_preview")]), value_type=str)
 
     clean_gz_sim = PathJoinSubstitution(
         [FindPackagePrefix("nino_description"), "lib", "nino_description", "gz_sim_clean"]
@@ -121,9 +133,11 @@ def generate_launch_description():
             "--controller-manager",
             "/controller_manager",
             "--controller-manager-timeout",
-            "30",
+            LaunchConfiguration("controller_startup_timeout"),
             "--switch-timeout",
-            "30",
+            LaunchConfiguration("controller_startup_timeout"),
+            "--service-call-timeout",
+            LaunchConfiguration("controller_startup_timeout"),
             "--activate-as-group",
         ],
     )
@@ -162,6 +176,12 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        DeclareLaunchArgument("contact_lab",default_value="false"),
+        DeclareLaunchArgument("terrain_preview",default_value="true"),
+        DeclareLaunchArgument(
+            "controller_startup_timeout", default_value="30",
+            description="Startup-only controller discovery/service/activation timeout (seconds)",
+        ),
         DeclareLaunchArgument("pi_integrator_profile", default_value="legacy",
                               description="Wheel PI integrator: legacy or conditional_v1"),
         DeclareLaunchArgument(
@@ -298,9 +318,11 @@ def generate_launch_description():
             condition=IfCondition(LaunchConfiguration("sensor_monitor")),
         ),
         RegisterEventHandler(
-            OnProcessExit(target_action=spawn_nino, on_exit=[controller_spawner])
+            OnProcessExit(target_action=spawn_nino, on_exit=partial(
+                after_required_process, label="Robot spawn", success_actions=[controller_spawner]))
         ),
         RegisterEventHandler(
-            OnProcessExit(target_action=controller_spawner, on_exit=[effort_drive])
+            OnProcessExit(target_action=controller_spawner, on_exit=partial(
+                after_required_process, label="Controller activation", success_actions=[effort_drive]))
         ),
     ])

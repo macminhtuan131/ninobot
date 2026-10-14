@@ -1,5 +1,12 @@
 # Run the trained policy on a Raspberry Pi
 
+**Navigation/teleop update — 14 October 2026:** use the separate
+[nino_pi package](../src/nino_pi/README.md) for real-time Nav2, mapping and
+keyboard/joystick operation. It includes a read-only Pi driver check and
+requires your physical motor/IMU/LiDAR bringup. The policy instructions below
+describe a historical checkpoint requiring a downward terrain sensor; they
+are not the deployment contract for the current horizontal-LiDAR robot.
+
 The trained policy is `src/nino_rl/models/completed_train/nino_ppo_final.zip`.
 Keep it with `ppo.yaml` from the same directory. The ZIP is a Stable-Baselines3
 checkpoint, so the Pi runs it through the ROS `nino_rl` package; it cannot be

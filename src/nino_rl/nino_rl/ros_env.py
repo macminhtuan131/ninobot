@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from collections import deque
 from copy import deepcopy
+import json
+from uuid import uuid4
 from math import ceil, degrees
 from threading import Event, Thread
 from time import monotonic, sleep, time
@@ -29,6 +31,7 @@ from nino_rl.trajectory_metrics import EpisodeTrajectory
 from nino_rl.task_geometry import approach_speed, goal_overshot, task_succeeded, objective_state
 from nino_rl.flat_feedback import flat_motion_command
 from nino_rl.flat_curriculum import FlatCourseCurriculum
+from nino_rl.carved_floor import sample_pothole_in_cable_gap
 from nino_rl.routes import OrderedPathTracker, RouteSet, route_command, route_budget
 from nino_rl.control_v2 import (
     ACTION_SIZE, BASELINE_ACTION, ChallengeRegion, ChallengeTracker,
@@ -45,6 +48,15 @@ class NinoGazeboEnv(gym.Env):
     def __init__(self, config: dict, total_training_steps: int = 1) -> None:
         super().__init__()
         self.config = config
+        self.governor = None
+        self.governor_trace = {}
+        self.governor_imu = {}
+        if config.get("governor", {}).get("enabled", False):
+            if not config.get("evaluation_baseline",False) or config.get("action_mode") != "wheel_torque":
+                raise ValueError("Reactive governor contract is PI evaluation only; PPO is not enabled")
+            from nino_control.governor_core import ReactiveGovernor
+            self.governor = ReactiveGovernor(config["governor"].get("parameters",{}))
+            self.governor_run_id=uuid4().hex
         if config.get("rough_curriculum", {}).get("enabled", False) and not config.get("rough_runtime", {}).get("bank_digest"):
             raise ValueError("Use scripts/train_rough_curriculum.py to select and verify the rough curriculum terrain bank")
         self.route_set = RouteSet(config)  # Validate routes before opening ROS.
@@ -365,11 +377,18 @@ class NinoGazeboEnv(gym.Env):
             for cable in course["cables"]
         ]
 
-    def _adaptive_terrain_features(self) -> list[tuple[str, float, float, float]]:
-        """Return the proven full-size hazards randomized near the route."""
+    def _adaptive_terrain_features(
+        self, cables: list[tuple[float, float, float]] | None = None,
+    ) -> list[tuple[str, float, float, float]]:
+        """Return candidate adaptive items randomized in the course strip."""
         if not self.adaptive_terrain_enabled:
             return []
         config = self.config["adaptive_terrain"]
+        placement = config.get("pothole_placement", "course_strip")
+        if placement not in ("course_strip", "cable_gaps"):
+            raise ValueError("Unknown adaptive pothole placement")
+        if placement == "cable_gaps" and (cables is None or len(cables) < 2):
+            raise ValueError("Pothole gap placement requires this episode's sampled cables")
         x_min, x_max = (float(value) for value in config["zone_x_m"])
         half_track = 0.5 * float(config["wheel_separation_m"])
         spawn_y_min, spawn_y_max = (
@@ -383,8 +402,8 @@ class NinoGazeboEnv(gym.Env):
                 or max_lateral >= 1.80):
             raise ValueError("adaptive terrain bounds must fit inside the hallway")
         features = []
-        # Keep the established geometry and placement. Every feature is
-        # traversable; blocking posts belong to route planning, not this task.
+        # Keep the established mixed item types. Traversability must be
+        # checked for each physical profile; blocking posts are not sampled.
         kinds = tuple(self.np_random.permutation(("pothole", "bump", "cable", "groove")))
         count = max(1, self.terrain_feature_count)
         for index in range(self.terrain_feature_count):
@@ -401,6 +420,13 @@ class NinoGazeboEnv(gym.Env):
             fraction = (index + self.np_random.uniform(0.45, 0.55)) / count
             x = x_min + fraction * (x_max - x_min)
             y = self.np_random.uniform(spawn_y_min, spawn_y_max)
+            if kind == "pothole" and placement == "cable_gaps":
+                x, y = sample_pothole_in_cable_gap(
+                    self.np_random, cables, size, (x_min, x_max),
+                    (spawn_y_min, spawn_y_max),
+                    clearance=float(config.get("pothole_cable_clearance_m", .03)),
+                    footprint_padding=np.sqrt(2)*float(config.get("mesh_spacing_m", .005)),
+                )
             features.append((kind, float(x), float(y), float(size)))
         return features
 
@@ -586,6 +612,12 @@ class NinoGazeboEnv(gym.Env):
         return noisy
 
     def _reference(self, tracking, elapsed: float) -> NavReference:
+        if self.governor is not None:
+            from nino_rl.governor_adapter import stamped_reference_valid
+            valid=stamped_reference_valid(self.ros.snapshot(),self.lockstep_sim_time,
+                self.governor_reference_sim_s,self.control_dt)
+        else:
+            valid=self.ros.straight_reference_valid(self.nav_stale_seconds)
         desired_linear, desired_angular = self.ros.desired_twist()
         if self.next_waypoint_index < len(self.waypoint_targets):
             waypoint_s = float(self.waypoint_targets[self.next_waypoint_index])
@@ -601,7 +633,7 @@ class NinoGazeboEnv(gym.Env):
             local_waypoint_distance=waypoint_distance,
             final_goal_distance=tracking.endpoint_distance,
             waypoint_time_remaining_fraction=float(time_fraction),
-            valid=self.ros.straight_reference_valid(self.nav_stale_seconds),
+            valid=valid,
         )
 
     def _actor_observation(self, state, action, reference):
@@ -627,6 +659,10 @@ class NinoGazeboEnv(gym.Env):
             )
             self.world_is_paused = False
         self.attempt_number += 1
+        if self.governor is not None:
+            self.governor.reset()
+            self.governor_imu = {}
+            self.governor_trace = {}
         self.episode_steps = 0
         self.wrong_direction_steps = 0
         self.wrong_direction_seconds = 0.0
@@ -649,6 +685,7 @@ class NinoGazeboEnv(gym.Env):
                 f"Route {self.episode_route['id']}: {length:.2f} m, "
                 f"goal={self.goal_pose[:2]}, deadline={self.episode_deadline_seconds:.1f}s")
         self._sample_randomization()
+        reset_step_timeout = self.simulation_step_timeout
         stage, level, goal_x = self._curriculum_stage()
         self.episode_curriculum_stage = stage
         if getattr(self, "_announced_phase", None) != stage:
@@ -684,8 +721,21 @@ class NinoGazeboEnv(gym.Env):
                 # Keep a world's original static cable_bumps model.
                 # configure_training_cables([]) would delete that model.
                 episode_cables = []
-            episode_features = self._adaptive_terrain_features()
-            self.ros.configure_adaptive_terrain(episode_features)
+            episode_features = self._adaptive_terrain_features(episode_cables)
+            adaptive_config = self.config.get("adaptive_terrain", {})
+            if adaptive_config.get("geometry_profile") in ("carved_floor_v2", "continuous_floor_mesh_v1"):
+                if self.config.get("world_name") != "factory_floor_lab":
+                    raise ValueError("True carved-floor replacement requires factory_floor_lab")
+                floor_timeout = float(adaptive_config.get(
+                    "floor_initialization_wall_timeout_seconds", self.simulation_step_timeout))
+                if not np.isfinite(floor_timeout) or floor_timeout <= 0:
+                    raise ValueError("Floor initialization wall timeout must be positive and finite")
+                reset_step_timeout = max(reset_step_timeout, floor_timeout)
+                self.ros.configure_adaptive_terrain(
+                    episode_features, carved_floor_config=adaptive_config)
+                self.world_is_paused = True
+            else:
+                self.ros.configure_adaptive_terrain(episode_features)
         self.episode_terrain_layout = episode_features
         self.episode_terrain_height_scale = 1.0
         self.challenge_tracker = self._make_challenge_tracker(
@@ -704,15 +754,21 @@ class NinoGazeboEnv(gym.Env):
         reset_sensor_names = ["ground_truth", "scan"]
         if self.config["policy_v2"].get("require_terrain_preview", False):
             reset_sensor_names.append("terrain")
-        self.ros.wait_for_sensors(self.sensor_timeout)
+        if getattr(self.ros, "_assisted_odometry", None) is not None:
+            reset_sensor_names.extend(["imu", "joint", "assisted_odom"])
+        # Floor replacement deliberately leaves physics paused. The estimator
+        # needs new IMU/encoder/scan samples, which the bounded refresh below
+        # produces. Waiting for assisted odometry before stepping can deadlock.
+        self.ros.wait_for_sensors(self.sensor_timeout, require_assisted=False)
         self.ros.publish_straight_command(0.0)
         self.ros.wait_for_v2_controller()
         # Ground truth and the mandatory terrain view must both describe the
         # newly reset/spawned world, rather than the preceding episode.
         self.ros.refresh_reset_sensors(
             reset_sensor_names, timeout=self.sensor_timeout,
-            step_timeout=self.simulation_step_timeout,
+            step_timeout=reset_step_timeout,
         )
+        self.ros.wait_for_sensors(self.sensor_timeout)
         self.world_is_paused = True
         if not self.ros.ground_truth_valid():
             raise RuntimeError(
@@ -771,6 +827,8 @@ class NinoGazeboEnv(gym.Env):
         )
         truth = self.ros.snapshot()
         self.episode_started_sim = self.lockstep_sim_time
+        if self.governor is not None:
+            self.governor_reference_sim_s=self.lockstep_sim_time
         if self.route_set.enabled:
             self.path.advance(truth.x, truth.y)
             scoring_state = objective_state(truth, self.config)
@@ -795,6 +853,15 @@ class NinoGazeboEnv(gym.Env):
             truth, self.path, self.lookahead, self.previous_action
         )
         reference = self._reference(self.previous_tracking, 0.0)
+        if self.governor is not None:
+            from std_msgs.msg import String
+            if not hasattr(self,"governor_state_publisher"):
+                self.governor_state_publisher = self.ros.create_publisher(String,"/nino/governor/state",10)
+                self.governor_episode_publisher = self.ros.create_publisher(String,"/nino/governor/episode",10)
+            self.governor_episode_publisher.publish(String(data=json.dumps(dict(
+                event="reset",run_id=self.governor_run_id,attempt=self.attempt_number,seed=seed,time_s=self.lockstep_sim_time,
+                route=self.episode_route["id"] if self.episode_route else "E1",
+                settings=self.config["governor"])) ))
         observation = self.history.reset(self._actor_observation(
             self._noisy_state(truth), self.previous_action, reference))
         # From here on, only step() advances simulation. This prevents OS/GPU
@@ -814,6 +881,33 @@ class NinoGazeboEnv(gym.Env):
             "traversable_challenges": self.challenge_tracker.total,
         }
 
+    def _governor_command(self,linear,angular):
+        from nino_rl.governor_adapter import frame_from_state
+        from std_msgs.msg import String
+        end=self.lockstep_sim_time
+        rows=self.ros.drive_diagnostics(end-.25,end+1e-6)
+        if not rows or end-rows[-1]["sim_time_s"] > .10:
+            decision=self.governor.fail("stale_drive_feedback")
+        else:
+            feedback=rows[-1]
+            sensor=self.previous_robot_state
+            fresh=(end-sensor.imu_stamp_s <= .10 and feedback.get("have_wheel_state",0.) > .5)
+            decision=self.governor.update(frame_from_state(sensor,feedback,self.governor_imu,
+                self.ros.imu_includes_gravity),self.control_dt,linear,angular,fresh=fresh)
+        # Fixed schema keeps CSV columns stable across failsafe and phase changes.
+        keys=("phase","scale","events","armed","hold_seconds","quiet_seconds","fault",
+              "disturbed","trigger_ratio","filtered_vertical_m_s2","wheel_error_m_s",
+              "wheel_error_threshold_m_s","target_scale","wheel_stall_seconds")
+        self.governor_trace={"governor_"+key:decision.get(key,None) for key in keys}
+        self.governor_trace.update(governor_requested_linear_m_s=linear,governor_requested_yaw_rad_s=angular,
+                                  governor_input_time_s=end)
+        self.governor_reference_sim_s=end
+        linear*=decision["scale"]
+        angular*=decision["scale"]
+        self.governor_state_publisher.publish(String(data=json.dumps(dict(time_s=end,
+            governed_linear_m_s=linear,governed_yaw_rad_s=angular,**self.governor_trace),allow_nan=False)))
+        return linear,angular,decision["scale"]
+
     def step(self, action):
         if not self.world_is_paused:
             raise RuntimeError("Lockstep invariant violated: Gazebo must be paused")
@@ -832,13 +926,17 @@ class NinoGazeboEnv(gym.Env):
         if self.route_set.enabled:
             linear, angular = route_command(
                 self.previous_robot_state, self.path, self.previous_tracking, self.config)
-            self.ros.publish_motion_command(linear, angular)
         elif self.config.get("action_mode", "wheel_torque") in ("yaw_reference", "speed_yaw_reference"):
             linear, angular = flat_motion_command(self.previous_robot_state, self.path,
                 self.previous_tracking, self.config, yaw_reference)
-            self.ros.publish_motion_command(linear, angular)
         else:
-            self.ros.publish_straight_command(self._straight_command(self.previous_tracking))
+            linear,angular=self._straight_command(self.previous_tracking),0.
+        if self.governor is not None:
+            if not np.allclose(action,BASELINE_ACTION):
+                raise ValueError("Governor PI screening requires full-speed baseline action; use a separate matched PI config")
+            linear,angular,scale=self._governor_command(linear,angular)
+            action[0]=raw_action[0]=2*scale-1
+        self.ros.publish_motion_command(linear,angular)
         # The horizontal safety LiDAR remains age-bounded instead of being a
         # hard barrier: one dropped 10 Hz packet must not abort an episode.
         # The 20 Hz downward scan is policy input, however, so require a view
@@ -886,7 +984,9 @@ class NinoGazeboEnv(gym.Env):
                 or self.config.get("evaluation_speed_only", False)
                 or self.config.get("action_mode") == "speed_yaw_reference"):
             torque[:] = 0.0
-        self.ros.publish_control(scale, float(torque[0]), float(torque[1]))
+        # Governor already scales the motion reference. Never apply a second
+        # v2 scale or learned torque; new factory governor launch disables v2.
+        self.ros.publish_control(1. if self.governor is not None else scale, float(torque[0]), float(torque[1]))
         advance_chunked(self.physics_steps_per_control - delay_steps)
 
         # GPU LiDAR rendering can miss the exact paused boundary even though
@@ -964,6 +1064,8 @@ class NinoGazeboEnv(gym.Env):
             self.config["policy_v2"].get("sensor_wait_timeout_seconds", 2.0),
         )
         self.vertical_square_integral += imu["square_integral"]
+        if self.governor is not None:
+            self.governor_imu=dict(imu)
         self.imu_coverage_seconds += imu["duration"]
         self.peak_vertical_acceleration = max(self.peak_vertical_acceleration, imu["peak"])
 
@@ -1080,6 +1182,9 @@ class NinoGazeboEnv(gym.Env):
                   "off_path" if off_path else "wrong_direction" if wrong_direction else
                   "navigation_invalid" if navigation_invalid else
                   "goal_missed" if missed_goal else None)
+        governor_failed=self.governor is not None and self.governor.phase=="FAILSAFE"
+        if governor_failed:
+            failed="governor_failsafe"
         succeeded = bool(succeeded and not failed)
         timed_out = elapsed + 0.5 * self.physics_dt >= self.episode_deadline_seconds
         terminated = bool(
@@ -1091,6 +1196,7 @@ class NinoGazeboEnv(gym.Env):
             or collision
             or timed_out
             or missed_goal
+            or governor_failed
         )
         # The configured mission deadline is a task failure, not an external
         # rollout cutoff. SB3 must not bootstrap a fictitious continuation.
@@ -1211,6 +1317,7 @@ class NinoGazeboEnv(gym.Env):
             ) = self._record_adaptive_terrain_outcome(succeeded)
             reason = (
         "success" if succeeded
+        else "governor_failsafe" if governor_failed
         else "rollover" if rolled
         else "wrong_direction" if wrong_direction
         else "off_path" if off_path
@@ -1236,6 +1343,10 @@ class NinoGazeboEnv(gym.Env):
             )
             count = max(1, self.episode_steps)
             info["episode_metrics"] = {
+                **({"governor_profile":self.governor.settings.profile,
+                    "governor_run_id":self.governor_run_id,
+                    "governor_events":self.governor.events,"governor_final_phase":self.governor.phase,
+                    "governor_fault":self.governor.fault} if self.governor is not None else {}),
                 **({"rough_curriculum_stage": int(self.config["rough_runtime"]["stage_index"]),
                     "terrain_variant_id": self.config["rough_runtime"]["terrain_variant_id"],
                     "terrain_randomization_level": self.config["rough_runtime"]["terrain_level"]}
@@ -1342,7 +1453,7 @@ class NinoGazeboEnv(gym.Env):
                     self.wrong_direction_seconds
                 ),
                 "termination": (
-                    "success" if succeeded else "rollover" if rolled else
+                    "success" if succeeded else "governor_failsafe" if governor_failed else "rollover" if rolled else
                     "wrong_direction" if wrong_direction else
                     "off_path" if off_path else
                     "navigation_invalid" if navigation_invalid else
@@ -1351,8 +1462,14 @@ class NinoGazeboEnv(gym.Env):
             }
             self.ros.publish_control(0.0, 0.0, 0.0)
             self.ros.publish_straight_command(0.0)
+            if self.governor is not None:
+                from std_msgs.msg import String
+                self.governor_episode_publisher.publish(String(data=json.dumps(dict(
+                    event="end",run_id=self.governor_run_id,attempt=self.attempt_number,time_s=ended_sim,
+                    metrics=info["episode_metrics"],governor=self.governor_trace))))
         if self.config.get("evaluation_control_trace", False):
             info["control_trace"] = {
+                **self.governor_trace,
                 "sim_time_s": ended_sim, "elapsed_s": elapsed,
                 "action_speed": float(raw_action[0]),
                 "action_yaw": float(raw_action[-1]),

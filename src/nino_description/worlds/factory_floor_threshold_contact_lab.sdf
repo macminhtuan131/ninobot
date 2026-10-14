@@ -1,0 +1,422 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.9">
+  <world name="factory_floor_lab">
+    <physics name="1ms_contact_lab" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <dart>
+        <collision_detector>bullet</collision_detector>
+      </dart>
+    </physics>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+    <gravity>0 0 -9.80665</gravity>
+    <scene>
+      <ambient>0.28 0.28 0.30 1</ambient>
+      <background>0.08 0.09 0.12 1</background>
+      <shadows>true</shadows>
+      <grid>false</grid>
+    </scene>
+    <light name="lamp_01" type="point">
+      <pose>2 0 2.7 0 0 0</pose>
+      <cast_shadows>false</cast_shadows>
+      <diffuse>0.95 0.92 0.84 1</diffuse>
+      <specular>0.15 0.15 0.15 1</specular>
+      <attenuation>
+        <range>11</range>
+        <constant>0.4</constant>
+        <linear>0.08</linear>
+        <quadratic>0.01</quadratic>
+      </attenuation>
+    </light>
+    <model name="enclosed_hall">
+      <static>true</static>
+      <link name="structure">
+        <collision name="rear_wall_collision">
+          <pose>-2.1 0 1.35 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.2 7.4 3.3</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="rear_wall_visual">
+          <pose>-2.1 0 1.35 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.2 7.4 3.3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.63 0.67 1</ambient>
+            <diffuse>0.60 0.63 0.67 1</diffuse>
+          </material>
+        </visual>
+        <collision name="front_wall_collision">
+          <pose>8.1 0 1.35 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.2 7.4 3.3</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="front_wall_visual">
+          <pose>8.1 0 1.35 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.2 7.4 3.3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.63 0.67 1</ambient>
+            <diffuse>0.60 0.63 0.67 1</diffuse>
+          </material>
+        </visual>
+        <collision name="left_wall_collision">
+          <pose>3.0 3.6 1.35 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>10.4 .2 3.3</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="left_wall_visual">
+          <pose>3.0 3.6 1.35 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>10.4 .2 3.3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.63 0.67 1</ambient>
+            <diffuse>0.60 0.63 0.67 1</diffuse>
+          </material>
+        </visual>
+        <collision name="right_wall_collision">
+          <pose>3.0 -3.6 1.35 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>10.4 .2 3.3</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="right_wall_visual">
+          <pose>3.0 -3.6 1.35 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>10.4 .2 3.3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.63 0.67 1</ambient>
+            <diffuse>0.60 0.63 0.67 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact" />
+    <light name="factory_goal_lamp_N1" type="point">
+      <pose>3.2 2.75 2.7 0 0 0</pose>
+      <cast_shadows>false</cast_shadows>
+      <diffuse>0.95 0.92 0.84 1</diffuse>
+      <specular>0.15 0.15 0.15 1</specular>
+      <attenuation>
+        <range>11</range>
+        <constant>0.4</constant>
+        <linear>0.08</linear>
+        <quadratic>0.01</quadratic>
+      </attenuation>
+    </light>
+    <light name="factory_goal_lamp_S1" type="point">
+      <pose>3.2 -2.75 2.7 0 0 0</pose>
+      <cast_shadows>false</cast_shadows>
+      <diffuse>0.95 0.92 0.84 1</diffuse>
+      <specular>0.15 0.15 0.15 1</specular>
+      <attenuation>
+        <range>11</range>
+        <constant>0.4</constant>
+        <linear>0.08</linear>
+        <quadratic>0.01</quadratic>
+      </attenuation>
+    </light>
+    <model name="factory_contact_floor">
+      <static>true</static>
+      <link name="terrain">
+        <collision name="terrain_collision">
+          <pose>3.000000000 0.000000000 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://nino_description/terrains/factory_floor_lab/terrain_68683d047cc91c1e.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="terrain_visual">
+          <pose>3.000000000 0.000000000 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://nino_description/terrains/factory_floor_lab/terrain_68683d047cc91c1e.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.55 0.43 0.32 1</ambient>
+            <diffuse>0.65 0.52 0.39 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <link name="level_apron_visuals">
+        <visual name="apron_0">
+          <pose>-0.900000000 0.000000000 0.0002 0 0 0</pose>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>2.200000000 7.000000000</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.43 0.48 0.55 1</ambient>
+            <diffuse>0.43 0.48 0.55 1</diffuse>
+          </material>
+        </visual>
+        <visual name="apron_1">
+          <pose>7.100000000 0.000000000 0.0002 0 0 0</pose>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1.800000000 7.000000000</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.43 0.48 0.55 1</ambient>
+            <diffuse>0.43 0.48 0.55 1</diffuse>
+          </material>
+        </visual>
+        <visual name="apron_2">
+          <pose>3.200000000 -2.650000000 0.0002 0 0 0</pose>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>6.000000000 1.700000000</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.43 0.48 0.55 1</ambient>
+            <diffuse>0.43 0.48 0.55 1</diffuse>
+          </material>
+        </visual>
+        <visual name="apron_3">
+          <pose>3.200000000 2.650000000 0.0002 0 0 0</pose>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>6.000000000 1.700000000</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.43 0.48 0.55 1</ambient>
+            <diffuse>0.43 0.48 0.55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <link name="goal_hall_visuals">
+        <visual name="hall_W1">
+          <pose>-0.9 0 0.0004 0 0 0</pose>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>2.2 7</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.45 0.51 0.44 1</ambient>
+            <diffuse>0.45 0.51 0.44 1</diffuse>
+          </material>
+        </visual>
+        <visual name="hall_E1">
+          <pose>7.1 0 0.0004 0 0 0</pose>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1.8 7</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.45 0.51 0.44 1</ambient>
+            <diffuse>0.45 0.51 0.44 1</diffuse>
+          </material>
+        </visual>
+        <visual name="hall_N1">
+          <pose>3.2 2.75 0.0004 0 0 0</pose>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>6 1.5</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.45 0.51 0.44 1</ambient>
+            <diffuse>0.45 0.51 0.44 1</diffuse>
+          </material>
+        </visual>
+        <visual name="hall_S1">
+          <pose>3.2 -2.75 0.0004 0 0 0</pose>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>6 1.5</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.45 0.51 0.44 1</ambient>
+            <diffuse>0.45 0.51 0.44 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="isolated_threshold">
+      <static>true</static>
+      <link name="T1">
+        <collision name="T1_collision">
+          <pose>2.9 0.0 0 1.57079632679 0 0.0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.008</radius>
+              <length>0.7</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="T1_visual">
+          <pose>2.9 0.0 0 1.57079632679 0 0.0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.008</radius>
+              <length>0.7</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.40 0.30 0.16 1</ambient>
+            <diffuse>0.40 0.30 0.16 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="task_markers">
+      <static>true</static>
+      <link name="markers">
+        <visual name="start">
+          <pose>0.0 0.0 .001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>.20</radius>
+              <length>.001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.08 0.34 0.12 1</ambient>
+            <diffuse>0.08 0.34 0.12 1</diffuse>
+          </material>
+        </visual>
+        <visual name="goal_W1">
+          <pose>-1.0 0.0 .001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>.20</radius>
+              <length>.001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.10 0.80 0.28 1</ambient>
+            <diffuse>0.10 0.80 0.28 1</diffuse>
+          </material>
+        </visual>
+        <visual name="goal_E1">
+          <pose>6.45 0.0 .001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>.20</radius>
+              <length>.001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.10 0.80 0.28 1</ambient>
+            <diffuse>0.10 0.80 0.28 1</diffuse>
+          </material>
+        </visual>
+        <visual name="goal_N1">
+          <pose>3.2 2.75 .001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>.20</radius>
+              <length>.001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.10 0.80 0.28 1</ambient>
+            <diffuse>0.10 0.80 0.28 1</diffuse>
+          </material>
+        </visual>
+        <visual name="goal_S1">
+          <pose>3.2 -2.75 .001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>.20</radius>
+              <length>.001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.10 0.80 0.28 1</ambient>
+            <diffuse>0.10 0.80 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

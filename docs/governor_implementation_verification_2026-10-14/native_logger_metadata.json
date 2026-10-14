@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "complete": true,
+  "logger_only": true,
+  "sim_contact_is_privileged": true,
+  "ground_truth_is_evaluation_only": true,
+  "governor_has_no_oracle_input": true,
+  "contact_forces_may_be_unavailable": true,
+  "impulse_not_inferred_without_valid_force_timing": true,
+  "qualification": "Instrumentation/authority experiment, not a learning or sim-to-real result",
+  "contact_components": [
+    "left_wheel",
+    "right_wheel",
+    "caster_left_wheel",
+    "caster_right_wheel",
+    "caster_bracket_left",
+    "caster_bracket_right",
+    "chassis"
+  ],
+  "source_config_sha256": "4d0814b53f097b2bf2f0496df86ebeb31ff2f3ff9605fe04b2df78097549890e",
+  "governor_core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+  "world_sha256": "31a735373631b3c6232366d7bdbc0489b3e5bd61abd7748c7a081a30854af63f",
+  "logger_sha256": "a4bf20a46eaba0c1d3b2806b6960b5a2710fc9b6f4bf0aed00e14c1835bfb18b",
+  "message_counts": {
+    "/nino/contact_lab/left_wheel": 2682,
+    "/nino/contact_lab/right_wheel": 2682,
+    "/imu/data": 1428,
+    "/joint_states": 14277,
+    "/nino/contact_lab/caster_right_wheel": 2642,
+    "/ground_truth/odom": 1427,
+    "/nino_drive/diagnostics": 1427,
+    "/nino/contact_lab/caster_left_wheel": 2618,
+    "/odom": 1426,
+    "/nino/governor/episode": 1,
+    "/nino/governor/state": 25
+  }
+}

@@ -1,0 +1,48 @@
+[INFO] [launch]: All log files can be found below /home/tuanmac/.ros/log/2026-10-14-15-40-25-835351-tuanmac-ThinkPad-E14-Gen-7-41904
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [command_gate-1]: process started with pid [41907]
+[INFO] [collision_monitor-2]: process started with pid [41908]
+[INFO] [speed_governor-3]: process started with pid [41909]
+[INFO] [lifecycle_manager-4]: process started with pid [41910]
+[lifecycle_manager-4] [INFO] [1791967225.986320816] [lifecycle_manager_commands]: Creating
+[lifecycle_manager-4] [INFO] [1791967225.990752094] [lifecycle_manager_commands]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-4] [INFO] [1791967225.993195699] [lifecycle_manager_commands]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-4] [INFO] [1791967225.993283079] [lifecycle_manager_commands]: [34m[1mConfiguring collision_monitor[0m[0m
+[collision_monitor-2] [INFO] [1791967225.993964964] [collision_monitor]: 
+[collision_monitor-2] 	collision_monitor lifecycle node launched. 
+[collision_monitor-2] 	Waiting on external lifecycle transitions to activate
+[collision_monitor-2] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[collision_monitor-2] [INFO] [1791967226.171745088] [collision_monitor]: Configuring
+[collision_monitor-2] [INFO] [1791967226.179358244] [collision_monitor]: [scan]: Creating Scan
+[collision_monitor-2] [INFO] [1791967226.181209822] [collision_monitor]: [StopZone]: Creating Polygon
+[lifecycle_manager-4] [INFO] [1791967226.192075526] [lifecycle_manager_commands]: [34m[1mActivating collision_monitor[0m[0m
+[collision_monitor-2] [INFO] [1791967226.192234883] [collision_monitor]: Activating
+[collision_monitor-2] [INFO] [1791967226.192309284] [collision_monitor]: Creating bond (collision_monitor) to lifecycle manager.
+[lifecycle_manager-4] [INFO] [1791967226.297681499] [lifecycle_manager_commands]: Server collision_monitor connected with bond.
+[lifecycle_manager-4] [INFO] [1791967226.297740709] [lifecycle_manager_commands]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-4] [INFO] [1791967226.297751842] [lifecycle_manager_commands]: [34m[1mCreating bond timer...[0m[0m
+[command_gate-1] [INFO] [1791967226.451811061] [nino_command_gate]: Manual mode, disabled. Enable explicitly after driver checks.
+[speed_governor-3] [INFO] [1791967226.510002990] [nino_speed_governor]: Reactive governor ready; enabled=False; no contact/pose/preview input
+[collision_monitor-2] [WARN] [1791967226.692442413] [collision_monitor]: Robot to stop due to invalid source. Either due to data not published yet, or to lack of new data received within the sensor timeout, or if impossible to transform data to base frame
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [lifecycle_manager-4]: sending signal 'SIGINT' to process[lifecycle_manager-4]
+[INFO] [speed_governor-3]: sending signal 'SIGINT' to process[speed_governor-3]
+[INFO] [collision_monitor-2]: sending signal 'SIGINT' to process[collision_monitor-2]
+[INFO] [command_gate-1]: sending signal 'SIGINT' to process[command_gate-1]
+[lifecycle_manager-4] [INFO] [1791967502.710359536] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-4] [INFO] [1791967502.710622172] [lifecycle_manager_commands]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager_commands)
+[lifecycle_manager-4] [INFO] [1791967502.710761869] [lifecycle_manager_commands]: [34m[1mTerminating bond timer...[0m[0m
+[collision_monitor-2] [INFO] [1791967502.711837809] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[collision_monitor-2] [INFO] [1791967502.712129187] [collision_monitor]: Running Nav2 LifecycleNode rcl preshutdown (collision_monitor)
+[collision_monitor-2] [INFO] [1791967502.712662597] [collision_monitor]: Deactivating
+[collision_monitor-2] [INFO] [1791967502.712730264] [collision_monitor]: Destroying bond (collision_monitor) to lifecycle manager.
+[collision_monitor-2] [INFO] [1791967502.723118527] [collision_monitor]: Cleaning up
+[collision_monitor-2] [INFO] [1791967502.723168976] [collision_monitor]: [StopZone]: Destroying Polygon
+[collision_monitor-2] [INFO] [1791967502.723213169] [collision_monitor]: [scan]: Destroying Scan
+[collision_monitor-2] [INFO] [1791967502.725002391] [collision_monitor]: Destroying bond (collision_monitor) to lifecycle manager.
+[lifecycle_manager-4] [INFO] [1791967502.725729223] [lifecycle_manager_commands]: Destroying lifecycle_manager_commands
+[collision_monitor-2] [INFO] [1791967502.729350930] [collision_monitor]: Destroying
+[INFO] [lifecycle_manager-4]: process has finished cleanly [pid 41910]
+[INFO] [collision_monitor-2]: process has finished cleanly [pid 41908]
+[INFO] [command_gate-1]: process has finished cleanly [pid 41907]
+[INFO] [speed_governor-3]: process has finished cleanly [pid 41909]

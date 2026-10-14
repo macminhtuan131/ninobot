@@ -1,6 +1,67 @@
-# Nino: straight-line residual PPO and trajectory evaluation
+# Nino: contact-informed speed adaptation over low floor obstacles
 
-**New rocky-terrain experiment:** [diagnosis, map, and training commands](docs/ROCKY_TRACKING.md).
+## Current research scope — 13 October 2026
+
+- [Reactive governor v1, contact logging and H2 experiment commands](docs/NINO_REACTIVE_GOVERNOR_V1_2026-10-14.md).
+  IMU/encoder/drive-feedback governor implemented; predictive/RL extensions
+  remain conditional on measured control authority and useful information.
+
+The application goal is factory-floor navigation with low obstacles. The next
+research gate is **first-contact-to-next-contact control authority**, using IMU,
+drive-wheel encoders and requested/executed command history above wheel PI.
+Obstacle positions, absolute pose, path progress, terrain preview and simulated
+caster states are excluded from the sensor-only supervisor input.
+
+- [Restored six-cable flat corridor with actual carved adaptive potholes/grooves](docs/FACTORY_FLOOR_CONTACT_LAB_2026-10-13.md).
+- [New map preview](docs/factory_floor_lab_preview.png).
+- Four connected flat goal halls now surround the cable corridor: one goal
+  each at E1 (6.45, 0), W1 (-1, 0), N1 (3.20, 2.75), S1 (3.20, -2.75).
+  The current straight PI/smoke configs still target E1. The separate
+  `factory_floor_routes_pi_check.yaml` enables straight E1, L-shaped N1/S1,
+  and the clockwise W1 return loop for PI checks; route training is pending.
+- [Drawn factory route preview](docs/factory_floor_routes_preview.png).
+- Open after building: `ros2 launch nino_rl factory_floor_training.launch.py variant:=mixed headless:=false`.
+- Start mechanism checks with `variant:=clear`, then isolated `cable`, `pothole`
+  and `groove`. The mixed map is prepared for later integration, not validated.
+- Static map PI config: `src/nino_rl/config/factory_floor_pi_check.yaml`.
+- Runtime adaptive 1→6 mechanics: `src/nino_rl/config/factory_floor_curriculum.yaml`.
+  The viewing world now copies the rough map's dedicated brown ground model:
+  four shallow bowls, one groove, six cables, a short cable and a local bump.
+  Edit the terrain catalogue in `src/nino_description/config/factory_floor_lab.yaml`.
+  Runtime resets replace the catalogue with the selected stage's sampled items.
+  Both preserve the 6.45 m goal and 4 m corridor; the adaptive config replaces
+  one continuous terrain mesh each reset: level ground with carved holes,
+  and cables above it. Potholes are sampled between the actual angled cables.
+  New sensor-only learning/data contracts are
+  still required; no PPO or Optuna is started.
+
+- [Earlier sensor-only reactive PI screening specification and commands](docs/FLAT_PROPRIOCEPTIVE_RESEARCH_2026-10-13.md).
+- Specification: `src/nino_rl/config/flat_proprioceptive_research.yaml`.
+- Preparation: `python src/nino_rl/scripts/prepare_flat_reactive_research.py`.
+- Dry plan: `python src/nino_rl/scripts/run_flat_reactive_screen.py`.
+
+**Rough training/tuning and combined-policy switching are deferred.** Their
+maps, checkpoints, studies and results are preserved. The coordinate-triggered
+flat schedule is a historical diagnostic, not evidence of sensor-only adaptation.
+The new bundle is PI screening only; it blocks legacy PPO evaluation/training.
+PPO and Optuna are not started by preparation or planning.
+
+The cable obstacle model is a **rigid circular cylinder**, not a deformable cable.
+New potholes/grooves are carved below a level floor with shared visual/collision
+meshes; their crossing feasibility is not yet established. The earlier reactive
+screen below retains its own cable-only map and immutable contract.
+The caster-damping alternative is an unvalidated physical candidate, kept
+separate from the original robot. The first screen compares full-speed and
+reactive PI on three single-obstacle development layouts, twice each, with a
+new simulator for each episode. Later quality claims require time-matched PI,
+held-out scenarios and independent training seeds.
+
+## Historical experiments and commands
+
+The sections below document earlier contracts. Use the current scope above for
+new work; historical checkpoint/config pairs retain their original meanings.
+
+**Earlier rocky-terrain experiment:** [diagnosis, map, and training commands](docs/ROCKY_TRACKING.md).
 It keeps the original 4 m hall width and 6 m goal distance, uses broad rolling
 terrain across the hall, and trains trajectory stabilization with physical
 simulation scoring and PI yaw-reference control. Select `rocky_tracking.yaml`
@@ -34,6 +95,7 @@ discovery, preventing another machine or simulator from injecting a conflicting
 - [Báo cáo tiến độ 04/10/2026: số liệu, roadmap, so sánh PID/Nav2/RL và 32 công trình](docs/BAO_CAO_TIEN_DO_VA_DOI_CHIEU_RL_NINO_2026-10-04.md)
 - [Simulation and hardware reference](docs/HARDWARE_REFERENCE.md)
 - [Raspberry Pi deployment guide](docs/RASPBERRY_PI_DEPLOYMENT.md)
+- [Pi 5 navigation, mapping, keyboard/joystick and driver check](src/nino_pi/README.md)
 
 The cable workflow uses training contract revision 30; Rocky Hall uses revision
 31, and the combined rough-to-flat course uses revision 32. Because the cable contract's goal-distance reward,

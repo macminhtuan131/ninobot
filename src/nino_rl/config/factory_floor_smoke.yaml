@@ -1,0 +1,22 @@
+# Short pipeline check only; not the new contact-informed research policy.
+# Fresh initialization: do not resume or transfer a historical checkpoint.
+extends: factory_floor_curriculum.yaml
+seed: 75000
+device: cpu
+flat_curriculum:
+  # Four mixed items guarantees one pothole, groove, local bump and short cable.
+  # All six course cables remain; layout/angles randomize on every reset.
+  fixed_stage: 3
+  evaluation_stage: 3
+  replay_probability: 0.0
+ppo:
+  n_steps: 256
+  batch_size: 64
+  n_epochs: 2
+research_map:
+  revision: factory_floor_contact_v6_pipeline_smoke
+  stage: pipeline_smoke_only
+  training_allowed: true
+  optuna_allowed: false
+  # The inherited legacy speed/yaw actor is used only to test the pipeline.
+  smoke_only: true

@@ -1856,8 +1856,11 @@ class RosRobotInterface(Node):
         self,
         features: list[tuple[str, float, float, float]],
         timeout: float = 5.0,
+        *, carved_floor_config: dict | None = None,
     ) -> None:
         """Replace adaptive side clutter with one efficiently spawned model."""
+        if carved_floor_config is not None:
+            return self._configure_carved_floor(features, carved_floor_config, timeout)
         name = "adaptive_training_terrain"
         if not self.delete_entity.wait_for_service(timeout_sec=timeout):
             raise TimeoutError(f"Missing {self.delete_entity.srv_name}")
@@ -1910,6 +1913,72 @@ class RosRobotInterface(Node):
             if response is None or not response.success:
                 raise RuntimeError("Gazebo failed to spawn adaptive training terrain")
         self._adaptive_terrain_present = True
+
+    def _configure_carved_floor(self, features, config, timeout):
+        """Replace the whole floor while paused; retain walls and six cables."""
+        from pathlib import Path
+        import tempfile
+        import xml.etree.ElementTree as ET
+        from nino_rl.carved_floor import floor_model
+
+        if self.world_name != "factory_floor_lab":
+            raise ValueError("Carved-floor replacement is restricted to its own world")
+        if not self.delete_entity.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError(f"Missing {self.delete_entity.srv_name}")
+        if not self.spawn_entity.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError(f"Missing {self.spawn_entity.srv_name}")
+        if not hasattr(self, "_carved_floor_cache"):
+            self._carved_floor_cache = Path(tempfile.mkdtemp(prefix="nino_carved_floor_"))
+            self._carved_floor_history = []
+        sdf, paths = floor_model(features, config, self._carved_floor_cache)
+        root = ET.fromstring(sdf)
+        # Keep existing local bump / short-cable mechanics, but potholes and
+        # grooves are exclusively in the replacement negative-height mesh.
+        positive = [f for f in features if f[0] not in ("pothole", "groove")]
+        if positive:
+            extra = ET.fromstring(self._adaptive_terrain_sdf("positive", positive)).find("model")
+            for child in extra.findall("link"):
+                root.find("model").append(child)
+        sdf = ET.tostring(root, encoding="unicode")
+        name = "factory_contact_floor"
+
+        # Deleting this model removes the support under Nino too. Entity
+        # services do not pause physics themselves; replacing a floor in a
+        # running world lets the robot fall before the create request arrives.
+        # Leave it paused until the caller explicitly refreshes reset sensors.
+        self.publish_straight_command(0.0)
+        self.publish_control(0.0, 0.0, 0.0)
+        self.set_world_paused(True, timeout=timeout)
+
+        def remove():
+            request = DeleteEntity.Request()
+            request.entity.name = name
+            request.entity.type = Entity.MODEL
+            return request
+
+        removed = self._call_idempotent_service(self.delete_entity, remove, timeout, f"remove {name}")
+        if removed is None or not removed.success:
+            raise RuntimeError("Cannot replace carved floor: old floor removal unconfirmed")
+
+        def spawn():
+            request = SpawnEntity.Request()
+            request.entity_factory.name = name
+            request.entity_factory.allow_renaming = False
+            request.entity_factory.sdf = sdf
+            request.entity_factory.pose.orientation.w = 1.0
+            return request
+
+        response = self._call_idempotent_service(self.spawn_entity, spawn, timeout, f"spawn {name}")
+        if response is None or not response.success:
+            raise RuntimeError("Gazebo failed to spawn complete carved floor; stop this run")
+        # Gazebo paths must remain valid for asynchronous visual loading. Keep
+        # current and previous layouts; removed older models no longer use them.
+        self._carved_floor_history.append(set(paths))
+        self._carved_floor_history = self._carved_floor_history[-2:]
+        keep = set().union(*self._carved_floor_history)
+        for path in self._carved_floor_cache.glob("*.stl"):
+            if str(path.resolve()) not in keep:
+                path.unlink()
 
     @classmethod
     def _cable_spawn_request(cls, name: str, x: float, radius: float, angle: float):

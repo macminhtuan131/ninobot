@@ -1,0 +1,72 @@
+# Same six-cable flat course and 1→6 adaptive-item progression, with TRUE
+# negative-height potholes/grooves. Geometry/mechanics preparation only.
+extends: factory_floor_pi_check.yaml
+task: combined_flat_section
+flat_curriculum:
+  enabled: true
+  fixed_stage: null
+  window_episodes: 30
+  advance_success_rate: 0.75
+  replay_probability: 0.20
+  evaluation_stage: 0
+  stages:
+  - {name: adaptive_1, cable_indices: [0, 1, 2, 3, 4, 5], angle_range_deg: [-30, 30], adaptive_features: 1}
+  - {name: adaptive_2, cable_indices: [0, 1, 2, 3, 4, 5], angle_range_deg: [-30, 30], adaptive_features: 2}
+  - {name: adaptive_3, cable_indices: [0, 1, 2, 3, 4, 5], angle_range_deg: [-30, 30], adaptive_features: 3}
+  - {name: adaptive_4, cable_indices: [0, 1, 2, 3, 4, 5], angle_range_deg: [-30, 30], adaptive_features: 4}
+  - {name: adaptive_5, cable_indices: [0, 1, 2, 3, 4, 5], angle_range_deg: [-30, 30], adaptive_features: 5}
+  - {name: adaptive_6, cable_indices: [0, 1, 2, 3, 4, 5], angle_range_deg: [-30, 30], adaptive_features: 6}
+course_cable_randomization:
+  enabled: true
+  angle_range_deg: [-30, 30]
+  cables:
+  - {x: 0.65, radius: 0.011}
+  - {x: 1.45, radius: 0.012}
+  - {x: 2.45, radius: 0.013}
+  - {x: 3.45, radius: 0.018}
+  - {x: 4.45, radius: 0.010}
+  - {x: 5.45, radius: 0.009}
+adaptive_terrain:
+  enabled: true
+  geometry_profile: continuous_floor_mesh_v1
+  floor_representation: continuous_mesh
+  floor_bounds_xy_m: [-2.0, 8.0, -3.5, 3.5]
+  goal_halls:
+  - {id: W1, direction: west, bounds_xy_m: [-2.0, 0.20, -3.5, 3.5], goal_pose: [-1.0, 0.0, 3.141592653589793]}
+  - {id: E1, direction: east, bounds_xy_m: [6.20, 8.0, -3.5, 3.5], goal_pose: [6.45, 0.0, 0.0]}
+  - {id: N1, direction: north, bounds_xy_m: [0.20, 6.20, 2.0, 3.5], goal_pose: [3.20, 2.75, 1.5707963267948966]}
+  - {id: S1, direction: south, bounds_xy_m: [0.20, 6.20, -3.5, -2.0], goal_pose: [3.20, -2.75, -1.5707963267948966]}
+  mesh_spacing_m: 0.005
+  flat_mesh_spacing_m: 0.04
+  terrain_material:
+    ambient: '0.55 0.43 0.32 1'
+    diffuse: '0.65 0.52 0.39 1'
+  terrain_view_bounds_xy_m: [0.20, 6.20, -1.80, 1.80]
+  # DART imports the complete replacement mesh during its first physics step.
+  # Setup only: normal action deadlines and exact clock checks stay unchanged.
+  floor_initialization_wall_timeout_seconds: 30.0
+  progress_on_success: false
+  initial_features: 1
+  max_features: 6
+  evaluation_features: 1
+  zone_x_m: [0.55, 5.65]
+  lateral_spawn_range_m: [-0.5, 0.5]
+  # Random gap and x/y each reset, using sampled cable angles and full footprint.
+  pothole_placement: cable_gaps
+  pothole_cable_clearance_m: 0.03
+  pothole_radius_m: 0.30
+  pothole_depth_m: 0.018
+  pothole_shape: round_bowl  # Also supports flat_bottom_bowl from rough carving.
+  groove_half_width_m: 0.05
+  groove_length_m: 0.70
+  groove_depth_m: 0.010
+  # Keep the legacy LOCAL bump and short-cable items. Broad terrain mounds
+  # and rolling background have been removed; local bumps remain optional.
+  bump_radius_m: 0.12
+  cable_radius_m: 0.015
+  cable_length_m: 0.55
+research_map:
+  revision: factory_floor_contact_v6_four_goal_halls
+  stage: adaptive_geometry_and_PI_feasibility
+  training_allowed: false
+  optuna_allowed: false

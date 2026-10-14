@@ -3,6 +3,8 @@
   <xacro:arg
     name="controllers_file"
     default="$(find nino_control)/config/controllers.yaml"/>
+  <xacro:arg name="contact_lab" default="false"/>
+  <xacro:arg name="terrain_preview" default="true"/>
 
   <!-- Dimensions measured from the supplied SolidWorks STL export. -->
   <xacro:property name="drive_wheel_radius" value="0.0625"/>
@@ -124,6 +126,7 @@
     <origin xyz="0.33 0 0.20" rpy="0 0.45 0"/>
   </joint>
 
+  <xacro:if value="$(arg terrain_preview)">
   <gazebo reference="terrain_laser">
     <sensor name="terrain_preview_sensor" type="gpu_lidar">
       <topic>terrain_scan</topic>
@@ -160,6 +163,7 @@
       </lidar>
     </sensor>
   </gazebo>
+  </xacro:if>
 
   <gazebo>
     <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
@@ -172,6 +176,7 @@
             name="gz::sim::systems::OdometryPublisher">
       <odom_frame>world</odom_frame>
       <robot_base_frame>base_footprint</robot_base_frame>
+      <xacro:if value="$(arg contact_lab)"><dimensions>3</dimensions></xacro:if>
       <odom_publish_frequency>50</odom_publish_frequency>
       <odom_topic>/model/nino/odometry</odom_topic>
     </plugin>
@@ -351,6 +356,30 @@
 
   <xacro:caster index="left" y="0.088"/>
   <xacro:caster index="right" y="-0.088"/>
+
+  <!-- Research-only contact oracle: never connected to deployed governor. -->
+  <xacro:macro name="contact_logger_sensor" params="component link:='' collision:=''">
+    <gazebo reference="${link if link else component+'_link'}">
+      <sensor name="${component}_contact" type="contact">
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <contact>
+          <collision>${collision if collision else component+'_link_collision'}</collision>
+          <topic>/nino/contact_lab/${component}</topic>
+        </contact>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+  <xacro:if value="$(arg contact_lab)">
+    <xacro:contact_logger_sensor component="left_wheel"/>
+    <xacro:contact_logger_sensor component="right_wheel"/>
+    <xacro:contact_logger_sensor component="caster_left_wheel"/>
+    <xacro:contact_logger_sensor component="caster_right_wheel"/>
+    <xacro:contact_logger_sensor component="caster_bracket_left"/>
+    <xacro:contact_logger_sensor component="caster_bracket_right"/>
+    <xacro:contact_logger_sensor component="chassis" link="base_footprint"
+      collision="base_footprint_fixed_joint_lump__base_link_collision"/>
+  </xacro:if>
 
   <!-- Identical contact parameters on the left and right prevent artificial
        yaw.  Caster friction is lower so the swivels align without scrubbing. -->

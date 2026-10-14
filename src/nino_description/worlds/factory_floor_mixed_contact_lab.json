@@ -1,0 +1,467 @@
+{
+  "revision": "factory_floor_contact_v6_four_goal_halls",
+  "variant": "mixed",
+  "seed": null,
+  "world_name": "factory_floor_lab",
+  "world_file": "factory_floor_mixed_contact_lab.sdf",
+  "floor": {
+    "x_m": [
+      -2.0,
+      8.0
+    ],
+    "y_m": [
+      -3.5,
+      3.5
+    ],
+    "start_xy_m": [
+      0.0,
+      0.0
+    ],
+    "goal_xy_m": [
+      6.45,
+      0.0
+    ],
+    "mesh_spacing_m": 0.005,
+    "flat_mesh_spacing_m": 0.04,
+    "representation": "continuous_mesh",
+    "terrain_view_bounds_xy_m": [
+      0.2,
+      6.2,
+      -1.8,
+      1.8
+    ],
+    "physics_step_seconds": 0.001
+  },
+  "goal_halls": [
+    {
+      "id": "W1",
+      "direction": "west",
+      "bounds_xy_m": [
+        -2.0,
+        0.2,
+        -3.5,
+        3.5
+      ],
+      "goal_pose": [
+        -1.0,
+        0.0,
+        3.141592653589793
+      ]
+    },
+    {
+      "id": "E1",
+      "direction": "east",
+      "bounds_xy_m": [
+        6.2,
+        8.0,
+        -3.5,
+        3.5
+      ],
+      "goal_pose": [
+        6.45,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "N1",
+      "direction": "north",
+      "bounds_xy_m": [
+        0.2,
+        6.2,
+        2.0,
+        3.5
+      ],
+      "goal_pose": [
+        3.2,
+        2.75,
+        1.5707963267948966
+      ]
+    },
+    {
+      "id": "S1",
+      "direction": "south",
+      "bounds_xy_m": [
+        0.2,
+        6.2,
+        -3.5,
+        -2.0
+      ],
+      "goal_pose": [
+        3.2,
+        -2.75,
+        -1.5707963267948966
+      ]
+    }
+  ],
+  "drawn_routes": [
+    {
+      "id": "E1",
+      "goal_heading_deg": 0.0,
+      "waypoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          6.45,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": "N1",
+      "goal_heading_deg": 90.0,
+      "waypoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.2,
+          0.0
+        ],
+        [
+          3.2,
+          2.75
+        ]
+      ]
+    },
+    {
+      "id": "S1",
+      "goal_heading_deg": -90.0,
+      "waypoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.2,
+          0.0
+        ],
+        [
+          3.2,
+          -2.75
+        ]
+      ]
+    },
+    {
+      "id": "W1",
+      "goal_heading_deg": 180.0,
+      "waypoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.3,
+          0.5
+        ],
+        [
+          0.8,
+          1.1
+        ],
+        [
+          1.7,
+          1.45
+        ],
+        [
+          3.0,
+          1.6
+        ],
+        [
+          4.5,
+          1.6
+        ],
+        [
+          5.7,
+          1.45
+        ],
+        [
+          6.35,
+          1.0
+        ],
+        [
+          6.7,
+          0.35
+        ],
+        [
+          6.7,
+          -0.65
+        ],
+        [
+          6.3,
+          -1.25
+        ],
+        [
+          5.5,
+          -1.55
+        ],
+        [
+          4.0,
+          -1.65
+        ],
+        [
+          2.5,
+          -1.65
+        ],
+        [
+          1.1,
+          -1.4
+        ],
+        [
+          0.1,
+          -0.9
+        ],
+        [
+          -0.35,
+          -0.35
+        ],
+        [
+          -0.55,
+          0.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ]
+    }
+  ],
+  "route_config": "src/nino_rl/config/factory_floor_routes_pi_check.yaml",
+  "adaptive_zone": {
+    "x_m": [
+      0.55,
+      5.65
+    ],
+    "y_m": [
+      -0.5,
+      0.5
+    ],
+    "initial_features": 1,
+    "maximum_features": 6
+  },
+  "depressions": [
+    {
+      "id": "P1",
+      "kind": "round_bowl",
+      "x_m": 1.03,
+      "y_m": 0.18,
+      "radius_x_m": 0.19,
+      "radius_y_m": 0.19,
+      "depth_m": 0.008,
+      "angle_deg": 0.0,
+      "bounds_xy_m": [
+        0.8300000000000001,
+        1.23,
+        -0.020000000000000018,
+        0.38
+      ],
+      "mesh": "terrain_1cb2426cf8d93d53.stl",
+      "mesh_sha256": "ae8f6483fd3899838d6a9bde5c2ed3116f166315368fc1eb733dcbab6fec9dab",
+      "sampled_depth_m": 0.008,
+      "maximum_grade": 0.06475796574882581,
+      "mesh_spacing_m": [
+        0.0050000000000001155,
+        0.0050000000000000044
+      ]
+    },
+    {
+      "id": "P2",
+      "kind": "flat_bottom_bowl",
+      "x_m": 1.95,
+      "y_m": 0.24,
+      "radius_x_m": 0.26,
+      "radius_y_m": 0.21,
+      "depth_m": 0.014,
+      "angle_deg": -15.0,
+      "bounds_xy_m": [
+        1.6345072856933127,
+        2.265492714306687,
+        -0.04013737524735972,
+        0.5201373752473597
+      ],
+      "mesh": "terrain_1cb2426cf8d93d53.stl",
+      "mesh_sha256": "ae8f6483fd3899838d6a9bde5c2ed3116f166315368fc1eb733dcbab6fec9dab",
+      "sampled_depth_m": 0.014,
+      "maximum_grade": 0.16624890998657527,
+      "mesh_spacing_m": [
+        0.004968389201680523,
+        0.004958183632696733
+      ]
+    },
+    {
+      "id": "P3",
+      "kind": "angled_trough",
+      "x_m": 3.95,
+      "y_m": 0.22,
+      "radius_x_m": 0.29,
+      "radius_y_m": 0.21,
+      "depth_m": 0.018,
+      "angle_deg": 20.0,
+      "bounds_xy_m": [
+        3.5956649098736966,
+        4.304335090126304,
+        -0.08652129192948468,
+        0.5265212919294847
+      ],
+      "mesh": "terrain_1cb2426cf8d93d53.stl",
+      "mesh_sha256": "ae8f6483fd3899838d6a9bde5c2ed3116f166315368fc1eb733dcbab6fec9dab",
+      "sampled_depth_m": 0.017995212763845466,
+      "maximum_grade": 0.1318463373660532,
+      "mesh_spacing_m": [
+        0.00499063507220221,
+        0.0049840860476340065
+      ]
+    },
+    {
+      "id": "P4",
+      "kind": "flat_bottom_bowl",
+      "x_m": 4.98,
+      "y_m": -0.04,
+      "radius_x_m": 0.27,
+      "radius_y_m": 0.3,
+      "depth_m": 0.022,
+      "angle_deg": 30.0,
+      "bounds_xy_m": [
+        4.586173140978202,
+        5.373826859021799,
+        -0.4448076211353316,
+        0.36480762113533166
+      ],
+      "mesh": "terrain_1cb2426cf8d93d53.stl",
+      "mesh_sha256": "ae8f6483fd3899838d6a9bde5c2ed3116f166315368fc1eb733dcbab6fec9dab",
+      "sampled_depth_m": 0.022,
+      "maximum_grade": 0.20342787847076188,
+      "mesh_spacing_m": [
+        0.004985150114200643,
+        0.0049976249522881155
+      ]
+    },
+    {
+      "id": "G1",
+      "kind": "groove",
+      "x_m": 2.94,
+      "y_m": 0.0,
+      "radius_x_m": 0.05,
+      "radius_y_m": 0.38,
+      "depth_m": 0.01,
+      "angle_deg": 12.0,
+      "bounds_xy_m": [
+        2.802086177452561,
+        3.0779138225474387,
+        -0.3920916728197341,
+        0.3920916728197341
+      ],
+      "mesh": "terrain_1cb2426cf8d93d53.stl",
+      "mesh_sha256": "ae8f6483fd3899838d6a9bde5c2ed3116f166315368fc1eb733dcbab6fec9dab",
+      "sampled_depth_m": 0.009997016933893614,
+      "maximum_grade": 0.3034888554633338,
+      "mesh_spacing_m": [
+        0.0049254936624087975,
+        0.00499479837986927
+      ]
+    }
+  ],
+  "cables": [
+    {
+      "id": "C1",
+      "x_m": 0.65,
+      "y_m": 0.0,
+      "radius_m": 0.011,
+      "length_m": 4.0,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "C2",
+      "x_m": 1.45,
+      "y_m": 0.0,
+      "radius_m": 0.012,
+      "length_m": 4.0,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "C3",
+      "x_m": 2.45,
+      "y_m": 0.0,
+      "radius_m": 0.013,
+      "length_m": 4.0,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "C4",
+      "x_m": 3.45,
+      "y_m": 0.0,
+      "radius_m": 0.018,
+      "length_m": 4.0,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "C5",
+      "x_m": 4.45,
+      "y_m": 0.0,
+      "radius_m": 0.01,
+      "length_m": 4.0,
+      "angle_deg": 0.0
+    },
+    {
+      "id": "C6",
+      "x_m": 5.45,
+      "y_m": 0.0,
+      "radius_m": 0.009,
+      "length_m": 4.0,
+      "angle_deg": 0.0
+    }
+  ],
+  "thresholds": [],
+  "display_items": [
+    {
+      "id": "A1",
+      "kind": "cable",
+      "x_m": 1.95,
+      "y_m": -0.32,
+      "radius_m": 0.015,
+      "length_m": 0.55
+    },
+    {
+      "id": "A2",
+      "kind": "bump",
+      "x_m": 3.95,
+      "y_m": -0.28,
+      "radius_m": 0.12
+    }
+  ],
+  "floor_tiles_xy_m": [],
+  "terrain_mesh": {
+    "mesh": "terrain_1cb2426cf8d93d53.stl",
+    "bounds_xy_m": [
+      -2.0,
+      8.0,
+      -3.5,
+      3.5
+    ],
+    "mesh_sha256": "ae8f6483fd3899838d6a9bde5c2ed3116f166315368fc1eb733dcbab6fec9dab",
+    "triangles": 517724,
+    "representation": "continuous_mesh",
+    "depression_spacing_m": 0.005,
+    "flat_spacing_m": 0.04,
+    "sampled_depth_m": 0.022
+  },
+  "world_sha256": "5c413088b22e3e9c6b2c0aaeba4d3e784e29cc813647868a464de51a3bbfcc6a",
+  "terrain_background": "exactly level z=0 outside carved patches",
+  "terrain_template": "combined_rough_section.sdf: rough_approach_ground",
+  "obstacles_physically_validated": false,
+  "generator_starts_simulator": false,
+  "randomization": "fixed layout",
+  "per_episode_randomization": false,
+  "training_allowed": false,
+  "optuna_allowed": false,
+  "first_contact_detection_implemented": false,
+  "snapshot_branching_implemented": false,
+  "contact_instrumentation": true,
+  "notes": [
+    "One continuous terrain mesh for visual and collision, with no underlying floor box.",
+    "Depth/grade values describe geometry, not confirmed traversability.",
+    "Static obstacle coordinates are simulator/analysis data, not deployable supervisor inputs."
+  ]
+}

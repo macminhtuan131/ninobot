@@ -1,0 +1,32 @@
+# Experimental defaults. Calibrate motor/sensor/obstacle envelope on hardware.
+nino_speed_governor:
+  ros__parameters:
+    use_sim_time: false
+    enabled: false
+    input_topic: /nino/governor/reference
+    output_topic: /cmd_vel_governed
+    imu_topic: /imu/data
+    feedback_topic: /nino_drive/diagnostics
+    imu_includes_gravity: true
+    profile: reactive
+    target_scale: 0.70
+    scale_rate_per_second: 0.4
+    vertical_trigger_m_s2: 1.5
+    body_rate_trigger_rad_s: 0.35
+    wheel_error_trigger_m_s: 0.06
+    confirmation_seconds: 0.04
+    quiet_seconds: 0.30
+    minimum_hold_seconds: 0.80
+    maximum_hold_seconds: 2.5
+    startup_seconds: 0.80
+    stall_recovery_enabled: false
+    wheel_stall_seconds: 1.2
+    publish_rate: 20.0
+    feedback_timeout_seconds: 0.25
+    wall_timeout_seconds: 0.5
+    max_forward_m_s: 0.5
+    max_reverse_m_s: 0.1
+    max_yaw_rad_s: 0.8
+    max_linear_acceleration_m_s2: 0.25
+    max_linear_deceleration_m_s2: 0.5
+    max_yaw_acceleration_rad_s2: 1.5

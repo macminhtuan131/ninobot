@@ -1,0 +1,32 @@
+# Foundation experiment: same physical gates, fresh reactive state each reset.
+extends: factory_floor_routes_pi_check.yaml
+routes:
+  fixed_route: E1
+evaluation_control_trace: true
+governor:
+  enabled: true
+  revision: nino_reactive_governor_v1
+  # Applied synchronously at the existing lockstep control interval.
+  # No ROS governor node may run in parallel with this evaluator.
+  execution: inline_PI_evaluation
+  parameters:
+    profile: reactive
+    target_scale: 0.70
+    scale_rate_per_second: 0.4
+    vertical_trigger_m_s2: 1.5
+    body_rate_trigger_rad_s: 0.35
+    wheel_error_trigger_m_s: 0.06
+    wheel_error_acceleration_allowance_s: 0.10
+    release_ratio: 0.6
+    confirmation_seconds: 0.04
+    quiet_seconds: 0.30
+    minimum_hold_seconds: 0.80
+    maximum_hold_seconds: 2.5
+    startup_seconds: 0.80
+    wheel_stall_seconds: 1.2
+    stall_recovery_enabled: false
+research_map:
+  revision: factory_contact_reactive_governor_v1
+  stage: H2_instrumentation_and_PI_authority
+  training_allowed: false
+  optuna_allowed: false
