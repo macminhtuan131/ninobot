@@ -1,0 +1,9 @@
+# Physical diagnostic candidate only. Detector thresholds/rewards stay fixed.
+extends: factory_floor_governor_full.yaml
+simulation_model:
+  revision: caster_wheel_damping_candidate_2026_10_15
+  caster_wheel_damping: 0.001
+  validated: false
+research_map:
+  revision: governor_clean_floor_caster_damping_candidate_2026_10_15
+  stage: single_physical_correction_screen

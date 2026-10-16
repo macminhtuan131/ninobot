@@ -1,0 +1,10 @@
+# One rigid cylinder on the solid flat floor; sensor-triggered governor only.
+extends: factory_floor_clear_box_pi_check.yaml
+simulation_model:
+  floor_collision_control:
+    validation_scope: single_cable_box_screen_candidate
+research_map:
+  revision: single_cable_box_governor_screen_v1_2026_10_16
+  stage: single_cable_sensor_triggered_screen
+  training_allowed: false
+  optuna_allowed: false

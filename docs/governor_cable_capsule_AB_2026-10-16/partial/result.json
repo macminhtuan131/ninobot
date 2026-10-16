@@ -1,0 +1,1891 @@
+{
+  "episodes": [
+    {
+      "seed": 76210,
+      "primitive": "cylinder",
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76210_full",
+      "complete": true,
+      "physical_success": true,
+      "stop_settled": true,
+      "positive_contact_available": true,
+      "contact_components": "caster_bracket_left;caster_bracket_right;caster_left_wheel;caster_right_wheel;left_wheel;right_wheel",
+      "approach_m_s": 0.3966083886498719,
+      "time_s": 16.90000000000012,
+      "truth_rmse_m": 0.005634530264235316,
+      "endpoint_m": 0.1854159213810975,
+      "whole_vertical_rms": 3.582285900376161,
+      "whole_vertical_peak": 94.17463246241336,
+      "whole_slip_rms": 0.10093584242823764,
+      "post_vertical_rms": 9.016467732766083,
+      "post_vertical_peak": 94.17463246241336,
+      "post_slip_energy_per_m": 0.2870773634823114,
+      "distant_contact_points": 4,
+      "maximum_contact_distance_m": 2.0161604445037504,
+      "largest_reported_point_force_z_N": 20646.917012109687,
+      "robot_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+      "world_sha256": "b72b8465748ff5488db00ec56d6e21842030659c8aede174715e346566027aad",
+      "parent_world_sha256": null
+    },
+    {
+      "seed": 76211,
+      "primitive": "cylinder",
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76211_full",
+      "complete": true,
+      "physical_success": true,
+      "stop_settled": true,
+      "positive_contact_available": true,
+      "contact_components": "caster_bracket_left;caster_bracket_right;caster_left_wheel;caster_right_wheel;left_wheel;right_wheel",
+      "approach_m_s": 0.39568563071579554,
+      "time_s": 16.800000000000118,
+      "truth_rmse_m": 0.00548463253684846,
+      "endpoint_m": 0.19906796377430086,
+      "whole_vertical_rms": 3.25673818184514,
+      "whole_vertical_peak": 86.95014221216513,
+      "whole_slip_rms": 0.13294412024447969,
+      "post_vertical_rms": 6.035069675743908,
+      "post_vertical_peak": 86.95014221216513,
+      "post_slip_energy_per_m": 0.2234962033620485,
+      "distant_contact_points": 10,
+      "maximum_contact_distance_m": 2.0142530031891703,
+      "largest_reported_point_force_z_N": 7070.937127582478,
+      "robot_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+      "world_sha256": "b72b8465748ff5488db00ec56d6e21842030659c8aede174715e346566027aad",
+      "parent_world_sha256": null
+    },
+    {
+      "seed": 76212,
+      "primitive": "cylinder",
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76212_full",
+      "complete": true,
+      "physical_success": true,
+      "stop_settled": true,
+      "positive_contact_available": true,
+      "contact_components": "caster_bracket_left;caster_bracket_right;caster_left_wheel;caster_right_wheel;left_wheel;right_wheel",
+      "approach_m_s": 0.39595598751856453,
+      "time_s": 16.900000000000148,
+      "truth_rmse_m": 0.006137198475265413,
+      "endpoint_m": 0.1885982085570678,
+      "whole_vertical_rms": 1.1594566077076502,
+      "whole_vertical_peak": 13.702224251175794,
+      "whole_slip_rms": 0.07062015694727097,
+      "post_vertical_rms": 2.289034770093742,
+      "post_vertical_peak": 13.702224251175794,
+      "post_slip_energy_per_m": 0.2901289161660198,
+      "distant_contact_points": 11,
+      "maximum_contact_distance_m": 2.0164426210692192,
+      "largest_reported_point_force_z_N": 201.27585362665093,
+      "robot_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+      "world_sha256": "b72b8465748ff5488db00ec56d6e21842030659c8aede174715e346566027aad",
+      "parent_world_sha256": null
+    },
+    {
+      "seed": 76210,
+      "primitive": "capsule",
+      "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76210_full",
+      "complete": true,
+      "physical_success": true,
+      "stop_settled": true,
+      "positive_contact_available": true,
+      "contact_components": "caster_bracket_left;caster_bracket_right;caster_left_wheel;caster_right_wheel;left_wheel;right_wheel",
+      "approach_m_s": 0.39608038265126044,
+      "time_s": 16.70000000000006,
+      "truth_rmse_m": 0.0063740216016485865,
+      "endpoint_m": 0.19121845834656181,
+      "whole_vertical_rms": 1.3107244701643177,
+      "whole_vertical_peak": 12.396214152897317,
+      "whole_slip_rms": 0.10469550719733822,
+      "post_vertical_rms": 2.1816284862803075,
+      "post_vertical_peak": 12.396214152897317,
+      "post_slip_energy_per_m": 0.14992621172793238,
+      "distant_contact_points": 0,
+      "maximum_contact_distance_m": 0.2947031563752488,
+      "largest_reported_point_force_z_N": 112.36057859624195,
+      "robot_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "parent_world_sha256": "b72b8465748ff5488db00ec56d6e21842030659c8aede174715e346566027aad"
+    },
+    {
+      "seed": 76211,
+      "primitive": "capsule",
+      "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76211_full",
+      "complete": true,
+      "physical_success": true,
+      "stop_settled": true,
+      "positive_contact_available": true,
+      "contact_components": "caster_bracket_left;caster_bracket_right;caster_left_wheel;caster_right_wheel;left_wheel;right_wheel",
+      "approach_m_s": 0.395878393083168,
+      "time_s": 16.700000000000042,
+      "truth_rmse_m": 0.004314276718047047,
+      "endpoint_m": 0.1905889772889513,
+      "whole_vertical_rms": 1.1524828306260908,
+      "whole_vertical_peak": 10.75299809793105,
+      "whole_slip_rms": 0.09223130598229269,
+      "post_vertical_rms": 1.858383474040846,
+      "post_vertical_peak": 10.75299809793105,
+      "post_slip_energy_per_m": 0.13911069808368962,
+      "distant_contact_points": 0,
+      "maximum_contact_distance_m": 0.4003008690283475,
+      "largest_reported_point_force_z_N": 136.22121517603253,
+      "robot_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "parent_world_sha256": "b72b8465748ff5488db00ec56d6e21842030659c8aede174715e346566027aad"
+    },
+    {
+      "seed": 76212,
+      "primitive": "capsule",
+      "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76212_full",
+      "complete": false,
+      "physical_success": null,
+      "reason": "StopIteration: "
+    }
+  ],
+  "details": [
+    {
+      "primitive": "cylinder",
+      "seed": 76210,
+      "contact": {
+        "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76210_full",
+        "evaluation": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76210_full/evaluation/20261016-002739-184421",
+        "logger": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76210_full/contact/20261015T172733-154773Z",
+        "complete": true,
+        "outcome": {
+          "governor_profile": "full",
+          "governor_run_id": "afb723550ece465f9179495fd923e0db",
+          "governor_events": "0",
+          "governor_final_phase": "CRUISE",
+          "governor_fault": "",
+          "route_id": "E1",
+          "route_length_m": "6.45",
+          "route_gates_passed": "6",
+          "route_gates_total": "6",
+          "goal_x_m": "6.45",
+          "goal_y_m": "0.0",
+          "max_episode_seconds": "87.25",
+          "clock_origin_sim_s": "9.178",
+          "duration_s": "16.901999999999997",
+          "samples": "170",
+          "path_rmse_m": "0.0056632126726014346",
+          "cross_track_rmse_m": "0.005663171187498189",
+          "path_mae_m": "0.0037224077034206065",
+          "path_p95_m": "0.013528674569050148",
+          "path_max_m": "0.01532551698557815",
+          "endpoint_error_m": "0.1848000266906902",
+          "final_progress_fraction": "0.9713679784004058",
+          "max_progress_fraction": "0.9713679784004058",
+          "backtracking_m": "0.00936212984598317",
+          "reference_length_m": "6.45",
+          "travelled_distance_m": "6.286823998772581",
+          "heading_rmse_deg": "1.0834358694973225",
+          "truth_path_rmse_m": "0.005634530264235316",
+          "truth_path_p95_m": "0.013414203050719978",
+          "truth_endpoint_error_m": "0.1854159213810975",
+          "truth_heading_rmse_deg": "1.0836801958335787",
+          "odom_truth_position_error_m": "0.0007748332047243354",
+          "trajectory_frame": "odom_imu",
+          "trajectory_pose_source": "imu_encoder_lidar_odometry",
+          "reward_pose_source": "ground_truth",
+          "success": "True",
+          "time_seconds": "16.90000000000012",
+          "progress_m": "6.265323460682618",
+          "remaining_m": "0.18467653931738237",
+          "endpoint_distance_m": "0.1848000266906902",
+          "lateral_error_m": "-0.006754679165965917",
+          "heading_error_deg": "0.12149489956246026",
+          "roll_deg": "-0.0006022299117741096",
+          "pitch_deg": "-0.013216267611077194",
+          "attempt": "1",
+          "episode_start_time_unix": "1792085267.5111983",
+          "final_arrival_time_seconds": "16.90000000000012",
+          "goal_reached": "True",
+          "lidar_min_m": "1.5404319763183594",
+          "collision_clearance_m": "1.5072319763183117",
+          "adaptive_terrain_features": "0",
+          "next_adaptive_terrain_features": "0",
+          "adaptive_terrain_rolling_success": "0.0",
+          "adaptive_terrain_window_episodes": "0",
+          "adaptive_terrain_level_advanced": "False",
+          "flat_curriculum_stage": "",
+          "next_flat_curriculum_stage": "",
+          "successful_episodes": "1",
+          "difficult_path_chosen": "False",
+          "challenges_chosen": "0",
+          "challenges_cleared": "0",
+          "traversable_challenges": "0",
+          "challenge_choice_fraction": "0.0",
+          "challenge_clear_fraction": "0.0",
+          "final_lateral_drift_m": "-0.006754679165965917",
+          "final_abs_lateral_drift_m": "0.006754679165965917",
+          "return": "145.55286096082102",
+          "reward_totals": "{'progress': 73.23573938390487, 'lateral': -0.03014590199682702, 'heading': -0.22751944252555206, 'impact': -4.781693593322344, 'body_rate': -0.4610630903739673, 'attitude': 0.0, 'slip': -7.081309236221333, 'smoothness': 0.0, 'saturation': 0.0, 'effort': -0.033587069602300144, 'residual_effort': 0.0, 'torque_rate': -0.006702020714210931, 'velocity': -0.1257920154563586, 'yaw_tracking': -0.29566114863697757, 'goal_braking': -0.26112043225797826, 'time': -33.80000000000024, 'stall': 0.0, 'challenge_entry': 0.0, 'challenge_clear': 0.0, 'challenge_goal': 0.0, 'success_position': -12.692631092280743, 'success_heading': -0.0020554960969821276, 'on_time_success': 32.116402116401986, 'terminal': 100.0}",
+          "clock_elapsed_seconds": "16.9",
+          "max_clock_error_seconds": "1.2079226507921703e-13",
+          "max_motion_sensor_lag_seconds": "0.015000000000046754",
+          "curriculum_phase": "1",
+          "terrain_height_scale": "1.0",
+          "terrain_layout": "[]",
+          "peak_vertical_acceleration_m_s2": "94.17463246241336",
+          "rms_vertical_acceleration_m_s2": "3.582285900376161",
+          "mean_abs_lateral_error_m": "0.0037415162149839125",
+          "rms_path_deviation_m": "0.005675266424114366",
+          "max_path_deviation_m": "0.01532551698557815",
+          "mean_abs_roll_deg": "0.008906540124082096",
+          "mean_abs_pitch_deg": "0.16883775182658492",
+          "mean_imu_angular_xy_rad_s": "0.04425024757981481",
+          "mean_imu_acceleration_change_m_s2": "3.3899312074221304",
+          "max_tilt_deg": "8.822172665218798",
+          "rms_wheel_slip": "0.10093584242823764",
+          "max_abs_wheel_slip": "1.0700362347143282",
+          "rms_wheel_torque_nm": "0.3524379881787199",
+          "max_abs_wheel_torque_nm": "2.074734986354114",
+          "rms_imu_acceleration_m_s2": "8.579950695665463",
+          "mean_speed_scale": "1.0",
+          "min_speed_scale": "1.0",
+          "max_speed_scale": "1.0",
+          "mean_ground_speed_m_s": "0.3722293218776999",
+          "waypoint_arrival_times_seconds": "[5.4999999999999805, 11.000000000000036, 15.900000000000105]",
+          "waypoint_time_budgets_seconds": "[8.0, 13.0, 18.0]",
+          "finished_within_target_time": "True",
+          "time_margin_seconds": "30.34999999999988",
+          "target_finish_seconds": "47.25",
+          "final_speed_m_s": "0.16570399248438972",
+          "final_yaw_rate_rad_s": "0.02511663419951255",
+          "wrong_direction_duration_seconds": "0.0",
+          "termination": "success",
+          "episode": "1",
+          "seed": "76210",
+          "controller": "full_governor_pi",
+          "phase": "1",
+          "cable_count": "0",
+          "cable_diameter_m": "0.0",
+          "cable_angle_deg": "0.0"
+        },
+        "qualification": "Simulation-only post-contact oracle; controlled cold starts, not identical snapshots or deployable detector",
+        "available": true,
+        "first_contact": {
+          "time_s": 16.286,
+          "component": "caster_bracket_left",
+          "event": "begin",
+          "collisions": [
+            "cable_bumps::cables::C1_collision",
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision"
+          ],
+          "named_positive_obstacle": true,
+          "episode": "afb723550ece465f9179495fd923e0db:1",
+          "end_time_is_upper_bound": false
+        },
+        "first_contact_by_component_s": {
+          "caster_bracket_left": 16.286,
+          "caster_bracket_right": 16.287,
+          "caster_right_wheel": 16.501,
+          "caster_left_wheel": 16.519,
+          "left_wheel": 17.357,
+          "right_wheel": 17.373
+        },
+        "next_distinct_component_after_50ms_s": 16.501,
+        "next_driven_wheel_contact_s": 17.357,
+        "available_time_to_driven_wheel_s": 1.070999999999998,
+        "available_time_s": 0.21499999999999986,
+        "approach_body_speed_m_s": 0.3966083886498719,
+        "precontact_minimum_scale": 1.0,
+        "scale_at_first_contact": 1.0,
+        "postcontact_first_reduced_command_s": null,
+        "governor_event_times_s": [],
+        "governor_event_diagnostics": [],
+        "precontact_governor_event_times_s": [],
+        "approach_motor_target_m_s": 0.39999978129792124,
+        "motor_target_drop_10percent_time_s": null,
+        "motor_target_drop_delay_s": null,
+        "body_slowdown_10percent_time_s": 16.3,
+        "body_slowdown_delay_s": 0.013999999999999346,
+        "body_slowdown_sustained_60ms_time_s": 16.3,
+        "sustained_slowdown_before_next_contact": true,
+        "sustained_slowdown_before_driven_wheel": true,
+        "postcontact_minimum_scale": null,
+        "first_recovered_scale_time_s": null,
+        "slowed_before_next_contact": true,
+        "body_speed_at_next_contact_m_s": 0.15130549393671006,
+        "first_50ms_acceleration": {
+          "available": false,
+          "reason": "partial_window",
+          "rms": 8.021108339701295,
+          "peak": 8.577218803715562,
+          "coverage_s": 0.019999999999999574,
+          "coverage_fraction": 0.3999999999999858,
+          "maximum_gap_s": 0.05
+        },
+        "postcontact_window_s": [
+          16.336000000000002,
+          18.286
+        ],
+        "postcontact_acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 10.017146919792282,
+          "peak": 94.17463246241336,
+          "coverage_s": 1.9400000000000013,
+          "coverage_fraction": 0.9948717948717959,
+          "maximum_gap_s": 0.05
+        },
+        "postcontact_slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.33631918851698706,
+          "peak": 1.031225679688637,
+          "coverage_s": 1.9480000000000004,
+          "coverage_fraction": 0.9989743589743595,
+          "maximum_gap_s": 0.025
+        },
+        "postcontact_distance_m": 0.5605543822782781,
+        "postcontact_slip_energy_per_m": 0.39307415850100297,
+        "postcontact_until_clearance": {
+          "available": true,
+          "reason": null,
+          "clear_x_m": 3.4,
+          "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+          "clearance_distance_m": 0.5,
+          "end_time_s": 18.76,
+          "start_time_s": 16.336000000000002,
+          "duration_s": 2.4239999999999995,
+          "distance_m": 0.7675596423500182,
+          "acceleration": {
+            "available": true,
+            "reason": null,
+            "rms": 9.016467732766083,
+            "peak": 94.17463246241336,
+            "coverage_s": 2.4200000000000017,
+            "coverage_fraction": 0.9983498349834993,
+            "maximum_gap_s": 0.05
+          },
+          "slip": {
+            "available": true,
+            "reason": null,
+            "rms": 0.3016257890414748,
+            "peak": 1.031225679688637,
+            "coverage_s": 2.4220000000000006,
+            "coverage_fraction": 0.9991749174917496,
+            "maximum_gap_s": 0.025
+          },
+          "slip_energy_per_m": 0.2870773634823114,
+          "fits_in_original_2s_window": false
+        },
+        "slip_qualification": "Simulator GT longitudinal wheel-slip ratio; not a deployable IMU/encoder-only measurement",
+        "governor_events": "0"
+      },
+      "geometry": {
+        "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76210_full",
+        "available": true,
+        "assumed_position_frame": "world; message frame_id empty",
+        "diagnostic_body_disk_radius_m": 0.75,
+        "point_counts": {
+          "cable": 970,
+          "floor_or_other": 13946
+        },
+        "unaligned_points": 0,
+        "maximum_horizontal_distance_m": {
+          "cable": 2.0161604445037504,
+          "floor_or_other": 0.2520316166084693
+        },
+        "distant_point_count": 4,
+        "distant_positive_points": 4,
+        "distant_point_examples": [
+          {
+            "time_s": 16.352,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.889954090118408,
+              "y": 1.9989030361175537,
+              "z": 0.015480702742934227
+            },
+            "body_xy_m": [
+              2.6423187846655964,
+              -0.001991687118742261
+            ],
+            "horizontal_distance_m": 2.0161604445037504
+          },
+          {
+            "time_s": 16.363,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.889954090118408,
+              "y": 1.9989030361175537,
+              "z": 0.015480702742934227
+            },
+            "body_xy_m": [
+              2.6423187846655964,
+              -0.001991687118742261
+            ],
+            "horizontal_distance_m": 2.0161604445037504
+          },
+          {
+            "time_s": 16.467,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.890004873275757,
+              "y": 1.9989027976989746,
+              "z": 0.015593200922012329
+            },
+            "body_xy_m": [
+              2.6425755139716287,
+              -0.0018597592588561296
+            ],
+            "horizontal_distance_m": 2.0160039923497397
+          },
+          {
+            "time_s": 16.479,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.890113353729248,
+              "y": 1.998902678489685,
+              "z": 0.015822093933820724
+            },
+            "body_xy_m": [
+              2.6430281547769297,
+              -0.0016603002129779345
+            ],
+            "horizontal_distance_m": 2.0157637082001894
+          }
+        ],
+        "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+      }
+    },
+    {
+      "primitive": "cylinder",
+      "seed": 76211,
+      "contact": {
+        "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76211_full",
+        "evaluation": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76211_full/evaluation/20261016-003203-738613",
+        "logger": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76211_full/contact/20261015T173157-641452Z",
+        "complete": true,
+        "outcome": {
+          "governor_profile": "full",
+          "governor_run_id": "33a231536d604efcaa3817209eaf6ac7",
+          "governor_events": "0",
+          "governor_final_phase": "CRUISE",
+          "governor_fault": "",
+          "route_id": "E1",
+          "route_length_m": "6.45",
+          "route_gates_passed": "6",
+          "route_gates_total": "6",
+          "goal_x_m": "6.45",
+          "goal_y_m": "0.0",
+          "max_episode_seconds": "87.25",
+          "clock_origin_sim_s": "9.36",
+          "duration_s": "16.8",
+          "samples": "169",
+          "path_rmse_m": "0.005544516065722407",
+          "cross_track_rmse_m": "0.005544466700144049",
+          "path_mae_m": "0.0035964262999242783",
+          "path_p95_m": "0.013062145353767419",
+          "path_max_m": "0.014993252341761323",
+          "endpoint_error_m": "0.19801485615313544",
+          "final_progress_fraction": "0.9693146676779556",
+          "max_progress_fraction": "0.9693146676779556",
+          "backtracking_m": "0.01259645058688541",
+          "reference_length_m": "6.45",
+          "travelled_distance_m": "6.27910447413197",
+          "heading_rmse_deg": "0.9708496151962166",
+          "truth_path_rmse_m": "0.00548463253684846",
+          "truth_path_p95_m": "0.012774489559912774",
+          "truth_endpoint_error_m": "0.19906796377430086",
+          "truth_heading_rmse_deg": "0.9708420786440982",
+          "odom_truth_position_error_m": "0.0010908315276487595",
+          "trajectory_frame": "odom_imu",
+          "trajectory_pose_source": "imu_encoder_lidar_odometry",
+          "reward_pose_source": "ground_truth",
+          "success": "True",
+          "time_seconds": "16.800000000000118",
+          "progress_m": "6.2520796065228135",
+          "remaining_m": "0.1979203934771867",
+          "endpoint_distance_m": "0.19801485615313544",
+          "lateral_error_m": "-0.006115644134688922",
+          "heading_error_deg": "0.8114916329685665",
+          "roll_deg": "-0.0006382808742106895",
+          "pitch_deg": "-0.014391227145950014",
+          "attempt": "1",
+          "episode_start_time_unix": "1792085532.2303755",
+          "final_arrival_time_seconds": "16.800000000000118",
+          "goal_reached": "True",
+          "lidar_min_m": "1.5496002435684204",
+          "collision_clearance_m": "1.5192002435683734",
+          "adaptive_terrain_features": "0",
+          "next_adaptive_terrain_features": "0",
+          "adaptive_terrain_rolling_success": "0.0",
+          "adaptive_terrain_window_episodes": "0",
+          "adaptive_terrain_level_advanced": "False",
+          "flat_curriculum_stage": "",
+          "next_flat_curriculum_stage": "",
+          "successful_episodes": "1",
+          "difficult_path_chosen": "False",
+          "challenges_chosen": "0",
+          "challenges_cleared": "0",
+          "traversable_challenges": "0",
+          "challenge_choice_fraction": "0.0",
+          "challenge_clear_fraction": "0.0",
+          "final_lateral_drift_m": "-0.006115644134688922",
+          "final_abs_lateral_drift_m": "0.006115644134688922",
+          "return": "139.37936567571614",
+          "reward_totals": "{'progress': 73.12841898716435, 'lateral': -0.028385613277812912, 'heading': -0.18189540386901099, 'impact': -3.362897262526233, 'body_rate': -0.49192418161079987, 'attitude': 0.0, 'slip': -13.60235450100889, 'smoothness': 0.0, 'saturation': 0.0, 'effort': -0.036025841856672985, 'residual_effort': 0.0, 'torque_rate': -0.0073989119458646785, 'velocity': -0.11687528144611839, 'yaw_tracking': -0.10966000482282028, 'goal_braking': -0.2558204521522228, 'time': -33.600000000000236, 'stall': 0.0, 'challenge_entry': 0.0, 'challenge_clear': 0.0, 'challenge_goal': 0.0, 'success_position': -14.086806986644417, 'success_heading': -0.09123109250919711, 'on_time_success': 32.22222222222209, 'terminal': 100.0}",
+          "clock_elapsed_seconds": "16.799999999999997",
+          "max_clock_error_seconds": "1.2079226507921703e-13",
+          "max_motion_sensor_lag_seconds": "0.01800000000011792",
+          "curriculum_phase": "1",
+          "terrain_height_scale": "1.0",
+          "terrain_layout": "[]",
+          "peak_vertical_acceleration_m_s2": "86.95014221216513",
+          "rms_vertical_acceleration_m_s2": "3.25673818184514",
+          "mean_abs_lateral_error_m": "0.003612215620605271",
+          "rms_path_deviation_m": "0.005553609818826122",
+          "max_path_deviation_m": "0.014993252341761323",
+          "mean_abs_roll_deg": "0.003286178854949257",
+          "mean_abs_pitch_deg": "0.20281847571300787",
+          "mean_imu_angular_xy_rad_s": "0.04129606944523005",
+          "mean_imu_acceleration_change_m_s2": "1.7657581800639481",
+          "max_tilt_deg": "10.962152214466983",
+          "rms_wheel_slip": "0.13294412024447969",
+          "max_abs_wheel_slip": "0.9894128680766926",
+          "rms_wheel_torque_nm": "0.36609385311449344",
+          "max_abs_wheel_torque_nm": "2.09467586175168",
+          "rms_imu_acceleration_m_s2": "5.785221093850291",
+          "mean_speed_scale": "1.0",
+          "min_speed_scale": "1.0",
+          "max_speed_scale": "1.0",
+          "mean_ground_speed_m_s": "0.37287860544136847",
+          "waypoint_arrival_times_seconds": "[5.4999999999999805, 11.000000000000037, 15.900000000000107]",
+          "waypoint_time_budgets_seconds": "[8.0, 13.0, 18.0]",
+          "finished_within_target_time": "True",
+          "time_margin_seconds": "30.449999999999882",
+          "target_finish_seconds": "47.25",
+          "final_speed_m_s": "0.17804376945145528",
+          "final_yaw_rate_rad_s": "0.027890253704201624",
+          "wrong_direction_duration_seconds": "0.0",
+          "termination": "success",
+          "episode": "1",
+          "seed": "76211",
+          "controller": "full_governor_pi",
+          "phase": "1",
+          "cable_count": "0",
+          "cable_diameter_m": "0.0",
+          "cable_angle_deg": "0.0"
+        },
+        "qualification": "Simulation-only post-contact oracle; controlled cold starts, not identical snapshots or deployable detector",
+        "available": true,
+        "first_contact": {
+          "time_s": 16.478,
+          "component": "caster_bracket_left",
+          "event": "begin",
+          "collisions": [
+            "cable_bumps::cables::C1_collision",
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision"
+          ],
+          "named_positive_obstacle": true,
+          "episode": "33a231536d604efcaa3817209eaf6ac7:1",
+          "end_time_is_upper_bound": false
+        },
+        "first_contact_by_component_s": {
+          "caster_bracket_left": 16.478,
+          "caster_bracket_right": 16.478,
+          "caster_right_wheel": 16.67,
+          "caster_left_wheel": 16.672,
+          "left_wheel": 17.571,
+          "right_wheel": 17.572
+        },
+        "next_distinct_component_after_50ms_s": 16.67,
+        "next_driven_wheel_contact_s": 17.571,
+        "available_time_to_driven_wheel_s": 1.093,
+        "available_time_s": 0.19200000000000017,
+        "approach_body_speed_m_s": 0.39568563071579554,
+        "precontact_minimum_scale": 1.0,
+        "scale_at_first_contact": 1.0,
+        "postcontact_first_reduced_command_s": null,
+        "governor_event_times_s": [],
+        "governor_event_diagnostics": [],
+        "precontact_governor_event_times_s": [],
+        "approach_motor_target_m_s": 0.39999986989549363,
+        "motor_target_drop_10percent_time_s": null,
+        "motor_target_drop_delay_s": null,
+        "body_slowdown_10percent_time_s": 16.5,
+        "body_slowdown_delay_s": 0.021999999999998465,
+        "body_slowdown_sustained_60ms_time_s": 16.5,
+        "sustained_slowdown_before_next_contact": true,
+        "sustained_slowdown_before_driven_wheel": true,
+        "postcontact_minimum_scale": null,
+        "first_recovered_scale_time_s": null,
+        "slowed_before_next_contact": true,
+        "body_speed_at_next_contact_m_s": 0.10954720379489344,
+        "first_50ms_acceleration": {
+          "available": false,
+          "reason": "partial_window",
+          "rms": 6.511090466555013,
+          "peak": 7.867923920691916,
+          "coverage_s": 0.03999999999999915,
+          "coverage_fraction": 0.7999999999999716,
+          "maximum_gap_s": 0.05
+        },
+        "postcontact_window_s": [
+          16.528000000000002,
+          18.478
+        ],
+        "postcontact_acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 6.718992695554153,
+          "peak": 86.95014221216513,
+          "coverage_s": 1.9200000000000017,
+          "coverage_fraction": 0.9846153846153859,
+          "maximum_gap_s": 0.05
+        },
+        "postcontact_slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.296374145852635,
+          "peak": 0.9725985098449206,
+          "coverage_s": 1.9480000000000004,
+          "coverage_fraction": 0.9989743589743595,
+          "maximum_gap_s": 0.025
+        },
+        "postcontact_distance_m": 0.5575662229441302,
+        "postcontact_slip_energy_per_m": 0.30688320890584103,
+        "postcontact_until_clearance": {
+          "available": true,
+          "reason": null,
+          "clear_x_m": 3.4,
+          "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+          "clearance_distance_m": 0.5,
+          "end_time_s": 18.94,
+          "start_time_s": 16.528000000000002,
+          "duration_s": 2.411999999999999,
+          "distance_m": 0.7656258989701012,
+          "acceleration": {
+            "available": true,
+            "reason": null,
+            "rms": 6.035069675743908,
+            "peak": 86.95014221216513,
+            "coverage_s": 2.400000000000002,
+            "coverage_fraction": 0.9950248756218918,
+            "maximum_gap_s": 0.05
+          },
+          "slip": {
+            "available": true,
+            "reason": null,
+            "rms": 0.2664617413278735,
+            "peak": 0.9725985098449206,
+            "coverage_s": 2.41,
+            "coverage_fraction": 0.9991708126036489,
+            "maximum_gap_s": 0.025
+          },
+          "slip_energy_per_m": 0.2234962033620485,
+          "fits_in_original_2s_window": false
+        },
+        "slip_qualification": "Simulator GT longitudinal wheel-slip ratio; not a deployable IMU/encoder-only measurement",
+        "governor_events": "0"
+      },
+      "geometry": {
+        "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76211_full",
+        "available": true,
+        "assumed_position_frame": "world; message frame_id empty",
+        "diagnostic_body_disk_radius_m": 0.75,
+        "point_counts": {
+          "cable": 890,
+          "floor_or_other": 13564
+        },
+        "unaligned_points": 0,
+        "maximum_horizontal_distance_m": {
+          "cable": 2.0142530031891703,
+          "floor_or_other": 0.25096891870404703
+        },
+        "distant_point_count": 10,
+        "distant_positive_points": 10,
+        "distant_point_examples": [
+          {
+            "time_s": 16.49,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.890021800994873,
+              "y": 1.9989027976989746,
+              "z": 0.01562948152422905
+            },
+            "body_xy_m": [
+              2.6408494673096974,
+              0.0006906170620298274
+            ],
+            "horizontal_distance_m": 2.0136878533476756
+          },
+          {
+            "time_s": 16.5,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8908045291900635,
+              "y": 1.9989019632339478,
+              "z": 0.01703677512705326
+            },
+            "body_xy_m": [
+              2.6440585530374006,
+              0.000312374696724493
+            ],
+            "horizontal_distance_m": 2.0137636207253617
+          },
+          {
+            "time_s": 16.51,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.891096830368042,
+              "y": 1.9989014863967896,
+              "z": 0.017460068687796593
+            },
+            "body_xy_m": [
+              2.6440777325315894,
+              -9.443002251470679e-05
+            ],
+            "horizontal_distance_m": 2.0142003645509026
+          },
+          {
+            "time_s": 16.556,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.89011549949646,
+              "y": 1.998902440071106,
+              "z": 0.015826337039470673
+            },
+            "body_xy_m": [
+              2.6440556403571884,
+              -0.0002648132063566263
+            ],
+            "horizontal_distance_m": 2.0142530031891703
+          },
+          {
+            "time_s": 16.567,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8900985717773438,
+              "y": 1.998902678489685,
+              "z": 0.015791552141308784
+            },
+            "body_xy_m": [
+              2.6440556403571884,
+              -0.0002648132063566263
+            ],
+            "horizontal_distance_m": 2.01425117201308
+          },
+          {
+            "time_s": 16.577,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8900866508483887,
+              "y": 1.9989025592803955,
+              "z": 0.015766680240631104
+            },
+            "body_xy_m": [
+              2.644098239042039,
+              -0.0002647770329807355
+            ],
+            "horizontal_distance_m": 2.0142443588912764
+          },
+          {
+            "time_s": 16.588,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8900911808013916,
+              "y": 1.998902678489685,
+              "z": 0.015776388347148895
+            },
+            "body_xy_m": [
+              2.644098239042039,
+              -0.0002647770329807355
+            ],
+            "horizontal_distance_m": 2.014245030431102
+          },
+          {
+            "time_s": 17.041,
+            "component": "caster_bracket_left",
+            "collisions": [
+              "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8936872482299805,
+              "y": 1.9989022016525269,
+              "z": 0.020008277148008347
+            },
+            "body_xy_m": [
+              2.6479736371451406,
+              7.885925234837127e-05
+            ],
+            "horizontal_distance_m": 2.0138693931822322
+          },
+          {
+            "time_s": 17.052,
+            "component": "caster_bracket_left",
+            "collisions": [
+              "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8936872482299805,
+              "y": 1.9989022016525269,
+              "z": 0.020008277148008347
+            },
+            "body_xy_m": [
+              2.647985270785047,
+              0.00019350760433710598
+            ],
+            "horizontal_distance_m": 2.0137541819656564
+          },
+          {
+            "time_s": 17.062,
+            "component": "caster_bracket_left",
+            "collisions": [
+              "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8936872482299805,
+              "y": 1.9989022016525269,
+              "z": 0.020008277148008347
+            },
+            "body_xy_m": [
+              2.647985270785047,
+              0.00019350760433710598
+            ],
+            "horizontal_distance_m": 2.0137541819656564
+          }
+        ],
+        "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+      }
+    },
+    {
+      "primitive": "cylinder",
+      "seed": 76212,
+      "contact": {
+        "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76212_full",
+        "evaluation": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76212_full/evaluation/20261016-003613-614902",
+        "logger": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76212_full/contact/20261015T173607-565751Z",
+        "complete": true,
+        "outcome": {
+          "governor_profile": "full",
+          "governor_run_id": "32568d7694a6425f9550463d60330561",
+          "governor_events": "0",
+          "governor_final_phase": "CRUISE",
+          "governor_fault": "",
+          "route_id": "E1",
+          "route_length_m": "6.45",
+          "route_gates_passed": "6",
+          "route_gates_total": "6",
+          "goal_x_m": "6.45",
+          "goal_y_m": "0.0",
+          "max_episode_seconds": "87.25",
+          "clock_origin_sim_s": "10.718",
+          "duration_s": "16.902",
+          "samples": "170",
+          "path_rmse_m": "0.006081293871580725",
+          "cross_track_rmse_m": "0.006081142355800657",
+          "path_mae_m": "0.004027584449380775",
+          "path_p95_m": "0.013024978382068153",
+          "path_max_m": "0.015426289642501511",
+          "endpoint_error_m": "0.18761844655182616",
+          "final_progress_fraction": "0.9709261799759383",
+          "max_progress_fraction": "0.9709261799759383",
+          "backtracking_m": "0.009205376258384579",
+          "reference_length_m": "6.45",
+          "travelled_distance_m": "6.284829729340508",
+          "heading_rmse_deg": "1.3332169091763042",
+          "truth_path_rmse_m": "0.006137198475265413",
+          "truth_path_p95_m": "0.013493889733425461",
+          "truth_endpoint_error_m": "0.1885982085570678",
+          "truth_heading_rmse_deg": "1.3333268607875113",
+          "odom_truth_position_error_m": "0.0011180566110816188",
+          "trajectory_frame": "odom_imu",
+          "trajectory_pose_source": "imu_encoder_lidar_odometry",
+          "reward_pose_source": "ground_truth",
+          "success": "True",
+          "time_seconds": "16.900000000000148",
+          "progress_m": "6.2624738608448025",
+          "remaining_m": "0.18752613915519767",
+          "endpoint_distance_m": "0.18761844655182616",
+          "lateral_error_m": "-0.0058846087436260335",
+          "heading_error_deg": "0.6494688866840856",
+          "roll_deg": "-0.00011787697483442867",
+          "pitch_deg": "-0.013567958678056114",
+          "attempt": "1",
+          "episode_start_time_unix": "1792085783.4614196",
+          "final_arrival_time_seconds": "16.900000000000148",
+          "goal_reached": "True",
+          "lidar_min_m": "1.531920313835144",
+          "collision_clearance_m": "1.522720313835086",
+          "adaptive_terrain_features": "0",
+          "next_adaptive_terrain_features": "0",
+          "adaptive_terrain_rolling_success": "0.0",
+          "adaptive_terrain_window_episodes": "0",
+          "adaptive_terrain_level_advanced": "False",
+          "flat_curriculum_stage": "",
+          "next_flat_curriculum_stage": "",
+          "successful_episodes": "1",
+          "difficult_path_chosen": "False",
+          "challenges_chosen": "0",
+          "challenges_cleared": "0",
+          "traversable_challenges": "0",
+          "challenge_choice_fraction": "0.0",
+          "challenge_clear_fraction": "0.0",
+          "final_lateral_drift_m": "-0.0058846087436260335",
+          "final_abs_lateral_drift_m": "0.0058846087436260335",
+          "return": "150.07373928627874",
+          "reward_totals": "{'progress': 73.06448045620998, 'lateral': -0.035748883971733536, 'heading': -0.3446500733038118, 'impact': -2.589435798319473, 'body_rate': -0.31263223240128096, 'attitude': 0.0, 'slip': -4.0735836995323895, 'smoothness': 0.0, 'saturation': 0.0, 'effort': -0.04374088917281453, 'residual_effort': 0.0, 'torque_rate': -0.004989884923082499, 'velocity': -0.1456360953037825, 'yaw_tracking': -0.40979376723079874, 'goal_braking': -0.2692679329712565, 'time': -33.800000000000296, 'stall': 0.0, 'challenge_entry': 0.0, 'challenge_clear': 0.0, 'challenge_goal': 0.0, 'success_position': -13.019105937963976, 'success_heading': -0.058558091238486536, 'on_time_success': 32.11640211640196, 'terminal': 100.0}",
+          "clock_elapsed_seconds": "16.900000000000002",
+          "max_clock_error_seconds": "1.4566126083082054e-13",
+          "max_motion_sensor_lag_seconds": "0.020000000000038654",
+          "curriculum_phase": "1",
+          "terrain_height_scale": "1.0",
+          "terrain_layout": "[]",
+          "peak_vertical_acceleration_m_s2": "13.702224251175794",
+          "rms_vertical_acceleration_m_s2": "1.1594566077076502",
+          "mean_abs_lateral_error_m": "0.004044304146232246",
+          "rms_path_deviation_m": "0.006091008618081641",
+          "max_path_deviation_m": "0.015426289642501511",
+          "mean_abs_roll_deg": "0.011041660896951801",
+          "mean_abs_pitch_deg": "0.21819631303454468",
+          "mean_imu_angular_xy_rad_s": "0.039444441187384126",
+          "mean_imu_acceleration_change_m_s2": "1.2042677719515535",
+          "max_tilt_deg": "10.751542768854279",
+          "rms_wheel_slip": "0.07062015694727097",
+          "max_abs_wheel_slip": "0.8358352951290257",
+          "rms_wheel_torque_nm": "0.4021985124171697",
+          "max_abs_wheel_torque_nm": "2.2110685860674084",
+          "rms_imu_acceleration_m_s2": "5.7072316704885875",
+          "mean_speed_scale": "1.0",
+          "min_speed_scale": "1.0",
+          "max_speed_scale": "1.0",
+          "mean_ground_speed_m_s": "0.3718181257765204",
+          "waypoint_arrival_times_seconds": "[5.499999999999984, 11.100000000000064, 15.900000000000132]",
+          "waypoint_time_budgets_seconds": "[8.0, 13.0, 18.0]",
+          "finished_within_target_time": "True",
+          "time_margin_seconds": "30.349999999999852",
+          "target_finish_seconds": "47.25",
+          "final_speed_m_s": "0.16764676805513257",
+          "final_yaw_rate_rad_s": "0.027467666511955896",
+          "wrong_direction_duration_seconds": "0.0",
+          "termination": "success",
+          "episode": "1",
+          "seed": "76212",
+          "controller": "full_governor_pi",
+          "phase": "1",
+          "cable_count": "0",
+          "cable_diameter_m": "0.0",
+          "cable_angle_deg": "0.0"
+        },
+        "qualification": "Simulation-only post-contact oracle; controlled cold starts, not identical snapshots or deployable detector",
+        "available": true,
+        "first_contact": {
+          "time_s": 17.826,
+          "component": "caster_bracket_right",
+          "event": "begin",
+          "collisions": [
+            "cable_bumps::cables::C1_collision",
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision"
+          ],
+          "named_positive_obstacle": true,
+          "episode": "32568d7694a6425f9550463d60330561:1",
+          "end_time_is_upper_bound": false
+        },
+        "first_contact_by_component_s": {
+          "caster_bracket_right": 17.826,
+          "caster_bracket_left": 17.827,
+          "caster_right_wheel": 17.882,
+          "caster_left_wheel": 18.08,
+          "left_wheel": 18.903,
+          "right_wheel": 18.962
+        },
+        "next_distinct_component_after_50ms_s": 17.882,
+        "next_driven_wheel_contact_s": 18.903,
+        "available_time_to_driven_wheel_s": 1.0769999999999982,
+        "available_time_s": 0.05600000000000094,
+        "approach_body_speed_m_s": 0.39595598751856453,
+        "precontact_minimum_scale": 1.0,
+        "scale_at_first_contact": 1.0,
+        "postcontact_first_reduced_command_s": null,
+        "governor_event_times_s": [],
+        "governor_event_diagnostics": [],
+        "precontact_governor_event_times_s": [],
+        "approach_motor_target_m_s": 0.39999999125299734,
+        "motor_target_drop_10percent_time_s": null,
+        "motor_target_drop_delay_s": null,
+        "body_slowdown_10percent_time_s": 17.84,
+        "body_slowdown_delay_s": 0.013999999999999346,
+        "body_slowdown_sustained_60ms_time_s": 17.84,
+        "sustained_slowdown_before_next_contact": true,
+        "sustained_slowdown_before_driven_wheel": true,
+        "postcontact_minimum_scale": null,
+        "first_recovered_scale_time_s": null,
+        "slowed_before_next_contact": true,
+        "body_speed_at_next_contact_m_s": 0.01034638896368963,
+        "first_50ms_acceleration": {
+          "available": false,
+          "reason": "partial_window",
+          "rms": 7.4207760079866745,
+          "peak": 8.779011332912948,
+          "coverage_s": 0.019999999999999574,
+          "coverage_fraction": 0.3999999999999858,
+          "maximum_gap_s": 0.05
+        },
+        "postcontact_window_s": [
+          17.876,
+          19.826
+        ],
+        "postcontact_acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 2.5086466303816497,
+          "peak": 13.702224251175794,
+          "coverage_s": 1.9400000000000013,
+          "coverage_fraction": 0.9948717948717959,
+          "maximum_gap_s": 0.05
+        },
+        "postcontact_slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.3361632684254964,
+          "peak": 1.0003125892360183,
+          "coverage_s": 1.9499999999999993,
+          "coverage_fraction": 1.0,
+          "maximum_gap_s": 0.025
+        },
+        "postcontact_distance_m": 0.5524391801401897,
+        "postcontact_slip_energy_per_m": 0.3988877089948237,
+        "postcontact_until_clearance": {
+          "available": true,
+          "reason": null,
+          "clear_x_m": 3.4,
+          "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+          "clearance_distance_m": 0.5,
+          "end_time_s": 20.3,
+          "start_time_s": 17.876,
+          "duration_s": 2.4239999999999995,
+          "distance_m": 0.7595648522041241,
+          "acceleration": {
+            "available": true,
+            "reason": null,
+            "rms": 2.289034770093742,
+            "peak": 13.702224251175794,
+            "coverage_s": 2.4200000000000017,
+            "coverage_fraction": 0.9983498349834993,
+            "maximum_gap_s": 0.05
+          },
+          "slip": {
+            "available": true,
+            "reason": null,
+            "rms": 0.3015168797357589,
+            "peak": 1.0003125892360183,
+            "coverage_s": 2.4239999999999995,
+            "coverage_fraction": 1.0,
+            "maximum_gap_s": 0.025
+          },
+          "slip_energy_per_m": 0.2901289161660198,
+          "fits_in_original_2s_window": false
+        },
+        "slip_qualification": "Simulator GT longitudinal wheel-slip ratio; not a deployable IMU/encoder-only measurement",
+        "governor_events": "0"
+      },
+      "geometry": {
+        "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76212_full",
+        "available": true,
+        "assumed_position_frame": "world; message frame_id empty",
+        "diagnostic_body_disk_radius_m": 0.75,
+        "point_counts": {
+          "cable": 1094,
+          "floor_or_other": 13623
+        },
+        "unaligned_points": 0,
+        "maximum_horizontal_distance_m": {
+          "cable": 2.0164426210692192,
+          "floor_or_other": 0.25370769990660047
+        },
+        "distant_point_count": 11,
+        "distant_positive_points": 11,
+        "distant_point_examples": [
+          {
+            "time_s": 17.847,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8908345699310303,
+              "y": 1.9989017248153687,
+              "z": 0.017082074657082558
+            },
+            "body_xy_m": [
+              2.6438501189779275,
+              -0.0001714712679972098
+            ],
+            "horizontal_distance_m": 2.0142728122852596
+          },
+          {
+            "time_s": 17.879,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.891911268234253,
+              "y": 1.9989008903503418,
+              "z": 0.018454592674970627
+            },
+            "body_xy_m": [
+              2.644282528585271,
+              -0.0021349844247908656
+            ],
+            "horizontal_distance_m": 2.0162997209832727
+          },
+          {
+            "time_s": 17.892,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8916144371032715,
+              "y": 1.9989010095596313,
+              "z": 0.018119176849722862
+            },
+            "body_xy_m": [
+              2.6446173309719536,
+              -0.0023569132547313063
+            ],
+            "horizontal_distance_m": 2.0164426210692192
+          },
+          {
+            "time_s": 17.903,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.890911817550659,
+              "y": 1.9989018440246582,
+              "z": 0.01719692163169384
+            },
+            "body_xy_m": [
+              2.6446173309719536,
+              -0.0023569132547313063
+            ],
+            "horizontal_distance_m": 2.0163575049347062
+          },
+          {
+            "time_s": 17.915,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8910179138183594,
+              "y": 1.998901605606079,
+              "z": 0.017349816858768463
+            },
+            "body_xy_m": [
+              2.6445707969175953,
+              -0.00235748259213129
+            ],
+            "horizontal_distance_m": 2.0163764825856876
+          },
+          {
+            "time_s": 17.925,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8910205364227295,
+              "y": 1.998901605606079,
+              "z": 0.017353704199194908
+            },
+            "body_xy_m": [
+              2.6445707969175953,
+              -0.00235748259213129
+            ],
+            "horizontal_distance_m": 2.0163768031293356
+          },
+          {
+            "time_s": 17.937,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.8910205364227295,
+              "y": 1.998901605606079,
+              "z": 0.017353704199194908
+            },
+            "body_xy_m": [
+              2.644563101683182,
+              -0.0023575787813778404
+            ],
+            "horizontal_distance_m": 2.016377839154544
+          },
+          {
+            "time_s": 17.95,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.890918493270874,
+              "y": 1.9989018440246582,
+              "z": 0.017206909134984016
+            },
+            "body_xy_m": [
+              2.644563101683182,
+              -0.0023575787813778404
+            ],
+            "horizontal_distance_m": 2.016365605820104
+          },
+          {
+            "time_s": 17.961,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.890918493270874,
+              "y": 1.9989018440246582,
+              "z": 0.017206909134984016
+            },
+            "body_xy_m": [
+              2.644555687006601,
+              -0.0023576714791176553
+            ],
+            "horizontal_distance_m": 2.0163666037466537
+          },
+          {
+            "time_s": 17.971,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.890918493270874,
+              "y": 1.9989018440246582,
+              "z": 0.017206909134984016
+            },
+            "body_xy_m": [
+              2.6447444822585537,
+              -0.002355288265431302
+            ],
+            "horizontal_distance_m": 2.0163411797708855
+          },
+          {
+            "time_s": 18.058,
+            "component": "caster_bracket_right",
+            "collisions": [
+              "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+              "cable_bumps::cables::C1_collision"
+            ],
+            "positive_obstacle": true,
+            "position": {
+              "x": 2.891179323196411,
+              "y": 1.9989014863967896,
+              "z": 0.01757214404642582
+            },
+            "body_xy_m": [
+              2.6456852243308164,
+              -0.002272792856883706
+            ],
+            "horizontal_distance_m": 2.016176046014903
+          }
+        ],
+        "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+      }
+    },
+    {
+      "primitive": "capsule",
+      "seed": 76210,
+      "contact": {
+        "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76210_full",
+        "evaluation": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76210_full/evaluation/20261016-004159-766521",
+        "logger": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76210_full/contact/20261015T174153-475330Z",
+        "complete": true,
+        "outcome": {
+          "governor_profile": "full",
+          "governor_run_id": "a56578ae61634f10a4411dc5a0307472",
+          "governor_events": "0",
+          "governor_final_phase": "CRUISE",
+          "governor_fault": "",
+          "route_id": "E1",
+          "route_length_m": "6.45",
+          "route_gates_passed": "6",
+          "route_gates_total": "6",
+          "goal_x_m": "6.45",
+          "goal_y_m": "0.0",
+          "max_episode_seconds": "87.25",
+          "clock_origin_sim_s": "6.0",
+          "duration_s": "16.7",
+          "samples": "168",
+          "path_rmse_m": "0.0063555262849349006",
+          "cross_track_rmse_m": "0.006355519935805295",
+          "path_mae_m": "0.004160200098118902",
+          "path_p95_m": "0.015353915751916806",
+          "path_max_m": "0.019732763859276033",
+          "endpoint_error_m": "0.190766419584949",
+          "final_progress_fraction": "0.9704698293456788",
+          "max_progress_fraction": "0.9704698293456788",
+          "backtracking_m": "0.002151757016393141",
+          "reference_length_m": "6.45",
+          "travelled_distance_m": "6.265379037244493",
+          "heading_rmse_deg": "1.0021127894887074",
+          "truth_path_rmse_m": "0.0063740216016485865",
+          "truth_path_p95_m": "0.01570184901699137",
+          "truth_endpoint_error_m": "0.19121845834656181",
+          "truth_heading_rmse_deg": "1.0021235038262297",
+          "odom_truth_position_error_m": "0.0005823091821914165",
+          "trajectory_frame": "odom_imu",
+          "trajectory_pose_source": "imu_encoder_lidar_odometry",
+          "reward_pose_source": "ground_truth",
+          "success": "True",
+          "time_seconds": "16.70000000000006",
+          "progress_m": "6.259530399279629",
+          "remaining_m": "0.19046960072037145",
+          "endpoint_distance_m": "0.190766419584949",
+          "lateral_error_m": "0.010637576917830125",
+          "heading_error_deg": "1.001885302858841",
+          "roll_deg": "-0.0004599178040233221",
+          "pitch_deg": "-0.013925769712515634",
+          "attempt": "1",
+          "episode_start_time_unix": "1792086124.531164",
+          "final_arrival_time_seconds": "16.70000000000006",
+          "goal_reached": "True",
+          "lidar_min_m": "1.5331887006759644",
+          "collision_clearance_m": "1.5259887006759398",
+          "adaptive_terrain_features": "0",
+          "next_adaptive_terrain_features": "0",
+          "adaptive_terrain_rolling_success": "0.0",
+          "adaptive_terrain_window_episodes": "0",
+          "adaptive_terrain_level_advanced": "False",
+          "flat_curriculum_stage": "",
+          "next_flat_curriculum_stage": "",
+          "successful_episodes": "1",
+          "difficult_path_chosen": "False",
+          "challenges_chosen": "0",
+          "challenges_cleared": "0",
+          "traversable_challenges": "0",
+          "challenge_choice_fraction": "0.0",
+          "challenge_clear_fraction": "0.0",
+          "final_lateral_drift_m": "0.010637576917830125",
+          "final_abs_lateral_drift_m": "0.010637576917830125",
+          "return": "144.93811174672373",
+          "reward_totals": "{'progress': 73.19897482571919, 'lateral': -0.038277396846568335, 'heading': -0.19282782838024345, 'impact': -3.8901890468119924, 'body_rate': -0.27142014880897525, 'attitude': 0.0, 'slip': -8.698268256959397, 'smoothness': 0.0, 'saturation': 0.0, 'effort': -0.020946161513076086, 'residual_effort': 0.0, 'torque_rate': -0.003857026997560563, 'velocity': -0.08432490255888446, 'yaw_tracking': -0.2872754197577111, 'goal_braking': -0.2752676424597144, 'time': -33.40000000000012, 'stall': 0.0, 'challenge_entry': 0.0, 'challenge_clear': 0.0, 'challenge_goal': 0.0, 'success_position': -13.287358641147716, 'success_heading': -0.13889293479576412, 'on_time_success': 32.328042328042265, 'terminal': 100.0}",
+          "clock_elapsed_seconds": "16.7",
+          "max_clock_error_seconds": "6.039613253960852e-14",
+          "max_motion_sensor_lag_seconds": "0.020000000000056417",
+          "curriculum_phase": "1",
+          "terrain_height_scale": "1.0",
+          "terrain_layout": "[]",
+          "peak_vertical_acceleration_m_s2": "12.396214152897317",
+          "rms_vertical_acceleration_m_s2": "1.3107244701643177",
+          "mean_abs_lateral_error_m": "0.004191469231284694",
+          "rms_path_deviation_m": "0.006382295251537242",
+          "max_path_deviation_m": "0.019732763859276033",
+          "mean_abs_roll_deg": "0.007142575156237135",
+          "mean_abs_pitch_deg": "0.15741720867819944",
+          "mean_imu_angular_xy_rad_s": "0.034804161225371444",
+          "mean_imu_acceleration_change_m_s2": "1.6698704546319783",
+          "max_tilt_deg": "6.09361632011249",
+          "rms_wheel_slip": "0.10469550719733822",
+          "max_abs_wheel_slip": "0.9336075354766565",
+          "rms_wheel_torque_nm": "0.2799845049783637",
+          "max_abs_wheel_torque_nm": "1.5910726688634202",
+          "rms_imu_acceleration_m_s2": "5.737307011508827",
+          "mean_speed_scale": "1.0",
+          "min_speed_scale": "1.0",
+          "max_speed_scale": "1.0",
+          "mean_ground_speed_m_s": "0.3749277073248963",
+          "waypoint_arrival_times_seconds": "[5.599999999999981, 10.899999999999977, 15.800000000000047]",
+          "waypoint_time_budgets_seconds": "[8.0, 13.0, 18.0]",
+          "finished_within_target_time": "True",
+          "time_margin_seconds": "30.54999999999994",
+          "target_finish_seconds": "47.25",
+          "final_speed_m_s": "0.17057220620131738",
+          "final_yaw_rate_rad_s": "-0.03821464783455021",
+          "wrong_direction_duration_seconds": "0.0",
+          "termination": "success",
+          "episode": "1",
+          "seed": "76210",
+          "controller": "full_governor_pi",
+          "phase": "1",
+          "cable_count": "0",
+          "cable_diameter_m": "0.0",
+          "cable_angle_deg": "0.0"
+        },
+        "qualification": "Sensor-triggered paired cold starts, not identical snapshots. Ground truth/contact are analysis-only.",
+        "available": true,
+        "first_contact": {
+          "time_s": 13.115,
+          "component": "caster_bracket_left",
+          "event": "begin",
+          "collisions": [
+            "cable_bumps::cables::C1_collision",
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision"
+          ],
+          "named_positive_obstacle": true,
+          "episode": "a56578ae61634f10a4411dc5a0307472:1",
+          "end_time_is_upper_bound": false
+        },
+        "first_contact_by_component_s": {
+          "caster_bracket_left": 13.115,
+          "caster_bracket_right": 13.116,
+          "caster_left_wheel": 13.254,
+          "caster_right_wheel": 13.259,
+          "left_wheel": 13.927,
+          "right_wheel": 13.949
+        },
+        "next_distinct_component_after_50ms_s": 13.254,
+        "next_driven_wheel_contact_s": 13.927,
+        "available_time_to_driven_wheel_s": 0.8119999999999994,
+        "available_time_s": 0.13899999999999935,
+        "approach_body_speed_m_s": 0.39608038265126044,
+        "precontact_minimum_scale": 1.0,
+        "scale_at_first_contact": 1.0,
+        "postcontact_first_reduced_command_s": null,
+        "governor_event_times_s": [],
+        "governor_event_diagnostics": [],
+        "precontact_governor_event_times_s": [],
+        "approach_motor_target_m_s": 0.3999997257892515,
+        "motor_target_drop_10percent_time_s": null,
+        "motor_target_drop_delay_s": null,
+        "body_slowdown_10percent_time_s": 13.14,
+        "body_slowdown_delay_s": 0.025000000000000355,
+        "body_slowdown_sustained_60ms_time_s": 13.14,
+        "sustained_slowdown_before_next_contact": true,
+        "sustained_slowdown_before_driven_wheel": true,
+        "postcontact_minimum_scale": null,
+        "first_recovered_scale_time_s": null,
+        "slowed_before_next_contact": true,
+        "body_speed_at_next_contact_m_s": 0.03428190020154726,
+        "first_50ms_acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 6.824135582425077,
+          "peak": 8.71723182262035,
+          "coverage_s": 0.040000000000000924,
+          "coverage_fraction": 0.8000000000000071,
+          "maximum_gap_s": 0.05
+        },
+        "postcontact_window_s": [
+          13.165000000000001,
+          15.115
+        ],
+        "postcontact_acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 2.3157267582483576,
+          "peak": 12.396214152897317,
+          "coverage_s": 1.92,
+          "coverage_fraction": 0.9846153846153849,
+          "maximum_gap_s": 0.05
+        },
+        "postcontact_slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.24160924741335713,
+          "peak": 0.9513091998523359,
+          "coverage_s": 1.9480000000000004,
+          "coverage_fraction": 0.9989743589743595,
+          "maximum_gap_s": 0.025
+        },
+        "postcontact_distance_m": 0.6395512538860093,
+        "postcontact_slip_energy_per_m": 0.17780366264892336,
+        "postcontact_until_clearance": {
+          "available": true,
+          "reason": null,
+          "clear_x_m": 3.4,
+          "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+          "clearance_distance_m": 0.5,
+          "end_time_s": 15.38,
+          "start_time_s": 13.165000000000001,
+          "duration_s": 2.215,
+          "distance_m": 0.7584904430154098,
+          "acceleration": {
+            "available": true,
+            "reason": null,
+            "rms": 2.1816284862803075,
+            "peak": 12.396214152897317,
+            "coverage_s": 2.200000000000001,
+            "coverage_fraction": 0.9932279909706552,
+            "maximum_gap_s": 0.05
+          },
+          "slip": {
+            "available": true,
+            "reason": null,
+            "rms": 0.22663398332949303,
+            "peak": 0.9513091998523359,
+            "coverage_s": 2.2140000000000004,
+            "coverage_fraction": 0.9995485327313772,
+            "maximum_gap_s": 0.025
+          },
+          "slip_energy_per_m": 0.14992621172793238,
+          "fits_in_original_2s_window": false
+        },
+        "slip_qualification": "Simulator GT longitudinal wheel-slip ratio; not a deployable IMU/encoder-only measurement",
+        "governor_events": "0"
+      },
+      "geometry": {
+        "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76210_full",
+        "available": true,
+        "assumed_position_frame": "world; message frame_id empty",
+        "diagnostic_body_disk_radius_m": 0.75,
+        "point_counts": {
+          "cable": 560,
+          "floor_or_other": 14371
+        },
+        "unaligned_points": 0,
+        "maximum_horizontal_distance_m": {
+          "cable": 0.2947031563752488,
+          "floor_or_other": 0.25268014410391587
+        },
+        "distant_point_count": 0,
+        "distant_positive_points": 0,
+        "distant_point_examples": [],
+        "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+      }
+    },
+    {
+      "primitive": "capsule",
+      "seed": 76211,
+      "contact": {
+        "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76211_full",
+        "evaluation": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76211_full/evaluation/20261016-004312-077363",
+        "logger": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76211_full/contact/20261015T174305-770423Z",
+        "complete": true,
+        "outcome": {
+          "governor_profile": "full",
+          "governor_run_id": "efc0960242f54c3f9bf22284d9fc1bad",
+          "governor_events": "0",
+          "governor_final_phase": "CRUISE",
+          "governor_fault": "",
+          "route_id": "E1",
+          "route_length_m": "6.45",
+          "route_gates_passed": "6",
+          "route_gates_total": "6",
+          "goal_x_m": "6.45",
+          "goal_y_m": "0.0",
+          "max_episode_seconds": "87.25",
+          "clock_origin_sim_s": "5.08",
+          "duration_s": "16.700000000000003",
+          "samples": "168",
+          "path_rmse_m": "0.00432183187347034",
+          "cross_track_rmse_m": "0.004321830590083605",
+          "path_mae_m": "0.003012917505010593",
+          "path_p95_m": "0.010272519482331034",
+          "path_max_m": "0.011232217253656482",
+          "endpoint_error_m": "0.19022793720916734",
+          "final_progress_fraction": "0.9705190333228118",
+          "max_progress_fraction": "0.9705190333228118",
+          "backtracking_m": "0.0042085727888832025",
+          "reference_length_m": "6.45",
+          "travelled_distance_m": "6.269088732636364",
+          "heading_rmse_deg": "0.7575027557377453",
+          "truth_path_rmse_m": "0.004314276718047047",
+          "truth_path_p95_m": "0.009870504246956131",
+          "truth_endpoint_error_m": "0.1905889772889513",
+          "truth_heading_rmse_deg": "0.7576063977344268",
+          "odom_truth_position_error_m": "0.00036925499469427764",
+          "trajectory_frame": "odom_imu",
+          "trajectory_pose_source": "imu_encoder_lidar_odometry",
+          "reward_pose_source": "ground_truth",
+          "success": "True",
+          "time_seconds": "16.700000000000042",
+          "progress_m": "6.259847764932136",
+          "remaining_m": "0.19015223506786416",
+          "endpoint_distance_m": "0.19022793720916734",
+          "lateral_error_m": "0.00536615258361539",
+          "heading_error_deg": "-0.674781503287495",
+          "roll_deg": "-0.0014762664211577829",
+          "pitch_deg": "-0.010810071484066895",
+          "attempt": "1",
+          "episode_start_time_unix": "1792086195.9425504",
+          "final_arrival_time_seconds": "16.700000000000042",
+          "goal_reached": "True",
+          "lidar_min_m": "1.5491260290145874",
+          "collision_clearance_m": "1.5143260290145704",
+          "adaptive_terrain_features": "0",
+          "next_adaptive_terrain_features": "0",
+          "adaptive_terrain_rolling_success": "0.0",
+          "adaptive_terrain_window_episodes": "0",
+          "adaptive_terrain_level_advanced": "False",
+          "flat_curriculum_stage": "",
+          "next_flat_curriculum_stage": "",
+          "successful_episodes": "1",
+          "difficult_path_chosen": "False",
+          "challenges_chosen": "0",
+          "challenges_cleared": "0",
+          "traversable_challenges": "0",
+          "challenge_choice_fraction": "0.0",
+          "challenge_clear_fraction": "0.0",
+          "final_lateral_drift_m": "0.00536615258361539",
+          "final_abs_lateral_drift_m": "0.00536615258361539",
+          "return": "148.87882103322295",
+          "reward_totals": "{'progress': 73.31928511822673, 'lateral': -0.017483358828763618, 'heading': -0.1101414068936603, 'impact': -2.914665440507454, 'body_rate': -0.06200962503123227, 'attitude': 0.0, 'slip': -6.409438162121624, 'smoothness': 0.0, 'saturation': 0.0, 'effort': -0.0207562248209826, 'residual_effort': 0.0, 'torque_rate': -0.0029112561029468347, 'velocity': -0.08172134427233549, 'yaw_tracking': -0.20796582052939863, 'goal_braking': -0.2551075530938453, 'time': -33.400000000000084, 'stall': 0.0, 'challenge_entry': 0.0, 'challenge_clear': 0.0, 'challenge_goal': 0.0, 'success_position': -13.222967307481902, 'success_heading': -0.06333891336185506, 'on_time_success': 32.32804232804229, 'terminal': 100.0}",
+          "clock_elapsed_seconds": "16.7",
+          "max_clock_error_seconds": "4.263256414560601e-14",
+          "max_motion_sensor_lag_seconds": "0.01899999999999924",
+          "curriculum_phase": "1",
+          "terrain_height_scale": "1.0",
+          "terrain_layout": "[]",
+          "peak_vertical_acceleration_m_s2": "10.75299809793105",
+          "rms_vertical_acceleration_m_s2": "1.1524828306260908",
+          "mean_abs_lateral_error_m": "0.0030288012165665154",
+          "rms_path_deviation_m": "0.0043317933880043435",
+          "max_path_deviation_m": "0.011232217253656482",
+          "mean_abs_roll_deg": "0.003756521148931031",
+          "mean_abs_pitch_deg": "0.14984381737867258",
+          "mean_imu_angular_xy_rad_s": "0.019761443225872224",
+          "mean_imu_acceleration_change_m_s2": "1.4038627756113369",
+          "max_tilt_deg": "4.9932825716338245",
+          "rms_wheel_slip": "0.09223130598229269",
+          "max_abs_wheel_slip": "0.999470458656689",
+          "rms_wheel_torque_nm": "0.2787121850842834",
+          "max_abs_wheel_torque_nm": "1.7054531521517533",
+          "rms_imu_acceleration_m_s2": "5.7393076005055645",
+          "mean_speed_scale": "1.0",
+          "min_speed_scale": "1.0",
+          "max_speed_scale": "1.0",
+          "mean_ground_speed_m_s": "0.37555258154110593",
+          "waypoint_arrival_times_seconds": "[5.4999999999999805, 10.799999999999962, 15.80000000000003]",
+          "waypoint_time_budgets_seconds": "[8.0, 13.0, 18.0]",
+          "finished_within_target_time": "True",
+          "time_margin_seconds": "30.549999999999958",
+          "target_finish_seconds": "47.25",
+          "final_speed_m_s": "0.1695346866360848",
+          "final_yaw_rate_rad_s": "-0.02053362265213877",
+          "wrong_direction_duration_seconds": "0.0",
+          "termination": "success",
+          "episode": "1",
+          "seed": "76211",
+          "controller": "full_governor_pi",
+          "phase": "1",
+          "cable_count": "0",
+          "cable_diameter_m": "0.0",
+          "cable_angle_deg": "0.0"
+        },
+        "qualification": "Sensor-triggered paired cold starts, not identical snapshots. Ground truth/contact are analysis-only.",
+        "available": true,
+        "first_contact": {
+          "time_s": 12.183,
+          "component": "caster_bracket_left",
+          "event": "begin",
+          "collisions": [
+            "cable_bumps::cables::C1_collision",
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision"
+          ],
+          "named_positive_obstacle": true,
+          "episode": "efc0960242f54c3f9bf22284d9fc1bad:1",
+          "end_time_is_upper_bound": false
+        },
+        "first_contact_by_component_s": {
+          "caster_bracket_left": 12.183,
+          "caster_bracket_right": 12.183,
+          "caster_left_wheel": 12.303,
+          "caster_right_wheel": 12.319,
+          "left_wheel": 13.026,
+          "right_wheel": 13.029
+        },
+        "next_distinct_component_after_50ms_s": 12.303,
+        "next_driven_wheel_contact_s": 13.026,
+        "available_time_to_driven_wheel_s": 0.843,
+        "available_time_s": 0.120000000000001,
+        "approach_body_speed_m_s": 0.395878393083168,
+        "precontact_minimum_scale": 1.0,
+        "scale_at_first_contact": 1.0,
+        "postcontact_first_reduced_command_s": null,
+        "governor_event_times_s": [],
+        "governor_event_diagnostics": [],
+        "precontact_governor_event_times_s": [],
+        "approach_motor_target_m_s": 0.3999989966517182,
+        "motor_target_drop_10percent_time_s": null,
+        "motor_target_drop_delay_s": null,
+        "body_slowdown_10percent_time_s": 12.2,
+        "body_slowdown_delay_s": 0.01699999999999946,
+        "body_slowdown_sustained_60ms_time_s": 12.2,
+        "sustained_slowdown_before_next_contact": true,
+        "sustained_slowdown_before_driven_wheel": true,
+        "postcontact_minimum_scale": null,
+        "first_recovered_scale_time_s": null,
+        "slowed_before_next_contact": true,
+        "body_speed_at_next_contact_m_s": 0.0008951449659026537,
+        "first_50ms_acceleration": {
+          "available": false,
+          "reason": "partial_window",
+          "rms": 4.098701897212725,
+          "peak": 4.260802248334166,
+          "coverage_s": 0.02000000000000135,
+          "coverage_fraction": 0.40000000000002134,
+          "maximum_gap_s": 0.05
+        },
+        "postcontact_window_s": [
+          12.233,
+          14.183
+        ],
+        "postcontact_acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 1.9688186496836757,
+          "peak": 10.75299809793105,
+          "coverage_s": 1.9399999999999995,
+          "coverage_fraction": 0.994871794871795,
+          "maximum_gap_s": 0.05
+        },
+        "postcontact_slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.2327356904600431,
+          "peak": 1.000585591514268,
+          "coverage_s": 1.9480000000000004,
+          "coverage_fraction": 0.9989743589743595,
+          "maximum_gap_s": 0.025
+        },
+        "postcontact_distance_m": 0.648606718786611,
+        "postcontact_slip_energy_per_m": 0.16267974611995442,
+        "postcontact_until_clearance": {
+          "available": true,
+          "reason": null,
+          "clear_x_m": 3.4,
+          "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+          "clearance_distance_m": 0.5,
+          "end_time_s": 14.44,
+          "start_time_s": 12.233,
+          "duration_s": 2.206999999999999,
+          "distance_m": 0.75850588608473,
+          "acceleration": {
+            "available": true,
+            "reason": null,
+            "rms": 1.858383474040846,
+            "peak": 10.75299809793105,
+            "coverage_s": 2.1999999999999993,
+            "coverage_fraction": 0.9968282736746716,
+            "maximum_gap_s": 0.05
+          },
+          "slip": {
+            "available": true,
+            "reason": null,
+            "rms": 0.21870413215668572,
+            "peak": 1.000585591514268,
+            "coverage_s": 2.2059999999999995,
+            "coverage_fraction": 0.9995468962392391,
+            "maximum_gap_s": 0.025
+          },
+          "slip_energy_per_m": 0.13911069808368962,
+          "fits_in_original_2s_window": false
+        },
+        "slip_qualification": "Simulator GT longitudinal wheel-slip ratio; not a deployable IMU/encoder-only measurement",
+        "governor_events": "0"
+      },
+      "geometry": {
+        "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76211_full",
+        "available": true,
+        "assumed_position_frame": "world; message frame_id empty",
+        "diagnostic_body_disk_radius_m": 0.75,
+        "point_counts": {
+          "cable": 584,
+          "floor_or_other": 13784
+        },
+        "unaligned_points": 0,
+        "maximum_horizontal_distance_m": {
+          "cable": 0.4003008690283475,
+          "floor_or_other": 0.25226320464190366
+        },
+        "distant_point_count": 0,
+        "distant_positive_points": 0,
+        "distant_point_examples": [],
+        "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+      }
+    }
+  ],
+  "qualification": "One local-geometry collision control with paired cold starts, not a hardware validation or learned-controller result",
+  "all_native_arrivals_and_stops": false,
+  "all_contacts_available": false,
+  "same_robot": false,
+  "same_core": false,
+  "capsule_parent_matches_cylinder": false,
+  "controller_changed": false,
+  "training_started": false,
+  "optuna_started": false
+}

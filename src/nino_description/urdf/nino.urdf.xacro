@@ -5,6 +5,7 @@
     default="$(find nino_control)/config/controllers.yaml"/>
   <xacro:arg name="contact_lab" default="false"/>
   <xacro:arg name="terrain_preview" default="true"/>
+  <xacro:arg name="caster_wheel_damping" default="0.01"/>
 
   <!-- Dimensions measured from the supplied SolidWorks STL export. -->
   <xacro:property name="drive_wheel_radius" value="0.0625"/>
@@ -350,7 +351,7 @@
       <child link="caster_${index}_wheel_link"/>
       <axis xyz="0 0 -1"/>
       <limit effort="1.0" velocity="30.0"/>
-      <dynamics damping="0.01" friction="0.0"/>
+      <dynamics damping="$(arg caster_wheel_damping)" friction="0.0"/>
     </joint>
   </xacro:macro>
 

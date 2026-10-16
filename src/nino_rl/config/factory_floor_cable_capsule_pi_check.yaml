@@ -1,0 +1,13 @@
+# Physical diagnostic only: same local obstacle section, rounded distant caps.
+extends: factory_floor_single_cable_box_pi_check.yaml
+simulation_model:
+  cable_collision_control:
+    kind: capsule
+    radius_m: 0.011
+    cylindrical_section_length_m: 4.0
+    validated: false
+research_map:
+  revision: cylinder_capsule_contact_AB_2026_10_16
+  stage: contact_fidelity_screen
+  training_allowed: false
+  optuna_allowed: false

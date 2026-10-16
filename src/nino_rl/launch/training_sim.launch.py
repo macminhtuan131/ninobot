@@ -35,6 +35,7 @@ def generate_launch_description():
             "accept_torque": LaunchConfiguration("accept_torque"),
             "contact_lab": LaunchConfiguration("contact_lab"),
             "terrain_preview": LaunchConfiguration("terrain_preview"),
+            "caster_wheel_damping": LaunchConfiguration("caster_wheel_damping"),
             "verbosity": LaunchConfiguration("verbosity"),
             "max_wheel_torque": LaunchConfiguration("max_wheel_torque"),
             "pi_integrator_profile": LaunchConfiguration("pi_integrator_profile"),
@@ -66,6 +67,7 @@ def generate_launch_description():
             DeclareLaunchArgument("accept_torque",default_value="true"),
             DeclareLaunchArgument("contact_lab",default_value="false"),
             DeclareLaunchArgument("terrain_preview",default_value="true"),
+            DeclareLaunchArgument("caster_wheel_damping",default_value="0.01"),
             DeclareLaunchArgument("world_name", default_value="long_hall"),
             DeclareLaunchArgument(
                 "headless", default_value="true", description="Disable Gazebo GUI while training"

@@ -1,0 +1,253 @@
+/home/tuanmac/ninorobot/.venv/lib/python3.12/site-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+{
+  "complete": true,
+  "groups": {
+    "full": {
+      "requested": 5,
+      "observed": 5,
+      "completed": 5,
+      "physical_successes": 5,
+      "physical_failures": 0,
+      "unavailable": 0,
+      "stable_stops": 5,
+      "metrics": {
+        "time_s": {
+          "n": 5,
+          "mean": 16.720000000000056,
+          "minimum": 16.600000000000062,
+          "maximum": 16.900000000000045,
+          "std": 0.1303840481040461
+        },
+        "truth_rmse_m": {
+          "n": 5,
+          "mean": 0.004593911435038333,
+          "minimum": 0.0033324228473294807,
+          "maximum": 0.006112906077726971,
+          "std": 0.001024046980288111
+        },
+        "approach_speed_m_s": {
+          "n": 5,
+          "mean": 0.396299216304823,
+          "minimum": 0.39576123678257485,
+          "maximum": 0.39719889077999043,
+          "std": 0.0005753072578549326
+        },
+        "whole_vertical_rms": {
+          "n": 5,
+          "mean": 1.8643600993266038,
+          "minimum": 1.2809551160229624,
+          "maximum": 3.521591289859273,
+          "std": 0.9395751485773831
+        },
+        "whole_vertical_peak": {
+          "n": 5,
+          "mean": 31.785959745565684,
+          "minimum": 12.062513508191023,
+          "maximum": 87.30716800469801,
+          "std": 31.301871270037378
+        },
+        "whole_slip_rms": {
+          "n": 5,
+          "mean": 0.0838408576885106,
+          "minimum": 0.06988214456657695,
+          "maximum": 0.10097520052881329,
+          "std": 0.014349778162875224
+        },
+        "first_50ms_peak": {
+          "n": 5,
+          "mean": 6.599606636416484,
+          "minimum": 4.012552407388812,
+          "maximum": 8.756278484770029,
+          "std": 2.0565367493858218
+        },
+        "contact_to_decision_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        },
+        "motor_target_drop_delay_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        },
+        "first_to_caster_s": {
+          "n": 5,
+          "mean": 0.24440000000000026,
+          "minimum": 0.051000000000000156,
+          "maximum": 0.7400000000000002,
+          "std": 0.2809524870863399
+        },
+        "first_to_drive_s": {
+          "n": 5,
+          "mean": 0.8904000000000003,
+          "minimum": 0.7400000000000002,
+          "maximum": 1.1259999999999994,
+          "std": 0.16363465403147293
+        },
+        "clearance_duration_s": {
+          "n": 5,
+          "mean": 2.241999999999999,
+          "minimum": 2.08,
+          "maximum": 2.4559999999999977,
+          "std": 0.15227113974749043
+        },
+        "postcontact_vertical_rms": {
+          "n": 5,
+          "mean": 4.013532651999214,
+          "minimum": 2.2304334977519114,
+          "maximum": 8.98752950096514,
+          "std": 2.8192085251986523
+        },
+        "postcontact_vertical_peak": {
+          "n": 5,
+          "mean": 31.785959745565684,
+          "minimum": 12.062513508191023,
+          "maximum": 87.30716800469801,
+          "std": 31.301871270037378
+        },
+        "postcontact_slip_energy_per_m": {
+          "n": 5,
+          "mean": 0.14269650555865715,
+          "minimum": 0.06712114010249635,
+          "maximum": 0.22593180250634165,
+          "std": 0.06640544903424932
+        },
+        "recovery_after_first_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        }
+      }
+    },
+    "moderate": {
+      "requested": 5,
+      "observed": 5,
+      "completed": 5,
+      "physical_successes": 5,
+      "physical_failures": 0,
+      "unavailable": 0,
+      "stable_stops": 5,
+      "metrics": {
+        "time_s": {
+          "n": 5,
+          "mean": 17.240000000000055,
+          "minimum": 16.900000000000034,
+          "maximum": 18.60000000000007,
+          "std": 0.7602631123499358
+        },
+        "truth_rmse_m": {
+          "n": 5,
+          "mean": 0.00454655286659239,
+          "minimum": 0.0016600516105993426,
+          "maximum": 0.006815416527459606,
+          "std": 0.002045719045964086
+        },
+        "approach_speed_m_s": {
+          "n": 5,
+          "mean": 0.3959961206095187,
+          "minimum": 0.39563832907189156,
+          "maximum": 0.39636030842839765,
+          "std": 0.00028804344632193805
+        },
+        "whole_vertical_rms": {
+          "n": 5,
+          "mean": 1.3560625112131484,
+          "minimum": 1.0496394779245943,
+          "maximum": 2.3084902200770165,
+          "std": 0.5364736818701057
+        },
+        "whole_vertical_peak": {
+          "n": 5,
+          "mean": 21.84082832894539,
+          "minimum": 6.992635275906627,
+          "maximum": 60.27265407606651,
+          "std": 21.72322867363005
+        },
+        "whole_slip_rms": {
+          "n": 5,
+          "mean": 0.08516501312356385,
+          "minimum": 0.04959098962998419,
+          "maximum": 0.13245652747477998,
+          "std": 0.029892811111098337
+        },
+        "first_50ms_peak": {
+          "n": 5,
+          "mean": 16.532749375326144,
+          "minimum": 4.060466312529976,
+          "maximum": 60.27265407606651,
+          "std": 24.496441668811688
+        },
+        "contact_to_decision_s": {
+          "n": 5,
+          "mean": 0.1017999999999752,
+          "minimum": 0.10099999999997422,
+          "maximum": 0.10299999999997489,
+          "std": 0.0008366600265340365
+        },
+        "motor_target_drop_delay_s": {
+          "n": 5,
+          "mean": 0.32240000000000146,
+          "minimum": 0.31400000000000183,
+          "maximum": 0.3310000000000013,
+          "std": 0.007231873892705875
+        },
+        "first_to_caster_s": {
+          "n": 5,
+          "mean": 0.29179999999999995,
+          "minimum": 0.13599999999999923,
+          "maximum": 0.8580000000000005,
+          "std": 0.3169703456161163
+        },
+        "first_to_drive_s": {
+          "n": 5,
+          "mean": 1.1996000000000002,
+          "minimum": 0.7260000000000009,
+          "maximum": 2.837999999999999,
+          "std": 0.918064703602093
+        },
+        "clearance_duration_s": {
+          "n": 5,
+          "mean": 2.7347999999999995,
+          "minimum": 2.324,
+          "maximum": 4.167999999999999,
+          "std": 0.801853914375929
+        },
+        "postcontact_vertical_rms": {
+          "n": 5,
+          "mean": 1.711618321237875,
+          "minimum": 1.3267419590309582,
+          "maximum": 1.9688422972143902,
+          "std": 0.26571472769687543
+        },
+        "postcontact_vertical_peak": {
+          "n": 5,
+          "mean": 11.024229673936716,
+          "minimum": 6.189660801023135,
+          "maximum": 15.442847030194427,
+          "std": 4.199834474107871
+        },
+        "postcontact_slip_energy_per_m": {
+          "n": 5,
+          "mean": 0.15294044089219852,
+          "minimum": 0.07740519163807627,
+          "maximum": 0.32811868474235606,
+          "std": 0.10120701345786419
+        },
+        "recovery_after_first_s": {
+          "n": 5,
+          "mean": 2.2417999999999676,
+          "minimum": 1.9029999999999685,
+          "maximum": 2.8009999999999646,
+          "std": 0.3500295701794334
+        }
+      }
+    }
+  }
+}

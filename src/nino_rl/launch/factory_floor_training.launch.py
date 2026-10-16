@@ -10,8 +10,10 @@ from launch_ros.substitutions import FindPackageShare
 def launch_world(context):
     variant = LaunchConfiguration("variant").perform(context)
     contact = LaunchConfiguration("contact_lab").perform(context).lower() in ("true","1")
-    if variant not in ("mixed", "clear", "cable", "pothole", "groove", "threshold"):
-        raise ValueError("Choose mixed, clear, cable, pothole, groove or threshold")
+    if variant not in ("mixed", "clear", "clear_box", "cable", "cable_box", "cable_box_capsule", "pothole", "groove", "threshold"):
+        raise ValueError("Choose mixed, clear/clear_box, cable/cable_box/cable_box_capsule, pothole, groove or threshold")
+    if variant in ("clear_box","cable_box","cable_box_capsule") and not contact:
+        raise ValueError("Box controls require contact_lab:=true")
     return [IncludeLaunchDescription(
         PythonLaunchDescriptionSource(PathJoinSubstitution([
             FindPackageShare("nino_rl"), "launch", "training_sim.launch.py"])),
@@ -26,6 +28,7 @@ def launch_world(context):
             "accept_torque": LaunchConfiguration("accept_torque"),
             "contact_lab": LaunchConfiguration("contact_lab"),
             "terrain_preview": LaunchConfiguration("terrain_preview"),
+            "caster_wheel_damping": LaunchConfiguration("caster_wheel_damping"),
         }.items(),
     )]
 
@@ -41,5 +44,6 @@ def generate_launch_description():
         DeclareLaunchArgument("accept_torque",default_value="true"),
         DeclareLaunchArgument("contact_lab",default_value="false"),
         DeclareLaunchArgument("terrain_preview",default_value="true"),
+        DeclareLaunchArgument("caster_wheel_damping",default_value="0.01"),
         OpaqueFunction(function=launch_world),
     ])

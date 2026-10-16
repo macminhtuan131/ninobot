@@ -1,0 +1,11 @@
+# Clear-floor physical control only. Never covers carved depressions.
+extends: factory_floor_stability_pi_check.yaml
+simulation_model:
+  floor_collision_control:
+    revision: clear_mesh_vs_box_v1_2026_10_15
+    shape: box
+    size_m: [10.0, 7.0, 0.1]
+    center_xyz_m: [3.0, 0.0, -0.05]
+    top_z_m: 0.0
+    validation_scope: clear_E1_AB_screen_only
+    hardware_validated: false

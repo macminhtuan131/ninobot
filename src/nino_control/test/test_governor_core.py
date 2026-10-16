@@ -114,3 +114,15 @@ def test_tilt_gravity_and_invalid_hold_settings():
         GovernorSettings(profile="pulse",pulse_seconds=.6)
     with pytest.raises(ValueError):
         GovernorSettings(scale_rate_per_second=math.nan)
+
+
+def test_optional_vertical_trigger_ablation_preserves_release_and_faults():
+    governor=ReactiveGovernor(GovernorSettings(profile="moderate",vertical_only_trigger_enabled=False))
+    for _ in range(30):
+        decision=governor.update(replace(FRAME,vertical_m_s2=8.),.1,.30)
+    assert not decision["disturbed"] and governor.events==0 and governor.scale==1.
+    assert decision["trigger_ratio"]>1.  # Raw severity remains observable.
+    assert decision["quiet_seconds"]==0.  # Release definition did not change.
+    decision=governor.update(replace(FRAME,vertical_m_s2=8.,body_rate_rad_s=.5),.1,.30)
+    assert decision["disturbed"] and governor.events==1 and governor.scale==pytest.approx(.96)
+    assert governor.update(FRAME,.1,.30,fresh=False)["phase"]=="FAILSAFE"

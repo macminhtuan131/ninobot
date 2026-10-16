@@ -1,0 +1,16 @@
+{
+  "results": [
+    {
+      "case": "rl_runs/governor_single_cable_screen_2026-10-15/seed_76200_full",
+      "evaluation": "rl_runs/governor_single_cable_screen_2026-10-15/seed_76200_full/evaluation/20261015-184918-425288",
+      "logger": "rl_runs/governor_single_cable_screen_2026-10-15/seed_76200_full/contact/20261015T114912-124005Z",
+      "complete": false,
+      "outcome": null,
+      "qualification": "Sensor-triggered paired cold starts, not identical snapshots. Ground truth/contact are analysis-only.",
+      "available": false,
+      "reason": "no_recorded_positive_contact"
+    }
+  ],
+  "training_started": false,
+  "optuna_started": false
+}

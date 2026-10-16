@@ -1,0 +1,148 @@
+{
+  "qualification": "Saved-trace sequence audit; temporal order is not a proven root cause",
+  "evaluation": "rl_runs/governor_time_comparison_2026-10-16/seed_76500_moderate/evaluation/20261016-014133-864133",
+  "logger": "rl_runs/governor_time_comparison_2026-10-16/seed_76500_moderate/contact/20261015T184127-527077Z",
+  "completed_control_steps": 195,
+  "completed_evaluation": true,
+  "physical_success_rate": 1.0,
+  "source_episode_ids": [],
+  "approach_started_s": 18.600000000000055,
+  "first_sustained_both_casters_below_1rad_s": null,
+  "first_ground_truth_tilt_above_5deg": null,
+  "first_ground_truth_roll_above_15deg": null,
+  "maximum_abs_roll_deg": null,
+  "maximum_abs_pitch_deg": null,
+  "last_ground_truth": null,
+  "contact_messages": {},
+  "wheel_windows": [
+    {
+      "window_s": [
+        2.0,
+        14.0
+      ],
+      "samples": 600,
+      "wheels": {
+        "left": {
+          "maximum_abs_applied_nm": 2.287330339866982,
+          "minimum_actual_rad_s": -0.670811472328005,
+          "maximum_tracking_error_rad_s": 7.082665113168188,
+          "residual_nonzero_samples": 0
+        },
+        "right": {
+          "maximum_abs_applied_nm": 2.245185089468118,
+          "minimum_actual_rad_s": -1.2022112452725258,
+          "maximum_tracking_error_rad_s": 7.5903196361760035,
+          "residual_nonzero_samples": 0
+        }
+      }
+    },
+    {
+      "window_s": [
+        14.0,
+        16.0
+      ],
+      "samples": 100,
+      "wheels": {
+        "left": {
+          "maximum_abs_applied_nm": 0.23451544178893594,
+          "minimum_actual_rad_s": 6.442838064423256,
+          "maximum_tracking_error_rad_s": 0.4391548842982802,
+          "residual_nonzero_samples": 0
+        },
+        "right": {
+          "maximum_abs_applied_nm": 0.2203706643829447,
+          "minimum_actual_rad_s": 6.616738611051225,
+          "maximum_tracking_error_rad_s": 0.3190940376664404,
+          "residual_nonzero_samples": 0
+        }
+      }
+    },
+    {
+      "window_s": [
+        16.0,
+        18.0
+      ],
+      "samples": 100,
+      "wheels": {
+        "left": {
+          "maximum_abs_applied_nm": 0.2418909453793277,
+          "minimum_actual_rad_s": 6.4927765979496215,
+          "maximum_tracking_error_rad_s": 0.2196149714886939,
+          "residual_nonzero_samples": 0
+        },
+        "right": {
+          "maximum_abs_applied_nm": 0.20305517239793633,
+          "minimum_actual_rad_s": 6.346551241439141,
+          "maximum_tracking_error_rad_s": 0.3136588319200051,
+          "residual_nonzero_samples": 0
+        }
+      }
+    }
+  ],
+  "observed_caster_wheel_damping": {
+    "left": 0.001,
+    "right": 0.001
+  },
+  "caster_rolling_ratio": {
+    "left": {
+      "samples": 0,
+      "median": null,
+      "fraction_below_half_rolling": null,
+      "positive_force_subset": {
+        "samples": 0,
+        "median": null
+      }
+    },
+    "right": {
+      "samples": 0,
+      "median": null,
+      "fraction_below_half_rolling": null,
+      "positive_force_subset": {
+        "samples": 0,
+        "median": null
+      }
+    }
+  },
+  "caster_rolling_qualification": "Nominal radius .016m; body speed>.25m/s, abs yaw rate<.05rad/s, swivel alignment<.15rad, nearest GT within .05s. Positive-force subset additionally needs recorded abs vertical contact force>=1N within .015s. Low unconditional ratio can include unloaded wheels; do not label it slip/stall without support evidence. Diagnostic filters, not hardware limits or inferred readiness thresholds.",
+  "driven_wheel_response": {
+    "left": {
+      "forward_target_samples": 966,
+      "near_stopped_samples": 138,
+      "maximum_abs_tracking_error_rad_s": 7.082665113168188
+    },
+    "right": {
+      "forward_target_samples": 966,
+      "near_stopped_samples": 133,
+      "maximum_abs_tracking_error_rad_s": 7.5903196361760035
+    }
+  },
+  "damping_drag_at_025m_s_N": {
+    "left": 0.9765625,
+    "right": 0.9765625
+  },
+  "damping_drag_qualification": "b*omega/r at nominal caster radius0.016m and pure rolling; not a measured contact force",
+  "message_gap_qualification": "Only nonempty contacts are published; a gap is not proof of no contact or exact lift-off",
+  "post_arrival_stop": {
+    "available": true,
+    "reason": null,
+    "qualification": "2s stopped-command diagnostic, independent of arrival scoring; 5deg/.01m_s are declared diagnostic thresholds",
+    "end_time_s": 23.636000000000067,
+    "window_seconds": 2.0,
+    "pose_samples": 100,
+    "drive_samples": 100,
+    "pose_coverage_s": 1.9800000000000004,
+    "commanded_stop": true,
+    "max_abs_roll_deg": 0.0009708297348483491,
+    "max_abs_pitch_deg": 0.013955251104671985,
+    "last": {
+      "time_s": 25.62,
+      "roll_deg": -0.0002639921675233919,
+      "pitch_deg": -0.0002302490485403218,
+      "x_m": 6.2885013232378055,
+      "y_m": -0.006752866233223896,
+      "speed_m_s": 0.0
+    },
+    "chassis_contact_messages": 0,
+    "settled": true
+  }
+}

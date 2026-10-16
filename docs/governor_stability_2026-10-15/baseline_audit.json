@@ -1,0 +1,141 @@
+{
+  "qualification": "Saved-trace sequence audit; temporal order is not a proven root cause",
+  "evaluation": "rl_runs/governor_foundations_2026-10-15/clear_arrival/20261015-171838-464382",
+  "logger": "rl_runs/governor_foundations_2026-10-15/clear_arrival_contact/20261015T101811-657998Z",
+  "completed_control_steps": 175,
+  "completed_evaluation": false,
+  "physical_success_rate": null,
+  "source_episode_ids": [
+    "dabb7fe13da641208e50f9d24abb0c71:1"
+  ],
+  "approach_started_s": 15.799999999999974,
+  "first_sustained_both_casters_below_1rad_s": 16.491,
+  "first_ground_truth_tilt_above_5deg": {
+    "elapsed_s": 17.083,
+    "x_m": 6.22731654465674,
+    "y_m": -0.006192787711121114,
+    "z_m": 0.01903629059664518,
+    "roll_deg": -5.735462970572182,
+    "pitch_deg": 2.539698426259719
+  },
+  "first_ground_truth_roll_above_15deg": {
+    "elapsed_s": 17.243000000000002,
+    "x_m": 6.225409614637603,
+    "y_m": -0.0005190039518102819,
+    "z_m": 0.05015145303363929,
+    "roll_deg": -15.221726748044802,
+    "pitch_deg": 6.119263088811821
+  },
+  "maximum_abs_roll_deg": 30.335083162657153,
+  "maximum_abs_pitch_deg": 12.515538074663935,
+  "last_ground_truth": {
+    "elapsed_s": 17.583,
+    "x_m": 6.2653261010430255,
+    "y_m": 0.015163972443362516,
+    "z_m": 0.0846727720417188,
+    "roll_deg": -26.942863898962504,
+    "pitch_deg": 11.894393670277054
+  },
+  "contact_messages": {
+    "left_wheel": {
+      "first_recorded_s": 0.0009999999999998899,
+      "last_recorded_s": 17.590000000000003,
+      "peak_abs_force_z_N": 124.60604634629487
+    },
+    "right_wheel": {
+      "first_recorded_s": 0.0009999999999998899,
+      "last_recorded_s": 16.566000000000003,
+      "peak_abs_force_z_N": 195.85940806244707
+    },
+    "caster_left_wheel": {
+      "first_recorded_s": 0.0009999999999998899,
+      "last_recorded_s": 17.6,
+      "peak_abs_force_z_N": 225555.99351155374
+    },
+    "caster_right_wheel": {
+      "first_recorded_s": 0.0009999999999998899,
+      "last_recorded_s": 16.584000000000003,
+      "peak_abs_force_z_N": 358.79141324834296
+    },
+    "chassis": {
+      "first_recorded_s": 17.466,
+      "last_recorded_s": 17.594,
+      "peak_abs_force_z_N": 0.0
+    }
+  },
+  "wheel_windows": [
+    {
+      "window_s": [
+        2.0,
+        14.0
+      ],
+      "samples": 600,
+      "wheels": {
+        "left": {
+          "maximum_abs_applied_nm": 0.5166376287953798,
+          "minimum_actual_rad_s": 5.243380005802786,
+          "maximum_tracking_error_rad_s": 1.3668280508143038,
+          "residual_nonzero_samples": 0
+        },
+        "right": {
+          "maximum_abs_applied_nm": 0.47082015916447284,
+          "minimum_actual_rad_s": 5.295713595634014,
+          "maximum_tracking_error_rad_s": 0.8814136939161497,
+          "residual_nonzero_samples": 0
+        }
+      }
+    },
+    {
+      "window_s": [
+        14.0,
+        16.0
+      ],
+      "samples": 100,
+      "wheels": {
+        "left": {
+          "maximum_abs_applied_nm": 0.29958172382912407,
+          "minimum_actual_rad_s": 4.439375379903742,
+          "maximum_tracking_error_rad_s": 0.4006073579174432,
+          "residual_nonzero_samples": 0
+        },
+        "right": {
+          "maximum_abs_applied_nm": 0.29015359980477523,
+          "minimum_actual_rad_s": 4.713957098792752,
+          "maximum_tracking_error_rad_s": 0.5341538104783119,
+          "residual_nonzero_samples": 0
+        }
+      }
+    },
+    {
+      "window_s": [
+        16.0,
+        18.0
+      ],
+      "samples": 75,
+      "wheels": {
+        "left": {
+          "maximum_abs_applied_nm": 1.1353136966461266,
+          "minimum_actual_rad_s": -0.2896457164128001,
+          "maximum_tracking_error_rad_s": 2.5723102781680787,
+          "residual_nonzero_samples": 0
+        },
+        "right": {
+          "maximum_abs_applied_nm": 0.18754623307361087,
+          "minimum_actual_rad_s": 2.5917649133468044,
+          "maximum_tracking_error_rad_s": 0.49188091966411296,
+          "residual_nonzero_samples": 0
+        }
+      }
+    }
+  ],
+  "observed_caster_wheel_damping": {
+    "left": 0.01,
+    "right": 0.01
+  },
+  "damping_drag_at_025m_s_N": {
+    "left": 9.765625,
+    "right": 9.765625
+  },
+  "damping_drag_qualification": "b*omega/r at nominal caster radius0.016m and pure rolling; not a measured contact force",
+  "message_gap_qualification": "Only nonempty contacts are published; a gap is not proof of no contact or exact lift-off"
+}

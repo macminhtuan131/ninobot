@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-15",
+  "bounded_physical_probes": 6,
+  "bounded_control_steps": 240,
+  "clean_floor_shadow_false_trigger_cases": 6,
+  "full_clear_arrival": {
+    "attempts": 1,
+    "completed": 0,
+    "aborted": 1,
+    "success": null,
+    "exception": "Corridor localization has no fresh accepted wall scan"
+  },
+  "damping_candidate_promoted": false,
+  "default_robot_damping_changed": false,
+  "detector_thresholds_changed": false,
+  "physical_scoring_relaxed": false,
+  "predictor_started": false,
+  "PPO_started": false,
+  "optuna_started": false,
+  "tests_passed": 64,
+  "next_action": "Audit saved 16\u201317.6 s clear-floor support contacts, wheel targets/actual/torque and 3D pose; choose one stability correction before new controller learning."
+}

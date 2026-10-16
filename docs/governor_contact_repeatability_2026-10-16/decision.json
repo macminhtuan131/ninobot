@@ -1,0 +1,23 @@
+{
+  "status": "bounded_batch_complete_keep_research_candidate",
+  "additional_native_episodes": 13,
+  "physical_arrivals": 13,
+  "stable_2s_stops": 13,
+  "timing_probe_episodes": 3,
+  "randomized_order_comparison_episodes": 10,
+  "pi_or_reset_correction_selected": false,
+  "reward_or_threshold_changed_in_batch": false,
+  "post_contact_rms_lower_blocks": 5,
+  "post_contact_peak_lower_blocks": 4,
+  "post_contact_slip_lower_blocks": 2,
+  "requested_blocks": 5,
+  "interpretation": "Narrow sensor-only post-contact vibration benefit with slip/time trade-off. Not a complete Pareto, time-matched, H1, generalization or hardware demonstration.",
+  "next_discriminating_comparison": "Frozen sensor governor versus constant-speed PI with measured approximately matching completion time; not started.",
+  "predictor_started": false,
+  "ppo_started": false,
+  "optuna_started": false,
+  "promoted_to_deployment": false,
+  "physical_scoring_changed": false,
+  "owned_simulators_closed": true,
+  "stopping_rule": "Stop after the preregistered ten comparison episodes. Preserve failures/outliers and do not search further thresholds, hold times or reward weights in this batch."
+}

@@ -1,0 +1,1799 @@
+{
+  "results": [
+    {
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76210_full",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 970,
+        "floor_or_other": 13946
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 2.0161604445037504,
+        "floor_or_other": 0.2520316166084693
+      },
+      "distant_point_count": 4,
+      "distant_positive_points": 4,
+      "distant_point_examples": [
+        {
+          "time_s": 16.352,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.889954090118408,
+            "y": 1.9989030361175537,
+            "z": 0.015480702742934227
+          },
+          "body_xy_m": [
+            2.6423187846655964,
+            -0.001991687118742261
+          ],
+          "horizontal_distance_m": 2.0161604445037504
+        },
+        {
+          "time_s": 16.363,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.889954090118408,
+            "y": 1.9989030361175537,
+            "z": 0.015480702742934227
+          },
+          "body_xy_m": [
+            2.6423187846655964,
+            -0.001991687118742261
+          ],
+          "horizontal_distance_m": 2.0161604445037504
+        },
+        {
+          "time_s": 16.467,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890004873275757,
+            "y": 1.9989027976989746,
+            "z": 0.015593200922012329
+          },
+          "body_xy_m": [
+            2.6425755139716287,
+            -0.0018597592588561296
+          ],
+          "horizontal_distance_m": 2.0160039923497397
+        },
+        {
+          "time_s": 16.479,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890113353729248,
+            "y": 1.998902678489685,
+            "z": 0.015822093933820724
+          },
+          "body_xy_m": [
+            2.6430281547769297,
+            -0.0016603002129779345
+          ],
+          "horizontal_distance_m": 2.0157637082001894
+        }
+      ],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    },
+    {
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76210_moderate",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 1984,
+        "floor_or_other": 14163
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 2.0150795569804436,
+        "floor_or_other": 0.25145284782190946
+      },
+      "distant_point_count": 17,
+      "distant_positive_points": 17,
+      "distant_point_examples": [
+        {
+          "time_s": 14.76,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8908352851867676,
+            "y": 1.9989017248153687,
+            "z": 0.017083249986171722
+          },
+          "body_xy_m": [
+            2.643911261729912,
+            0.00010372470942548812
+          ],
+          "horizontal_distance_m": 2.0139922836464987
+        },
+        {
+          "time_s": 14.771,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8914713859558105,
+            "y": 1.9989012479782104,
+            "z": 0.017946884036064148
+          },
+          "body_xy_m": [
+            2.644003642901003,
+            8.069236628747413e-05
+          ],
+          "horizontal_distance_m": 2.014081402870648
+        },
+        {
+          "time_s": 14.782,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8907735347747803,
+            "y": 1.9989020824432373,
+            "z": 0.016989292576909065
+          },
+          "body_xy_m": [
+            2.644003642901003,
+            8.069236628747413e-05
+          ],
+          "horizontal_distance_m": 2.0139966059962826
+        },
+        {
+          "time_s": 14.793,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891035795211792,
+            "y": 1.9989017248153687,
+            "z": 0.01737515814602375
+          },
+          "body_xy_m": [
+            2.644296529107231,
+            3.9442390310117213e-05
+          ],
+          "horizontal_distance_m": 2.0140334380390343
+        },
+        {
+          "time_s": 14.803,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891077995300293,
+            "y": 1.998901605606079,
+            "z": 0.01743384264409542
+          },
+          "body_xy_m": [
+            2.644296529107231,
+            3.9442390310117213e-05
+          ],
+          "horizontal_distance_m": 2.014038490096955
+        },
+        {
+          "time_s": 14.815,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8911948204040527,
+            "y": 1.9989013671875,
+            "z": 0.017592940479516983
+          },
+          "body_xy_m": [
+            2.6445892979107075,
+            -3.134979221528042e-06
+          ],
+          "horizontal_distance_m": 2.0140589595408085
+        },
+        {
+          "time_s": 14.827,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891213893890381,
+            "y": 1.9989012479782104,
+            "z": 0.017618453130126
+          },
+          "body_xy_m": [
+            2.6445892979107075,
+            -3.134979221528042e-06
+          ],
+          "horizontal_distance_m": 2.014061176714493
+        },
+        {
+          "time_s": 14.84,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891213893890381,
+            "y": 1.9989012479782104,
+            "z": 0.017618453130126
+          },
+          "body_xy_m": [
+            2.64446724829993,
+            -3.5846804978325174e-06
+          ],
+          "horizontal_distance_m": 2.0140765718155995
+        },
+        {
+          "time_s": 14.851,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891213893890381,
+            "y": 1.9989012479782104,
+            "z": 0.017618453130126
+          },
+          "body_xy_m": [
+            2.644458560872278,
+            -3.63272568334329e-06
+          ],
+          "horizontal_distance_m": 2.014077683823224
+        },
+        {
+          "time_s": 14.863,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891213893890381,
+            "y": 1.9989012479782104,
+            "z": 0.017618453130126
+          },
+          "body_xy_m": [
+            2.644458560872278,
+            -3.63272568334329e-06
+          ],
+          "horizontal_distance_m": 2.014077683823224
+        },
+        {
+          "time_s": 14.874,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891213893890381,
+            "y": 1.9989012479782104,
+            "z": 0.017618453130126
+          },
+          "body_xy_m": [
+            2.644454782793238,
+            -3.6531341563683476e-06
+          ],
+          "horizontal_distance_m": 2.0140781669539276
+        },
+        {
+          "time_s": 14.886,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891213893890381,
+            "y": 1.9989012479782104,
+            "z": 0.017618453130126
+          },
+          "body_xy_m": [
+            2.644454782793238,
+            -3.6531341563683476e-06
+          ],
+          "horizontal_distance_m": 2.0140781669539276
+        }
+      ],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    },
+    {
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76210_pulse",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 1285,
+        "floor_or_other": 14478
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 2.016267369086974,
+        "floor_or_other": 0.2525956654624723
+      },
+      "distant_point_count": 14,
+      "distant_positive_points": 14,
+      "distant_point_examples": [
+        {
+          "time_s": 20.067,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890083074569702,
+            "y": 1.998902678489685,
+            "z": 0.01575971022248268
+          },
+          "body_xy_m": [
+            2.643151794880624,
+            3.9198037212049854e-05
+          ],
+          "horizontal_distance_m": 2.0140581596308134
+        },
+        {
+          "time_s": 20.077,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8900792598724365,
+            "y": 1.998902678489685,
+            "z": 0.01575140282511711
+          },
+          "body_xy_m": [
+            2.6432058739683595,
+            -0.0002666159088375401
+          ],
+          "horizontal_distance_m": 2.0143545706587087
+        },
+        {
+          "time_s": 20.113,
+          "component": "caster_bracket_left",
+          "collisions": [
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.905198097229004,
+            "y": 1.9989051818847656,
+            "z": 0.02069433033466339
+          },
+          "body_xy_m": [
+            2.643166702195507,
+            -0.0002630580744695061
+          ],
+          "horizontal_distance_m": 2.016267369086974
+        },
+        {
+          "time_s": 20.124,
+          "component": "caster_bracket_left",
+          "collisions": [
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.9042751789093018,
+            "y": 1.9989054203033447,
+            "z": 0.02113521285355091
+          },
+          "body_xy_m": [
+            2.643166702195507,
+            -0.0002630580744695061
+          ],
+          "horizontal_distance_m": 2.016147871945722
+        },
+        {
+          "time_s": 20.134,
+          "component": "caster_bracket_left",
+          "collisions": [
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.90431809425354,
+            "y": 1.9989054203033447,
+            "z": 0.021117039024829865
+          },
+          "body_xy_m": [
+            2.6431229096533855,
+            -0.00026323748482955697
+          ],
+          "horizontal_distance_m": 2.0161592810938522
+        },
+        {
+          "time_s": 20.147,
+          "component": "caster_bracket_left",
+          "collisions": [
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.904370069503784,
+            "y": 1.9989054203033447,
+            "z": 0.021094657480716705
+          },
+          "body_xy_m": [
+            2.6431229096533855,
+            -0.00026323748482955697
+          ],
+          "horizontal_distance_m": 2.016166015191326
+        },
+        {
+          "time_s": 20.159,
+          "component": "caster_bracket_left",
+          "collisions": [
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.904374122619629,
+            "y": 1.9989054203033447,
+            "z": 0.021092964336276054
+          },
+          "body_xy_m": [
+            2.64312860581922,
+            -0.00026321405976039206
+          ],
+          "horizontal_distance_m": 2.0161657790642007
+        },
+        {
+          "time_s": 20.17,
+          "component": "caster_bracket_left",
+          "collisions": [
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.9044418334960938,
+            "y": 1.9989054203033447,
+            "z": 0.02106330543756485
+          },
+          "body_xy_m": [
+            2.643179871288024,
+            -0.0002630051781322524
+          ],
+          "horizontal_distance_m": 2.0161677029302147
+        },
+        {
+          "time_s": 20.181,
+          "component": "caster_bracket_left",
+          "collisions": [
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.904752016067505,
+            "y": 1.9989053010940552,
+            "z": 0.020920630544424057
+          },
+          "body_xy_m": [
+            2.643179871288024,
+            -0.0002630051781322524
+          ],
+          "horizontal_distance_m": 2.0162078027147263
+        },
+        {
+          "time_s": 20.219,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8901259899139404,
+            "y": 1.9989025592803955,
+            "z": 0.015847917646169662
+          },
+          "body_xy_m": [
+            2.643769516517724,
+            -0.00021219849678414776
+          ],
+          "horizontal_distance_m": 2.0142371575230986
+        },
+        {
+          "time_s": 20.23,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8902018070220947,
+            "y": 1.998902440071106,
+            "z": 0.015999507158994675
+          },
+          "body_xy_m": [
+            2.6457586796200148,
+            -0.00021347247756235745
+          ],
+          "horizontal_distance_m": 2.014005182302023
+        },
+        {
+          "time_s": 20.379,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891474723815918,
+            "y": -1.9989030361175537,
+            "z": 0.017951203510165215
+          },
+          "body_xy_m": [
+            2.6476856829760154,
+            0.0005419781254679301
+          ],
+          "horizontal_distance_m": 2.014252581335051
+        }
+      ],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    },
+    {
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76211_full",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 890,
+        "floor_or_other": 13564
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 2.0142530031891703,
+        "floor_or_other": 0.25096891870404703
+      },
+      "distant_point_count": 10,
+      "distant_positive_points": 10,
+      "distant_point_examples": [
+        {
+          "time_s": 16.49,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890021800994873,
+            "y": 1.9989027976989746,
+            "z": 0.01562948152422905
+          },
+          "body_xy_m": [
+            2.6408494673096974,
+            0.0006906170620298274
+          ],
+          "horizontal_distance_m": 2.0136878533476756
+        },
+        {
+          "time_s": 16.5,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8908045291900635,
+            "y": 1.9989019632339478,
+            "z": 0.01703677512705326
+          },
+          "body_xy_m": [
+            2.6440585530374006,
+            0.000312374696724493
+          ],
+          "horizontal_distance_m": 2.0137636207253617
+        },
+        {
+          "time_s": 16.51,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891096830368042,
+            "y": 1.9989014863967896,
+            "z": 0.017460068687796593
+          },
+          "body_xy_m": [
+            2.6440777325315894,
+            -9.443002251470679e-05
+          ],
+          "horizontal_distance_m": 2.0142003645509026
+        },
+        {
+          "time_s": 16.556,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.89011549949646,
+            "y": 1.998902440071106,
+            "z": 0.015826337039470673
+          },
+          "body_xy_m": [
+            2.6440556403571884,
+            -0.0002648132063566263
+          ],
+          "horizontal_distance_m": 2.0142530031891703
+        },
+        {
+          "time_s": 16.567,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8900985717773438,
+            "y": 1.998902678489685,
+            "z": 0.015791552141308784
+          },
+          "body_xy_m": [
+            2.6440556403571884,
+            -0.0002648132063566263
+          ],
+          "horizontal_distance_m": 2.01425117201308
+        },
+        {
+          "time_s": 16.577,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8900866508483887,
+            "y": 1.9989025592803955,
+            "z": 0.015766680240631104
+          },
+          "body_xy_m": [
+            2.644098239042039,
+            -0.0002647770329807355
+          ],
+          "horizontal_distance_m": 2.0142443588912764
+        },
+        {
+          "time_s": 16.588,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8900911808013916,
+            "y": 1.998902678489685,
+            "z": 0.015776388347148895
+          },
+          "body_xy_m": [
+            2.644098239042039,
+            -0.0002647770329807355
+          ],
+          "horizontal_distance_m": 2.014245030431102
+        },
+        {
+          "time_s": 17.041,
+          "component": "caster_bracket_left",
+          "collisions": [
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8936872482299805,
+            "y": 1.9989022016525269,
+            "z": 0.020008277148008347
+          },
+          "body_xy_m": [
+            2.6479736371451406,
+            7.885925234837127e-05
+          ],
+          "horizontal_distance_m": 2.0138693931822322
+        },
+        {
+          "time_s": 17.052,
+          "component": "caster_bracket_left",
+          "collisions": [
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8936872482299805,
+            "y": 1.9989022016525269,
+            "z": 0.020008277148008347
+          },
+          "body_xy_m": [
+            2.647985270785047,
+            0.00019350760433710598
+          ],
+          "horizontal_distance_m": 2.0137541819656564
+        },
+        {
+          "time_s": 17.062,
+          "component": "caster_bracket_left",
+          "collisions": [
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8936872482299805,
+            "y": 1.9989022016525269,
+            "z": 0.020008277148008347
+          },
+          "body_xy_m": [
+            2.647985270785047,
+            0.00019350760433710598
+          ],
+          "horizontal_distance_m": 2.0137541819656564
+        }
+      ],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    },
+    {
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76211_moderate",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 1291,
+        "floor_or_other": 13955
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 2.0146042285044383,
+        "floor_or_other": 0.25112156408406017
+      },
+      "distant_point_count": 9,
+      "distant_positive_points": 9,
+      "distant_point_examples": [
+        {
+          "time_s": 15.229,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890120506286621,
+            "y": 1.9989025592803955,
+            "z": 0.01583677902817726
+          },
+          "body_xy_m": [
+            2.6442176801807316,
+            0.0004147068553741864
+          ],
+          "horizontal_distance_m": 2.0135595089734095
+        },
+        {
+          "time_s": 15.239,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8901138305664062,
+            "y": 1.998902678489685,
+            "z": 0.015823032706975937
+          },
+          "body_xy_m": [
+            2.6443380640035397,
+            0.000648309280567667
+          ],
+          "horizontal_distance_m": 2.013312258814537
+        },
+        {
+          "time_s": 15.25,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890120029449463,
+            "y": 1.998902678489685,
+            "z": 0.015835769474506378
+          },
+          "body_xy_m": [
+            2.6443380640035397,
+            0.000648309280567667
+          ],
+          "horizontal_distance_m": 2.0133130155546577
+        },
+        {
+          "time_s": 15.261,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8909504413604736,
+            "y": 1.9989017248153687,
+            "z": 0.017253413796424866
+          },
+          "body_xy_m": [
+            2.6444952003322655,
+            0.0006591000068586647
+          ],
+          "horizontal_distance_m": 2.013383662750812
+        },
+        {
+          "time_s": 15.408,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891406774520874,
+            "y": -1.9989030361175537,
+            "z": 0.01786680519580841
+          },
+          "body_xy_m": [
+            2.6469324246011703,
+            0.0008002216946160832
+          ],
+          "horizontal_distance_m": 2.014591975332292
+        },
+        {
+          "time_s": 15.419,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8914074897766113,
+            "y": -1.9989031553268433,
+            "z": 0.017867878079414368
+          },
+          "body_xy_m": [
+            2.646922235896784,
+            0.0008082566161321552
+          ],
+          "horizontal_distance_m": 2.0146013924396193
+        },
+        {
+          "time_s": 15.431000000000001,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891406774520874,
+            "y": -1.9989031553268433,
+            "z": 0.017866894602775574
+          },
+          "body_xy_m": [
+            2.646963626515779,
+            0.0008162612167183811
+          ],
+          "horizontal_distance_m": 2.0146042285044383
+        },
+        {
+          "time_s": 15.442,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8914060592651367,
+            "y": -1.9989030361175537,
+            "z": 0.017866088077425957
+          },
+          "body_xy_m": [
+            2.646963626515779,
+            0.0008162612167183811
+          ],
+          "horizontal_distance_m": 2.0146040233900804
+        },
+        {
+          "time_s": 15.453,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891421318054199,
+            "y": -1.9989030361175537,
+            "z": 0.017885170876979828
+          },
+          "body_xy_m": [
+            2.647030486330431,
+            0.0007821780851548455
+          ],
+          "horizontal_distance_m": 2.0145639316069293
+        }
+      ],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    },
+    {
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76211_pulse",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 686,
+        "floor_or_other": 14835
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 2.0141222422930802,
+        "floor_or_other": 0.2511801329673036
+      },
+      "distant_point_count": 3,
+      "distant_positive_points": 3,
+      "distant_point_examples": [
+        {
+          "time_s": 20.949,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.889979362487793,
+            "y": 1.9989029169082642,
+            "z": 0.015537282451987267
+          },
+          "body_xy_m": [
+            2.640664544917897,
+            0.0006730955408003361
+          ],
+          "horizontal_distance_m": 2.0137229941732695
+        },
+        {
+          "time_s": 21.049,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8913097381591797,
+            "y": -1.9989031553268433,
+            "z": 0.017743762582540512
+          },
+          "body_xy_m": [
+            2.644524058468462,
+            4.2875760363343454e-05
+          ],
+          "horizontal_distance_m": 2.0141222422930802
+        },
+        {
+          "time_s": 21.059,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891312837600708,
+            "y": -1.9989031553268433,
+            "z": 0.017747733741998672
+          },
+          "body_xy_m": [
+            2.644668062097067,
+            4.311967303610701e-05
+          ],
+          "horizontal_distance_m": 2.014105224564778
+        }
+      ],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    },
+    {
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76212_full",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 1094,
+        "floor_or_other": 13623
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 2.0164426210692192,
+        "floor_or_other": 0.25370769990660047
+      },
+      "distant_point_count": 11,
+      "distant_positive_points": 11,
+      "distant_point_examples": [
+        {
+          "time_s": 17.847,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8908345699310303,
+            "y": 1.9989017248153687,
+            "z": 0.017082074657082558
+          },
+          "body_xy_m": [
+            2.6438501189779275,
+            -0.0001714712679972098
+          ],
+          "horizontal_distance_m": 2.0142728122852596
+        },
+        {
+          "time_s": 17.879,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891911268234253,
+            "y": 1.9989008903503418,
+            "z": 0.018454592674970627
+          },
+          "body_xy_m": [
+            2.644282528585271,
+            -0.0021349844247908656
+          ],
+          "horizontal_distance_m": 2.0162997209832727
+        },
+        {
+          "time_s": 17.892,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8916144371032715,
+            "y": 1.9989010095596313,
+            "z": 0.018119176849722862
+          },
+          "body_xy_m": [
+            2.6446173309719536,
+            -0.0023569132547313063
+          ],
+          "horizontal_distance_m": 2.0164426210692192
+        },
+        {
+          "time_s": 17.903,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890911817550659,
+            "y": 1.9989018440246582,
+            "z": 0.01719692163169384
+          },
+          "body_xy_m": [
+            2.6446173309719536,
+            -0.0023569132547313063
+          ],
+          "horizontal_distance_m": 2.0163575049347062
+        },
+        {
+          "time_s": 17.915,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8910179138183594,
+            "y": 1.998901605606079,
+            "z": 0.017349816858768463
+          },
+          "body_xy_m": [
+            2.6445707969175953,
+            -0.00235748259213129
+          ],
+          "horizontal_distance_m": 2.0163764825856876
+        },
+        {
+          "time_s": 17.925,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8910205364227295,
+            "y": 1.998901605606079,
+            "z": 0.017353704199194908
+          },
+          "body_xy_m": [
+            2.6445707969175953,
+            -0.00235748259213129
+          ],
+          "horizontal_distance_m": 2.0163768031293356
+        },
+        {
+          "time_s": 17.937,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8910205364227295,
+            "y": 1.998901605606079,
+            "z": 0.017353704199194908
+          },
+          "body_xy_m": [
+            2.644563101683182,
+            -0.0023575787813778404
+          ],
+          "horizontal_distance_m": 2.016377839154544
+        },
+        {
+          "time_s": 17.95,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890918493270874,
+            "y": 1.9989018440246582,
+            "z": 0.017206909134984016
+          },
+          "body_xy_m": [
+            2.644563101683182,
+            -0.0023575787813778404
+          ],
+          "horizontal_distance_m": 2.016365605820104
+        },
+        {
+          "time_s": 17.961,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890918493270874,
+            "y": 1.9989018440246582,
+            "z": 0.017206909134984016
+          },
+          "body_xy_m": [
+            2.644555687006601,
+            -0.0023576714791176553
+          ],
+          "horizontal_distance_m": 2.0163666037466537
+        },
+        {
+          "time_s": 17.971,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890918493270874,
+            "y": 1.9989018440246582,
+            "z": 0.017206909134984016
+          },
+          "body_xy_m": [
+            2.6447444822585537,
+            -0.002355288265431302
+          ],
+          "horizontal_distance_m": 2.0163411797708855
+        },
+        {
+          "time_s": 18.058,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891179323196411,
+            "y": 1.9989014863967896,
+            "z": 0.01757214404642582
+          },
+          "body_xy_m": [
+            2.6456852243308164,
+            -0.002272792856883706
+          ],
+          "horizontal_distance_m": 2.016176046014903
+        }
+      ],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    },
+    {
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76212_moderate",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 874,
+        "floor_or_other": 13888
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 2.0159340536554424,
+        "floor_or_other": 0.2505031719152341
+      },
+      "distant_point_count": 16,
+      "distant_positive_points": 16,
+      "distant_point_examples": [
+        {
+          "time_s": 16.247,
+          "component": "caster_bracket_left",
+          "collisions": [
+            "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.9001123905181885,
+            "y": 1.998906135559082,
+            "z": 0.021999411284923553
+          },
+          "body_xy_m": [
+            2.643341616105146,
+            0.0007092113113118954
+          ],
+          "horizontal_distance_m": 2.0146270569675973
+        },
+        {
+          "time_s": 16.248,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.889961004257202,
+            "y": 1.9989031553268433,
+            "z": 0.015496538951992989
+          },
+          "body_xy_m": [
+            2.643341616105146,
+            0.0007092113113118954
+          ],
+          "horizontal_distance_m": 2.013355448129525
+        },
+        {
+          "time_s": 16.446,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891390800476074,
+            "y": -1.9989031553268433,
+            "z": 0.017847001552581787
+          },
+          "body_xy_m": [
+            2.645896804115787,
+            0.002027329832178858
+          ],
+          "horizontal_distance_m": 2.0159340536554424
+        },
+        {
+          "time_s": 16.457,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8914012908935547,
+            "y": -1.9989030361175537,
+            "z": 0.017860177904367447
+          },
+          "body_xy_m": [
+            2.6468880153963648,
+            0.001971277544586917
+          ],
+          "horizontal_distance_m": 2.0157591029106894
+        },
+        {
+          "time_s": 16.468,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8914082050323486,
+            "y": -1.9989030361175537,
+            "z": 0.017868684604763985
+          },
+          "body_xy_m": [
+            2.6468880153963648,
+            0.001971277544586917
+          ],
+          "horizontal_distance_m": 2.015759941613227
+        },
+        {
+          "time_s": 16.478,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891407012939453,
+            "y": -1.9989031553268433,
+            "z": 0.017867259681224823
+          },
+          "body_xy_m": [
+            2.646932305700467,
+            0.0018230169933594847
+          ],
+          "horizontal_distance_m": 2.0156073772157708
+        },
+        {
+          "time_s": 16.489,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891406297683716,
+            "y": -1.9989030361175537,
+            "z": 0.017866190522909164
+          },
+          "body_xy_m": [
+            2.646932305700467,
+            0.0018230169933594847
+          ],
+          "horizontal_distance_m": 2.0156071721327544
+        },
+        {
+          "time_s": 16.5,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8914055824279785,
+            "y": -1.9989031553268433,
+            "z": 0.01786556839942932
+          },
+          "body_xy_m": [
+            2.646931860018048,
+            0.0018228152831821901
+          ],
+          "horizontal_distance_m": 2.015607057544301
+        },
+        {
+          "time_s": 16.51,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8914053440093994,
+            "y": -1.9989031553268433,
+            "z": 0.017865069210529327
+          },
+          "body_xy_m": [
+            2.6469316151913493,
+            0.0018228169844122337
+          ],
+          "horizontal_distance_m": 2.0156070600102147
+        },
+        {
+          "time_s": 16.521,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891404867172241,
+            "y": -1.9989031553268433,
+            "z": 0.017864644527435303
+          },
+          "body_xy_m": [
+            2.6469316151913493,
+            0.0018228169844122337
+          ],
+          "horizontal_distance_m": 2.015607002174514
+        },
+        {
+          "time_s": 16.532,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891404628753662,
+            "y": -1.9989030361175537,
+            "z": 0.0178641676902771
+          },
+          "body_xy_m": [
+            2.6469364307385583,
+            0.001823633743361213
+          ],
+          "horizontal_distance_m": 2.0156070815844784
+        },
+        {
+          "time_s": 16.542,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.891404867172241,
+            "y": -1.9989031553268433,
+            "z": 0.017864424735307693
+          },
+          "body_xy_m": [
+            2.6469364307385583,
+            0.001823633743361213
+          ],
+          "horizontal_distance_m": 2.01560722883093
+        }
+      ],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    },
+    {
+      "case": "rl_runs/governor_contact_oracle_h2_2026-10-16/seed_76212_pulse",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 970,
+        "floor_or_other": 14117
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 2.015110089253995,
+        "floor_or_other": 0.2511709305192622
+      },
+      "distant_point_count": 16,
+      "distant_positive_points": 16,
+      "distant_point_examples": [
+        {
+          "time_s": 17.381,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8899550437927246,
+            "y": 1.9989030361175537,
+            "z": 0.015482686460018158
+          },
+          "body_xy_m": [
+            2.6431286135242154,
+            0.0005588846254347057
+          ],
+          "horizontal_distance_m": 2.013529894111794
+        },
+        {
+          "time_s": 17.392,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.88996958732605,
+            "y": 1.9989031553268433,
+            "z": 0.015515470877289772
+          },
+          "body_xy_m": [
+            2.6432150592839707,
+            0.0009864500514427151
+          ],
+          "horizontal_distance_m": 2.013096857661792
+        },
+        {
+          "time_s": 17.402,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8899776935577393,
+            "y": 1.9989029169082642,
+            "z": 0.015533522702753544
+          },
+          "body_xy_m": [
+            2.6432150592839707,
+            0.0009864500514427151
+          ],
+          "horizontal_distance_m": 2.013097614675298
+        },
+        {
+          "time_s": 17.423000000000002,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890021562576294,
+            "y": 1.9989029169082642,
+            "z": 0.01562928408384323
+          },
+          "body_xy_m": [
+            2.643536917356911,
+            0.0010925134009569144
+          ],
+          "horizontal_distance_m": 2.0129582928344427
+        },
+        {
+          "time_s": 17.435,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8900322914123535,
+            "y": 1.9989027976989746,
+            "z": 0.015652259811758995
+          },
+          "body_xy_m": [
+            2.6438742538187907,
+            0.001077941559524609
+          ],
+          "horizontal_distance_m": 2.012932670329668
+        },
+        {
+          "time_s": 17.445,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8900322914123535,
+            "y": 1.9989027976989746,
+            "z": 0.015652259811758995
+          },
+          "body_xy_m": [
+            2.6438742538187907,
+            0.001077941559524609
+          ],
+          "horizontal_distance_m": 2.012932670329668
+        },
+        {
+          "time_s": 17.456,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8900322914123535,
+            "y": 1.9989027976989746,
+            "z": 0.015652259811758995
+          },
+          "body_xy_m": [
+            2.6438653557833844,
+            0.0010779616298852025
+          ],
+          "horizontal_distance_m": 2.01293373855461
+        },
+        {
+          "time_s": 17.466,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8900322914123535,
+            "y": 1.9989027976989746,
+            "z": 0.015652259811758995
+          },
+          "body_xy_m": [
+            2.6438653557833844,
+            0.0010779616298852025
+          ],
+          "horizontal_distance_m": 2.01293373855461
+        },
+        {
+          "time_s": 17.479,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8900322914123535,
+            "y": 1.9989027976989746,
+            "z": 0.015652259811758995
+          },
+          "body_xy_m": [
+            2.644006401651201,
+            0.0010776306879782154
+          ],
+          "horizontal_distance_m": 2.012916823014623
+        },
+        {
+          "time_s": 17.491,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.890090227127075,
+            "y": 1.9989027976989746,
+            "z": 0.015774548053741455
+          },
+          "body_xy_m": [
+            2.644363736732642,
+            0.0010766477650757393
+          ],
+          "horizontal_distance_m": 2.01288122685897
+        },
+        {
+          "time_s": 17.547,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.8913114070892334,
+            "y": -1.9989031553268433,
+            "z": 0.017745744436979294
+          },
+          "body_xy_m": [
+            2.6447315713136303,
+            0.0010636084975258315
+          ],
+          "horizontal_distance_m": 2.015110089253995
+        },
+        {
+          "time_s": 17.558,
+          "component": "caster_bracket_right",
+          "collisions": [
+            "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+            "cable_bumps::cables::C1_collision"
+          ],
+          "positive_obstacle": true,
+          "position": {
+            "x": 2.89132022857666,
+            "y": -1.9989030361175537,
+            "z": 0.017757274210453033
+          },
+          "body_xy_m": [
+            2.6457762192884613,
+            0.0010391677600167597
+          ],
+          "horizontal_distance_m": 2.014959225232113
+        }
+      ],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    }
+  ]
+}

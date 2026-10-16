@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "controller": "moderate_governor_pi",
+  "action_ablation": "none",
+  "baseline_speed_scale": 1.0,
+  "model": null,
+  "phase": 1,
+  "seed": 76404,
+  "randomized": false,
+  "evaluation_seeds": [
+    76404
+  ],
+  "control_trace": true,
+  "benchmark_id": "b233a48cf2b6dd4068e90bcb7b3401d2b9f44c70659b10e476b83b2c066805e0",
+  "pose_source": "imu_encoder_lidar_odometry",
+  "metric_weighting": "simulation_time_trapezoid",
+  "reference": "configured drawn routes with ordered spatial gates in odom",
+  "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
+  "governor": {
+    "enabled": true,
+    "revision": "motion_trigger_ablation_v1_2026_10_16",
+    "execution": "inline_PI_evaluation",
+    "parameters": {
+      "profile": "moderate",
+      "target_scale": 0.7,
+      "scale_rate_per_second": 0.4,
+      "vertical_trigger_m_s2": 1.5,
+      "body_rate_trigger_rad_s": 0.35,
+      "wheel_error_trigger_m_s": 0.06,
+      "wheel_error_acceleration_allowance_s": 0.1,
+      "release_ratio": 0.6,
+      "confirmation_seconds": 0.04,
+      "quiet_seconds": 0.3,
+      "minimum_hold_seconds": 0.8,
+      "maximum_hold_seconds": 2.5,
+      "startup_seconds": 0.8,
+      "wheel_stall_seconds": 1.2,
+      "stall_recovery_enabled": false,
+      "pulse_seconds": 1.0,
+      "vertical_only_trigger_enabled": false
+    }
+  },
+  "qualification": "Reactive PI/contact-authority experiment; no predictor or sim-to-real claim",
+  "complete": true,
+  "requested_episodes": 1,
+  "aborted_episode": null,
+  "episodes": 1,
+  "success_rate": 1.0,
+  "on_time_success_rate": 1.0,
+  "termination_counts": {
+    "success": 1
+  },
+  "metrics_all_episodes": {
+    "path_rmse_m": {
+      "mean": 0.0016445863659576814,
+      "std": 0.0,
+      "min": 0.0016445863659576814,
+      "max": 0.0016445863659576814
+    },
+    "cross_track_rmse_m": {
+      "mean": 0.0016445389625683383,
+      "std": 0.0,
+      "min": 0.0016445389625683383,
+      "max": 0.0016445389625683383
+    },
+    "path_p95_m": {
+      "mean": 0.003361659645109839,
+      "std": 0.0,
+      "min": 0.003361659645109839,
+      "max": 0.003361659645109839
+    },
+    "path_max_m": {
+      "mean": 0.004433392865733902,
+      "std": 0.0,
+      "min": 0.004433392865733902,
+      "max": 0.004433392865733902
+    },
+    "heading_rmse_deg": {
+      "mean": 0.36207821032208753,
+      "std": 0.0,
+      "min": 0.36207821032208753,
+      "max": 0.36207821032208753
+    },
+    "endpoint_error_m": {
+      "mean": 0.1937435007260835,
+      "std": 0.0,
+      "min": 0.1937435007260835,
+      "max": 0.1937435007260835
+    },
+    "final_progress_fraction": {
+      "mean": 0.9699641135622212,
+      "std": 0.0,
+      "min": 0.9699641135622212,
+      "max": 0.9699641135622212
+    },
+    "backtracking_m": {
+      "mean": 0.0021110662332683994,
+      "std": 0.0,
+      "min": 0.0021110662332683994,
+      "max": 0.0021110662332683994
+    },
+    "time_seconds": {
+      "mean": 16.90000000000007,
+      "std": 0.0,
+      "min": 16.90000000000007,
+      "max": 16.90000000000007
+    },
+    "rms_vertical_acceleration_m_s2": {
+      "mean": 1.2179263498478115,
+      "std": 0.0,
+      "min": 1.2179263498478115,
+      "max": 1.2179263498478115
+    },
+    "peak_vertical_acceleration_m_s2": {
+      "mean": 14.117806399323248,
+      "std": 0.0,
+      "min": 14.117806399323248,
+      "max": 14.117806399323248
+    },
+    "rms_wheel_slip": {
+      "mean": 0.08272442601536363,
+      "std": 0.0,
+      "min": 0.08272442601536363,
+      "max": 0.08272442601536363
+    },
+    "rms_wheel_torque_nm": {
+      "mean": 0.28212975354257774,
+      "std": 0.0,
+      "min": 0.28212975354257774,
+      "max": 0.28212975354257774
+    },
+    "challenge_choice_fraction": {
+      "mean": 0.0,
+      "std": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "challenge_clear_fraction": {
+      "mean": 0.0,
+      "std": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "truth_path_rmse_m": {
+      "mean": 0.0016600516105993426,
+      "std": 0.0,
+      "min": 0.0016600516105993426,
+      "max": 0.0016600516105993426
+    },
+    "truth_path_p95_m": {
+      "mean": 0.0034502742393205626,
+      "std": 0.0,
+      "min": 0.0034502742393205626,
+      "max": 0.0034502742393205626
+    },
+    "truth_endpoint_error_m": {
+      "mean": 0.19341867482272898,
+      "std": 0.0,
+      "min": 0.19341867482272898,
+      "max": 0.19341867482272898
+    },
+    "truth_heading_rmse_deg": {
+      "mean": 0.362101222858928,
+      "std": 0.0,
+      "min": 0.362101222858928,
+      "max": 0.362101222858928
+    },
+    "odom_truth_position_error_m": {
+      "mean": 0.0005243696252587103,
+      "std": 0.0,
+      "min": 0.0005243696252587103,
+      "max": 0.0005243696252587103
+    }
+  },
+  "metrics_successful_episodes": {
+    "path_rmse_m": 0.0016445863659576814,
+    "cross_track_rmse_m": 0.0016445389625683383,
+    "path_p95_m": 0.003361659645109839,
+    "path_max_m": 0.004433392865733902,
+    "heading_rmse_deg": 0.36207821032208753,
+    "endpoint_error_m": 0.1937435007260835,
+    "final_progress_fraction": 0.9699641135622212,
+    "backtracking_m": 0.0021110662332683994,
+    "time_seconds": 16.90000000000007,
+    "rms_vertical_acceleration_m_s2": 1.2179263498478115,
+    "peak_vertical_acceleration_m_s2": 14.117806399323248,
+    "rms_wheel_slip": 0.08272442601536363,
+    "rms_wheel_torque_nm": 0.28212975354257774,
+    "challenge_choice_fraction": 0.0,
+    "challenge_clear_fraction": 0.0,
+    "truth_path_rmse_m": 0.0016600516105993426,
+    "truth_path_p95_m": 0.0034502742393205626,
+    "truth_endpoint_error_m": 0.19341867482272898,
+    "truth_heading_rmse_deg": 0.362101222858928,
+    "odom_truth_position_error_m": 0.0005243696252587103
+  },
+  "per_route": {
+    "E1": {
+      "episodes": 1,
+      "success_rate": 1.0,
+      "truth_path_rmse_m": 0.0016600516105993426,
+      "termination_counts": {
+        "success": 1
+      }
+    }
+  }
+}

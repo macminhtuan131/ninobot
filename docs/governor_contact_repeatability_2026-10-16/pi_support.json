@@ -1,0 +1,2275 @@
+{
+  "results": [
+    {
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76400_full",
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "first_contact_s": 14.164,
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "timing": {
+        "available": true,
+        "status_samples": 825,
+        "updates": 8249,
+        "raw_elapsed_s": 16.500000000000004,
+        "observed_updates_per_sim_s": 499.9393939393938,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.004,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 825,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.004
+        },
+        "future_joint_updates": 0
+      },
+      "initial_body_speed_m_s": {
+        "n": 5,
+        "minimum": -0.0008457920082523258,
+        "median": -0.000836287343569285,
+        "maximum": -0.0008153295967613862
+      },
+      "repeated_joint_timestamps": 1,
+      "initial_caster": {
+        "left": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.05320818987121045,
+            "median": -0.052216894884386925,
+            "maximum": -0.050794270914520545
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": 0.00016199312855220014,
+            "median": 0.00016200292877703468,
+            "maximum": 0.00016201340469704
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 1.9260082042101678,
+            "median": 19.517932181265603,
+            "maximum": 19.524749751003622
+          },
+          "strong_support_samples": 50,
+          "weak_support_samples": 0,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.05319244857759349,
+            "median": -0.05221788638563628,
+            "maximum": -0.033344604771366214
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -0.00016707697841316299,
+            "median": -0.00016705990060153215,
+            "maximum": -0.0001670460843629906
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 7.116589599190986e-07,
+            "median": 1.0954177782874208e-05,
+            "maximum": 5.999984334263403
+          },
+          "strong_support_samples": 18,
+          "weak_support_samples": 32,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": 0.012322709703957945,
+            "median": 24.699514592561197,
+            "maximum": 24.985060231841064
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0007805684567518578,
+            "median": 7.848974449395183e-06,
+            "maximum": 0.00031994915743810274
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 0.0004977202215531201,
+            "median": 0.9984421045914494,
+            "maximum": 1.0057039344528627
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 17.458246187022652,
+            "maximum": 40.47199673792527
+          },
+          "strong_support_samples": 119,
+          "weak_support_samples": 106,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 73,
+          "slow_with_observed_strong_support": 15,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.03403486881535138,
+            "median": 16.192748082482073,
+            "maximum": 24.895522250754848
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0022966298076847096,
+            "median": -0.001474052244377922,
+            "maximum": -0.0003339239380208994
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 4.8073258135684e-06,
+            "median": 0.6546040179743233,
+            "maximum": 1.0044029218171568
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 23.919365693129485
+          },
+          "strong_support_samples": 93,
+          "weak_support_samples": 132,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 102,
+          "slow_with_observed_strong_support": 13,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "first_50ms_acceleration": {
+        "available": false,
+        "reason": "partial_window",
+        "rms": 6.789182159239005,
+        "peak": 8.396635708517145,
+        "coverage_s": 0.019999999999999574,
+        "coverage_fraction": 0.3999999999999858,
+        "maximum_gap_s": 0.05
+      },
+      "postcontact_clearance": {
+        "available": true,
+        "reason": null,
+        "clear_x_m": 3.4,
+        "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+        "clearance_distance_m": 0.5,
+        "end_time_s": 16.34,
+        "start_time_s": 14.214,
+        "duration_s": 2.1259999999999994,
+        "distance_m": 0.7557973473225245,
+        "acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 2.2304334977519114,
+          "peak": 16.16150383351563,
+          "coverage_s": 2.119999999999999,
+          "coverage_fraction": 0.9971777986829726,
+          "maximum_gap_s": 0.05
+        },
+        "slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.1740688222824908,
+          "peak": 0.8988696355049854,
+          "coverage_s": 2.1259999999999994,
+          "coverage_fraction": 1.0,
+          "maximum_gap_s": 0.025
+        },
+        "slip_energy_per_m": 0.08523145036969806,
+        "fits_in_original_2s_window": false
+      },
+      "imu_postcontact_sampling": {
+        "available": true,
+        "samples": 107,
+        "interval_s": {
+          "n": 106,
+          "minimum": 0.019999999999999574,
+          "median": 0.019999999999999574,
+          "maximum": 0.020000000000003126
+        },
+        "largest_absolute_sample_m_s2": 16.16150383351563,
+        "largest_sample_time_s": 15.24,
+        "largest_sample_fraction_of_integrated_squared_signal": 0.4953123036178688,
+        "qualification": "Native 50Hz IMU only. Contribution uses the existing trapezoidal squared-signal metric. Cannot resolve sub-sample impact duration or prove aliasing/contact cause."
+      },
+      "initial_command_received_delay_s": 0.0,
+      "qualification": "Observed floor wrench magnitude is a support proxy. Missing stream is unknown, not unloaded. Caster rotation is not slip without support. Frames are correlated; episode is the replication unit."
+    },
+    {
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76400_moderate",
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "first_contact_s": 13.315,
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "timing": {
+        "available": true,
+        "status_samples": 840,
+        "updates": 8400,
+        "raw_elapsed_s": 16.800000000000004,
+        "observed_updates_per_sim_s": 499.9999999999999,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.003,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 840,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.003
+        },
+        "future_joint_updates": 0
+      },
+      "initial_body_speed_m_s": {
+        "n": 5,
+        "minimum": -0.00010548709444800031,
+        "median": -0.00010132374396897416,
+        "maximum": 0.0
+      },
+      "repeated_joint_timestamps": 0,
+      "initial_caster": {
+        "left": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.005951194625117116,
+            "median": -0.004172928202882319,
+            "maximum": -0.0026651727904560686
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -0.0002146098016652169,
+            "median": -0.0002146098015946909,
+            "maximum": -0.00021460980151447197
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 19.552012900033276,
+            "median": 19.554096011503265,
+            "maximum": 19.56114348721917
+          },
+          "strong_support_samples": 50,
+          "weak_support_samples": 0,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -9.994157962915949e-06,
+            "median": -7.822608156507537e-06,
+            "maximum": -4.674453758854592e-06
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -0.0005659362222599177,
+            "median": -0.0005659362222599127,
+            "maximum": -0.0005659362222599046
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 0.0
+          },
+          "strong_support_samples": 0,
+          "weak_support_samples": 50,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": 0.15767311725149247,
+            "median": 24.666727604741205,
+            "maximum": 24.994837065693204
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0013348911219689583,
+            "median": -0.000592590339596821,
+            "maximum": 0.0003251168000878495
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 0.006382666016249817,
+            "median": 0.9984880298258952,
+            "maximum": 1.01133259409857
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 26.36117318961325
+          },
+          "strong_support_samples": 106,
+          "weak_support_samples": 119,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 70,
+          "slow_with_observed_strong_support": 20,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.008006202876170637,
+            "median": 16.176104235029097,
+            "maximum": 24.957578453157893
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0018394798611917815,
+            "median": -0.0014609173502056869,
+            "maximum": -0.0004932764340455508
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 8.009023486226253e-06,
+            "median": 0.6546813089126777,
+            "maximum": 1.0098250487935612
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 39.58614215418921
+          },
+          "strong_support_samples": 104,
+          "weak_support_samples": 121,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 89,
+          "slow_with_observed_strong_support": 24,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "first_50ms_acceleration": {
+        "available": false,
+        "reason": "partial_window",
+        "rms": 6.359071577733107,
+        "peak": 8.047163054546637,
+        "coverage_s": 0.03999999999999915,
+        "coverage_fraction": 0.7999999999999716,
+        "maximum_gap_s": 0.05
+      },
+      "postcontact_clearance": {
+        "available": true,
+        "reason": null,
+        "clear_x_m": 3.4,
+        "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+        "clearance_distance_m": 0.5,
+        "end_time_s": 15.74,
+        "start_time_s": 13.365,
+        "duration_s": 2.375,
+        "distance_m": 0.7617452335070319,
+        "acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 1.9688422972143902,
+          "peak": 12.378198863236141,
+          "coverage_s": 2.3599999999999994,
+          "coverage_fraction": 0.9936842105263155,
+          "maximum_gap_s": 0.05
+        },
+        "slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.1715791283390871,
+          "peak": 0.9893566104118436,
+          "coverage_s": 2.3740000000000006,
+          "coverage_fraction": 0.9995789473684212,
+          "maximum_gap_s": 0.025
+        },
+        "slip_energy_per_m": 0.09174869243980038,
+        "fits_in_original_2s_window": false
+      },
+      "imu_postcontact_sampling": {
+        "available": true,
+        "samples": 119,
+        "interval_s": {
+          "n": 118,
+          "minimum": 0.019999999999999574,
+          "median": 0.019999999999999574,
+          "maximum": 0.02000000000000135
+        },
+        "largest_absolute_sample_m_s2": 12.378198863236141,
+        "largest_sample_time_s": 13.48,
+        "largest_sample_fraction_of_integrated_squared_signal": 0.3349739559535677,
+        "qualification": "Native 50Hz IMU only. Contribution uses the existing trapezoidal squared-signal metric. Cannot resolve sub-sample impact duration or prove aliasing/contact cause."
+      },
+      "initial_command_received_delay_s": 0.0,
+      "qualification": "Observed floor wrench magnitude is a support proxy. Missing stream is unknown, not unloaded. Caster rotation is not slip without support. Frames are correlated; episode is the replication unit."
+    },
+    {
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76401_full",
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "first_contact_s": 12.034,
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "timing": {
+        "available": true,
+        "status_samples": 840,
+        "updates": 8400,
+        "raw_elapsed_s": 16.804000000000002,
+        "observed_updates_per_sim_s": 499.8809807188764,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.005,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 1,
+        "window_joint_age_max_s": {
+          "n": 840,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.005
+        },
+        "future_joint_updates": 0
+      },
+      "initial_body_speed_m_s": {
+        "n": 5,
+        "minimum": -0.00020856405392093687,
+        "median": -0.0001101616476019404,
+        "maximum": -0.00010775430221427377
+      },
+      "repeated_joint_timestamps": 1,
+      "initial_caster": {
+        "left": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.01039542212029605,
+            "median": -0.009737365077733756,
+            "maximum": -0.006464963051274565
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": 0.0006292493208915443,
+            "median": 0.0006292493262560685,
+            "maximum": 0.0006292493303037747
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 3.3235531940105948e-06,
+            "median": 19.558578856939356,
+            "maximum": 19.559606804203952
+          },
+          "strong_support_samples": 44,
+          "weak_support_samples": 6,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.010126259694716784,
+            "median": -0.006466487432932422,
+            "maximum": -0.00012119171966183132
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -0.00020358000876673286,
+            "median": -0.00020358000563436878,
+            "maximum": -0.00020358000156160658
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 0.0,
+            "median": 9.977003209623009e-07,
+            "maximum": 19.534797568938046
+          },
+          "strong_support_samples": 5,
+          "weak_support_samples": 45,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": -0.0047593110995148465,
+            "median": 24.672394130128588,
+            "maximum": 24.92979340691172
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -0.0012526023798406147,
+            "median": -0.0003693001507033008,
+            "maximum": 0.00046967547410261716
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 0.0001925443059561885,
+            "median": 0.9982378059034817,
+            "maximum": 1.0056110404279857
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 15.243032132639247,
+            "maximum": 21.025908499169343
+          },
+          "strong_support_samples": 121,
+          "weak_support_samples": 105,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 68,
+          "slow_with_observed_strong_support": 15,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": -0.03481682291255041,
+            "median": 16.181141769703792,
+            "maximum": 24.795372640792202
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -0.0025390331598488555,
+            "median": -0.001845451933451032,
+            "maximum": -0.0004757486145371242
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 1.9543713036242036e-06,
+            "median": 0.6548566925415642,
+            "maximum": 1.003702443368932
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 22.142211831447888
+          },
+          "strong_support_samples": 78,
+          "weak_support_samples": 148,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 85,
+          "slow_with_observed_strong_support": 12,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "first_50ms_acceleration": {
+        "available": true,
+        "reason": null,
+        "rms": 2.8726428439727347,
+        "peak": 4.012552407388812,
+        "coverage_s": 0.040000000000000924,
+        "coverage_fraction": 0.8000000000000071,
+        "maximum_gap_s": 0.05
+      },
+      "postcontact_clearance": {
+        "available": true,
+        "reason": null,
+        "clear_x_m": 3.4,
+        "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+        "clearance_distance_m": 0.5,
+        "end_time_s": 14.54,
+        "start_time_s": 12.084000000000001,
+        "duration_s": 2.4559999999999977,
+        "distance_m": 0.7595214927179684,
+        "acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 2.4743297330505944,
+          "peak": 12.062513508191023,
+          "coverage_s": 2.4399999999999995,
+          "coverage_fraction": 0.9934853420195446,
+          "maximum_gap_s": 0.05
+        },
+        "slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.26443652314430377,
+          "peak": 1.2732325952477648,
+          "coverage_s": 2.453999999999999,
+          "coverage_fraction": 0.9991856677524434,
+          "maximum_gap_s": 0.025
+        },
+        "slip_energy_per_m": 0.22593180250634165,
+        "fits_in_original_2s_window": false
+      },
+      "imu_postcontact_sampling": {
+        "available": true,
+        "samples": 123,
+        "interval_s": {
+          "n": 122,
+          "minimum": 0.019999999999999574,
+          "median": 0.019999999999999574,
+          "maximum": 0.02000000000000135
+        },
+        "largest_absolute_sample_m_s2": 12.062513508191023,
+        "largest_sample_time_s": 13.18,
+        "largest_sample_fraction_of_integrated_squared_signal": 0.1948052454970165,
+        "qualification": "Native 50Hz IMU only. Contribution uses the existing trapezoidal squared-signal metric. Cannot resolve sub-sample impact duration or prove aliasing/contact cause."
+      },
+      "initial_command_received_delay_s": 0.0,
+      "qualification": "Observed floor wrench magnitude is a support proxy. Missing stream is unknown, not unloaded. Caster rotation is not slip without support. Frames are correlated; episode is the replication unit."
+    },
+    {
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76401_moderate",
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "first_contact_s": 12.082,
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "timing": {
+        "available": true,
+        "status_samples": 925,
+        "updates": 9250,
+        "raw_elapsed_s": 18.500000000000004,
+        "observed_updates_per_sim_s": 499.9999999999999,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.003,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 925,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.003
+        },
+        "future_joint_updates": 0
+      },
+      "initial_body_speed_m_s": {
+        "n": 5,
+        "minimum": -0.0005447342097464713,
+        "median": -0.0004898142239230886,
+        "maximum": -0.00040327756729004085
+      },
+      "repeated_joint_timestamps": 0,
+      "initial_caster": {
+        "left": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.0348188417051844,
+            "median": -0.030310043921497304,
+            "maximum": -0.02084477386466759
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": 8.348997033341117e-05,
+            "median": 8.34899721107805e-05,
+            "maximum": 8.348997381983979e-05
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 1.4792553984069667e-06,
+            "median": 13.50460186813607,
+            "maximum": 19.54206067847446
+          },
+          "strong_support_samples": 35,
+          "weak_support_samples": 15,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.03481957081209888,
+            "median": -0.030673012814235085,
+            "maximum": -0.024750434326961633
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -7.646141299703384e-06,
+            "median": -7.64613956874128e-06,
+            "maximum": -7.646137736451245e-06
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 1.316340185297592e-06,
+            "median": 1.9888064923245614,
+            "maximum": 19.537109329043865
+          },
+          "strong_support_samples": 34,
+          "weak_support_samples": 16,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": -0.0049836001677945555,
+            "median": 16.229798790731337,
+            "maximum": 24.938724013732596
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -6.301875219983223e-05,
+            "median": 0.0002474904718532821,
+            "maximum": 0.0008587124014469299
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 3.854698381176534e-05,
+            "median": 0.6558990088659205,
+            "maximum": 1.0091912145368063
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 25.633661130094854
+          },
+          "strong_support_samples": 100,
+          "weak_support_samples": 126,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 77,
+          "slow_with_observed_strong_support": 17,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": -0.006715442349134432,
+            "median": 20.456202360627262,
+            "maximum": 24.864475837531703
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -0.0011606960928923682,
+            "median": -0.0006794242512922968,
+            "maximum": -3.3951475680293028e-06
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 4.328793528607416e-05,
+            "median": 0.8276995322239303,
+            "maximum": 1.0054507556866064
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 0.00020994521876060315,
+            "maximum": 37.632597115072485
+          },
+          "strong_support_samples": 112,
+          "weak_support_samples": 114,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 83,
+          "slow_with_observed_strong_support": 16,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "first_50ms_acceleration": {
+        "available": false,
+        "reason": "partial_window",
+        "rms": 5.103703293984212,
+        "peak": 5.299478193633746,
+        "coverage_s": 0.019999999999999574,
+        "coverage_fraction": 0.3999999999999858,
+        "maximum_gap_s": 0.05
+      },
+      "postcontact_clearance": {
+        "available": true,
+        "reason": null,
+        "clear_x_m": 3.4,
+        "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+        "clearance_distance_m": 0.5,
+        "end_time_s": 16.3,
+        "start_time_s": 12.132000000000001,
+        "duration_s": 4.167999999999999,
+        "distance_m": 0.7618716477661758,
+        "acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 1.8372714993328914,
+          "peak": 15.442847030194427,
+          "coverage_s": 4.16,
+          "coverage_fraction": 0.9980806142034551,
+          "maximum_gap_s": 0.05
+        },
+        "slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.24496089168673424,
+          "peak": 1.0157699389077404,
+          "coverage_s": 4.166,
+          "coverage_fraction": 0.999520153550864,
+          "maximum_gap_s": 0.025
+        },
+        "slip_energy_per_m": 0.32811868474235606,
+        "fits_in_original_2s_window": false
+      },
+      "imu_postcontact_sampling": {
+        "available": true,
+        "samples": 209,
+        "interval_s": {
+          "n": 208,
+          "minimum": 0.019999999999999574,
+          "median": 0.019999999999999574,
+          "maximum": 0.020000000000003126
+        },
+        "largest_absolute_sample_m_s2": 15.442847030194427,
+        "largest_sample_time_s": 14.68,
+        "largest_sample_fraction_of_integrated_squared_signal": 0.33966025235389075,
+        "qualification": "Native 50Hz IMU only. Contribution uses the existing trapezoidal squared-signal metric. Cannot resolve sub-sample impact duration or prove aliasing/contact cause."
+      },
+      "initial_command_received_delay_s": 0.0,
+      "qualification": "Observed floor wrench magnitude is a support proxy. Missing stream is unknown, not unloaded. Caster rotation is not slip without support. Frames are correlated; episode is the replication unit."
+    },
+    {
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76402_full",
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "first_contact_s": 13.29,
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "timing": {
+        "available": true,
+        "status_samples": 825,
+        "updates": 8251,
+        "raw_elapsed_s": 16.504000000000005,
+        "observed_updates_per_sim_s": 499.9394086282112,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.003,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 825,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.004
+        },
+        "future_joint_updates": 0
+      },
+      "initial_body_speed_m_s": {
+        "n": 5,
+        "minimum": -0.00010577208168276158,
+        "median": -0.00010296588799965699,
+        "maximum": 0.0
+      },
+      "repeated_joint_timestamps": 1,
+      "initial_caster": {
+        "left": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.003925656708229236,
+            "median": -0.0027323976401791945,
+            "maximum": -0.0010041131791824838
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": 0.00011389352073255373,
+            "median": 0.00011389352121157108,
+            "maximum": 0.00011389352159370988
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 9.31801748388299e-08,
+            "median": 5.205702772747862e-07,
+            "maximum": 1.209378252270738e-06
+          },
+          "strong_support_samples": 0,
+          "weak_support_samples": 50,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.003928085189717724,
+            "median": -0.0028610183441281356,
+            "maximum": -0.0018635987136339169
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -0.00015959941801089672,
+            "median": -0.00015959941711099647,
+            "maximum": -0.00015959941599572936
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 19.552565789259965,
+            "median": 19.558051864247144,
+            "maximum": 19.561560038484256
+          },
+          "strong_support_samples": 50,
+          "weak_support_samples": 0,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.003952501672381018,
+            "median": 24.70430271309723,
+            "maximum": 24.973179456561205
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0007090273122517237,
+            "median": 4.246788684660233e-06,
+            "maximum": 0.000318797063550277
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 7.536638653223675e-06,
+            "median": 0.998792780969668,
+            "maximum": 1.0052097437758662
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 17.953777033915078,
+            "maximum": 34.71868831193715
+          },
+          "strong_support_samples": 131,
+          "weak_support_samples": 94,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 54,
+          "slow_with_observed_strong_support": 13,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.035871473705366724,
+            "median": 16.1479971140288,
+            "maximum": 24.92040078878631
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0016310092729491387,
+            "median": -0.001438868713908148,
+            "maximum": -0.0004617565419134545
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 6.93904955177837e-07,
+            "median": 0.6536351976575843,
+            "maximum": 1.0046159641161343
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 24.83703288861656
+          },
+          "strong_support_samples": 67,
+          "weak_support_samples": 158,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 109,
+          "slow_with_observed_strong_support": 11,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "first_50ms_acceleration": {
+        "available": false,
+        "reason": "partial_window",
+        "rms": 6.32282234393289,
+        "peak": 8.756278484770029,
+        "coverage_s": 0.03999999999999915,
+        "coverage_fraction": 0.7999999999999716,
+        "maximum_gap_s": 0.05
+      },
+      "postcontact_clearance": {
+        "available": true,
+        "reason": null,
+        "clear_x_m": 3.4,
+        "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+        "clearance_distance_m": 0.5,
+        "end_time_s": 15.42,
+        "start_time_s": 13.34,
+        "duration_s": 2.08,
+        "distance_m": 0.7540260472120119,
+        "acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 3.4508070467147034,
+          "peak": 21.748903796644967,
+          "coverage_s": 2.08,
+          "coverage_fraction": 1.0,
+          "maximum_gap_s": 0.05
+        },
+        "slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.155987992566503,
+          "peak": 0.9092865054837953,
+          "coverage_s": 2.08,
+          "coverage_fraction": 1.0,
+          "maximum_gap_s": 0.025
+        },
+        "slip_energy_per_m": 0.06712114010249635,
+        "fits_in_original_2s_window": false
+      },
+      "imu_postcontact_sampling": {
+        "available": true,
+        "samples": 105,
+        "interval_s": {
+          "n": 104,
+          "minimum": 0.019999999999999574,
+          "median": 0.019999999999999574,
+          "maximum": 0.02000000000000135
+        },
+        "largest_absolute_sample_m_s2": 21.748903796644967,
+        "largest_sample_time_s": 14.16,
+        "largest_sample_fraction_of_integrated_squared_signal": 0.3819443172116614,
+        "qualification": "Native 50Hz IMU only. Contribution uses the existing trapezoidal squared-signal metric. Cannot resolve sub-sample impact duration or prove aliasing/contact cause."
+      },
+      "initial_command_received_delay_s": 8.881784197001252e-16,
+      "qualification": "Observed floor wrench magnitude is a support proxy. Missing stream is unknown, not unloaded. Caster rotation is not slip without support. Frames are correlated; episode is the replication unit."
+    },
+    {
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76402_moderate",
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "first_contact_s": 11.833,
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "timing": {
+        "available": true,
+        "status_samples": 840,
+        "updates": 8402,
+        "raw_elapsed_s": 16.808000000000003,
+        "observed_updates_per_sim_s": 499.8810090433126,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.005,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 1,
+        "window_joint_age_max_s": {
+          "n": 840,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.003
+        },
+        "future_joint_updates": 0
+      },
+      "initial_body_speed_m_s": {
+        "n": 5,
+        "minimum": 0.0,
+        "median": 0.00010357551729837202,
+        "maximum": 0.0001302479835332939
+      },
+      "repeated_joint_timestamps": 0,
+      "initial_caster": {
+        "left": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": 0.0025165343328548374,
+            "median": 0.004003712330309845,
+            "maximum": 0.005599934390896786
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -0.00011920715967391051,
+            "median": -0.00011920715959356925,
+            "maximum": -0.00011920715947945719
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 2.0805800232574362e-07,
+            "median": 1.1215981020680384e-06,
+            "maximum": 19.561741755627505
+          },
+          "strong_support_samples": 13,
+          "weak_support_samples": 37,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": 0.0011844684853273431,
+            "median": 0.003951592405562117,
+            "maximum": 0.005600937895932256
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": 0.000245479406124101,
+            "median": 0.0002454794077288619,
+            "maximum": 0.00024547940894873935
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 0.0,
+            "median": 19.56234930409908,
+            "maximum": 19.5785173777478
+          },
+          "strong_support_samples": 38,
+          "weak_support_samples": 12,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": 0.027318806858818583,
+            "median": 24.7115235544685,
+            "maximum": 24.961752964463756
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0008914929731555181,
+            "median": -1.5497793263756983e-05,
+            "maximum": 0.0003723138215206885
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 0.0011043198672407268,
+            "median": 0.998452351140326,
+            "maximum": 1.0062685459699874
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 15.63796493035008,
+            "maximum": 39.05764975283358
+          },
+          "strong_support_samples": 122,
+          "weak_support_samples": 103,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 62,
+          "slow_with_observed_strong_support": 12,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.03691072351335736,
+            "median": 16.1762854338826,
+            "maximum": 24.890291908626278
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0016847954305179442,
+            "median": -0.0009349325330352653,
+            "maximum": -0.00014092359328502478
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 1.1090464283387985e-07,
+            "median": 0.6537884035976635,
+            "maximum": 1.0040689364267494
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 23.55955771939684
+          },
+          "strong_support_samples": 110,
+          "weak_support_samples": 115,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 108,
+          "slow_with_observed_strong_support": 24,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "first_50ms_acceleration": {
+        "available": true,
+        "reason": null,
+        "rms": 30.17936029315383,
+        "peak": 60.27265407606651,
+        "coverage_s": 0.040000000000000924,
+        "coverage_fraction": 0.8000000000000071,
+        "maximum_gap_s": 0.05
+      },
+      "postcontact_clearance": {
+        "available": true,
+        "reason": null,
+        "clear_x_m": 3.4,
+        "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+        "clearance_distance_m": 0.5,
+        "end_time_s": 14.28,
+        "start_time_s": 11.883000000000001,
+        "duration_s": 2.3969999999999985,
+        "distance_m": 0.7604780364870997,
+        "acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 1.3267419590309582,
+          "peak": 6.189660801023135,
+          "coverage_s": 2.379999999999999,
+          "coverage_fraction": 0.9929078014184399,
+          "maximum_gap_s": 0.05
+        },
+        "slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.20063791347302654,
+          "peak": 0.9539534952396728,
+          "coverage_s": 2.395999999999999,
+          "coverage_fraction": 0.9995828118481438,
+          "maximum_gap_s": 0.025
+        },
+        "slip_energy_per_m": 0.12683121228720473,
+        "fits_in_original_2s_window": false
+      },
+      "imu_postcontact_sampling": {
+        "available": true,
+        "samples": 120,
+        "interval_s": {
+          "n": 119,
+          "minimum": 0.019999999999999574,
+          "median": 0.019999999999999574,
+          "maximum": 0.02000000000000135
+        },
+        "largest_absolute_sample_m_s2": 6.189660801023135,
+        "largest_sample_time_s": 12.12,
+        "largest_sample_fraction_of_integrated_squared_signal": 0.18290004407144123,
+        "qualification": "Native 50Hz IMU only. Contribution uses the existing trapezoidal squared-signal metric. Cannot resolve sub-sample impact duration or prove aliasing/contact cause."
+      },
+      "initial_command_received_delay_s": 0.0,
+      "qualification": "Observed floor wrench magnitude is a support proxy. Missing stream is unknown, not unloaded. Caster rotation is not slip without support. Frames are correlated; episode is the replication unit."
+    },
+    {
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76403_full",
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "first_contact_s": 11.267,
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "timing": {
+        "available": true,
+        "status_samples": 830,
+        "updates": 8301,
+        "raw_elapsed_s": 16.602000000000004,
+        "observed_updates_per_sim_s": 499.9999999999999,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.003,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 830,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.003
+        },
+        "future_joint_updates": 0
+      },
+      "initial_body_speed_m_s": {
+        "n": 5,
+        "minimum": -0.0005658659735446879,
+        "median": -0.000533224256511548,
+        "maximum": -0.0004587350932688867
+      },
+      "repeated_joint_timestamps": 0,
+      "initial_caster": {
+        "left": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.036944291208112684,
+            "median": -0.033232804760320436,
+            "maximum": -0.01500433212561867
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": 0.00016187269103173522,
+            "median": 0.00016187728631472377,
+            "maximum": 0.00016187975008679771
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 0.0,
+            "median": 1.0049972518249088e-05,
+            "maximum": 19.539147220608424
+          },
+          "strong_support_samples": 16,
+          "weak_support_samples": 34,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.036935226029204044,
+            "median": -0.033292433060935045,
+            "maximum": -0.020806014009612638
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -0.00019166622401998857,
+            "median": -0.00019166621735638295,
+            "maximum": -0.00019166621033783526
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 0.0,
+            "median": 19.51660513047248,
+            "maximum": 19.557909029909535
+          },
+          "strong_support_samples": 39,
+          "weak_support_samples": 11,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": 0.06154704457167679,
+            "median": 24.6721680252449,
+            "maximum": 25.073056062443023
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": 6.35159728410968e-05,
+            "median": 0.000426729456192343,
+            "maximum": 0.0014302941948247051
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 0.0024900195068100974,
+            "median": 0.9981023466284091,
+            "maximum": 1.0154269629122814
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 24.937464692245815
+          },
+          "strong_support_samples": 111,
+          "weak_support_samples": 114,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 67,
+          "slow_with_observed_strong_support": 18,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.22375348475932763,
+            "median": 16.18107617618339,
+            "maximum": 24.897291948130555
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.000565369585942062,
+            "median": -5.756149827097558e-05,
+            "maximum": 0.0003980995718717882
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 1.1024471877759975e-05,
+            "median": 0.6545923285726561,
+            "maximum": 1.006707079355807
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 20.51691471915075
+          },
+          "strong_support_samples": 66,
+          "weak_support_samples": 159,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 95,
+          "slow_with_observed_strong_support": 12,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "first_50ms_acceleration": {
+        "available": false,
+        "reason": "partial_window",
+        "rms": 5.0239397769631156,
+        "peak": 5.076606124966753,
+        "coverage_s": 0.02000000000000135,
+        "coverage_fraction": 0.40000000000002134,
+        "maximum_gap_s": 0.05
+      },
+      "postcontact_clearance": {
+        "available": true,
+        "reason": null,
+        "clear_x_m": 3.4,
+        "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+        "clearance_distance_m": 0.5,
+        "end_time_s": 13.54,
+        "start_time_s": 11.317,
+        "duration_s": 2.222999999999999,
+        "distance_m": 0.757148881176895,
+        "acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 8.98752950096514,
+          "peak": 87.30716800469801,
+          "coverage_s": 2.219999999999999,
+          "coverage_fraction": 0.9986504723346828,
+          "maximum_gap_s": 0.05
+        },
+        "slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.22795097404707518,
+          "peak": 0.9940346596319674,
+          "coverage_s": 2.2219999999999995,
+          "coverage_fraction": 0.9995501574448945,
+          "maximum_gap_s": 0.025
+        },
+        "slip_energy_per_m": 0.15249151328979638,
+        "fits_in_original_2s_window": false
+      },
+      "imu_postcontact_sampling": {
+        "available": true,
+        "samples": 112,
+        "interval_s": {
+          "n": 111,
+          "minimum": 0.019999999999999574,
+          "median": 0.019999999999999574,
+          "maximum": 0.02000000000000135
+        },
+        "largest_absolute_sample_m_s2": 87.30716800469801,
+        "largest_sample_time_s": 12.18,
+        "largest_sample_fraction_of_integrated_squared_signal": 0.8501511873216829,
+        "qualification": "Native 50Hz IMU only. Contribution uses the existing trapezoidal squared-signal metric. Cannot resolve sub-sample impact duration or prove aliasing/contact cause."
+      },
+      "initial_command_received_delay_s": 0.0,
+      "qualification": "Observed floor wrench magnitude is a support proxy. Missing stream is unknown, not unloaded. Caster rotation is not slip without support. Frames are correlated; episode is the replication unit."
+    },
+    {
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76403_moderate",
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "first_contact_s": 11.686,
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "timing": {
+        "available": true,
+        "status_samples": 840,
+        "updates": 8400,
+        "raw_elapsed_s": 16.800000000000004,
+        "observed_updates_per_sim_s": 499.9999999999999,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.003,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 840,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.003
+        },
+        "future_joint_updates": 0
+      },
+      "initial_body_speed_m_s": {
+        "n": 5,
+        "minimum": -6.803979376655329e-05,
+        "median": 0.0,
+        "maximum": 0.0
+      },
+      "repeated_joint_timestamps": 0,
+      "initial_caster": {
+        "left": {
+          "samples": 37,
+          "wheel_rad_s": {
+            "n": 37,
+            "minimum": -0.0009385494304203473,
+            "median": -1.2895136723592416e-06,
+            "maximum": -4.215495624523358e-07
+          },
+          "swivel_rad": {
+            "n": 37,
+            "minimum": 0.0002561710181332922,
+            "median": 0.0002561710181332964,
+            "maximum": 0.0002561710181571638
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 37,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 1.1495687975205414e-08
+          },
+          "strong_support_samples": 0,
+          "weak_support_samples": 37,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 37,
+          "wheel_rad_s": {
+            "n": 37,
+            "minimum": -0.0009401403871117022,
+            "median": -0.0008171357552696908,
+            "maximum": -0.0003770820867732415
+          },
+          "swivel_rad": {
+            "n": 37,
+            "minimum": -0.0002066385894272254,
+            "median": -0.00020663858909324249,
+            "maximum": -0.00020663858890126928
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 37,
+            "minimum": 19.559991457632247,
+            "median": 19.56093112436456,
+            "maximum": 19.56117456786821
+          },
+          "strong_support_samples": 37,
+          "weak_support_samples": 0,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": -0.021921753176612723,
+            "median": 24.69622202595616,
+            "maximum": 24.99587253382863
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -0.0007076898099091882,
+            "median": 8.387560705055573e-05,
+            "maximum": 0.0005206688738383831
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 0.0008865872664607597,
+            "median": 0.9990514797258415,
+            "maximum": 1.0123111458461402
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 16.68420191266093,
+            "maximum": 25.032902876511788
+          },
+          "strong_support_samples": 137,
+          "weak_support_samples": 89,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 57,
+          "slow_with_observed_strong_support": 23,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": -0.033974418458526855,
+            "median": 16.16048762224574,
+            "maximum": 24.876951757254346
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -0.0017035483966365444,
+            "median": -0.001285684701467186,
+            "maximum": -0.00035858530273358556
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 4.199499445786922e-06,
+            "median": 0.6536981389415164,
+            "maximum": 1.0063615438969884
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 37.66900575510938
+          },
+          "strong_support_samples": 60,
+          "weak_support_samples": 166,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 109,
+          "slow_with_observed_strong_support": 12,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "first_50ms_acceleration": {
+        "available": false,
+        "reason": "partial_window",
+        "rms": 2.9892842426495934,
+        "peak": 4.060466312529976,
+        "coverage_s": 0.02000000000000135,
+        "coverage_fraction": 0.40000000000002134,
+        "maximum_gap_s": 0.05
+      },
+      "postcontact_clearance": {
+        "available": true,
+        "reason": null,
+        "clear_x_m": 3.4,
+        "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+        "clearance_distance_m": 0.5,
+        "end_time_s": 14.06,
+        "start_time_s": 11.736,
+        "duration_s": 2.324,
+        "distance_m": 0.7587104304715298,
+        "acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 1.5508579820635224,
+          "peak": 6.992635275906627,
+          "coverage_s": 2.3200000000000003,
+          "coverage_fraction": 0.998278829604131,
+          "maximum_gap_s": 0.05
+        },
+        "slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.15896627970904273,
+          "peak": 0.9092797402267123,
+          "coverage_s": 2.324,
+          "coverage_fraction": 1.0,
+          "maximum_gap_s": 0.025
+        },
+        "slip_energy_per_m": 0.07740519163807627,
+        "fits_in_original_2s_window": false
+      },
+      "imu_postcontact_sampling": {
+        "available": true,
+        "samples": 117,
+        "interval_s": {
+          "n": 116,
+          "minimum": 0.019999999999999574,
+          "median": 0.019999999999999574,
+          "maximum": 0.02000000000000135
+        },
+        "largest_absolute_sample_m_s2": 6.992635275906627,
+        "largest_sample_time_s": 12.72,
+        "largest_sample_fraction_of_integrated_squared_signal": 0.17525874804755262,
+        "qualification": "Native 50Hz IMU only. Contribution uses the existing trapezoidal squared-signal metric. Cannot resolve sub-sample impact duration or prove aliasing/contact cause."
+      },
+      "initial_command_received_delay_s": 0.0,
+      "qualification": "Observed floor wrench magnitude is a support proxy. Missing stream is unknown, not unloaded. Caster rotation is not slip without support. Frames are correlated; episode is the replication unit."
+    },
+    {
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76404_full",
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "first_contact_s": 13.365,
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "timing": {
+        "available": true,
+        "status_samples": 835,
+        "updates": 8351,
+        "raw_elapsed_s": 16.704000000000004,
+        "observed_updates_per_sim_s": 499.9401340996167,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.005,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 1,
+        "window_joint_age_max_s": {
+          "n": 835,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.006
+        },
+        "future_joint_updates": 0
+      },
+      "initial_body_speed_m_s": {
+        "n": 5,
+        "minimum": 0.00010401111432398285,
+        "median": 0.00010798627505100189,
+        "maximum": 0.00011355091988059472
+      },
+      "repeated_joint_timestamps": 3,
+      "initial_caster": {
+        "left": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": 0.0079032877706753,
+            "median": 0.008834231657271107,
+            "maximum": 0.01045207913002465
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -0.0001576700117389395,
+            "median": -0.00015767001008296354,
+            "maximum": -0.0001576700076392865
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 7.666958992411019,
+            "median": 10.931513905886998,
+            "maximum": 14.60507673843773
+          },
+          "strong_support_samples": 50,
+          "weak_support_samples": 0,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": 0.007903341140870105,
+            "median": 0.008833936489452101,
+            "maximum": 0.010451044869623085
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -3.6021643076180315e-06,
+            "median": -3.6021621234190195e-06,
+            "maximum": -3.602160708802084e-06
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 0.7200907117057619,
+            "median": 9.104955849223895,
+            "maximum": 14.727442959323795
+          },
+          "strong_support_samples": 45,
+          "weak_support_samples": 0,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.0062057590688982525,
+            "median": 24.66211263104547,
+            "maximum": 24.971848836886494
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": 0.0009115058254582955,
+            "median": 0.0015561926211176086,
+            "maximum": 0.002381909361472875
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 6.724079544262445e-05,
+            "median": 0.9968684098476862,
+            "maximum": 1.0045182693100603
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 4.6615179961242814e-05,
+            "maximum": 40.40870134785466
+          },
+          "strong_support_samples": 108,
+          "weak_support_samples": 117,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 72,
+          "slow_with_observed_strong_support": 21,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.008974956529375772,
+            "median": 16.254496079257187,
+            "maximum": 24.971438773761037
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.00020130473177880476,
+            "median": 0.0002612008421249943,
+            "maximum": 0.0009300075104990301
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 3.032862221868115e-07,
+            "median": 0.6559302159328712,
+            "maximum": 1.0056015971143966
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 25.204306465251435
+          },
+          "strong_support_samples": 95,
+          "weak_support_samples": 130,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 87,
+          "slow_with_observed_strong_support": 16,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "first_50ms_acceleration": {
+        "available": false,
+        "reason": "partial_window",
+        "rms": 4.8143542453182,
+        "peak": 6.7559604564396825,
+        "coverage_s": 0.019999999999999574,
+        "coverage_fraction": 0.3999999999999858,
+        "maximum_gap_s": 0.05
+      },
+      "postcontact_clearance": {
+        "available": true,
+        "reason": null,
+        "clear_x_m": 3.4,
+        "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+        "clearance_distance_m": 0.5,
+        "end_time_s": 15.74,
+        "start_time_s": 13.415000000000001,
+        "duration_s": 2.3249999999999993,
+        "distance_m": 0.7563640259813301,
+        "acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 2.9245634815137187,
+          "peak": 21.649709584778797,
+          "coverage_s": 2.3200000000000003,
+          "coverage_fraction": 0.9978494623655918,
+          "maximum_gap_s": 0.05
+        },
+        "slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.24385098493314747,
+          "peak": 1.0113090230639126,
+          "coverage_s": 2.324,
+          "coverage_fraction": 0.9995698924731186,
+          "maximum_gap_s": 0.025
+        },
+        "slip_energy_per_m": 0.18270662152495332,
+        "fits_in_original_2s_window": false
+      },
+      "imu_postcontact_sampling": {
+        "available": true,
+        "samples": 117,
+        "interval_s": {
+          "n": 116,
+          "minimum": 0.019999999999999574,
+          "median": 0.019999999999999574,
+          "maximum": 0.02000000000000135
+        },
+        "largest_absolute_sample_m_s2": 21.649709584778797,
+        "largest_sample_time_s": 14.68,
+        "largest_sample_fraction_of_integrated_squared_signal": 0.47241540954183825,
+        "qualification": "Native 50Hz IMU only. Contribution uses the existing trapezoidal squared-signal metric. Cannot resolve sub-sample impact duration or prove aliasing/contact cause."
+      },
+      "initial_command_received_delay_s": 0.0,
+      "qualification": "Observed floor wrench magnitude is a support proxy. Missing stream is unknown, not unloaded. Caster rotation is not slip without support. Frames are correlated; episode is the replication unit."
+    },
+    {
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76404_moderate",
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "first_contact_s": 13.52,
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "timing": {
+        "available": true,
+        "status_samples": 840,
+        "updates": 8401,
+        "raw_elapsed_s": 16.802000000000003,
+        "observed_updates_per_sim_s": 499.9999999999999,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.003,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 840,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.006
+        },
+        "future_joint_updates": 0
+      },
+      "initial_body_speed_m_s": {
+        "n": 5,
+        "minimum": 0.0,
+        "median": 0.0,
+        "maximum": 0.0
+      },
+      "repeated_joint_timestamps": 4,
+      "initial_caster": {
+        "left": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": 0.002898860603890935,
+            "median": 0.003209442413747801,
+            "maximum": 0.003940222160563047
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": 0.00017617855832697735,
+            "median": 0.0001761785583351337,
+            "maximum": 0.00017617855836849506
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 19.558488128812705,
+            "median": 19.560730493990008,
+            "maximum": 19.56305374699209
+          },
+          "strong_support_samples": 50,
+          "weak_support_samples": 0,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": 5.325907822724146e-06,
+            "median": 6.056415460555735e-06,
+            "maximum": 7.54913124112764e-06
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": 7.463130867835657e-05,
+            "median": 7.463130867835967e-05,
+            "maximum": 7.463130867836265e-05
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 0.0
+          },
+          "strong_support_samples": 0,
+          "weak_support_samples": 50,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 224,
+          "wheel_rad_s": {
+            "n": 224,
+            "minimum": -0.031451544745565954,
+            "median": 24.683561612716307,
+            "maximum": 24.945397159973396
+          },
+          "swivel_rad": {
+            "n": 224,
+            "minimum": -0.0016303749566312575,
+            "median": -0.0004896474943031187,
+            "maximum": 0.00036070488963364794
+          },
+          "rolling_ratio": {
+            "n": 224,
+            "minimum": 1.3884714379255425e-05,
+            "median": 0.9980950275086757,
+            "maximum": 1.0091818915267905
+          },
+          "observed_support_z_N": {
+            "n": 224,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 38.51542668660998
+          },
+          "strong_support_samples": 111,
+          "weak_support_samples": 113,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 77,
+          "slow_with_observed_strong_support": 16,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 224,
+          "wheel_rad_s": {
+            "n": 224,
+            "minimum": -0.028644802241822993,
+            "median": 16.205194341971094,
+            "maximum": 24.922247553479842
+          },
+          "swivel_rad": {
+            "n": 224,
+            "minimum": -0.0029799918021366856,
+            "median": -0.002344885187748291,
+            "maximum": -0.0003824505324589513
+          },
+          "rolling_ratio": {
+            "n": 224,
+            "minimum": 4.6443224554667655e-06,
+            "median": 0.6547468593565151,
+            "maximum": 1.0082453594876555
+          },
+          "observed_support_z_N": {
+            "n": 224,
+            "minimum": 0.0,
+            "median": 16.60235160668279,
+            "maximum": 38.65259572174022
+          },
+          "strong_support_samples": 123,
+          "weak_support_samples": 101,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 90,
+          "slow_with_observed_strong_support": 25,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "first_50ms_acceleration": {
+        "available": true,
+        "reason": null,
+        "rms": 3.621328561444869,
+        "peak": 4.983985239853848,
+        "coverage_s": 0.040000000000000924,
+        "coverage_fraction": 0.8000000000000071,
+        "maximum_gap_s": 0.05
+      },
+      "postcontact_clearance": {
+        "available": true,
+        "reason": null,
+        "clear_x_m": 3.4,
+        "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+        "clearance_distance_m": 0.5,
+        "end_time_s": 15.98,
+        "start_time_s": 13.57,
+        "duration_s": 2.41,
+        "distance_m": 0.7564414605966903,
+        "acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 1.8743778685476138,
+          "peak": 14.117806399323248,
+          "coverage_s": 2.4000000000000004,
+          "coverage_fraction": 0.9958506224066391,
+          "maximum_gap_s": 0.05
+        },
+        "slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.2100725785656223,
+          "peak": 0.9559503069153938,
+          "coverage_s": 2.41,
+          "coverage_fraction": 1.0,
+          "maximum_gap_s": 0.025
+        },
+        "slip_energy_per_m": 0.14059842335355513,
+        "fits_in_original_2s_window": false
+      },
+      "imu_postcontact_sampling": {
+        "available": true,
+        "samples": 121,
+        "interval_s": {
+          "n": 120,
+          "minimum": 0.019999999999999574,
+          "median": 0.019999999999999574,
+          "maximum": 0.02000000000000135
+        },
+        "largest_absolute_sample_m_s2": 14.117806399323248,
+        "largest_sample_time_s": 14.14,
+        "largest_sample_fraction_of_integrated_squared_signal": 0.4727580171983111,
+        "qualification": "Native 50Hz IMU only. Contribution uses the existing trapezoidal squared-signal metric. Cannot resolve sub-sample impact duration or prove aliasing/contact cause."
+      },
+      "initial_command_received_delay_s": 8.881784197001252e-16,
+      "qualification": "Observed floor wrench magnitude is a support proxy. Missing stream is unknown, not unloaded. Caster rotation is not slip without support. Frames are correlated; episode is the replication unit."
+    }
+  ],
+  "controller_changed": false
+}

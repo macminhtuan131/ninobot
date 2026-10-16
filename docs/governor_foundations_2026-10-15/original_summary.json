@@ -1,0 +1,116 @@
+{
+  "plan": {
+    "qualification": "Bounded clean-floor maneuvers; not physical arrival evaluation",
+    "variant_required": "clear",
+    "cases": {
+      "accelerate": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.4,
+          0.0
+        ],
+        [
+          3.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "brake_recover": [
+        [
+          0.0,
+          0.4,
+          0.0
+        ],
+        [
+          1.5,
+          0.18,
+          0.0
+        ],
+        [
+          2.5,
+          0.4,
+          0.0
+        ],
+        [
+          3.5,
+          0.0,
+          0.0
+        ]
+      ],
+      "turn": [
+        [
+          0.0,
+          0.25,
+          0.0
+        ],
+        [
+          1.5,
+          0.25,
+          0.4
+        ],
+        [
+          3.0,
+          0.25,
+          0.0
+        ],
+        [
+          3.5,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    "duration_per_case_s": 4.0,
+    "seed": 76100,
+    "profile": "full",
+    "training_started": false,
+    "optuna_started": false
+  },
+  "results": [
+    {
+      "case": "accelerate",
+      "seed": 76100,
+      "complete": true,
+      "bounded_probe": true,
+      "arrival_evaluation": false,
+      "terminated": false,
+      "termination": null,
+      "steps": 40,
+      "events": 0,
+      "minimum_scale": 1.0,
+      "clock_error_s": 1.1546319456101628e-14
+    },
+    {
+      "case": "brake_recover",
+      "seed": 76101,
+      "complete": true,
+      "bounded_probe": true,
+      "arrival_evaluation": false,
+      "terminated": false,
+      "termination": null,
+      "steps": 40,
+      "events": 0,
+      "minimum_scale": 1.0,
+      "clock_error_s": 1.4210854715202004e-14
+    },
+    {
+      "case": "turn",
+      "seed": 76102,
+      "complete": true,
+      "bounded_probe": true,
+      "arrival_evaluation": false,
+      "terminated": false,
+      "termination": null,
+      "steps": 40,
+      "events": 0,
+      "minimum_scale": 1.0,
+      "clock_error_s": 1.4210854715202004e-14
+    }
+  ],
+  "complete": true
+}

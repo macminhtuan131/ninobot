@@ -1,0 +1,45 @@
+{
+  "known_failure_replay_passed": true,
+  "simulation_correction": {
+    "caster_wheel_damping_before": 0.01,
+    "caster_wheel_damping_after": 0.001
+  },
+  "physical_arrival": {
+    "seed": 76000,
+    "route": "E1",
+    "world": "clear",
+    "success": true,
+    "time_seconds": 16.6,
+    "endpoint_error_m": 0.18407728617141672
+  },
+  "post_arrival_stop": {
+    "available": true,
+    "reason": null,
+    "qualification": "2s stopped-command diagnostic, independent of arrival scoring; 5deg/.01m_s are declared diagnostic thresholds",
+    "end_time_s": 19.038000000000004,
+    "window_seconds": 2.0,
+    "pose_samples": 100,
+    "drive_samples": 100,
+    "pose_coverage_s": 1.9800000000000004,
+    "commanded_stop": true,
+    "max_abs_roll_deg": 0.08839691961944018,
+    "max_abs_pitch_deg": 0.1626959021850934,
+    "last": {
+      "time_s": 21.02,
+      "roll_deg": 0.0002864166564190935,
+      "pitch_deg": -0.0005220776640262655,
+      "x_m": 6.289871999286402,
+      "y_m": 0.00048294502085991474,
+      "speed_m_s": 0.0006477522693470199
+    },
+    "chassis_contact_messages": 0,
+    "settled": true
+  },
+  "limitations": [
+    "One matched failure case; repeatability not established",
+    "Other routes, obstacles and hardware not validated",
+    "Vibration/slip improvement and reactive detector calibration not established"
+  ],
+  "predictor_started": false,
+  "optuna_started": false
+}

@@ -1,0 +1,61 @@
+{
+  "results": [
+    {
+      "case": "rl_runs/governor_capsule_oracle_refine_2026-10-16/seed_76210_moderate",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 601,
+        "floor_or_other": 13450
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 0.3360539441383854,
+        "floor_or_other": 0.2517261180467362
+      },
+      "distant_point_count": 0,
+      "distant_positive_points": 0,
+      "distant_point_examples": [],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    },
+    {
+      "case": "rl_runs/governor_capsule_oracle_refine_2026-10-16/seed_76211_moderate",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 623,
+        "floor_or_other": 13804
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 0.4009323063482129,
+        "floor_or_other": 0.2521109894227782
+      },
+      "distant_point_count": 0,
+      "distant_positive_points": 0,
+      "distant_point_examples": [],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    },
+    {
+      "case": "rl_runs/governor_capsule_oracle_refine_2026-10-16/seed_76212_moderate",
+      "available": true,
+      "assumed_position_frame": "world; message frame_id empty",
+      "diagnostic_body_disk_radius_m": 0.75,
+      "point_counts": {
+        "cable": 580,
+        "floor_or_other": 14203
+      },
+      "unaligned_points": 0,
+      "maximum_horizontal_distance_m": {
+        "cable": 0.40098886905310344,
+        "floor_or_other": 0.25132431150834444
+      },
+      "distant_point_count": 0,
+      "distant_positive_points": 0,
+      "distant_point_examples": [],
+      "qualification": "Positions beyond a generous .75m body disk are diagnostic anomalies, not proof of their engine/root cause. No force magnitude treated as whole-robot net force."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "complete": true,
+  "passed": true,
+  "physical_arrival_evaluation": false,
+  "training_started": false,
+  "optuna_started": false,
+  "logger": "/home/tuanmac/ninorobot/rl_runs/governor_motion_negative_2026-10-16/contact/20261015T175234-938939Z",
+  "probe_returncode": 0,
+  "summary": "/home/tuanmac/ninorobot/rl_runs/governor_motion_negative_2026-10-16/probe/20261015T175241-559918Z/summary.json",
+  "results": [
+    {
+      "case": "accelerate",
+      "seed": 76300,
+      "complete": true,
+      "bounded_probe": true,
+      "arrival_evaluation": false,
+      "terminated": false,
+      "termination": null,
+      "run_id": "5adc4463de124a13b9b016e0a4ed2f34",
+      "attempt": 1,
+      "started_sim_s": 6.538,
+      "steps": 40,
+      "events": 0,
+      "minimum_scale": 1.0,
+      "clock_error_s": 1.4210854715202004e-14
+    },
+    {
+      "case": "brake_recover",
+      "seed": 76301,
+      "complete": true,
+      "bounded_probe": true,
+      "arrival_evaluation": false,
+      "terminated": false,
+      "termination": null,
+      "run_id": "5adc4463de124a13b9b016e0a4ed2f34",
+      "attempt": 2,
+      "started_sim_s": 11.192,
+      "steps": 40,
+      "events": 0,
+      "minimum_scale": 1.0,
+      "clock_error_s": 1.4210854715202004e-14
+    },
+    {
+      "case": "turn",
+      "seed": 76302,
+      "complete": true,
+      "bounded_probe": true,
+      "arrival_evaluation": false,
+      "terminated": false,
+      "termination": null,
+      "run_id": "5adc4463de124a13b9b016e0a4ed2f34",
+      "attempt": 3,
+      "started_sim_s": 15.82,
+      "steps": 40,
+      "events": 0,
+      "minimum_scale": 1.0,
+      "clock_error_s": 5.3290705182007514e-14
+    }
+  ]
+}

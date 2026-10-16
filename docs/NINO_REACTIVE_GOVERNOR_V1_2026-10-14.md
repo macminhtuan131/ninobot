@@ -1,6 +1,43 @@
 # Nino reactive speed governor v1 — 14/10/2026
 
+**Kết quả tiếp theo 16/10:** [governor so với constant PI 0.388](GOVERNOR_TIME_MATCHED_PI_2026-10-16.md)
+đã hoàn tất 10/10 arrival/stop. Thời gian 17.16/17.52 s chưa trong band 2%;
+governor giảm post RMS/peak/slip ở 2/5 cặp, chưa chứng minh lợi ích ổn định.
+Không promote hoặc mở learning/tuning; bước tiếp theo là audit trace đã lưu.
+
+**Cập nhật mới nhất 16/10:** [PI timing và contact repeatability](CONTACT_REPEATABILITY_TIMING_2026-10-16.md)
+đã hoàn tất thêm 13 arrival/stop checks. PI gần 500 Hz, không fallback; chưa
+có căn cứ sửa gains/reset. Governor giảm post-contact RMS ở 5/5 cặp mới nhưng
+mean slip tăng 7.18%, thời gian tăng 3.11%. Giữ candidate, chưa promote hoặc
+chạy predictor/PPO/Optuna. Đối chứng PI khớp thời gian vẫn chưa thực hiện.
+
+**Cập nhật 16/10:** đã hoàn tất vòng authority/contact/detector theo
+[báo cáo tiếp tục](GOVERNOR_CONTINUATION_2026-10-16.md). Capsule có tín hiệu
+oracle tích cực, nhưng sensor-only candidate chưa qua quality gate. Các
+thông tin dưới đây giữ phạm vi/lịch sử triển khai v1; chưa promote lên robot thật.
+
 ## Phạm vi
+
+Cập nhật triển khai và phép thử sàn sạch ngày 15/10:
+[Governor foundations](GOVERNOR_FOUNDATIONS_2026-10-15.md).
+
+Sửa ổn định E1 sàn sạch và entry PI mới:
+[Clear-floor stability fix](CLEAR_FLOOR_STABILITY_FIX_2026-10-15.md).
+Profile damping 0.001 đã vượt lại seed 76000 và cửa sổ dừng 2 s; chưa xác nhận
+detector/ride-quality hoặc mọi tuyến.
+
+Theo dõi mới: [ba cold start E1 và quyết định giữ bài một cáp](GOVERNOR_CLEAR_REPEAT_AND_CABLE_2026-10-15.md).
+Arrival/dừng đạt 3/3 seed 76000–76002; contact manifold và IMU ở approach
+còn cần kiểm chứng. Không diễn giải motion pass thành quality readiness.
+
+Đối chứng tiếp theo đã hoàn thành: [mesh so với solid box, giữ nguyên robot/PI](CLEAR_FLOOR_MESH_BOX_AB_2026-10-15.md).
+Ba lượt box đều đạt arrival/dừng, không ghi nhận manifold caster có normal_z
+trái dấu trong sampled logs. Kết quả ủng hộ correction collision cho sàn
+phẳng; world có depression và hiệu quả governor vẫn cần kiểm chứng riêng.
+
+Screen mới ngày 16/10: [một cáp trên nền hộp, ba profile](SINGLE_CABLE_BOX_SCREEN_2026-10-16.md).
+Cả ba đến đích/dừng; Moderate/Pulse giảm rung nhưng tăng slip và kích hoạt
+trước cáp. Chưa xác nhận lợi ích phản ứng sau first contact.
 
 Governor phản ứng theo IMU/encoder và lệnh đã thực thi, xây theo kết luận
 Deep Research: kiểm tra H2 trước predictor. Bản này không có risk predictor,

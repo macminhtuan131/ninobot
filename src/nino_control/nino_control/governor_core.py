@@ -13,6 +13,9 @@ class GovernorSettings:
     target_scale: float = .70
     scale_rate_per_second: float = .4
     vertical_trigger_m_s2: float = 1.5
+    # Opt-in ablation for a noisy vertical channel. Vertical remains in quiet/
+    # release detection; only its authority to initiate an event is removed.
+    vertical_only_trigger_enabled: bool = True
     body_rate_trigger_rad_s: float = .35
     wheel_error_trigger_m_s: float = .06
     wheel_error_acceleration_allowance_s: float = .10
@@ -148,9 +151,9 @@ class ReactiveGovernor:
         wheel_error = max(abs(frame.left_velocity_rad_s-targets[0]),
                           abs(frame.right_velocity_rad_s-targets[1]))*c.wheel_radius_m
         error_threshold = c.wheel_error_trigger_m_s+c.wheel_error_acceleration_allowance_s*target_accel
-        ratio = max(self.filtered_vertical/c.vertical_trigger_m_s2,
-                    frame.body_rate_rad_s/c.body_rate_trigger_rad_s,wheel_error/error_threshold)
-        disturbed = ratio >= 1.
+        motion_ratio = max(frame.body_rate_rad_s/c.body_rate_trigger_rad_s,wheel_error/error_threshold)
+        ratio = max(self.filtered_vertical/c.vertical_trigger_m_s2,motion_ratio)
+        disturbed = ratio >= 1. and (c.vertical_only_trigger_enabled or motion_ratio >= 1.)
         quiet = ratio <= c.release_ratio
         self.quiet = self.quiet+dt if quiet else 0.
         self.confirmed = self.confirmed+dt if disturbed else 0.

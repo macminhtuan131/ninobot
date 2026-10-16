@@ -1,0 +1,225 @@
+{
+  "results": [
+    {
+      "case": "rl_runs/governor_pi_timing_probe_2026-10-16/seed_76320_full",
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "first_contact_s": 11.563,
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "timing": {
+        "available": true,
+        "status_samples": 825,
+        "updates": 8246,
+        "raw_elapsed_s": 16.500000000000004,
+        "observed_updates_per_sim_s": 499.75757575757564,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.006,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 2,
+        "window_joint_age_max_s": {
+          "n": 825,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.004
+        },
+        "future_joint_updates": 0
+      },
+      "initial_body_speed_m_s": {
+        "n": 5,
+        "minimum": -0.00021526746671151812,
+        "median": -0.0001117897550152134,
+        "maximum": -0.00010101645291781132
+      },
+      "initial_caster": {
+        "left": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.009844477527810088,
+            "median": -0.008852814951795723,
+            "maximum": -0.007534444781592478
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -1.4654809123584262e-05,
+            "median": -1.4654808682843707e-05,
+            "maximum": -1.4654808375663382e-05
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 19.5459161403656,
+            "median": 19.552560860217707,
+            "maximum": 19.55832697571196
+          },
+          "strong_support_samples": 50,
+          "weak_support_samples": 0,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 50,
+          "wheel_rad_s": {
+            "n": 50,
+            "minimum": -0.009843014477531971,
+            "median": -0.008689418496569434,
+            "maximum": -0.002154299788602375
+          },
+          "swivel_rad": {
+            "n": 50,
+            "minimum": -1.7797681892350924e-11,
+            "median": -1.749447989753245e-11,
+            "maximum": -1.7124398542676485e-11
+          },
+          "rolling_ratio": {
+            "n": 0,
+            "minimum": null,
+            "median": null,
+            "maximum": null
+          },
+          "observed_support_z_N": {
+            "n": 50,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 1.2072039300022177e-06
+          },
+          "strong_support_samples": 0,
+          "weak_support_samples": 50,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 0,
+          "slow_with_observed_strong_support": 0,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.003102817501794775,
+            "median": 16.274438491442986,
+            "maximum": 25.00587922589965
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.003518091014784952,
+            "median": -0.002830031390106253,
+            "maximum": -0.0019226600055614544
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 9.179510024192758e-05,
+            "median": 0.6570740086201556,
+            "maximum": 1.0071550105622742
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 40.009109923195396
+          },
+          "strong_support_samples": 95,
+          "weak_support_samples": 130,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 96,
+          "slow_with_observed_strong_support": 26,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.008556701979661468,
+            "median": 24.592262348435277,
+            "maximum": 24.843701539250464
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.005195696792896705,
+            "median": -0.00463559903297449,
+            "maximum": -0.0040889591609047215
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 6.620112819548088e-06,
+            "median": 0.9951620619513074,
+            "maximum": 1.002898959064526
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 16.52345914712566,
+            "maximum": 23.268321851665767
+          },
+          "strong_support_samples": 117,
+          "weak_support_samples": 108,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 77,
+          "slow_with_observed_strong_support": 15,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "first_50ms_acceleration": {
+        "available": false,
+        "reason": "partial_window",
+        "rms": 7.508715019022865,
+        "peak": 9.399783294598876,
+        "coverage_s": 0.019999999999999574,
+        "coverage_fraction": 0.3999999999999858,
+        "maximum_gap_s": 0.05
+      },
+      "postcontact_clearance": {
+        "available": true,
+        "reason": null,
+        "clear_x_m": 3.4,
+        "rule": "Offline E1 analysis: body x reaches cable center + declared 0.50m; never controller input",
+        "clearance_distance_m": 0.5,
+        "end_time_s": 13.74,
+        "start_time_s": 11.613000000000001,
+        "duration_s": 2.126999999999999,
+        "distance_m": 0.7573110446849555,
+        "acceleration": {
+          "available": true,
+          "reason": null,
+          "rms": 2.959615595007769,
+          "peak": 19.05783295468671,
+          "coverage_s": 2.120000000000001,
+          "coverage_fraction": 0.996708979783734,
+          "maximum_gap_s": 0.05
+        },
+        "slip": {
+          "available": true,
+          "reason": null,
+          "rms": 0.21021446159710838,
+          "peak": 1.0325455949188977,
+          "coverage_s": 2.1259999999999994,
+          "coverage_fraction": 0.9995298542548192,
+          "maximum_gap_s": 0.025
+        },
+        "slip_energy_per_m": 0.12405496459006744,
+        "fits_in_original_2s_window": false
+      },
+      "initial_command_received_delay_s": 0.0,
+      "qualification": "Observed floor wrench magnitude is a support proxy. Missing stream is unknown, not unloaded. Caster rotation is not slip without support. Frames are correlated; episode is the replication unit."
+    },
+    {
+      "case": "rl_runs/governor_pi_timing_probe_2026-10-16/seed_76321_full",
+      "complete": false,
+      "physical_success": null,
+      "termination": null,
+      "available": false,
+      "reason": ""
+    }
+  ],
+  "controller_changed": false
+}

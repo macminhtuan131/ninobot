@@ -1,0 +1,14 @@
+# Fixed-speed reference chosen from the completed oracle development batch.
+# One declared candidate, not an iterative speed search on final test data.
+extends: factory_floor_cable_capsule_pi_check.yaml
+navigation:
+  straight_speed_m_s: 0.394
+governor:
+  parameters:
+    profile: full
+    pulse_seconds: 1.0
+research_map:
+  revision: capsule_constant_time_reference_2026_10_16
+  stage: fixed_speed_near_time_reference
+  training_allowed: false
+  optuna_allowed: false

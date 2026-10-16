@@ -4,10 +4,11 @@ import json
 import math
 from pathlib import Path
 import hashlib
+import xml.etree.ElementTree as ET
 
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import qos_profile_sensor_data
+from rclpy.qos import qos_profile_sensor_data,QoSProfile,DurabilityPolicy
 from rclpy.clock import Clock,ClockType
 from rosidl_runtime_py.convert import message_to_ordereddict
 from sensor_msgs.msg import Imu,JointState
@@ -37,6 +38,7 @@ class GovernorLogger(Node):
         self.declare_parameter("config_file","")
         self.declare_parameter("variant","cable")
         self.declare_parameter("contact_sample_rate",100.)
+        self.declare_parameter("caster_wheel_damping",.01)
         self.output=Path(self.get_parameter("output_directory").value).expanduser().resolve()/datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S-%fZ")
         self.output.mkdir(parents=True,exist_ok=False)
         self.stream=(self.output/"samples.jsonl").open("w",buffering=1024*1024)
@@ -55,15 +57,28 @@ class GovernorLogger(Node):
             contact_forces_may_be_unavailable=True,impulse_not_inferred_without_valid_force_timing=True,
             qualification="Instrumentation/authority experiment, not a learning or sim-to-real result")
         metadata["contact_components"]=CONTACT_COMPONENTS
+        metadata["caster_wheel_damping_declared"]=float(self.get_parameter("caster_wheel_damping").value)
+        metadata["robot_description_validated"]=False
         if config_path:
             contents=Path(config_path).read_bytes()
             (self.output/"source_config.yaml").write_bytes(contents)
             metadata["source_config_sha256"]=hashlib.sha256(contents).hexdigest()
             from nino_rl.core import load_config
-            (self.output/"resolved_config.json").write_text(json.dumps(load_config(config_path),indent=2)+"\n")
+            resolved = load_config(config_path)
+            (self.output/"resolved_config.json").write_text(json.dumps(resolved,indent=2)+"\n")
+            if resolved.get("research_experiment", {}).get("oracle_contact_input"):
+                metadata["governor_has_no_oracle_input"] = False
+                metadata["research_experiment"] = resolved["research_experiment"]
         from ament_index_python.packages import get_package_share_directory
         from nino_control import governor_core
         metadata["governor_core_sha256"]=hashlib.sha256(Path(governor_core.__file__).read_bytes()).hexdigest()
+        from importlib.util import find_spec
+        for name in ("effort_drive","control_timing"):
+            source=Path(find_spec("nino_control."+name).origin).read_bytes()
+            metadata[name+"_sha256"]=hashlib.sha256(source).hexdigest()
+            (self.output/(name+"_source.py")).write_bytes(source)
+        metadata["timing_telemetry"]=dict(missing_value=-1,
+            qualification="PI-update aggregates emitted at the existing 50Hz status rate; no control change")
         variant=self.get_parameter("variant").value
         world=Path(get_package_share_directory("nino_description"))/"worlds"/f"factory_floor_{variant}_contact_lab.sdf"
         if world.is_file():
@@ -73,6 +88,8 @@ class GovernorLogger(Node):
         self.metadata=metadata
         self.write_metadata()
         self._log_subscriptions=[]
+        self._log_subscriptions.append(self.create_subscription(String,"/robot_description",self.on_description,
+            QoSProfile(depth=1,durability=DurabilityPolicy.TRANSIENT_LOCAL)))
         for topic,typ in (("/imu/data",Imu),("/joint_states",JointState),
                           ("/nino_drive/diagnostics",Float64MultiArray),
                           ("/ground_truth/odom",Odometry),("/odom",Odometry)):
@@ -86,6 +103,21 @@ class GovernorLogger(Node):
                 lambda msg,component=component:self.on_contacts(component,msg),qos_profile_sensor_data))
         self.create_timer(1.,self.flush,clock=Clock(clock_type=ClockType.STEADY_TIME))
         self.get_logger().info("Research logger: "+str(self.output))
+
+    def on_description(self,msg):
+        """Audit the model actually published by robot_state_publisher."""
+        try:
+            robot=ET.fromstring(msg.data)
+            values={side:float(robot.find(f"joint[@name='caster_{side}_wheel_joint']/dynamics").get("damping"))
+                    for side in ("left","right")}
+            valid=all(abs(value-self.metadata["caster_wheel_damping_declared"])<1e-12 for value in values.values())
+            self.metadata.update(robot_description_validated=valid,caster_wheel_damping_observed=values,
+                                 robot_description_sha256=hashlib.sha256(msg.data.encode()).hexdigest())
+            (self.output/"robot_description.urdf").write_text(msg.data)
+            if not valid: self.get_logger().error("Caster damping does not match declared experiment model")
+        except (ET.ParseError,AttributeError,TypeError,ValueError) as error:
+            self.metadata.update(robot_description_validated=False,robot_description_error=str(error))
+        self.write_metadata()
 
     def write_metadata(self):
         (self.output/"metadata.json").write_text(json.dumps(self.metadata,indent=2)+"\n")

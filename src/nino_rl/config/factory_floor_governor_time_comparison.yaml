@@ -1,0 +1,8 @@
+# Same frozen sensor governor as the completed repeatability batch.
+# The research runner overrides only the Full arm's cruise to 0.388 m/s.
+extends: factory_floor_contact_repeatability.yaml
+research_map:
+  revision: governor_constant_pi_time_comparison_v1_2026_10_16
+  stage: fixed_candidate_measured_time_comparison
+  training_allowed: false
+  optuna_allowed: false

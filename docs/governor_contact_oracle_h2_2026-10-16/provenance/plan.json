@@ -1,0 +1,26 @@
+{
+  "variant": "cable_box",
+  "seeds": [
+    76210,
+    76211,
+    76212
+  ],
+  "profiles": [
+    "full",
+    "moderate",
+    "pulse"
+  ],
+  "oracle_contact": true,
+  "source_sha256": {
+    "nino_rl/research_contact_oracle.py": "401140598edc9e9b2781112f5854c6dc5edfde61fba7aef82e97f90eafd54598",
+    "nino_rl/evaluation.py": "c240d073c7ef1aa1f6f9cf8765e4f36d95006e68d0718d979c0e748b6dd5b563",
+    "scripts/evaluate_contact_oracle.py": "415ccfece0c5f8715bf253bd79d05475d5e8838b8735f60ecf49da962a256118"
+  },
+  "ros_domain": "195",
+  "gz_partition": "nino_oracle_h2_195",
+  "caster_wheel_damping": 0.001,
+  "physics_step_s": 0.001,
+  "control_interval_s": 0.1,
+  "stop_window_s": 2.0,
+  "qualification": "Bounded native PI screen; no learning or Optuna"
+}

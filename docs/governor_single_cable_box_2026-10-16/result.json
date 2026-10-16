@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-16",
+  "qualification": "Exploratory one-seed/profile native screen, not repeatability, matched-contact-state causality or sim-to-real validation",
+  "rows": [
+    {
+      "profile": "full",
+      "seed": 76200,
+      "physical_success": true,
+      "time_s": 16.700000000000024,
+      "physical_endpoint_error_m": 0.18323575766686456,
+      "physical_rmse_m": 0.004925717029017201,
+      "vertical_rms_m_s2": 2.2101445555597947,
+      "vertical_peak_m_s2": 53.27785536044004,
+      "slip_rms": 0.08578201540936203,
+      "max_abs_pitch_deg": 12.968704205674962,
+      "settled_2s": true,
+      "approach_body_speed_m_s": 0.3960445529789983,
+      "precontact_events": 0,
+      "total_events": 0,
+      "first_to_caster_s": 0.16999999999999993,
+      "first_to_drive_s": 0.7449999999999992,
+      "until_clearance_duration_s": 2.147999999999998,
+      "until_clearance_accel_rms_m_s2": 5.497489642803516,
+      "until_clearance_slip_energy_per_m": 0.1178233540108922,
+      "scale_recovered_after_first_s": null
+    },
+    {
+      "profile": "moderate",
+      "seed": 76200,
+      "physical_success": true,
+      "time_s": 18.100000000000062,
+      "physical_endpoint_error_m": 0.1841165456775113,
+      "physical_rmse_m": 0.005724450760826149,
+      "vertical_rms_m_s2": 1.0362450006857888,
+      "vertical_peak_m_s2": 7.591916603005023,
+      "slip_rms": 0.13839218383041255,
+      "max_abs_pitch_deg": 10.184494082785996,
+      "settled_2s": true,
+      "approach_body_speed_m_s": 0.3385894933061266,
+      "precontact_events": 2,
+      "total_events": 2,
+      "first_to_caster_s": 0.20400000000000063,
+      "first_to_drive_s": 1.9730000000000008,
+      "until_clearance_duration_s": 3.2910000000000004,
+      "until_clearance_accel_rms_m_s2": 1.6231888739644469,
+      "until_clearance_slip_energy_per_m": 0.30204420533450244,
+      "scale_recovered_after_first_s": 1.25599999999997
+    },
+    {
+      "profile": "pulse",
+      "seed": 76200,
+      "physical_success": true,
+      "time_s": 18.700000000000077,
+      "physical_endpoint_error_m": 0.19209246017722767,
+      "physical_rmse_m": 0.0054561873249780735,
+      "vertical_rms_m_s2": 0.880230196310467,
+      "vertical_peak_m_s2": 8.571453227179903,
+      "slip_rms": 0.13285274470619435,
+      "max_abs_pitch_deg": 12.552594702680302,
+      "settled_2s": true,
+      "approach_body_speed_m_s": 0.3423399597245202,
+      "precontact_events": 3,
+      "total_events": 3,
+      "first_to_caster_s": 0.21499999999999986,
+      "first_to_drive_s": 2.2279999999999998,
+      "until_clearance_duration_s": 3.615,
+      "until_clearance_accel_rms_m_s2": 1.6529231847287558,
+      "until_clearance_slip_energy_per_m": 0.3720158761483905,
+      "scale_recovered_after_first_s": 1.4419999999999682
+    }
+  ],
+  "provenance": {
+    "same_config_except_governor": true,
+    "same_world_sha256": "b72b8465748ff5488db00ec56d6e21842030659c8aede174715e346566027aad",
+    "same_URDF_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+    "same_governor_core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682"
+  },
+  "motion_assessment": [
+    {
+      "profile": "full",
+      "raw_runner_passed": false,
+      "raw_flag_scope": "legacy clear-floor episode tilt <5deg diagnostic; not physical arrival scoring",
+      "physical_arrival_and_stop": true
+    },
+    {
+      "profile": "moderate",
+      "raw_runner_passed": false,
+      "raw_flag_scope": "legacy clear-floor episode tilt <5deg diagnostic; not physical arrival scoring",
+      "physical_arrival_and_stop": true
+    },
+    {
+      "profile": "pulse",
+      "raw_runner_passed": false,
+      "raw_flag_scope": "legacy clear-floor episode tilt <5deg diagnostic; not physical arrival scoring",
+      "physical_arrival_and_stop": true
+    }
+  ],
+  "raw_run_summary_preserved": true,
+  "governor_postcontact_benefit_validated": false,
+  "limitations": [
+    "Precontact IMU triggers in moderate and pulse",
+    "Approach body speeds differ",
+    "A fixed 2s window does not capture the full clearance of any profile",
+    "One scenario per profile; no matched-time PI or repeated trials"
+  ],
+  "training_started": false,
+  "optuna_started": false,
+  "analysis_script_sha256": "b3833449810e94510ce94b89afd36593fb25e97191112a287b5e41a937b35b1a"
+}

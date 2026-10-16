@@ -1,0 +1,15 @@
+# Corrected simulation baseline. Evidence is limited to clear E1, seed 76000,
+# and the recorded 2-second stopped-command window. Not hardware calibration.
+extends: factory_floor_governor_full.yaml
+simulation_model:
+  revision: factory_caster_wheel_damping_v1_2026_10_15
+  caster_wheel_damping: 0.001
+  validation_scope: clear_E1_seed_76000_and_2s_post_arrival_stop
+  hardware_validated: false
+  all_routes_validated: false
+  report: docs/CLEAR_FLOOR_STABILITY_FIX_2026-10-15.md
+research_map:
+  revision: factory_clear_floor_stability_v1_2026_10_15
+  stage: corrected_PI_baseline_before_governor_calibration
+  training_allowed: false
+  optuna_allowed: false

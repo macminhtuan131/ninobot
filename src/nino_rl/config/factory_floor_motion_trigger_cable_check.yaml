@@ -1,0 +1,13 @@
+# Same single-cable capsule physical candidate; hardware-only trigger.
+extends: factory_floor_cable_capsule_pi_check.yaml
+governor:
+  revision: motion_trigger_ablation_v1_2026_10_16
+  parameters:
+    profile: moderate
+    pulse_seconds: 1.0
+    vertical_only_trigger_enabled: false
+research_map:
+  revision: motion_trigger_ablation_v1_2026_10_16
+  stage: cable_sensor_only_detector_confirmation
+  training_allowed: false
+  optuna_allowed: false

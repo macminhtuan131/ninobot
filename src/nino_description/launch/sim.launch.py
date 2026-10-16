@@ -84,7 +84,8 @@ def generate_launch_description():
     bridge_config = PathJoinSubstitution([package_share, "config", "bridge.yaml"])
     robot_description = ParameterValue(Command(["xacro ", xacro_file,
         " contact_lab:=",LaunchConfiguration("contact_lab"),
-        " terrain_preview:=",LaunchConfiguration("terrain_preview")]), value_type=str)
+        " terrain_preview:=",LaunchConfiguration("terrain_preview"),
+        " caster_wheel_damping:=",LaunchConfiguration("caster_wheel_damping")]), value_type=str)
 
     clean_gz_sim = PathJoinSubstitution(
         [FindPackagePrefix("nino_description"), "lib", "nino_description", "gz_sim_clean"]
@@ -178,6 +179,7 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument("contact_lab",default_value="false"),
         DeclareLaunchArgument("terrain_preview",default_value="true"),
+        DeclareLaunchArgument("caster_wheel_damping",default_value="0.01"),
         DeclareLaunchArgument(
             "controller_startup_timeout", default_value="30",
             description="Startup-only controller discovery/service/activation timeout (seconds)",

@@ -1,16 +1,39 @@
 # Nino: contact-informed speed adaptation over low floor obstacles
 
-## Current research scope — 13 October 2026
+## Current research scope — 16 October 2026
 
+- [Latest: frozen governor versus constant PI near the same completion time](docs/GOVERNOR_TIME_MATCHED_PI_2026-10-16.md).
+  Ten additional arrival/2 s stop checks passed. Measured mean times were
+  17.16 s versus 17.52 s: +2.098%, outside the declared 2% matching band.
+  Governor post-contact RMS/peak/slip were lower in only two of five pairs;
+  large sampled impacts occurred in both arms. No candidate promotion or
+  predictor/PPO/Optuna. Next is a saved-trace audit, not another parameter sweep.
+- [PI timing and randomized-order contact repeatability](docs/CONTACT_REPEATABILITY_TIMING_2026-10-16.md).
+  Thirteen additional arrival/2 s stop checks passed. PI timing did not support
+  another controller correction. The fixed sensor governor lowered post-contact
+  RMS in all five pairs, with higher mean slip and completion time. Keep it as a
+  research candidate; a time-matched PI comparison is still missing. No predictor,
+  PPO, Optuna or hardware promotion was started; the bounded batch is complete.
+- [Earlier governor continuation: collision correction, oracle authority and sensor-only quality failure](docs/GOVERNOR_CONTINUATION_2026-10-16.md).
+  Eighteen arrival episodes and three clean-floor maneuvers completed. Capsule
+  collision removed sampled distant-contact anomalies in the isolated E1 test;
+  the sensor-only candidate fixed early triggers but did not pass quality.
+  Predictor, PPO and Optuna remain held; no candidate promoted to deployment.
 - [Reactive governor v1, contact logging and H2 experiment commands](docs/NINO_REACTIVE_GOVERNOR_V1_2026-10-14.md).
   IMU/encoder/drive-feedback governor implemented; predictive/RL extensions
   remain conditional on measured control authority and useful information.
+- [Corrected clear-floor PI/contact baseline and replay evidence](docs/CLEAR_FLOOR_STABILITY_FIX_2026-10-15.md).
+- [Three clear-floor repeats: arrival/stop pass, contact-quality review still held](docs/GOVERNOR_CLEAR_REPEAT_AND_CABLE_2026-10-15.md).
+- [Mesh/solid-box comparison: contact artifact absent in three matched clear-floor box runs](docs/CLEAR_FLOOR_MESH_BOX_AB_2026-10-15.md).
+- [Single cable on box floor: three arrivals, vibration/slip trade-off and precontact-trigger confound](docs/SINGLE_CABLE_BOX_SCREEN_2026-10-16.md).
 
 The application goal is factory-floor navigation with low obstacles. The next
-research gate is **first-contact-to-next-contact control authority**, using IMU,
+research gate is **repeatable sensor-only benefit across contact states**, using IMU,
 drive-wheel encoders and requested/executed command history above wheel PI.
 Obstacle positions, absolute pose, path progress, terrain preview and simulated
 caster states are excluded from the sensor-only supervisor input.
+Local post-contact authority has a positive oracle screen on one capsule
+obstacle; wider feasibility and useful predictive information are unproven.
 
 - [Restored six-cable flat corridor with actual carved adaptive potholes/grooves](docs/FACTORY_FLOOR_CONTACT_LAB_2026-10-13.md).
 - [New map preview](docs/factory_floor_lab_preview.png).

@@ -1,0 +1,386 @@
+{
+  "qualification": "Offline shadow replay; changed actions were not physically executed",
+  "source": "rl_runs/governor_foundations_2026-10-15/clear_full/20261015T100154-235212Z",
+  "complete_clean_floor_screen": true,
+  "candidate_parameters": {
+    "original": {
+      "profile": "reactive",
+      "target_scale": 0.7,
+      "scale_rate_per_second": 0.4,
+      "vertical_trigger_m_s2": 1.5,
+      "body_rate_trigger_rad_s": 0.35,
+      "wheel_error_trigger_m_s": 0.06,
+      "wheel_error_acceleration_allowance_s": 0.1,
+      "release_ratio": 0.6,
+      "filter_seconds": 0.05,
+      "confirmation_seconds": 0.04,
+      "quiet_seconds": 0.3,
+      "startup_seconds": 0.8,
+      "minimum_hold_seconds": 0.8,
+      "maximum_hold_seconds": 2.5,
+      "pulse_seconds": 0.8,
+      "minimum_trigger_speed_m_s": 0.1,
+      "wheel_radius_m": 0.0625,
+      "wheel_stall_speed_m_s": 0.02,
+      "wheel_stall_seconds": 1.2,
+      "stall_recovery_enabled": false,
+      "stall_recovery_scale": 0.85,
+      "stall_recovery_seconds": 0.6,
+      "max_update_seconds": 0.25
+    },
+    "confirmation_020": {
+      "profile": "reactive",
+      "target_scale": 0.7,
+      "scale_rate_per_second": 0.4,
+      "vertical_trigger_m_s2": 1.5,
+      "body_rate_trigger_rad_s": 0.35,
+      "wheel_error_trigger_m_s": 0.06,
+      "wheel_error_acceleration_allowance_s": 0.1,
+      "release_ratio": 0.6,
+      "filter_seconds": 0.05,
+      "confirmation_seconds": 0.2,
+      "quiet_seconds": 0.3,
+      "startup_seconds": 0.8,
+      "minimum_hold_seconds": 0.8,
+      "maximum_hold_seconds": 2.5,
+      "pulse_seconds": 0.8,
+      "minimum_trigger_speed_m_s": 0.1,
+      "wheel_radius_m": 0.0625,
+      "wheel_stall_speed_m_s": 0.02,
+      "wheel_stall_seconds": 1.2,
+      "stall_recovery_enabled": false,
+      "stall_recovery_scale": 0.85,
+      "stall_recovery_seconds": 0.6,
+      "max_update_seconds": 0.25
+    },
+    "confirmation_030": {
+      "profile": "reactive",
+      "target_scale": 0.7,
+      "scale_rate_per_second": 0.4,
+      "vertical_trigger_m_s2": 1.5,
+      "body_rate_trigger_rad_s": 0.35,
+      "wheel_error_trigger_m_s": 0.06,
+      "wheel_error_acceleration_allowance_s": 0.1,
+      "release_ratio": 0.6,
+      "filter_seconds": 0.05,
+      "confirmation_seconds": 0.3,
+      "quiet_seconds": 0.3,
+      "startup_seconds": 0.8,
+      "minimum_hold_seconds": 0.8,
+      "maximum_hold_seconds": 2.5,
+      "pulse_seconds": 0.8,
+      "minimum_trigger_speed_m_s": 0.1,
+      "wheel_radius_m": 0.0625,
+      "wheel_stall_speed_m_s": 0.02,
+      "wheel_stall_seconds": 1.2,
+      "stall_recovery_enabled": false,
+      "stall_recovery_scale": 0.85,
+      "stall_recovery_seconds": 0.6,
+      "max_update_seconds": 0.25
+    }
+  },
+  "any_candidate_release": false,
+  "physical_arrival_validated": false,
+  "positive_contact_detection_validated": false,
+  "H2_validated": false,
+  "training_started": false,
+  "optuna_started": false,
+  "results": [
+    {
+      "case": "accelerate",
+      "steps": 40,
+      "complete": true,
+      "physically_terminated": false,
+      "termination": null,
+      "maximum_interval_vertical_peak_m_s2": 7.34125661249189,
+      "maximum_interval_vertical_rms_m_s2": 4.8149826260421875,
+      "replays": {
+        "original": {
+          "available": true,
+          "events": [
+            {
+              "elapsed_s": 1.2999999999999985,
+              "sources": [
+                "vertical"
+              ],
+              "vertical_rms_m_s2": 2.893340050088813,
+              "vertical_peak_m_s2": 5.621500846896858,
+              "body_rate_rad_s": 0.003585361267741073
+            }
+          ],
+          "event_count": 1,
+          "fault": ""
+        },
+        "confirmation_020": {
+          "available": true,
+          "events": [
+            {
+              "elapsed_s": 1.3999999999999981,
+              "sources": [
+                "vertical"
+              ],
+              "vertical_rms_m_s2": 3.8633826444795436,
+              "vertical_peak_m_s2": 5.16491363868893,
+              "body_rate_rad_s": 0.033553974125306106
+            }
+          ],
+          "event_count": 1,
+          "fault": ""
+        },
+        "confirmation_030": {
+          "available": true,
+          "events": [
+            {
+              "elapsed_s": 1.4999999999999978,
+              "sources": [
+                "vertical"
+              ],
+              "vertical_rms_m_s2": 2.8271817929301246,
+              "vertical_peak_m_s2": 5.041912619024685,
+              "body_rate_rad_s": 0.003484970379634761
+            }
+          ],
+          "event_count": 1,
+          "fault": ""
+        }
+      }
+    },
+    {
+      "case": "brake_recover",
+      "steps": 40,
+      "complete": true,
+      "physically_terminated": false,
+      "termination": null,
+      "maximum_interval_vertical_peak_m_s2": 10.205518394107353,
+      "maximum_interval_vertical_rms_m_s2": 5.507771208965003,
+      "replays": {
+        "original": {
+          "available": true,
+          "events": [
+            {
+              "elapsed_s": 0.8999999999999968,
+              "sources": [
+                "vertical"
+              ],
+              "vertical_rms_m_s2": 0.5013307213852337,
+              "vertical_peak_m_s2": 1.700935701421745,
+              "body_rate_rad_s": 0.03401909299775841
+            }
+          ],
+          "event_count": 1,
+          "fault": ""
+        },
+        "confirmation_020": {
+          "available": true,
+          "events": [
+            {
+              "elapsed_s": 0.9999999999999964,
+              "sources": [
+                "vertical"
+              ],
+              "vertical_rms_m_s2": 5.507771208965003,
+              "vertical_peak_m_s2": 10.205518394107353,
+              "body_rate_rad_s": 0.03379872460662681
+            }
+          ],
+          "event_count": 1,
+          "fault": ""
+        },
+        "confirmation_030": {
+          "available": true,
+          "events": [
+            {
+              "elapsed_s": 1.099999999999996,
+              "sources": [
+                "vertical"
+              ],
+              "vertical_rms_m_s2": 2.616201608889533,
+              "vertical_peak_m_s2": 6.936461824622927,
+              "body_rate_rad_s": 0.016706315093394687
+            }
+          ],
+          "event_count": 1,
+          "fault": ""
+        }
+      }
+    },
+    {
+      "case": "turn",
+      "steps": 40,
+      "complete": true,
+      "physically_terminated": false,
+      "termination": null,
+      "maximum_interval_vertical_peak_m_s2": 4.931082902519352,
+      "maximum_interval_vertical_rms_m_s2": 3.8055367758820857,
+      "replays": {
+        "original": {
+          "available": true,
+          "events": [
+            {
+              "elapsed_s": 1.399999999999995,
+              "sources": [
+                "vertical"
+              ],
+              "vertical_rms_m_s2": 1.437972214385724,
+              "vertical_peak_m_s2": 3.034226469182868,
+              "body_rate_rad_s": 0.013019360607561386
+            }
+          ],
+          "event_count": 1,
+          "fault": ""
+        },
+        "confirmation_020": {
+          "available": true,
+          "events": [
+            {
+              "elapsed_s": 1.4999999999999947,
+              "sources": [
+                "vertical"
+              ],
+              "vertical_rms_m_s2": 1.025092104738129,
+              "vertical_peak_m_s2": 1.5085100507829186,
+              "body_rate_rad_s": 0.0056956386385778246
+            }
+          ],
+          "event_count": 1,
+          "fault": ""
+        },
+        "confirmation_030": {
+          "available": true,
+          "events": [
+            {
+              "elapsed_s": 1.5999999999999943,
+              "sources": [
+                "vertical"
+              ],
+              "vertical_rms_m_s2": 0.8309752221418811,
+              "vertical_peak_m_s2": 1.4966402410637265,
+              "body_rate_rad_s": 0.005326778762423872
+            }
+          ],
+          "event_count": 1,
+          "fault": ""
+        }
+      }
+    }
+  ],
+  "next": "A candidate needs closed-loop clean-floor confirmation and positive-contact detection before H2.",
+  "contact_health": {
+    "source": "rl_runs/governor_foundations_2026-10-15/clear_contact/20261015T100031-808469Z",
+    "logger_closed": true,
+    "assumptions": "Rolling ratio only when body speed >0.25 m/s, yaw rate <0.05 rad/s, swivel aligned within0.15 rad; simulator diagnostics, not a calibrated slip measurement",
+    "results": [
+      {
+        "episode": "009f6a5ae8b74f44bf7c1a0976422ee7:1",
+        "case": "accelerate",
+        "caster_rolling_ratio": {
+          "left": {
+            "samples": 1150,
+            "median": 0.9898407635985416
+          },
+          "right": {
+            "samples": 1150,
+            "median": 0.2562664473155585
+          }
+        },
+        "vertical_position_span_m": 2.155894691324832e-05,
+        "contacts": {
+          "left_wheel": {
+            "messages": 389,
+            "maximum_depth_m": 3.4747656172839925e-05,
+            "peak_abs_force_z_N": 46.533814569786706
+          },
+          "right_wheel": {
+            "messages": 389,
+            "maximum_depth_m": 1.7695127098704688e-05,
+            "peak_abs_force_z_N": 47.539575397383295
+          },
+          "caster_left_wheel": {
+            "messages": 383,
+            "maximum_depth_m": 0.0011390791041776538,
+            "peak_abs_force_z_N": 164.91633796339687
+          },
+          "caster_right_wheel": {
+            "messages": 374,
+            "maximum_depth_m": 0.001139090396463871,
+            "peak_abs_force_z_N": 164.7046116359869
+          }
+        }
+      },
+      {
+        "episode": "009f6a5ae8b74f44bf7c1a0976422ee7:2",
+        "case": "brake_recover",
+        "caster_rolling_ratio": {
+          "left": {
+            "samples": 1190,
+            "median": 0.9868175823686887
+          },
+          "right": {
+            "samples": 1190,
+            "median": 0.3191129097585227
+          }
+        },
+        "vertical_position_span_m": 2.5194021169148607e-05,
+        "contacts": {
+          "left_wheel": {
+            "messages": 384,
+            "maximum_depth_m": 3.734977144631557e-05,
+            "peak_abs_force_z_N": 48.15922564694462
+          },
+          "right_wheel": {
+            "messages": 384,
+            "maximum_depth_m": 1.9477680325508118e-05,
+            "peak_abs_force_z_N": 50.34360688080343
+          },
+          "caster_left_wheel": {
+            "messages": 380,
+            "maximum_depth_m": 0.001124049536883831,
+            "peak_abs_force_z_N": 168.87453116483638
+          },
+          "caster_right_wheel": {
+            "messages": 371,
+            "maximum_depth_m": 0.0011238707229495049,
+            "peak_abs_force_z_N": 169.32264075819245
+          }
+        }
+      },
+      {
+        "episode": "009f6a5ae8b74f44bf7c1a0976422ee7:3",
+        "case": "turn",
+        "caster_rolling_ratio": {
+          "left": {
+            "samples": 0,
+            "median": null
+          },
+          "right": {
+            "samples": 0,
+            "median": null
+          }
+        },
+        "vertical_position_span_m": 3.197055839468992e-05,
+        "contacts": {
+          "left_wheel": {
+            "messages": 471,
+            "maximum_depth_m": 1.911075560201425e-05,
+            "peak_abs_force_z_N": 42.41511678113305
+          },
+          "caster_right_wheel": {
+            "messages": 423,
+            "maximum_depth_m": 0.0010620830580592155,
+            "peak_abs_force_z_N": 62.925325860985616
+          },
+          "right_wheel": {
+            "messages": 471,
+            "maximum_depth_m": 6.49280846118927e-05,
+            "peak_abs_force_z_N": 49.26113903522784
+          },
+          "caster_left_wheel": {
+            "messages": 456,
+            "maximum_depth_m": 0.0010581295937299728,
+            "peak_abs_force_z_N": 37.929371168670244
+          }
+        }
+      }
+    ]
+  }
+}

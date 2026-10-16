@@ -1,0 +1,13 @@
+# New detector contract: remove vertical-only initiation, not its quiet signal.
+extends: factory_floor_clear_box_pi_check.yaml
+governor:
+  revision: motion_trigger_ablation_v1_2026_10_16
+  parameters:
+    profile: moderate
+    pulse_seconds: 1.0
+    vertical_only_trigger_enabled: false
+research_map:
+  revision: motion_trigger_ablation_v1_2026_10_16
+  stage: clean_floor_detector_confirmation
+  training_allowed: false
+  optuna_allowed: false

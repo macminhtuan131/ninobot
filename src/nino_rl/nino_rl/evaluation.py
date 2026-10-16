@@ -105,7 +105,14 @@ def summarize(rows, metadata):
     return summary
 
 
-def run(baseline=False):
+def validate_environment_factory_contract(config, baseline, env_factory, experiment_metadata):
+    if config.get("research_experiment", {}).get("oracle_contact_input") and env_factory is None:
+        raise ValueError("Oracle config requires the explicit simulation-only evaluate_contact_oracle.py entry")
+    if experiment_metadata is not None and (not baseline or env_factory is None):
+        raise ValueError("Research environment metadata requires an explicit baseline environment factory")
+
+
+def run(baseline=False, *, env_factory=None, experiment_metadata=None):
     from ament_index_python.packages import get_package_share_directory
     parser = argparse.ArgumentParser(description="Evaluate PI baseline or deterministic PPO on matching seeds")
     parser.add_argument("--config", type=Path,
@@ -146,6 +153,7 @@ def run(baseline=False):
         config = prepare_evaluation_config(load_config(args.config), phase=args.phase,
             randomized=args.randomized, route=args.route, flat_stage=args.flat_stage,
             baseline=baseline, speed_only=speed_only, control_trace=args.control_trace)
+        validate_environment_factory_contract(config, baseline, env_factory, experiment_metadata)
     except ValueError as error:
         parser.error(str(error))
     model = None
@@ -186,12 +194,18 @@ def run(baseline=False):
         metadata["controller"]=config["governor"].get("parameters",{}).get("profile","reactive")+"_governor_pi"
         metadata["governor"]=config["governor"]
         metadata["qualification"]="Reactive PI/contact-authority experiment; no predictor or sim-to-real claim"
+    if experiment_metadata is not None:
+        metadata["research_experiment"] = experiment_metadata
+        metadata["qualification"] = experiment_metadata["qualification"]
     (output / "metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
     # Create ROS only after validating the model/config.
     from nino_rl.ros_env import NinoGazeboEnv
-    env = NinoGazeboEnv(config, total_training_steps=1)
+    env = None
     rows = []
+    failed_episode = None
+    episode = scenario_seed = None
     try:
+        env = (env_factory or NinoGazeboEnv)(config, total_training_steps=1)
         for episode, scenario_seed in enumerate(seeds):
             observation, reset_info = env.reset(seed=scenario_seed)
             episode_output = output / f"episode-{episode+1:03d}"
@@ -249,13 +263,30 @@ def run(baseline=False):
                 f"lateral drift={row['final_abs_lateral_drift_m']:.3f}m, "
                 f"path RMSE={row['path_rmse_m']:.3f}m"
             )
+    except BaseException as error:
+        failed_episode = failure_record(error, episode, scenario_seed, len(rows))
+        (output / "failure.json").write_text(json.dumps(failed_episode,indent=2,allow_nan=False)+"\n")
+        raise
     finally:
-        env.close()
-        if rows:
-            summary = summarize(rows, {**metadata, "complete": len(rows) == args.episodes,
-                                       "requested_episodes": args.episodes})
-            (output / "summary.json").write_text(json.dumps(summary, indent=2, allow_nan=False) + "\n")
+        try:
+            if env is not None:
+                env.close()
+        finally:
+            state={**metadata,"complete":failed_episode is None and len(rows)==args.episodes,
+                   "requested_episodes":args.episodes,"aborted_episode":failed_episode}
+            summary=(summarize(rows,state) if rows else
+                     {**state,"episodes":0,"success_rate":None,"qualification":"No completed episode; task outcome unavailable"})
+            (output / "summary.json").write_text(json.dumps(summary,indent=2,allow_nan=False)+"\n")
     print(f"Saved evaluation: {output}")
+
+
+def failure_record(error,episode_index,seed,completed):
+    """An aborted measurement has no fabricated arrival/quality outcome."""
+    return dict(kind="interrupted" if isinstance(error,KeyboardInterrupt) else "measurement_aborted",
+                exception_type=type(error).__name__,message=str(error),
+                episode=episode_index+1 if episode_index is not None else None,
+                seed=seed,completed_episodes=completed,success=None,task_outcome_available=False,
+                existing_traces_preserved=True)
 
 
 def compare_summaries(baseline, candidate):

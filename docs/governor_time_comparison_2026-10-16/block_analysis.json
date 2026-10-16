@@ -1,0 +1,1695 @@
+{
+  "protocol": {
+    "variant": "cable_box_capsule",
+    "seeds": [
+      76500,
+      76501,
+      76502,
+      76503,
+      76504
+    ],
+    "profiles": [
+      "full",
+      "moderate"
+    ],
+    "oracle_contact": false,
+    "source_sha256": {},
+    "shuffle_order": true,
+    "order_seed": 76550,
+    "case_order": [
+      [
+        76500,
+        "full"
+      ],
+      [
+        76500,
+        "moderate"
+      ],
+      [
+        76501,
+        "moderate"
+      ],
+      [
+        76501,
+        "full"
+      ],
+      [
+        76502,
+        "full"
+      ],
+      [
+        76502,
+        "moderate"
+      ],
+      [
+        76503,
+        "moderate"
+      ],
+      [
+        76503,
+        "full"
+      ],
+      [
+        76504,
+        "moderate"
+      ],
+      [
+        76504,
+        "full"
+      ]
+    ],
+    "full_reference_speed_m_s": 0.388,
+    "ros_domain": "202",
+    "gz_partition": "nino_time_compare_202",
+    "caster_wheel_damping": 0.001,
+    "physics_step_s": 0.001,
+    "control_interval_s": 0.1,
+    "stop_window_s": 2.0,
+    "qualification": "Bounded native PI screen; no learning or Optuna"
+  },
+  "groups": {
+    "full": {
+      "requested": 5,
+      "observed": 5,
+      "completed": 5,
+      "physical_successes": 5,
+      "physical_failures": 0,
+      "unavailable": 0,
+      "stable_stops": 5,
+      "metrics": {
+        "time_s": {
+          "n": 5,
+          "mean": 17.160000000000057,
+          "minimum": 17.10000000000003,
+          "maximum": 17.300000000000068,
+          "std": 0.0894427191000008
+        },
+        "truth_rmse_m": {
+          "n": 5,
+          "mean": 0.005769875732497888,
+          "minimum": 0.0049655972718421065,
+          "maximum": 0.006764344174572504,
+          "std": 0.0007331174322142794
+        },
+        "approach_speed_m_s": {
+          "n": 5,
+          "mean": 0.38432701817881243,
+          "minimum": 0.38395313023881866,
+          "maximum": 0.3846171914217632,
+          "std": 0.00024269700985941474
+        },
+        "whole_vertical_rms": {
+          "n": 5,
+          "mean": 2.5994542310619466,
+          "minimum": 1.1878570820778636,
+          "maximum": 7.045165500357122,
+          "std": 2.5053715730597026
+        },
+        "whole_vertical_peak": {
+          "n": 5,
+          "mean": 57.569667114748086,
+          "minimum": 8.975735455215489,
+          "maximum": 200.05134821202125,
+          "std": 80.94743653504584
+        },
+        "whole_slip_rms": {
+          "n": 5,
+          "mean": 0.08596821828668076,
+          "minimum": 0.04060573896067219,
+          "maximum": 0.12402837880414114,
+          "std": 0.029913813964970597
+        },
+        "first_50ms_peak": {
+          "n": 5,
+          "mean": 9.682653886914828,
+          "minimum": 4.865164384075887,
+          "maximum": 18.84638455510796,
+          "std": 5.662056259079663
+        },
+        "contact_to_decision_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        },
+        "motor_target_drop_delay_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        },
+        "first_to_caster_s": {
+          "n": 5,
+          "mean": 0.10039999999999978,
+          "minimum": 0.05400000000000027,
+          "maximum": 0.17099999999999937,
+          "std": 0.05511170474590628
+        },
+        "first_to_drive_s": {
+          "n": 5,
+          "mean": 0.7737999999999996,
+          "minimum": 0.6780000000000008,
+          "maximum": 1.0279999999999987,
+          "std": 0.14344406575386742
+        },
+        "clearance_duration_s": {
+          "n": 5,
+          "mean": 2.2199999999999993,
+          "minimum": 2.144,
+          "maximum": 2.4209999999999994,
+          "std": 0.11442246282963854
+        },
+        "postcontact_vertical_rms": {
+          "n": 5,
+          "mean": 5.975243945897901,
+          "minimum": 1.8210971101727922,
+          "maximum": 19.606674853801923,
+          "std": 7.674444168069704
+        },
+        "postcontact_vertical_peak": {
+          "n": 5,
+          "mean": 54.92591620555943,
+          "minimum": 6.95898107976152,
+          "maximum": 200.05134821202125,
+          "std": 82.7165573242779
+        },
+        "postcontact_slip_energy_per_m": {
+          "n": 5,
+          "mean": 0.11607007859203174,
+          "minimum": 0.09013331241089347,
+          "maximum": 0.1652804274999126,
+          "std": 0.02905517621745198
+        },
+        "recovery_after_first_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        }
+      }
+    },
+    "moderate": {
+      "requested": 5,
+      "observed": 5,
+      "completed": 5,
+      "physical_successes": 5,
+      "physical_failures": 0,
+      "unavailable": 0,
+      "stable_stops": 5,
+      "metrics": {
+        "time_s": {
+          "n": 5,
+          "mean": 17.52000000000006,
+          "minimum": 16.900000000000063,
+          "maximum": 19.500000000000068,
+          "std": 1.118928058455953
+        },
+        "truth_rmse_m": {
+          "n": 5,
+          "mean": 0.0048537233624499935,
+          "minimum": 0.0032949731249087484,
+          "maximum": 0.006434487157985995,
+          "std": 0.0012818277522077621
+        },
+        "approach_speed_m_s": {
+          "n": 5,
+          "mean": 0.39590572608634567,
+          "minimum": 0.39574754980478904,
+          "maximum": 0.39612519718867567,
+          "std": 0.00014423069904940166
+        },
+        "whole_vertical_rms": {
+          "n": 5,
+          "mean": 4.055310651880433,
+          "minimum": 1.133128044332297,
+          "maximum": 11.674755909970434,
+          "std": 4.505727587004031
+        },
+        "whole_vertical_peak": {
+          "n": 5,
+          "mean": 101.96954232651173,
+          "minimum": 8.864997660148731,
+          "maximum": 338.61537705923786,
+          "std": 142.48642407802544
+        },
+        "whole_slip_rms": {
+          "n": 5,
+          "mean": 0.08581782029800067,
+          "minimum": 0.06533922028016292,
+          "maximum": 0.11699662124620056,
+          "std": 0.020276948884548132
+        },
+        "first_50ms_peak": {
+          "n": 5,
+          "mean": 7.628716495450787,
+          "minimum": 5.797781040292947,
+          "maximum": 9.33372426282248,
+          "std": 1.5478587602334655
+        },
+        "contact_to_decision_s": {
+          "n": 5,
+          "mean": 0.10119999999997482,
+          "minimum": 0.09899999999997533,
+          "maximum": 0.10299999999997489,
+          "std": 0.0016431676725152903
+        },
+        "motor_target_drop_delay_s": {
+          "n": 5,
+          "mean": 0.3192000000000004,
+          "minimum": 0.3119999999999994,
+          "maximum": 0.32699999999999996,
+          "std": 0.006220932405998167
+        },
+        "first_to_caster_s": {
+          "n": 5,
+          "mean": 0.11939999999999991,
+          "minimum": 0.05999999999999872,
+          "maximum": 0.17300000000000004,
+          "std": 0.048660045211651945
+        },
+        "first_to_drive_s": {
+          "n": 5,
+          "mean": 1.4575999999999993,
+          "minimum": 0.7269999999999985,
+          "maximum": 3.712999999999999,
+          "std": 1.2796463573972303
+        },
+        "clearance_duration_s": {
+          "n": 5,
+          "mean": 2.996799999999999,
+          "minimum": 2.3199999999999985,
+          "maximum": 5.0329999999999995,
+          "std": 1.1612470452061443
+        },
+        "postcontact_vertical_rms": {
+          "n": 5,
+          "mean": 9.71788904480059,
+          "minimum": 1.8497642837283899,
+          "maximum": 30.852114523014926,
+          "std": 12.455926544873465
+        },
+        "postcontact_vertical_peak": {
+          "n": 5,
+          "mean": 101.57999050125474,
+          "minimum": 6.917238533863818,
+          "maximum": 338.61537705923786,
+          "std": 142.8069060408213
+        },
+        "postcontact_slip_energy_per_m": {
+          "n": 5,
+          "mean": 0.18793602209188892,
+          "minimum": 0.09040091412755642,
+          "maximum": 0.4597394886801542,
+          "std": 0.1558330769199485
+        },
+        "recovery_after_first_s": {
+          "n": 5,
+          "mean": 2.501199999999966,
+          "minimum": 2.002999999999968,
+          "maximum": 2.801999999999966,
+          "std": 0.4119498755916778
+        }
+      }
+    }
+  },
+  "block_metrics": {
+    "time_s": {
+      "requested_blocks": 5,
+      "available_blocks": 5,
+      "unavailable_or_ineligible_seeds": [],
+      "pairs": [
+        {
+          "seed": 76500,
+          "full": 17.10000000000003,
+          "moderate": 19.500000000000068,
+          "delta": 2.4000000000000377
+        },
+        {
+          "seed": 76501,
+          "full": 17.200000000000063,
+          "moderate": 17.300000000000068,
+          "delta": 0.10000000000000497
+        },
+        {
+          "seed": 76502,
+          "full": 17.100000000000083,
+          "moderate": 17.000000000000043,
+          "delta": -0.1000000000000405
+        },
+        {
+          "seed": 76503,
+          "full": 17.100000000000033,
+          "moderate": 16.900000000000063,
+          "delta": -0.19999999999997087
+        },
+        {
+          "seed": 76504,
+          "full": 17.300000000000068,
+          "moderate": 16.900000000000066,
+          "delta": -0.40000000000000213
+        }
+      ],
+      "exploratory_sign_flip": {
+        "n_blocks": 5,
+        "observed_mean_delta": 0.3600000000000058,
+        "favorable_blocks": 3,
+        "ties": 0,
+        "minimum_delta": -0.40000000000000213,
+        "maximum_delta": 2.4000000000000377,
+        "two_sided_p": 0.9375,
+        "permutations": 32
+      }
+    },
+    "truth_rmse_m": {
+      "requested_blocks": 5,
+      "available_blocks": 5,
+      "unavailable_or_ineligible_seeds": [],
+      "pairs": [
+        {
+          "seed": 76500,
+          "full": 0.0053565694363709474,
+          "moderate": 0.0054852526336093815,
+          "delta": 0.00012868319723843401
+        },
+        {
+          "seed": 76501,
+          "full": 0.006280370484905623,
+          "moderate": 0.0032949731249087484,
+          "delta": -0.0029853973599968746
+        },
+        {
+          "seed": 76502,
+          "full": 0.0054824972947982555,
+          "moderate": 0.005245083109258929,
+          "delta": -0.00023741418553932612
+        },
+        {
+          "seed": 76503,
+          "full": 0.006764344174572504,
+          "moderate": 0.003808820786486913,
+          "delta": -0.0029555233880855913
+        },
+        {
+          "seed": 76504,
+          "full": 0.0049655972718421065,
+          "moderate": 0.006434487157985995,
+          "delta": 0.0014688898861438884
+        }
+      ],
+      "exploratory_sign_flip": {
+        "n_blocks": 5,
+        "observed_mean_delta": -0.000916152370047894,
+        "favorable_blocks": 3,
+        "ties": 0,
+        "minimum_delta": -0.0029853973599968746,
+        "maximum_delta": 0.0014688898861438884,
+        "two_sided_p": 0.375,
+        "permutations": 32
+      }
+    },
+    "first_50ms_peak": {
+      "requested_blocks": 5,
+      "available_blocks": 0,
+      "unavailable_or_ineligible_seeds": [
+        76500,
+        76501,
+        76502,
+        76503,
+        76504
+      ],
+      "pairs": [],
+      "exploratory_sign_flip": null
+    },
+    "postcontact_vertical_rms": {
+      "requested_blocks": 5,
+      "available_blocks": 5,
+      "unavailable_or_ineligible_seeds": [],
+      "pairs": [
+        {
+          "seed": 76500,
+          "full": 1.8210971101727922,
+          "moderate": 2.306196560594914,
+          "delta": 0.48509945042212177
+        },
+        {
+          "seed": 76501,
+          "full": 4.068085065688472,
+          "moderate": 11.260993485130435,
+          "delta": 7.192908419441962
+        },
+        {
+          "seed": 76502,
+          "full": 1.8548636497069515,
+          "moderate": 30.852114523014926,
+          "delta": 28.997250873307973
+        },
+        {
+          "seed": 76503,
+          "full": 19.606674853801923,
+          "moderate": 2.320376371534286,
+          "delta": -17.286298482267636
+        },
+        {
+          "seed": 76504,
+          "full": 2.525499050119366,
+          "moderate": 1.8497642837283899,
+          "delta": -0.6757347663909761
+        }
+      ],
+      "exploratory_sign_flip": {
+        "n_blocks": 5,
+        "observed_mean_delta": 3.742645098902689,
+        "favorable_blocks": 2,
+        "ties": 0,
+        "minimum_delta": -17.286298482267636,
+        "maximum_delta": 28.997250873307973,
+        "two_sided_p": 0.6875,
+        "permutations": 32
+      }
+    },
+    "postcontact_vertical_peak": {
+      "requested_blocks": 5,
+      "available_blocks": 5,
+      "unavailable_or_ineligible_seeds": [],
+      "pairs": [
+        {
+          "seed": 76500,
+          "full": 7.644384384618682,
+          "moderate": 19.11210266699885,
+          "delta": 11.467718282380169
+        },
+        {
+          "seed": 76501,
+          "full": 46.21239082168861,
+          "moderate": 134.21034914743092,
+          "delta": 87.9979583257423
+        },
+        {
+          "seed": 76502,
+          "full": 6.95898107976152,
+          "moderate": 338.61537705923786,
+          "delta": 331.6563959794763
+        },
+        {
+          "seed": 76503,
+          "full": 200.05134821202125,
+          "moderate": 9.044885098742272,
+          "delta": -191.00646311327898
+        },
+        {
+          "seed": 76504,
+          "full": 13.762476529707127,
+          "moderate": 6.917238533863818,
+          "delta": -6.845237995843309
+        }
+      ],
+      "exploratory_sign_flip": {
+        "n_blocks": 5,
+        "observed_mean_delta": 46.654074295695295,
+        "favorable_blocks": 2,
+        "ties": 0,
+        "minimum_delta": -191.00646311327898,
+        "maximum_delta": 331.6563959794763,
+        "two_sided_p": 0.625,
+        "permutations": 32
+      }
+    },
+    "postcontact_vertical_p95": {
+      "requested_blocks": 5,
+      "available_blocks": 5,
+      "unavailable_or_ineligible_seeds": [],
+      "pairs": [
+        {
+          "seed": 76500,
+          "full": 4.13282323542987,
+          "moderate": 5.20204160654151,
+          "delta": 1.0692183711116394
+        },
+        {
+          "seed": 76501,
+          "full": 5.191036068343152,
+          "moderate": 2.575717290059715,
+          "delta": -2.615318778283437
+        },
+        {
+          "seed": 76502,
+          "full": 4.3951232285249695,
+          "moderate": 6.323732749252095,
+          "delta": 1.9286095207271252
+        },
+        {
+          "seed": 76503,
+          "full": 3.640105473618806,
+          "moderate": 6.567301328368906,
+          "delta": 2.9271958547501
+        },
+        {
+          "seed": 76504,
+          "full": 4.543048875831004,
+          "moderate": 3.8192967529585813,
+          "delta": -0.7237521228724226
+        }
+      ],
+      "exploratory_sign_flip": {
+        "n_blocks": 5,
+        "observed_mean_delta": 0.517190569086601,
+        "favorable_blocks": 2,
+        "ties": 0,
+        "minimum_delta": -2.615318778283437,
+        "maximum_delta": 2.9271958547501,
+        "two_sided_p": 0.625,
+        "permutations": 32
+      }
+    },
+    "postcontact_slip_energy_per_m": {
+      "requested_blocks": 5,
+      "available_blocks": 5,
+      "unavailable_or_ineligible_seeds": [],
+      "pairs": [
+        {
+          "seed": 76500,
+          "full": 0.09013331241089347,
+          "moderate": 0.4597394886801542,
+          "delta": 0.36960617626926073
+        },
+        {
+          "seed": 76501,
+          "full": 0.11655263240193209,
+          "moderate": 0.1786948087211413,
+          "delta": 0.06214217631920921
+        },
+        {
+          "seed": 76502,
+          "full": 0.10407177974299044,
+          "moderate": 0.11006951061028132,
+          "delta": 0.005997730867290885
+        },
+        {
+          "seed": 76503,
+          "full": 0.10431224090443014,
+          "moderate": 0.09040091412755642,
+          "delta": -0.01391132677687372
+        },
+        {
+          "seed": 76504,
+          "full": 0.1652804274999126,
+          "moderate": 0.10077538832031123,
+          "delta": -0.06450503917960136
+        }
+      ],
+      "exploratory_sign_flip": {
+        "n_blocks": 5,
+        "observed_mean_delta": 0.07186594349985714,
+        "favorable_blocks": 2,
+        "ties": 0,
+        "minimum_delta": -0.06450503917960136,
+        "maximum_delta": 0.36960617626926073,
+        "two_sided_p": 0.625,
+        "permutations": 32
+      }
+    },
+    "whole_vertical_rms": {
+      "requested_blocks": 5,
+      "available_blocks": 5,
+      "unavailable_or_ineligible_seeds": [],
+      "pairs": [
+        {
+          "seed": 76500,
+          "full": 1.3260353667643932,
+          "moderate": 1.4661639249842242,
+          "delta": 0.14012855821983106
+        },
+        {
+          "seed": 76501,
+          "full": 2.01824885951631,
+          "moderate": 4.68729390739307,
+          "delta": 2.6690450478767604
+        },
+        {
+          "seed": 76502,
+          "full": 1.1878570820778636,
+          "moderate": 11.674755909970434,
+          "delta": 10.48689882789257
+        },
+        {
+          "seed": 76503,
+          "full": 7.045165500357122,
+          "moderate": 1.315211472722142,
+          "delta": -5.72995402763498
+        },
+        {
+          "seed": 76504,
+          "full": 1.419964346594044,
+          "moderate": 1.133128044332297,
+          "delta": -0.28683630226174683
+        }
+      ],
+      "exploratory_sign_flip": {
+        "n_blocks": 5,
+        "observed_mean_delta": 1.455856420818487,
+        "favorable_blocks": 2,
+        "ties": 0,
+        "minimum_delta": -5.72995402763498,
+        "maximum_delta": 10.48689882789257,
+        "two_sided_p": 0.6875,
+        "permutations": 32
+      }
+    },
+    "whole_slip_rms": {
+      "requested_blocks": 5,
+      "available_blocks": 5,
+      "unavailable_or_ineligible_seeds": [],
+      "pairs": [
+        {
+          "seed": 76500,
+          "full": 0.04060573896067219,
+          "moderate": 0.11699662124620056,
+          "delta": 0.07639088228552837
+        },
+        {
+          "seed": 76501,
+          "full": 0.08512369250935783,
+          "moderate": 0.09338801163459111,
+          "delta": 0.008264319125233274
+        },
+        {
+          "seed": 76502,
+          "full": 0.09446408065068247,
+          "moderate": 0.06533922028016292,
+          "delta": -0.029124860370519548
+        },
+        {
+          "seed": 76503,
+          "full": 0.0856192005085502,
+          "moderate": 0.07288022207232613,
+          "delta": -0.012738978436224069
+        },
+        {
+          "seed": 76504,
+          "full": 0.12402837880414114,
+          "moderate": 0.08048502625672262,
+          "delta": -0.04354335254741852
+        }
+      ],
+      "exploratory_sign_flip": {
+        "n_blocks": 5,
+        "observed_mean_delta": -0.00015039798868009824,
+        "favorable_blocks": 3,
+        "ties": 0,
+        "minimum_delta": -0.04354335254741852,
+        "maximum_delta": 0.07639088228552837,
+        "two_sided_p": 1.0,
+        "permutations": 32
+      }
+    }
+  },
+  "completion_time_comparison": {
+    "available": true,
+    "constant_pi_mean_s": 17.160000000000057,
+    "governor_mean_s": 17.52000000000006,
+    "signed_relative_gap": 0.020979020979021046,
+    "declared_relative_band": 0.02,
+    "approximately_matched": false,
+    "qualification": "Exploratory mean-time band declared before runs, not a deployment tolerance. No failed or unavailable arrival can qualify the comparison. Approach speeds intentionally differ; first impact is not a negative control."
+  },
+  "auxiliary": [
+    {
+      "seed": 76500,
+      "profile": "full",
+      "physical_success": true,
+      "stop_settled": true,
+      "first_50ms_uncontrolled": true,
+      "postcontact_vertical_p95": 4.13282323542987,
+      "timing": {
+        "available": true,
+        "status_samples": 850,
+        "updates": 8500,
+        "raw_elapsed_s": 17.000000000000004,
+        "observed_updates_per_sim_s": 499.9999999999999,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.003,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 850,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.003
+        },
+        "future_joint_updates": 0
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": -0.0032988592222297887,
+            "median": 23.981550964107488,
+            "maximum": 24.176687461213326
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -0.0005831929884486176,
+            "median": -2.7377781818581634e-05,
+            "maximum": 0.00031495377426122266
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 2.0786371594888775e-06,
+            "median": 0.9989668695498488,
+            "maximum": 1.005723892168223
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 18.691912723349922,
+            "maximum": 40.13438520493152
+          },
+          "strong_support_samples": 150,
+          "weak_support_samples": 76,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 60,
+          "slow_with_observed_strong_support": 24,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": -0.03330121478788745,
+            "median": 10.294609271442658,
+            "maximum": 24.136986944219913
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -0.0018665966445174042,
+            "median": -0.0008876627611668336,
+            "maximum": -0.0004973949436173696
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 7.747218410723256e-06,
+            "median": 0.4287268930204379,
+            "maximum": 1.0040656023751569
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 23.50477300632458
+          },
+          "strong_support_samples": 74,
+          "weak_support_samples": 152,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 121,
+          "slow_with_observed_strong_support": 13,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "distant_positive_points": 0
+    },
+    {
+      "seed": 76500,
+      "profile": "moderate",
+      "physical_success": true,
+      "stop_settled": true,
+      "first_50ms_uncontrolled": true,
+      "postcontact_vertical_p95": 5.20204160654151,
+      "timing": {
+        "available": true,
+        "status_samples": 970,
+        "updates": 9699,
+        "raw_elapsed_s": 19.400000000000002,
+        "observed_updates_per_sim_s": 499.94845360824735,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.004,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 970,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.004
+        },
+        "future_joint_updates": 0
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.00535091607468049,
+            "median": 24.704557894994856,
+            "maximum": 24.941209364750275
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.00041165467785265705,
+            "median": 0.00010888880670223037,
+            "maximum": 0.0003230496839211039
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 1.2395415106394129e-05,
+            "median": 0.9986665234591695,
+            "maximum": 1.0060541046178832
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 18.042189685174726,
+            "maximum": 38.39879800968498
+          },
+          "strong_support_samples": 125,
+          "weak_support_samples": 100,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 70,
+          "slow_with_observed_strong_support": 19,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.024534716943187766,
+            "median": 16.184360113873396,
+            "maximum": 24.9183405910684
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0016566086043063952,
+            "median": -0.0011477629717604849,
+            "maximum": -0.0004088667753396203
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 1.0766221395707648e-05,
+            "median": 0.6542741471336819,
+            "maximum": 1.0069517857164765
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 24.56713520536518
+          },
+          "strong_support_samples": 74,
+          "weak_support_samples": 151,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 105,
+          "slow_with_observed_strong_support": 13,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "distant_positive_points": 0
+    },
+    {
+      "seed": 76501,
+      "profile": "full",
+      "physical_success": true,
+      "stop_settled": true,
+      "first_50ms_uncontrolled": true,
+      "postcontact_vertical_p95": 5.191036068343152,
+      "timing": {
+        "available": true,
+        "status_samples": 855,
+        "updates": 8552,
+        "raw_elapsed_s": 17.104000000000003,
+        "observed_updates_per_sim_s": 499.99999999999994,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.003,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 855,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.003
+        },
+        "future_joint_updates": 0
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": 0.018792620000410883,
+            "median": 23.921935358593192,
+            "maximum": 24.362143166276955
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0005904005764041687,
+            "median": -0.00014267582583287342,
+            "maximum": 0.0006579083428953556
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 0.0007832182247652092,
+            "median": 0.9972133140250216,
+            "maximum": 1.0103241227492374
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 17.34833514946169,
+            "maximum": 40.34782027859564
+          },
+          "strong_support_samples": 138,
+          "weak_support_samples": 87,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 69,
+          "slow_with_observed_strong_support": 32,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.021266818826163766,
+            "median": 15.728168354259338,
+            "maximum": 24.22069396114061
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0018915771522873535,
+            "median": -0.00100232336526415,
+            "maximum": -0.00040521925940641975
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 3.6016843758046423e-06,
+            "median": 0.6551018914737138,
+            "maximum": 1.0096816556675765
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 16.301787973151537,
+            "maximum": 24.17412042471271
+          },
+          "strong_support_samples": 114,
+          "weak_support_samples": 111,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 84,
+          "slow_with_observed_strong_support": 26,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "distant_positive_points": 0
+    },
+    {
+      "seed": 76501,
+      "profile": "moderate",
+      "physical_success": true,
+      "stop_settled": true,
+      "first_50ms_uncontrolled": true,
+      "postcontact_vertical_p95": 2.575717290059715,
+      "timing": {
+        "available": true,
+        "status_samples": 860,
+        "updates": 8600,
+        "raw_elapsed_s": 17.202,
+        "observed_updates_per_sim_s": 499.94186722474126,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.004,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 860,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.003
+        },
+        "future_joint_updates": 0
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": 0.04919780860581571,
+            "median": 24.679149046339305,
+            "maximum": 24.97277889302856
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0011004726047791618,
+            "median": -0.0002212592274980403,
+            "maximum": 0.0003947475498846258
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 0.0019880319214816817,
+            "median": 0.9983733531726897,
+            "maximum": 1.011087413613282
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 17.711608408157524,
+            "maximum": 40.9455324744067
+          },
+          "strong_support_samples": 138,
+          "weak_support_samples": 87,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 70,
+          "slow_with_observed_strong_support": 26,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.037289804863574603,
+            "median": 16.176343809169502,
+            "maximum": 24.952891619999384
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0018484627576968353,
+            "median": -0.0012495205918872378,
+            "maximum": -0.0003511360328403705
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 1.4214123550597394e-05,
+            "median": 0.6546169886313883,
+            "maximum": 1.0107620717586878
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 38.23872734448972
+          },
+          "strong_support_samples": 104,
+          "weak_support_samples": 121,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 100,
+          "slow_with_observed_strong_support": 25,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "distant_positive_points": 0
+    },
+    {
+      "seed": 76502,
+      "profile": "full",
+      "physical_success": true,
+      "stop_settled": true,
+      "first_50ms_uncontrolled": true,
+      "postcontact_vertical_p95": 4.3951232285249695,
+      "timing": {
+        "available": true,
+        "status_samples": 850,
+        "updates": 8500,
+        "raw_elapsed_s": 17.000000000000004,
+        "observed_updates_per_sim_s": 499.9999999999999,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.003,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 850,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.004
+        },
+        "future_joint_updates": 0
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": 0.0007089132810648834,
+            "median": 23.987698405142574,
+            "maximum": 24.253404189267165
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0011226109827937136,
+            "median": -0.0005351462306842897,
+            "maximum": 0.0004104503896675591
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 2.9485000599942262e-05,
+            "median": 0.9988852429868835,
+            "maximum": 1.0069655007192195
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 15.657253279592018,
+            "maximum": 39.612865320649405
+          },
+          "strong_support_samples": 122,
+          "weak_support_samples": 103,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 64,
+          "slow_with_observed_strong_support": 20,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.03272370307621995,
+            "median": 15.683322542192352,
+            "maximum": 24.187507230535243
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.002334037185591867,
+            "median": -0.001300060930056384,
+            "maximum": -0.0004105344131260604
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 4.387130236386934e-07,
+            "median": 0.6534010050609634,
+            "maximum": 1.0076430871865674
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 39.59882462402671
+          },
+          "strong_support_samples": 93,
+          "weak_support_samples": 132,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 108,
+          "slow_with_observed_strong_support": 17,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "distant_positive_points": 0
+    },
+    {
+      "seed": 76502,
+      "profile": "moderate",
+      "physical_success": true,
+      "stop_settled": true,
+      "first_50ms_uncontrolled": true,
+      "postcontact_vertical_p95": 6.323732749252095,
+      "timing": {
+        "available": true,
+        "status_samples": 845,
+        "updates": 8449,
+        "raw_elapsed_s": 16.900000000000002,
+        "observed_updates_per_sim_s": 499.9408284023668,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.004,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 845,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.004
+        },
+        "future_joint_updates": 0
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": 0.0507939200902647,
+            "median": 24.736603379929285,
+            "maximum": 24.968104403071376
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.00027149291000360374,
+            "median": 0.00017578470078781453,
+            "maximum": 0.0004850960264093758
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 0.0020542507615121707,
+            "median": 0.9994835939119034,
+            "maximum": 1.0057266974220789
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 17.920444723568576,
+            "maximum": 39.23501061476263
+          },
+          "strong_support_samples": 134,
+          "weak_support_samples": 91,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 41,
+          "slow_with_observed_strong_support": 11,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.12159921294524746,
+            "median": 10.579100227529958,
+            "maximum": 24.90328880247511
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0013402628846233772,
+            "median": -0.0003048005521971336,
+            "maximum": -8.563630292832882e-05
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 4.368123906274407e-06,
+            "median": 0.42788433999714043,
+            "maximum": 1.006591283325911
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 22.636306644318047
+          },
+          "strong_support_samples": 66,
+          "weak_support_samples": 159,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 127,
+          "slow_with_observed_strong_support": 22,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "distant_positive_points": 0
+    },
+    {
+      "seed": 76503,
+      "profile": "full",
+      "physical_success": true,
+      "stop_settled": true,
+      "first_50ms_uncontrolled": true,
+      "postcontact_vertical_p95": 3.640105473618806,
+      "timing": {
+        "available": true,
+        "status_samples": 850,
+        "updates": 8499,
+        "raw_elapsed_s": 17.000000000000004,
+        "observed_updates_per_sim_s": 499.9411764705881,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.004,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 850,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.005
+        },
+        "future_joint_updates": 0
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": 0.0975098307555552,
+            "median": 23.959084568481245,
+            "maximum": 24.433032162412612
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -9.889597204864041e-05,
+            "median": 5.838303667084885e-05,
+            "maximum": 0.0012991144211995215
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 0.004068287119830306,
+            "median": 0.9982279276331559,
+            "maximum": 1.017641332162501
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 18.851936003896512,
+            "maximum": 39.804709192380855
+          },
+          "strong_support_samples": 153,
+          "weak_support_samples": 72,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 52,
+          "slow_with_observed_strong_support": 24,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.0352251049636088,
+            "median": 15.688262113577181,
+            "maximum": 24.15649146963011
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0002886479525228916,
+            "median": -6.000651236053248e-05,
+            "maximum": 0.00010783609530734503
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 3.698284448451401e-06,
+            "median": 0.6544510822451075,
+            "maximum": 1.0060949508979198
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 38.37327728520731
+          },
+          "strong_support_samples": 67,
+          "weak_support_samples": 158,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 100,
+          "slow_with_observed_strong_support": 13,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "distant_positive_points": 0
+    },
+    {
+      "seed": 76503,
+      "profile": "moderate",
+      "physical_success": true,
+      "stop_settled": true,
+      "first_50ms_uncontrolled": true,
+      "postcontact_vertical_p95": 6.567301328368906,
+      "timing": {
+        "available": true,
+        "status_samples": 840,
+        "updates": 8400,
+        "raw_elapsed_s": 16.800000000000004,
+        "observed_updates_per_sim_s": 499.9999999999999,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.003,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 840,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.003
+        },
+        "future_joint_updates": 0
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": -0.005809948952110037,
+            "median": 24.70220998503166,
+            "maximum": 24.94503895900053
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -0.0006287290664144522,
+            "median": -1.014710900523557e-05,
+            "maximum": 0.00023648129860924085
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 3.961162542517122e-06,
+            "median": 0.9987240776406183,
+            "maximum": 1.005466169159675
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 18.671337025413273,
+            "maximum": 39.10399669122138
+          },
+          "strong_support_samples": 127,
+          "weak_support_samples": 99,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 57,
+          "slow_with_observed_strong_support": 18,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": -0.03380935889032329,
+            "median": 16.166799546634856,
+            "maximum": 24.88590249935596
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -0.0017906311304069311,
+            "median": -0.0012244090521536903,
+            "maximum": -0.0002465213697393344
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 4.8931630611599365e-06,
+            "median": 0.6533534604179221,
+            "maximum": 1.0046940901434862
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 23.483323814394776
+          },
+          "strong_support_samples": 77,
+          "weak_support_samples": 149,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 109,
+          "slow_with_observed_strong_support": 17,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "distant_positive_points": 0
+    },
+    {
+      "seed": 76504,
+      "profile": "full",
+      "physical_success": true,
+      "stop_settled": true,
+      "first_50ms_uncontrolled": true,
+      "postcontact_vertical_p95": 4.543048875831004,
+      "timing": {
+        "available": true,
+        "status_samples": 860,
+        "updates": 8599,
+        "raw_elapsed_s": 17.200000000000003,
+        "observed_updates_per_sim_s": 499.9418604651162,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.004,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 860,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.006
+        },
+        "future_joint_updates": 0
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": 0.3387673284738022,
+            "median": 23.964889251529787,
+            "maximum": 24.23524991172269
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0010657967026286904,
+            "median": -8.523011545491122e-05,
+            "maximum": 0.0004674253205380317
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 0.014130072168420054,
+            "median": 0.9988097163259584,
+            "maximum": 1.0053969236900533
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 18.857685290578203,
+            "maximum": 22.535655505868114
+          },
+          "strong_support_samples": 153,
+          "weak_support_samples": 72,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 50,
+          "slow_with_observed_strong_support": 19,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 225,
+          "wheel_rad_s": {
+            "n": 225,
+            "minimum": -0.032103807298671086,
+            "median": 15.65847684070257,
+            "maximum": 24.150254402580345
+          },
+          "swivel_rad": {
+            "n": 225,
+            "minimum": -0.0016154620258110944,
+            "median": -0.001279367353804432,
+            "maximum": -0.0004200106469306938
+          },
+          "rolling_ratio": {
+            "n": 225,
+            "minimum": 1.8082684108017123e-06,
+            "median": 0.6532932719701071,
+            "maximum": 1.0051214535835358
+          },
+          "observed_support_z_N": {
+            "n": 225,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 21.390754054755327
+          },
+          "strong_support_samples": 78,
+          "weak_support_samples": 147,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 111,
+          "slow_with_observed_strong_support": 20,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "distant_positive_points": 0
+    },
+    {
+      "seed": 76504,
+      "profile": "moderate",
+      "physical_success": true,
+      "stop_settled": true,
+      "first_50ms_uncontrolled": true,
+      "postcontact_vertical_p95": 3.8192967529585813,
+      "timing": {
+        "available": true,
+        "status_samples": 840,
+        "updates": 8400,
+        "raw_elapsed_s": 16.802000000000003,
+        "observed_updates_per_sim_s": 499.94048327580043,
+        "minimum_raw_dt_s": 0.001,
+        "maximum_raw_dt_s": 0.004,
+        "dt_fallbacks": 0,
+        "invalid_dt": 0,
+        "intervals_over_4ms": 0,
+        "window_joint_age_max_s": {
+          "n": 840,
+          "minimum": 0.002,
+          "median": 0.002,
+          "maximum": 0.003
+        },
+        "future_joint_updates": 0
+      },
+      "precontact_caster": {
+        "left": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": 0.00011483984902410974,
+            "median": 24.711583999498735,
+            "maximum": 25.012680169344534
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -0.002033611942457095,
+            "median": -0.0017141165906706707,
+            "maximum": -0.00037733457479547657
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 4.639876443257642e-06,
+            "median": 0.9993195485728157,
+            "maximum": 1.0067923705055684
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 18.596431079527093,
+            "maximum": 22.804662998172763
+          },
+          "strong_support_samples": 146,
+          "weak_support_samples": 80,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 60,
+          "slow_with_observed_strong_support": 25,
+          "slow_with_support_unavailable": 0
+        },
+        "right": {
+          "samples": 226,
+          "wheel_rad_s": {
+            "n": 226,
+            "minimum": -0.03498686426604649,
+            "median": 16.15105693870772,
+            "maximum": 24.848490920226574
+          },
+          "swivel_rad": {
+            "n": 226,
+            "minimum": -0.0039266970003863835,
+            "median": -0.0034902082577791278,
+            "maximum": -0.003017400840301866
+          },
+          "rolling_ratio": {
+            "n": 226,
+            "minimum": 1.2602088536051113e-06,
+            "median": 0.6537857987215185,
+            "maximum": 1.004306931359936
+          },
+          "observed_support_z_N": {
+            "n": 226,
+            "minimum": 0.0,
+            "median": 0.0,
+            "maximum": 26.12612783928024
+          },
+          "strong_support_samples": 76,
+          "weak_support_samples": 150,
+          "support_unavailable_samples": 0,
+          "slow_rotation_samples": 104,
+          "slow_with_observed_strong_support": 19,
+          "slow_with_support_unavailable": 0
+        }
+      },
+      "distant_positive_points": 0
+    }
+  ],
+  "complete": true,
+  "same_world": true,
+  "same_robot": true,
+  "same_core": true,
+  "same_effort_drive": true,
+  "same_resolved_config": false,
+  "same_config_except_profile": false,
+  "same_config_except_planned_treatment": true,
+  "input_sha256": {
+    "rl_runs/governor_time_comparison_2026-10-16/plan.json": "5581142493a0fcfa332b9b7a0b9a385838778ecf53a9f967bd6abc5dc6c02a15",
+    "docs/governor_time_comparison_2026-10-16/result.json": "4632942e840f1984eff57ed815ab3c2dfed116571d9b184be896ac04e708dd80",
+    "docs/governor_time_comparison_2026-10-16/pi_support.json": "576ac19110a7001ef84951176a430986f519afcde4e464794667c29dd4a43d3d",
+    "docs/governor_time_comparison_2026-10-16/contact_geometry.json": "e91cccba2d29333569f88ab078835ccb44985d83d01db99a4a2259fb1a1b5b72"
+  },
+  "qualification": "Five randomized-order cold-start blocks, not identical snapshots or physical randomization. Sign flips are exploratory under within-block exchangeability, unadjusted across metrics. With five blocks minimum two-sided p is 0.0625. Missing metrics remain unavailable; native failures are retained. No automatic promotion or causal attribution from caster covariates."
+}

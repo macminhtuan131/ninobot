@@ -1,0 +1,20 @@
+{
+  "variant": "cable_box_capsule",
+  "seeds": [
+    76210,
+    76211,
+    76212
+  ],
+  "profiles": [
+    "moderate"
+  ],
+  "oracle_contact": false,
+  "source_sha256": {},
+  "ros_domain": "199",
+  "gz_partition": "nino_motion_cable_199",
+  "caster_wheel_damping": 0.001,
+  "physics_step_s": 0.001,
+  "control_interval_s": 0.1,
+  "stop_window_s": 2.0,
+  "qualification": "Bounded native PI screen; no learning or Optuna"
+}

@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-16",
+  "batches": [
+    {
+      "batch": "governor_contact_oracle_h2_2026-10-16",
+      "episodes": 9,
+      "arrivals_and_stops": 9
+    },
+    {
+      "batch": "governor_cable_capsule_AB_2026-10-16",
+      "episodes": 3,
+      "arrivals_and_stops": 3
+    },
+    {
+      "batch": "governor_capsule_oracle_refine_2026-10-16",
+      "episodes": 3,
+      "arrivals_and_stops": 3
+    },
+    {
+      "batch": "governor_motion_cable_2026-10-16",
+      "episodes": 3,
+      "arrivals_and_stops": 3
+    }
+  ],
+  "total_arrival_episodes": 18,
+  "negative_maneuvers": 3,
+  "local_oracle_authority": "positive narrow development screen; not exact-state causal proof or full H2 matrix",
+  "sensor_detector": "no early triggers in three development cable cases and three clean maneuvers",
+  "sensor_quality_gate": "not_passed; variable initial/contact states limit causal attribution",
+  "next": "Resolve contact/caster-state repeatability and physical calibration before parameter search",
+  "predictor_started": false,
+  "ppo_started": false,
+  "optuna_started": false,
+  "time_matched_reference_run": false,
+  "deployment_promoted": false,
+  "owned_simulators_closed": true,
+  "software_tests_passed": 23
+}

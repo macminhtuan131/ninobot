@@ -1,0 +1,67 @@
+{
+  "variant": "cable_box_capsule",
+  "seeds": [
+    76400,
+    76401,
+    76402,
+    76403,
+    76404
+  ],
+  "profiles": [
+    "full",
+    "moderate"
+  ],
+  "oracle_contact": false,
+  "source_sha256": {},
+  "shuffle_order": true,
+  "order_seed": 76450,
+  "case_order": [
+    [
+      76400,
+      "full"
+    ],
+    [
+      76400,
+      "moderate"
+    ],
+    [
+      76401,
+      "moderate"
+    ],
+    [
+      76401,
+      "full"
+    ],
+    [
+      76402,
+      "full"
+    ],
+    [
+      76402,
+      "moderate"
+    ],
+    [
+      76403,
+      "moderate"
+    ],
+    [
+      76403,
+      "full"
+    ],
+    [
+      76404,
+      "full"
+    ],
+    [
+      76404,
+      "moderate"
+    ]
+  ],
+  "ros_domain": "201",
+  "gz_partition": "nino_contact_repeat_201",
+  "caster_wheel_damping": 0.001,
+  "physics_step_s": 0.001,
+  "control_interval_s": 0.1,
+  "stop_window_s": 2.0,
+  "qualification": "Bounded native PI screen; no learning or Optuna"
+}

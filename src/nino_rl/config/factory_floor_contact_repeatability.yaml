@@ -1,0 +1,7 @@
+# Fixed treatment; controller ordering is randomized by the research runner.
+extends: factory_floor_motion_trigger_cable_check.yaml
+research_map:
+  revision: contact_repeatability_random_order_v1_2026_10_16
+  stage: Full_vs_fixed_sensor_governor_repeatability
+  training_allowed: false
+  optuna_allowed: false

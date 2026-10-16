@@ -1,0 +1,1191 @@
+{
+  "source": "rl_runs/governor_contact_repeatability_2026-10-16",
+  "source_summary_sha256": "dbaa33e067f50e634979a6db04175ea3eedb2643b9142cc4ee672bcc3a135da7",
+  "reference_batch": null,
+  "complete": true,
+  "contact_analysis_complete": true,
+  "qualification": "Small fixed-geometry, one-speed, sensor-only reactive screen. Seeds are cold-start repeats without physical randomization. No identical-state restoration, H1/H3, hardware or generalization claim.",
+  "groups": {
+    "full": {
+      "requested": 5,
+      "observed": 5,
+      "completed": 5,
+      "physical_successes": 5,
+      "physical_failures": 0,
+      "unavailable": 0,
+      "stable_stops": 5,
+      "metrics": {
+        "time_s": {
+          "n": 5,
+          "mean": 16.720000000000056,
+          "minimum": 16.600000000000062,
+          "maximum": 16.900000000000045,
+          "std": 0.1303840481040461
+        },
+        "truth_rmse_m": {
+          "n": 5,
+          "mean": 0.004593911435038333,
+          "minimum": 0.0033324228473294807,
+          "maximum": 0.006112906077726971,
+          "std": 0.001024046980288111
+        },
+        "approach_speed_m_s": {
+          "n": 5,
+          "mean": 0.396299216304823,
+          "minimum": 0.39576123678257485,
+          "maximum": 0.39719889077999043,
+          "std": 0.0005753072578549326
+        },
+        "whole_vertical_rms": {
+          "n": 5,
+          "mean": 1.8643600993266038,
+          "minimum": 1.2809551160229624,
+          "maximum": 3.521591289859273,
+          "std": 0.9395751485773831
+        },
+        "whole_vertical_peak": {
+          "n": 5,
+          "mean": 31.785959745565684,
+          "minimum": 12.062513508191023,
+          "maximum": 87.30716800469801,
+          "std": 31.301871270037378
+        },
+        "whole_slip_rms": {
+          "n": 5,
+          "mean": 0.0838408576885106,
+          "minimum": 0.06988214456657695,
+          "maximum": 0.10097520052881329,
+          "std": 0.014349778162875224
+        },
+        "first_50ms_peak": {
+          "n": 5,
+          "mean": 6.599606636416484,
+          "minimum": 4.012552407388812,
+          "maximum": 8.756278484770029,
+          "std": 2.0565367493858218
+        },
+        "contact_to_decision_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        },
+        "motor_target_drop_delay_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        },
+        "first_to_caster_s": {
+          "n": 5,
+          "mean": 0.24440000000000026,
+          "minimum": 0.051000000000000156,
+          "maximum": 0.7400000000000002,
+          "std": 0.2809524870863399
+        },
+        "first_to_drive_s": {
+          "n": 5,
+          "mean": 0.8904000000000003,
+          "minimum": 0.7400000000000002,
+          "maximum": 1.1259999999999994,
+          "std": 0.16363465403147293
+        },
+        "clearance_duration_s": {
+          "n": 5,
+          "mean": 2.241999999999999,
+          "minimum": 2.08,
+          "maximum": 2.4559999999999977,
+          "std": 0.15227113974749043
+        },
+        "postcontact_vertical_rms": {
+          "n": 5,
+          "mean": 4.013532651999214,
+          "minimum": 2.2304334977519114,
+          "maximum": 8.98752950096514,
+          "std": 2.8192085251986523
+        },
+        "postcontact_vertical_peak": {
+          "n": 5,
+          "mean": 31.785959745565684,
+          "minimum": 12.062513508191023,
+          "maximum": 87.30716800469801,
+          "std": 31.301871270037378
+        },
+        "postcontact_slip_energy_per_m": {
+          "n": 5,
+          "mean": 0.14269650555865715,
+          "minimum": 0.06712114010249635,
+          "maximum": 0.22593180250634165,
+          "std": 0.06640544903424932
+        },
+        "recovery_after_first_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        }
+      }
+    },
+    "moderate": {
+      "requested": 5,
+      "observed": 5,
+      "completed": 5,
+      "physical_successes": 5,
+      "physical_failures": 0,
+      "unavailable": 0,
+      "stable_stops": 5,
+      "metrics": {
+        "time_s": {
+          "n": 5,
+          "mean": 17.240000000000055,
+          "minimum": 16.900000000000034,
+          "maximum": 18.60000000000007,
+          "std": 0.7602631123499358
+        },
+        "truth_rmse_m": {
+          "n": 5,
+          "mean": 0.00454655286659239,
+          "minimum": 0.0016600516105993426,
+          "maximum": 0.006815416527459606,
+          "std": 0.002045719045964086
+        },
+        "approach_speed_m_s": {
+          "n": 5,
+          "mean": 0.3959961206095187,
+          "minimum": 0.39563832907189156,
+          "maximum": 0.39636030842839765,
+          "std": 0.00028804344632193805
+        },
+        "whole_vertical_rms": {
+          "n": 5,
+          "mean": 1.3560625112131484,
+          "minimum": 1.0496394779245943,
+          "maximum": 2.3084902200770165,
+          "std": 0.5364736818701057
+        },
+        "whole_vertical_peak": {
+          "n": 5,
+          "mean": 21.84082832894539,
+          "minimum": 6.992635275906627,
+          "maximum": 60.27265407606651,
+          "std": 21.72322867363005
+        },
+        "whole_slip_rms": {
+          "n": 5,
+          "mean": 0.08516501312356385,
+          "minimum": 0.04959098962998419,
+          "maximum": 0.13245652747477998,
+          "std": 0.029892811111098337
+        },
+        "first_50ms_peak": {
+          "n": 5,
+          "mean": 16.532749375326144,
+          "minimum": 4.060466312529976,
+          "maximum": 60.27265407606651,
+          "std": 24.496441668811688
+        },
+        "contact_to_decision_s": {
+          "n": 5,
+          "mean": 0.1017999999999752,
+          "minimum": 0.10099999999997422,
+          "maximum": 0.10299999999997489,
+          "std": 0.0008366600265340365
+        },
+        "motor_target_drop_delay_s": {
+          "n": 5,
+          "mean": 0.32240000000000146,
+          "minimum": 0.31400000000000183,
+          "maximum": 0.3310000000000013,
+          "std": 0.007231873892705875
+        },
+        "first_to_caster_s": {
+          "n": 5,
+          "mean": 0.29179999999999995,
+          "minimum": 0.13599999999999923,
+          "maximum": 0.8580000000000005,
+          "std": 0.3169703456161163
+        },
+        "first_to_drive_s": {
+          "n": 5,
+          "mean": 1.1996000000000002,
+          "minimum": 0.7260000000000009,
+          "maximum": 2.837999999999999,
+          "std": 0.918064703602093
+        },
+        "clearance_duration_s": {
+          "n": 5,
+          "mean": 2.7347999999999995,
+          "minimum": 2.324,
+          "maximum": 4.167999999999999,
+          "std": 0.801853914375929
+        },
+        "postcontact_vertical_rms": {
+          "n": 5,
+          "mean": 1.711618321237875,
+          "minimum": 1.3267419590309582,
+          "maximum": 1.9688422972143902,
+          "std": 0.26571472769687543
+        },
+        "postcontact_vertical_peak": {
+          "n": 5,
+          "mean": 11.024229673936716,
+          "minimum": 6.189660801023135,
+          "maximum": 15.442847030194427,
+          "std": 4.199834474107871
+        },
+        "postcontact_slip_energy_per_m": {
+          "n": 5,
+          "mean": 0.15294044089219852,
+          "minimum": 0.07740519163807627,
+          "maximum": 0.32811868474235606,
+          "std": 0.10120701345786419
+        },
+        "recovery_after_first_s": {
+          "n": 5,
+          "mean": 2.2417999999999676,
+          "minimum": 1.9029999999999685,
+          "maximum": 2.8009999999999646,
+          "std": 0.3500295701794334
+        }
+      }
+    }
+  },
+  "episodes": [
+    {
+      "seed": 76400,
+      "profile": "full",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76400_full",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.600000000000076,
+      "truth_rmse_m": 0.004801485837867878,
+      "endpoint_m": 0.19818706976083428,
+      "whole_vertical_rms": 1.2809551160229624,
+      "whole_vertical_peak": 16.16150383351563,
+      "whole_slip_rms": 0.06988214456657695,
+      "approach_speed_m_s": 0.39642143012343906,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 14.164,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": null,
+      "governor_event_count": 0,
+      "precontact_event_count": 0,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": null,
+      "first_to_caster_s": 0.7400000000000002,
+      "first_to_drive_s": 0.7400000000000002,
+      "first_50ms_peak": 8.396635708517145,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.1259999999999994,
+      "postcontact_vertical_rms": 2.2304334977519114,
+      "postcontact_vertical_peak": 16.16150383351563,
+      "postcontact_slip_energy_per_m": 0.08523145036969806,
+      "postcontact_minimum_scale": null,
+      "recovery_after_first_s": null
+    },
+    {
+      "seed": 76400,
+      "profile": "moderate",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76400_moderate",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.900000000000066,
+      "truth_rmse_m": 0.006815416527459606,
+      "endpoint_m": 0.19710927135409295,
+      "whole_vertical_rms": 1.1349582440255963,
+      "whole_vertical_peak": 12.378198863236141,
+      "whole_slip_rms": 0.07711077361483565,
+      "approach_speed_m_s": 0.39578073727990415,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 13.315,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": 0.100999999999976,
+      "governor_event_count": 1,
+      "precontact_event_count": 0,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": 0.32700000000000173,
+      "first_to_caster_s": 0.1460000000000008,
+      "first_to_drive_s": 0.7260000000000009,
+      "first_50ms_peak": 8.047163054546637,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.375,
+      "postcontact_vertical_rms": 1.9688422972143902,
+      "postcontact_vertical_peak": 12.378198863236141,
+      "postcontact_slip_energy_per_m": 0.09174869243980038,
+      "postcontact_minimum_scale": 0.85,
+      "recovery_after_first_s": 2.300999999999968
+    },
+    {
+      "seed": 76401,
+      "profile": "full",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76401_full",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.900000000000045,
+      "truth_rmse_m": 0.0033324228473294807,
+      "endpoint_m": 0.19048390694892148,
+      "whole_vertical_rms": 1.3077812280710202,
+      "whole_vertical_peak": 12.062513508191023,
+      "whole_slip_rms": 0.09720525573622525,
+      "approach_speed_m_s": 0.39627296723782496,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 12.034,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": null,
+      "governor_event_count": 0,
+      "precontact_event_count": 0,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": null,
+      "first_to_caster_s": 0.051000000000000156,
+      "first_to_drive_s": 1.1259999999999994,
+      "first_50ms_peak": 4.012552407388812,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.4559999999999977,
+      "postcontact_vertical_rms": 2.4743297330505944,
+      "postcontact_vertical_peak": 12.062513508191023,
+      "postcontact_slip_energy_per_m": 0.22593180250634165,
+      "postcontact_minimum_scale": null,
+      "recovery_after_first_s": null
+    },
+    {
+      "seed": 76401,
+      "profile": "moderate",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76401_moderate",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 18.60000000000007,
+      "truth_rmse_m": 0.0056219785764759205,
+      "endpoint_m": 0.19299162530532357,
+      "whole_vertical_rms": 1.0496394779245943,
+      "whole_vertical_peak": 15.442847030194427,
+      "whole_slip_rms": 0.13245652747477998,
+      "approach_speed_m_s": 0.39636030842839765,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 12.082,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": 0.10099999999997422,
+      "governor_event_count": 1,
+      "precontact_event_count": 0,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": 0.3160000000000007,
+      "first_to_caster_s": 0.1399999999999988,
+      "first_to_drive_s": 2.837999999999999,
+      "first_50ms_peak": 5.299478193633746,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 4.167999999999999,
+      "postcontact_vertical_rms": 1.8372714993328914,
+      "postcontact_vertical_peak": 15.442847030194427,
+      "postcontact_slip_energy_per_m": 0.32811868474235606,
+      "postcontact_minimum_scale": 0.85,
+      "recovery_after_first_s": 2.8009999999999646
+    },
+    {
+      "seed": 76402,
+      "profile": "full",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76402_full",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.600000000000062,
+      "truth_rmse_m": 0.004630400610738648,
+      "endpoint_m": 0.19286926048908395,
+      "whole_vertical_rms": 1.6266744668858009,
+      "whole_vertical_peak": 21.748903796644967,
+      "whole_slip_rms": 0.07872042808567781,
+      "approach_speed_m_s": 0.39576123678257485,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 13.29,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": null,
+      "governor_event_count": 0,
+      "precontact_event_count": 0,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": null,
+      "first_to_caster_s": 0.1750000000000007,
+      "first_to_drive_s": 0.7550000000000008,
+      "first_50ms_peak": 8.756278484770029,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.08,
+      "postcontact_vertical_rms": 3.4508070467147034,
+      "postcontact_vertical_peak": 21.748903796644967,
+      "postcontact_slip_energy_per_m": 0.06712114010249635,
+      "postcontact_minimum_scale": null,
+      "recovery_after_first_s": null
+    },
+    {
+      "seed": 76402,
+      "profile": "moderate",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76402_moderate",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.90000000000004,
+      "truth_rmse_m": 0.005317385874752536,
+      "endpoint_m": 0.19511697513398918,
+      "whole_vertical_rms": 2.3084902200770165,
+      "whole_vertical_peak": 60.27265407606651,
+      "whole_slip_rms": 0.08394234888285582,
+      "approach_speed_m_s": 0.39606187923863667,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 11.833,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": 0.10199999999997544,
+      "governor_event_count": 1,
+      "precontact_event_count": 0,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": 0.3310000000000013,
+      "first_to_caster_s": 0.17900000000000027,
+      "first_to_drive_s": 0.8480000000000008,
+      "first_50ms_peak": 60.27265407606651,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.3969999999999985,
+      "postcontact_vertical_rms": 1.3267419590309582,
+      "postcontact_vertical_peak": 6.189660801023135,
+      "postcontact_slip_energy_per_m": 0.12683121228720473,
+      "postcontact_minimum_scale": 0.85,
+      "recovery_after_first_s": 2.201999999999968
+    },
+    {
+      "seed": 76403,
+      "profile": "full",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76403_full",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.700000000000028,
+      "truth_rmse_m": 0.006112906077726971,
+      "endpoint_m": 0.18592539037721487,
+      "whole_vertical_rms": 3.521591289859273,
+      "whole_vertical_peak": 87.30716800469801,
+      "whole_slip_rms": 0.07242125952525974,
+      "approach_speed_m_s": 0.39584155660028575,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 11.267,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": null,
+      "governor_event_count": 0,
+      "precontact_event_count": 0,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": null,
+      "first_to_caster_s": 0.10800000000000054,
+      "first_to_drive_s": 0.8470000000000013,
+      "first_50ms_peak": 5.076606124966753,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.222999999999999,
+      "postcontact_vertical_rms": 8.98752950096514,
+      "postcontact_vertical_peak": 87.30716800469801,
+      "postcontact_slip_energy_per_m": 0.15249151328979638,
+      "postcontact_minimum_scale": null,
+      "recovery_after_first_s": null
+    },
+    {
+      "seed": 76403,
+      "profile": "moderate",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76403_moderate",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.900000000000034,
+      "truth_rmse_m": 0.003317931743674547,
+      "endpoint_m": 0.18363330636334185,
+      "whole_vertical_rms": 1.069298264190722,
+      "whole_vertical_peak": 6.992635275906627,
+      "whole_slip_rms": 0.04959098962998419,
+      "approach_speed_m_s": 0.39563832907189156,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 11.686,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": 0.10299999999997489,
+      "governor_event_count": 1,
+      "precontact_event_count": 0,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": 0.3240000000000016,
+      "first_to_caster_s": 0.13599999999999923,
+      "first_to_drive_s": 0.7279999999999998,
+      "first_50ms_peak": 4.060466312529976,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.324,
+      "postcontact_vertical_rms": 1.5508579820635224,
+      "postcontact_vertical_peak": 6.992635275906627,
+      "postcontact_slip_energy_per_m": 0.07740519163807627,
+      "postcontact_minimum_scale": 0.85,
+      "recovery_after_first_s": 1.9029999999999685
+    },
+    {
+      "seed": 76404,
+      "profile": "full",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76404_full",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.800000000000068,
+      "truth_rmse_m": 0.004092341801528681,
+      "endpoint_m": 0.186577578479652,
+      "whole_vertical_rms": 1.5847983957939629,
+      "whole_vertical_peak": 21.649709584778797,
+      "whole_slip_rms": 0.10097520052881329,
+      "approach_speed_m_s": 0.39719889077999043,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 13.365,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": null,
+      "governor_event_count": 0,
+      "precontact_event_count": 0,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": null,
+      "first_to_caster_s": 0.1479999999999997,
+      "first_to_drive_s": 0.984,
+      "first_50ms_peak": 6.7559604564396825,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.3249999999999993,
+      "postcontact_vertical_rms": 2.9245634815137187,
+      "postcontact_vertical_peak": 21.649709584778797,
+      "postcontact_slip_energy_per_m": 0.18270662152495332,
+      "postcontact_minimum_scale": null,
+      "recovery_after_first_s": null
+    },
+    {
+      "seed": 76404,
+      "profile": "moderate",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76404_moderate",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.90000000000007,
+      "truth_rmse_m": 0.0016600516105993426,
+      "endpoint_m": 0.19341867482272898,
+      "whole_vertical_rms": 1.2179263498478115,
+      "whole_vertical_peak": 14.117806399323248,
+      "whole_slip_rms": 0.08272442601536363,
+      "approach_speed_m_s": 0.39613934902876347,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 13.52,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": 0.10199999999997544,
+      "governor_event_count": 1,
+      "precontact_event_count": 0,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": 0.31400000000000183,
+      "first_to_caster_s": 0.8580000000000005,
+      "first_to_drive_s": 0.8580000000000005,
+      "first_50ms_peak": 4.983985239853848,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.41,
+      "postcontact_vertical_rms": 1.8743778685476138,
+      "postcontact_vertical_peak": 14.117806399323248,
+      "postcontact_slip_energy_per_m": 0.14059842335355513,
+      "postcontact_minimum_scale": 0.85,
+      "recovery_after_first_s": 2.0019999999999687
+    }
+  ],
+  "paired_differences": [
+    {
+      "seed": 76400,
+      "profile": "moderate",
+      "metrics": {
+        "time_s": {
+          "reference": 16.600000000000076,
+          "candidate": 16.900000000000066,
+          "delta": 0.29999999999999005,
+          "ratio": 1.0180722891566258
+        },
+        "truth_rmse_m": {
+          "reference": 0.004801485837867878,
+          "candidate": 0.006815416527459606,
+          "delta": 0.002013930689591728,
+          "ratio": 1.419439056491318
+        },
+        "approach_speed_m_s": {
+          "reference": 0.39642143012343906,
+          "candidate": 0.39578073727990415,
+          "delta": -0.0006406928435349069,
+          "ratio": 0.9983838087579286
+        },
+        "whole_vertical_rms": {
+          "reference": 1.2809551160229624,
+          "candidate": 1.1349582440255963,
+          "delta": -0.1459968719973661,
+          "ratio": 0.8860249901256111
+        },
+        "whole_vertical_peak": {
+          "reference": 16.16150383351563,
+          "candidate": 12.378198863236141,
+          "delta": -3.78330497027949,
+          "ratio": 0.7659063779427695
+        },
+        "whole_slip_rms": {
+          "reference": 0.06988214456657695,
+          "candidate": 0.07711077361483565,
+          "delta": 0.007228629048258703,
+          "ratio": 1.1034402864006552
+        },
+        "first_50ms_peak": {
+          "reference": 8.396635708517145,
+          "candidate": 8.047163054546637,
+          "delta": -0.3494726539705084,
+          "ratio": 0.9583794431362528
+        },
+        "first_to_caster_s": {
+          "reference": 0.7400000000000002,
+          "candidate": 0.1460000000000008,
+          "delta": -0.5939999999999994,
+          "ratio": 0.1972972972972983
+        },
+        "first_to_drive_s": {
+          "reference": 0.7400000000000002,
+          "candidate": 0.7260000000000009,
+          "delta": -0.013999999999999346,
+          "ratio": 0.9810810810810819
+        },
+        "clearance_duration_s": {
+          "reference": 2.1259999999999994,
+          "candidate": 2.375,
+          "delta": 0.24900000000000055,
+          "ratio": 1.1171213546566325
+        },
+        "postcontact_vertical_rms": {
+          "reference": 2.2304334977519114,
+          "candidate": 1.9688422972143902,
+          "delta": -0.26159120053752116,
+          "ratio": 0.8827173279090441
+        },
+        "postcontact_vertical_peak": {
+          "reference": 16.16150383351563,
+          "candidate": 12.378198863236141,
+          "delta": -3.78330497027949,
+          "ratio": 0.7659063779427695
+        },
+        "postcontact_slip_energy_per_m": {
+          "reference": 0.08523145036969806,
+          "candidate": 0.09174869243980038,
+          "delta": 0.006517242070102319,
+          "ratio": 1.0764652254752591
+        }
+      }
+    },
+    {
+      "seed": 76401,
+      "profile": "moderate",
+      "metrics": {
+        "time_s": {
+          "reference": 16.900000000000045,
+          "candidate": 18.60000000000007,
+          "delta": 1.7000000000000242,
+          "ratio": 1.1005917159763325
+        },
+        "truth_rmse_m": {
+          "reference": 0.0033324228473294807,
+          "candidate": 0.0056219785764759205,
+          "delta": 0.00228955572914644,
+          "ratio": 1.687054384764296
+        },
+        "approach_speed_m_s": {
+          "reference": 0.39627296723782496,
+          "candidate": 0.39636030842839765,
+          "delta": 8.73411905726873e-05,
+          "ratio": 1.0002204066332898
+        },
+        "whole_vertical_rms": {
+          "reference": 1.3077812280710202,
+          "candidate": 1.0496394779245943,
+          "delta": -0.2581417501464258,
+          "ratio": 0.8026109072331727
+        },
+        "whole_vertical_peak": {
+          "reference": 12.062513508191023,
+          "candidate": 15.442847030194427,
+          "delta": 3.3803335220034043,
+          "ratio": 1.2802345895578062
+        },
+        "whole_slip_rms": {
+          "reference": 0.09720525573622525,
+          "candidate": 0.13245652747477998,
+          "delta": 0.03525127173855473,
+          "ratio": 1.3626477958579941
+        },
+        "first_50ms_peak": {
+          "reference": 4.012552407388812,
+          "candidate": 5.299478193633746,
+          "delta": 1.2869257862449341,
+          "ratio": 1.3207249789124642
+        },
+        "first_to_caster_s": {
+          "reference": 0.051000000000000156,
+          "candidate": 0.1399999999999988,
+          "delta": 0.08899999999999864,
+          "ratio": 2.7450980392156543
+        },
+        "first_to_drive_s": {
+          "reference": 1.1259999999999994,
+          "candidate": 2.837999999999999,
+          "delta": 1.7119999999999997,
+          "ratio": 2.520426287744228
+        },
+        "clearance_duration_s": {
+          "reference": 2.4559999999999977,
+          "candidate": 4.167999999999999,
+          "delta": 1.7120000000000015,
+          "ratio": 1.697068403908796
+        },
+        "postcontact_vertical_rms": {
+          "reference": 2.4743297330505944,
+          "candidate": 1.8372714993328914,
+          "delta": -0.6370582337177031,
+          "ratio": 0.7425330079462467
+        },
+        "postcontact_vertical_peak": {
+          "reference": 12.062513508191023,
+          "candidate": 15.442847030194427,
+          "delta": 3.3803335220034043,
+          "ratio": 1.2802345895578062
+        },
+        "postcontact_slip_energy_per_m": {
+          "reference": 0.22593180250634165,
+          "candidate": 0.32811868474235606,
+          "delta": 0.10218688223601441,
+          "ratio": 1.452290828924565
+        }
+      }
+    },
+    {
+      "seed": 76402,
+      "profile": "moderate",
+      "metrics": {
+        "time_s": {
+          "reference": 16.600000000000062,
+          "candidate": 16.90000000000004,
+          "delta": 0.2999999999999794,
+          "ratio": 1.0180722891566252
+        },
+        "truth_rmse_m": {
+          "reference": 0.004630400610738648,
+          "candidate": 0.005317385874752536,
+          "delta": 0.0006869852640138882,
+          "ratio": 1.148364109667025
+        },
+        "approach_speed_m_s": {
+          "reference": 0.39576123678257485,
+          "candidate": 0.39606187923863667,
+          "delta": 0.00030064245606181705,
+          "ratio": 1.0007596561464835
+        },
+        "whole_vertical_rms": {
+          "reference": 1.6266744668858009,
+          "candidate": 2.3084902200770165,
+          "delta": 0.6818157531912157,
+          "ratio": 1.4191470187003814
+        },
+        "whole_vertical_peak": {
+          "reference": 21.748903796644967,
+          "candidate": 60.27265407606651,
+          "delta": 38.52375027942154,
+          "ratio": 2.771296182999545
+        },
+        "whole_slip_rms": {
+          "reference": 0.07872042808567781,
+          "candidate": 0.08394234888285582,
+          "delta": 0.005221920797178009,
+          "ratio": 1.066335015245275
+        },
+        "first_50ms_peak": {
+          "reference": 8.756278484770029,
+          "candidate": 60.27265407606651,
+          "delta": 51.51637559129648,
+          "ratio": 6.8833642261264245
+        },
+        "first_to_caster_s": {
+          "reference": 0.1750000000000007,
+          "candidate": 0.17900000000000027,
+          "delta": 0.0039999999999995595,
+          "ratio": 1.0228571428571402
+        },
+        "first_to_drive_s": {
+          "reference": 0.7550000000000008,
+          "candidate": 0.8480000000000008,
+          "delta": 0.09299999999999997,
+          "ratio": 1.1231788079470197
+        },
+        "clearance_duration_s": {
+          "reference": 2.08,
+          "candidate": 2.3969999999999985,
+          "delta": 0.3169999999999984,
+          "ratio": 1.1524038461538453
+        },
+        "postcontact_vertical_rms": {
+          "reference": 3.4508070467147034,
+          "candidate": 1.3267419590309582,
+          "delta": -2.1240650876837455,
+          "ratio": 0.38447294823223044
+        },
+        "postcontact_vertical_peak": {
+          "reference": 21.748903796644967,
+          "candidate": 6.189660801023135,
+          "delta": -15.559242995621833,
+          "ratio": 0.2845964494991221
+        },
+        "postcontact_slip_energy_per_m": {
+          "reference": 0.06712114010249635,
+          "candidate": 0.12683121228720473,
+          "delta": 0.059710072184708377,
+          "ratio": 1.8895866800463905
+        }
+      }
+    },
+    {
+      "seed": 76403,
+      "profile": "moderate",
+      "metrics": {
+        "time_s": {
+          "reference": 16.700000000000028,
+          "candidate": 16.900000000000034,
+          "delta": 0.2000000000000064,
+          "ratio": 1.011976047904192
+        },
+        "truth_rmse_m": {
+          "reference": 0.006112906077726971,
+          "candidate": 0.003317931743674547,
+          "delta": -0.002794974334052424,
+          "ratio": 0.5427748605141811
+        },
+        "approach_speed_m_s": {
+          "reference": 0.39584155660028575,
+          "candidate": 0.39563832907189156,
+          "delta": -0.00020322752839418978,
+          "ratio": 0.9994865937519557
+        },
+        "whole_vertical_rms": {
+          "reference": 3.521591289859273,
+          "candidate": 1.069298264190722,
+          "delta": -2.452293025668551,
+          "ratio": 0.30364064883675146
+        },
+        "whole_vertical_peak": {
+          "reference": 87.30716800469801,
+          "candidate": 6.992635275906627,
+          "delta": -80.31453272879139,
+          "ratio": 0.08009233875883309
+        },
+        "whole_slip_rms": {
+          "reference": 0.07242125952525974,
+          "candidate": 0.04959098962998419,
+          "delta": -0.02283026989527555,
+          "ratio": 0.6847573482574878
+        },
+        "first_50ms_peak": {
+          "reference": 5.076606124966753,
+          "candidate": 4.060466312529976,
+          "delta": -1.0161398124367773,
+          "ratio": 0.7998387530126868
+        },
+        "first_to_caster_s": {
+          "reference": 0.10800000000000054,
+          "candidate": 0.13599999999999923,
+          "delta": 0.027999999999998693,
+          "ratio": 1.2592592592592458
+        },
+        "first_to_drive_s": {
+          "reference": 0.8470000000000013,
+          "candidate": 0.7279999999999998,
+          "delta": -0.11900000000000155,
+          "ratio": 0.8595041322314033
+        },
+        "clearance_duration_s": {
+          "reference": 2.222999999999999,
+          "candidate": 2.324,
+          "delta": 0.10100000000000087,
+          "ratio": 1.0454340980656773
+        },
+        "postcontact_vertical_rms": {
+          "reference": 8.98752950096514,
+          "candidate": 1.5508579820635224,
+          "delta": -7.436671518901617,
+          "ratio": 0.1725566499555836
+        },
+        "postcontact_vertical_peak": {
+          "reference": 87.30716800469801,
+          "candidate": 6.992635275906627,
+          "delta": -80.31453272879139,
+          "ratio": 0.08009233875883309
+        },
+        "postcontact_slip_energy_per_m": {
+          "reference": 0.15249151328979638,
+          "candidate": 0.07740519163807627,
+          "delta": -0.0750863216517201,
+          "ratio": 0.5076032755408144
+        }
+      }
+    },
+    {
+      "seed": 76404,
+      "profile": "moderate",
+      "metrics": {
+        "time_s": {
+          "reference": 16.800000000000068,
+          "candidate": 16.90000000000007,
+          "delta": 0.10000000000000142,
+          "ratio": 1.005952380952381
+        },
+        "truth_rmse_m": {
+          "reference": 0.004092341801528681,
+          "candidate": 0.0016600516105993426,
+          "delta": -0.0024322901909293385,
+          "ratio": 0.4056483282943853
+        },
+        "approach_speed_m_s": {
+          "reference": 0.39719889077999043,
+          "candidate": 0.39613934902876347,
+          "delta": -0.0010595417512269667,
+          "ratio": 0.9973324654831077
+        },
+        "whole_vertical_rms": {
+          "reference": 1.5847983957939629,
+          "candidate": 1.2179263498478115,
+          "delta": -0.3668720459461514,
+          "ratio": 0.7685055418280169
+        },
+        "whole_vertical_peak": {
+          "reference": 21.649709584778797,
+          "candidate": 14.117806399323248,
+          "delta": -7.531903185455549,
+          "ratio": 0.6521014216859988
+        },
+        "whole_slip_rms": {
+          "reference": 0.10097520052881329,
+          "candidate": 0.08272442601536363,
+          "delta": -0.018250774513449655,
+          "ratio": 0.8192548822099958
+        },
+        "first_50ms_peak": {
+          "reference": 6.7559604564396825,
+          "candidate": 4.983985239853848,
+          "delta": -1.771975216585835,
+          "ratio": 0.7377167572233473
+        },
+        "first_to_caster_s": {
+          "reference": 0.1479999999999997,
+          "candidate": 0.8580000000000005,
+          "delta": 0.7100000000000009,
+          "ratio": 5.797297297297313
+        },
+        "first_to_drive_s": {
+          "reference": 0.984,
+          "candidate": 0.8580000000000005,
+          "delta": -0.12599999999999945,
+          "ratio": 0.8719512195121957
+        },
+        "clearance_duration_s": {
+          "reference": 2.3249999999999993,
+          "candidate": 2.41,
+          "delta": 0.08500000000000085,
+          "ratio": 1.0365591397849465
+        },
+        "postcontact_vertical_rms": {
+          "reference": 2.9245634815137187,
+          "candidate": 1.8743778685476138,
+          "delta": -1.050185612966105,
+          "ratio": 0.6409085938450748
+        },
+        "postcontact_vertical_peak": {
+          "reference": 21.649709584778797,
+          "candidate": 14.117806399323248,
+          "delta": -7.531903185455549,
+          "ratio": 0.6521014216859988
+        },
+        "postcontact_slip_energy_per_m": {
+          "reference": 0.18270662152495332,
+          "candidate": 0.14059842335355513,
+          "delta": -0.04210819817139819,
+          "ratio": 0.7695310776372315
+        }
+      }
+    }
+  ],
+  "provenance": [
+    {
+      "seed": 76400,
+      "profile": "full",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76400_full",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+      "resolved_config_sha256": "1cb61d87419f6b37a83eee49067aac257486443af880d7a3db227f9a73519024",
+      "config_except_profile_sha256": "b56fe610a7183c7e02df5228ec3b04cb44ef280502a17fba4b3830deb83a8a49",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76400,
+      "profile": "moderate",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76400_moderate",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+      "resolved_config_sha256": "9cc5e757b302d57598350c87ce27e735400f23f49883f34b544d122e28ef1150",
+      "config_except_profile_sha256": "b56fe610a7183c7e02df5228ec3b04cb44ef280502a17fba4b3830deb83a8a49",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76401,
+      "profile": "full",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76401_full",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+      "resolved_config_sha256": "1cb61d87419f6b37a83eee49067aac257486443af880d7a3db227f9a73519024",
+      "config_except_profile_sha256": "b56fe610a7183c7e02df5228ec3b04cb44ef280502a17fba4b3830deb83a8a49",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76401,
+      "profile": "moderate",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76401_moderate",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+      "resolved_config_sha256": "9cc5e757b302d57598350c87ce27e735400f23f49883f34b544d122e28ef1150",
+      "config_except_profile_sha256": "b56fe610a7183c7e02df5228ec3b04cb44ef280502a17fba4b3830deb83a8a49",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76402,
+      "profile": "full",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76402_full",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+      "resolved_config_sha256": "1cb61d87419f6b37a83eee49067aac257486443af880d7a3db227f9a73519024",
+      "config_except_profile_sha256": "b56fe610a7183c7e02df5228ec3b04cb44ef280502a17fba4b3830deb83a8a49",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76402,
+      "profile": "moderate",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76402_moderate",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+      "resolved_config_sha256": "9cc5e757b302d57598350c87ce27e735400f23f49883f34b544d122e28ef1150",
+      "config_except_profile_sha256": "b56fe610a7183c7e02df5228ec3b04cb44ef280502a17fba4b3830deb83a8a49",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76403,
+      "profile": "full",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76403_full",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+      "resolved_config_sha256": "1cb61d87419f6b37a83eee49067aac257486443af880d7a3db227f9a73519024",
+      "config_except_profile_sha256": "b56fe610a7183c7e02df5228ec3b04cb44ef280502a17fba4b3830deb83a8a49",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76403,
+      "profile": "moderate",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76403_moderate",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+      "resolved_config_sha256": "9cc5e757b302d57598350c87ce27e735400f23f49883f34b544d122e28ef1150",
+      "config_except_profile_sha256": "b56fe610a7183c7e02df5228ec3b04cb44ef280502a17fba4b3830deb83a8a49",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76404,
+      "profile": "full",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76404_full",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+      "resolved_config_sha256": "1cb61d87419f6b37a83eee49067aac257486443af880d7a3db227f9a73519024",
+      "config_except_profile_sha256": "b56fe610a7183c7e02df5228ec3b04cb44ef280502a17fba4b3830deb83a8a49",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76404,
+      "profile": "moderate",
+      "case": "rl_runs/governor_contact_repeatability_2026-10-16/seed_76404_moderate",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+      "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+      "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+      "resolved_config_sha256": "9cc5e757b302d57598350c87ce27e735400f23f49883f34b544d122e28ef1150",
+      "config_except_profile_sha256": "b56fe610a7183c7e02df5228ec3b04cb44ef280502a17fba4b3830deb83a8a49",
+      "oracle_declared": false
+    }
+  ],
+  "same_world": true,
+  "same_robot": true,
+  "same_core": true,
+  "same_effort_drive": true,
+  "same_resolved_config": false,
+  "same_config_except_profile": true,
+  "training_started": false,
+  "optuna_started": false,
+  "predictor_started": false
+}

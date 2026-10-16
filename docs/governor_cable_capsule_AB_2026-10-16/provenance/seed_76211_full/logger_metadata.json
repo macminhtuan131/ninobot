@@ -1,0 +1,46 @@
+{
+  "schema_version": 2,
+  "complete": true,
+  "logger_only": true,
+  "sim_contact_is_privileged": true,
+  "ground_truth_is_evaluation_only": true,
+  "governor_has_no_oracle_input": true,
+  "contact_forces_may_be_unavailable": true,
+  "impulse_not_inferred_without_valid_force_timing": true,
+  "qualification": "Instrumentation/authority experiment, not a learning or sim-to-real result",
+  "contact_components": [
+    "left_wheel",
+    "right_wheel",
+    "caster_left_wheel",
+    "caster_right_wheel",
+    "caster_bracket_left",
+    "caster_bracket_right",
+    "chassis"
+  ],
+  "caster_wheel_damping_declared": 0.001,
+  "robot_description_validated": true,
+  "source_config_sha256": "41820d63edff7f714d8b771380e2937940df30f0e4ff8004387b428de05de354",
+  "governor_core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+  "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+  "logger_sha256": "b2ecdd70097633818d1ac043c601a07b29a95605c6a67c4d2b52aff4ba15a1ce",
+  "caster_wheel_damping_observed": {
+    "left": 0.001,
+    "right": 0.001
+  },
+  "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+  "message_counts": {
+    "/nino/contact_lab/left_wheel": 2196,
+    "/nino/contact_lab/caster_right_wheel": 2157,
+    "/nino/contact_lab/right_wheel": 2188,
+    "/nino/contact_lab/caster_left_wheel": 2172,
+    "/imu/data": 1212,
+    "/joint_states": 11740,
+    "/ground_truth/odom": 1211,
+    "/nino_drive/diagnostics": 1118,
+    "/odom": 1100,
+    "/nino/governor/episode": 2,
+    "/nino/governor/state": 167,
+    "/nino/contact_lab/caster_bracket_left": 24,
+    "/nino/contact_lab/caster_bracket_right": 27
+  }
+}

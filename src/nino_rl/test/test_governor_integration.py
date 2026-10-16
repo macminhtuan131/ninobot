@@ -75,3 +75,10 @@ def test_contact_sensors_reference_real_collisions_and_preview_is_optional(tmp_p
     ordinary=ET.fromstring(subprocess.check_output(["xacro",str(robot)]))
     assert ordinary.findall("gazebo/sensor[@type='contact']")==[]
     assert len(ordinary.findall("gazebo/sensor[@name='terrain_preview_sensor']"))==1
+    candidate=ET.fromstring(subprocess.check_output(["xacro",str(robot),"caster_wheel_damping:=0.001"]))
+    for side in ("left","right"):
+        joint=f"joint[@name='caster_{side}_wheel_joint']/dynamics"
+        assert float(ordinary.find(joint).get("damping"))==.01
+        assert float(candidate.find(joint).get("damping"))==.001
+        swivel=f"joint[@name='caster_{side}_swivel_joint']/dynamics"
+        assert candidate.find(swivel).attrib==ordinary.find(swivel).attrib

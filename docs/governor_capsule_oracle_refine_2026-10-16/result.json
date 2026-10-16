@@ -1,0 +1,787 @@
+{
+  "source": "rl_runs/governor_capsule_oracle_refine_2026-10-16",
+  "source_summary_sha256": "108a8f3d2a643711e65caecc9148d648ee4ba1a15212265282b257351757eead",
+  "reference_batch": {
+    "source": "rl_runs/governor_cable_capsule_AB_2026-10-16",
+    "source_summary_sha256": "065344d80b54fc35fd4c2d75258f852b4f865614c1db8bdc8f27a298ec8e6605"
+  },
+  "complete": true,
+  "contact_analysis_complete": true,
+  "qualification": "Small fixed-geometry, one-speed, contact-oracle screen. Seeds are cold-start repeats without physical randomization. No identical-state restoration, H1/H3, hardware or generalization claim.",
+  "groups": {
+    "full": {
+      "requested": 3,
+      "observed": 3,
+      "completed": 3,
+      "physical_successes": 3,
+      "physical_failures": 0,
+      "unavailable": 0,
+      "stable_stops": 3,
+      "metrics": {
+        "time_s": {
+          "n": 3,
+          "mean": 16.66666666666671,
+          "minimum": 16.60000000000002,
+          "maximum": 16.70000000000006,
+          "std": 0.05773502691898084
+        },
+        "truth_rmse_m": {
+          "n": 3,
+          "mean": 0.005543080898254772,
+          "minimum": 0.004314276718047047,
+          "maximum": 0.0063740216016485865,
+          "std": 0.001085982852543041
+        },
+        "approach_speed_m_s": {
+          "n": 3,
+          "mean": 0.3960778891375114,
+          "minimum": 0.395878393083168,
+          "maximum": 0.39627489167810587,
+          "std": 0.00019826105809016926
+        },
+        "whole_vertical_rms": {
+          "n": 3,
+          "mean": 1.255447181406869,
+          "minimum": 1.1524828306260908,
+          "maximum": 1.3107244701643177,
+          "std": 0.08925046797776032
+        },
+        "whole_vertical_peak": {
+          "n": 3,
+          "mean": 11.571602782435065,
+          "minimum": 10.75299809793105,
+          "maximum": 12.396214152897317,
+          "std": 0.821624495150842
+        },
+        "whole_slip_rms": {
+          "n": 3,
+          "mean": 0.08463464335611372,
+          "minimum": 0.05697711688871029,
+          "maximum": 0.10469550719733822,
+          "std": 0.024749609203048584
+        },
+        "first_50ms_peak": {
+          "n": 3,
+          "mean": 6.077931652222939,
+          "minimum": 4.260802248334166,
+          "maximum": 8.71723182262035,
+          "std": 2.339212413317608
+        },
+        "contact_to_decision_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        },
+        "motor_target_drop_delay_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        },
+        "first_to_caster_s": {
+          "n": 3,
+          "mean": 0.13333333333333344,
+          "minimum": 0.120000000000001,
+          "maximum": 0.14100000000000001,
+          "std": 0.011590225767141747
+        },
+        "first_to_drive_s": {
+          "n": 3,
+          "mean": 0.7743333333333329,
+          "minimum": 0.6679999999999993,
+          "maximum": 0.843,
+          "std": 0.09338272502627767
+        },
+        "clearance_duration_s": {
+          "n": 3,
+          "mean": 2.1739999999999995,
+          "minimum": 2.0999999999999996,
+          "maximum": 2.215,
+          "std": 0.06421059102671448
+        },
+        "postcontact_vertical_rms": {
+          "n": 3,
+          "mean": 2.145948456663404,
+          "minimum": 1.858383474040846,
+          "maximum": 2.3978334096690577,
+          "std": 0.27148914646338584
+        },
+        "postcontact_vertical_peak": {
+          "n": 3,
+          "mean": 11.571602782435065,
+          "minimum": 10.75299809793105,
+          "maximum": 12.396214152897317,
+          "std": 0.821624495150842
+        },
+        "postcontact_slip_energy_per_m": {
+          "n": 3,
+          "mean": 0.1210169006457769,
+          "minimum": 0.07401379212570867,
+          "maximum": 0.14992621172793238,
+          "std": 0.041063523859493384
+        },
+        "recovery_after_first_s": {
+          "n": 0,
+          "mean": null,
+          "minimum": null,
+          "maximum": null,
+          "std": null
+        }
+      }
+    },
+    "moderate": {
+      "requested": 3,
+      "observed": 3,
+      "completed": 3,
+      "physical_successes": 3,
+      "physical_failures": 0,
+      "unavailable": 0,
+      "stable_stops": 3,
+      "metrics": {
+        "time_s": {
+          "n": 3,
+          "mean": 16.93333333333344,
+          "minimum": 16.90000000000008,
+          "maximum": 17.00000000000015,
+          "std": 0.057735026919000315
+        },
+        "truth_rmse_m": {
+          "n": 3,
+          "mean": 0.004193091609708319,
+          "minimum": 0.003662944198665122,
+          "maximum": 0.005076852876577946,
+          "std": 0.0007704326749584444
+        },
+        "approach_speed_m_s": {
+          "n": 3,
+          "mean": 0.39616311057599773,
+          "minimum": 0.39601840290931506,
+          "maximum": 0.3962710080845562,
+          "std": 0.00013026351924270686
+        },
+        "whole_vertical_rms": {
+          "n": 3,
+          "mean": 1.0750971833899936,
+          "minimum": 0.9488978374249091,
+          "maximum": 1.1693963908895875,
+          "std": 0.11365789521890689
+        },
+        "whole_vertical_peak": {
+          "n": 3,
+          "mean": 8.718274636553891,
+          "minimum": 6.914898366950485,
+          "maximum": 10.258342895795733,
+          "std": 1.6872029103242832
+        },
+        "whole_slip_rms": {
+          "n": 3,
+          "mean": 0.06336850368173913,
+          "minimum": 0.04018082564618786,
+          "maximum": 0.08695042025159262,
+          "std": 0.023387289558752276
+        },
+        "first_50ms_peak": {
+          "n": 3,
+          "mean": 4.989185640759286,
+          "minimum": 4.125614206795293,
+          "maximum": 5.767891093459474,
+          "std": 0.8244210205955147
+        },
+        "contact_to_decision_s": {
+          "n": 3,
+          "mean": 0.033999999999987075,
+          "minimum": -2.4868995751603507e-14,
+          "maximum": 0.09899999999997533,
+          "std": 0.056311632901194654
+        },
+        "motor_target_drop_delay_s": {
+          "n": 3,
+          "mean": 0.25900000000000095,
+          "minimum": 0.23000000000000043,
+          "maximum": 0.3160000000000007,
+          "std": 0.04936598018878976
+        },
+        "first_to_caster_s": {
+          "n": 3,
+          "mean": 0.5616666666666662,
+          "minimum": 0.1479999999999997,
+          "maximum": 0.7729999999999997,
+          "std": 0.35827410363202816
+        },
+        "first_to_drive_s": {
+          "n": 3,
+          "mean": 0.7676666666666664,
+          "minimum": 0.7639999999999993,
+          "maximum": 0.7729999999999997,
+          "std": 0.004725815626252683
+        },
+        "clearance_duration_s": {
+          "n": 3,
+          "mean": 2.361666666666665,
+          "minimum": 2.3359999999999985,
+          "maximum": 2.401,
+          "std": 0.03458805188693636
+        },
+        "postcontact_vertical_rms": {
+          "n": 3,
+          "mean": 1.609240910513922,
+          "minimum": 1.530715131069626,
+          "maximum": 1.7013033868522074,
+          "std": 0.08609599221122692
+        },
+        "postcontact_vertical_peak": {
+          "n": 3,
+          "mean": 6.946519262302058,
+          "minimum": 6.914898366950485,
+          "maximum": 6.970227273909483,
+          "std": 0.028500566365963032
+        },
+        "postcontact_slip_energy_per_m": {
+          "n": 3,
+          "mean": 0.07598081390231388,
+          "minimum": 0.07017480602189713,
+          "maximum": 0.08295332464892737,
+          "std": 0.006468630556615021
+        },
+        "recovery_after_first_s": {
+          "n": 3,
+          "mean": 2.2673333333333328,
+          "minimum": 1.9989999999999775,
+          "maximum": 2.703000000000049,
+          "std": 0.38066301807946307
+        }
+      }
+    }
+  },
+  "episodes": [
+    {
+      "seed": 76210,
+      "profile": "full",
+      "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76210_full",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.70000000000006,
+      "truth_rmse_m": 0.0063740216016485865,
+      "endpoint_m": 0.19121845834656181,
+      "whole_vertical_rms": 1.3107244701643177,
+      "whole_vertical_peak": 12.396214152897317,
+      "whole_slip_rms": 0.10469550719733822,
+      "approach_speed_m_s": 0.39608038265126044,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 13.115,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": null,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": null,
+      "first_to_caster_s": 0.13899999999999935,
+      "first_to_drive_s": 0.8119999999999994,
+      "first_50ms_peak": 8.71723182262035,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.215,
+      "postcontact_vertical_rms": 2.1816284862803075,
+      "postcontact_vertical_peak": 12.396214152897317,
+      "postcontact_slip_energy_per_m": 0.14992621172793238,
+      "postcontact_minimum_scale": null,
+      "recovery_after_first_s": null
+    },
+    {
+      "seed": 76211,
+      "profile": "full",
+      "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76211_full",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.700000000000042,
+      "truth_rmse_m": 0.004314276718047047,
+      "endpoint_m": 0.1905889772889513,
+      "whole_vertical_rms": 1.1524828306260908,
+      "whole_vertical_peak": 10.75299809793105,
+      "whole_slip_rms": 0.09223130598229269,
+      "approach_speed_m_s": 0.395878393083168,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 12.183,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": null,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": null,
+      "first_to_caster_s": 0.120000000000001,
+      "first_to_drive_s": 0.843,
+      "first_50ms_peak": 4.260802248334166,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.206999999999999,
+      "postcontact_vertical_rms": 1.858383474040846,
+      "postcontact_vertical_peak": 10.75299809793105,
+      "postcontact_slip_energy_per_m": 0.13911069808368962,
+      "postcontact_minimum_scale": null,
+      "recovery_after_first_s": null
+    },
+    {
+      "seed": 76212,
+      "profile": "full",
+      "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76212_full",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.60000000000002,
+      "truth_rmse_m": 0.005940944375068684,
+      "endpoint_m": 0.1977888980294876,
+      "whole_vertical_rms": 1.3031342434301991,
+      "whole_vertical_peak": 11.56559609647683,
+      "whole_slip_rms": 0.05697711688871029,
+      "approach_speed_m_s": 0.39627489167810587,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 10.91,
+      "oracle_contact_s": null,
+      "oracle_command_s": null,
+      "contact_to_decision_s": null,
+      "oracle_stamp_lag_from_first_s": null,
+      "motor_target_drop_delay_s": null,
+      "first_to_caster_s": 0.14100000000000001,
+      "first_to_drive_s": 0.6679999999999993,
+      "first_50ms_peak": 5.2557608857143014,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.0999999999999996,
+      "postcontact_vertical_rms": 2.3978334096690577,
+      "postcontact_vertical_peak": 11.56559609647683,
+      "postcontact_slip_energy_per_m": 0.07401379212570867,
+      "postcontact_minimum_scale": null,
+      "recovery_after_first_s": null
+    },
+    {
+      "seed": 76210,
+      "profile": "moderate",
+      "case": "rl_runs/governor_capsule_oracle_refine_2026-10-16/seed_76210_moderate",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.900000000000087,
+      "truth_rmse_m": 0.0038394777538818888,
+      "endpoint_m": 0.1874394648694789,
+      "whole_vertical_rms": 0.9488978374249091,
+      "whole_vertical_peak": 6.914898366950485,
+      "whole_slip_rms": 0.08695042025159262,
+      "approach_speed_m_s": 0.3962710080845562,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 14.474,
+      "oracle_contact_s": 14.474,
+      "oracle_command_s": 14.572999999999976,
+      "contact_to_decision_s": 0.09899999999997533,
+      "oracle_stamp_lag_from_first_s": 0.0,
+      "motor_target_drop_delay_s": 0.3160000000000007,
+      "first_to_caster_s": 0.1479999999999997,
+      "first_to_drive_s": 0.766,
+      "first_50ms_peak": 5.767891093459474,
+      "first_50ms_uncontrolled": true,
+      "clearance_available": true,
+      "clearance_duration_s": 2.3359999999999985,
+      "postcontact_vertical_rms": 1.595704213619933,
+      "postcontact_vertical_peak": 6.914898366950485,
+      "postcontact_slip_energy_per_m": 0.08295332464892737,
+      "postcontact_minimum_scale": 0.85,
+      "recovery_after_first_s": 1.9989999999999775
+    },
+    {
+      "seed": 76211,
+      "profile": "moderate",
+      "case": "rl_runs/governor_capsule_oracle_refine_2026-10-16/seed_76211_moderate",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 16.90000000000008,
+      "truth_rmse_m": 0.005076852876577946,
+      "endpoint_m": 0.19088646011753418,
+      "whole_vertical_rms": 1.1069973218554843,
+      "whole_vertical_peak": 8.981582646915458,
+      "whole_slip_rms": 0.04018082564618786,
+      "approach_speed_m_s": 0.3961999207341219,
+      "precontact_minimum_scale": 0.96,
+      "first_contact_s": 14.182,
+      "oracle_contact_s": 14.182,
+      "oracle_command_s": 14.181999999999976,
+      "contact_to_decision_s": -2.4868995751603507e-14,
+      "oracle_stamp_lag_from_first_s": 0.0,
+      "motor_target_drop_delay_s": 0.23000000000000043,
+      "first_to_caster_s": 0.7639999999999993,
+      "first_to_drive_s": 0.7639999999999993,
+      "first_50ms_peak": 5.074051622023089,
+      "first_50ms_uncontrolled": false,
+      "clearance_available": true,
+      "clearance_duration_s": 2.347999999999997,
+      "postcontact_vertical_rms": 1.530715131069626,
+      "postcontact_vertical_peak": 6.954432146046206,
+      "postcontact_slip_energy_per_m": 0.07481431103611716,
+      "postcontact_minimum_scale": 0.85,
+      "recovery_after_first_s": 2.0999999999999712
+    },
+    {
+      "seed": 76212,
+      "profile": "moderate",
+      "case": "rl_runs/governor_capsule_oracle_refine_2026-10-16/seed_76212_moderate",
+      "available": true,
+      "complete": true,
+      "physical_success": true,
+      "termination": "success",
+      "stop_settled": true,
+      "time_s": 17.00000000000015,
+      "truth_rmse_m": 0.003662944198665122,
+      "endpoint_m": 0.18641827408900483,
+      "whole_vertical_rms": 1.1693963908895875,
+      "whole_vertical_peak": 10.258342895795733,
+      "whole_slip_rms": 0.06297426514743693,
+      "approach_speed_m_s": 0.39601840290931506,
+      "precontact_minimum_scale": 1.0,
+      "first_contact_s": 18.029,
+      "oracle_contact_s": 18.029,
+      "oracle_command_s": 18.03200000000001,
+      "contact_to_decision_s": 0.003000000000010772,
+      "oracle_stamp_lag_from_first_s": 0.0,
+      "motor_target_drop_delay_s": 0.23100000000000165,
+      "first_to_caster_s": 0.7729999999999997,
+      "first_to_drive_s": 0.7729999999999997,
+      "first_50ms_peak": 4.125614206795293,
+      "first_50ms_uncontrolled": false,
+      "clearance_available": true,
+      "clearance_duration_s": 2.401,
+      "postcontact_vertical_rms": 1.7013033868522074,
+      "postcontact_vertical_peak": 6.970227273909483,
+      "postcontact_slip_energy_per_m": 0.07017480602189713,
+      "postcontact_minimum_scale": 0.85,
+      "recovery_after_first_s": 2.703000000000049
+    }
+  ],
+  "paired_differences": [
+    {
+      "seed": 76210,
+      "profile": "moderate",
+      "metrics": {
+        "time_s": {
+          "reference": 16.70000000000006,
+          "candidate": 16.900000000000087,
+          "delta": 0.2000000000000277,
+          "ratio": 1.0119760479041933
+        },
+        "truth_rmse_m": {
+          "reference": 0.0063740216016485865,
+          "candidate": 0.0038394777538818888,
+          "delta": -0.0025345438477666978,
+          "ratio": 0.6023634674988928
+        },
+        "approach_speed_m_s": {
+          "reference": 0.39608038265126044,
+          "candidate": 0.3962710080845562,
+          "delta": 0.00019062543329573245,
+          "ratio": 1.0004812796635363
+        },
+        "whole_vertical_rms": {
+          "reference": 1.3107244701643177,
+          "candidate": 0.9488978374249091,
+          "delta": -0.3618266327394086,
+          "ratio": 0.7239491281534947
+        },
+        "whole_vertical_peak": {
+          "reference": 12.396214152897317,
+          "candidate": 6.914898366950485,
+          "delta": -5.4813157859468316,
+          "ratio": 0.5578234033117517
+        },
+        "whole_slip_rms": {
+          "reference": 0.10469550719733822,
+          "candidate": 0.08695042025159262,
+          "delta": -0.0177450869457456,
+          "ratio": 0.830507655765034
+        },
+        "first_50ms_peak": {
+          "reference": 8.71723182262035,
+          "candidate": 5.767891093459474,
+          "delta": -2.949340729160877,
+          "ratio": 0.661665447337579
+        },
+        "first_to_caster_s": {
+          "reference": 0.13899999999999935,
+          "candidate": 0.1479999999999997,
+          "delta": 0.009000000000000341,
+          "ratio": 1.0647482014388516
+        },
+        "first_to_drive_s": {
+          "reference": 0.8119999999999994,
+          "candidate": 0.766,
+          "delta": -0.045999999999999375,
+          "ratio": 0.943349753694582
+        },
+        "clearance_duration_s": {
+          "reference": 2.215,
+          "candidate": 2.3359999999999985,
+          "delta": 0.12099999999999866,
+          "ratio": 1.0546275395033855
+        },
+        "postcontact_vertical_rms": {
+          "reference": 2.1816284862803075,
+          "candidate": 1.595704213619933,
+          "delta": -0.5859242726603744,
+          "ratio": 0.7314280243656978
+        },
+        "postcontact_vertical_peak": {
+          "reference": 12.396214152897317,
+          "candidate": 6.914898366950485,
+          "delta": -5.4813157859468316,
+          "ratio": 0.5578234033117517
+        },
+        "postcontact_slip_energy_per_m": {
+          "reference": 0.14992621172793238,
+          "candidate": 0.08295332464892737,
+          "delta": -0.06697288707900502,
+          "ratio": 0.5532943418823977
+        }
+      }
+    },
+    {
+      "seed": 76211,
+      "profile": "moderate",
+      "metrics": {
+        "time_s": {
+          "reference": 16.700000000000042,
+          "candidate": 16.90000000000008,
+          "delta": 0.20000000000003837,
+          "ratio": 1.011976047904194
+        },
+        "truth_rmse_m": {
+          "reference": 0.004314276718047047,
+          "candidate": 0.005076852876577946,
+          "delta": 0.0007625761585308994,
+          "ratio": 1.1767564318118418
+        },
+        "approach_speed_m_s": {
+          "reference": 0.395878393083168,
+          "candidate": 0.3961999207341219,
+          "delta": 0.00032152765095389,
+          "ratio": 1.0008121879258167
+        },
+        "whole_vertical_rms": {
+          "reference": 1.1524828306260908,
+          "candidate": 1.1069973218554843,
+          "delta": -0.04548550877060653,
+          "ratio": 0.9605325931442324
+        },
+        "whole_vertical_peak": {
+          "reference": 10.75299809793105,
+          "candidate": 8.981582646915458,
+          "delta": -1.7714154510155922,
+          "ratio": 0.835263111284617
+        },
+        "whole_slip_rms": {
+          "reference": 0.09223130598229269,
+          "candidate": 0.04018082564618786,
+          "delta": -0.052050480336104835,
+          "ratio": 0.43565278858679607
+        },
+        "first_50ms_peak": {
+          "reference": 4.260802248334166,
+          "candidate": 5.074051622023089,
+          "delta": 0.8132493736889232,
+          "ratio": 1.1908676644185674
+        },
+        "first_to_caster_s": {
+          "reference": 0.120000000000001,
+          "candidate": 0.7639999999999993,
+          "delta": 0.6439999999999984,
+          "ratio": 6.3666666666666085
+        },
+        "first_to_drive_s": {
+          "reference": 0.843,
+          "candidate": 0.7639999999999993,
+          "delta": -0.07900000000000063,
+          "ratio": 0.9062870699881369
+        },
+        "clearance_duration_s": {
+          "reference": 2.206999999999999,
+          "candidate": 2.347999999999997,
+          "delta": 0.14099999999999824,
+          "ratio": 1.0638876302673304
+        },
+        "postcontact_vertical_rms": {
+          "reference": 1.858383474040846,
+          "candidate": 1.530715131069626,
+          "delta": -0.32766834297121994,
+          "ratio": 0.8236809853572675
+        },
+        "postcontact_vertical_peak": {
+          "reference": 10.75299809793105,
+          "candidate": 6.954432146046206,
+          "delta": -3.798565951884844,
+          "ratio": 0.6467435484234193
+        },
+        "postcontact_slip_energy_per_m": {
+          "reference": 0.13911069808368962,
+          "candidate": 0.07481431103611716,
+          "delta": -0.06429638704757246,
+          "ratio": 0.537804152137232
+        }
+      }
+    },
+    {
+      "seed": 76212,
+      "profile": "moderate",
+      "metrics": {
+        "time_s": {
+          "reference": 16.60000000000002,
+          "candidate": 17.00000000000015,
+          "delta": 0.40000000000013003,
+          "ratio": 1.0240963855421765
+        },
+        "truth_rmse_m": {
+          "reference": 0.005940944375068684,
+          "candidate": 0.003662944198665122,
+          "delta": -0.0022780001764035615,
+          "ratio": 0.6165592483977389
+        },
+        "approach_speed_m_s": {
+          "reference": 0.39627489167810587,
+          "candidate": 0.39601840290931506,
+          "delta": -0.00025648876879080795,
+          "ratio": 0.9993527503907587
+        },
+        "whole_vertical_rms": {
+          "reference": 1.3031342434301991,
+          "candidate": 1.1693963908895875,
+          "delta": -0.13373785254061166,
+          "ratio": 0.8973721600711084
+        },
+        "whole_vertical_peak": {
+          "reference": 11.56559609647683,
+          "candidate": 10.258342895795733,
+          "delta": -1.307253200681096,
+          "ratio": 0.8869705296833496
+        },
+        "whole_slip_rms": {
+          "reference": 0.05697711688871029,
+          "candidate": 0.06297426514743693,
+          "delta": 0.005997148258726638,
+          "ratio": 1.1052553829713863
+        },
+        "first_50ms_peak": {
+          "reference": 5.2557608857143014,
+          "candidate": 4.125614206795293,
+          "delta": -1.1301466789190089,
+          "ratio": 0.7849699209127143
+        },
+        "first_to_caster_s": {
+          "reference": 0.14100000000000001,
+          "candidate": 0.7729999999999997,
+          "delta": 0.6319999999999997,
+          "ratio": 5.482269503546097
+        },
+        "first_to_drive_s": {
+          "reference": 0.6679999999999993,
+          "candidate": 0.7729999999999997,
+          "delta": 0.10500000000000043,
+          "ratio": 1.1571856287425157
+        },
+        "clearance_duration_s": {
+          "reference": 2.0999999999999996,
+          "candidate": 2.401,
+          "delta": 0.30100000000000016,
+          "ratio": 1.1433333333333335
+        },
+        "postcontact_vertical_rms": {
+          "reference": 2.3978334096690577,
+          "candidate": 1.7013033868522074,
+          "delta": -0.6965300228168503,
+          "ratio": 0.7095169247337397
+        },
+        "postcontact_vertical_peak": {
+          "reference": 11.56559609647683,
+          "candidate": 6.970227273909483,
+          "delta": -4.595368822567346,
+          "ratio": 0.6026690899254894
+        },
+        "postcontact_slip_energy_per_m": {
+          "reference": 0.07401379212570867,
+          "candidate": 0.07017480602189713,
+          "delta": -0.0038389861038115453,
+          "ratio": 0.9481314766673322
+        }
+      }
+    }
+  ],
+  "provenance": [
+    {
+      "seed": 76210,
+      "profile": "full",
+      "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76210_full",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76211,
+      "profile": "full",
+      "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76211_full",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76212,
+      "profile": "full",
+      "case": "rl_runs/governor_cable_capsule_AB_2026-10-16/seed_76212_full",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+      "oracle_declared": false
+    },
+    {
+      "seed": 76210,
+      "profile": "moderate",
+      "case": "rl_runs/governor_capsule_oracle_refine_2026-10-16/seed_76210_moderate",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+      "oracle_declared": true
+    },
+    {
+      "seed": 76211,
+      "profile": "moderate",
+      "case": "rl_runs/governor_capsule_oracle_refine_2026-10-16/seed_76211_moderate",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+      "oracle_declared": true
+    },
+    {
+      "seed": 76212,
+      "profile": "moderate",
+      "case": "rl_runs/governor_capsule_oracle_refine_2026-10-16/seed_76212_moderate",
+      "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+      "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "governor_core_sha256": "ef9a762ce327c56ff23e184f08902ac6faac149e21bc29a5cf3f7ae3ea7b0682",
+      "oracle_declared": true
+    }
+  ],
+  "same_world": true,
+  "same_robot": true,
+  "same_core": true,
+  "training_started": false,
+  "optuna_started": false,
+  "predictor_started": false
+}

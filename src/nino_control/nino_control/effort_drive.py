@@ -23,6 +23,7 @@ from std_msgs.msg import Float64MultiArray, MultiArrayDimension
 from std_srvs.srv import Trigger
 from tf2_ros import TransformBroadcaster
 from nino_control.velocity_pi import conditional_integral
+from nino_control.control_timing import ControlTimingWindow
 
 from nino_control.kinematics import (
     clamp,
@@ -281,6 +282,8 @@ class EffortDrive(Node):
 
         self.wheel_velocity = [0.0, 0.0]
         self.have_wheel_state = False
+        self.wheel_state_stamp_ns = None
+        self.control_timing = ControlTimingWindow()
 
         # PI wheel-speed controller state.
         self.target_velocity = [0.0, 0.0]
@@ -327,6 +330,7 @@ class EffortDrive(Node):
         self.last_torque_ns = 0
         now = self.get_clock().now()
         self.last_control_ns = now.nanoseconds
+        self.control_timing.reset()
 
         # Publish the reset state as part of the reset transaction.  Waiting
         # for the periodic control timer made episode startup depend on a
@@ -440,6 +444,7 @@ class EffortDrive(Node):
             velocity_by_name[self.right_joint]
         )
         self.have_wheel_state = True
+        self.wheel_state_stamp_ns = message.header.stamp.sec*1000000000+message.header.stamp.nanosec
 
     def _control_update(self) -> None:
         """Run baseline velocity PI control and add fresh RL residual torque."""
@@ -447,6 +452,8 @@ class EffortDrive(Node):
         now_ns = now.nanoseconds
 
         dt = (now_ns - self.last_control_ns) * 1.0e-9
+        self.control_timing.observe(dt,(now_ns-self.wheel_state_stamp_ns)*1.e-9
+            if self.wheel_state_stamp_ns is not None else None)
         self.last_control_ns = now_ns
 
         if dt <= 0.0 or dt > 0.25:
@@ -641,6 +648,10 @@ class EffortDrive(Node):
                 "right_requested_effort_nm", "left_applied_nm", "right_applied_nm",
                 "left_limited", "right_limited", "cmd_fresh", "policy_fresh",
                 "have_wheel_state")
+            timing=self.control_timing.take()
+            timing.update(control_configured_period_s=1./self.control_rate,
+                          command_received_sim_s=self.last_cmd_ns*1.e-9)
+            fields=(*fields,*timing)
             diagnostic = Float64MultiArray()
             diagnostic.layout.dim = [MultiArrayDimension(
                 label=",".join(fields), size=len(fields), stride=len(fields))]
@@ -651,7 +662,7 @@ class EffortDrive(Node):
                 *self.override_torque, *requested_efforts, *efforts,
                 abs(requested_efforts[0] - efforts[0]) > 1e-9,
                 abs(requested_efforts[1] - efforts[1]) > 1e-9,
-                command_is_fresh, residual_torque_active, self.have_wheel_state)]
+                command_is_fresh, residual_torque_active, self.have_wheel_state,*timing.values())]
             self.diagnostic_publisher.publish(diagnostic)
             self.last_torque_status_publish_ns = now_ns
 
