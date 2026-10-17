@@ -1,0 +1,422 @@
+{
+  "qualification": "Saved-trace sequence audit; temporal order is not a proven root cause",
+  "evaluation": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_003/confirmation/d0/screen/seed_77000_full/evaluation/20261016-132605-652785",
+  "logger": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_003/confirmation/d0/screen/seed_77000_full/contact/20261016T062559-107322Z",
+  "completed_control_steps": 167,
+  "completed_evaluation": true,
+  "physical_success_rate": 1.0,
+  "source_episode_ids": [
+    "05aeb9cec6cd4fa5b8889523f22fba2d:1"
+  ],
+  "approach_started_s": 15.900000000000052,
+  "first_sustained_both_casters_below_1rad_s": null,
+  "first_ground_truth_tilt_above_5deg": {
+    "elapsed_s": 7.1419999999999995,
+    "x_m": 2.472673887083831,
+    "y_m": -0.0007293314599715559,
+    "z_m": 0.0004262634785500346,
+    "roll_deg": -0.0005520495219735613,
+    "pitch_deg": -6.721133170460806,
+    "speed_m_s": 0.5926359436087743,
+    "yaw_rate_rad_s": 0.15461208515368927
+  },
+  "first_ground_truth_roll_above_15deg": null,
+  "maximum_abs_roll_deg": 2.403019159069193,
+  "maximum_abs_pitch_deg": 11.673052500377247,
+  "last_ground_truth": {
+    "elapsed_s": 16.682,
+    "x_m": 6.253447897114657,
+    "y_m": -0.004610457099713355,
+    "z_m": -5.991652951628386e-05,
+    "roll_deg": 0.0007198922989546971,
+    "pitch_deg": -0.014822997271426287,
+    "speed_m_s": 0.17543308039183753,
+    "yaw_rate_rad_s": 0.01754394376199859
+  },
+  "contact_messages": {
+    "left_wheel": {
+      "first_recorded_s": 0.001000000000000334,
+      "last_recorded_s": 16.695,
+      "peak_abs_force_z_N": 75.23746522846446,
+      "sampled_messages": 1429,
+      "manifolds_observed": 1433,
+      "opposing_vertical_normal_manifolds": 0,
+      "peak_force_elapsed_s": 7.588000000000001,
+      "peak_force_depths_m": [
+        0.00029080017702654004,
+        -0.0003589435073081404,
+        0.00031776813557371497,
+        0.0006626307731494308
+      ],
+      "peak_force_positions": [
+        {
+          "x": 2.7135729789733887,
+          "y": 0.1472780853509903,
+          "z": 0.01911986991763115
+        },
+        {
+          "x": 2.714550256729126,
+          "y": 0.1333228051662445,
+          "z": 0.021581176668405533
+        },
+        {
+          "x": 2.7119622230529785,
+          "y": 0.1187514215707779,
+          "z": 0.02035166695713997
+        },
+        {
+          "x": 2.7124550342559814,
+          "y": 0.13349133729934692,
+          "z": 0.019239511340856552
+        }
+      ],
+      "peak_force_collision_pair": [
+        "nino::left_wheel_link::left_wheel_link_collision",
+        "cable_bumps::cables::C1_collision"
+      ],
+      "peak_force_normal_z": [
+        0.8134813904762268,
+        0.944584846496582,
+        0.8942191004753113,
+        0.8060718774795532
+      ],
+      "reported_signed_force_z_sum_at_peak": 75.23746522846446
+    },
+    "right_wheel": {
+      "first_recorded_s": 0.001000000000000334,
+      "last_recorded_s": 16.696,
+      "peak_abs_force_z_N": 63.16036642434381,
+      "sampled_messages": 1421,
+      "manifolds_observed": 1423,
+      "opposing_vertical_normal_manifolds": 0,
+      "peak_force_elapsed_s": 7.067,
+      "peak_force_depths_m": [
+        1.0658055543899536e-05,
+        1.0446529813634697e-05,
+        1.1558141522982623e-05,
+        1.0301901966158766e-05
+      ],
+      "peak_force_positions": [
+        {
+          "x": 2.4241790771484375,
+          "y": -0.16481998562812805,
+          "z": -1.0658055543899536e-05
+        },
+        {
+          "x": 2.423267364501953,
+          "y": -0.16816803812980652,
+          "z": -1.0453164577484131e-05
+        },
+        {
+          "x": 2.4215683937072754,
+          "y": -0.1832312047481537,
+          "z": -1.1555850505828857e-05
+        },
+        {
+          "x": 2.4263346195220947,
+          "y": -0.14633232355117798,
+          "z": -1.0300427675247192e-05
+        }
+      ],
+      "peak_force_collision_pair": [
+        "nino::right_wheel_link::right_wheel_link_collision",
+        "factory_contact_floor::terrain::terrain_collision"
+      ],
+      "peak_force_normal_z": [
+        1.0,
+        1.0,
+        0.9999999403953552,
+        1.0
+      ],
+      "reported_signed_force_z_sum_at_peak": 63.16036642434381
+    },
+    "caster_left_wheel": {
+      "first_recorded_s": 0.001000000000000334,
+      "last_recorded_s": 16.692,
+      "peak_abs_force_z_N": 40.107651080858254,
+      "sampled_messages": 1363,
+      "manifolds_observed": 1363,
+      "opposing_vertical_normal_manifolds": 0,
+      "peak_force_elapsed_s": 2.183,
+      "peak_force_depths_m": [
+        9.55536961555481e-06
+      ],
+      "peak_force_positions": [
+        {
+          "x": 0.9384322166442871,
+          "y": 0.08901964128017426,
+          "z": -9.551644325256348e-06
+        }
+      ],
+      "peak_force_collision_pair": [
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision",
+        "factory_contact_floor::terrain::terrain_collision"
+      ],
+      "peak_force_normal_z": [
+        1.0
+      ],
+      "reported_signed_force_z_sum_at_peak": 40.107651080858254
+    },
+    "caster_right_wheel": {
+      "first_recorded_s": 0.0030000000000001137,
+      "last_recorded_s": 16.692,
+      "peak_abs_force_z_N": 109.05516424651627,
+      "sampled_messages": 1377,
+      "manifolds_observed": 1377,
+      "opposing_vertical_normal_manifolds": 0,
+      "peak_force_elapsed_s": 6.753,
+      "peak_force_depths_m": [
+        0.00014178721175994724,
+        0.0011748125543817878
+      ],
+      "peak_force_positions": [
+        {
+          "x": 2.678101062774658,
+          "y": -0.0955536738038063,
+          "z": 0.017814185470342636
+        },
+        {
+          "x": 2.677201509475708,
+          "y": -0.0955074280500412,
+          "z": 0.014214393682777882
+        }
+      ],
+      "peak_force_collision_pair": [
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision",
+        "cable_bumps::cables::C1_collision"
+      ],
+      "peak_force_normal_z": [
+        0.6163285374641418,
+        0.32715877890586853
+      ],
+      "reported_signed_force_z_sum_at_peak": 109.66340928063346
+    },
+    "caster_bracket_right": {
+      "first_recorded_s": 6.557,
+      "last_recorded_s": 7.067,
+      "peak_abs_force_z_N": 61.21336607528441,
+      "sampled_messages": 48,
+      "manifolds_observed": 48,
+      "opposing_vertical_normal_manifolds": 1,
+      "peak_force_elapsed_s": 6.58,
+      "peak_force_depths_m": [
+        0.0004280371649656445,
+        -0.0008820231887511909,
+        -0.0011062007397413254,
+        0.0003444011672399938
+      ],
+      "peak_force_positions": [
+        {
+          "x": 2.681152582168579,
+          "y": -0.09997609257698059,
+          "z": 0.020921599119901657
+        },
+        {
+          "x": 2.68919038772583,
+          "y": -0.07679394632577896,
+          "z": 0.021999986842274666
+        },
+        {
+          "x": 2.687152624130249,
+          "y": -0.07757092267274857,
+          "z": 0.021829944103956223
+        },
+        {
+          "x": 2.6846201419830322,
+          "y": -0.07547605782747269,
+          "z": 0.02086314558982849
+        }
+      ],
+      "peak_force_collision_pair": [
+        "nino::caster_bracket_right_link::caster_bracket_right_link_collision",
+        "cable_bumps::cables::C1_collision"
+      ],
+      "peak_force_normal_z": [
+        -0.9019635319709778,
+        -0.9999986886978149,
+        -0.9845404028892517,
+        -0.8966495394706726
+      ],
+      "reported_signed_force_z_sum_at_peak": -93.50200009669092
+    },
+    "caster_bracket_left": {
+      "first_recorded_s": 6.878,
+      "last_recorded_s": 7.052,
+      "peak_abs_force_z_N": 0.0,
+      "sampled_messages": 17,
+      "manifolds_observed": 17,
+      "opposing_vertical_normal_manifolds": 0,
+      "peak_force_elapsed_s": 6.878,
+      "peak_force_depths_m": [
+        -0.0012783189304172993,
+        -0.001280223485082388,
+        -0.0013042850187048316,
+        -0.0013061894569545984
+      ],
+      "peak_force_positions": [
+        {
+          "x": 2.7015364170074463,
+          "y": 0.04617670178413391,
+          "z": 0.020845741033554077
+        },
+        {
+          "x": 2.701772689819336,
+          "y": 0.047852322459220886,
+          "z": 0.020846150815486908
+        },
+        {
+          "x": 2.704735517501831,
+          "y": 0.06893959641456604,
+          "z": 0.020845739170908928
+        },
+        {
+          "x": 2.7049736976623535,
+          "y": 0.07062847912311554,
+          "z": 0.02084614522755146
+        }
+      ],
+      "peak_force_collision_pair": [
+        "nino::caster_bracket_left_link::caster_bracket_left_link_collision",
+        "cable_bumps::cables::C1_collision"
+      ],
+      "peak_force_normal_z": [
+        -0.8950673341751099,
+        -0.8951045870780945,
+        -0.8950672745704651,
+        -0.8951042294502258
+      ],
+      "reported_signed_force_z_sum_at_peak": 0.0
+    }
+  },
+  "wheel_windows": [
+    {
+      "window_s": [
+        2.0,
+        14.0
+      ],
+      "samples": 600,
+      "wheels": {
+        "left": {
+          "maximum_abs_applied_nm": 1.7199087940687396,
+          "minimum_actual_rad_s": -0.01634228165717519,
+          "maximum_tracking_error_rad_s": 6.065496077144236,
+          "residual_nonzero_samples": 0
+        },
+        "right": {
+          "maximum_abs_applied_nm": 2.0000000000000013,
+          "minimum_actual_rad_s": -0.6450205200055898,
+          "maximum_tracking_error_rad_s": 7.303699053673361,
+          "residual_nonzero_samples": 0
+        }
+      }
+    },
+    {
+      "window_s": [
+        14.0,
+        16.0
+      ],
+      "samples": 100,
+      "wheels": {
+        "left": {
+          "maximum_abs_applied_nm": 0.21591060057070963,
+          "minimum_actual_rad_s": 4.999989586573564,
+          "maximum_tracking_error_rad_s": 0.5233988667696012,
+          "residual_nonzero_samples": 0
+        },
+        "right": {
+          "maximum_abs_applied_nm": 0.20593128295196805,
+          "minimum_actual_rad_s": 5.098440292337144,
+          "maximum_tracking_error_rad_s": 0.41310829517752623,
+          "residual_nonzero_samples": 0
+        }
+      }
+    },
+    {
+      "window_s": [
+        16.0,
+        18.0
+      ],
+      "samples": 35,
+      "wheels": {
+        "left": {
+          "maximum_abs_applied_nm": 0.09216359243032966,
+          "minimum_actual_rad_s": 2.737911834409231,
+          "maximum_tracking_error_rad_s": 0.553685364486729,
+          "residual_nonzero_samples": 0
+        },
+        "right": {
+          "maximum_abs_applied_nm": 0.12773637402560087,
+          "minimum_actual_rad_s": 2.8348363985976572,
+          "maximum_tracking_error_rad_s": 0.3968870292779467,
+          "residual_nonzero_samples": 0
+        }
+      }
+    }
+  ],
+  "observed_caster_wheel_damping": {
+    "left": 0.001,
+    "right": 0.001
+  },
+  "caster_rolling_ratio": {
+    "left": {
+      "samples": 4396,
+      "median": 0.9983558221533434,
+      "fraction_below_half_rolling": 0.14968152866242038,
+      "positive_force_subset": {
+        "samples": 2992,
+        "median": 0.9994200418298509
+      }
+    },
+    "right": {
+      "samples": 4408,
+      "median": 0.6510445071557966,
+      "fraction_below_half_rolling": 0.47186932849364793,
+      "positive_force_subset": {
+        "samples": 1575,
+        "median": 0.9793596755101266
+      }
+    }
+  },
+  "caster_rolling_qualification": "Nominal radius .016m; body speed>.25m/s, abs yaw rate<.05rad/s, swivel alignment<.15rad, nearest GT within .05s. Positive-force subset additionally needs recorded abs vertical contact force>=1N within .015s. Low unconditional ratio can include unloaded wheels; do not label it slip/stall without support evidence. Diagnostic filters, not hardware limits or inferred readiness thresholds.",
+  "driven_wheel_response": {
+    "left": {
+      "forward_target_samples": 827,
+      "near_stopped_samples": 9,
+      "maximum_abs_tracking_error_rad_s": 6.065496077144236
+    },
+    "right": {
+      "forward_target_samples": 827,
+      "near_stopped_samples": 18,
+      "maximum_abs_tracking_error_rad_s": 7.303699053673361
+    }
+  },
+  "damping_drag_at_025m_s_N": {
+    "left": 0.9765625,
+    "right": 0.9765625
+  },
+  "damping_drag_qualification": "b*omega/r at nominal caster radius0.016m and pure rolling; not a measured contact force",
+  "message_gap_qualification": "Only nonempty contacts are published; a gap is not proof of no contact or exact lift-off",
+  "post_arrival_stop": {
+    "available": true,
+    "reason": null,
+    "qualification": "2s stopped-command diagnostic, independent of arrival scoring; 5deg/.01m_s are declared diagnostic thresholds",
+    "end_time_s": 22.918000000000063,
+    "window_seconds": 2.0,
+    "pose_samples": 100,
+    "drive_samples": 100,
+    "pose_coverage_s": 1.9799999999999969,
+    "commanded_stop": true,
+    "max_abs_roll_deg": 0.0014549324066355973,
+    "max_abs_pitch_deg": 0.014649885425892038,
+    "last": {
+      "time_s": 24.9,
+      "roll_deg": -3.7647730785682976e-06,
+      "pitch_deg": -1.853913771870207e-05,
+      "x_m": 6.27895866887943,
+      "y_m": -0.004903500315540454,
+      "speed_m_s": 0.00021110978106225514
+    },
+    "chassis_contact_messages": 0,
+    "settled": true
+  }
+}

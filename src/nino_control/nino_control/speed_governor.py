@@ -79,6 +79,10 @@ class SpeedGovernor(Node):
             return
         self.reference=(float(msg.linear.x),float(msg.angular.z))
         self.mark("reference",self.now())
+        if self.reference == (0.,0.) and self.core.phase == "DELAY":
+            # Stop remains immediate even with paused simulated time.
+            self.core.cancel_pending_delay()
+            self.publish(0.,0.,self.core._decision(reason="stop_cancelled_delay"))
 
     def on_imu(self,msg):
         try:
@@ -120,6 +124,7 @@ class SpeedGovernor(Node):
             response.message="Disable, reset, then enable after resolving the fault"
             return response
         self.enabled=bool(request.data)
+        self.core.cancel_pending_delay()
         self.enable_wall_at=monotonic()
         self.reference=None
         self.received.pop("reference",None)

@@ -1,0 +1,7 @@
+[INFO] [1792134411.849461592] [nino_rl_interface]: Route E1: 6.45 m, goal=(6.45, 0.0), deadline=87.2s
+[INFO] [1792134411.853101334] [nino_rl_interface]: Curriculum phase 1 at training step 0
+[WARN] [1792134478.175341026] [nino_rl_interface]: EPISODE END: success | t=16.80s | goal_dist=0.19m | heading_err=-1.6deg | lateral=0.00m | v=0.17m/s | reference_valid=True | challenges=0/0 | lidar_min=1.55m | collision_clearance=1.51m | roll=-0.0deg | pitch=-0.0deg
+/home/tuanmac/ninorobot/.venv/lib/python3.12/site-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+1: reached=True; time=16.80s, endpoint=0.187m, challenges=0/0, lateral drift=0.004m, path RMSE=0.005m
+Saved evaluation: /home/tuanmac/ninorobot/rl_runs/governor_frozen_repeats_2026-10-16/attempt_01/confirmation/repeat/screen/seed_77200_reactive/evaluation/20261016-140649-938747

@@ -8,6 +8,31 @@ Repository hiện chưa có backend CyberGear `ros2_control` cho robot thật.
 
 ## 1. Kiểm tra Pi trước
 
+**Xem trạng thái trực tiếp khi robot đang chạy:**
+[`PI_LIVE_STATE_MONITOR_2026-10-17.md`](../../../docs/PI_LIVE_STATE_MONITOR_2026-10-17.md).
+Copy `nino_pi/state_monitor.py` sang Pi, source ROS/workspace driver rồi chạy
+`/usr/bin/python3 ~/state_monitor.py`. Monitor hiển thị IMU, encoder, odom,
+torque command/effort nếu có, LiDAR và battery; `--signals` bổ sung current,
+torque và nhiệt độ theo interface driver thực. Không phát lệnh motor.
+`--record DIRECTORY` ghi đầy đủ message nhận được; command torque không
+được trình bày thành torque đo thật.
+
+**Collector chỉ đọc mới:** xem
+[`PI_READONLY_DATA_COLLECTION_2026-10-17.md`](../../../docs/PI_READONLY_DATA_COLLECTION_2026-10-17.md).
+Copy riêng `nino_pi/hardware_audit.py` sang Pi, không cần build package:
+
+```bash
+source /opt/ros/jazzy/setup.bash
+/usr/bin/python3 ~/hardware_audit.py --duration 60 \
+  --output "$HOME/nino_audits/$(date +%Y%m%d_%H%M%S)"
+```
+
+Xuất `REPORT.md`, `report.json`, `samples.jsonl`, `graph.mmd`, tham số PI
+đọc được và power warnings. Không phát lệnh motor hoặc đổi tham số.
+Trục/dấu encoder và vị trí PI giữ chưa xác minh nếu thiếu bằng chứng;
+không coi không có undervoltage log là nguồn đã ổn. Nếu đã build package
+mới, có thể dùng `ros2 run nino_pi hardware_audit` với cùng arguments.
+
 Sau khi source ROS và workspace hardware nếu có:
 
 ```bash

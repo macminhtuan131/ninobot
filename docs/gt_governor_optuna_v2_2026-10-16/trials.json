@@ -1,0 +1,79 @@
+[
+  {
+    "number": 0,
+    "state": "COMPLETE",
+    "params": {
+      "target_scale": 0.9,
+      "maximum_hold_seconds": 1.0
+    },
+    "value": 0.7902069610510052,
+    "user_attrs": {
+      "eligible": true,
+      "feasible": true
+    }
+  },
+  {
+    "number": 1,
+    "state": "FAIL",
+    "params": {
+      "target_scale": 0.9,
+      "maximum_hold_seconds": 0.8
+    },
+    "value": null,
+    "user_attrs": {
+      "error": "ValueError:PI reference failed/unavailable; comparison is not a score"
+    }
+  },
+  {
+    "number": 2,
+    "state": "COMPLETE",
+    "params": {
+      "target_scale": 0.9,
+      "maximum_hold_seconds": 1.2
+    },
+    "value": 0.9615876177800793,
+    "user_attrs": {
+      "eligible": true,
+      "feasible": true
+    }
+  },
+  {
+    "number": 3,
+    "state": "COMPLETE",
+    "params": {
+      "target_scale": 0.95,
+      "maximum_hold_seconds": 0.8
+    },
+    "value": 1.235023920263,
+    "user_attrs": {
+      "eligible": false,
+      "feasible": true
+    }
+  },
+  {
+    "number": 4,
+    "state": "COMPLETE",
+    "params": {
+      "target_scale": 0.95,
+      "maximum_hold_seconds": 1.0
+    },
+    "value": 1.0205189881556835,
+    "user_attrs": {
+      "eligible": false,
+      "feasible": true
+    }
+  },
+  {
+    "number": 5,
+    "state": "COMPLETE",
+    "params": {
+      "target_scale": 0.95,
+      "maximum_hold_seconds": 1.2
+    },
+    "value": 1.8408888421126945,
+    "user_attrs": {
+      "eligible": false,
+      "feasible": true
+    }
+  }
+]

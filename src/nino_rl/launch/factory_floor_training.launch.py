@@ -18,7 +18,8 @@ def launch_world(context):
         PythonLaunchDescriptionSource(PathJoinSubstitution([
             FindPackageShare("nino_rl"), "launch", "training_sim.launch.py"])),
         launch_arguments={
-            "world": f"factory_floor_{variant}{'_contact_lab' if contact else ''}.sdf",
+            "world": (LaunchConfiguration("world_override").perform(context)
+                      or f"factory_floor_{variant}{'_contact_lab' if contact else ''}.sdf"),
             "world_name": "factory_floor_lab",
             "headless": LaunchConfiguration("headless"),
             "pi_integrator_profile": "conditional_v1",
@@ -36,6 +37,7 @@ def launch_world(context):
 def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument("variant", default_value="mixed"),
+        DeclareLaunchArgument("world_override", default_value=""),
         DeclareLaunchArgument("headless", default_value="false"),
         DeclareLaunchArgument("verbosity", default_value="1"),
         # Mixed floor is imported by DART before controller updates can run.

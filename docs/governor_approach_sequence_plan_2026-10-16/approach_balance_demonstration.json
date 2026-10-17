@@ -1,0 +1,232 @@
+{
+  "flags": [
+    {
+      "seed": 77320,
+      "arm": "full",
+      "available": true,
+      "checks": {
+        "speed": true,
+        "lateral": true,
+        "yaw": true,
+        "tilt": true,
+        "coverage": true
+      },
+      "coarse_approach_pass": true,
+      "post_reset_quiet_release_verified": false,
+      "qualification": "Flags only, no historical row excluded or promoted; contact/physics equality not implied."
+    },
+    {
+      "seed": 77320,
+      "arm": "frozen_reactive",
+      "available": true,
+      "checks": {
+        "speed": true,
+        "lateral": true,
+        "yaw": true,
+        "tilt": true,
+        "coverage": true
+      },
+      "coarse_approach_pass": true,
+      "post_reset_quiet_release_verified": false,
+      "qualification": "Flags only, no historical row excluded or promoted; contact/physics equality not implied."
+    },
+    {
+      "seed": 77320,
+      "arm": "delayed_200ms",
+      "available": true,
+      "checks": {
+        "speed": true,
+        "lateral": true,
+        "yaw": true,
+        "tilt": true,
+        "coverage": true
+      },
+      "coarse_approach_pass": true,
+      "post_reset_quiet_release_verified": false,
+      "qualification": "Flags only, no historical row excluded or promoted; contact/physics equality not implied."
+    },
+    {
+      "seed": 77321,
+      "arm": "delayed_200ms",
+      "available": true,
+      "checks": {
+        "speed": true,
+        "lateral": true,
+        "yaw": true,
+        "tilt": true,
+        "coverage": true
+      },
+      "coarse_approach_pass": true,
+      "post_reset_quiet_release_verified": false,
+      "qualification": "Flags only, no historical row excluded or promoted; contact/physics equality not implied."
+    },
+    {
+      "seed": 77321,
+      "arm": "frozen_reactive",
+      "available": true,
+      "checks": {
+        "speed": true,
+        "lateral": true,
+        "yaw": true,
+        "tilt": true,
+        "coverage": true
+      },
+      "coarse_approach_pass": true,
+      "post_reset_quiet_release_verified": false,
+      "qualification": "Flags only, no historical row excluded or promoted; contact/physics equality not implied."
+    },
+    {
+      "seed": 77321,
+      "arm": "full",
+      "available": true,
+      "checks": {
+        "speed": true,
+        "lateral": true,
+        "yaw": true,
+        "tilt": true,
+        "coverage": true
+      },
+      "coarse_approach_pass": true,
+      "post_reset_quiet_release_verified": false,
+      "qualification": "Flags only, no historical row excluded or promoted; contact/physics equality not implied."
+    }
+  ],
+  "pairs": [
+    {
+      "seed": 77320,
+      "arms": [
+        "full",
+        "frozen_reactive"
+      ],
+      "median_speed_difference_m_s": 0.00014506096617977748,
+      "median_lateral_difference_m": 3.950233519481273e-07,
+      "wrapped_median_yaw_difference_deg": 0.05106893495762458,
+      "coarse_pair_balance_pass": true,
+      "caster_support_classes": {
+        "full": {
+          "left": "mixed",
+          "right": "mixed"
+        },
+        "frozen_reactive": {
+          "left": "loaded",
+          "right": "mixed"
+        }
+      },
+      "interpretation": "Precontact covariates only; first-impact quality is NOT a matching/exclusion criterion."
+    },
+    {
+      "seed": 77320,
+      "arms": [
+        "full",
+        "delayed_200ms"
+      ],
+      "median_speed_difference_m_s": 0.000584903759425548,
+      "median_lateral_difference_m": 0.002525989577097112,
+      "wrapped_median_yaw_difference_deg": 0.11238823638192139,
+      "coarse_pair_balance_pass": true,
+      "caster_support_classes": {
+        "full": {
+          "left": "mixed",
+          "right": "mixed"
+        },
+        "delayed_200ms": {
+          "left": "mixed",
+          "right": "unloaded"
+        }
+      },
+      "interpretation": "Precontact covariates only; first-impact quality is NOT a matching/exclusion criterion."
+    },
+    {
+      "seed": 77320,
+      "arms": [
+        "frozen_reactive",
+        "delayed_200ms"
+      ],
+      "median_speed_difference_m_s": 0.00043984279324577047,
+      "median_lateral_difference_m": 0.002525594553745164,
+      "wrapped_median_yaw_difference_deg": 0.06131930142429681,
+      "coarse_pair_balance_pass": true,
+      "caster_support_classes": {
+        "frozen_reactive": {
+          "left": "loaded",
+          "right": "mixed"
+        },
+        "delayed_200ms": {
+          "left": "mixed",
+          "right": "unloaded"
+        }
+      },
+      "interpretation": "Precontact covariates only; first-impact quality is NOT a matching/exclusion criterion."
+    },
+    {
+      "seed": 77321,
+      "arms": [
+        "delayed_200ms",
+        "frozen_reactive"
+      ],
+      "median_speed_difference_m_s": 0.00033611540847450216,
+      "median_lateral_difference_m": 0.002489902489039157,
+      "wrapped_median_yaw_difference_deg": 0.060103843880338376,
+      "coarse_pair_balance_pass": true,
+      "caster_support_classes": {
+        "delayed_200ms": {
+          "left": "loaded",
+          "right": "unloaded"
+        },
+        "frozen_reactive": {
+          "left": "mixed",
+          "right": "mixed"
+        }
+      },
+      "interpretation": "Precontact covariates only; first-impact quality is NOT a matching/exclusion criterion."
+    },
+    {
+      "seed": 77321,
+      "arms": [
+        "delayed_200ms",
+        "full"
+      ],
+      "median_speed_difference_m_s": 0.0008299502568778205,
+      "median_lateral_difference_m": 0.0024325369877242556,
+      "wrapped_median_yaw_difference_deg": 0.16654596497401283,
+      "coarse_pair_balance_pass": true,
+      "caster_support_classes": {
+        "delayed_200ms": {
+          "left": "loaded",
+          "right": "unloaded"
+        },
+        "full": {
+          "left": "mixed",
+          "right": "mixed"
+        }
+      },
+      "interpretation": "Precontact covariates only; first-impact quality is NOT a matching/exclusion criterion."
+    },
+    {
+      "seed": 77321,
+      "arms": [
+        "frozen_reactive",
+        "full"
+      ],
+      "median_speed_difference_m_s": 0.0004938348484033184,
+      "median_lateral_difference_m": 5.7365501314901135e-05,
+      "wrapped_median_yaw_difference_deg": 0.10644212109367446,
+      "coarse_pair_balance_pass": true,
+      "caster_support_classes": {
+        "frozen_reactive": {
+          "left": "mixed",
+          "right": "mixed"
+        },
+        "full": {
+          "left": "mixed",
+          "right": "mixed"
+        }
+      },
+      "interpretation": "Precontact covariates only; first-impact quality is NOT a matching/exclusion criterion."
+    }
+  ],
+  "limits_origin": "Engineering preparation limits, not industry standards or retroactive scoring",
+  "conclusion": "Coarse approach balance cannot establish identical contact state or eliminate reset variance. StageA PI-only repeatability remains necessary before intervention selection.",
+  "excluded_rows": 0,
+  "new_simulation_episodes": 0
+}

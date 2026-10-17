@@ -1,0 +1,21 @@
+{
+  "window_relative_s": [
+    -0.5,
+    2.0
+  ],
+  "baseline_relative_s": [
+    -0.3,
+    -0.05
+  ],
+  "relative_speed_thresholds": [
+    0.95,
+    0.9
+  ],
+  "sustained_s": 0.06,
+  "maximum_sample_gap_s": 0.025,
+  "wheel_radius_m": 0.0625,
+  "cruise_m_s": 0.4,
+  "nonzero_force_epsilon_N": 1e-06,
+  "new_simulation_episodes": 0,
+  "qualification": "Descriptive offline timing, not isolated actuator latency or causal treatment effect. Force epsilon distinguishes numerical zero, not a safety threshold. Native metrics/windows unchanged."
+}

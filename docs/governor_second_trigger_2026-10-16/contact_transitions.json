@@ -1,0 +1,710 @@
+{
+  "full": [
+    {
+      "time_s": 11.668,
+      "component": "caster_left_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.0
+    },
+    {
+      "time_s": 11.679,
+      "component": "caster_left_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.011000000000001009
+    },
+    {
+      "time_s": 11.741,
+      "component": "caster_right_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.0730000000000004
+    },
+    {
+      "time_s": 11.741,
+      "component": "caster_right_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.0730000000000004
+    },
+    {
+      "time_s": 11.746,
+      "component": "caster_left_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.07800000000000118
+    },
+    {
+      "time_s": 11.747,
+      "component": "caster_right_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.07900000000000063
+    },
+    {
+      "time_s": 11.747,
+      "component": "caster_right_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.07900000000000063
+    },
+    {
+      "time_s": 11.752,
+      "component": "caster_right_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.0840000000000014
+    },
+    {
+      "time_s": 11.759,
+      "component": "caster_right_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.09100000000000108
+    },
+    {
+      "time_s": 11.759,
+      "component": "caster_left_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.09100000000000108
+    },
+    {
+      "time_s": 11.839,
+      "component": "caster_right_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.17100000000000115
+    },
+    {
+      "time_s": 11.844,
+      "component": "caster_right_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.17600000000000016
+    },
+    {
+      "time_s": 12.206,
+      "component": "left_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.5380000000000003
+    },
+    {
+      "time_s": 12.231,
+      "component": "left_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.5630000000000006
+    },
+    {
+      "time_s": 12.324,
+      "component": "right_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.6560000000000006
+    },
+    {
+      "time_s": 12.349,
+      "component": "right_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.6810000000000009
+    },
+    {
+      "time_s": 12.358,
+      "component": "left_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.6900000000000013
+    },
+    {
+      "time_s": 12.38,
+      "component": "left_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.7120000000000015
+    },
+    {
+      "time_s": 12.475,
+      "component": "right_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.8070000000000004
+    },
+    {
+      "time_s": 12.5,
+      "component": "right_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05230d7a36ff4a339a8a61ed47454413:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.8320000000000007
+    }
+  ],
+  "frozen_reactive": [
+    {
+      "time_s": 15.111,
+      "component": "caster_left_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.0
+    },
+    {
+      "time_s": 15.115,
+      "component": "caster_left_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.0039999999999995595
+    },
+    {
+      "time_s": 15.194,
+      "component": "caster_right_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.08300000000000018
+    },
+    {
+      "time_s": 15.194,
+      "component": "caster_right_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.08300000000000018
+    },
+    {
+      "time_s": 15.304,
+      "component": "caster_left_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.19299999999999962
+    },
+    {
+      "time_s": 15.304,
+      "component": "caster_left_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.19299999999999962
+    },
+    {
+      "time_s": 15.306,
+      "component": "caster_right_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.1949999999999985
+    },
+    {
+      "time_s": 15.311,
+      "component": "caster_right_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.1999999999999993
+    },
+    {
+      "time_s": 15.709,
+      "component": "left_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.597999999999999
+    },
+    {
+      "time_s": 15.742,
+      "component": "left_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.6310000000000002
+    },
+    {
+      "time_s": 15.837,
+      "component": "right_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.7259999999999991
+    },
+    {
+      "time_s": 15.864,
+      "component": "right_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.7530000000000001
+    },
+    {
+      "time_s": 15.88,
+      "component": "left_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.7690000000000001
+    },
+    {
+      "time_s": 15.9,
+      "component": "left_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.7889999999999997
+    },
+    {
+      "time_s": 16.003,
+      "component": "right_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.8919999999999995
+    },
+    {
+      "time_s": 16.033,
+      "component": "right_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "d5f6bec7529e4cd2b2284d2fdc0d010e:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.9220000000000006
+    }
+  ],
+  "delayed_200ms": [
+    {
+      "time_s": 13.727,
+      "component": "caster_left_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.0
+    },
+    {
+      "time_s": 13.729,
+      "component": "caster_left_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.0019999999999988916
+    },
+    {
+      "time_s": 13.734,
+      "component": "caster_left_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.006999999999999673
+    },
+    {
+      "time_s": 13.736,
+      "component": "caster_left_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.009000000000000341
+    },
+    {
+      "time_s": 13.824,
+      "component": "caster_right_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.09699999999999953
+    },
+    {
+      "time_s": 13.824,
+      "component": "caster_right_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.09699999999999953
+    },
+    {
+      "time_s": 13.966,
+      "component": "caster_left_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.238999999999999
+    },
+    {
+      "time_s": 13.966,
+      "component": "caster_left_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_left_wheel_link::caster_left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.238999999999999
+    },
+    {
+      "time_s": 13.965,
+      "component": "caster_right_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.23799999999999955
+    },
+    {
+      "time_s": 13.988,
+      "component": "caster_right_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::caster_right_wheel_link::caster_right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.26099999999999923
+    },
+    {
+      "time_s": 14.339,
+      "component": "left_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.6120000000000001
+    },
+    {
+      "time_s": 14.371,
+      "component": "left_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.6440000000000001
+    },
+    {
+      "time_s": 14.504,
+      "component": "right_wheel",
+      "event": "begin",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.7769999999999992
+    },
+    {
+      "time_s": 14.518,
+      "component": "left_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.7910000000000004
+    },
+    {
+      "time_s": 14.527,
+      "component": "right_wheel",
+      "event": "end",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.7999999999999989
+    },
+    {
+      "time_s": 14.541,
+      "component": "left_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::left_wheel_link::left_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 0.8140000000000001
+    },
+    {
+      "time_s": 14.665,
+      "component": "right_wheel",
+      "event": "begin",
+      "collisions": [
+        "factory_contact_floor::terrain::terrain_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": false,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": false,
+      "relative_s": 0.9379999999999988
+    },
+    {
+      "time_s": 14.809,
+      "component": "right_wheel",
+      "event": "end",
+      "collisions": [
+        "cable_bumps::cables::C1_collision",
+        "nino::right_wheel_link::right_wheel_link_collision"
+      ],
+      "named_positive_obstacle": true,
+      "episode": "05c87b73a54d40e082f577bc19b7328a:1",
+      "end_time_is_upper_bound": true,
+      "relative_s": 1.081999999999999
+    }
+  ]
+}

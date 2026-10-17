@@ -1,0 +1,26 @@
+{
+  "status": "awaiting_real_measurements",
+  "units": "mm_except_payload_kg",
+  "measured_at": null,
+  "operator": null,
+  "instrument_resolution_mm": null,
+  "estimated_uncertainty_mm": null,
+  "payload_and_installed_equipment": null,
+  "payload_kg_if_known": null,
+  "floor_and_settled_pose_notes": null,
+  "left": {
+    "minimum_bracket_floor_gap_mm": null,
+    "caster_wheel_diameter_mm": null,
+    "swivel_orientation_notes": null,
+    "wheel_supported_on_floor": null,
+    "photo_paths": []
+  },
+  "right": {
+    "minimum_bracket_floor_gap_mm": null,
+    "caster_wheel_diameter_mm": null,
+    "swivel_orientation_notes": null,
+    "wheel_supported_on_floor": null,
+    "photo_paths": []
+  },
+  "warning": "Do not fill these fields with CAD/simulation values. No physical correction has been selected."
+}

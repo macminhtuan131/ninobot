@@ -1,0 +1,43 @@
+{
+  "status": "screen_complete_review_quality_without_automatic_promotion",
+  "attempts": 4,
+  "planned_attempts": 4,
+  "unattempted": [],
+  "pairs": [
+    {
+      "repeat": 1,
+      "available": true,
+      "ratios": {
+        "time": 1.0059880239520953,
+        "tracking": 0.4647106218960762,
+        "whole_vertical_rms": 1.0165488058218068,
+        "whole_vertical_peak": 0.8829619136484331,
+        "crossing_vertical_rms": 0.9544057876414688,
+        "gt_whole_slip": 0.805520525332515,
+        "gt_crossing_slip": 0.6165165370912782
+      }
+    },
+    {
+      "repeat": 2,
+      "available": true,
+      "ratios": {
+        "time": 1.0059523809523814,
+        "tracking": 0.9318068802330873,
+        "whole_vertical_rms": 0.5293871138074638,
+        "whole_vertical_peak": 0.36763432544770513,
+        "crossing_vertical_rms": 0.4358963356518412,
+        "gt_whole_slip": 0.9384211944182568,
+        "gt_crossing_slip": 0.8881648214722635
+      }
+    }
+  ],
+  "quality_ranking_reversal": false,
+  "repeated_recovery_temporal_pattern": false,
+  "historical_instrumentation_pair_not_pooled": true,
+  "no_causal_claim": true,
+  "tuning_started": false,
+  "training_started": false,
+  "predictor_started": false,
+  "parameter_changes": false,
+  "extra_attempts": false
+}

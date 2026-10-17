@@ -1,0 +1,12 @@
+{
+  "status": "pending_user_requirement_no_launch",
+  "primary_metric": null,
+  "minimum_relative_improvement": null,
+  "maximum_added_route_seconds": null,
+  "requirement_origin": null,
+  "units": {
+    "minimum_relative_improvement": "fraction, e.g. 0.10 means 10%, not a recommended threshold",
+    "maximum_added_route_seconds": "simulation seconds per E1 route; not startup/reset wait"
+  },
+  "secondary_quality_rule": "No increase in the other postcontact metric or whole-route vibration/slip; if a noninferiority margin is needed, explicitly revise and seal it before any run."
+}

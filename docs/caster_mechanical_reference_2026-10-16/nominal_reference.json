@@ -1,0 +1,154 @@
+{
+  "reference_frame": "base_footprint",
+  "configuration": "All movable joints zero; level nominal pose",
+  "hardware_verified": false,
+  "inputs_sha256": {
+    "/home/tuanmac/ninorobot/rl_runs/governor_frozen_repeats_2026-10-16/attempt_01/confirmation/repeat/screen/seed_77200_reactive/contact/20261016T070643-606677Z/robot_description.urdf": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+    "/home/tuanmac/ninorobot/src/nino_description/meshes/caster_bracket_front1.STL": "db16e864cb27d8ffc2047ac282d84db30d36806fba976816c973599ead76819b"
+  },
+  "casters": {
+    "left": {
+      "bracket_bounds_m": [
+        [
+          0.22067217823386193,
+          0.06699999842047691,
+          0.009032352626323702
+        ],
+        [
+          0.26461999971687794,
+          0.10899999971687793,
+          0.04500000018998981
+        ]
+      ],
+      "bracket_lowest_nominal_mm": 9.032352626323702,
+      "wheel_diameter_mm": 32.0,
+      "wheel_width_mm": 21.0,
+      "wheel_center_m": [
+        0.22762,
+        0.088,
+        0.016
+      ],
+      "wheel_lowest_nominal_mm": 0.0,
+      "swivel_origin_m": [
+        0.24362,
+        0.088,
+        0.041
+      ],
+      "visual_collision_mesh_aligned": true
+    },
+    "right": {
+      "bracket_bounds_m": [
+        [
+          0.22067217823386193,
+          -0.10900000157952308,
+          0.009032352626323702
+        ],
+        [
+          0.26461999971687794,
+          -0.06700000028312206,
+          0.04500000018998981
+        ]
+      ],
+      "bracket_lowest_nominal_mm": 9.032352626323702,
+      "wheel_diameter_mm": 32.0,
+      "wheel_width_mm": 21.0,
+      "wheel_center_m": [
+        0.22762,
+        -0.088,
+        0.016
+      ],
+      "wheel_lowest_nominal_mm": 0.0,
+      "swivel_origin_m": [
+        0.24362,
+        -0.088,
+        0.041
+      ],
+      "visual_collision_mesh_aligned": true
+    }
+  },
+  "modeled_mass_kg": 5.5905812626,
+  "nominal_aggregate_com_m": [
+    0.08119647076490664,
+    0.0,
+    0.1378306168855348
+  ],
+  "link_masses": [
+    {
+      "link": "base_link",
+      "mass_kg": 2.5,
+      "com_m": [
+        0.0592774512,
+        0.0,
+        0.1473297985
+      ]
+    },
+    {
+      "link": "laser",
+      "mass_kg": 1.3,
+      "com_m": [
+        0.2,
+        0.0,
+        0.2275
+      ]
+    },
+    {
+      "link": "left_wheel_link",
+      "mass_kg": 0.8,
+      "com_m": [
+        0.0,
+        0.1713683296,
+        0.0625
+      ]
+    },
+    {
+      "link": "right_wheel_link",
+      "mass_kg": 0.8,
+      "com_m": [
+        0.0,
+        -0.1713683296,
+        0.0625
+      ]
+    },
+    {
+      "link": "caster_bracket_left_link",
+      "mass_kg": 0.0821604275,
+      "com_m": [
+        0.2419926921,
+        0.088,
+        0.0368705567
+      ]
+    },
+    {
+      "link": "caster_left_wheel_link",
+      "mass_kg": 0.0131302038,
+      "com_m": [
+        0.22762,
+        0.088,
+        0.016
+      ]
+    },
+    {
+      "link": "caster_bracket_right_link",
+      "mass_kg": 0.0821604275,
+      "com_m": [
+        0.2419926921,
+        -0.088,
+        0.0368705567
+      ]
+    },
+    {
+      "link": "caster_right_wheel_link",
+      "mass_kg": 0.0131302038,
+      "com_m": [
+        0.22762,
+        -0.088,
+        0.016
+      ]
+    }
+  ],
+  "limitations": [
+    "Nominal STL vertex bounds do not prove the physics engine contact representation.",
+    "Clearance is not a maximum traversable obstacle height.",
+    "No real mass, dimensions, payload, friction or motor limits measured here."
+  ]
+}

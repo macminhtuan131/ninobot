@@ -1,0 +1,13 @@
+{
+  "status": "proposal_only_not_applied",
+  "primary_metric": "postcontact_GT_slip_square_per_m",
+  "minimum_relative_improvement": 0.1,
+  "maximum_added_route_seconds": 0.5,
+  "secondary_quality_rule": "No worsening of postcontact vibration or whole-route vibration/slip",
+  "arrival_tracking": "Existing physical arrival/stopping and time/path gates retained",
+  "requirement_origin": "proposed_engineering_assumption_not_accepted",
+  "accepted": false,
+  "applied": false,
+  "factory_requirement": false,
+  "budget_released": false
+}

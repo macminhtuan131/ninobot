@@ -1,0 +1,36 @@
+{
+  "status": "offline_executor_verified_no_simulation",
+  "focused_tests_passed": 40,
+  "test_scope": "34 executor tests with fake adapters/processes and synthetic artifacts, plus6 protocol tests; real subprocess launches forbidden in executor tests",
+  "protocol_integrity": {
+    "structure_valid": true,
+    "frozen_files_verified": 30,
+    "workspace_references_verified": 23,
+    "maximum_attempts": 16,
+    "pending_application_fields": [
+      "primary_metric_not_selected",
+      "minimum_relative_improvement_not_fixed",
+      "maximum_added_route_seconds_not_fixed",
+      "application_requirement_origin_not_confirmed"
+    ],
+    "budget_released": false,
+    "execution_authorized": false,
+    "run_allowed": false,
+    "simulator_started": false,
+    "next_step": "Fix application values, seal their hash before results, and review/release this concrete budget separately. This tool has no execution mode."
+  },
+  "offline_attempts": 0,
+  "simulation_episodes": 0,
+  "ROS_Gazebo_processes_started": 0,
+  "approved_release_created": false,
+  "research_criteria_applied": false,
+  "old_four_traces_reaudited": false,
+  "executor_sha256": "9ae7726b767750939d60ebe7df8664fa4c2e385b15bdc86f90e5d79ff60ac2b7",
+  "executor_test_sha256": "5bc17727e73c620a2ce622b961cd449e0cc7d9020aa746aa8a6edf00dec99c5c",
+  "native_scoring_changed": false,
+  "live_integration_validated": false,
+  "automatic_promotion": false,
+  "Optuna_started": false,
+  "predictor_started": false,
+  "PPO_started": false
+}

@@ -1,0 +1,947 @@
+{
+  "first_trigger": {
+    "time_s": 13.802999999999972,
+    "quiet_seconds": 0.0,
+    "confirmed_seconds": 0.1,
+    "rearmed": false,
+    "event": true,
+    "armed_after": false,
+    "phase_before": "CRUISE",
+    "phase_after": "DELAY",
+    "events": 1,
+    "relative_s": 0.07599999999997209,
+    "scale": 1.0,
+    "wheel_error_m_s": 0.22718138309104582,
+    "wheel_threshold_m_s": 0.06044417472836644,
+    "wheel_ratio": 3.758532300457229,
+    "body_rate_latest_hardware_sample": {
+      "stamp_s": 13.8,
+      "age_s": 0.002999999999971692,
+      "value": {
+        "body_rate_xy_rad_s": 0.08192124650434138,
+        "gyro_z_rad_s": 0.34905041585565566
+      }
+    },
+    "body_rate_latest_ratio": 0.23406070429811823,
+    "filtered_vertical_ratio": 5.180551512825368,
+    "total_ratio": 5.180551512825368,
+    "disturbed": true,
+    "feedback_stamp_s": 13.784,
+    "input_joint_sample": {
+      "stamp_s": 13.802,
+      "age_s": 0.0009999999999728004,
+      "value": {
+        "velocity": {
+          "caster_left_swivel_joint": 2.2792062372633745e-10,
+          "caster_left_wheel_joint": 7.697043669035542,
+          "caster_right_swivel_joint": 1.3678461026334337e-11,
+          "caster_right_wheel_joint": -0.10739841292974281,
+          "left_wheel_joint": 2.7405399164064916,
+          "right_wheel_joint": 4.691387013901624
+        },
+        "position": {
+          "caster_left_swivel_joint": 0.1084325950075017,
+          "caster_left_wheel_joint": 129.4084742535932,
+          "caster_right_swivel_joint": 0.0034035843091625357,
+          "caster_right_wheel_joint": 111.17403456225986,
+          "left_wheel_joint": 45.97777429648304,
+          "right_wheel_joint": 45.886760592001295
+        }
+      }
+    },
+    "wheel_error_reconstruction_delta_m_s": 0.0,
+    "total_ratio_reconstruction_delta": 0.0,
+    "threshold_reconstruction_delta_m_s": 0.0,
+    "feedback": {
+      "sim_time_s": 13.784,
+      "requested_linear_m_s": 0.39999495664064844,
+      "requested_yaw_rad_s": 0.008927138253590244,
+      "executed_linear_m_s": 0.39999495664064844,
+      "executed_yaw_rad_s": 0.008927138253590244,
+      "speed_scale": 1.0,
+      "filtered_speed_scale": 1.0,
+      "left_target_rad_s": 6.375442045863225,
+      "right_target_rad_s": 6.424396566637525,
+      "left_actual_rad_s": 7.009883376391934,
+      "right_actual_rad_s": 4.703218499730808,
+      "left_pi_nm": -0.03541631939983575,
+      "right_pi_nm": 0.68373853318986,
+      "left_residual_nm": 0.0,
+      "right_residual_nm": 0.0,
+      "left_requested_effort_nm": -0.03541631939983575,
+      "right_requested_effort_nm": 0.68373853318986,
+      "left_applied_nm": 0.044829918385208126,
+      "right_applied_nm": 0.5269516303912094,
+      "left_limited": 1.0,
+      "right_limited": 1.0,
+      "cmd_fresh": 1.0,
+      "policy_fresh": 0.0,
+      "have_wheel_state": 1.0,
+      "control_updates": 10.0,
+      "control_raw_dt_sum_s": 0.020000000000000004,
+      "control_raw_dt_min_s": 0.002,
+      "control_raw_dt_max_s": 0.002,
+      "control_dt_fallbacks": 0.0,
+      "control_dt_invalid": 0.0,
+      "control_dt_over_4ms": 0.0,
+      "control_joint_age_max_s": 0.002,
+      "control_future_joint_updates": 0.0,
+      "control_configured_period_s": 0.002,
+      "command_received_sim_s": 13.703000000000001
+    },
+    "body": {
+      "stamp_s": 13.8,
+      "age_s": 0.002999999999971692,
+      "value": {
+        "vx": 0.25891810096966184,
+        "yaw_rate": 0.2450744912760689
+      }
+    },
+    "requested_v": 0.3999349204821194,
+    "requested_w": -0.0320620689121
+  },
+  "rearm": {
+    "time_s": 14.40299999999997,
+    "quiet_seconds": 0.30000000000000004,
+    "confirmed_seconds": 0.0,
+    "rearmed": true,
+    "event": false,
+    "armed_after": true,
+    "phase_before": "HOLD",
+    "phase_after": "HOLD",
+    "events": 1,
+    "relative_s": 0.67599999999997,
+    "scale": 0.9,
+    "wheel_error_m_s": 0.035217918715389485,
+    "wheel_threshold_m_s": 0.06087582593537222,
+    "wheel_ratio": 0.5785205896471612,
+    "body_rate_latest_hardware_sample": {
+      "stamp_s": 14.4,
+      "age_s": 0.0029999999999699156,
+      "value": {
+        "body_rate_xy_rad_s": 0.16757258381834367,
+        "gyro_z_rad_s": 0.1477978254635142
+      }
+    },
+    "body_rate_latest_ratio": 0.4787788109095534,
+    "filtered_vertical_ratio": 0.47072539741224534,
+    "total_ratio": 0.5785205896471612,
+    "disturbed": false,
+    "feedback_stamp_s": 14.384,
+    "input_joint_sample": {
+      "stamp_s": 14.402,
+      "age_s": 0.000999999999971024,
+      "value": {
+        "velocity": {
+          "caster_left_swivel_joint": -2.3644903851711974e-12,
+          "caster_left_wheel_joint": -0.0011650480581475364,
+          "caster_right_swivel_joint": 0.3867780992851343,
+          "caster_right_wheel_joint": 21.775355506142425,
+          "left_wheel_joint": 4.968235885288354,
+          "right_wheel_joint": 5.695080993379961
+        },
+        "position": {
+          "caster_left_swivel_joint": 0.04786664275951648,
+          "caster_left_wheel_joint": 137.47045608526705,
+          "caster_right_swivel_joint": 0.07257524969149518,
+          "caster_right_wheel_joint": 115.55531152811645,
+          "left_wheel_joint": 49.231555020883256,
+          "right_wheel_joint": 49.31658605931346
+        }
+      }
+    },
+    "wheel_error_reconstruction_delta_m_s": 0.0,
+    "total_ratio_reconstruction_delta": 0.0,
+    "threshold_reconstruction_delta_m_s": 0.0,
+    "feedback": {
+      "sim_time_s": 14.384,
+      "requested_linear_m_s": 0.3595418383738528,
+      "requested_yaw_rad_s": 0.0805818486294475,
+      "executed_linear_m_s": 0.3595418383738528,
+      "executed_yaw_rad_s": 0.0805818486294475,
+      "speed_scale": 1.0,
+      "filtered_speed_scale": 1.0,
+      "left_target_rad_s": 5.5317225847345854,
+      "right_target_rad_s": 5.973616243228704,
+      "left_actual_rad_s": 4.687256344257316,
+      "right_actual_rad_s": 5.792942398184969,
+      "left_pi_nm": 0.44007722014771145,
+      "right_pi_nm": 0.25281133039390935,
+      "left_residual_nm": 0.0,
+      "right_residual_nm": 0.0,
+      "left_requested_effort_nm": 0.44007722014771145,
+      "right_requested_effort_nm": 0.25281133039390935,
+      "left_applied_nm": 0.42865529596019775,
+      "right_applied_nm": 0.25281133039390935,
+      "left_limited": 1.0,
+      "right_limited": 0.0,
+      "cmd_fresh": 1.0,
+      "policy_fresh": 0.0,
+      "have_wheel_state": 1.0,
+      "control_updates": 10.0,
+      "control_raw_dt_sum_s": 0.020000000000000004,
+      "control_raw_dt_min_s": 0.002,
+      "control_raw_dt_max_s": 0.002,
+      "control_dt_fallbacks": 0.0,
+      "control_dt_invalid": 0.0,
+      "control_dt_over_4ms": 0.0,
+      "control_joint_age_max_s": 0.002,
+      "control_future_joint_updates": 0.0,
+      "control_configured_period_s": 0.002,
+      "command_received_sim_s": 14.303
+    },
+    "body": {
+      "stamp_s": 14.4,
+      "age_s": 0.0029999999999699156,
+      "value": {
+        "vx": 0.3255839428303336,
+        "yaw_rate": 0.16359268974013935
+      }
+    },
+    "requested_v": 0.39973470517550796,
+    "requested_w": 0.06468283372108627
+  },
+  "second_trigger": {
+    "time_s": 14.70299999999997,
+    "quiet_seconds": 0.0,
+    "confirmed_seconds": 0.1,
+    "rearmed": false,
+    "event": true,
+    "armed_after": false,
+    "phase_before": "HOLD",
+    "phase_after": "DELAY",
+    "events": 2,
+    "relative_s": 0.9759999999999689,
+    "scale": 0.9,
+    "wheel_error_m_s": 0.39463399112905007,
+    "wheel_threshold_m_s": 0.06247657969474507,
+    "wheel_ratio": 6.316510811846553,
+    "body_rate_latest_hardware_sample": {
+      "stamp_s": 14.7,
+      "age_s": 0.0029999999999699156,
+      "value": {
+        "body_rate_xy_rad_s": 0.0066123681822581005,
+        "gyro_z_rad_s": -0.9999355018284064
+      }
+    },
+    "body_rate_latest_ratio": 0.018892480520737432,
+    "filtered_vertical_ratio": 3.3489868748589426,
+    "total_ratio": 6.316510811846553,
+    "disturbed": true,
+    "feedback_stamp_s": 14.684000000000001,
+    "input_joint_sample": {
+      "stamp_s": 14.702,
+      "age_s": 0.0009999999999692477,
+      "value": {
+        "velocity": {
+          "caster_left_swivel_joint": -3.616771725861723e-11,
+          "caster_left_wheel_joint": 2.1341849155821726,
+          "caster_right_swivel_joint": -7.466041311996476,
+          "caster_right_wheel_joint": 3.6088398111604514,
+          "left_wheel_joint": 4.65416555046726,
+          "right_wheel_joint": -0.3817983138850481
+        },
+        "position": {
+          "caster_left_swivel_joint": 0.042159439146245724,
+          "caster_left_wheel_joint": 140.8812961434359,
+          "caster_right_swivel_joint": -0.09381666706831232,
+          "caster_right_wheel_joint": 118.28914563859729,
+          "left_wheel_joint": 50.89980710527804,
+          "right_wheel_joint": 50.987134596367795
+        }
+      }
+    },
+    "wheel_error_reconstruction_delta_m_s": 0.0,
+    "total_ratio_reconstruction_delta": 0.0,
+    "threshold_reconstruction_delta_m_s": 0.0,
+    "feedback": {
+      "sim_time_s": 14.684000000000001,
+      "requested_linear_m_s": 0.35970608960674244,
+      "requested_yaw_rad_s": 0.06457148123280472,
+      "executed_linear_m_s": 0.35970608960674244,
+      "executed_yaw_rad_s": 0.06457148123280472,
+      "speed_scale": 1.0,
+      "filtered_speed_scale": 1.0,
+      "left_target_rad_s": 5.5782493232360055,
+      "right_target_rad_s": 5.932345544179753,
+      "left_actual_rad_s": 5.829346555773195,
+      "right_actual_rad_s": 5.75454805311988,
+      "left_pi_nm": 0.11292399324175387,
+      "right_pi_nm": 0.25306420371563837,
+      "left_residual_nm": 0.0,
+      "right_residual_nm": 0.0,
+      "left_requested_effort_nm": 0.11292399324175387,
+      "right_requested_effort_nm": 0.25306420371563837,
+      "left_applied_nm": 0.11292399324175387,
+      "right_applied_nm": -0.1532995100595914,
+      "left_limited": 0.0,
+      "right_limited": 1.0,
+      "cmd_fresh": 1.0,
+      "policy_fresh": 0.0,
+      "have_wheel_state": 1.0,
+      "control_updates": 10.0,
+      "control_raw_dt_sum_s": 0.020000000000000004,
+      "control_raw_dt_min_s": 0.002,
+      "control_raw_dt_max_s": 0.002,
+      "control_dt_fallbacks": 0.0,
+      "control_dt_invalid": 0.0,
+      "control_dt_over_4ms": 0.0,
+      "control_joint_age_max_s": 0.002,
+      "control_future_joint_updates": 0.0,
+      "control_configured_period_s": 0.002,
+      "command_received_sim_s": 14.603000000000002
+    },
+    "body": {
+      "stamp_s": 14.7,
+      "age_s": 0.0029999999999699156,
+      "value": {
+        "vx": 0.15094610281129378,
+        "yaw_rate": -0.9968035782677628
+      }
+    },
+    "requested_v": 0.3995890191778039,
+    "requested_w": 0.08046320440317137
+  },
+  "pre_second_contact_samples": [
+    {
+      "time_s": 14.623,
+      "relative_s": 0.895999999999999,
+      "component": "right_wheel",
+      "kind": "cable",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 26.43944043341628,
+      "points": [
+        {
+          "depth_m": 0.00015561313193757087,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -0.0007075092289596796,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -0.000575039885006845,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 0.00027159973978996277,
+          "force_magnitude_N": 26.43944043341628
+        }
+      ]
+    },
+    {
+      "time_s": 14.628,
+      "relative_s": 0.9009999999999998,
+      "component": "left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 19.055686120574165,
+      "points": [
+        {
+          "depth_m": 2.9828397600795142e-05,
+          "force_magnitude_N": 19.055686120574165
+        }
+      ]
+    },
+    {
+      "time_s": 14.628,
+      "relative_s": 0.9009999999999998,
+      "component": "caster_left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 18.06447299693958,
+      "points": [
+        {
+          "depth_m": 1.424551010131836e-05,
+          "force_magnitude_N": 18.06447299693958
+        }
+      ]
+    },
+    {
+      "time_s": 14.634,
+      "relative_s": 0.907,
+      "component": "right_wheel",
+      "kind": "cable",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 102.97364923336828,
+      "points": [
+        {
+          "depth_m": -8.476201037410647e-05,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -0.0009306130814366043,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 0.000549561285879463,
+          "force_magnitude_N": 102.97364923336828
+        },
+        {
+          "depth_m": 0.00023561168927699327,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    },
+    {
+      "time_s": 14.639,
+      "relative_s": 0.911999999999999,
+      "component": "left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 18.18027107941348,
+      "points": [
+        {
+          "depth_m": 2.9940158128738403e-05,
+          "force_magnitude_N": 18.18027107941348
+        }
+      ]
+    },
+    {
+      "time_s": 14.639,
+      "relative_s": 0.911999999999999,
+      "component": "caster_left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 19.173468324672466,
+      "points": [
+        {
+          "depth_m": 1.4303251191449817e-05,
+          "force_magnitude_N": 19.173468324672466
+        }
+      ]
+    },
+    {
+      "time_s": 14.645,
+      "relative_s": 0.9179999999999993,
+      "component": "right_wheel",
+      "kind": "cable",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 23.83580799922956,
+      "points": [
+        {
+          "depth_m": -0.0006470024236477911,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -0.0014728243695572019,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 0.0001079503635992296,
+          "force_magnitude_N": 23.83580799922956
+        },
+        {
+          "depth_m": -0.00041811345727182925,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    },
+    {
+      "time_s": 14.649000000000001,
+      "relative_s": 0.9220000000000006,
+      "component": "left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 17.941352786434102,
+      "points": [
+        {
+          "depth_m": 3.0450522899627686e-05,
+          "force_magnitude_N": 17.941352786434102
+        }
+      ]
+    },
+    {
+      "time_s": 14.649000000000001,
+      "relative_s": 0.9220000000000006,
+      "component": "caster_left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 18.430832665439702,
+      "points": [
+        {
+          "depth_m": 1.3638287782669067e-05,
+          "force_magnitude_N": 18.430832665439702
+        }
+      ]
+    },
+    {
+      "time_s": 14.656,
+      "relative_s": 0.9290000000000003,
+      "component": "right_wheel",
+      "kind": "cable",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 16.96158796782566,
+      "points": [
+        {
+          "depth_m": -0.001280702301301062,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -0.0002717506140470505,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 0.00021183733770158142,
+          "force_magnitude_N": 16.96158796782566
+        }
+      ]
+    },
+    {
+      "time_s": 14.66,
+      "relative_s": 0.9329999999999998,
+      "component": "left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 18.561709821369515,
+      "points": [
+        {
+          "depth_m": 3.1851232051849365e-05,
+          "force_magnitude_N": 18.561709821369515
+        }
+      ]
+    },
+    {
+      "time_s": 14.66,
+      "relative_s": 0.9329999999999998,
+      "component": "caster_left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 18.773832460188878,
+      "points": [
+        {
+          "depth_m": 1.3029202818870544e-05,
+          "force_magnitude_N": 18.773832460188878
+        }
+      ]
+    },
+    {
+      "time_s": 14.665,
+      "relative_s": 0.9379999999999988,
+      "component": "right_wheel",
+      "kind": "cable",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 6.453856985435771,
+      "points": [
+        {
+          "depth_m": -0.0018279275391250849,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -0.0003610484709497541,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 0.0002383317769272253,
+          "force_magnitude_N": 6.453856985435771
+        }
+      ]
+    },
+    {
+      "time_s": 14.665,
+      "relative_s": 0.9379999999999988,
+      "component": "right_wheel",
+      "kind": "floor",
+      "loaded": false,
+      "sampled_force_magnitude_sum_N": 0.0,
+      "points": [
+        {
+          "depth_m": -0.00176224485039711,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    },
+    {
+      "time_s": 14.671,
+      "relative_s": 0.9439999999999991,
+      "component": "left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 8.262644821336469,
+      "points": [
+        {
+          "depth_m": 3.001093318744097e-05,
+          "force_magnitude_N": 8.262644821336469
+        },
+        {
+          "depth_m": -9.109451639233157e-05,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    },
+    {
+      "time_s": 14.671,
+      "relative_s": 0.9439999999999991,
+      "component": "caster_left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 18.944580987363626,
+      "points": [
+        {
+          "depth_m": 1.2308359146118164e-05,
+          "force_magnitude_N": 18.944580987363626
+        }
+      ]
+    },
+    {
+      "time_s": 14.672,
+      "relative_s": 0.9450000000000003,
+      "component": "caster_right_wheel",
+      "kind": "floor",
+      "loaded": false,
+      "sampled_force_magnitude_sum_N": 0.0,
+      "points": [
+        {
+          "depth_m": -0.00043819285929203033,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    },
+    {
+      "time_s": 14.675,
+      "relative_s": 0.9480000000000004,
+      "component": "right_wheel",
+      "kind": "cable",
+      "loaded": false,
+      "sampled_force_magnitude_sum_N": 0.0,
+      "points": [
+        {
+          "depth_m": -2.3721277102595195e-05,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -0.0004698932752944529,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    },
+    {
+      "time_s": 14.675,
+      "relative_s": 0.9480000000000004,
+      "component": "right_wheel",
+      "kind": "floor",
+      "loaded": false,
+      "sampled_force_magnitude_sum_N": 0.0,
+      "points": [
+        {
+          "depth_m": -0.000378655968233943,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -0.0004028789699077606,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    },
+    {
+      "time_s": 14.681000000000001,
+      "relative_s": 0.9540000000000006,
+      "component": "caster_left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 22.850929839687936,
+      "points": [
+        {
+          "depth_m": -5.8187211834592745e-05,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -2.705833685467951e-05,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 7.964670658111572e-06,
+          "force_magnitude_N": 22.850929839687936
+        }
+      ]
+    },
+    {
+      "time_s": 14.682,
+      "relative_s": 0.9550000000000001,
+      "component": "left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 42.51795686736832,
+      "points": [
+        {
+          "depth_m": -0.00022544329112861305,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -7.975961125339381e-06,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -7.868552347645164e-05,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 2.723187208175659e-06,
+          "force_magnitude_N": 42.51795686736832
+        }
+      ]
+    },
+    {
+      "time_s": 14.684,
+      "relative_s": 0.956999999999999,
+      "component": "caster_right_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 21.66732502415401,
+      "points": [
+        {
+          "depth_m": 4.0376830838795286e-06,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 3.7828460335731506e-05,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 4.40496951341629e-05,
+          "force_magnitude_N": 21.66732502415401
+        }
+      ]
+    },
+    {
+      "time_s": 14.687,
+      "relative_s": 0.9599999999999991,
+      "component": "right_wheel",
+      "kind": "cable",
+      "loaded": false,
+      "sampled_force_magnitude_sum_N": 0.0,
+      "points": [
+        {
+          "depth_m": -0.001082609174773097,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": -7.787963841110468e-05,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    },
+    {
+      "time_s": 14.687,
+      "relative_s": 0.9599999999999991,
+      "component": "right_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 24.30759367751964,
+      "points": [
+        {
+          "depth_m": -3.7839756259927526e-05,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 7.756054401397705e-05,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 8.375570178031921e-05,
+          "force_magnitude_N": 24.30759367751964
+        }
+      ]
+    },
+    {
+      "time_s": 14.692,
+      "relative_s": 0.9649999999999999,
+      "component": "caster_left_wheel",
+      "kind": "floor",
+      "loaded": false,
+      "sampled_force_magnitude_sum_N": 0.0,
+      "points": [
+        {
+          "depth_m": -1.5310943126678467e-06,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    },
+    {
+      "time_s": 14.694,
+      "relative_s": 0.9670000000000005,
+      "component": "left_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 30.408091416391702,
+      "points": [
+        {
+          "depth_m": -0.0007242386345751584,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 5.736947059631348e-07,
+          "force_magnitude_N": 30.408091416391702
+        },
+        {
+          "depth_m": -0.0004422981583047658,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 1.6766838371040649e-06,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    },
+    {
+      "time_s": 14.695,
+      "relative_s": 0.968,
+      "component": "caster_right_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 26.627873246563304,
+      "points": [
+        {
+          "depth_m": 3.617815673351288e-05,
+          "force_magnitude_N": 26.627873246563304
+        },
+        {
+          "depth_m": 3.825251042144373e-05,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    },
+    {
+      "time_s": 14.699,
+      "relative_s": 0.9719999999999995,
+      "component": "right_wheel",
+      "kind": "cable",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 39.872301472489966,
+      "points": [
+        {
+          "depth_m": -0.0011029248125851154,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 5.476201476994902e-05,
+          "force_magnitude_N": 39.872301472489966
+        }
+      ]
+    },
+    {
+      "time_s": 14.699,
+      "relative_s": 0.9719999999999995,
+      "component": "right_wheel",
+      "kind": "floor",
+      "loaded": true,
+      "sampled_force_magnitude_sum_N": 44.03860869091904,
+      "points": [
+        {
+          "depth_m": -5.04011259181425e-05,
+          "force_magnitude_N": 0.0
+        },
+        {
+          "depth_m": 6.965174543438479e-05,
+          "force_magnitude_N": 44.03860869091904
+        },
+        {
+          "depth_m": 7.41332842153497e-05,
+          "force_magnitude_N": 0.0
+        }
+      ]
+    }
+  ],
+  "command_before_trigger": {
+    "stamp_s": 14.684000000000001,
+    "age_s": 0.018999999999968153,
+    "value": {
+      "sim_time_s": 14.684000000000001,
+      "requested_linear_m_s": 0.35970608960674244,
+      "requested_yaw_rad_s": 0.06457148123280472,
+      "executed_linear_m_s": 0.35970608960674244,
+      "executed_yaw_rad_s": 0.06457148123280472,
+      "speed_scale": 1.0,
+      "filtered_speed_scale": 1.0,
+      "left_target_rad_s": 5.5782493232360055,
+      "right_target_rad_s": 5.932345544179753,
+      "left_actual_rad_s": 5.829346555773195,
+      "right_actual_rad_s": 5.75454805311988,
+      "left_pi_nm": 0.11292399324175387,
+      "right_pi_nm": 0.25306420371563837,
+      "left_residual_nm": 0.0,
+      "right_residual_nm": 0.0,
+      "left_requested_effort_nm": 0.11292399324175387,
+      "right_requested_effort_nm": 0.25306420371563837,
+      "left_applied_nm": 0.11292399324175387,
+      "right_applied_nm": -0.1532995100595914,
+      "left_limited": 0.0,
+      "right_limited": 1.0,
+      "cmd_fresh": 1.0,
+      "policy_fresh": 0.0,
+      "have_wheel_state": 1.0,
+      "control_updates": 10.0,
+      "control_raw_dt_sum_s": 0.020000000000000004,
+      "control_raw_dt_min_s": 0.002,
+      "control_raw_dt_max_s": 0.002,
+      "control_dt_fallbacks": 0.0,
+      "control_dt_invalid": 0.0,
+      "control_dt_over_4ms": 0.0,
+      "control_joint_age_max_s": 0.002,
+      "control_future_joint_updates": 0.0,
+      "control_configured_period_s": 0.002,
+      "command_received_sim_s": 14.603000000000002
+    }
+  },
+  "command_100ms_earlier": {
+    "stamp_s": 14.584000000000001,
+    "age_s": 0.018999999999968153,
+    "value": {
+      "sim_time_s": 14.584000000000001,
+      "requested_linear_m_s": 0.35981842078959597,
+      "requested_yaw_rad_s": 0.05077518344609281,
+      "executed_linear_m_s": 0.35981842078959597,
+      "executed_yaw_rad_s": 0.05077518344609281,
+      "speed_scale": 1.0,
+      "filtered_speed_scale": 1.0,
+      "left_target_rad_s": 5.617874598351927,
+      "right_target_rad_s": 5.896314866915144,
+      "left_actual_rad_s": 5.345984779649436,
+      "right_actual_rad_s": 5.507911359027548,
+      "left_pi_nm": 0.2703954353358139,
+      "right_pi_nm": 0.32065398709040926,
+      "left_residual_nm": 0.0,
+      "right_residual_nm": 0.0,
+      "left_requested_effort_nm": 0.2703954353358139,
+      "right_requested_effort_nm": 0.32065398709040926,
+      "left_applied_nm": 0.2703954353358139,
+      "right_applied_nm": 0.32065398709040926,
+      "left_limited": 0.0,
+      "right_limited": 0.0,
+      "cmd_fresh": 1.0,
+      "policy_fresh": 0.0,
+      "have_wheel_state": 1.0,
+      "control_updates": 10.0,
+      "control_raw_dt_sum_s": 0.020000000000000004,
+      "control_raw_dt_min_s": 0.002,
+      "control_raw_dt_max_s": 0.002,
+      "control_dt_fallbacks": 0.0,
+      "control_dt_invalid": 0.0,
+      "control_dt_over_4ms": 0.0,
+      "control_joint_age_max_s": 0.002,
+      "control_future_joint_updates": 0.0,
+      "control_configured_period_s": 0.002,
+      "command_received_sim_s": 14.503
+    }
+  },
+  "preceding_200ms_executed_v_m_s": {
+    "n": 10,
+    "minimum": 0.35970608960674244,
+    "maximum": 0.35981842078959597,
+    "median": 0.3597622551981692
+  },
+  "preceding_200ms_executed_w_rad_s": {
+    "n": 10,
+    "minimum": 0.05077518344609281,
+    "maximum": 0.06457148123280472,
+    "median": 0.05767333233944877
+  },
+  "reconstruction_near_event_pass": true,
+  "reconstructed_all_focused_timeline": {
+    "samples": 28,
+    "max_abs_wheel_error_delta_m_s": 0.00048528553634380467,
+    "max_abs_total_ratio_delta": 0.0,
+    "max_abs_threshold_delta_m_s": 0.0
+  },
+  "caveat": "Contact transition is supported by ordering and sampled load, not proof of unique causal force or sim-to-real fidelity. IMU latest-sample replay does not establish subscriber callback identity."
+}

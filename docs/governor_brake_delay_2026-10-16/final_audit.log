@@ -1,0 +1,113 @@
+{
+  "decision": {
+    "status": "reject_200ms_delay_for_tested_scope_no_further_sweep",
+    "attempts": 6,
+    "timing_pass": true,
+    "complete": true,
+    "both_seed_directional_benefit": false,
+    "existing_time_tracking_gates_pass": false,
+    "aggregate": {
+      "full": {
+        "time_s": 16.60000000000003,
+        "physical_rmse_m": 0.003729126013616106
+      },
+      "frozen_reactive": {
+        "time_s": 16.700000000000074,
+        "physical_rmse_m": 0.0039853512694518305,
+        "mean_time_ratio": 1.006024096385545,
+        "mean_tracking_ratio": 1.0687091975171052,
+        "existing_time_tracking_gates_pass": false
+      },
+      "delayed_200ms": {
+        "time_s": 16.80000000000005,
+        "physical_rmse_m": 0.006905885633747836,
+        "mean_time_ratio": 1.0120481927710856,
+        "mean_tracking_ratio": 1.8518777881284976,
+        "existing_time_tracking_gates_pass": false
+      }
+    },
+    "qualification": "Two seed blocks, one run per arm/block; no causal or significance claim, no exclusion of spikes/failures, not hardware validation.",
+    "optuna_started": false,
+    "training_started": false,
+    "predictor_started": false,
+    "extra_episodes": false
+  },
+  "pairs": [
+    {
+      "seed": 77320,
+      "reference": "full",
+      "available": true,
+      "ratios": {
+        "time_s": 1.0120481927710867,
+        "physical_rmse_m": 2.769568951049184,
+        "whole_vertical_rms": 1.1274913685828094,
+        "whole_vertical_peak": 1.0024315448590058,
+        "crossing_vertical_rms": 0.893046188304001,
+        "gt_native_whole_slip_rms": 1.8109746089528802,
+        "gt_native_crossing_slip2_per_m": 3.11964601786522,
+        "primary_whole_slip_rms": 1.9442228731250553,
+        "primary_crossing_slip2_per_m": 3.618385201992505,
+        "shifted_whole_slip_rms": 2.371663379174141,
+        "shifted_crossing_slip2_per_m": 6.144618820496823
+      },
+      "crossing_slip_grid_ranking_reversal": false
+    },
+    {
+      "seed": 77320,
+      "reference": "frozen_reactive",
+      "available": true,
+      "ratios": {
+        "time_s": 1.0059880239520942,
+        "physical_rmse_m": 2.4055893523963356,
+        "whole_vertical_rms": 1.0931735173994404,
+        "whole_vertical_peak": 0.6843737802030612,
+        "crossing_vertical_rms": 0.651052709724548,
+        "gt_native_whole_slip_rms": 1.4325712164202675,
+        "gt_native_crossing_slip2_per_m": 2.825416490909818,
+        "primary_whole_slip_rms": 1.330866732753331,
+        "primary_crossing_slip2_per_m": 2.1044296395943585,
+        "shifted_whole_slip_rms": 1.7585535473135998,
+        "shifted_crossing_slip2_per_m": 4.843354074816294
+      },
+      "crossing_slip_grid_ranking_reversal": false
+    },
+    {
+      "seed": 77321,
+      "reference": "full",
+      "available": true,
+      "ratios": {
+        "time_s": 1.0120481927710843,
+        "physical_rmse_m": 0.9669346508425108,
+        "whole_vertical_rms": 1.117697091594909,
+        "whole_vertical_peak": 1.5864350638213702,
+        "crossing_vertical_rms": 1.3562431362966982,
+        "gt_native_whole_slip_rms": 0.9861964623404207,
+        "gt_native_crossing_slip2_per_m": 1.002257735564192,
+        "primary_whole_slip_rms": 1.0200643512202319,
+        "primary_crossing_slip2_per_m": 1.0951746801369342,
+        "shifted_whole_slip_rms": 1.040513004172616,
+        "shifted_crossing_slip2_per_m": 1.186674956337907
+      },
+      "crossing_slip_grid_ranking_reversal": false
+    },
+    {
+      "seed": 77321,
+      "reference": "frozen_reactive",
+      "available": true,
+      "ratios": {
+        "time_s": 1.0059880239520946,
+        "physical_rmse_m": 0.9776298397437818,
+        "whole_vertical_rms": 0.9903147030785765,
+        "whole_vertical_peak": 0.6232210128160833,
+        "crossing_vertical_rms": 0.7960983757460447,
+        "gt_native_whole_slip_rms": 0.9018147958893746,
+        "gt_native_crossing_slip2_per_m": 0.738165045948432,
+        "primary_whole_slip_rms": 0.9544357707622034,
+        "primary_crossing_slip2_per_m": 0.8707877071508615,
+        "shifted_whole_slip_rms": 0.9621097775996494,
+        "shifted_crossing_slip2_per_m": 0.8671900879832853
+      },
+      "crossing_slip_grid_ranking_reversal": false
+    }
+  ]
+}

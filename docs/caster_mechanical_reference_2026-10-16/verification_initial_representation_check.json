@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "four_captured_urdfs": true,
+    "captured_urdfs_identical": true,
+    "repeat_extraction_identical": false,
+    "bracket_clearance_matches_independent_prior_vertex_audit": true,
+    "both_wheels_on_nominal_floor": true,
+    "nominal_mass_independent_sum": true,
+    "nominal_com_independent_scalar_moments": true,
+    "rotation_convention_quarter_turn": true,
+    "runtime_hashes_unchanged": true,
+    "config_hash_unchanged": true,
+    "real_measurements_still_unknown": true,
+    "preservation_before.json_unchanged": true,
+    "source_manifest_sha256.json_unchanged": true
+  },
+  "all_pass": false,
+  "manifests": {
+    "preservation_before.json": {
+      "files": 1093,
+      "changed": []
+    },
+    "source_manifest_sha256.json": {
+      "files": 165,
+      "changed": []
+    }
+  },
+  "extractor_sha256": "78d6b68e1648a056d5243e94b3dc7719fb3d6f5e89b3f455fe1530e31a6aa72d",
+  "new_simulation_episodes": 0,
+  "physics_controller_or_metric_changes": false,
+  "qualification": "Offline arithmetic/provenance checks, not hardware/contact fidelity tests."
+}

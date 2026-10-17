@@ -1,0 +1,331 @@
+{
+  "revision": "frozen_confirmation_position_yaw_only_v1",
+  "variant": "cable_box_capsule",
+  "seed": null,
+  "world_name": "factory_floor_lab",
+  "world_file": "scenario.sdf",
+  "floor": {
+    "x_m": [
+      -2.0,
+      8.0
+    ],
+    "y_m": [
+      -3.5,
+      3.5
+    ],
+    "start_xy_m": [
+      0.0,
+      0.0
+    ],
+    "goal_xy_m": [
+      6.45,
+      0.0
+    ],
+    "mesh_spacing_m": 0.005,
+    "flat_mesh_spacing_m": 0.04,
+    "representation": "continuous_mesh",
+    "terrain_view_bounds_xy_m": [
+      0.2,
+      6.2,
+      -1.8,
+      1.8
+    ],
+    "physics_step_seconds": 0.001
+  },
+  "goal_halls": [
+    {
+      "id": "W1",
+      "direction": "west",
+      "bounds_xy_m": [
+        -2.0,
+        0.2,
+        -3.5,
+        3.5
+      ],
+      "goal_pose": [
+        -1.0,
+        0.0,
+        3.141592653589793
+      ]
+    },
+    {
+      "id": "E1",
+      "direction": "east",
+      "bounds_xy_m": [
+        6.2,
+        8.0,
+        -3.5,
+        3.5
+      ],
+      "goal_pose": [
+        6.45,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "N1",
+      "direction": "north",
+      "bounds_xy_m": [
+        0.2,
+        6.2,
+        2.0,
+        3.5
+      ],
+      "goal_pose": [
+        3.2,
+        2.75,
+        1.5707963267948966
+      ]
+    },
+    {
+      "id": "S1",
+      "direction": "south",
+      "bounds_xy_m": [
+        0.2,
+        6.2,
+        -3.5,
+        -2.0
+      ],
+      "goal_pose": [
+        3.2,
+        -2.75,
+        -1.5707963267948966
+      ]
+    }
+  ],
+  "drawn_routes": [
+    {
+      "id": "E1",
+      "goal_heading_deg": 0.0,
+      "waypoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          6.45,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": "N1",
+      "goal_heading_deg": 90.0,
+      "waypoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.2,
+          0.0
+        ],
+        [
+          3.2,
+          2.75
+        ]
+      ]
+    },
+    {
+      "id": "S1",
+      "goal_heading_deg": -90.0,
+      "waypoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.2,
+          0.0
+        ],
+        [
+          3.2,
+          -2.75
+        ]
+      ]
+    },
+    {
+      "id": "W1",
+      "goal_heading_deg": 180.0,
+      "waypoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.3,
+          0.5
+        ],
+        [
+          0.8,
+          1.1
+        ],
+        [
+          1.7,
+          1.45
+        ],
+        [
+          3.0,
+          1.6
+        ],
+        [
+          4.5,
+          1.6
+        ],
+        [
+          5.7,
+          1.45
+        ],
+        [
+          6.35,
+          1.0
+        ],
+        [
+          6.7,
+          0.35
+        ],
+        [
+          6.7,
+          -0.65
+        ],
+        [
+          6.3,
+          -1.25
+        ],
+        [
+          5.5,
+          -1.55
+        ],
+        [
+          4.0,
+          -1.65
+        ],
+        [
+          2.5,
+          -1.65
+        ],
+        [
+          1.1,
+          -1.4
+        ],
+        [
+          0.1,
+          -0.9
+        ],
+        [
+          -0.35,
+          -0.35
+        ],
+        [
+          -0.55,
+          0.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ]
+    }
+  ],
+  "route_config": "src/nino_rl/config/factory_floor_routes_pi_check.yaml",
+  "adaptive_zone": {
+    "x_m": [
+      0.55,
+      5.65
+    ],
+    "y_m": [
+      -0.5,
+      0.5
+    ],
+    "initial_features": 1,
+    "maximum_features": 6
+  },
+  "depressions": [],
+  "cables": [
+    {
+      "id": "C1",
+      "x_m": 3.65,
+      "y_m": 0.0,
+      "radius_m": 0.011,
+      "length_m": 4.0,
+      "angle_deg": 6
+    }
+  ],
+  "thresholds": [],
+  "display_items": [],
+  "floor_tiles_xy_m": [],
+  "terrain_mesh": {
+    "mesh": "terrain_68683d047cc91c1e.stl",
+    "bounds_xy_m": [
+      -2.0,
+      8.0,
+      -3.5,
+      3.5
+    ],
+    "mesh_sha256": "de30fa825d2de68903dc31f03c98ff073cfbf015960e2069508e0c73544ba05c",
+    "triangles": 2,
+    "representation": "continuous_mesh",
+    "depression_spacing_m": 0.005,
+    "flat_spacing_m": 0.04,
+    "sampled_depth_m": -0.0
+  },
+  "world_sha256": "31a735373631b3c6232366d7bdbc0489b3e5bd61abd7748c7a081a30854af63f",
+  "terrain_background": "exactly level z=0 outside carved patches",
+  "terrain_template": "combined_rough_section.sdf: rough_approach_ground",
+  "obstacles_physically_validated": false,
+  "generator_starts_simulator": false,
+  "randomization": "fixed layout",
+  "per_episode_randomization": false,
+  "training_allowed": false,
+  "optuna_allowed": false,
+  "first_contact_detection_implemented": false,
+  "snapshot_branching_implemented": false,
+  "contact_instrumentation": true,
+  "notes": [
+    "Solid box contact floor and capsule collision retained from parent.",
+    "Only cable collision/visual x and yaw changed. Geometry is evaluation-only."
+  ],
+  "diagnostic_control": {
+    "revision": "clear_mesh_vs_box_v1_2026_10_15",
+    "parent_world": "factory_floor_cable_contact_lab.sdf",
+    "parent_world_sha256": "31a735373631b3c6232366d7bdbc0489b3e5bd61abd7748c7a081a30854af63f",
+    "change": "Only terrain collision mesh and its pose replaced; visuals and surface parameters retained",
+    "collision_kind": "solid_box",
+    "size_m": [
+      10.0,
+      7.0,
+      0.1
+    ],
+    "center_xyz_m": [
+      3.0,
+      0.0,
+      -0.05
+    ],
+    "top_z_m": 0.0,
+    "validated": false,
+    "not_for_depression_worlds": true
+  },
+  "cable_collision_control": {
+    "revision": "cylinder_capsule_AB_2026_10_16",
+    "parent_world": "factory_floor_cable_box_contact_lab.sdf",
+    "parent_world_sha256": "b72b8465748ff5488db00ec56d6e21842030659c8aede174715e346566027aad",
+    "change": "Only C1 collision cylinder replaced by capsule; local radius/cylindrical-section length, pose, visuals and friction unchanged",
+    "radius_m": 0.011,
+    "cylindrical_section_length_m": 4.0,
+    "total_capsule_length_m": 4.022,
+    "validated": false,
+    "deployment_default_changed": false,
+    "qualification": "Contact-numerics sensitivity control, not a deformable cable or verified physical correction"
+  },
+  "parent_world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+  "scenario": {
+    "id": "v3",
+    "x_m": 3.65,
+    "angle_deg": 6,
+    "seeds": [
+      77106,
+      77107
+    ]
+  }
+}

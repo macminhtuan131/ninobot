@@ -1,0 +1,1530 @@
+[
+  {
+    "seed": 77320,
+    "arm": "full",
+    "case": "/home/tuanmac/ninorobot/rl_runs/governor_brake_delay_2026-10-16/attempt_01/confirmation/height/screen/seed_77320_full",
+    "native_physical_pass": true,
+    "legacy_reporting_pass": true,
+    "available": true,
+    "approach": {
+      "v": {
+        "n": 12,
+        "median": 0.39759565144710896,
+        "minimum": 0.39691889972352845,
+        "maximum": 0.39806306237820055
+      },
+      "w": {
+        "n": 12,
+        "median": -0.0034624219708317924,
+        "minimum": -0.021720830971517717,
+        "maximum": -0.0009435402234752933
+      },
+      "y": {
+        "n": 12,
+        "median": 0.0005894408152645101,
+        "minimum": 0.00039519595350631333,
+        "maximum": 0.0007663091122249267
+      },
+      "yaw": {
+        "n": 12,
+        "median": -0.004415574182551143,
+        "minimum": -0.004746921199023637,
+        "maximum": -0.003558347150100467
+      },
+      "roll": {
+        "n": 12,
+        "median": 4.409945670169057e-06,
+        "minimum": -3.6670845907169975e-06,
+        "maximum": 8.844224715681993e-05
+      },
+      "pitch": {
+        "n": 12,
+        "median": -1.2110896946166941e-05,
+        "minimum": -9.769298852610933e-05,
+        "maximum": 4.988707653326752e-06
+      },
+      "window_s": [
+        11.367999999999999,
+        11.617999999999999
+      ],
+      "coverage_fraction": 1.0,
+      "caster": {
+        "left": {
+          "floor_loaded_fraction": 0.7727272727272727,
+          "load_class": "mixed",
+          "rolling_rad_s": {
+            "n": 112,
+            "median": 24.843283981830822,
+            "minimum": -0.006837472253186566,
+            "maximum": 25.13617059448753
+          },
+          "swivel_rate_rad_s": {
+            "n": 112,
+            "median": 2.311795779472407e-10,
+            "minimum": -0.10721659707992003,
+            "maximum": 0.21889037113582135
+          },
+          "last_swivel_rad": -0.0011619407381932758,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        },
+        "right": {
+          "floor_loaded_fraction": 0.3181818181818182,
+          "load_class": "mixed",
+          "rolling_rad_s": {
+            "n": 112,
+            "median": 0.8417392241479151,
+            "minimum": -0.006464513356809403,
+            "maximum": 25.037003351375407
+          },
+          "swivel_rate_rad_s": {
+            "n": 112,
+            "median": -1.5038583993346615e-14,
+            "minimum": -0.07048595029212187,
+            "maximum": 0.24158216401699306
+          },
+          "last_swivel_rad": -0.008086433239762181,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        }
+      }
+    },
+    "reset": {
+      "window_s": [
+        3.545,
+        4.045
+      ],
+      "samples": 25,
+      "max_abs_v_m_s": 0.0007213042312782752,
+      "max_abs_w_rad_s": 0.0,
+      "post_reset_release_verified": false,
+      "qualification": "Pre-epoch diagnostic window can straddle teleport/settling; never use it to certify a continuous post-reset standstill. Online release barrier not implemented."
+    },
+    "contact_end": {
+      "available": true,
+      "last_end_upper_bound_s": 12.5,
+      "active_components": [],
+      "reason": null
+    },
+    "last_loaded_contact_sample_s": 12.486,
+    "windows": {
+      "available": true,
+      "contact_start_s": 11.668,
+      "contact_end_s": 13.64,
+      "recovery_end_s": 13.94,
+      "recovery_available": true,
+      "fixed_horizon_end_s": 14.668,
+      "fixed_horizon_available": true,
+      "qualification": "Contact end=max(clearance,last manifold end upper bound+0.2s); keep fixed 3s outcome too, so a longer adaptive window cannot dilute RMS unnoticed."
+    },
+    "metrics": {
+      "legacy_crossing": {
+        "slip": {
+          "available": true,
+          "start_s": 11.718,
+          "end_s": 13.64,
+          "duration_s": 1.9220000000000006,
+          "coverage_s": 1.9220000000000006,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.007169688891085589,
+          "slip_square_integral_s": 0.007169688891085589,
+          "rms": 0.061076404663341154,
+          "distance_m": 0.749294722551527,
+          "slip_square_per_m": 0.009568583196036788
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.6430183817990538,
+          "peak": 7.101618358062355,
+          "p95_abs": 4.459845047728585,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 1.9220000000000006
+      },
+      "fixed_3s_after_contact": {
+        "slip": {
+          "available": true,
+          "start_s": 11.668,
+          "end_s": 14.668,
+          "duration_s": 3.0,
+          "coverage_s": 3.0,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.00916451647689838,
+          "slip_square_integral_s": 0.00916451647689838,
+          "rms": 0.05527059639295376,
+          "distance_m": 1.1775515366593832,
+          "slip_square_per_m": 0.007782688223478829
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.4654059862947066,
+          "peak": 7.101618358062355,
+          "p95_abs": 3.6493811515503953,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 3.0
+      },
+      "whole_contact_sequence": {
+        "slip": {
+          "available": true,
+          "start_s": 11.668,
+          "end_s": 13.64,
+          "duration_s": 1.9720000000000013,
+          "coverage_s": 1.9720000000000013,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.009163691006564336,
+          "slip_square_integral_s": 0.009163691006564336,
+          "rms": 0.06816819003865521,
+          "distance_m": 0.7660860845629427,
+          "slip_square_per_m": 0.011961698810639907
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.7658798541059466,
+          "peak": 7.101618358062355,
+          "p95_abs": 4.937551817557173,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 1.9720000000000013
+      },
+      "contact_and_confirmed_recovery": {
+        "slip": {
+          "available": true,
+          "start_s": 11.668,
+          "end_s": 13.94,
+          "duration_s": 2.2720000000000002,
+          "coverage_s": 2.2720000000000002,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.009164030600881563,
+          "slip_square_integral_s": 0.009164030600881563,
+          "rms": 0.06350955969712924,
+          "distance_m": 0.8863187647687116,
+          "slip_square_per_m": 0.010339429745993197
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.6502048342861868,
+          "peak": 7.101618358062355,
+          "p95_abs": 4.54232976641474,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.2720000000000002
+      }
+    },
+    "negative_control": {
+      "available": true,
+      "latest_support_s": 11.72,
+      "first_reduced_command_s": null,
+      "reason": null,
+      "GT_slip": {
+        "available": true,
+        "start_s": 11.668,
+        "end_s": 11.718,
+        "duration_s": 0.05000000000000071,
+        "coverage_s": 0.05000000000000071,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.0019940021154787445,
+        "slip_square_integral_s": 0.0019940021154787445,
+        "rms": 0.19969988059479235,
+        "distance_m": 0.016791362011415758,
+        "slip_square_per_m": 0.1187516601764112
+      }
+    },
+    "all_triggers": [],
+    "command_recovery": {
+      "begin_s": 13.644999999999966,
+      "confirmed_s": 13.946000000000002
+    },
+    "body_recovery": {
+      "begin_s": 13.64,
+      "confirmed_s": 13.94
+    },
+    "combined_recovery": {
+      "begin_s": 13.64,
+      "confirmed_s": 13.94
+    },
+    "native_metrics_untouched": true,
+    "diagnostic_only_not_new_candidate_validation": true
+  },
+  {
+    "seed": 77320,
+    "arm": "frozen_reactive",
+    "case": "/home/tuanmac/ninorobot/rl_runs/governor_brake_delay_2026-10-16/attempt_02/confirmation/height/screen/seed_77320_reactive",
+    "native_physical_pass": true,
+    "legacy_reporting_pass": true,
+    "available": true,
+    "approach": {
+      "v": {
+        "n": 13,
+        "median": 0.39774071241328873,
+        "minimum": 0.3969917034561553,
+        "maximum": 0.39828802340997604
+      },
+      "w": {
+        "n": 13,
+        "median": -0.00248184800654877,
+        "minimum": -0.01637253062529942,
+        "maximum": -0.000480013505218556
+      },
+      "y": {
+        "n": 13,
+        "median": 0.000589045791912562,
+        "minimum": 0.00041974275752367494,
+        "maximum": 0.0007364674271712856
+      },
+      "yaw": {
+        "n": 13,
+        "median": -0.003524253122053763,
+        "minimum": -0.003752648166312245,
+        "maximum": -0.0027855703163431425
+      },
+      "roll": {
+        "n": 13,
+        "median": 2.2398338107467817e-06,
+        "minimum": -1.909193443995927e-05,
+        "maximum": 7.824456253042672e-05
+      },
+      "pitch": {
+        "n": 13,
+        "median": -8.274407130415546e-06,
+        "minimum": -0.00011391131651302154,
+        "maximum": -5.265678779199953e-07
+      },
+      "window_s": [
+        14.811,
+        15.061
+      ],
+      "coverage_fraction": 1.0,
+      "caster": {
+        "left": {
+          "floor_loaded_fraction": 0.8260869565217391,
+          "load_class": "loaded",
+          "rolling_rad_s": {
+            "n": 124,
+            "median": 24.85156969727879,
+            "minimum": -0.004625978524651445,
+            "maximum": 25.008686478292322
+          },
+          "swivel_rate_rad_s": {
+            "n": 124,
+            "median": 1.651685502117203e-10,
+            "minimum": -0.09057903740222273,
+            "maximum": 0.22428001251006296
+          },
+          "last_swivel_rad": -0.0007351037953145966,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        },
+        "right": {
+          "floor_loaded_fraction": 0.22727272727272727,
+          "load_class": "mixed",
+          "rolling_rad_s": {
+            "n": 124,
+            "median": 2.9784493957783846,
+            "minimum": -0.003580120052742348,
+            "maximum": 24.948424056502095
+          },
+          "swivel_rate_rad_s": {
+            "n": 124,
+            "median": -1.1608487545144476e-14,
+            "minimum": -0.23796026915595903,
+            "maximum": 0.21050194960229815
+          },
+          "last_swivel_rad": -0.005780455390039211,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        }
+      }
+    },
+    "reset": {
+      "window_s": [
+        6.987,
+        7.487
+      ],
+      "samples": 25,
+      "max_abs_v_m_s": 0.00022718590279725628,
+      "max_abs_w_rad_s": 0.0005939896308431318,
+      "post_reset_release_verified": false,
+      "qualification": "Pre-epoch diagnostic window can straddle teleport/settling; never use it to certify a continuous post-reset standstill. Online release barrier not implemented."
+    },
+    "contact_end": {
+      "available": true,
+      "last_end_upper_bound_s": 16.033,
+      "active_components": [],
+      "reason": null
+    },
+    "last_loaded_contact_sample_s": 16.014,
+    "windows": {
+      "available": true,
+      "contact_start_s": 15.111,
+      "contact_end_s": 17.18,
+      "recovery_end_s": 17.48,
+      "recovery_available": true,
+      "fixed_horizon_end_s": 18.111,
+      "fixed_horizon_available": true,
+      "qualification": "Contact end=max(clearance,last manifold end upper bound+0.2s); keep fixed 3s outcome too, so a longer adaptive window cannot dilute RMS unnoticed."
+    },
+    "metrics": {
+      "legacy_crossing": {
+        "slip": {
+          "available": true,
+          "start_s": 15.161000000000001,
+          "end_s": 17.18,
+          "duration_s": 2.0189999999999984,
+          "coverage_s": 2.0189999999999984,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.007895519444303039,
+          "slip_square_integral_s": 0.007895519444303039,
+          "rms": 0.06253486177523437,
+          "distance_m": 0.74732623377713,
+          "slip_square_per_m": 0.010565023797435251
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 2.1754967258570157,
+          "peak": 14.364184356608098,
+          "p95_abs": 3.6434608168662788,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.0189999999999984
+      },
+      "fixed_3s_after_contact": {
+        "slip": {
+          "available": true,
+          "start_s": 15.111,
+          "end_s": 18.111,
+          "duration_s": 3.0,
+          "coverage_s": 3.0,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.014580152194764297,
+          "slip_square_integral_s": 0.014580152194764297,
+          "rms": 0.06971406408744292,
+          "distance_m": 1.1337947481981536,
+          "slip_square_per_m": 0.012859604631204483
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.9053961746928971,
+          "peak": 14.364184356608098,
+          "p95_abs": 3.722063214436174,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 3.0
+      },
+      "whole_contact_sequence": {
+        "slip": {
+          "available": true,
+          "start_s": 15.111,
+          "end_s": 17.18,
+          "duration_s": 2.068999999999999,
+          "coverage_s": 2.068999999999999,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.014579321531289567,
+          "slip_square_integral_s": 0.014579321531289567,
+          "rms": 0.0839437587369034,
+          "distance_m": 0.7607865633611808,
+          "slip_square_per_m": 0.01916348452170032
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 2.2666393813856747,
+          "peak": 14.364184356608098,
+          "p95_abs": 4.299689957273497,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.068999999999999
+      },
+      "contact_and_confirmed_recovery": {
+        "slip": {
+          "available": true,
+          "start_s": 15.111,
+          "end_s": 17.48,
+          "duration_s": 2.3689999999999998,
+          "coverage_s": 2.3689999999999998,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.014579609969817072,
+          "slip_square_integral_s": 0.014579609969817072,
+          "rms": 0.0784495438392389,
+          "distance_m": 0.8810657695097497,
+          "slip_square_per_m": 0.01654769765704277
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 2.1260413629476975,
+          "peak": 14.364184356608098,
+          "p95_abs": 4.213426417520733,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.3689999999999998
+      }
+    },
+    "negative_control": {
+      "available": true,
+      "latest_support_s": 15.18,
+      "first_reduced_command_s": 15.186999999999973,
+      "reason": null,
+      "GT_slip": {
+        "available": true,
+        "start_s": 15.111,
+        "end_s": 15.161000000000001,
+        "duration_s": 0.05000000000000071,
+        "coverage_s": 0.05000000000000071,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.006683802086986525,
+        "slip_square_integral_s": 0.006683802086986525,
+        "rms": 0.36561734332458656,
+        "distance_m": 0.013460329584050664,
+        "slip_square_per_m": 0.4965556040251984
+      }
+    },
+    "all_triggers": [
+      {
+        "time_s": 15.186999999999973,
+        "event": 1,
+        "phase": "HOLD"
+      }
+    ],
+    "command_recovery": {
+      "begin_s": 17.186999999999987,
+      "confirmed_s": 17.48699999999999
+    },
+    "body_recovery": {
+      "begin_s": 17.18,
+      "confirmed_s": 17.48
+    },
+    "combined_recovery": {
+      "begin_s": 17.18,
+      "confirmed_s": 17.48
+    },
+    "native_metrics_untouched": true,
+    "diagnostic_only_not_new_candidate_validation": true
+  },
+  {
+    "seed": 77320,
+    "arm": "delayed_200ms",
+    "case": "/home/tuanmac/ninorobot/rl_runs/governor_brake_delay_2026-10-16/attempt_03/confirmation/height/screen/seed_77320_reactive",
+    "native_physical_pass": true,
+    "legacy_reporting_pass": true,
+    "available": true,
+    "approach": {
+      "v": {
+        "n": 12,
+        "median": 0.3981805552065345,
+        "minimum": 0.397864838023705,
+        "maximum": 0.3990246872334159
+      },
+      "w": {
+        "n": 12,
+        "median": 0.00778969608041865,
+        "minimum": -0.0032515123592263377,
+        "maximum": 0.010127326687989479
+      },
+      "y": {
+        "n": 12,
+        "median": -0.001936548761832602,
+        "minimum": -0.002018757212274281,
+        "maximum": -0.0018177380836149144
+      },
+      "yaw": {
+        "n": 12,
+        "median": -0.0024540294171769353,
+        "minimum": -0.0030264583368819513,
+        "maximum": -0.001514263014969198
+      },
+      "roll": {
+        "n": 12,
+        "median": 1.8595706335651644e-06,
+        "minimum": -8.09353316712863e-06,
+        "maximum": 2.456176150874381e-05
+      },
+      "pitch": {
+        "n": 12,
+        "median": -9.483530790633252e-06,
+        "minimum": -4.260681003112145e-05,
+        "maximum": 1.5946546612567342e-05
+      },
+      "window_s": [
+        13.427,
+        13.677
+      ],
+      "coverage_fraction": 1.0,
+      "caster": {
+        "left": {
+          "floor_loaded_fraction": 0.782608695652174,
+          "load_class": "mixed",
+          "rolling_rad_s": {
+            "n": 125,
+            "median": 24.834634579161694,
+            "minimum": -0.0054361130948700955,
+            "maximum": 25.003074784626065
+          },
+          "swivel_rate_rad_s": {
+            "n": 125,
+            "median": 2.6016142285984315e-10,
+            "minimum": -0.07873100285218974,
+            "maximum": 0.19968096340256408
+          },
+          "last_swivel_rad": 0.0054428014059899514,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        },
+        "right": {
+          "floor_loaded_fraction": 0.13636363636363635,
+          "load_class": "unloaded",
+          "rolling_rad_s": {
+            "n": 125,
+            "median": 1.2852116377031855,
+            "minimum": -0.0054976649079909465,
+            "maximum": 25.04744119751113
+          },
+          "swivel_rate_rad_s": {
+            "n": 125,
+            "median": 3.9369499629987104e-14,
+            "minimum": -0.07250396677052312,
+            "maximum": 0.20331188628895674
+          },
+          "last_swivel_rad": 0.0006310202382753601,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        }
+      }
+    },
+    "reset": {
+      "window_s": [
+        5.603,
+        6.103
+      ],
+      "samples": 25,
+      "max_abs_v_m_s": 1.8879779126765536e-05,
+      "max_abs_w_rad_s": 2.691890582007086e-08,
+      "post_reset_release_verified": false,
+      "qualification": "Pre-epoch diagnostic window can straddle teleport/settling; never use it to certify a continuous post-reset standstill. Online release barrier not implemented."
+    },
+    "contact_end": {
+      "available": true,
+      "last_end_upper_bound_s": 14.809,
+      "active_components": [],
+      "reason": null
+    },
+    "last_loaded_contact_sample_s": 14.766,
+    "windows": {
+      "available": true,
+      "contact_start_s": 13.727,
+      "contact_end_s": 15.98,
+      "recovery_end_s": 16.42,
+      "recovery_available": true,
+      "fixed_horizon_end_s": 16.727,
+      "fixed_horizon_available": true,
+      "qualification": "Contact end=max(clearance,last manifold end upper bound+0.2s); keep fixed 3s outcome too, so a longer adaptive window cannot dilute RMS unnoticed."
+    },
+    "metrics": {
+      "legacy_crossing": {
+        "slip": {
+          "available": true,
+          "start_s": 13.777000000000001,
+          "end_s": 15.98,
+          "duration_s": 2.2029999999999994,
+          "coverage_s": 2.2029999999999994,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.022533818239852944,
+          "slip_square_integral_s": 0.022533818239852944,
+          "rms": 0.10113701810945014,
+          "distance_m": 0.7548868005528558,
+          "slip_square_per_m": 0.029850592464128224
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.4457508448738003,
+          "peak": 6.78745429600068,
+          "p95_abs": 4.194730513984838,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.2029999999999994
+      },
+      "fixed_3s_after_contact": {
+        "slip": {
+          "available": true,
+          "start_s": 13.727,
+          "end_s": 16.727,
+          "duration_s": 3.0,
+          "coverage_s": 3.0,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.03089132756216,
+          "slip_square_integral_s": 0.03089132756216,
+          "rms": 0.10147467263995813,
+          "distance_m": 1.0691476590789886,
+          "slip_square_per_m": 0.028893415516404126
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.5525451203776757,
+          "peak": 9.830471147665559,
+          "p95_abs": 4.20039493191341,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 3.0
+      },
+      "whole_contact_sequence": {
+        "slip": {
+          "available": true,
+          "start_s": 13.727,
+          "end_s": 15.98,
+          "duration_s": 2.253,
+          "coverage_s": 2.253,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.030889583558688125,
+          "slip_square_integral_s": 0.030889583558688125,
+          "rms": 0.11709151651397294,
+          "distance_m": 0.7673546026594623,
+          "slip_square_per_m": 0.04025464036005313
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.7583182001348563,
+          "peak": 9.830471147665559,
+          "p95_abs": 4.726992708068394,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.253
+      },
+      "contact_and_confirmed_recovery": {
+        "slip": {
+          "available": true,
+          "start_s": 13.727,
+          "end_s": 16.42,
+          "duration_s": 2.6930000000000014,
+          "coverage_s": 2.6930000000000014,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.030890908375979385,
+          "slip_square_integral_s": 0.030890908375979385,
+          "rms": 0.10710189694742162,
+          "distance_m": 0.9443126822359263,
+          "slip_square_per_m": 0.032712584461787014
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.631105171858386,
+          "peak": 9.830471147665559,
+          "p95_abs": 4.341219496556183,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.6930000000000014
+      }
+    },
+    "negative_control": {
+      "available": true,
+      "latest_support_s": 13.78,
+      "first_reduced_command_s": 14.002999999999972,
+      "reason": null,
+      "GT_slip": {
+        "available": true,
+        "start_s": 13.727,
+        "end_s": 13.777000000000001,
+        "duration_s": 0.05000000000000071,
+        "coverage_s": 0.05000000000000071,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.008355765318835185,
+        "slip_square_integral_s": 0.008355765318835185,
+        "rms": 0.40879739037413304,
+        "distance_m": 0.012467802106606536,
+        "slip_square_per_m": 0.6701875156012916
+      }
+    },
+    "all_triggers": [
+      {
+        "time_s": 13.802999999999972,
+        "event": 1,
+        "phase": "DELAY"
+      },
+      {
+        "time_s": 14.70299999999997,
+        "event": 2,
+        "phase": "DELAY"
+      }
+    ],
+    "command_recovery": {
+      "begin_s": 16.102999999999966,
+      "confirmed_s": 16.404
+    },
+    "body_recovery": {
+      "begin_s": 15.98,
+      "confirmed_s": 16.28
+    },
+    "combined_recovery": {
+      "begin_s": 16.12,
+      "confirmed_s": 16.42
+    },
+    "native_metrics_untouched": true,
+    "diagnostic_only_not_new_candidate_validation": true
+  },
+  {
+    "seed": 77321,
+    "arm": "delayed_200ms",
+    "case": "/home/tuanmac/ninorobot/rl_runs/governor_brake_delay_2026-10-16/attempt_04/confirmation/height/screen/seed_77321_reactive",
+    "native_physical_pass": true,
+    "legacy_reporting_pass": true,
+    "available": true,
+    "approach": {
+      "v": {
+        "n": 13,
+        "median": 0.39814539020671325,
+        "minimum": 0.39719499180215695,
+        "maximum": 0.39876071053795076
+      },
+      "w": {
+        "n": 13,
+        "median": 0.009012757768335749,
+        "minimum": 0.0003483673701192501,
+        "maximum": 0.011814624639849664
+      },
+      "y": {
+        "n": 13,
+        "median": -0.0019504188483661024,
+        "minimum": -0.001999964204882297,
+        "maximum": -0.0018493376733968918
+      },
+      "yaw": {
+        "n": 13,
+        "median": -0.0017866087407992194,
+        "minimum": -0.0027242208217957333,
+        "maximum": -0.0005154710745020009
+      },
+      "roll": {
+        "n": 13,
+        "median": 1.2734938670967247e-06,
+        "minimum": -1.0089763003301799e-05,
+        "maximum": 1.3725823369806685e-05
+      },
+      "pitch": {
+        "n": 13,
+        "median": -1.1862297982548734e-05,
+        "minimum": -3.532552828221744e-05,
+        "maximum": 1.1991189484200263e-05
+      },
+      "window_s": [
+        12.152,
+        12.402
+      ],
+      "coverage_fraction": 1.0,
+      "caster": {
+        "left": {
+          "floor_loaded_fraction": 0.9545454545454546,
+          "load_class": "loaded",
+          "rolling_rad_s": {
+            "n": 123,
+            "median": 24.827371351979984,
+            "minimum": -0.003155320569320705,
+            "maximum": 24.960897558375684
+          },
+          "swivel_rate_rad_s": {
+            "n": 123,
+            "median": 2.3101181404764207e-10,
+            "minimum": -0.10814149235252894,
+            "maximum": 0.22470638876643778
+          },
+          "last_swivel_rad": 0.006389550149837261,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        },
+        "right": {
+          "floor_loaded_fraction": 0.047619047619047616,
+          "load_class": "unloaded",
+          "rolling_rad_s": {
+            "n": 123,
+            "median": 0.5471154031625307,
+            "minimum": -0.004894380181599184,
+            "maximum": 25.02230072136162
+          },
+          "swivel_rate_rad_s": {
+            "n": 123,
+            "median": 7.092519750743061e-14,
+            "minimum": -0.21268088430369284,
+            "maximum": 0.14505217319577632
+          },
+          "last_swivel_rad": 0.001740567494454306,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        }
+      }
+    },
+    "reset": {
+      "window_s": [
+        4.323,
+        4.823
+      ],
+      "samples": 25,
+      "max_abs_v_m_s": 0.0005289289407714826,
+      "max_abs_w_rad_s": 2.8321817332876762e-05,
+      "post_reset_release_verified": false,
+      "qualification": "Pre-epoch diagnostic window can straddle teleport/settling; never use it to certify a continuous post-reset standstill. Online release barrier not implemented."
+    },
+    "contact_end": {
+      "available": true,
+      "last_end_upper_bound_s": 13.377,
+      "active_components": [],
+      "reason": null
+    },
+    "last_loaded_contact_sample_s": 13.355,
+    "windows": {
+      "available": true,
+      "contact_start_s": 12.452,
+      "contact_end_s": 14.6,
+      "recovery_end_s": 14.94,
+      "recovery_available": true,
+      "fixed_horizon_end_s": 15.452,
+      "fixed_horizon_available": true,
+      "qualification": "Contact end=max(clearance,last manifold end upper bound+0.2s); keep fixed 3s outcome too, so a longer adaptive window cannot dilute RMS unnoticed."
+    },
+    "metrics": {
+      "legacy_crossing": {
+        "slip": {
+          "available": true,
+          "start_s": 12.502,
+          "end_s": 14.6,
+          "duration_s": 2.097999999999999,
+          "coverage_s": 2.097999999999999,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.013793749243234706,
+          "slip_square_integral_s": 0.013793749243234706,
+          "rms": 0.08108460798843446,
+          "distance_m": 0.7466701303613068,
+          "slip_square_per_m": 0.018473685610752955
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 2.4070486171913195,
+          "peak": 15.741756021577993,
+          "p95_abs": 4.938269501422519,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.097999999999999
+      },
+      "fixed_3s_after_contact": {
+        "slip": {
+          "available": true,
+          "start_s": 12.452,
+          "end_s": 15.452,
+          "duration_s": 3.0,
+          "coverage_s": 3.0,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.018454908347509937,
+          "slip_square_integral_s": 0.018454908347509937,
+          "rms": 0.07843236650667022,
+          "distance_m": 1.1017063387306387,
+          "slip_square_per_m": 0.01675120465293253
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 2.128001687141813,
+          "peak": 15.741756021577993,
+          "p95_abs": 4.556863744509442,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 3.0
+      },
+      "whole_contact_sequence": {
+        "slip": {
+          "available": true,
+          "start_s": 12.452,
+          "end_s": 14.6,
+          "duration_s": 2.1479999999999997,
+          "coverage_s": 2.1479999999999997,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.018453991006655176,
+          "slip_square_integral_s": 0.018453991006655176,
+          "rms": 0.09268896096843161,
+          "distance_m": 0.7607450174624243,
+          "slip_square_per_m": 0.02425778754123313
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 2.484427392069511,
+          "peak": 15.741756021577993,
+          "p95_abs": 5.052440899120444,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.1479999999999997
+      },
+      "contact_and_confirmed_recovery": {
+        "slip": {
+          "available": true,
+          "start_s": 12.452,
+          "end_s": 14.94,
+          "duration_s": 2.4879999999999995,
+          "coverage_s": 2.4879999999999995,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.01845452457007465,
+          "slip_square_integral_s": 0.01845452457007465,
+          "rms": 0.08612440660120352,
+          "distance_m": 0.896472808152304,
+          "slip_square_per_m": 0.02058570477794053
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 2.317530495951092,
+          "peak": 15.741756021577993,
+          "p95_abs": 4.938269501422519,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.4879999999999995
+      }
+    },
+    "negative_control": {
+      "available": true,
+      "latest_support_s": 12.52,
+      "first_reduced_command_s": 12.722999999999972,
+      "reason": null,
+      "GT_slip": {
+        "available": true,
+        "start_s": 12.452,
+        "end_s": 12.502,
+        "duration_s": 0.05000000000000071,
+        "coverage_s": 0.05000000000000071,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.004660241763420472,
+        "slip_square_integral_s": 0.004660241763420472,
+        "rms": 0.30529466957090506,
+        "distance_m": 0.014074887101117487,
+        "slip_square_per_m": 0.33110331400459103
+      }
+    },
+    "all_triggers": [
+      {
+        "time_s": 12.522999999999973,
+        "event": 1,
+        "phase": "DELAY"
+      },
+      {
+        "time_s": 13.22299999999997,
+        "event": 2,
+        "phase": "DELAY"
+      }
+    ],
+    "command_recovery": {
+      "begin_s": 14.622999999999966,
+      "confirmed_s": 14.930000000000001
+    },
+    "body_recovery": {
+      "begin_s": 14.6,
+      "confirmed_s": 14.9
+    },
+    "combined_recovery": {
+      "begin_s": 14.64,
+      "confirmed_s": 14.94
+    },
+    "native_metrics_untouched": true,
+    "diagnostic_only_not_new_candidate_validation": true
+  },
+  {
+    "seed": 77321,
+    "arm": "frozen_reactive",
+    "case": "/home/tuanmac/ninorobot/rl_runs/governor_brake_delay_2026-10-16/attempt_05/confirmation/height/screen/seed_77321_reactive",
+    "native_physical_pass": true,
+    "legacy_reporting_pass": true,
+    "available": true,
+    "approach": {
+      "v": {
+        "n": 12,
+        "median": 0.39780927479823874,
+        "minimum": 0.397460601055441,
+        "maximum": 0.3985611858548462
+      },
+      "w": {
+        "n": 12,
+        "median": -0.001043092040847036,
+        "minimum": -0.013157924167444138,
+        "maximum": 0.0005754643651233703
+      },
+      "y": {
+        "n": 12,
+        "median": 0.0005394836406730542,
+        "minimum": 0.0004226136002997382,
+        "maximum": 0.0006500180170435648
+      },
+      "yaw": {
+        "n": 12,
+        "median": -0.0028356187096157687,
+        "minimum": -0.0028921224472531035,
+        "maximum": -0.002400863795076826
+      },
+      "roll": {
+        "n": 12,
+        "median": 1.1770978106359077e-05,
+        "minimum": -9.373212813683236e-06,
+        "maximum": 3.711157095576912e-05
+      },
+      "pitch": {
+        "n": 12,
+        "median": -1.042978941700924e-05,
+        "minimum": -5.184112881035131e-05,
+        "maximum": -1.528928140296071e-06
+      },
+      "window_s": [
+        13.341,
+        13.591
+      ],
+      "coverage_fraction": 1.0,
+      "caster": {
+        "left": {
+          "floor_loaded_fraction": 0.6818181818181818,
+          "load_class": "mixed",
+          "rolling_rad_s": {
+            "n": 124,
+            "median": 24.852108104273743,
+            "minimum": -0.006037430395780666,
+            "maximum": 24.968722614096002
+          },
+          "swivel_rate_rad_s": {
+            "n": 124,
+            "median": 1.2175131196448712e-10,
+            "minimum": -0.11349261166064227,
+            "maximum": 0.2185968990672363
+          },
+          "last_swivel_rad": 0.00017927314890093114,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        },
+        "right": {
+          "floor_loaded_fraction": 0.2727272727272727,
+          "load_class": "mixed",
+          "rolling_rad_s": {
+            "n": 124,
+            "median": 1.950087147709703,
+            "minimum": -0.005734824328193734,
+            "maximum": 24.950427163084335
+          },
+          "swivel_rate_rad_s": {
+            "n": 124,
+            "median": -1.7871793052519358e-14,
+            "minimum": -0.07026494598965166,
+            "maximum": 0.19020270042119716
+          },
+          "last_swivel_rad": -0.005223147788111003,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        }
+      }
+    },
+    "reset": {
+      "window_s": [
+        5.519,
+        6.019
+      ],
+      "samples": 25,
+      "max_abs_v_m_s": 2.10429908877395,
+      "max_abs_w_rad_s": 0.0006483447524811539,
+      "post_reset_release_verified": false,
+      "qualification": "Pre-epoch diagnostic window can straddle teleport/settling; never use it to certify a continuous post-reset standstill. Online release barrier not implemented."
+    },
+    "contact_end": {
+      "available": true,
+      "last_end_upper_bound_s": 14.589,
+      "active_components": [],
+      "reason": null
+    },
+    "last_loaded_contact_sample_s": 14.569,
+    "windows": {
+      "available": true,
+      "contact_start_s": 13.641,
+      "contact_end_s": 15.74,
+      "recovery_end_s": 16.04,
+      "recovery_available": true,
+      "fixed_horizon_end_s": 16.641,
+      "fixed_horizon_available": true,
+      "qualification": "Contact end=max(clearance,last manifold end upper bound+0.2s); keep fixed 3s outcome too, so a longer adaptive window cannot dilute RMS unnoticed."
+    },
+    "metrics": {
+      "legacy_crossing": {
+        "slip": {
+          "available": true,
+          "start_s": 13.691,
+          "end_s": 15.74,
+          "duration_s": 2.0489999999999995,
+          "coverage_s": 2.0489999999999995,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.01879339107580666,
+          "slip_square_integral_s": 0.01879339107580666,
+          "rms": 0.09577046506834892,
+          "distance_m": 0.7509397247144258,
+          "slip_square_per_m": 0.025026497410233
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 3.0094179864739976,
+          "peak": 25.25870549590004,
+          "p95_abs": 4.93555513262885,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.0489999999999995
+      },
+      "fixed_3s_after_contact": {
+        "slip": {
+          "available": true,
+          "start_s": 13.641,
+          "end_s": 16.641,
+          "duration_s": 2.9999999999999982,
+          "coverage_s": 2.9999999999999982,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.022947649817521017,
+          "slip_square_integral_s": 0.022947649817521017,
+          "rms": 0.08745979994168945,
+          "distance_m": 1.127319243792623,
+          "slip_square_per_m": 0.020355946147356262
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 2.5706374679176465,
+          "peak": 25.25870549590004,
+          "p95_abs": 4.451624773636825,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.9999999999999982
+      },
+      "whole_contact_sequence": {
+        "slip": {
+          "available": true,
+          "start_s": 13.641,
+          "end_s": 15.74,
+          "duration_s": 2.099,
+          "coverage_s": 2.099,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.022946878856052885,
+          "slip_square_integral_s": 0.022946878856052885,
+          "rms": 0.10455759667483186,
+          "distance_m": 0.7661262062521607,
+          "slip_square_per_m": 0.029951826042222882
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 3.0542157282602904,
+          "peak": 25.25870549590004,
+          "p95_abs": 5.036923474275873,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.099
+      },
+      "contact_and_confirmed_recovery": {
+        "slip": {
+          "available": true,
+          "start_s": 13.641,
+          "end_s": 16.04,
+          "duration_s": 2.398999999999999,
+          "coverage_s": 2.398999999999999,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.022947165773978984,
+          "slip_square_integral_s": 0.022947165773978984,
+          "rms": 0.0978023753089938,
+          "distance_m": 0.8863863085444755,
+          "slip_square_per_m": 0.02588844790671491
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 2.8646084413979467,
+          "peak": 25.25870549590004,
+          "p95_abs": 4.977819412249743,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.398999999999999
+      }
+    },
+    "negative_control": {
+      "available": true,
+      "latest_support_s": 13.7,
+      "first_reduced_command_s": 13.718999999999973,
+      "reason": null,
+      "GT_slip": {
+        "available": true,
+        "start_s": 13.641,
+        "end_s": 13.691,
+        "duration_s": 0.05000000000000071,
+        "coverage_s": 0.05000000000000071,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.004153487780246229,
+        "slip_square_integral_s": 0.004153487780246229,
+        "rms": 0.28821824301199844,
+        "distance_m": 0.015186481537734695,
+        "slip_square_per_m": 0.2734990175259376
+      }
+    },
+    "all_triggers": [
+      {
+        "time_s": 13.718999999999973,
+        "event": 1,
+        "phase": "HOLD"
+      }
+    ],
+    "command_recovery": {
+      "begin_s": 15.818999999999965,
+      "confirmed_s": 16.118999999999968
+    },
+    "body_recovery": {
+      "begin_s": 15.74,
+      "confirmed_s": 16.04
+    },
+    "combined_recovery": {
+      "begin_s": 15.74,
+      "confirmed_s": 16.04
+    },
+    "native_metrics_untouched": true,
+    "diagnostic_only_not_new_candidate_validation": true
+  },
+  {
+    "seed": 77321,
+    "arm": "full",
+    "case": "/home/tuanmac/ninorobot/rl_runs/governor_brake_delay_2026-10-16/attempt_06/confirmation/height/screen/seed_77321_full",
+    "native_physical_pass": true,
+    "legacy_reporting_pass": true,
+    "available": true,
+    "approach": {
+      "v": {
+        "n": 13,
+        "median": 0.3973154399498354,
+        "minimum": 0.39697492757764874,
+        "maximum": 0.39823160022914056
+      },
+      "w": {
+        "n": 13,
+        "median": -0.002824085670757267,
+        "minimum": -0.020741057987047184,
+        "maximum": -0.0008864244705888756
+      },
+      "y": {
+        "n": 13,
+        "median": 0.0004821181393581531,
+        "minimum": 0.00025588464324086303,
+        "maximum": 0.000690967949100179
+      },
+      "yaw": {
+        "n": 13,
+        "median": -0.0046933841855068955,
+        "minimum": -0.004921580045045336,
+        "maximum": -0.0038042227434747014
+      },
+      "roll": {
+        "n": 13,
+        "median": -1.6499620779862655e-06,
+        "minimum": -2.1801832222654007e-05,
+        "maximum": 0.00013803342177058178
+      },
+      "pitch": {
+        "n": 13,
+        "median": -1.098264369886732e-05,
+        "minimum": -0.0001591092105199088,
+        "maximum": 1.2123170284050514e-05
+      },
+      "window_s": [
+        12.234,
+        12.484
+      ],
+      "coverage_fraction": 1.0,
+      "caster": {
+        "left": {
+          "floor_loaded_fraction": 0.6086956521739131,
+          "load_class": "mixed",
+          "rolling_rad_s": {
+            "n": 126,
+            "median": 24.824570614300917,
+            "minimum": -0.0033287163066241248,
+            "maximum": 25.070625871593712
+          },
+          "swivel_rate_rad_s": {
+            "n": 126,
+            "median": 2.608717112131862e-10,
+            "minimum": -0.155672074515016,
+            "maximum": 0.23070275331376133
+          },
+          "last_swivel_rad": -0.0006769299849911749,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        },
+        "right": {
+          "floor_loaded_fraction": 0.2727272727272727,
+          "load_class": "mixed",
+          "rolling_rad_s": {
+            "n": 126,
+            "median": 2.9870335865726703,
+            "minimum": -0.005428274166083183,
+            "maximum": 25.0693981486505
+          },
+          "swivel_rate_rad_s": {
+            "n": 126,
+            "median": -1.721877988397635e-14,
+            "minimum": -0.06656216968062126,
+            "maximum": 0.25740352360539953
+          },
+          "last_swivel_rad": -0.006574830973800602,
+          "qualification": "Privileged diagnostic; low rotation of an unloaded caster is not a slip/failure criterion."
+        }
+      }
+    },
+    "reset": {
+      "window_s": [
+        4.415,
+        4.915
+      ],
+      "samples": 25,
+      "max_abs_v_m_s": 0.00013635977501595312,
+      "max_abs_w_rad_s": 3.988740122885556e-08,
+      "post_reset_release_verified": false,
+      "qualification": "Pre-epoch diagnostic window can straddle teleport/settling; never use it to certify a continuous post-reset standstill. Online release barrier not implemented."
+    },
+    "contact_end": {
+      "available": true,
+      "last_end_upper_bound_s": 13.403,
+      "active_components": [],
+      "reason": null
+    },
+    "last_loaded_contact_sample_s": 13.376,
+    "windows": {
+      "available": true,
+      "contact_start_s": 12.534,
+      "contact_end_s": 14.52,
+      "recovery_end_s": 14.82,
+      "recovery_available": true,
+      "fixed_horizon_end_s": 15.534,
+      "fixed_horizon_available": true,
+      "qualification": "Contact end=max(clearance,last manifold end upper bound+0.2s); keep fixed 3s outcome too, so a longer adaptive window cannot dilute RMS unnoticed."
+    },
+    "metrics": {
+      "legacy_crossing": {
+        "slip": {
+          "available": true,
+          "start_s": 12.584000000000001,
+          "end_s": 14.52,
+          "duration_s": 1.9359999999999982,
+          "coverage_s": 1.9359999999999982,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.01378236516887228,
+          "slip_square_integral_s": 0.01378236516887228,
+          "rms": 0.08437410902153479,
+          "distance_m": 0.7477382908818329,
+          "slip_square_per_m": 0.01843207086883069
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.7627476407418072,
+          "peak": 7.625969045054876,
+          "p95_abs": 4.865356661943679,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 1.9359999999999982
+      },
+      "fixed_3s_after_contact": {
+        "slip": {
+          "available": true,
+          "start_s": 12.534,
+          "end_s": 15.534,
+          "duration_s": 3.0,
+          "coverage_s": 3.0,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.018841606489321535,
+          "slip_square_integral_s": 0.018841606489321535,
+          "rms": 0.07924982963035637,
+          "distance_m": 1.1682432511755425,
+          "slip_square_per_m": 0.016128153507723845
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.684563909761147,
+          "peak": 8.32034823096287,
+          "p95_abs": 4.134905256646566,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 3.0
+      },
+      "whole_contact_sequence": {
+        "slip": {
+          "available": true,
+          "start_s": 12.534,
+          "end_s": 14.52,
+          "duration_s": 1.9859999999999989,
+          "coverage_s": 1.9859999999999989,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.018840806131720546,
+          "slip_square_integral_s": 0.018840806131720546,
+          "rms": 0.09740026047730885,
+          "distance_m": 0.7612910913042233,
+          "slip_square_per_m": 0.024748491538818595
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 2.014870054005959,
+          "peak": 8.32034823096287,
+          "p95_abs": 5.010476374036724,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 1.9859999999999989
+      },
+      "contact_and_confirmed_recovery": {
+        "slip": {
+          "available": true,
+          "start_s": 12.534,
+          "end_s": 14.82,
+          "duration_s": 2.2859999999999996,
+          "coverage_s": 2.2859999999999996,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.018841018306461656,
+          "slip_square_integral_s": 0.018841018306461656,
+          "rms": 0.09078499473849336,
+          "distance_m": 0.8818765148910808,
+          "slip_square_per_m": 0.02136468994050565
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0,
+          "rms": 1.898910968420791,
+          "peak": 8.32034823096287,
+          "p95_abs": 4.929105163290093,
+          "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+        },
+        "duration_s": 2.2859999999999996
+      }
+    },
+    "negative_control": {
+      "available": true,
+      "latest_support_s": 12.6,
+      "first_reduced_command_s": null,
+      "reason": null,
+      "GT_slip": {
+        "available": true,
+        "start_s": 12.534,
+        "end_s": 12.584000000000001,
+        "duration_s": 0.05000000000000071,
+        "coverage_s": 0.05000000000000071,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.005058440962848275,
+        "slip_square_integral_s": 0.005058440962848275,
+        "rms": 0.31807046272322126,
+        "distance_m": 0.013552800422390519,
+        "slip_square_per_m": 0.3732395376007492
+      }
+    },
+    "all_triggers": [],
+    "command_recovery": {
+      "begin_s": 14.614999999999966,
+      "confirmed_s": 14.914999999999965
+    },
+    "body_recovery": {
+      "begin_s": 14.52,
+      "confirmed_s": 14.82
+    },
+    "combined_recovery": {
+      "begin_s": 14.52,
+      "confirmed_s": 14.82
+    },
+    "native_metrics_untouched": true,
+    "diagnostic_only_not_new_candidate_validation": true
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "prepared_protocol": {
+    "status": "prepared_not_run",
+    "kind": "diagnostic_repeatability_not_unseen_test",
+    "maximum_attempts": 4,
+    "scenario": {
+      "x_m": 3.1,
+      "angle_deg": 8.0,
+      "seed": 77200
+    },
+    "arms": [
+      "full",
+      "reactive"
+    ],
+    "repetitions": 2,
+    "cold_start_each_attempt": true,
+    "order": [
+      [
+        "reactive",
+        "full"
+      ],
+      [
+        "full",
+        "reactive"
+      ]
+    ],
+    "parallel_simulators": 1,
+    "settings": "Frozen readiness config; cruise0.400, target0.90, minimum_hold0.8, maximum_hold1.0, ramp0.4, physics1ms, control100ms",
+    "fixed_config_sha256": "6ce2de78c09eb502e89ab6e81f614a2c0064a05bacc1995df5e421d58e5cb7f5",
+    "no_retry": true,
+    "no_tuning": true,
+    "no_training": true,
+    "no_automatic_parameter_change": true,
+    "required_reporting": "Keep all attempts; arrival/stop, native replay, timestamp/diagnostics coverage, full-route and post-contact slip/vibration/time/tracking, phase-aligned peak/contact/motor context",
+    "stop": "If reporting fails, stop. If quality ranking/large spikes remain inconsistent, stop expanding and review contact/IMU fidelity. If repeated recovery/exit deficit is supported, choose one independently tested correction. No unbounded parameter sweep."
+  },
+  "case_order": [
+    [
+      1,
+      "reactive"
+    ],
+    [
+      1,
+      "full"
+    ],
+    [
+      2,
+      "full"
+    ],
+    [
+      2,
+      "reactive"
+    ]
+  ],
+  "domain": 101,
+  "source_sha256": {
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/ros_interface.py": "c1745e25ed9cb162bc5372133afbe157302c1b6ed4e0e032bced917c555a82f0",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/ros_env.py": "391b34850b2bfde898e6d903f9b41a5f5aa11da5f9f34f9dbc11edb22f040915",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/evaluation.py": "20bce6510e0793ba0ceda036d56785198f45d468f21957a758e834b1f40fd904",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/slip_reporting.py": "3f71c47b9b2db9514c1236578429c4ee3206d75506228d29d5b260e7d115a92c",
+    "/home/tuanmac/ninorobot/src/nino_control/nino_control/governor_core.py": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+    "/home/tuanmac/ninorobot/src/nino_control/nino_control/effort_drive.py": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376"
+  },
+  "decision_rule": "Stop immediately on missing reporting/physical failure; otherwise compare both fixed pairs and stop expansion on inconsistent quality ranking. No score/candidate selection.",
+  "comparison": "Crossing RMS and whole-route peak rankings are descriptive; no significance or hardware fidelity claim from two repetitions"
+}

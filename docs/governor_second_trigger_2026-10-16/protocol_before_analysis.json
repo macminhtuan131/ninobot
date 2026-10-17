@@ -1,0 +1,19 @@
+{
+  "seed": 77320,
+  "arms": [
+    "full",
+    "frozen_reactive",
+    "delayed_200ms"
+  ],
+  "scope": "Second-trigger channel/rearm, contact-command ordering, pre-brake mismatch. No new simulation or correction.",
+  "timestamp_rule": "Use input boundary; saved exact feedback stamp, causal latest IMU/joint samples. Validate reconstructed scalars against captured detector values; raw sample reconstruction is not callback identity proof.",
+  "contact_rule": "positive depth and sampled force>1e-6N, distinguish manifold from load; no impulse from sampled forces",
+  "decision_options": [
+    "command_induced_false_trigger_supported",
+    "contact_transition_supported_keep_detector",
+    "unresolved_no_parameter_change"
+  ],
+  "new_simulation_episodes": 0,
+  "native_metric_changes": false,
+  "controller_changes": false
+}

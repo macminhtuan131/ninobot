@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "controller": "full_governor_pi",
+  "action_ablation": "none",
+  "baseline_speed_scale": 1.0,
+  "model": null,
+  "phase": 1,
+  "seed": 76905,
+  "randomized": false,
+  "evaluation_seeds": [
+    76905
+  ],
+  "control_trace": true,
+  "benchmark_id": "9baafcbbc86e4e53b2f1da9b31d6ec861a24cd1860ebe6917e681bf06d59d7d8",
+  "pose_source": "imu_encoder_lidar_odometry",
+  "metric_weighting": "simulation_time_trapezoid",
+  "metric_weighting_by_name": {
+    "rms_wheel_slip": "control_step_arithmetic_mean_square_then_sqrt"
+  },
+  "slip_reporting": {
+    "native_metric": "rms_wheel_slip",
+    "native_changed": false,
+    "snapshot_trace_schema": "native_slip_snapshot_v1",
+    "synchronized_metrics": "offline_separate_report_only",
+    "offline_protocol": {
+      "schema": "synchronized_slip_offline_v1",
+      "period_s": 0.02,
+      "origin": "first control input simulation timestamp of each episode",
+      "timestamp_source": "sensor header simulation stamps, never receipt/wall time",
+      "duplicate_stamps": "keep last row",
+      "alignment": "linear sensor interpolation, then calculate slip; offline/noncausal",
+      "max_ground_gap_s": 0.040001,
+      "max_joint_gap_s": 0.010001,
+      "minimum_coverage_fraction": 0.98,
+      "denominator_floor_m_s": 0.1,
+      "ratio_clip": [
+        -5.0,
+        5.0
+      ],
+      "wheel_radius_m": 0.0625,
+      "wheel_separation_m": 0.34273666,
+      "quadrature": "trapezoid of mean left/right squared ratios, clipped at window boundaries",
+      "rms": "sqrt(integral / covered_seconds)",
+      "integral_unit": "s",
+      "integral_per_distance_unit": "s/m",
+      "distance": "GT xy distance on the same valid segments as slip",
+      "minimum_distance_m": 0.01,
+      "missing": "unavailable/null, never zero or success-only filtering",
+      "native": "unchanged control-step arithmetic mean of squared ratios; separate namespace"
+    }
+  },
+  "reference": "configured drawn routes with ordered spatial gates in odom",
+  "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
+  "governor": {
+    "enabled": true,
+    "revision": "motion_trigger_ablation_v1_2026_10_16",
+    "execution": "inline_PI_evaluation",
+    "parameters": {
+      "profile": "full",
+      "target_scale": 0.9,
+      "scale_rate_per_second": 0.4,
+      "vertical_trigger_m_s2": 1.5,
+      "body_rate_trigger_rad_s": 0.35,
+      "wheel_error_trigger_m_s": 0.06,
+      "wheel_error_acceleration_allowance_s": 0.1,
+      "release_ratio": 0.6,
+      "confirmation_seconds": 0.04,
+      "quiet_seconds": 0.3,
+      "minimum_hold_seconds": 0.8,
+      "maximum_hold_seconds": 1.0,
+      "startup_seconds": 0.8,
+      "wheel_stall_seconds": 1.2,
+      "stall_recovery_enabled": false,
+      "pulse_seconds": 1.0,
+      "vertical_only_trigger_enabled": false
+    }
+  },
+  "qualification": "Reactive PI/contact-authority experiment; no predictor or sim-to-real claim"
+}

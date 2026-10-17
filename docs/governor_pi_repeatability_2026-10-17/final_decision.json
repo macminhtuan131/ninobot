@@ -1,0 +1,30 @@
+{
+  "status": "hold_new_intervention_and_parameter_selection_after_bounded_PI_batch",
+  "readiness_verified": true,
+  "coarse_approach_balanced": true,
+  "quality_repeatability_established": false,
+  "evidence": {
+    "77400": {
+      "crossing_vertical_rms": 2.738294597106373,
+      "GT_crossing_slip2_per_m": 1.0796989025208537
+    },
+    "77401": {
+      "crossing_vertical_rms": 3.3605662933588376,
+      "GT_crossing_slip2_per_m": 1.236817123084658
+    }
+  },
+  "engineering_effect_threshold_not_invented": true,
+  "new_candidate": null,
+  "new_candidate_budget": 0,
+  "supported_correction_completed": "Post-reset continuous measured standstill, opt-in initialization revision",
+  "additional_correction_selected": null,
+  "reason": "Standstill and coarse balance pass, but within-PI differences remain large. These four runs do not identify a unique robot/PI/contact fault or an affordable effect threshold. No speculative physical/detector correction or extra repeats.",
+  "next_action": "Use the four frozen PI traces for a bounded mechanism/measurement check if continuing; require a decision-changing cause or calibrated application requirement before another simulation budget.",
+  "delay_200ms_rejected": true,
+  "default_delay_seconds": 0.0,
+  "no_more_simulation_this_batch": true,
+  "predictor_started": false,
+  "optuna_started": false,
+  "training_started": false,
+  "hardware_validated": false
+}

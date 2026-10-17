@@ -1,0 +1,27 @@
+{
+  "scenarios": [
+    {
+      "id": "d0",
+      "x_m": 2.7,
+      "angle_deg": -8,
+      "seeds": [
+        77000
+      ]
+    },
+    {
+      "id": "d1",
+      "x_m": 3.1,
+      "angle_deg": 8,
+      "seeds": [
+        77001
+      ]
+    }
+  ],
+  "parameters": {
+    "target_scale": 0.9,
+    "maximum_hold_seconds": 1.2
+  },
+  "same_cruise_m_s": 0.4,
+  "gt_timestamp_objective": true,
+  "world_geometry_analysis_only": true
+}

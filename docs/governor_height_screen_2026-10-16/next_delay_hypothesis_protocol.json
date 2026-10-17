@@ -1,0 +1,43 @@
+{
+  "status": "prepared_not_implemented_not_run",
+  "kind": "one_bounded_controller_timing_hypothesis_not_parameter_search",
+  "hypothesis": "For the 6mm wheel-first ridge, delaying brake onset may avoid braking during the early caster crossing while retaining authority before driven-wheel contact.",
+  "evidence": {
+    "case": "6mm, seed77311",
+    "excess_GT_slip_integral_phase": "braking_command",
+    "first_sensor_reduced_command_after_manifold_s": 0.077,
+    "last_caster_named_contact_end_upper_bound_s": 0.225,
+    "first_left_driven_manifold_after_first_s": 0.607,
+    "precontact_caster_load_and_rolling_differ": true,
+    "causal_braking_fault_proven": false
+  },
+  "only_candidate_change": {
+    "trigger_to_brake_delay_seconds": 0.2,
+    "reason": "Round up the observed caster-end minus trigger interval (~0.148s) to the next 0.1s control interval; this is one experimental value, not a validated clearance detector.",
+    "hold_timer_starts_when_braking_starts": true,
+    "full_HOLD_RECOVER_sequence_duration_and_ramp": "unchanged",
+    "navigation_stop_watchdog_and_FAILSAFE_override_pending_delay": "immediate",
+    "default_delay_seconds": 0.0,
+    "default_controller_change": false
+  },
+  "timing_limitation": "Using the old 0.077s trigger plus0.2s delay plus clean-floor239–254ms body response leaves only ~76–91ms before the observed0.607s driven contact. Contact timing is trajectory-dependent; this arithmetic is not a guarantee.",
+  "implementation_prerequisites": [
+    "New explicit research contract; preserve existing default governor and study scores",
+    "Zero-delay output reproduces the current controller",
+    "Pending delay lasts exactly two control intervals; first ramp step at trigger+0.2s",
+    "Same ramp/bounds/hold/recovery behavior once braking starts",
+    "Stop, stale feedback and fault cancel pending delay without stale/full-speed command replay",
+    "Log trigger stamp, brake-onset stamp, executed commands and phase timers separately"
+  ],
+  "maximum_new_episodes": 6,
+  "scenario": {"height_m": 0.006, "radius_m": 0.003, "x_m": 3.1, "angle_deg": 8.0, "seeds": [77320, 77321]},
+  "case_order": [[77320,"full"],[77320,"frozen_reactive"],[77320,"delayed_200ms"],[77321,"delayed_200ms"],[77321,"frozen_reactive"],[77321,"full"]],
+  "fixed": "Robot, solid floor, PI, detector, observations, speed bounds, target0.90, minhold0.8s, maxhold1.0s, ramp0.4/s, native metrics and physical arrival/stop criteria",
+  "comparison": "Retain all three arms, all failures, full-route and unchanged crossing metrics. Candidate must preserve existing time/tracking limits; do not replace them with an easier gate after seeing results.",
+  "stop_rule": "One timing candidate only. Stop on missing reporting or physical failure, no retries. Mixed/no quality benefit at the budget limit rejects this delay hypothesis for the tested scope; do not automatically try more delay/ramp/penalty values.",
+  "interpretation": "This is a development mechanism test, not a generalization or hardware test. Improvements in both new seed blocks would justify separately budgeted confirmation, not automatic H1/predictor/PPO/Optuna release. Retain the22mm mixed results; do not promote by selecting the easier height.",
+  "training": false,
+  "optuna": false,
+  "predictor": false,
+  "hardware_validated": false
+}

@@ -1,0 +1,47 @@
+{
+  "trial": 0,
+  "parameters": {
+    "target_scale": 0.9,
+    "maximum_hold_seconds": 1.0
+  },
+  "development_cost": 0.7902069610510052,
+  "validation_scenarios": [
+    {
+      "id": "v0",
+      "x_m": 2.35,
+      "angle_deg": -12,
+      "seeds": [
+        77100,
+        77101
+      ]
+    },
+    {
+      "id": "v1",
+      "x_m": 2.85,
+      "angle_deg": 12,
+      "seeds": [
+        77102,
+        77103
+      ]
+    },
+    {
+      "id": "v2",
+      "x_m": 3.35,
+      "angle_deg": -6,
+      "seeds": [
+        77104,
+        77105
+      ]
+    },
+    {
+      "id": "v3",
+      "x_m": 3.65,
+      "angle_deg": 6,
+      "seeds": [
+        77106,
+        77107
+      ]
+    }
+  ],
+  "parameters_frozen": true
+}

@@ -1,0 +1,71 @@
+{
+  "contract": "frozen_governor_reporting_confirmation_v1",
+  "maximum_episodes": 18,
+  "instrumentation": {
+    "seed": 76800,
+    "profiles": [
+      "full",
+      "reactive"
+    ],
+    "episodes": 2,
+    "gate": "Native replay tolerance1e-10; finite sensor stamps, no future beyond1ms; joint age<=10ms, GT age<=40ms, abs skew<=40ms; common-grid whole/crossing coverage>=98%; both physical arrival/2s-stop pass. Fail means STOP without retry or parameter change."
+  },
+  "scenarios": [
+    {
+      "id": "s0",
+      "x_m": 2.5,
+      "angle_deg": -10,
+      "seeds": [
+        76900,
+        76901
+      ]
+    },
+    {
+      "id": "s1",
+      "x_m": 2.5,
+      "angle_deg": 10,
+      "seeds": [
+        76902,
+        76903
+      ]
+    },
+    {
+      "id": "s2",
+      "x_m": 3.3,
+      "angle_deg": -10,
+      "seeds": [
+        76904,
+        76905
+      ]
+    },
+    {
+      "id": "s3",
+      "x_m": 3.3,
+      "angle_deg": 10,
+      "seeds": [
+        76906,
+        76907
+      ]
+    }
+  ],
+  "controllers": {
+    "reference": "constant PI cruise0.388",
+    "candidate": "reactive cruise0.400 target0.90 maxhold1.0; frozen config"
+  },
+  "order": "shuffle within paired cold-start blocks; order RNG76850 for instrumentation,76950+i for scenarios; not identical snapshots",
+  "measurement": "Same 50Hz grid and offset+10ms for whole/crossing. Crossing first+50ms to GT body normal-plane distance0.50m beyond cable. Native vertical and fixed2s event vibration retained; no true impulse claim.",
+  "gates": {
+    "arrival_stop": "All reference/candidate arrivals and2s-stops; failed outcomes retained",
+    "tracking": "mean candidate physical RMSE<=1.05*PI",
+    "time": "mean candidate time<=1.05*PI; not a time-matched claim",
+    "slip": "mean whole RMS and postcontact slip2/m ratios<1 on both grid origins; >=3/4 scenario means improve both metrics at both origins",
+    "decision": "All gates pass: eligible for future bounded classical tuning, never automatic. Grid reversal: measurement-first. Otherwise one saved-trace audit; no extra simulations."
+  },
+  "reporting_thresholds_qualification": "Design limits for this simulation screen based on existing2ms wheel/20ms GT cadence, not hardware or industry standards",
+  "parameters_frozen_before_results": true,
+  "training": false,
+  "optuna": false,
+  "automatic_retry": false,
+  "selected_config_sha256": "cf959d8ba0f38381a20ca821dd3d42acd944bdbe54d94acadb2331aa4b9a297e",
+  "constraints": "Physics, PI, robot, detector, ramp and scoring fixed. Only cable position/yaw differ across four novel scenarios; traversal not presumed. No test-based selection."
+}

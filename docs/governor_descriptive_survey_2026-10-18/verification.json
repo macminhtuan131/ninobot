@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-18",
+  "mode": "descriptive_only_no_H2_decision",
+  "offline_tests_passed": 10,
+  "actual_attempts": 16,
+  "launch_requests": 16,
+  "arrivals": 16,
+  "stopping_failures": 0,
+  "retries": 0,
+  "replacements": 0,
+  "extra_smoke_episodes": 0,
+  "analysis_input_files": 70,
+  "changed_analysis_inputs": [],
+  "all_measurement_and_cleanup_checks": true,
+  "protocol_sha256": "7e6edd60ef2a0183e62e55da5925cdb5998991d833799764c837b1516858403d",
+  "release_sha256": "4fcc453cb0b75515c5ec24d6721080ec6662ce7895c629234c84ac8576446fa1",
+  "application_accepted": false,
+  "thresholds_applied": false,
+  "formal_H2_decision": "not_assessed",
+  "parent_protocol_validation": {
+    "structure_valid": true,
+    "frozen_files_verified": 30,
+    "workspace_references_verified": 23,
+    "maximum_attempts": 16,
+    "pending_application_fields": [
+      "primary_metric_not_selected",
+      "minimum_relative_improvement_not_fixed",
+      "maximum_added_route_seconds_not_fixed",
+      "application_requirement_origin_not_confirmed"
+    ],
+    "budget_released": false,
+    "execution_authorized": false,
+    "run_allowed": false,
+    "simulator_started": false,
+    "next_step": "Fix application values, seal their hash before results, and review/release this concrete budget separately. This tool has no execution mode."
+  },
+  "no_tuning_or_training_started": true,
+  "real_robot_work_on_hold": true,
+  "output_sha256": {
+    "docs/governor_descriptive_survey_2026-10-18/analysis/report.json": "a16cac55bf555c9dc1c98c83890d9491a399895d42cf43e1832ea01a328f8014",
+    "docs/governor_descriptive_survey_2026-10-18/analysis/REPORT.md": "58519b4ccf0daa7bed4d92b4e522db69e2dfd6e215b2283bd15ae894b76720f8",
+    "docs/governor_descriptive_survey_2026-10-18/analysis/timing_summary.json": "f3e2d164af80487d822cc529c7017eb0d7dcb4e6604b5cf6dc58ea32d170c474",
+    "docs/GOVERNOR_DESCRIPTIVE_SURVEY_2026-10-18.md": "fb69bab27550b65df3dc4c2d6b0f97dfe6eae74f873b1d9677cc5886d7d84a54",
+    "rl_runs/governor_descriptive_survey_2026-10-18/ledger.json": "3f28ba9eb353e10b9e71eef8feb11ead171b9ff1707a58307a7491692beff4cb",
+    "rl_runs/governor_descriptive_survey_2026-10-18/summary.json": "e83a61e926df7c8f72cb980f9185fdbee1151169ecfa19d1201f7c314f7ac45d"
+  }
+}

@@ -1,0 +1,7 @@
+[INFO] [1792131970.217828590] [nino_rl_interface]: Route E1: 6.45 m, goal=(6.45, 0.0), deadline=87.2s
+[INFO] [1792131970.226383145] [nino_rl_interface]: Curriculum phase 1 at training step 0
+[WARN] [1792132042.058310361] [nino_rl_interface]: EPISODE END: success | t=16.70s | goal_dist=0.20m | heading_err=0.8deg | lateral=-0.01m | v=0.18m/s | reference_valid=True | challenges=0/0 | lidar_min=1.54m | collision_clearance=1.54m | roll=0.0deg | pitch=-0.0deg
+/home/tuanmac/ninorobot/.venv/lib/python3.12/site-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+1: reached=True; time=16.70s, endpoint=0.196m, challenges=0/0, lateral drift=0.005m, path RMSE=0.011m
+Saved evaluation: /home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_003/confirmation/d0/screen/seed_77000_full/evaluation/20261016-132605-652785

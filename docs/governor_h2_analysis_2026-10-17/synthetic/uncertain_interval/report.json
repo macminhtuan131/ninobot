@@ -1,0 +1,3380 @@
+{
+  "schema": "H2_offline_decision_v1",
+  "decision": "chua_du_bang_chung",
+  "decision_label": "Ch\u01b0a \u0111\u1ee7 b\u1eb1ng ch\u1ee9ng",
+  "source_kind": "synthetic",
+  "synthetic_result_is_not_robot_validation": true,
+  "issues": [],
+  "gates": {
+    "complete_16": true,
+    "physical_arrival_and_stop": true,
+    "measurement_and_provenance": true,
+    "required_metrics_present": true,
+    "approach_comparable": true,
+    "executed_intervention_before_next_contact": true,
+    "worthwhile_primary_benefit": null,
+    "secondary_and_whole_route_no_worsening": true,
+    "complete_contact_sequence_same_direction": true,
+    "existing_time_tracking_caps": true,
+    "application_added_time": true,
+    "primary_sampling_direction_stable": true
+  },
+  "gate_reasons": {
+    "complete_16": "All16 slots must be collected without hard-stop/error/unattempted slots",
+    "physical_arrival_and_stop": "Every arm must have8/8 physical arrivals and observed stable2s stops; retain known failures",
+    "measurement_and_provenance": "Invalid/missing integrity is not evidence of performance benefit or harm",
+    "required_metrics_present": "No missing/nonfinite metric is zero-filled or dropped from the decision population",
+    "approach_comparable": "No failed caliper exclusion; preserve both blocks and all pairs",
+    "executed_intervention_before_next_contact": "Every reactive run needs measured command/target reduction before a subsequent loaded contact and body/joint evidence; precontact intervention invalidates isolation",
+    "worthwhile_primary_benefit": "Both block point benefits and aggregate lower95% bound must meet the prespecified minimum; overlap gives inconclusive",
+    "secondary_and_whole_route_no_worsening": "Point-estimate nonworsening per block; a failed point gate is not a claim of statistically proven harm",
+    "complete_contact_sequence_same_direction": "Do not dilute a longer contact sequence into a favorable fixed-window-only conclusion",
+    "existing_time_tracking_caps": "Each block:mean time<=18.5s and1.05xPI;mean physical RMSE<=1.05xPI",
+    "application_added_time": "Upper95% added-time bound must fit application seconds; interval crossing limit is inconclusive",
+    "primary_sampling_direction_stable": "Any primary-slip sign reversal across originalGT/20ms/+10ms makes evidence inconclusive; never select favorable origin"
+  },
+  "sampling_reversals": [],
+  "approach": {
+    "passed": true,
+    "individual": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "pairs": [
+      {
+        "seed": 77500,
+        "repeat": 1,
+        "dv_m_s": 0.0,
+        "dy_m": 0.0,
+        "dyaw_rad": 0.0,
+        "passed": true
+      },
+      {
+        "seed": 77500,
+        "repeat": 2,
+        "dv_m_s": 0.0,
+        "dy_m": 0.0,
+        "dyaw_rad": 0.0,
+        "passed": true
+      },
+      {
+        "seed": 77500,
+        "repeat": 3,
+        "dv_m_s": 0.0,
+        "dy_m": 0.0,
+        "dyaw_rad": 0.0,
+        "passed": true
+      },
+      {
+        "seed": 77500,
+        "repeat": 4,
+        "dv_m_s": 0.0,
+        "dy_m": 0.0,
+        "dyaw_rad": 0.0,
+        "passed": true
+      },
+      {
+        "seed": 77501,
+        "repeat": 1,
+        "dv_m_s": 0.0,
+        "dy_m": 0.0,
+        "dyaw_rad": 0.0,
+        "passed": true
+      },
+      {
+        "seed": 77501,
+        "repeat": 2,
+        "dv_m_s": 0.0,
+        "dy_m": 0.0,
+        "dyaw_rad": 0.0,
+        "passed": true
+      },
+      {
+        "seed": 77501,
+        "repeat": 3,
+        "dv_m_s": 0.0,
+        "dy_m": 0.0,
+        "dyaw_rad": 0.0,
+        "passed": true
+      },
+      {
+        "seed": 77501,
+        "repeat": 4,
+        "dv_m_s": 0.0,
+        "dy_m": 0.0,
+        "dyaw_rad": 0.0,
+        "passed": true
+      }
+    ],
+    "qualification": "A failed/missing caliper invalidates a clean postcontact comparison; do not exclude or replace the episode."
+  },
+  "counts": {
+    "assigned": 16,
+    "input_ledger_rows": 16,
+    "attempted": 16,
+    "physical_failures": 0,
+    "stop_failures": 0,
+    "native_unknown": 0,
+    "missing_metric_counts": {
+      "post_slip": 0,
+      "post_vibration": 0,
+      "whole_slip": 0,
+      "whole_vibration": 0,
+      "native_slip": 0,
+      "time": 0,
+      "tracking": 0,
+      "sequence_slip": 0,
+      "sequence_vibration": 0,
+      "grid_slip": 0,
+      "shifted_slip": 0,
+      "post_peak": 0,
+      "whole_peak": 0,
+      "post_slip_integral": 0,
+      "post_distance": 0,
+      "crossing_slip": 0,
+      "crossing_vibration": 0
+    }
+  },
+  "episodes": [
+    {
+      "attempt": 1,
+      "round": 1,
+      "pair_id": "seed_77501_repeat_1",
+      "seed": 77501,
+      "repeat": 1,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 2.0,
+        "whole_slip": 0.02,
+        "whole_vibration": 2.0,
+        "native_slip": 0.03,
+        "time": 16.01,
+        "tracking": 0.005,
+        "sequence_slip": 10.0,
+        "sequence_vibration": 2.0,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 10.0,
+        "post_distance": 1.0,
+        "crossing_slip": 10.0,
+        "crossing_vibration": 2.0
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 2,
+      "round": 1,
+      "pair_id": "seed_77501_repeat_1",
+      "seed": 77501,
+      "repeat": 1,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 5.0,
+        "post_vibration": 1.9,
+        "whole_slip": 0.019,
+        "whole_vibration": 1.9,
+        "native_slip": 0.029,
+        "time": 16.21,
+        "tracking": 0.005,
+        "sequence_slip": 8.0,
+        "sequence_vibration": 1.9,
+        "grid_slip": 5.0,
+        "shifted_slip": 5.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 8.0,
+        "post_distance": 1.0,
+        "crossing_slip": 8.0,
+        "crossing_vibration": 1.9
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 3,
+      "round": 1,
+      "pair_id": "seed_77500_repeat_1",
+      "seed": 77500,
+      "repeat": 1,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 5.0,
+        "post_vibration": 1.9,
+        "whole_slip": 0.019,
+        "whole_vibration": 1.9,
+        "native_slip": 0.029,
+        "time": 16.21,
+        "tracking": 0.005,
+        "sequence_slip": 8.0,
+        "sequence_vibration": 1.9,
+        "grid_slip": 5.0,
+        "shifted_slip": 5.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 8.0,
+        "post_distance": 1.0,
+        "crossing_slip": 8.0,
+        "crossing_vibration": 1.9
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 4,
+      "round": 1,
+      "pair_id": "seed_77500_repeat_1",
+      "seed": 77500,
+      "repeat": 1,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 2.0,
+        "whole_slip": 0.02,
+        "whole_vibration": 2.0,
+        "native_slip": 0.03,
+        "time": 16.01,
+        "tracking": 0.005,
+        "sequence_slip": 10.0,
+        "sequence_vibration": 2.0,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 10.0,
+        "post_distance": 1.0,
+        "crossing_slip": 10.0,
+        "crossing_vibration": 2.0
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 5,
+      "round": 2,
+      "pair_id": "seed_77501_repeat_2",
+      "seed": 77501,
+      "repeat": 2,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 9.0,
+        "post_vibration": 1.9,
+        "whole_slip": 0.019,
+        "whole_vibration": 1.9,
+        "native_slip": 0.029,
+        "time": 16.22,
+        "tracking": 0.005,
+        "sequence_slip": 9.600000000000001,
+        "sequence_vibration": 1.9,
+        "grid_slip": 9.0,
+        "shifted_slip": 9.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 9.600000000000001,
+        "post_distance": 1.0,
+        "crossing_slip": 9.600000000000001,
+        "crossing_vibration": 1.9
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 6,
+      "round": 2,
+      "pair_id": "seed_77501_repeat_2",
+      "seed": 77501,
+      "repeat": 2,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 2.0,
+        "whole_slip": 0.02,
+        "whole_vibration": 2.0,
+        "native_slip": 0.03,
+        "time": 16.02,
+        "tracking": 0.005,
+        "sequence_slip": 12.0,
+        "sequence_vibration": 2.0,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 12.0,
+        "post_distance": 1.0,
+        "crossing_slip": 12.0,
+        "crossing_vibration": 2.0
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 7,
+      "round": 2,
+      "pair_id": "seed_77500_repeat_2",
+      "seed": 77500,
+      "repeat": 2,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 2.0,
+        "whole_slip": 0.02,
+        "whole_vibration": 2.0,
+        "native_slip": 0.03,
+        "time": 16.02,
+        "tracking": 0.005,
+        "sequence_slip": 12.0,
+        "sequence_vibration": 2.0,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 12.0,
+        "post_distance": 1.0,
+        "crossing_slip": 12.0,
+        "crossing_vibration": 2.0
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 8,
+      "round": 2,
+      "pair_id": "seed_77500_repeat_2",
+      "seed": 77500,
+      "repeat": 2,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 9.0,
+        "post_vibration": 1.9,
+        "whole_slip": 0.019,
+        "whole_vibration": 1.9,
+        "native_slip": 0.029,
+        "time": 16.22,
+        "tracking": 0.005,
+        "sequence_slip": 9.600000000000001,
+        "sequence_vibration": 1.9,
+        "grid_slip": 9.0,
+        "shifted_slip": 9.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 9.600000000000001,
+        "post_distance": 1.0,
+        "crossing_slip": 9.600000000000001,
+        "crossing_vibration": 1.9
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 9,
+      "round": 3,
+      "pair_id": "seed_77500_repeat_3",
+      "seed": 77500,
+      "repeat": 3,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 2.0,
+        "whole_slip": 0.02,
+        "whole_vibration": 2.0,
+        "native_slip": 0.03,
+        "time": 16.03,
+        "tracking": 0.005,
+        "sequence_slip": 8.0,
+        "sequence_vibration": 2.0,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 8.0,
+        "post_distance": 1.0,
+        "crossing_slip": 8.0,
+        "crossing_vibration": 2.0
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 10,
+      "round": 3,
+      "pair_id": "seed_77500_repeat_3",
+      "seed": 77500,
+      "repeat": 3,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 1.9,
+        "whole_slip": 0.019,
+        "whole_vibration": 1.9,
+        "native_slip": 0.029,
+        "time": 16.23,
+        "tracking": 0.005,
+        "sequence_slip": 6.4,
+        "sequence_vibration": 1.9,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 6.4,
+        "post_distance": 1.0,
+        "crossing_slip": 6.4,
+        "crossing_vibration": 1.9
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 11,
+      "round": 3,
+      "pair_id": "seed_77501_repeat_3",
+      "seed": 77501,
+      "repeat": 3,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 1.9,
+        "whole_slip": 0.019,
+        "whole_vibration": 1.9,
+        "native_slip": 0.029,
+        "time": 16.23,
+        "tracking": 0.005,
+        "sequence_slip": 6.4,
+        "sequence_vibration": 1.9,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 6.4,
+        "post_distance": 1.0,
+        "crossing_slip": 6.4,
+        "crossing_vibration": 1.9
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 12,
+      "round": 3,
+      "pair_id": "seed_77501_repeat_3",
+      "seed": 77501,
+      "repeat": 3,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 2.0,
+        "whole_slip": 0.02,
+        "whole_vibration": 2.0,
+        "native_slip": 0.03,
+        "time": 16.03,
+        "tracking": 0.005,
+        "sequence_slip": 8.0,
+        "sequence_vibration": 2.0,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 8.0,
+        "post_distance": 1.0,
+        "crossing_slip": 8.0,
+        "crossing_vibration": 2.0
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 13,
+      "round": 4,
+      "pair_id": "seed_77500_repeat_4",
+      "seed": 77500,
+      "repeat": 4,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 1.9,
+        "whole_slip": 0.019,
+        "whole_vibration": 1.9,
+        "native_slip": 0.029,
+        "time": 16.24,
+        "tracking": 0.005,
+        "sequence_slip": 8.8,
+        "sequence_vibration": 1.9,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 8.8,
+        "post_distance": 1.0,
+        "crossing_slip": 8.8,
+        "crossing_vibration": 1.9
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 14,
+      "round": 4,
+      "pair_id": "seed_77500_repeat_4",
+      "seed": 77500,
+      "repeat": 4,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 2.0,
+        "whole_slip": 0.02,
+        "whole_vibration": 2.0,
+        "native_slip": 0.03,
+        "time": 16.04,
+        "tracking": 0.005,
+        "sequence_slip": 11.0,
+        "sequence_vibration": 2.0,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 11.0,
+        "post_distance": 1.0,
+        "crossing_slip": 11.0,
+        "crossing_vibration": 2.0
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 15,
+      "round": 4,
+      "pair_id": "seed_77501_repeat_4",
+      "seed": 77501,
+      "repeat": 4,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 2.0,
+        "whole_slip": 0.02,
+        "whole_vibration": 2.0,
+        "native_slip": 0.03,
+        "time": 16.04,
+        "tracking": 0.005,
+        "sequence_slip": 11.0,
+        "sequence_vibration": 2.0,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 11.0,
+        "post_distance": 1.0,
+        "crossing_slip": 11.0,
+        "crossing_vibration": 2.0
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    },
+    {
+      "attempt": 16,
+      "round": 4,
+      "pair_id": "seed_77501_repeat_4",
+      "seed": 77501,
+      "repeat": 4,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "identity_valid": true,
+      "physical_success": true,
+      "stop_pass": true,
+      "termination": "success",
+      "metrics": {
+        "post_slip": 10.0,
+        "post_vibration": 1.9,
+        "whole_slip": 0.019,
+        "whole_vibration": 1.9,
+        "native_slip": 0.029,
+        "time": 16.24,
+        "tracking": 0.005,
+        "sequence_slip": 8.8,
+        "sequence_vibration": 1.9,
+        "grid_slip": 10.0,
+        "shifted_slip": 10.0,
+        "post_peak": 10.0,
+        "whole_peak": 10.0,
+        "post_slip_integral": 8.8,
+        "post_distance": 1.0,
+        "crossing_slip": 8.8,
+        "crossing_vibration": 1.9
+      },
+      "result_flags": {
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "cleanup_confirmed": true,
+        "quality_available": true
+      },
+      "runner_exit": 0,
+      "approach": {
+        "v": {
+          "minimum": 0.39990000000000003,
+          "maximum": 0.4001,
+          "median": 0.4
+        },
+        "y": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "yaw": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "roll": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "pitch": {
+          "minimum": -0.0001,
+          "maximum": 0.0001,
+          "median": 0.0
+        },
+        "coverage_fraction": 1.0
+      },
+      "timing": {
+        "available": true,
+        "timing_pass": true,
+        "precontact_reduction": false,
+        "synthetic_only": true,
+        "response_snapshots": "synthetic, not physical data"
+      },
+      "native_outcome": {
+        "success": "True",
+        "termination": "success",
+        "synthetic_only": true
+      },
+      "error": null
+    }
+  ],
+  "pairs": [
+    {
+      "seed": 77500,
+      "repeat": 1,
+      "pair_id": "seed_77500_repeat_1",
+      "attempts": {
+        "reactive": 3,
+        "full": 4
+      },
+      "metrics": {
+        "post_slip": {
+          "full": 10.0,
+          "reactive": 5.0,
+          "delta": -5.0,
+          "relative_benefit": 0.5
+        },
+        "post_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_slip": {
+          "full": 0.02,
+          "reactive": 0.019,
+          "delta": -0.0010000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "native_slip": {
+          "full": 0.03,
+          "reactive": 0.029,
+          "delta": -0.0009999999999999974,
+          "relative_benefit": 0.033333333333333215
+        },
+        "time": {
+          "full": 16.01,
+          "reactive": 16.21,
+          "delta": 0.1999999999999993,
+          "relative_benefit": -0.012492192379762512
+        },
+        "tracking": {
+          "full": 0.005,
+          "reactive": 0.005,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "sequence_slip": {
+          "full": 10.0,
+          "reactive": 8.0,
+          "delta": -2.0,
+          "relative_benefit": 0.19999999999999996
+        },
+        "sequence_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "grid_slip": {
+          "full": 10.0,
+          "reactive": 5.0,
+          "delta": -5.0,
+          "relative_benefit": 0.5
+        },
+        "shifted_slip": {
+          "full": 10.0,
+          "reactive": 5.0,
+          "delta": -5.0,
+          "relative_benefit": 0.5
+        },
+        "post_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "whole_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_slip_integral": {
+          "full": 10.0,
+          "reactive": 8.0,
+          "delta": -2.0,
+          "relative_benefit": 0.19999999999999996
+        },
+        "post_distance": {
+          "full": 1.0,
+          "reactive": 1.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "crossing_slip": {
+          "full": 10.0,
+          "reactive": 8.0,
+          "delta": -2.0,
+          "relative_benefit": 0.19999999999999996
+        },
+        "crossing_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        }
+      }
+    },
+    {
+      "seed": 77500,
+      "repeat": 2,
+      "pair_id": "seed_77500_repeat_2",
+      "attempts": {
+        "full": 7,
+        "reactive": 8
+      },
+      "metrics": {
+        "post_slip": {
+          "full": 10.0,
+          "reactive": 9.0,
+          "delta": -1.0,
+          "relative_benefit": 0.09999999999999998
+        },
+        "post_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_slip": {
+          "full": 0.02,
+          "reactive": 0.019,
+          "delta": -0.0010000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "native_slip": {
+          "full": 0.03,
+          "reactive": 0.029,
+          "delta": -0.0009999999999999974,
+          "relative_benefit": 0.033333333333333215
+        },
+        "time": {
+          "full": 16.02,
+          "reactive": 16.22,
+          "delta": 0.1999999999999993,
+          "relative_benefit": -0.012484394506866447
+        },
+        "tracking": {
+          "full": 0.005,
+          "reactive": 0.005,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "sequence_slip": {
+          "full": 12.0,
+          "reactive": 9.600000000000001,
+          "delta": -2.3999999999999986,
+          "relative_benefit": 0.19999999999999984
+        },
+        "sequence_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "grid_slip": {
+          "full": 10.0,
+          "reactive": 9.0,
+          "delta": -1.0,
+          "relative_benefit": 0.09999999999999998
+        },
+        "shifted_slip": {
+          "full": 10.0,
+          "reactive": 9.0,
+          "delta": -1.0,
+          "relative_benefit": 0.09999999999999998
+        },
+        "post_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "whole_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_slip_integral": {
+          "full": 12.0,
+          "reactive": 9.600000000000001,
+          "delta": -2.3999999999999986,
+          "relative_benefit": 0.19999999999999984
+        },
+        "post_distance": {
+          "full": 1.0,
+          "reactive": 1.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "crossing_slip": {
+          "full": 12.0,
+          "reactive": 9.600000000000001,
+          "delta": -2.3999999999999986,
+          "relative_benefit": 0.19999999999999984
+        },
+        "crossing_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        }
+      }
+    },
+    {
+      "seed": 77500,
+      "repeat": 3,
+      "pair_id": "seed_77500_repeat_3",
+      "attempts": {
+        "full": 9,
+        "reactive": 10
+      },
+      "metrics": {
+        "post_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_slip": {
+          "full": 0.02,
+          "reactive": 0.019,
+          "delta": -0.0010000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "native_slip": {
+          "full": 0.03,
+          "reactive": 0.029,
+          "delta": -0.0009999999999999974,
+          "relative_benefit": 0.033333333333333215
+        },
+        "time": {
+          "full": 16.03,
+          "reactive": 16.23,
+          "delta": 0.1999999999999993,
+          "relative_benefit": -0.012476606363069243
+        },
+        "tracking": {
+          "full": 0.005,
+          "reactive": 0.005,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "sequence_slip": {
+          "full": 8.0,
+          "reactive": 6.4,
+          "delta": -1.5999999999999996,
+          "relative_benefit": 0.19999999999999996
+        },
+        "sequence_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "grid_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "shifted_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "whole_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_slip_integral": {
+          "full": 8.0,
+          "reactive": 6.4,
+          "delta": -1.5999999999999996,
+          "relative_benefit": 0.19999999999999996
+        },
+        "post_distance": {
+          "full": 1.0,
+          "reactive": 1.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "crossing_slip": {
+          "full": 8.0,
+          "reactive": 6.4,
+          "delta": -1.5999999999999996,
+          "relative_benefit": 0.19999999999999996
+        },
+        "crossing_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        }
+      }
+    },
+    {
+      "seed": 77500,
+      "repeat": 4,
+      "pair_id": "seed_77500_repeat_4",
+      "attempts": {
+        "reactive": 13,
+        "full": 14
+      },
+      "metrics": {
+        "post_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_slip": {
+          "full": 0.02,
+          "reactive": 0.019,
+          "delta": -0.0010000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "native_slip": {
+          "full": 0.03,
+          "reactive": 0.029,
+          "delta": -0.0009999999999999974,
+          "relative_benefit": 0.033333333333333215
+        },
+        "time": {
+          "full": 16.04,
+          "reactive": 16.24,
+          "delta": 0.1999999999999993,
+          "relative_benefit": -0.012468827930174564
+        },
+        "tracking": {
+          "full": 0.005,
+          "reactive": 0.005,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "sequence_slip": {
+          "full": 11.0,
+          "reactive": 8.8,
+          "delta": -2.1999999999999993,
+          "relative_benefit": 0.19999999999999996
+        },
+        "sequence_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "grid_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "shifted_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "whole_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_slip_integral": {
+          "full": 11.0,
+          "reactive": 8.8,
+          "delta": -2.1999999999999993,
+          "relative_benefit": 0.19999999999999996
+        },
+        "post_distance": {
+          "full": 1.0,
+          "reactive": 1.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "crossing_slip": {
+          "full": 11.0,
+          "reactive": 8.8,
+          "delta": -2.1999999999999993,
+          "relative_benefit": 0.19999999999999996
+        },
+        "crossing_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        }
+      }
+    },
+    {
+      "seed": 77501,
+      "repeat": 1,
+      "pair_id": "seed_77501_repeat_1",
+      "attempts": {
+        "full": 1,
+        "reactive": 2
+      },
+      "metrics": {
+        "post_slip": {
+          "full": 10.0,
+          "reactive": 5.0,
+          "delta": -5.0,
+          "relative_benefit": 0.5
+        },
+        "post_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_slip": {
+          "full": 0.02,
+          "reactive": 0.019,
+          "delta": -0.0010000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "native_slip": {
+          "full": 0.03,
+          "reactive": 0.029,
+          "delta": -0.0009999999999999974,
+          "relative_benefit": 0.033333333333333215
+        },
+        "time": {
+          "full": 16.01,
+          "reactive": 16.21,
+          "delta": 0.1999999999999993,
+          "relative_benefit": -0.012492192379762512
+        },
+        "tracking": {
+          "full": 0.005,
+          "reactive": 0.005,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "sequence_slip": {
+          "full": 10.0,
+          "reactive": 8.0,
+          "delta": -2.0,
+          "relative_benefit": 0.19999999999999996
+        },
+        "sequence_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "grid_slip": {
+          "full": 10.0,
+          "reactive": 5.0,
+          "delta": -5.0,
+          "relative_benefit": 0.5
+        },
+        "shifted_slip": {
+          "full": 10.0,
+          "reactive": 5.0,
+          "delta": -5.0,
+          "relative_benefit": 0.5
+        },
+        "post_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "whole_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_slip_integral": {
+          "full": 10.0,
+          "reactive": 8.0,
+          "delta": -2.0,
+          "relative_benefit": 0.19999999999999996
+        },
+        "post_distance": {
+          "full": 1.0,
+          "reactive": 1.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "crossing_slip": {
+          "full": 10.0,
+          "reactive": 8.0,
+          "delta": -2.0,
+          "relative_benefit": 0.19999999999999996
+        },
+        "crossing_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        }
+      }
+    },
+    {
+      "seed": 77501,
+      "repeat": 2,
+      "pair_id": "seed_77501_repeat_2",
+      "attempts": {
+        "reactive": 5,
+        "full": 6
+      },
+      "metrics": {
+        "post_slip": {
+          "full": 10.0,
+          "reactive": 9.0,
+          "delta": -1.0,
+          "relative_benefit": 0.09999999999999998
+        },
+        "post_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_slip": {
+          "full": 0.02,
+          "reactive": 0.019,
+          "delta": -0.0010000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "native_slip": {
+          "full": 0.03,
+          "reactive": 0.029,
+          "delta": -0.0009999999999999974,
+          "relative_benefit": 0.033333333333333215
+        },
+        "time": {
+          "full": 16.02,
+          "reactive": 16.22,
+          "delta": 0.1999999999999993,
+          "relative_benefit": -0.012484394506866447
+        },
+        "tracking": {
+          "full": 0.005,
+          "reactive": 0.005,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "sequence_slip": {
+          "full": 12.0,
+          "reactive": 9.600000000000001,
+          "delta": -2.3999999999999986,
+          "relative_benefit": 0.19999999999999984
+        },
+        "sequence_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "grid_slip": {
+          "full": 10.0,
+          "reactive": 9.0,
+          "delta": -1.0,
+          "relative_benefit": 0.09999999999999998
+        },
+        "shifted_slip": {
+          "full": 10.0,
+          "reactive": 9.0,
+          "delta": -1.0,
+          "relative_benefit": 0.09999999999999998
+        },
+        "post_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "whole_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_slip_integral": {
+          "full": 12.0,
+          "reactive": 9.600000000000001,
+          "delta": -2.3999999999999986,
+          "relative_benefit": 0.19999999999999984
+        },
+        "post_distance": {
+          "full": 1.0,
+          "reactive": 1.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "crossing_slip": {
+          "full": 12.0,
+          "reactive": 9.600000000000001,
+          "delta": -2.3999999999999986,
+          "relative_benefit": 0.19999999999999984
+        },
+        "crossing_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        }
+      }
+    },
+    {
+      "seed": 77501,
+      "repeat": 3,
+      "pair_id": "seed_77501_repeat_3",
+      "attempts": {
+        "reactive": 11,
+        "full": 12
+      },
+      "metrics": {
+        "post_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_slip": {
+          "full": 0.02,
+          "reactive": 0.019,
+          "delta": -0.0010000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "native_slip": {
+          "full": 0.03,
+          "reactive": 0.029,
+          "delta": -0.0009999999999999974,
+          "relative_benefit": 0.033333333333333215
+        },
+        "time": {
+          "full": 16.03,
+          "reactive": 16.23,
+          "delta": 0.1999999999999993,
+          "relative_benefit": -0.012476606363069243
+        },
+        "tracking": {
+          "full": 0.005,
+          "reactive": 0.005,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "sequence_slip": {
+          "full": 8.0,
+          "reactive": 6.4,
+          "delta": -1.5999999999999996,
+          "relative_benefit": 0.19999999999999996
+        },
+        "sequence_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "grid_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "shifted_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "whole_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_slip_integral": {
+          "full": 8.0,
+          "reactive": 6.4,
+          "delta": -1.5999999999999996,
+          "relative_benefit": 0.19999999999999996
+        },
+        "post_distance": {
+          "full": 1.0,
+          "reactive": 1.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "crossing_slip": {
+          "full": 8.0,
+          "reactive": 6.4,
+          "delta": -1.5999999999999996,
+          "relative_benefit": 0.19999999999999996
+        },
+        "crossing_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        }
+      }
+    },
+    {
+      "seed": 77501,
+      "repeat": 4,
+      "pair_id": "seed_77501_repeat_4",
+      "attempts": {
+        "full": 15,
+        "reactive": 16
+      },
+      "metrics": {
+        "post_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_slip": {
+          "full": 0.02,
+          "reactive": 0.019,
+          "delta": -0.0010000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "whole_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "native_slip": {
+          "full": 0.03,
+          "reactive": 0.029,
+          "delta": -0.0009999999999999974,
+          "relative_benefit": 0.033333333333333215
+        },
+        "time": {
+          "full": 16.04,
+          "reactive": 16.24,
+          "delta": 0.1999999999999993,
+          "relative_benefit": -0.012468827930174564
+        },
+        "tracking": {
+          "full": 0.005,
+          "reactive": 0.005,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "sequence_slip": {
+          "full": 11.0,
+          "reactive": 8.8,
+          "delta": -2.1999999999999993,
+          "relative_benefit": 0.19999999999999996
+        },
+        "sequence_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        },
+        "grid_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "shifted_slip": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "whole_peak": {
+          "full": 10.0,
+          "reactive": 10.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "post_slip_integral": {
+          "full": 11.0,
+          "reactive": 8.8,
+          "delta": -2.1999999999999993,
+          "relative_benefit": 0.19999999999999996
+        },
+        "post_distance": {
+          "full": 1.0,
+          "reactive": 1.0,
+          "delta": 0.0,
+          "relative_benefit": 0.0
+        },
+        "crossing_slip": {
+          "full": 11.0,
+          "reactive": 8.8,
+          "delta": -2.1999999999999993,
+          "relative_benefit": 0.19999999999999996
+        },
+        "crossing_vibration": {
+          "full": 2.0,
+          "reactive": 1.9,
+          "delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044
+        }
+      }
+    }
+  ],
+  "estimates": {
+    "post_slip": {
+      "unit": "s/m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.0,
+          "reactive_mean": 8.5,
+          "mean_delta": -1.5,
+          "relative_benefit": 0.15000000000000002,
+          "delta_CI95": [
+            -3.75,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.375
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.0,
+          "reactive_mean": 8.5,
+          "mean_delta": -1.5,
+          "relative_benefit": 0.15000000000000002,
+          "delta_CI95": [
+            -3.75,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.375
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 10.0,
+        "reactive_mean": 8.5,
+        "mean_delta": -1.5,
+        "relative_benefit": 0.15000000000000002,
+        "delta_CI95": [
+          -3.125,
+          -0.25
+        ],
+        "benefit_CI95": [
+          0.025000000000000022,
+          0.3125
+        ]
+      }
+    },
+    "post_vibration": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 2.0,
+          "reactive_mean": 1.9,
+          "mean_delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044,
+          "delta_CI95": [
+            -0.10000000000000009,
+            -0.10000000000000009
+          ],
+          "benefit_CI95": [
+            0.050000000000000044,
+            0.050000000000000044
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 2.0,
+          "reactive_mean": 1.9,
+          "mean_delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044,
+          "delta_CI95": [
+            -0.10000000000000009,
+            -0.10000000000000009
+          ],
+          "benefit_CI95": [
+            0.050000000000000044,
+            0.050000000000000044
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 2.0,
+        "reactive_mean": 1.9,
+        "mean_delta": -0.10000000000000009,
+        "relative_benefit": 0.050000000000000044,
+        "delta_CI95": [
+          -0.10000000000000009,
+          -0.10000000000000009
+        ],
+        "benefit_CI95": [
+          0.050000000000000044,
+          0.050000000000000044
+        ]
+      }
+    },
+    "whole_slip": {
+      "unit": "dimensionless",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 0.02,
+          "reactive_mean": 0.019,
+          "mean_delta": -0.0010000000000000009,
+          "relative_benefit": 0.050000000000000044,
+          "delta_CI95": [
+            -0.0010000000000000009,
+            -0.0010000000000000009
+          ],
+          "benefit_CI95": [
+            0.050000000000000044,
+            0.050000000000000044
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 0.02,
+          "reactive_mean": 0.019,
+          "mean_delta": -0.0010000000000000009,
+          "relative_benefit": 0.050000000000000044,
+          "delta_CI95": [
+            -0.0010000000000000009,
+            -0.0010000000000000009
+          ],
+          "benefit_CI95": [
+            0.050000000000000044,
+            0.050000000000000044
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 0.02,
+        "reactive_mean": 0.019,
+        "mean_delta": -0.0010000000000000009,
+        "relative_benefit": 0.050000000000000044,
+        "delta_CI95": [
+          -0.0010000000000000009,
+          -0.0010000000000000009
+        ],
+        "benefit_CI95": [
+          0.050000000000000044,
+          0.050000000000000044
+        ]
+      }
+    },
+    "whole_vibration": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 2.0,
+          "reactive_mean": 1.9,
+          "mean_delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044,
+          "delta_CI95": [
+            -0.10000000000000009,
+            -0.10000000000000009
+          ],
+          "benefit_CI95": [
+            0.050000000000000044,
+            0.050000000000000044
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 2.0,
+          "reactive_mean": 1.9,
+          "mean_delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044,
+          "delta_CI95": [
+            -0.10000000000000009,
+            -0.10000000000000009
+          ],
+          "benefit_CI95": [
+            0.050000000000000044,
+            0.050000000000000044
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 2.0,
+        "reactive_mean": 1.9,
+        "mean_delta": -0.10000000000000009,
+        "relative_benefit": 0.050000000000000044,
+        "delta_CI95": [
+          -0.10000000000000009,
+          -0.10000000000000009
+        ],
+        "benefit_CI95": [
+          0.050000000000000044,
+          0.050000000000000044
+        ]
+      }
+    },
+    "native_slip": {
+      "unit": "dimensionless",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 0.03,
+          "reactive_mean": 0.029,
+          "mean_delta": -0.0009999999999999974,
+          "relative_benefit": 0.033333333333333215,
+          "delta_CI95": [
+            -0.0009999999999999974,
+            -0.0009999999999999974
+          ],
+          "benefit_CI95": [
+            0.033333333333333215,
+            0.033333333333333215
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 0.03,
+          "reactive_mean": 0.029,
+          "mean_delta": -0.0009999999999999974,
+          "relative_benefit": 0.033333333333333215,
+          "delta_CI95": [
+            -0.0009999999999999974,
+            -0.0009999999999999974
+          ],
+          "benefit_CI95": [
+            0.033333333333333215,
+            0.033333333333333215
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 0.03,
+        "reactive_mean": 0.029,
+        "mean_delta": -0.0009999999999999974,
+        "relative_benefit": 0.033333333333333215,
+        "delta_CI95": [
+          -0.0009999999999999974,
+          -0.0009999999999999974
+        ],
+        "benefit_CI95": [
+          0.033333333333333215,
+          0.033333333333333215
+        ]
+      }
+    },
+    "time": {
+      "unit": "s",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 16.025,
+          "reactive_mean": 16.224999999999998,
+          "mean_delta": 0.1999999999999993,
+          "relative_benefit": -0.012480499219968744,
+          "delta_CI95": [
+            0.19999999999999574,
+            0.20000000000000284
+          ],
+          "benefit_CI95": [
+            -0.012488292226038089,
+            -0.01247271593389443
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 16.025,
+          "reactive_mean": 16.224999999999998,
+          "mean_delta": 0.1999999999999993,
+          "relative_benefit": -0.012480499219968744,
+          "delta_CI95": [
+            0.19999999999999574,
+            0.20000000000000284
+          ],
+          "benefit_CI95": [
+            -0.012488292226038311,
+            -0.01247271593389443
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 16.025,
+        "reactive_mean": 16.224999999999998,
+        "mean_delta": 0.1999999999999993,
+        "relative_benefit": -0.012480499219968744,
+        "delta_CI95": [
+          0.19999999999999574,
+          0.20000000000000284
+        ],
+        "benefit_CI95": [
+          -0.01248634336645238,
+          -0.012474661148481836
+        ]
+      }
+    },
+    "tracking": {
+      "unit": "m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 0.005,
+          "reactive_mean": 0.005,
+          "mean_delta": 0.0,
+          "relative_benefit": 0.0,
+          "delta_CI95": [
+            0.0,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.0
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 0.005,
+          "reactive_mean": 0.005,
+          "mean_delta": 0.0,
+          "relative_benefit": 0.0,
+          "delta_CI95": [
+            0.0,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.0
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 0.005,
+        "reactive_mean": 0.005,
+        "mean_delta": 0.0,
+        "relative_benefit": 0.0,
+        "delta_CI95": [
+          0.0,
+          0.0
+        ],
+        "benefit_CI95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "sequence_slip": {
+      "unit": "s/m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.25,
+          "reactive_mean": 8.2,
+          "mean_delta": -2.0499999999999994,
+          "relative_benefit": 0.20000000000000007,
+          "delta_CI95": [
+            -2.299999999999999,
+            -1.75
+          ],
+          "benefit_CI95": [
+            0.19999999999999984,
+            0.20000000000000007
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.25,
+          "reactive_mean": 8.2,
+          "mean_delta": -2.0499999999999994,
+          "relative_benefit": 0.20000000000000007,
+          "delta_CI95": [
+            -2.299999999999999,
+            -1.7499999999999991
+          ],
+          "benefit_CI95": [
+            0.19999999999999984,
+            0.20000000000000007
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 10.25,
+        "reactive_mean": 8.2,
+        "mean_delta": -2.0499999999999994,
+        "relative_benefit": 0.20000000000000007,
+        "delta_CI95": [
+          -2.249999999999999,
+          -1.8250000000000002
+        ],
+        "benefit_CI95": [
+          0.19999999999999984,
+          0.20000000000000007
+        ]
+      }
+    },
+    "sequence_vibration": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 2.0,
+          "reactive_mean": 1.9,
+          "mean_delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044,
+          "delta_CI95": [
+            -0.10000000000000009,
+            -0.10000000000000009
+          ],
+          "benefit_CI95": [
+            0.050000000000000044,
+            0.050000000000000044
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 2.0,
+          "reactive_mean": 1.9,
+          "mean_delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044,
+          "delta_CI95": [
+            -0.10000000000000009,
+            -0.10000000000000009
+          ],
+          "benefit_CI95": [
+            0.050000000000000044,
+            0.050000000000000044
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 2.0,
+        "reactive_mean": 1.9,
+        "mean_delta": -0.10000000000000009,
+        "relative_benefit": 0.050000000000000044,
+        "delta_CI95": [
+          -0.10000000000000009,
+          -0.10000000000000009
+        ],
+        "benefit_CI95": [
+          0.050000000000000044,
+          0.050000000000000044
+        ]
+      }
+    },
+    "grid_slip": {
+      "unit": "s/m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.0,
+          "reactive_mean": 8.5,
+          "mean_delta": -1.5,
+          "relative_benefit": 0.15000000000000002,
+          "delta_CI95": [
+            -3.75,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.375
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.0,
+          "reactive_mean": 8.5,
+          "mean_delta": -1.5,
+          "relative_benefit": 0.15000000000000002,
+          "delta_CI95": [
+            -3.75,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.375
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 10.0,
+        "reactive_mean": 8.5,
+        "mean_delta": -1.5,
+        "relative_benefit": 0.15000000000000002,
+        "delta_CI95": [
+          -3.125,
+          -0.25
+        ],
+        "benefit_CI95": [
+          0.025000000000000022,
+          0.3125
+        ]
+      }
+    },
+    "shifted_slip": {
+      "unit": "s/m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.0,
+          "reactive_mean": 8.5,
+          "mean_delta": -1.5,
+          "relative_benefit": 0.15000000000000002,
+          "delta_CI95": [
+            -3.75,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.375
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.0,
+          "reactive_mean": 8.5,
+          "mean_delta": -1.5,
+          "relative_benefit": 0.15000000000000002,
+          "delta_CI95": [
+            -3.75,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.375
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 10.0,
+        "reactive_mean": 8.5,
+        "mean_delta": -1.5,
+        "relative_benefit": 0.15000000000000002,
+        "delta_CI95": [
+          -3.125,
+          -0.25
+        ],
+        "benefit_CI95": [
+          0.025000000000000022,
+          0.3125
+        ]
+      }
+    },
+    "post_peak": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.0,
+          "reactive_mean": 10.0,
+          "mean_delta": 0.0,
+          "relative_benefit": 0.0,
+          "delta_CI95": [
+            0.0,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.0
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.0,
+          "reactive_mean": 10.0,
+          "mean_delta": 0.0,
+          "relative_benefit": 0.0,
+          "delta_CI95": [
+            0.0,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.0
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 10.0,
+        "reactive_mean": 10.0,
+        "mean_delta": 0.0,
+        "relative_benefit": 0.0,
+        "delta_CI95": [
+          0.0,
+          0.0
+        ],
+        "benefit_CI95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "whole_peak": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.0,
+          "reactive_mean": 10.0,
+          "mean_delta": 0.0,
+          "relative_benefit": 0.0,
+          "delta_CI95": [
+            0.0,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.0
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.0,
+          "reactive_mean": 10.0,
+          "mean_delta": 0.0,
+          "relative_benefit": 0.0,
+          "delta_CI95": [
+            0.0,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.0
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 10.0,
+        "reactive_mean": 10.0,
+        "mean_delta": 0.0,
+        "relative_benefit": 0.0,
+        "delta_CI95": [
+          0.0,
+          0.0
+        ],
+        "benefit_CI95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "post_slip_integral": {
+      "unit": "s",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.25,
+          "reactive_mean": 8.2,
+          "mean_delta": -2.0499999999999994,
+          "relative_benefit": 0.20000000000000007,
+          "delta_CI95": [
+            -2.299999999999999,
+            -1.75
+          ],
+          "benefit_CI95": [
+            0.19999999999999984,
+            0.20000000000000007
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.25,
+          "reactive_mean": 8.2,
+          "mean_delta": -2.0499999999999994,
+          "relative_benefit": 0.20000000000000007,
+          "delta_CI95": [
+            -2.299999999999999,
+            -1.7499999999999991
+          ],
+          "benefit_CI95": [
+            0.19999999999999984,
+            0.20000000000000007
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 10.25,
+        "reactive_mean": 8.2,
+        "mean_delta": -2.0499999999999994,
+        "relative_benefit": 0.20000000000000007,
+        "delta_CI95": [
+          -2.249999999999999,
+          -1.8250000000000002
+        ],
+        "benefit_CI95": [
+          0.19999999999999984,
+          0.20000000000000007
+        ]
+      }
+    },
+    "post_distance": {
+      "unit": "m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 1.0,
+          "reactive_mean": 1.0,
+          "mean_delta": 0.0,
+          "relative_benefit": 0.0,
+          "delta_CI95": [
+            0.0,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.0
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 1.0,
+          "reactive_mean": 1.0,
+          "mean_delta": 0.0,
+          "relative_benefit": 0.0,
+          "delta_CI95": [
+            0.0,
+            0.0
+          ],
+          "benefit_CI95": [
+            0.0,
+            0.0
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 1.0,
+        "reactive_mean": 1.0,
+        "mean_delta": 0.0,
+        "relative_benefit": 0.0,
+        "delta_CI95": [
+          0.0,
+          0.0
+        ],
+        "benefit_CI95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "crossing_slip": {
+      "unit": "s/m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.25,
+          "reactive_mean": 8.2,
+          "mean_delta": -2.0499999999999994,
+          "relative_benefit": 0.20000000000000007,
+          "delta_CI95": [
+            -2.299999999999999,
+            -1.75
+          ],
+          "benefit_CI95": [
+            0.19999999999999984,
+            0.20000000000000007
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 10.25,
+          "reactive_mean": 8.2,
+          "mean_delta": -2.0499999999999994,
+          "relative_benefit": 0.20000000000000007,
+          "delta_CI95": [
+            -2.299999999999999,
+            -1.7499999999999991
+          ],
+          "benefit_CI95": [
+            0.19999999999999984,
+            0.20000000000000007
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 10.25,
+        "reactive_mean": 8.2,
+        "mean_delta": -2.0499999999999994,
+        "relative_benefit": 0.20000000000000007,
+        "delta_CI95": [
+          -2.249999999999999,
+          -1.8250000000000002
+        ],
+        "benefit_CI95": [
+          0.19999999999999984,
+          0.20000000000000007
+        ]
+      }
+    },
+    "crossing_vibration": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 2.0,
+          "reactive_mean": 1.9,
+          "mean_delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044,
+          "delta_CI95": [
+            -0.10000000000000009,
+            -0.10000000000000009
+          ],
+          "benefit_CI95": [
+            0.050000000000000044,
+            0.050000000000000044
+          ],
+          "undefined_bootstrap_denominators": 0
+        },
+        "77501": {
+          "available_pairs": 4,
+          "expected_pairs": 4,
+          "available": true,
+          "full_mean": 2.0,
+          "reactive_mean": 1.9,
+          "mean_delta": -0.10000000000000009,
+          "relative_benefit": 0.050000000000000044,
+          "delta_CI95": [
+            -0.10000000000000009,
+            -0.10000000000000009
+          ],
+          "benefit_CI95": [
+            0.050000000000000044,
+            0.050000000000000044
+          ],
+          "undefined_bootstrap_denominators": 0
+        }
+      },
+      "aggregate": {
+        "available": true,
+        "full_mean": 2.0,
+        "reactive_mean": 1.9,
+        "mean_delta": -0.10000000000000009,
+        "relative_benefit": 0.050000000000000044,
+        "delta_CI95": [
+          -0.10000000000000009,
+          -0.10000000000000009
+        ],
+        "benefit_CI95": [
+          0.050000000000000044,
+          0.050000000000000044
+        ]
+      }
+    }
+  },
+  "criteria": {
+    "status": "confirmed",
+    "primary_metric": "postcontact_GT_slip_square_per_m",
+    "minimum_relative_improvement": 0.1,
+    "maximum_added_route_seconds": 0.5,
+    "requirement_origin": "user_accepted_engineering_assumption",
+    "synthetic_only": true
+  },
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 20261018,
+    "unit": "intact pair resampled within fixed seed",
+    "interval": "percentile95",
+    "small_sample_coverage_not_guaranteed": true
+  },
+  "recommended_action": "Stop this frozen intervention/small-screen branch; no automatic extra episodes or parameter search",
+  "automatic_execution": false,
+  "simulation_episodes": 0,
+  "native_scoring_changed": false,
+  "predictor_started": false,
+  "PPO_started": false,
+  "optuna_started": false
+}

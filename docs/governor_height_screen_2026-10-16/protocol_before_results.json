@@ -1,0 +1,114 @@
+{
+  "prepared_protocol": {
+    "status": "prepared_not_run",
+    "kind": "CAD_based_simulation_contact_mechanism_screen_not_hardware_validation",
+    "question": "Does contact identity/repeatability and response to the frozen governor differ for a low ridge below nominal bracket clearance versus the existing 22mm ridge?",
+    "maximum_attempts": 8,
+    "repetitions_per_height_and_controller": 2,
+    "seeds": [
+      77310,
+      77311
+    ],
+    "obstacle": {
+      "kind": "rigid_capsule_ridge",
+      "top_heights_m": [
+        0.006,
+        0.022
+      ],
+      "radii_m": [
+        0.003,
+        0.011
+      ],
+      "center_z_equal_radius": true,
+      "x_m": 3.1,
+      "angle_deg": 8.0,
+      "cylindrical_length_m": 4.0,
+      "qualification": "Geometry contrast is a new declared scenario, not a correction or replacement of the 22mm failures. 6mm was chosen below the 9.03mm nominal bracket gap, not as a claimed safe hardware height."
+    },
+    "case_order": [
+      [
+        77310,
+        0.006,
+        "full"
+      ],
+      [
+        77310,
+        0.006,
+        "reactive"
+      ],
+      [
+        77310,
+        0.022,
+        "reactive"
+      ],
+      [
+        77310,
+        0.022,
+        "full"
+      ],
+      [
+        77311,
+        0.022,
+        "full"
+      ],
+      [
+        77311,
+        0.022,
+        "reactive"
+      ],
+      [
+        77311,
+        0.006,
+        "reactive"
+      ],
+      [
+        77311,
+        0.006,
+        "full"
+      ]
+    ],
+    "fixed": {
+      "robot_URDF_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+      "config_source": "rl_runs/governor_frozen_repeats_2026-10-16/config.yaml",
+      "cruise_m_s": 0.4,
+      "target_scale": 0.9,
+      "minimum_hold_s": 0.8,
+      "maximum_hold_s": 1.0,
+      "scale_ramp_per_s": 0.4,
+      "control_interval_s": 0.1,
+      "physics_step_s": 0.001,
+      "floor": "solid_box",
+      "PI_detector_estimator_scoring": "unchanged"
+    },
+    "logging": [
+      "all arrivals, failures and 2s post-arrival stop checks",
+      "first named manifold and first positive-depth nonzero-force sample separately",
+      "wheel/caster identity, precontact support/load and rolling state for diagnostics only",
+      "raw command/encoder/GT/IMU timestamps, native replay and coverage",
+      "unchanged whole-route and post-contact vibration/slip, time and physical tracking"
+    ],
+    "no_oracle_to_governor": true,
+    "no_retry": true,
+    "no_tuning": true,
+    "no_parameter_selection": true,
+    "cold_start_each_attempt": true,
+    "parallel_simulators": 1,
+    "stop_rule": "Stop on missing measurement or physical failure; retain all attempts and do not run replacements. At budget end, inspect mechanism and repeatability, do not select the easier height to claim general improvement.",
+    "interpretation": "n=2 per arm/height is a mechanism screen only. A change of first-contact component with height supports a scope distinction, not proof of mechanical fault. Stable quality benefit would justify a separately budgeted confirmation; mixed effects mean offline audit and a go/no-go decision, not automatic tuning."
+  },
+  "domain": 105,
+  "partition": "nino_height_screen_105",
+  "source_sha256": {
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/ros_env.py": "391b34850b2bfde898e6d903f9b41a5f5aa11da5f9f34f9dbc11edb22f040915",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/ros_interface.py": "c1745e25ed9cb162bc5372133afbe157302c1b6ed4e0e032bced917c555a82f0",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/evaluation.py": "20bce6510e0793ba0ceda036d56785198f45d468f21957a758e834b1f40fd904",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/slip_reporting.py": "3f71c47b9b2db9514c1236578429c4ee3206d75506228d29d5b260e7d115a92c",
+    "/home/tuanmac/ninorobot/src/nino_control/nino_control/governor_core.py": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+    "/home/tuanmac/ninorobot/src/nino_control/nino_control/effort_drive.py": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+    "/home/tuanmac/ninorobot/src/nino_rl/scripts/run_governor_height_screen.py": "78fa26f331b0272e4e8ad6e939bc8f958ef706d2184a41b16ef70aff6ac14ae7",
+    "/home/tuanmac/ninorobot/src/nino_rl/scripts/run_clear_floor_repeat.py": "5fc2c2760148444a7c62a857cd1b03caedafb39b32e139a6d3b4f5b54e5da064",
+    "/home/tuanmac/ninorobot/src/nino_description/worlds/factory_floor_cable_box_capsule_contact_lab.sdf": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f"
+  },
+  "fixed_config_sha256": "6ce2de78c09eb502e89ab6e81f614a2c0064a05bacc1995df5e421d58e5cb7f5",
+  "analysis": "Same native scoring, GT-stamp slip; report both existing grid origins as sensitivity. No pooling with history or height selection."
+}

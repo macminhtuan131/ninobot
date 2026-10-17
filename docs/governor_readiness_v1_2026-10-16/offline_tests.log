@@ -1,0 +1,16 @@
+....................................F.................                   [100%]
+=================================== FAILURES ===================================
+_____ test_training_uses_direct_straight_baseline_plus_rl_residual_torque ______
+
+    def test_training_uses_direct_straight_baseline_plus_rl_residual_torque():
+        launch_dir = ROOT / "src" / "nino_rl" / "launch"
+        training = (launch_dir / "training_sim.launch.py").read_text()
+        baseline = (launch_dir / "baseline_nav.launch.py").read_text()
+        assert '"accept_cmd_vel": "true"' in training
+>       assert '"accept_torque": "true"' in training
+E       assert '"accept_torque": "true"' in '"""Start Nino and the direct straight-line RL training interfaces."""\n\nimport os\n\nfrom launch import LaunchDescri...o enforced by safety adapter)",\n            ),\n            simulator,\n            reset_bridge,\n        ]\n    )\n'
+
+src/nino_rl/test/test_nav2_integration.py:364: AssertionError
+=========================== short test summary info ============================
+FAILED src/nino_rl/test/test_nav2_integration.py::test_training_uses_direct_straight_baseline_plus_rl_residual_torque
+1 failed, 53 passed in 1.10s

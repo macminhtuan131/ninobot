@@ -1,0 +1,11 @@
+{
+  "note": "EXAMPLE ONLY. Replace topics, types, fields and units using your real motor driver's documentation. Classification remains unverified until checked.",
+  "signals": [
+    {"name": "left_current", "topic": "/motor/left/current", "type": "std_msgs/msg/Float32", "field": "data", "unit": "A", "kind": "reported_unverified"},
+    {"name": "right_current", "topic": "/motor/right/current", "type": "std_msgs/msg/Float32", "field": "data", "unit": "A", "kind": "reported_unverified"},
+    {"name": "left_reported_torque", "topic": "/motor/left/torque", "type": "std_msgs/msg/Float32", "field": "data", "unit": "Nm", "kind": "reported_unverified"},
+    {"name": "right_reported_torque", "topic": "/motor/right/torque", "type": "std_msgs/msg/Float32", "field": "data", "unit": "Nm", "kind": "reported_unverified"},
+    {"name": "left_motor_temperature", "topic": "/motor/left/temperature", "type": "std_msgs/msg/Float32", "field": "data", "unit": "degC", "kind": "reported_unverified"},
+    {"name": "right_motor_temperature", "topic": "/motor/right/temperature", "type": "std_msgs/msg/Float32", "field": "data", "unit": "degC", "kind": "reported_unverified"}
+  ]
+}

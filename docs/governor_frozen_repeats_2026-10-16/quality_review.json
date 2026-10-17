@@ -1,0 +1,21 @@
+{
+  "status": "stop_expansion_review_contact_and_measurement_fidelity",
+  "observed": "Both new pairs improve crossing RMS/peak and GT crossing slip; whole-route RMS changes direction; severe recorded peaks vary across frozen runs",
+  "automatic_flag_scope": [
+    "crossing_vertical_rms",
+    "whole_vertical_peak"
+  ],
+  "whole_route_rms_direction_changes": true,
+  "original_automatic_decision_unchanged": true,
+  "hypothesis_of_repeatable_RECOVER_specific_deficit_supported": false,
+  "first_named_manifold_is_not_first_loaded_contact": true,
+  "no_controller_or_physics_correction_selected": true,
+  "next_required_information": {
+    "real_minimum_bracket_clearance_mm": null,
+    "real_caster_diameter_mm": null
+  },
+  "no_more_simulation_in_this_batch": true,
+  "no_optuna": true,
+  "no_predictor": true,
+  "no_training": true
+}

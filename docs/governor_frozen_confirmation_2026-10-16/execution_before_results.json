@@ -1,0 +1,13 @@
+{
+  "parallel_scenarios": 4,
+  "ros_domains": [
+    90,
+    91,
+    92,
+    93
+  ],
+  "reason": "Independent cold-start blocks;80 logical CPUs/approximately50GB available at preregistration",
+  "repeated_grid_reversal": "At least2 of8 paired blocks reverse whole RMS or crossing slip2/m comparison between primary and10ms-shift grids",
+  "frozen_config_sha256": "cf959d8ba0f38381a20ca821dd3d42acd944bdbe54d94acadb2331aa4b9a297e",
+  "no_extra_episodes_or_retries": true
+}

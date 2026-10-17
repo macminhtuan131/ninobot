@@ -1,0 +1,18 @@
+{
+  "status": "offline_decision_engine_implemented_verified",
+  "analyzer": "src/nino_rl/scripts/analyze_governor_h2_replication.py",
+  "analyzer_sha256": "696c91622ee7a1424fcfcf6343292e67409a33f7dec7f4cb562674c39e9d9e16",
+  "analysis_spec": "docs/governor_h2_analysis_2026-10-17/analysis_spec.json",
+  "analysis_spec_sha256": "7a766eb77be5b7a48ab5032fe89742758a3cfad539e866c326d554b473a9bdd9",
+  "decisions": [
+    "dat",
+    "khong_dat",
+    "chua_du_bang_chung"
+  ],
+  "total_related_tests_passed": 92,
+  "application_sealed": false,
+  "execution_authorized": false,
+  "budget_released": false,
+  "simulation_episodes": 0,
+  "result_scope": "Synthetic fixtures and offline plan only; not a governor performance result"
+}

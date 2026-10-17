@@ -1,0 +1,70 @@
+ATTEMPT 1/16 seed=77501 repeat=1 profile=full
+ANALYZED 1 episodes
+COLLECTED 1: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 2/16 seed=77501 repeat=1 profile=reactive
+ANALYZED 1 episodes
+COLLECTED 2: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 3/16 seed=77500 repeat=1 profile=reactive
+ANALYZED 1 episodes
+COLLECTED 3: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 4/16 seed=77500 repeat=1 profile=full
+ANALYZED 1 episodes
+COLLECTED 4: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 5/16 seed=77501 repeat=2 profile=reactive
+ANALYZED 1 episodes
+COLLECTED 5: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 6/16 seed=77501 repeat=2 profile=full
+ANALYZED 1 episodes
+COLLECTED 6: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 7/16 seed=77500 repeat=2 profile=full
+ANALYZED 1 episodes
+COLLECTED 7: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 8/16 seed=77500 repeat=2 profile=reactive
+ANALYZED 1 episodes
+COLLECTED 8: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 9/16 seed=77500 repeat=3 profile=full
+ANALYZED 1 episodes
+COLLECTED 9: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 10/16 seed=77500 repeat=3 profile=reactive
+ANALYZED 1 episodes
+COLLECTED 10: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 11/16 seed=77501 repeat=3 profile=reactive
+ANALYZED 1 episodes
+COLLECTED 11: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 12/16 seed=77501 repeat=3 profile=full
+ANALYZED 1 episodes
+COLLECTED 12: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 13/16 seed=77500 repeat=4 profile=reactive
+ANALYZED 1 episodes
+COLLECTED 13: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 14/16 seed=77500 repeat=4 profile=full
+ANALYZED 1 episodes
+COLLECTED 14: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 15/16 seed=77501 repeat=4 profile=full
+ANALYZED 1 episodes
+COLLECTED 15: arrival=True termination=success integrity=True cleanup=True
+ATTEMPT 16/16 seed=77501 repeat=4 profile=reactive
+ANALYZED 1 episodes
+COLLECTED 16: arrival=True termination=success integrity=True cleanup=True
+{
+  "status": "sixteen_attempts_collected_unscored",
+  "maximum_attempts": 16,
+  "attempted": 16,
+  "launch_requests": 16,
+  "unattempted": [],
+  "physical_successes": 16,
+  "physical_failures": 0,
+  "native_outcomes_unavailable": 0,
+  "stop_failures": 0,
+  "all_physical_arrivals_and_stops": true,
+  "retries": 0,
+  "replacements": 0,
+  "automatic_promotion": false,
+  "H2_decision": "not_assessed",
+  "predictor_started": false,
+  "PPO_started": false,
+  "optuna_started": false,
+  "note": "Collection status only. All assigned slots, task failures and null/censored metrics are retained. No success-only decision or automatic budget extension.",
+  "mode": "descriptive_only_no_H2_decision",
+  "thresholds_applied": false
+}

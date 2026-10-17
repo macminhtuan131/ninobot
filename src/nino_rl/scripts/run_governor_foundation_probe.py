@@ -24,12 +24,17 @@ CASES={
     "brake_recover": [(0.,.4,0.),(1.5,.18,0.),(2.5,.4,0.),(3.5,0.,0.)],
     "turn": [(0.,.25,0.),(1.5,.25,.4),(3.,.25,0.),(3.5,0.,0.)],
     "crossing": [(0.,.4,0.)],
+    # Open-loop execution of the frozen .90 governor sequence on clear floor.
+    # This diagnoses the command path, not sensor triggering or H2 benefit.
+    "matched_governor_ramp": [(0.,.4,0.), (7.,.384,0.), (7.1,.368,0.),
+                              (7.2,.36,0.), (8.,.376,0.), (8.1,.392,0.),
+                              (8.2,.4,0.), (10.,0.,0.)],
 }
 CLEAN_CASES=("accelerate","brake_recover","turn")
 
 
 def duration(case):
-    return 10. if case=="crossing" else 4.
+    return 12. if case=="matched_governor_ramp" else (10. if case=="crossing" else 4.)
 
 
 def command(case,elapsed):

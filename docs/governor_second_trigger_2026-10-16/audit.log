@@ -1,0 +1,235 @@
+{
+  "decision": {
+    "status": "contact_transition_supported_keep_detector",
+    "detector_correction_supported": false,
+    "reason": "Recorded wheel error crosses threshold while driven wheel reverses against a forward target and right-wheel floor/cable load changes precede trigger; no evidence of a BRAKE/RECOVER command reversal causing a false event.",
+    "delay_200ms_remains_rejected": true,
+    "default_delay_seconds": 0.0,
+    "next_action": "Keep detector; decide how to control/compare complete multi-contact sequences with reset/contact variability before another intervention budget. No automatic suppression of second event.",
+    "input_files_protected": 302,
+    "changed_protected": [],
+    "new_simulation_episodes": 0,
+    "runtime_changes": false,
+    "native_metric_changes": false,
+    "study_score_changes": false,
+    "optuna_started": false,
+    "predictor_started": false,
+    "training_started": false
+  },
+  "event": {
+    "rearm_relative_s": 0.67599999999997,
+    "second_relative_s": 0.9759999999999689,
+    "wheel_ratio": 6.316510811846553,
+    "latest_body_rate_ratio": 0.018892480520737432,
+    "right_actual_rad_s": -0.3817983138850481
+  },
+  "verification": {
+    "samples": 28,
+    "max_abs_wheel_error_delta_m_s": 0.00048528553634380467,
+    "max_abs_total_ratio_delta": 0.0,
+    "max_abs_threshold_delta_m_s": 0.0
+  },
+  "windows": {
+    "full": {
+      "precontact_baseline": {
+        "available": true,
+        "start_s": 11.367999999999999,
+        "end_s": 11.617999999999999,
+        "duration_s": 0.25,
+        "coverage_s": 0.25,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 1.3356922597272404e-06,
+        "slip_square_integral_s": 1.3356922597272404e-06,
+        "rms": 0.002311443064172025,
+        "distance_m": 0.09938108660630253,
+        "slip_square_per_m": 1.3440105208535059e-05
+      },
+      "first_50ms_GT_slip_not_IMU": {
+        "available": true,
+        "start_s": 11.668,
+        "end_s": 11.718,
+        "duration_s": 0.05000000000000071,
+        "coverage_s": 0.05000000000000071,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.0019940021154787445,
+        "slip_square_integral_s": 0.0019940021154787445,
+        "rms": 0.19969988059479235,
+        "distance_m": 0.016791362011415758,
+        "slip_square_per_m": 0.1187516601764112
+      },
+      "before_any_reduced_command": {
+        "available": true,
+        "start_s": 11.668,
+        "end_s": 11.743999999999971,
+        "duration_s": 0.07599999999997209,
+        "coverage_s": 0.07599999999997209,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.002577792730441571,
+        "slip_square_integral_s": 0.002577792730441571,
+        "rms": 0.184169284628462,
+        "distance_m": 0.02390171005236757,
+        "slip_square_per_m": 0.10784971973945559
+      },
+      "after_trigger_before_candidate_brake": {
+        "available": true,
+        "start_s": 11.743999999999971,
+        "end_s": 11.94399999999997,
+        "duration_s": 0.1999999999999993,
+        "coverage_s": 0.1999999999999993,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.005846210543819213,
+        "slip_square_integral_s": 0.005846210543819213,
+        "rms": 0.17097091190929575,
+        "distance_m": 0.06899746090577903,
+        "slip_square_per_m": 0.08473080700466111
+      },
+      "before_candidate_brake": {
+        "available": true,
+        "start_s": 11.668,
+        "end_s": 11.94399999999997,
+        "duration_s": 0.2759999999999714,
+        "coverage_s": 0.2759999999999714,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.008424003274260782,
+        "slip_square_integral_s": 0.008424003274260782,
+        "rms": 0.17470475378106243,
+        "distance_m": 0.0928991709581466,
+        "slip_square_per_m": 0.09067899301336074
+      }
+    },
+    "frozen_reactive": {
+      "precontact_baseline": {
+        "available": true,
+        "start_s": 14.811,
+        "end_s": 15.061,
+        "duration_s": 0.25,
+        "coverage_s": 0.25,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 6.305118534580708e-07,
+        "slip_square_integral_s": 6.305118534580708e-07,
+        "rms": 0.0015880955304490606,
+        "distance_m": 0.09944070917369117,
+        "slip_square_per_m": 6.340580821449773e-06
+      },
+      "first_50ms_GT_slip_not_IMU": {
+        "available": true,
+        "start_s": 15.111,
+        "end_s": 15.161000000000001,
+        "duration_s": 0.05000000000000071,
+        "coverage_s": 0.05000000000000071,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.006683802086986525,
+        "slip_square_integral_s": 0.006683802086986525,
+        "rms": 0.36561734332458656,
+        "distance_m": 0.013460329584050664,
+        "slip_square_per_m": 0.4965556040251984
+      },
+      "before_any_reduced_command": {
+        "available": true,
+        "start_s": 15.111,
+        "end_s": 15.186999999999973,
+        "duration_s": 0.07599999999997209,
+        "coverage_s": 0.07599999999997209,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.008307390092981334,
+        "slip_square_integral_s": 0.008307390092981334,
+        "rms": 0.3306172475558005,
+        "distance_m": 0.02104792700497744,
+        "slip_square_per_m": 0.39468922953869956
+      },
+      "after_trigger_before_candidate_brake": {
+        "available": true,
+        "start_s": 15.186999999999973,
+        "end_s": 15.386999999999972,
+        "duration_s": 0.1999999999999993,
+        "coverage_s": 0.1999999999999993,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.0055796818648524375,
+        "slip_square_integral_s": 0.0055796818648524375,
+        "rms": 0.16702816925375877,
+        "distance_m": 0.058940069615978974,
+        "slip_square_per_m": 0.09466703892965467
+      },
+      "before_candidate_brake": {
+        "available": true,
+        "start_s": 15.111,
+        "end_s": 15.386999999999972,
+        "duration_s": 0.2759999999999714,
+        "coverage_s": 0.2759999999999714,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.01388707195783377,
+        "slip_square_integral_s": 0.01388707195783377,
+        "rms": 0.22431111900237713,
+        "distance_m": 0.07998799662095642,
+        "slip_square_per_m": 0.173614448973403
+      }
+    },
+    "delayed_200ms": {
+      "precontact_baseline": {
+        "available": true,
+        "start_s": 13.427,
+        "end_s": 13.677,
+        "duration_s": 0.25,
+        "coverage_s": 0.25,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 2.153356515734353e-07,
+        "slip_square_integral_s": 2.153356515734353e-07,
+        "rms": 0.0009280854520429361,
+        "distance_m": 0.09958235778589343,
+        "slip_square_per_m": 2.1623875590133815e-06
+      },
+      "first_50ms_GT_slip_not_IMU": {
+        "available": true,
+        "start_s": 13.727,
+        "end_s": 13.777000000000001,
+        "duration_s": 0.05000000000000071,
+        "coverage_s": 0.05000000000000071,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.008355765318835185,
+        "slip_square_integral_s": 0.008355765318835185,
+        "rms": 0.40879739037413304,
+        "distance_m": 0.012467802106606536,
+        "slip_square_per_m": 0.6701875156012916
+      },
+      "before_any_reduced_command": {
+        "available": true,
+        "start_s": 13.727,
+        "end_s": 13.802999999999972,
+        "duration_s": 0.07599999999997209,
+        "coverage_s": 0.07599999999997209,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.010706944116754066,
+        "slip_square_integral_s": 0.010706944116754066,
+        "rms": 0.37534096984149307,
+        "distance_m": 0.0190289758743673,
+        "slip_square_per_m": 0.562665284114249
+      },
+      "after_trigger_before_candidate_brake": {
+        "available": true,
+        "start_s": 13.802999999999972,
+        "end_s": 14.002999999999972,
+        "duration_s": 0.1999999999999993,
+        "coverage_s": 0.1999999999999993,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.018038715381852914,
+        "slip_square_integral_s": 0.018038715381852914,
+        "rms": 0.3003224548868514,
+        "distance_m": 0.04665938626545793,
+        "slip_square_per_m": 0.3866042146209502
+      },
+      "before_candidate_brake": {
+        "available": true,
+        "start_s": 13.727,
+        "end_s": 14.002999999999972,
+        "duration_s": 0.2759999999999714,
+        "coverage_s": 0.2759999999999714,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.028745659498606975,
+        "slip_square_integral_s": 0.028745659498606975,
+        "rms": 0.3227242479460676,
+        "distance_m": 0.06568836213982523,
+        "slip_square_per_m": 0.4376065799512329
+      }
+    }
+  }
+}

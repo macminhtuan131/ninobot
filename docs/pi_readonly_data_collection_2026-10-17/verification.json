@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-17",
+  "tests_passed": 32,
+  "test_command": "source /opt/ros/jazzy/setup.bash; PYTHONPATH=src/nino_pi:$PYTHONPATH /usr/bin/python3 -m pytest -q src/nino_pi/test",
+  "ROS_integration": "synthetic IMU and read-only PI parameter service in localhost domain 223; no motor command topics",
+  "real_robot_tested": false,
+  "ARM64_tested": false,
+  "Gazebo_started": false,
+  "H2_attempts_started": 0,
+  "governor_and_scoring_changed": false,
+  "source_sha256": "903358f424dbef71d006a403a8391cb6af3c16cc2162b8bb1d5ba5e39d87e756",
+  "bundle_sha256": "5547d3900a01d17d05de67528e11d15da4fa046d756f565a61a516ded7935893",
+  "bundle_bytes": 16304
+}

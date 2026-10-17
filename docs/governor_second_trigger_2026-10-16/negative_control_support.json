@@ -1,0 +1,44 @@
+{
+  "full": {
+    "0.05": {
+      "latest_GT_support_relative_s": 0.05200000000000138,
+      "latest_joint_support_relative_s": 0.05200000000000138,
+      "all_support_before_earliest_brake": true,
+      "qualification": "Boundary-clipped quadrature can use next GT sample; do not claim a causal pre-action negative control if support crosses the first reduced-command boundary."
+    },
+    "0.076": {
+      "latest_GT_support_relative_s": 0.09200000000000053,
+      "latest_joint_support_relative_s": 0.09200000000000053,
+      "all_support_before_earliest_brake": false,
+      "qualification": "Boundary-clipped quadrature can use next GT sample; do not claim a causal pre-action negative control if support crosses the first reduced-command boundary."
+    }
+  },
+  "frozen_reactive": {
+    "0.05": {
+      "latest_GT_support_relative_s": 0.06899999999999906,
+      "latest_joint_support_relative_s": 0.06899999999999906,
+      "all_support_before_earliest_brake": true,
+      "qualification": "Boundary-clipped quadrature can use next GT sample; do not claim a causal pre-action negative control if support crosses the first reduced-command boundary."
+    },
+    "0.076": {
+      "latest_GT_support_relative_s": 0.08899999999999864,
+      "latest_joint_support_relative_s": 0.08899999999999864,
+      "all_support_before_earliest_brake": false,
+      "qualification": "Boundary-clipped quadrature can use next GT sample; do not claim a causal pre-action negative control if support crosses the first reduced-command boundary."
+    }
+  },
+  "delayed_200ms": {
+    "0.05": {
+      "latest_GT_support_relative_s": 0.05299999999999905,
+      "latest_joint_support_relative_s": 0.05299999999999905,
+      "all_support_before_earliest_brake": true,
+      "qualification": "Boundary-clipped quadrature can use next GT sample; do not claim a causal pre-action negative control if support crosses the first reduced-command boundary."
+    },
+    "0.076": {
+      "latest_GT_support_relative_s": 0.09299999999999997,
+      "latest_joint_support_relative_s": 0.09299999999999997,
+      "all_support_before_earliest_brake": false,
+      "qualification": "Boundary-clipped quadrature can use next GT sample; do not claim a causal pre-action negative control if support crosses the first reduced-command boundary."
+    }
+  }
+}

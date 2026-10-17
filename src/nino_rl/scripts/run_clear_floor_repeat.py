@@ -83,15 +83,20 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seeds", type=int, nargs="+", default=[76000, 76001, 76002])
     parser.add_argument("--variant", choices=["clear", "clear_box", "cable", "cable_box", "cable_box_capsule"], default="clear")
-    parser.add_argument("--profiles", nargs="+", choices=["full", "moderate", "pulse"], default=["full"])
+    parser.add_argument("--profiles", nargs="+", choices=["full", "moderate", "pulse", "reactive"], default=["full"])
     parser.add_argument("--oracle-contact", action="store_true",
                         help="Simulation-only H2: suppress sensor triggers and intervene after cable contact")
     parser.add_argument("--config", type=Path, help="Explicit single-cable candidate contract")
+    parser.add_argument("--world",type=Path,help="Research-only capsule scenario SDF with JSON sidecar")
     parser.add_argument("--shuffle-order",action="store_true",help="Randomize controller order within each seed block")
     parser.add_argument("--order-seed",type=int,default=0)
     parser.add_argument("--full-reference-speed",type=float,
         help="Constant PI reference in m/s for Full arm only; adaptive arms retain common cruise")
     args = parser.parse_args()
+    if args.world:
+        args.world=args.world.expanduser().resolve()
+        if args.variant!="cable_box_capsule" or not args.world.is_file() or not args.world.with_suffix(".json").is_file():
+            parser.error("World override requires capsule variant and existing SDF/JSON pair")
     if args.full_reference_speed is not None and (not math.isfinite(args.full_reference_speed)
             or args.full_reference_speed<=0 or "full" not in args.profiles
             or args.variant!="cable_box_capsule" or args.oracle_contact):
@@ -117,6 +122,7 @@ def main():
         variant=args.variant,seeds=args.seeds,profiles=args.profiles,oracle_contact=args.oracle_contact,source_sha256=sources,
         shuffle_order=args.shuffle_order,order_seed=args.order_seed,case_order=schedule,
         full_reference_speed_m_s=args.full_reference_speed,
+        world_override=str(args.world) if args.world else None,
         ros_domain=os.environ.get("ROS_DOMAIN_ID"),gz_partition=os.environ.get("GZ_PARTITION"),
         caster_wheel_damping=.001,physics_step_s=.001,control_interval_s=.1,
         stop_window_s=2.,qualification="Bounded native PI screen; no learning or Optuna"),indent=2)+"\n")
@@ -155,6 +161,7 @@ def main():
                 launch = subprocess.Popen([
                     "ros2", "launch", "nino_rl", "factory_floor_governor.launch.py",
                     f"variant:={args.variant}", "caster_wheel_damping:=0.001",
+                    f"world_override:={args.world or ''}",
                     f"config:={config}", "headless:=true", f"output_directory:={case.resolve() / 'contact'}"],
                     cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT, start_new_session=True)
                 deadline = time.monotonic() + 360

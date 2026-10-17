@@ -1,0 +1,64 @@
+{
+  "decision": {
+    "status": "incomplete_or_reporting_failure_no_retry",
+    "attempts": 5,
+    "timing_pass": true,
+    "complete": false,
+    "both_seed_directional_benefit": false,
+    "existing_time_tracking_gates_pass": false,
+    "aggregate": {},
+    "qualification": "Two seed blocks, one run per arm/block; no causal or significance claim, no exclusion of spikes/failures, not hardware validation.",
+    "optuna_started": false,
+    "training_started": false,
+    "predictor_started": false,
+    "extra_episodes": false
+  },
+  "pairs": [
+    {
+      "seed": 77320,
+      "reference": "full",
+      "available": true,
+      "ratios": {
+        "time_s": 1.0120481927710867,
+        "physical_rmse_m": 2.769568951049184,
+        "whole_vertical_rms": 1.1274913685828094,
+        "whole_vertical_peak": 1.0024315448590058,
+        "crossing_vertical_rms": 0.893046188304001,
+        "gt_native_whole_slip_rms": 1.8109746089528802,
+        "gt_native_crossing_slip2_per_m": 3.11964601786522,
+        "primary_whole_slip_rms": 1.9442228731250553,
+        "primary_crossing_slip2_per_m": 3.618385201992505,
+        "shifted_whole_slip_rms": 2.371663379174141,
+        "shifted_crossing_slip2_per_m": 6.144618820496823
+      },
+      "crossing_slip_grid_ranking_reversal": false
+    },
+    {
+      "seed": 77320,
+      "reference": "frozen_reactive",
+      "available": true,
+      "ratios": {
+        "time_s": 1.0059880239520942,
+        "physical_rmse_m": 2.4055893523963356,
+        "whole_vertical_rms": 1.0931735173994404,
+        "whole_vertical_peak": 0.6843737802030612,
+        "crossing_vertical_rms": 0.651052709724548,
+        "gt_native_whole_slip_rms": 1.4325712164202675,
+        "gt_native_crossing_slip2_per_m": 2.825416490909818,
+        "primary_whole_slip_rms": 1.330866732753331,
+        "primary_crossing_slip2_per_m": 2.1044296395943585,
+        "shifted_whole_slip_rms": 1.7585535473135998,
+        "shifted_crossing_slip2_per_m": 4.843354074816294
+      },
+      "crossing_slip_grid_ranking_reversal": false
+    },
+    {
+      "seed": 77321,
+      "available": false,
+      "attempted_arms": [
+        "delayed_200ms",
+        "frozen_reactive"
+      ]
+    }
+  ]
+}

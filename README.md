@@ -1,7 +1,96 @@
 # Nino: contact-informed speed adaptation over low floor obstacles
 
-## Current research scope — 16 October 2026
+## Current research scope — 17 October 2026
 
+- [Post-reset standstill gate and four PI-only repetitions](docs/GOVERNOR_POST_RESET_PI_REPEATABILITY_2026-10-17.md).
+  37 focused tests passed;4/4 gate, arrival/2sstop and reporting passed.
+  Each gate confirmed0.5s standstill after reset and released at0.52s.
+  Coarse approach balance passed, but same-seed crossing RMS differed2.74–3.36x
+  and crossing slip up to23.7%. No further intervention or parameter selection.
+
+- [Approach/contact and complete-sequence protocol preparation](docs/GOVERNOR_APPROACH_SEQUENCE_PLAN_2026-10-16.md).
+  Offline tool read all six saved traces; four tests passed. Prepared a
+  post-reset standstill gate and four PI-only repeatability attempts, not run.
+  Online gate integration remains pending. Keep detector and reject200ms delay;
+  preserve legacy scoring, all retriggers, failures and contact/recovery tails.
+- [Offline seed77320 second-trigger audit](docs/GOVERNOR_SECOND_TRIGGER_AUDIT_2026-10-16.md).
+  Wheel error reached 6.317 times threshold after right-wheel floor/cable
+  load transitions and measured wheel reversal against a forward target.
+  Keep detector; no correction or new episodes. Slip differences already
+  existed before any reduced command, so delay causality remains unproven.
+- [Six-case 200 ms brake-delay experiment](docs/GOVERNOR_BRAKE_DELAY_2026-10-16.md).
+  Delay implemented opt-in; default remains 0 ms. All six arrival/2 s stop,
+  reporting and timing checks passed. Candidate quality was mixed across
+  seeds and mean tracking failed the existing limit; reject this candidate.
+  No retries, extra delay sweep, tuning, predictor or PPO. Earlier entries
+  below record status at the end of each historical experiment.
+- [Eight-case 6 mm / 22 mm height screen: contact regime and braking-phase slip](docs/GOVERNOR_HEIGHT_SCREEN_2026-10-16.md).
+  All eight arrival/2 s stop and reporting gates passed. First loaded contact
+  changed from caster wheel (6 mm, 4/4) to bracket (22 mm, 4/4). Governor lowered
+  crossing RMS in 4/4 pairs but slip in only 2/4; no promotion or tuning.
+  Saved-case audit locates excess slip in braking. One 200 ms onset-delay
+  hypothesis is prepared, not implemented or run; no automatic parameter sweep.
+- [Two clean-floor cold starts: execute the frozen governor ramp](docs/MATCHED_RAMP_RESPONSE_2026-10-16.md).
+  Both 12 s / 120-step maneuvers completed. Body reached 90% of braking change
+  in 239–254 ms and recovery change in 254–279 ms. This separates plant response
+  from obstacle impacts; it is not arrival/H2 quality or hardware validation.
+  Keep PI/ramp fixed; a bounded two-height contact screen is prepared, not run.
+- [Offline contact-to-command/body timing: separate contact slowdown from governor response](docs/GOVERNOR_CONTACT_TIMING_2026-10-16.md).
+  In both governor repeats, body slowing began before the reduced command;
+  fixed PI also slowed. Commands precede later driven-wheel contacts, but
+  this does not identify motor latency or prove repeatable control benefit.
+  Five timing tests passed; no new simulation, tuning or runtime changes.
+- [Offline caster mechanical reference and hardware measurement sheet](docs/CASTER_MECHANICAL_REFERENCE_2026-10-16.md).
+  Nominal clearance 9.03 mm / caster Ø32 mm confirmed from captured URDF/STL;
+  real measurements are still missing. Corrected stale hardware documentation:
+  modeled mass is 5.591 kg, not 4.689 kg. No physics/controller change or new run.
+- [Four frozen governor/PI cold starts: repeatability and bracket-contact audit](docs/GOVERNOR_FROZEN_REPEATS_2026-10-16.md).
+  All four arrival/2 s stop and reporting gates passed. Governor crossing
+  RMS improved in both pairs, but whole-route RMS changed direction and
+  large peaks were variable in both arms. No repeated RECOVER-specific deficit
+  established. First named bracket manifolds have zero force; loaded samples
+  follow 11–13 ms later. Match nominal 9 mm bracket clearance/Ø32 mm caster to
+  hardware before changing physics or governor. No extra trials or learning.
+- [Startup/feedback readiness correction: one sequential instrumentation pair](docs/GOVERNOR_READINESS_FIX_2026-10-16.md).
+  Both arrivals/2 s stops passed; native replay and timestamp checks passed,
+  with 6/15 ms drive feedback age and at least five diagnostics per action.
+  Ride quality remains unresolved: governor recorded a 163.5 m/s² vertical
+  peak during RECOVER near driven-wheel cable exit. Saved-trace audit completed;
+  no broader validation, extra trials, predictor or PPO was started.
+- [Bounded classical Optuna v2: 40 attempts, validation unavailable](docs/GT_GOVERNOR_OPTUNA_V2_2026-10-16.md).
+  Six fixed target/max-hold candidates; equal 0.400 m/s cruise and a new fixed
+  GT-timestamp objective. Candidate 0.90/1.0 s was selected before validation.
+  35 attempts verified arrival/2 s stop; five had unavailable native outcomes,
+  including two recorded startup feedback failsafes. Preserve every attempt;
+  no default promotion, retry, PPO or predictor. Next is startup/feedback
+  readiness repair, not more trials. Earlier bullets retain their historical scope.
+- [Original GT timestamp slip audit: no new simulation](docs/gt_timestamp_slip_audit_2026-10-16/REPORT.md).
+  Joint velocities aligned at unchanged GT samples. All 16 frozen cases retained:
+  governor mean whole RMS +3.86%, crossing slip²/m +4.89%. Matched edge support
+  gives nearly identical results; arbitrary grid choice does not explain the
+  overall deficit. Native metrics, controller and study decision are unchanged.
+- [Frozen governor: runtime instrumentation and four-scenario confirmation](docs/FROZEN_GOVERNOR_CONFIRMATION_2026-10-16.md).
+  Completed exactly 18 arrivals/2 s stops. Native replay/timestamp checks pass;
+  governor is 2.33% faster but mean whole slip RMS is 3.40% higher and sampled
+  vibration RMS 4.58% higher on 16 confirmation episodes. Four of eight pairs
+  reverse slip ranking with a 10 ms grid shift. Hold tuning; preserve all outcomes.
+- [Slip timestamp telemetry and shared offline reporting](docs/SLIP_TIMESTAMP_REPORTING_2026-10-16.md).
+  Exact native snapshot values/stamps are now logged with control traces;
+  native metrics and study scores are unchanged. Route/crossing/phase reports
+  share one 50 Hz pipeline. All six saved cases match the prior audit; legacy
+  snapshot replay is explicitly unavailable. Nine offline tests pass; no simulator run.
+- [Offline whole-route slip by phase, with common sampling](docs/governor_phase_slip_2026-10-16/REPORT.md).
+  Six saved validation episodes audited; no new simulation or parameter change.
+  Common-grid 50 Hz RMS was lower with governor in 3/3 pairs (mean −15.72%),
+  but a 10 ms grid shift reduced the mean difference to −4.83%. Most slip
+  was at the cable; recovery/cruise did not explain the native +7.32%.
+  Preserve native scores; reconcile sensor timestamps/reporting before tuning.
+- [Classical governor tuning: bounded crossing time/slip screen](docs/CLASSICAL_GOVERNOR_TUNING_2026-10-16.md).
+  Completed 18/18 arrival/2 s stop checks. Selected scale 0.90/max hold 1.0 s
+  on development, then froze it for three separate validation pairs: time
+  −2.91%, local slip²/m −35.67%, tracking gate passed. Whole-route recorded
+  slip RMS rose 7.32%, so keep a research candidate; no default/deployment
+  promotion, impact claim, PPO or predictor. [Offline readiness audit](docs/governor_tuning_readiness_2026-10-16/REPORT.md).
 - [Latest: frozen governor versus constant PI near the same completion time](docs/GOVERNOR_TIME_MATCHED_PI_2026-10-16.md).
   Ten additional arrival/2 s stop checks passed. Measured mean times were
   17.16 s versus 17.52 s: +2.098%, outside the declared 2% matching band.

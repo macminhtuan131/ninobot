@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "complete": true,
+  "logger_only": true,
+  "sim_contact_is_privileged": true,
+  "ground_truth_is_evaluation_only": true,
+  "governor_has_no_oracle_input": true,
+  "contact_forces_may_be_unavailable": true,
+  "impulse_not_inferred_without_valid_force_timing": true,
+  "qualification": "Instrumentation/authority experiment, not a learning or sim-to-real result",
+  "contact_components": [
+    "left_wheel",
+    "right_wheel",
+    "caster_left_wheel",
+    "caster_right_wheel",
+    "caster_bracket_left",
+    "caster_bracket_right",
+    "chassis"
+  ],
+  "caster_wheel_damping_declared": 0.001,
+  "robot_description_validated": true,
+  "source_config_sha256": "8830868edfa1ec6690e1e4e8c635f7a85b91172eea51a25baf4f5133fb85e4ca",
+  "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+  "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+  "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+  "timing_telemetry": {
+    "missing_value": -1,
+    "qualification": "PI-update aggregates emitted at the existing 50Hz status rate; no control change"
+  },
+  "world_file": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_005/confirmation/d0/scenario.sdf",
+  "world_sha256": "263788738c1d3265880004301cf0ec6834a09ac9a91f8ad1edf02d956b0f8892",
+  "logger_sha256": "c37dbc5f20b021bfb3c1daec43cf68c0a64c33cc1cd30f665e863aac01414afb",
+  "message_counts": {
+    "/nino/contact_lab/left_wheel": 2303,
+    "/nino/contact_lab/caster_right_wheel": 2236,
+    "/nino/contact_lab/right_wheel": 2293,
+    "/nino/contact_lab/caster_left_wheel": 2233,
+    "/joint_states": 9498,
+    "/imu/data": 1354,
+    "/ground_truth/odom": 1354,
+    "/nino_drive/diagnostics": 1303,
+    "/odom": 1304,
+    "/nino/governor/episode": 2,
+    "/nino/governor/state": 168,
+    "/nino/contact_lab/caster_bracket_right": 40,
+    "/nino/contact_lab/caster_bracket_left": 13
+  },
+  "caster_wheel_damping_observed": {
+    "left": 0.001,
+    "right": 0.001
+  },
+  "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b"
+}

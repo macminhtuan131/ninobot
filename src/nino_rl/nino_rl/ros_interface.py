@@ -68,6 +68,7 @@ class RosRobotInterface(Node):
         physics_step_seconds: float = 0.002,
         terrain_height_threshold_m: float = TERRAIN_HEIGHT_THRESHOLD_M,
         odometry_assistance: dict | None = None,
+        defer_assisted_until_reset: bool = False,
     ) -> None:
         super().__init__(
             node_name,
@@ -77,6 +78,7 @@ class RosRobotInterface(Node):
         )
         self._lock = Lock()
         self._drive_diagnostics = deque(maxlen=20000)
+        self._drive_epoch_min_stamp = -float("inf")
         self._state = RobotState()
         from nino_rl.assisted_odometry import ImuEncoderOdometry
         self._assisted_odometry = (ImuEncoderOdometry(odometry_assistance)
@@ -85,6 +87,10 @@ class RosRobotInterface(Node):
             from nino_rl.corridor_odometry import CorridorOdometry
             self._assisted_odometry = CorridorOdometry(odometry_assistance)
         self._assisted_error = None
+        # Simulation transport can join a running DDS graph before its local
+        # odometry origin exists. Do not fuse that discovery backlog. Deployment
+        # callers retain the existing immediate-estimator behavior by default.
+        self._assisted_epoch_active = not defer_assisted_until_reset
         self.estimated_pose_source = "imu_encoder_odometry" if self._assisted_odometry else "wheel_odometry"
         if self._assisted_odometry and odometry_assistance.get('corridor_lidar', {}).get('enabled', False):
             self.estimated_pose_source = 'imu_encoder_lidar_odometry'
@@ -284,6 +290,7 @@ class RosRobotInterface(Node):
                 self._state, self.imu_includes_gravity))
             self._mark_received("imu")
             if (getattr(self, "_assisted_odometry", None)
+                    and getattr(self, "_assisted_epoch_active", True)
                     and (not isfinite(norm) or norm < 1.e-12
                          or getattr(message, "orientation_covariance", [0.])[0] < 0)):
                 self._assisted_error = "IMU-assisted odometry requires an available, valid orientation"
@@ -303,7 +310,8 @@ class RosRobotInterface(Node):
             self._state.left_wheel_velocity = float(velocity["left_wheel_joint"])
             self._state.right_wheel_velocity = float(velocity["right_wheel_joint"])
             self._mark_received("joint")
-            if getattr(self, "_assisted_odometry", None):
+            if (getattr(self, "_assisted_odometry", None)
+                    and getattr(self, "_assisted_epoch_active", True)):
                 positions = dict(zip(message.name, message.position))
                 if "left_wheel_joint" not in positions or "right_wheel_joint" not in positions:
                     self._assisted_error = "Joint feedback lacks encoder positions"
@@ -314,7 +322,8 @@ class RosRobotInterface(Node):
     def _update_assisted(self, sensor, *values):
         """Called under the transport lock; latch faults instead of killing spin."""
         estimator = getattr(self, "_assisted_odometry", None)
-        if estimator is None or self._assisted_error:
+        if (estimator is None or self._assisted_error
+                or not getattr(self, "_assisted_epoch_active", True)):
             return
         previous = estimator.stamp
         try:
@@ -371,6 +380,8 @@ class RosRobotInterface(Node):
                 or not all(isfinite(value) for value in message.data)):
             return
         with self._lock:
+            if message.data[0] <= getattr(self, "_drive_epoch_min_stamp", -float("inf")):
+                return
             self._drive_diagnostics.append(dict(zip(fields, message.data)))
 
     def drive_diagnostics(self, start: float, end: float) -> list[dict]:
@@ -378,6 +389,31 @@ class RosRobotInterface(Node):
         with self._lock:
             return [dict(row) for row in self._drive_diagnostics
                     if start < row["sim_time_s"] <= end]
+
+    def wait_for_drive_diagnostics(self, start, end, timeout=2.0, max_latest_lag=.10):
+        """Wait for bounded-interval feedback while physics stays paused.
+
+        Never advance physics, reuse a previous interval or accept future data.
+        The executor continues independently; genuine missing feedback times out.
+        """
+        if (not all(isfinite(v) for v in (start, end, timeout, max_latest_lag))
+                or end <= start or timeout <= 0 or max_latest_lag < 0):
+            raise ValueError("Drive barrier requires a finite interval and positive deadline")
+        deadline = monotonic() + timeout
+        latest = None
+        while True:
+            with self._lock:
+                rows = sorted((dict(r) for r in self._drive_diagnostics
+                    if max(start, getattr(self, "_drive_epoch_min_stamp", -float("inf")))
+                    < r["sim_time_s"] <= end), key=lambda r: r["sim_time_s"])
+            if rows:
+                latest = rows[-1]["sim_time_s"]
+                if end - latest <= max_latest_lag + 1e-9:
+                    return rows
+            if monotonic() >= deadline:
+                raise TimeoutError(f"Drive feedback unavailable for ({start:.6f}, {end:.6f}]; "
+                                   f"latest={latest}, max_lag={max_latest_lag:.3f}s")
+            sleep(.002)
 
     def _plan_callback(self, message: Path) -> None:
         points = [(pose.pose.position.x, pose.pose.position.y) for pose in message.poses]
@@ -858,6 +894,26 @@ class RosRobotInterface(Node):
                 raise RuntimeError(f"Motion feedback is outside action boundary {end:.6f}: lags={missing}")
             sleep(0.002)
 
+    def post_reset_standstill_sample(self,boundary,end,timeout=2.):
+        """Wait for post-mutation state while paused; no future/old substitution."""
+        deadline=monotonic()+timeout
+        while True:
+            state=self.snapshot()
+            stamps={k:getattr(state,source) for k,source in (
+                ("ground_stamp_s","ground_truth_stamp_s"),("joint_stamp_s","joint_stamp_s"),
+                ("imu_stamp_s","imu_stamp_s"),("odom_stamp_s","odom_stamp_s"))}
+            if all(boundary<t<=end+1e-9 and end-t<=.040000001 for t in stamps.values()):break
+            if monotonic()>=deadline:
+                raise TimeoutError(f"Post-reset sensors missing/stale/future at {end}: {stamps}, boundary={boundary}")
+            sleep(.002)
+        rows=self.wait_for_drive_diagnostics(max(boundary,end-.1),end,timeout=timeout)
+        f=rows[-1]
+        return dict(time_s=end,v_m_s=state.ground_linear_velocity,yaw_rate_rad_s=state.ground_yaw_rate,
+            left_wheel_m_s=.0625*state.left_wheel_velocity,right_wheel_m_s=.0625*state.right_wheel_velocity,
+            command_v=f["requested_linear_m_s"],command_w=f["requested_yaw_rad_s"],
+            executed_v=f["executed_linear_m_s"],executed_w=f["executed_yaw_rad_s"],
+            feedback_stamp_s=f["sim_time_s"],have_wheel_state=f["have_wheel_state"],**stamps)
+
     def wait_for_v2_controller(self, timeout=5.0):
         deadline = monotonic() + timeout
         while self.control_publisher.get_subscription_count() == 0:
@@ -1061,12 +1117,16 @@ class RosRobotInterface(Node):
             message = response.message if response is not None else "no response"
             raise RuntimeError(f"Wheel odometry reset failed: {message}")
         with self._lock:
+            if hasattr(self, "_drive_diagnostics"):
+                self._drive_diagnostics.clear()
+                self._drive_epoch_min_stamp = self._sim_clock_stamp or 0.
             estimator = getattr(self, "_assisted_odometry", None)
             if estimator:
                 # Reset only after the raw reset transaction completes. Never
                 # carry wheel positions or IMU anchors across episodes.
                 estimator.reset(min_stamp=self._sim_clock_stamp or 0.)
                 self._assisted_error = None
+                self._assisted_epoch_active = True
                 self._received.discard("assisted_odom")
                 self._received_at.pop("assisted_odom", None)
 
@@ -1455,6 +1515,10 @@ class RosRobotInterface(Node):
         with self._lock:
             self._received.discard("amcl")
             self._received_at.pop("amcl", None)
+            # Suspend fusion across teleport/model mutation, then reset the
+            # estimator explicitly in reset_drive_state. Live episode faults
+            # remain latched until that reset transaction completes.
+            self._assisted_epoch_active = False
 
         for _ in range(5):
             self.publish_torque(0.0, 0.0)

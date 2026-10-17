@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "physical_arrival_stop_pass": true,
+  "provenance": {
+    "same_world": true,
+    "same_robot": true,
+    "same_core": true,
+    "same_effort_drive": true,
+    "same_config_except_planned_treatment": true
+  },
+  "episodes": [
+    {
+      "seed": 76800,
+      "profile": "full",
+      "replay": {
+        "available": true,
+        "reason": null,
+        "steps": 171,
+        "square_sum": 1.1104106489978955,
+        "rms": 0.08058305979735123,
+        "matches_native": true
+      },
+      "timestamps": {
+        "passed": true,
+        "checks": {
+          "no_future": true,
+          "joint_age": true,
+          "ground_age": true,
+          "skew": true
+        },
+        "samples": 171,
+        "joint_age_range_s": [
+          0.0009999999999585896,
+          0.0010000000000296438
+        ],
+        "ground_age_range_s": [
+          0.016999999999958604,
+          0.01700000000002788
+        ],
+        "skew_range_s": [
+          0.015999999999998238,
+          0.01600000000000179
+        ]
+      },
+      "coverage_pass": true,
+      "passed": true
+    },
+    {
+      "seed": 76800,
+      "profile": "reactive",
+      "replay": {
+        "available": true,
+        "reason": null,
+        "steps": 167,
+        "square_sum": 0.3253729942002124,
+        "rms": 0.0441400190602134,
+        "matches_native": true
+      },
+      "timestamps": {
+        "passed": true,
+        "checks": {
+          "no_future": true,
+          "joint_age": true,
+          "ground_age": true,
+          "skew": true
+        },
+        "samples": 167,
+        "joint_age_range_s": [
+          -4.085620730620576e-14,
+          0.0020000000000273133
+        ],
+        "ground_age_range_s": [
+          0.0019999999999598117,
+          0.002000000000030866
+        ],
+        "skew_range_s": [
+          0.0,
+          0.0020000000000024443
+        ]
+      },
+      "coverage_pass": true,
+      "passed": true
+    }
+  ],
+  "batch_permitted": true,
+  "no_retry": true,
+  "training": false,
+  "tuning": false
+}

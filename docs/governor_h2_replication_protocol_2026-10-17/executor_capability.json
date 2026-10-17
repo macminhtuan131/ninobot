@@ -1,0 +1,14 @@
+{
+  "status": "executor_implemented_offline_verified_not_run",
+  "date": "2026-10-17",
+  "executor_path": "src/nino_rl/scripts/run_governor_h2_replication.py",
+  "executor_sha256": "9ae7726b767750939d60ebe7df8664fa4c2e385b15bdc86f90e5d79ff60ac2b7",
+  "protocol_sha256": "ebbc8e2c3f978ca89f4a0ba170b7b893506d3219a3e8cb6b4ec3efb480e01f0a",
+  "focused_tests_passed": 40,
+  "execution_authorized": false,
+  "budget_released": false,
+  "application_sealed": false,
+  "run_allowed": false,
+  "verification": "../governor_h2_executor_2026-10-17/verification.json",
+  "note": "The frozen protocol execution.runner_implemented=false describes preparation-time readiness. This additive capability record updates implementation status without rewriting the frozen contract or releasing a budget."
+}

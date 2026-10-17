@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "all_four_attempts_retained": true,
+    "manifold_times_match_prior_audit": true,
+    "governor_speed_drop_begins_before_reduced_command": true,
+    "pi_also_has_observed_body_drop": true,
+    "protected_files_unchanged": true,
+    "audited_inputs_unchanged": true
+  },
+  "all_pass": true,
+  "protected_files": 1093,
+  "changed": [],
+  "unit_tests_passed": 5,
+  "new_simulation_episodes": 0,
+  "hardware_verified": false
+}

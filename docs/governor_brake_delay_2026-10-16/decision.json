@@ -1,0 +1,33 @@
+{
+  "status": "reject_200ms_delay_for_tested_scope_no_further_sweep",
+  "attempts": 6,
+  "timing_pass": true,
+  "complete": true,
+  "both_seed_directional_benefit": false,
+  "existing_time_tracking_gates_pass": false,
+  "aggregate": {
+    "full": {
+      "time_s": 16.60000000000003,
+      "physical_rmse_m": 0.003729126013616106
+    },
+    "frozen_reactive": {
+      "time_s": 16.700000000000074,
+      "physical_rmse_m": 0.0039853512694518305,
+      "mean_time_ratio": 1.006024096385545,
+      "mean_tracking_ratio": 1.0687091975171052,
+      "existing_time_tracking_gates_pass": false
+    },
+    "delayed_200ms": {
+      "time_s": 16.80000000000005,
+      "physical_rmse_m": 0.006905885633747836,
+      "mean_time_ratio": 1.0120481927710856,
+      "mean_tracking_ratio": 1.8518777881284976,
+      "existing_time_tracking_gates_pass": false
+    }
+  },
+  "qualification": "Two seed blocks, one run per arm/block; no causal or significance claim, no exclusion of spikes/failures, not hardware validation.",
+  "optuna_started": false,
+  "training_started": false,
+  "predictor_started": false,
+  "extra_episodes": false
+}

@@ -1,5 +1,9 @@
 # Governor so với PI tốc độ cố định — đối chứng thời gian
 
+**Follow-up:** [audit offline đã hoàn tất](governor_tuning_readiness_2026-10-16/REPORT.md).
+Yêu cầu mới cho phép [contract tuning governor cổ điển thời gian/slip](CLASSICAL_GOVERNOR_TUNING_2026-10-16.md),
+không mở impact/predictor/PPO. Protocol và score của batch bên dưới giữ nguyên.
+
 ## Protocol ghi trước simulation
 
 Tiếp tục từ [repeatability](CONTACT_REPEATABILITY_TIMING_2026-10-16.md).

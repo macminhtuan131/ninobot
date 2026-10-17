@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-17",
+  "state_monitor_tests_passed": 15,
+  "all_nino_pi_tests_passed": 47,
+  "test_command": "source /opt/ros/jazzy/setup.bash; PYTHONPATH=src/nino_pi:$PYTHONPATH /usr/bin/python3 -m pytest -q src/nino_pi/test",
+  "integration": "Synthetic IMU, JointState, Nino labelled drive feedback and custom scalar current; localhost domain 224; no motor command publisher",
+  "real_robot_tested": false,
+  "ARM64_tested": false,
+  "Gazebo_started": false,
+  "H2_attempts_started": 0,
+  "governor_PI_scoring_changed": false,
+  "source_sha256": "d7ef3b7c45ef23a98c4e1e74404290e4f5131c53f78e4e88ceb1dc0d45bba830",
+  "bundle_sha256": "1a425511467bd4fa842dba316e126dec24a27d5278b6a429ed63f4ba966fc42c",
+  "bundle_bytes": 11940
+}

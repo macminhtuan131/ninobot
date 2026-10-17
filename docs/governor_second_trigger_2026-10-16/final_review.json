@@ -1,0 +1,22 @@
+{
+  "decision": "keep_detector_contact_transition_supported",
+  "control_rows_replayed": {
+    "full": 166,
+    "frozen_reactive": 167,
+    "delayed_200ms": 168
+  },
+  "negative_control_window_s": [
+    0.0,
+    0.05
+  ],
+  "all_negative_control_support_precedes_earliest_brake": true,
+  "nominal_0_to_76ms_window_not_used_as_causal_negative_control": true,
+  "measured_versus_command_wheel_reversal_distinguished": true,
+  "protected_files": 302,
+  "changed_protected": [],
+  "tests_passed": 3,
+  "new_simulation_episodes": 0,
+  "detector_changes": false,
+  "native_changes": false,
+  "study_score_changes": false
+}

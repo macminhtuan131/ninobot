@@ -1,0 +1,56 @@
+{
+  "revision": "startup_feedback_readiness_v1",
+  "scenarios": [
+    {
+      "id": "instrumentation",
+      "x_m": 3.1,
+      "angle_deg": 8.0,
+      "seeds": [
+        77200
+      ]
+    }
+  ],
+  "max_attempts": 2,
+  "controllers": [
+    "full",
+    "reactive"
+  ],
+  "order": "full then reactive; sequential cold starts",
+  "domain": 100,
+  "selected_settings": {
+    "profile": "reactive",
+    "target_scale": 0.9,
+    "scale_rate_per_second": 0.4,
+    "vertical_trigger_m_s2": 1.5,
+    "body_rate_trigger_rad_s": 0.35,
+    "wheel_error_trigger_m_s": 0.06,
+    "wheel_error_acceleration_allowance_s": 0.1,
+    "release_ratio": 0.6,
+    "confirmation_seconds": 0.04,
+    "quiet_seconds": 0.3,
+    "minimum_hold_seconds": 0.8,
+    "maximum_hold_seconds": 1.0,
+    "startup_seconds": 0.8,
+    "wheel_stall_seconds": 1.2,
+    "stall_recovery_enabled": false,
+    "pulse_seconds": 1.0,
+    "vertical_only_trigger_enabled": false
+  },
+  "cruise_both_m_s": 0.4,
+  "stop_window_sim_seconds": 2.0,
+  "physics_step_s": 0.001,
+  "control_interval_s": 0.1,
+  "source_sha256": {
+    "ros_interface.py": "c1745e25ed9cb162bc5372133afbe157302c1b6ed4e0e032bced917c555a82f0",
+    "ros_env.py": "391b34850b2bfde898e6d903f9b41a5f5aa11da5f9f34f9dbc11edb22f040915",
+    "evaluation.py": "20bce6510e0793ba0ceda036d56785198f45d468f21957a758e834b1f40fd904"
+  },
+  "correction": "Estimator origin lifecycle and bounded paused-world diagnostics delivery; physical estimator math and governor/PI unchanged",
+  "gate": "Both complete arrival/stop; exact native replay; timestamp checks; GT whole/cross coverage; command feedback age<=.1 and no future/previous-interval drive samples",
+  "no_retry": true,
+  "no_parameter_selection": true,
+  "no_quality_promotion": true,
+  "no_optuna": true,
+  "no_training": true,
+  "qualification": "Instrumentation screen, not an unseen test bank or robustness/quality confirmation"
+}

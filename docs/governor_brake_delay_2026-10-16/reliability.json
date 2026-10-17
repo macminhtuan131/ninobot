@@ -1,0 +1,102 @@
+{
+  "episodes": 6,
+  "physical_passes": 6,
+  "reporting_passes": 6,
+  "native_replays": 6,
+  "timestamp_passes": 6,
+  "feedback_age_range_s": [
+    0.0009999999999639186,
+    0.0210000000000079
+  ],
+  "minimum_diagnostics_per_action": 4,
+  "minimum_GT_whole_coverage": 0.9940476190476192,
+  "minimum_GT_crossing_coverage": 1.0,
+  "first_50ms_unavailable": 4,
+  "same_world": true,
+  "same_provenance": true,
+  "precontact_events": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
+  "first_loaded_components": [
+    [
+      "caster_left_wheel"
+    ],
+    [
+      "caster_left_wheel"
+    ],
+    [
+      "caster_left_wheel"
+    ],
+    [
+      "caster_left_wheel"
+    ],
+    [
+      "caster_left_wheel"
+    ],
+    [
+      "caster_left_wheel"
+    ]
+  ],
+  "phase_coverage_and_conservation": true,
+  "phase_excess_pending_delay": [
+    {
+      "seed": 77320,
+      "reference": "full",
+      "excess_integral_s": {
+        "event_0_cruise": 0.0017673881829560556,
+        "event_1_delay": 0.012192504838033694,
+        "event_1_braking": 2.5347107641509434e-05,
+        "event_1_holding": -0.00024429284522289397,
+        "event_2_delay": 0.0015993100718244377,
+        "event_2_holding": 2.184396483988448e-05
+      },
+      "total_excess_s": 0.015362101320072687
+    },
+    {
+      "seed": 77320,
+      "reference": "frozen_reactive",
+      "excess_integral_s": {
+        "event_0_cruise": 0.0007275907919240734,
+        "event_1_delay": 0.01245903351700047,
+        "event_1_braking": 2.4790620822147042e-05,
+        "event_1_holding": -0.00019161878891544172,
+        "event_2_delay": 0.001595839215785522,
+        "event_2_holding": 2.078377238858422e-05
+      },
+      "total_excess_s": 0.014636419129005354
+    },
+    {
+      "seed": 77321,
+      "reference": "full",
+      "excess_integral_s": {
+        "event_0_cruise": 4.1740755710720744e-05,
+        "event_1_delay": 0.0004325939885821313,
+        "event_1_braking": 2.947194401418214e-07,
+        "event_1_holding": -0.0005942583115514828,
+        "event_2_delay": 0.00012907320662767683,
+        "event_2_holding": 1.2613873297757505e-06,
+        "event_2_recover": 9.75974303973573e-08
+      },
+      "total_excess_s": 1.0803343569360663e-05
+    },
+    {
+      "seed": 77321,
+      "reference": "frozen_reactive",
+      "excess_integral_s": {
+        "event_0_cruise": -0.00022918312512876888,
+        "event_1_delay": -0.003975902801342598,
+        "event_1_braking": 1.2804464023952745e-06,
+        "event_1_holding": -8.066133555173659e-05,
+        "event_2_delay": -0.000708769784544938,
+        "event_2_holding": -6.994691370413386e-06,
+        "event_2_recover": 8.952644237106036e-08
+      },
+      "total_excess_s": -0.005000141765093689
+    }
+  ]
+}

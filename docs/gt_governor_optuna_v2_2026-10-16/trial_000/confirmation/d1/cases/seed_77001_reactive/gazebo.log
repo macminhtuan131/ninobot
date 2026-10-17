@@ -1,0 +1,227 @@
+[INFO] [launch]: All log files can be found below /home/tuanmac/.ros/log/2026-10-16-13-27-32-205468-tuanmac-ThinkPad-E14-Gen-7-124088
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [124097]
+[INFO] [robot_state_publisher-2]: process started with pid [124098]
+[INFO] [create-3]: process started with pid [124099]
+[INFO] [parameter_bridge-4]: process started with pid [124100]
+[INFO] [parameter_bridge-5]: process started with pid [124101]
+[INFO] [parameter_bridge-6]: process started with pid [124102]
+[INFO] [governor_logger-7]: process started with pid [124103]
+[robot_state_publisher-2] [INFO] [1792132052.645251202] [robot_state_publisher]: Robot initialized
+[create-3] [INFO] [1792132052.667182010] [spawn_nino]: Waiting messages on topic [/robot_description].
+[parameter_bridge-5] [INFO] [1792132052.675816973] [rl_world_control_bridge]: Creating ROS->GZ service bridge [/world/factory_floor_lab/control (ros_gz_interfaces/srv/ControlWorld -> /)]
+[parameter_bridge-5] [INFO] [1792132052.677943517] [rl_world_control_bridge]: Creating ROS->GZ service bridge [/world/factory_floor_lab/set_pose (ros_gz_interfaces/srv/SetEntityPose -> /)]
+[parameter_bridge-5] [INFO] [1792132052.678648086] [rl_world_control_bridge]: Creating ROS->GZ service bridge [/world/factory_floor_lab/create (ros_gz_interfaces/srv/SpawnEntity -> /)]
+[parameter_bridge-5] [INFO] [1792132052.679161343] [rl_world_control_bridge]: Creating ROS->GZ service bridge [/world/factory_floor_lab/remove (ros_gz_interfaces/srv/DeleteEntity -> /)]
+[parameter_bridge-5] [INFO] [1792132052.679729325] [rl_world_control_bridge]: Creating GZ->ROS Bridge: [/world/factory_floor_lab/stats (gz.msgs.WorldStatistics) -> /world/factory_floor_lab/stats (ros_gz_interfaces/msg/WorldStatistics)] (Lazy 0)
+[parameter_bridge-6] [INFO] [1792132052.685501746] [contact_lab_bridge]: Creating GZ->ROS Bridge: [/nino/contact_lab/left_wheel (gz.msgs.Contacts) -> /nino/contact_lab/left_wheel (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-6] [INFO] [1792132052.690241902] [contact_lab_bridge]: Creating GZ->ROS Bridge: [/nino/contact_lab/right_wheel (gz.msgs.Contacts) -> /nino/contact_lab/right_wheel (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-6] [INFO] [1792132052.690726093] [contact_lab_bridge]: Creating GZ->ROS Bridge: [/nino/contact_lab/caster_left_wheel (gz.msgs.Contacts) -> /nino/contact_lab/caster_left_wheel (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-6] [INFO] [1792132052.691124891] [contact_lab_bridge]: Creating GZ->ROS Bridge: [/nino/contact_lab/caster_right_wheel (gz.msgs.Contacts) -> /nino/contact_lab/caster_right_wheel (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-6] [INFO] [1792132052.691532790] [contact_lab_bridge]: Creating GZ->ROS Bridge: [/nino/contact_lab/caster_bracket_left (gz.msgs.Contacts) -> /nino/contact_lab/caster_bracket_left (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-6] [INFO] [1792132052.691926686] [contact_lab_bridge]: Creating GZ->ROS Bridge: [/nino/contact_lab/caster_bracket_right (gz.msgs.Contacts) -> /nino/contact_lab/caster_bracket_right (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-6] [INFO] [1792132052.692313040] [contact_lab_bridge]: Creating GZ->ROS Bridge: [/nino/contact_lab/chassis (gz.msgs.Contacts) -> /nino/contact_lab/chassis (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[governor_logger-7] [INFO] [1792132053.463803810] [governor_logger]: Research logger: /home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_000/confirmation/d1/screen/seed_77001_reactive/contact/20261016T062733-301071Z
+[create-3] [INFO] [1792132053.492242846] [spawn_nino]: Entity creation successful.
+[INFO] [create-3]: process has finished cleanly [pid 124099]
+[INFO] [spawner-8]: process started with pid [124218]
+[parameter_bridge-4] [INFO] [1792132053.696661820] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792132053.699312098] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/imu/data (gz.msgs.IMU) -> /imu/data (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792132053.703883238] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/scan (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792132053.705046705] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/terrain_scan (gz.msgs.LaserScan) -> /terrain_scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792132053.705804065] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/nino/odometry (gz.msgs.Odometry) -> /ground_truth/odom (nav_msgs/msg/Odometry)] (Lazy 0)
+[spawner-8] [INFO] [1792132054.397337056] [control_spawner]: waiting for service /controller_manager/list_controllers to become available...
+[gazebo-1] [INFO] [1792132055.300167635] [gz_ros_control]: Loading controller_manager
+[gazebo-1] [INFO] [1792132055.314491129] [controller_manager]: Using ROS clock for triggering controller manager cycles.
+[gazebo-1] [WARN] [1792132055.314543840] [controller_manager]: The resource manager is not yet initialized, will wait for the robot description to initialize it..
+[gazebo-1] [INFO] [1792132055.326632536] [controller_manager]: Subscribing to '/robot_description' topic for robot description.
+[gazebo-1] [WARN] [1792132055.326756309] [gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1792132056.326989029] [controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [INFO] [1792132056.650947821] [controller_manager]: Received robot description from topic.
+[gazebo-1] [INFO] [1792132056.651057714] [controller_manager]: Enforcing command limits is enabled...
+[gazebo-1] [INFO] [1792132056.654273967] [gz_ros_control]: Using JointLimiter for joint 'caster_right_wheel_joint' in hardware 'GazeboSimSystem' : '  has position limits: false [nan, nan]
+[gazebo-1]   has velocity limits: true [30]
+[gazebo-1]   has acceleration limits: false [nan]
+[gazebo-1]   has deceleration limits: false [nan]
+[gazebo-1]   has jerk limits: false [nan]
+[gazebo-1]   has effort limits: true [1]
+[gazebo-1]   angle wraparound: true'
+[gazebo-1] [INFO] [1792132056.654317335] [gz_ros_control]: Creating JointSaturationLimiter for joint 'caster_right_wheel_joint' in hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792132056.654343129] [gz_ros_control]: Using JointLimiter for joint 'caster_right_swivel_joint' in hardware 'GazeboSimSystem' : '  has position limits: false [nan, nan]
+[gazebo-1]   has velocity limits: true [20]
+[gazebo-1]   has acceleration limits: false [nan]
+[gazebo-1]   has deceleration limits: false [nan]
+[gazebo-1]   has jerk limits: false [nan]
+[gazebo-1]   has effort limits: true [2]
+[gazebo-1]   angle wraparound: true'
+[gazebo-1] [INFO] [1792132056.654352762] [gz_ros_control]: Creating JointSaturationLimiter for joint 'caster_right_swivel_joint' in hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792132056.654364992] [gz_ros_control]: Using JointLimiter for joint 'caster_left_swivel_joint' in hardware 'GazeboSimSystem' : '  has position limits: false [nan, nan]
+[gazebo-1]   has velocity limits: true [20]
+[gazebo-1]   has acceleration limits: false [nan]
+[gazebo-1]   has deceleration limits: false [nan]
+[gazebo-1]   has jerk limits: false [nan]
+[gazebo-1]   has effort limits: true [2]
+[gazebo-1]   angle wraparound: true'
+[gazebo-1] [INFO] [1792132056.654374013] [gz_ros_control]: Creating JointSaturationLimiter for joint 'caster_left_swivel_joint' in hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792132056.654385265] [gz_ros_control]: Using JointLimiter for joint 'caster_left_wheel_joint' in hardware 'GazeboSimSystem' : '  has position limits: false [nan, nan]
+[gazebo-1]   has velocity limits: true [30]
+[gazebo-1]   has acceleration limits: false [nan]
+[gazebo-1]   has deceleration limits: false [nan]
+[gazebo-1]   has jerk limits: false [nan]
+[gazebo-1]   has effort limits: true [1]
+[gazebo-1]   angle wraparound: true'
+[gazebo-1] [INFO] [1792132056.654393289] [gz_ros_control]: Creating JointSaturationLimiter for joint 'caster_left_wheel_joint' in hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792132056.654404035] [gz_ros_control]: Using JointLimiter for joint 'right_wheel_joint' in hardware 'GazeboSimSystem' : '  has position limits: false [nan, nan]
+[gazebo-1]   has velocity limits: true [24]
+[gazebo-1]   has acceleration limits: false [nan]
+[gazebo-1]   has deceleration limits: false [nan]
+[gazebo-1]   has jerk limits: false [nan]
+[gazebo-1]   has effort limits: true [12]
+[gazebo-1]   angle wraparound: true'
+[gazebo-1] [INFO] [1792132056.654427475] [gz_ros_control]: Creating JointSaturationLimiter for joint 'right_wheel_joint' in hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792132056.654438921] [gz_ros_control]: Using JointLimiter for joint 'left_wheel_joint' in hardware 'GazeboSimSystem' : '  has position limits: false [nan, nan]
+[gazebo-1]   has velocity limits: true [24]
+[gazebo-1]   has acceleration limits: false [nan]
+[gazebo-1]   has deceleration limits: false [nan]
+[gazebo-1]   has jerk limits: false [nan]
+[gazebo-1]   has effort limits: true [12]
+[gazebo-1]   angle wraparound: true'
+[gazebo-1] [INFO] [1792132056.654447563] [gz_ros_control]: Creating JointSaturationLimiter for joint 'left_wheel_joint' in hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792132056.658539520] [gz_ros_control]: The position_proportional_gain has been set to: 0.1
+[gazebo-1] [INFO] [1792132056.658620996] [gz_ros_control]: Loading joint: left_wheel_joint
+[gazebo-1] [INFO] [1792132056.658652313] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792132056.658661595] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792132056.658668409] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792132056.658678428] [gz_ros_control]: 		 effort
+[gazebo-1] [INFO] [1792132056.658684793] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792132056.658690131] [gz_ros_control]: 		 effort
+[gazebo-1] [INFO] [1792132056.658708607] [gz_ros_control]: Loading joint: right_wheel_joint
+[gazebo-1] [INFO] [1792132056.658715081] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792132056.658720333] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792132056.658725527] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792132056.658731569] [gz_ros_control]: 		 effort
+[gazebo-1] [INFO] [1792132056.658736844] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792132056.658741728] [gz_ros_control]: 		 effort
+[gazebo-1] [INFO] [1792132056.658757758] [gz_ros_control]: Loading joint: caster_left_swivel_joint
+[gazebo-1] [INFO] [1792132056.658764793] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792132056.658770038] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792132056.658775619] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792132056.658780651] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792132056.658791714] [gz_ros_control]: Loading joint: caster_left_wheel_joint
+[gazebo-1] [INFO] [1792132056.658797383] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792132056.658802516] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792132056.658808984] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792132056.658814192] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792132056.658824100] [gz_ros_control]: Loading joint: caster_right_swivel_joint
+[gazebo-1] [INFO] [1792132056.658850101] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792132056.658855551] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792132056.658861061] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792132056.658866438] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792132056.658876473] [gz_ros_control]: Loading joint: caster_right_wheel_joint
+[gazebo-1] [INFO] [1792132056.658882262] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792132056.658887834] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792132056.658893499] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792132056.658898646] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792132056.658969178] [gz_ros_control]: Loading sensor: imu_sensor
+[gazebo-1] [INFO] [1792132056.658979789] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792132056.658991060] [gz_ros_control]: 		 orientation.x
+[gazebo-1] [INFO] [1792132056.658997530] [gz_ros_control]: 		 orientation.y
+[gazebo-1] [INFO] [1792132056.659003179] [gz_ros_control]: 		 orientation.z
+[gazebo-1] [INFO] [1792132056.659012582] [gz_ros_control]: 		 orientation.w
+[gazebo-1] [INFO] [1792132056.659018514] [gz_ros_control]: 		 angular_velocity.x
+[gazebo-1] [INFO] [1792132056.659024429] [gz_ros_control]: 		 angular_velocity.y
+[gazebo-1] [INFO] [1792132056.659030267] [gz_ros_control]: 		 angular_velocity.z
+[gazebo-1] [INFO] [1792132056.659036085] [gz_ros_control]: 		 linear_acceleration.x
+[gazebo-1] [INFO] [1792132056.659042114] [gz_ros_control]: 		 linear_acceleration.y
+[gazebo-1] [INFO] [1792132056.659047863] [gz_ros_control]: 		 linear_acceleration.z
+[gazebo-1] [INFO] [1792132056.659160128] [controller_manager]: Initialize hardware 'GazeboSimSystem' 
+[gazebo-1] [WARN] [1792132056.659183489] [controller_manager.hardware_component.system.GazeboSimSystem]: Executor is not available during hardware component initialization for 'GazeboSimSystem'. Skipping node creation!
+[gazebo-1] [INFO] [1792132056.659275748] [controller_manager]: Successful initialization of hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792132056.659473444] [controller_manager]: Activating component 'GazeboSimSystem'.
+[gazebo-1] [INFO] [1792132056.659489955] [resource_manager]: 'configure' hardware 'GazeboSimSystem' 
+[gazebo-1] [INFO] [1792132056.659497704] [gz_ros_control]: System Successfully configured!
+[gazebo-1] [INFO] [1792132056.659507456] [resource_manager]: Successful 'configure' of hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792132056.659519929] [resource_manager]: 'activate' hardware 'GazeboSimSystem' 
+[gazebo-1] [INFO] [1792132056.659539612] [resource_manager]: Successful 'activate' of hardware 'GazeboSimSystem'
+[gazebo-1] [WARN] [1792132056.659631291] [controller_manager]: Component 'GazeboSimSystem' does not have read or write statistics initialized, skipping registration.
+[gazebo-1] [INFO] [1792132056.659641934] [controller_manager]: Resource Manager has been successfully initialized. Starting Controller Manager services...
+[gazebo-1] [INFO] [1792132056.902170102] [controller_manager]: Loading controller : 'joint_state_broadcaster' of type 'joint_state_broadcaster/JointStateBroadcaster'
+[gazebo-1] [INFO] [1792132056.902234515] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[gazebo-1] [INFO] [1792132056.910456370] [controller_manager]: Controller 'joint_state_broadcaster' node arguments: --ros-args --params-file /home/tuanmac/ninorobot/install/nino_control/share/nino_control/config/controllers.yaml -p use_sim_time:=true --param use_sim_time:=true 
+[spawner-8] [INFO] [1792132056.928222115] [control_spawner]: Loaded joint_state_broadcaster
+[gazebo-1] [INFO] [1792132056.929347267] [controller_manager]: Configuring controller: 'joint_state_broadcaster'
+[gazebo-1] [INFO] [1792132056.929635705] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[gazebo-1] [INFO] [1792132056.943717393] [controller_manager]: Loading controller : 'wheel_effort_controller' of type 'effort_controllers/JointGroupEffortController'
+[gazebo-1] [INFO] [1792132056.943764209] [controller_manager]: Loading controller 'wheel_effort_controller'
+[gazebo-1] [INFO] [1792132056.951874065] [controller_manager]: Controller 'wheel_effort_controller' node arguments: --ros-args --params-file /home/tuanmac/ninorobot/install/nino_control/share/nino_control/config/controllers.yaml -p use_sim_time:=true --param use_sim_time:=true 
+[spawner-8] [INFO] [1792132056.964675926] [control_spawner]: Loaded wheel_effort_controller
+[gazebo-1] [INFO] [1792132056.964987920] [controller_manager]: Configuring controller: 'wheel_effort_controller'
+[gazebo-1] [INFO] [1792132056.966093345] [wheel_effort_controller]: configure successful
+[gazebo-1] [INFO] [1792132056.967673459] [controller_manager]: Activating controllers: [ joint_state_broadcaster wheel_effort_controller ]
+[gazebo-1] [WARN] [1792132057.461935025] [gz_ros_control]:  Desired controller update period (0.002 s) is slower than the gazebo simulation period (0.001 s).
+[gazebo-1] [INFO] [1792132057.463121297] [wheel_effort_controller]: activate successful
+[gazebo-1] [INFO] [1792132057.463204233] [controller_manager]: Successfully switched controllers!
+[gazebo-1] [INFO] [1792132058.103524431] [gz_ros_control]: IMU imu_sensor has a topic name: imu/data
+[spawner-8] [INFO] [1792132058.105938788] [control_spawner]: Configured and activated all the parsed controllers list : ['joint_state_broadcaster', 'wheel_effort_controller']!
+[INFO] [spawner-8]: process has finished cleanly [pid 124218]
+[INFO] [effort_drive-9]: process started with pid [124918]
+[effort_drive-9] [INFO] [1792132059.149641186] [effort_drive]: Effort drive ready: Nav2 /cmd_vel baseline + RL /wheel_torque_commands residual -> /wheel_effort_controller/commands
+[gazebo-1] [1;31m[Err] [UserCommands.cc:1119] [0m[1;31mEntity named [[0m[1;31madaptive_training_terrain[0m[1;31m] of type [[0m[1;31m2[0m[1;31m] not found, so not removed.[0m[1;31m[0m
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[parameter_bridge-6] [INFO] [1792132156.393679755] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [effort_drive-9]: sending signal 'SIGINT' to process[effort_drive-9]
+[INFO] [governor_logger-7]: sending signal 'SIGINT' to process[governor_logger-7]
+[INFO] [parameter_bridge-6]: sending signal 'SIGINT' to process[parameter_bridge-6]
+[INFO] [parameter_bridge-5]: sending signal 'SIGINT' to process[parameter_bridge-5]
+[INFO] [parameter_bridge-4]: sending signal 'SIGINT' to process[parameter_bridge-4]
+[INFO] [robot_state_publisher-2]: sending signal 'SIGINT' to process[robot_state_publisher-2]
+[INFO] [gazebo-1]: sending signal 'SIGINT' to process[gazebo-1]
+[robot_state_publisher-2] [INFO] [1792132156.393738224] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-4] [INFO] [1792132156.393790761] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-5] [INFO] [1792132156.393792045] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[effort_drive-9] Traceback (most recent call last):
+[effort_drive-9]   File "/home/tuanmac/ninorobot/install/nino_control/lib/nino_control/effort_drive", line 33, in <module>
+[effort_drive-9]     sys.exit(load_entry_point('nino-control', 'console_scripts', 'effort_drive')())
+[effort_drive-9]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[effort_drive-9]   File "/home/tuanmac/ninorobot/build/nino_control/nino_control/effort_drive.py", line 789, in main
+[effort_drive-9]     node.destroy_node()
+[effort_drive-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 1962, in destroy_node
+[effort_drive-9]     self.destroy_service(self._services[0])
+[effort_drive-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 1886, in destroy_service
+[governor_logger-7] Traceback (most recent call last):
+[governor_logger-7]   File "/home/tuanmac/ninorobot/install/nino_rl/lib/nino_rl/governor_logger", line 33, in <module>
+[governor_logger-7]     sys.exit(load_entry_point('nino-rl', 'console_scripts', 'governor_logger')())
+[governor_logger-7]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[governor_logger-7]   File "/home/tuanmac/ninorobot/build/nino_rl/nino_rl/governor_logger.py", line 201, in main
+[governor_logger-7]     node.destroy_node()
+[governor_logger-7]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 1962, in destroy_node
+[parameter_bridge-6] [INFO] [1792132156.409236171] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[effort_drive-9]     service.destroy()
+[effort_drive-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/service.py", line 123, in destroy
+[effort_drive-9]     self.__service.destroy_when_not_in_use()
+[governor_logger-7]     self.destroy_service(self._services[0])
+[governor_logger-7]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 1886, in destroy_service
+[effort_drive-9] KeyboardInterrupt
+[governor_logger-7]     service.destroy()
+[governor_logger-7]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/service.py", line 123, in destroy
+[governor_logger-7]     self.__service.destroy_when_not_in_use()
+[governor_logger-7] KeyboardInterrupt
+[parameter_bridge-5] [INFO] [1792132156.410100477] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-4] [INFO] [1792132156.410945339] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ERROR] [robot_state_publisher-2]: process has died [pid 124098, exit code -2, cmd '/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher --ros-args -r __node:=robot_state_publisher --params-file /tmp/launch_params_wuu_zy4_'].
+[INFO] [parameter_bridge-6]: process has finished cleanly [pid 124102]
+[ERROR] [effort_drive-9]: process has died [pid 124918, exit code -2, cmd '/home/tuanmac/ninorobot/install/nino_control/lib/nino_control/effort_drive --ros-args -r __node:=effort_drive --params-file /home/tuanmac/ninorobot/install/nino_control/share/nino_control/config/effort_drive.yaml --params-file /tmp/launch_params_xk0pe1nk'].
+[INFO] [parameter_bridge-5]: process has finished cleanly [pid 124101]
+[INFO] [parameter_bridge-4]: process has finished cleanly [pid 124100]
+[ERROR] [governor_logger-7]: process has died [pid 124103, exit code -2, cmd '/home/tuanmac/ninorobot/install/nino_rl/lib/nino_rl/governor_logger --ros-args -r __node:=governor_logger --params-file /tmp/launch_params_vdm4i9gh'].
+[gazebo-1] Stack trace (most recent call last) in thread 126959:
+[gazebo-1] #6    Object "[0xffffffffffffffff]", at 0xffffffffffffffff, in 
+[gazebo-1] #5    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x72df68729ecb, in 
+[gazebo-1] #4    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x72df6869cb83, in 
+[gazebo-1] #3    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x72df62eecdb3, in 
+[gazebo-1] #2    Object "/opt/ros/jazzy/opt/gz_sim_vendor/lib/libgz-sim8.so.8", at 0x72df61f608f0, in 
+[gazebo-1] #1    Object "/opt/ros/jazzy/opt/gz_sim_vendor/lib/libgz-sim8.so.8", at 0x72df61f6aaa0, in 
+[gazebo-1] #0    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x72df62ed4154, in std::_Rb_tree_increment(std::_Rb_tree_node_base*)
+[gazebo-1] Segmentation fault (Signal sent by the kernel [(nil)])
+[INFO] [gazebo-1]: process has finished cleanly [pid 124097]
+[INFO] [launch]: process[gazebo-1] was required: shutting down launched system

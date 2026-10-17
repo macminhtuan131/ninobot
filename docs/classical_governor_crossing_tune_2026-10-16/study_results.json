@@ -1,0 +1,1888 @@
+{
+  "decision": {
+    "status": "validation_complete",
+    "trial": 1,
+    "parameters": {
+      "target_scale": 0.9,
+      "maximum_hold_seconds": 1.0
+    },
+    "development_value": 0.9988725405644665,
+    "validation_seeds": [
+      76700,
+      76701,
+      76702
+    ],
+    "parameters_frozen": true,
+    "validation_started": true,
+    "validation_score": {
+      "value": 0.8214922542333486,
+      "feasible": true,
+      "physical_failures": 0,
+      "paired_costs": [
+        0.8506283857183774,
+        0.746990002375389,
+        0.8668583746062795
+      ]
+    },
+    "tracking_gate": true,
+    "crossing_screen_pass": true,
+    "impact_benefit_proven": false,
+    "deployment_promoted": false,
+    "predictor_or_ppo_started": false
+  },
+  "stages": [
+    {
+      "stage": "trial_000",
+      "score": {
+        "value": 1.2997718251818575,
+        "feasible": true,
+        "physical_failures": 0,
+        "paired_costs": [
+          0.8524604710684842,
+          1.7470831792952308
+        ]
+      },
+      "groups": {
+        "full": {
+          "requested": 2,
+          "observed": 2,
+          "completed": 2,
+          "physical_successes": 2,
+          "physical_failures": 0,
+          "unavailable": 0,
+          "stable_stops": 2,
+          "metrics": {
+            "time_s": {
+              "n": 2,
+              "mean": 17.15000000000007,
+              "minimum": 17.10000000000007,
+              "maximum": 17.200000000000067,
+              "std": 0.07071067811865325
+            },
+            "truth_rmse_m": {
+              "n": 2,
+              "mean": 0.004373084793450797,
+              "minimum": 0.00415045476126894,
+              "maximum": 0.004595714825632655,
+              "std": 0.0003148464109031416
+            },
+            "approach_speed_m_s": {
+              "n": 2,
+              "mean": 0.38412355759894,
+              "minimum": 0.38378485407729357,
+              "maximum": 0.38446226112058646,
+              "std": 0.00047899911393593027
+            },
+            "whole_vertical_rms": {
+              "n": 2,
+              "mean": 1.1061386666119901,
+              "minimum": 1.0814193681881916,
+              "maximum": 1.1308579650357886,
+              "std": 0.0349583670832837
+            },
+            "whole_vertical_peak": {
+              "n": 2,
+              "mean": 8.356187560556075,
+              "minimum": 7.170936371221904,
+              "maximum": 9.541438749890245,
+              "std": 1.6761983067752253
+            },
+            "whole_slip_rms": {
+              "n": 2,
+              "mean": 0.0736469372960355,
+              "minimum": 0.0735470460035705,
+              "maximum": 0.07374682858850051,
+              "std": 0.00014126762056699215
+            },
+            "first_50ms_peak": {
+              "n": 2,
+              "mean": 5.695619891490949,
+              "minimum": 5.649255010785564,
+              "maximum": 5.741984772196335,
+              "std": 0.06556984311136692
+            },
+            "contact_to_decision_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            },
+            "motor_target_drop_delay_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            },
+            "first_to_caster_s": {
+              "n": 2,
+              "mean": 0.1429999999999998,
+              "minimum": 0.14100000000000001,
+              "maximum": 0.14499999999999957,
+              "std": 0.0028284271247458787
+            },
+            "first_to_drive_s": {
+              "n": 2,
+              "mean": 0.7479999999999993,
+              "minimum": 0.6920000000000002,
+              "maximum": 0.8039999999999985,
+              "std": 0.07919595949289214
+            },
+            "clearance_duration_s": {
+              "n": 2,
+              "mean": 2.192499999999998,
+              "minimum": 2.1499999999999986,
+              "maximum": 2.2349999999999977,
+              "std": 0.06010407640085588
+            },
+            "postcontact_vertical_rms": {
+              "n": 2,
+              "mean": 1.708931839431696,
+              "minimum": 1.7077061205796897,
+              "maximum": 1.710157558283702,
+              "std": 0.0017334282241635126
+            },
+            "postcontact_vertical_peak": {
+              "n": 2,
+              "mean": 7.833040916012248,
+              "minimum": 7.170936371221904,
+              "maximum": 8.495145460802592,
+              "std": 0.9363572269513685
+            },
+            "postcontact_slip_energy_per_m": {
+              "n": 2,
+              "mean": 0.12426385521662128,
+              "minimum": 0.09208702175982887,
+              "maximum": 0.15644068867341368,
+              "std": 0.04550491426881618
+            },
+            "recovery_after_first_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            }
+          }
+        },
+        "reactive": {
+          "requested": 2,
+          "observed": 2,
+          "completed": 2,
+          "physical_successes": 2,
+          "physical_failures": 0,
+          "unavailable": 0,
+          "stable_stops": 2,
+          "metrics": {
+            "time_s": {
+              "n": 2,
+              "mean": 17.000000000000043,
+              "minimum": 16.900000000000034,
+              "maximum": 17.100000000000048,
+              "std": 0.14142135623731905
+            },
+            "truth_rmse_m": {
+              "n": 2,
+              "mean": 0.003610479923606031,
+              "minimum": 0.00212505200148492,
+              "maximum": 0.005095907845727142,
+              "std": 0.0021007123133913613
+            },
+            "approach_speed_m_s": {
+              "n": 2,
+              "mean": 0.3959288105755645,
+              "minimum": 0.39577723820795263,
+              "maximum": 0.3960803829431764,
+              "std": 0.0002143556979577128
+            },
+            "whole_vertical_rms": {
+              "n": 2,
+              "mean": 1.2574464046722857,
+              "minimum": 1.1931036024180457,
+              "maximum": 1.321789206926526,
+              "std": 0.0909944635890366
+            },
+            "whole_vertical_peak": {
+              "n": 2,
+              "mean": 9.984618871964049,
+              "minimum": 9.112004126565965,
+              "maximum": 10.857233617362132,
+              "std": 1.2340636076687146
+            },
+            "whole_slip_rms": {
+              "n": 2,
+              "mean": 0.09825585626212671,
+              "minimum": 0.09337966281517443,
+              "maximum": 0.10313204970907898,
+              "std": 0.006895978905434718
+            },
+            "first_50ms_peak": {
+              "n": 2,
+              "mean": 7.353414596956749,
+              "minimum": 5.594825067347532,
+              "maximum": 9.112004126565965,
+              "std": 2.487021163420676
+            },
+            "contact_to_decision_s": {
+              "n": 2,
+              "mean": 0.10099999999997511,
+              "minimum": 0.09999999999997478,
+              "maximum": 0.10199999999997544,
+              "std": 0.0014142135623735673
+            },
+            "motor_target_drop_delay_s": {
+              "n": 2,
+              "mean": 0.3150000000000004,
+              "minimum": 0.31400000000000006,
+              "maximum": 0.3160000000000007,
+              "std": 0.0014142135623735673
+            },
+            "first_to_caster_s": {
+              "n": 2,
+              "mean": 0.49900000000000055,
+              "minimum": 0.16500000000000092,
+              "maximum": 0.8330000000000002,
+              "std": 0.47234732983261324
+            },
+            "first_to_drive_s": {
+              "n": 2,
+              "mean": 0.952,
+              "minimum": 0.8330000000000002,
+              "maximum": 1.0709999999999997,
+              "std": 0.168291413922398
+            },
+            "clearance_duration_s": {
+              "n": 2,
+              "mean": 2.523999999999999,
+              "minimum": 2.395999999999999,
+              "maximum": 2.6519999999999992,
+              "std": 0.18101933598375633
+            },
+            "postcontact_vertical_rms": {
+              "n": 2,
+              "mean": 1.9759790902916667,
+              "minimum": 1.7976271058668283,
+              "maximum": 2.1543310747165054,
+              "std": 0.25222779524976174
+            },
+            "postcontact_vertical_peak": {
+              "n": 2,
+              "mean": 8.953609503694421,
+              "minimum": 7.049985390026711,
+              "maximum": 10.857233617362132,
+              "std": 2.6921310392093387
+            },
+            "postcontact_slip_energy_per_m": {
+              "n": 2,
+              "mean": 0.16592533446603147,
+              "minimum": 0.11300693431112761,
+              "maximum": 0.21884373462093534,
+              "std": 0.07483791919815154
+            },
+            "recovery_after_first_s": {
+              "n": 2,
+              "mean": 2.400999999999967,
+              "minimum": 1.999999999999968,
+              "maximum": 2.801999999999966,
+              "std": 0.5670996385116096
+            }
+          }
+        }
+      },
+      "paired_costs": [
+        {
+          "seed": 76600,
+          "time_ratio": 0.9825581395348819,
+          "slip_ratio": 0.7223628026020866,
+          "path_ratio": 0.5120046172567405,
+          "time_term": 0.49127906976744096,
+          "slip_term": 0.3611814013010433,
+          "tracking_excess": 0,
+          "total": 0.8524604710684842
+        },
+        {
+          "seed": 76601,
+          "time_ratio": 0.9999999999999988,
+          "slip_ratio": 2.376488352416253,
+          "path_ratio": 1.1088390030871051,
+          "time_term": 0.4999999999999994,
+          "slip_term": 1.1882441762081264,
+          "tracking_excess": 0.0588390030871051,
+          "total": 1.7470831792952308
+        }
+      ],
+      "episodes": [
+        {
+          "seed": 76600,
+          "profile": "full",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_000/screen/seed_76600_full",
+          "available": true,
+          "configured_cruise_m_s": 0.388,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 17.200000000000067,
+          "truth_rmse_m": 0.00415045476126894,
+          "endpoint_m": 0.18730403569315202,
+          "whole_vertical_rms": 1.1308579650357886,
+          "whole_vertical_peak": 9.541438749890245,
+          "whole_slip_rms": 0.0735470460035705,
+          "approach_speed_m_s": 0.38446226112058646,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 13.335,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": null,
+          "governor_event_count": 0,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": null,
+          "first_to_caster_s": 0.14499999999999957,
+          "first_to_drive_s": 0.8039999999999985,
+          "first_50ms_peak": 5.649255010785564,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.2349999999999977,
+          "postcontact_vertical_rms": 1.710157558283702,
+          "postcontact_vertical_peak": 8.495145460802592,
+          "postcontact_slip_energy_per_m": 0.15644068867341368,
+          "postcontact_minimum_scale": null,
+          "recovery_after_first_s": null
+        },
+        {
+          "seed": 76600,
+          "profile": "reactive",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_000/screen/seed_76600_reactive",
+          "available": true,
+          "configured_cruise_m_s": 0.4,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 16.900000000000034,
+          "truth_rmse_m": 0.00212505200148492,
+          "endpoint_m": 0.19172062166206016,
+          "whole_vertical_rms": 1.1931036024180457,
+          "whole_vertical_peak": 9.112004126565965,
+          "whole_slip_rms": 0.09337966281517443,
+          "approach_speed_m_s": 0.3960803829431764,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 11.314,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": 0.09999999999997478,
+          "governor_event_count": 1,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": 0.31400000000000006,
+          "first_to_caster_s": 0.8330000000000002,
+          "first_to_drive_s": 0.8330000000000002,
+          "first_50ms_peak": 9.112004126565965,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.395999999999999,
+          "postcontact_vertical_rms": 1.7976271058668283,
+          "postcontact_vertical_peak": 7.049985390026711,
+          "postcontact_slip_energy_per_m": 0.11300693431112761,
+          "postcontact_minimum_scale": 0.85,
+          "recovery_after_first_s": 1.999999999999968
+        },
+        {
+          "seed": 76601,
+          "profile": "full",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_000/screen/seed_76601_full",
+          "available": true,
+          "configured_cruise_m_s": 0.388,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 17.10000000000007,
+          "truth_rmse_m": 0.004595714825632655,
+          "endpoint_m": 0.1960215989217291,
+          "whole_vertical_rms": 1.0814193681881916,
+          "whole_vertical_peak": 7.170936371221904,
+          "whole_slip_rms": 0.07374682858850051,
+          "approach_speed_m_s": 0.38378485407729357,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 13.5,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": null,
+          "governor_event_count": 0,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": null,
+          "first_to_caster_s": 0.14100000000000001,
+          "first_to_drive_s": 0.6920000000000002,
+          "first_50ms_peak": 5.741984772196335,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.1499999999999986,
+          "postcontact_vertical_rms": 1.7077061205796897,
+          "postcontact_vertical_peak": 7.170936371221904,
+          "postcontact_slip_energy_per_m": 0.09208702175982887,
+          "postcontact_minimum_scale": null,
+          "recovery_after_first_s": null
+        },
+        {
+          "seed": 76601,
+          "profile": "reactive",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_000/screen/seed_76601_reactive",
+          "available": true,
+          "configured_cruise_m_s": 0.4,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 17.100000000000048,
+          "truth_rmse_m": 0.005095907845727142,
+          "endpoint_m": 0.1990299520327632,
+          "whole_vertical_rms": 1.321789206926526,
+          "whole_vertical_peak": 10.857233617362132,
+          "whole_slip_rms": 0.10313204970907898,
+          "approach_speed_m_s": 0.39577723820795263,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 12.058,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": 0.10199999999997544,
+          "governor_event_count": 1,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": 0.3160000000000007,
+          "first_to_caster_s": 0.16500000000000092,
+          "first_to_drive_s": 1.0709999999999997,
+          "first_50ms_peak": 5.594825067347532,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.6519999999999992,
+          "postcontact_vertical_rms": 2.1543310747165054,
+          "postcontact_vertical_peak": 10.857233617362132,
+          "postcontact_slip_energy_per_m": 0.21884373462093534,
+          "postcontact_minimum_scale": 0.85,
+          "recovery_after_first_s": 2.801999999999966
+        }
+      ]
+    },
+    {
+      "stage": "trial_001",
+      "score": {
+        "value": 0.9988725405644665,
+        "feasible": true,
+        "physical_failures": 0,
+        "paired_costs": [
+          0.9256268961416909,
+          1.072118184987242
+        ]
+      },
+      "groups": {
+        "full": {
+          "requested": 2,
+          "observed": 2,
+          "completed": 2,
+          "physical_successes": 2,
+          "physical_failures": 0,
+          "unavailable": 0,
+          "stable_stops": 2,
+          "metrics": {
+            "time_s": {
+              "n": 2,
+              "mean": 17.100000000000062,
+              "minimum": 17.10000000000006,
+              "maximum": 17.100000000000065,
+              "std": 5.0242958677880805e-15
+            },
+            "truth_rmse_m": {
+              "n": 2,
+              "mean": 0.005707717459432552,
+              "minimum": 0.0055801054068882845,
+              "maximum": 0.00583532951197682,
+              "std": 0.00018047069543037126
+            },
+            "approach_speed_m_s": {
+              "n": 2,
+              "mean": 0.3839034901648001,
+              "minimum": 0.3837321524914241,
+              "maximum": 0.38407482783817604,
+              "std": 0.00024230806143373383
+            },
+            "whole_vertical_rms": {
+              "n": 2,
+              "mean": 1.219413602784868,
+              "minimum": 1.1911764100718376,
+              "maximum": 1.2476507954978984,
+              "std": 0.03993342089811029
+            },
+            "whole_vertical_peak": {
+              "n": 2,
+              "mean": 11.066406063685271,
+              "minimum": 9.818125838538768,
+              "maximum": 12.314686288831775,
+              "std": 1.7653348240443258
+            },
+            "whole_slip_rms": {
+              "n": 2,
+              "mean": 0.06251462171432862,
+              "minimum": 0.061939838041520395,
+              "maximum": 0.06308940538713685,
+              "std": 0.0008128668655160158
+            },
+            "first_50ms_peak": {
+              "n": 2,
+              "mean": 2.908319784842284,
+              "minimum": 0.9762764705406983,
+              "maximum": 4.84036309914387,
+              "std": 2.732321858177567
+            },
+            "contact_to_decision_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            },
+            "motor_target_drop_delay_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            },
+            "first_to_caster_s": {
+              "n": 2,
+              "mean": 0.41600000000000037,
+              "minimum": 0.057000000000000384,
+              "maximum": 0.7750000000000004,
+              "std": 0.5077026688919412
+            },
+            "first_to_drive_s": {
+              "n": 2,
+              "mean": 0.7785000000000002,
+              "minimum": 0.7750000000000004,
+              "maximum": 0.782,
+              "std": 0.004949747468305602
+            },
+            "clearance_duration_s": {
+              "n": 2,
+              "mean": 2.205499999999999,
+              "minimum": 2.1999999999999993,
+              "maximum": 2.2109999999999985,
+              "std": 0.00777817459305148
+            },
+            "postcontact_vertical_rms": {
+              "n": 2,
+              "mean": 2.10914207185588,
+              "minimum": 2.065592389490294,
+              "maximum": 2.1526917542214665,
+              "std": 0.061588551438452585
+            },
+            "postcontact_vertical_peak": {
+              "n": 2,
+              "mean": 11.062563379483223,
+              "minimum": 9.81044047013467,
+              "maximum": 12.314686288831775,
+              "std": 1.7707692001587796
+            },
+            "postcontact_slip_energy_per_m": {
+              "n": 2,
+              "mean": 0.10718084038841835,
+              "minimum": 0.10322202372349194,
+              "maximum": 0.11113965705334478,
+              "std": 0.005598612218487563
+            },
+            "recovery_after_first_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            }
+          }
+        },
+        "reactive": {
+          "requested": 2,
+          "observed": 2,
+          "completed": 2,
+          "physical_successes": 2,
+          "physical_failures": 0,
+          "unavailable": 0,
+          "stable_stops": 2,
+          "metrics": {
+            "time_s": {
+              "n": 2,
+              "mean": 16.750000000000057,
+              "minimum": 16.700000000000085,
+              "maximum": 16.800000000000026,
+              "std": 0.07071067811861305
+            },
+            "truth_rmse_m": {
+              "n": 2,
+              "mean": 0.005059138095932765,
+              "minimum": 0.0048881835827845384,
+              "maximum": 0.005230092609080992,
+              "std": 0.00024176619104311175
+            },
+            "approach_speed_m_s": {
+              "n": 2,
+              "mean": 0.3963250418671429,
+              "minimum": 0.39628001711174654,
+              "maximum": 0.39637006662253926,
+              "std": 6.36746197240652e-05
+            },
+            "whole_vertical_rms": {
+              "n": 2,
+              "mean": 2.5190159222622586,
+              "minimum": 1.334513180648061,
+              "maximum": 3.7035186638764563,
+              "std": 1.6751398418589123
+            },
+            "whole_vertical_peak": {
+              "n": 2,
+              "mean": 49.16876099687544,
+              "minimum": 9.714861986631979,
+              "maximum": 88.62266000711891,
+              "std": 55.79623906878474
+            },
+            "whole_slip_rms": {
+              "n": 2,
+              "mean": 0.09883248793574664,
+              "minimum": 0.09844445904711578,
+              "maximum": 0.09922051682437752,
+              "std": 0.000548755716894334
+            },
+            "first_50ms_peak": {
+              "n": 2,
+              "mean": 5.69734214318426,
+              "minimum": 5.692827601260747,
+              "maximum": 5.7018566851077725,
+              "std": 0.006384526416133493
+            },
+            "contact_to_decision_s": {
+              "n": 2,
+              "mean": 0.10249999999997517,
+              "minimum": 0.10199999999997544,
+              "maximum": 0.10299999999997489,
+              "std": 0.0007071067811861557
+            },
+            "motor_target_drop_delay_s": {
+              "n": 2,
+              "mean": 0.36900000000000155,
+              "minimum": 0.3310000000000013,
+              "maximum": 0.4070000000000018,
+              "std": 0.05374011537017798
+            },
+            "first_to_caster_s": {
+              "n": 2,
+              "mean": 0.07399999999999984,
+              "minimum": 0.054999999999999716,
+              "maximum": 0.09299999999999997,
+              "std": 0.02687005768508899
+            },
+            "first_to_drive_s": {
+              "n": 2,
+              "mean": 0.8155000000000001,
+              "minimum": 0.8070000000000004,
+              "maximum": 0.8239999999999998,
+              "std": 0.012020815280170927
+            },
+            "clearance_duration_s": {
+              "n": 2,
+              "mean": 2.245,
+              "minimum": 2.2330000000000005,
+              "maximum": 2.2569999999999997,
+              "std": 0.01697056274847653
+            },
+            "postcontact_vertical_rms": {
+              "n": 2,
+              "mean": 6.105420634057844,
+              "minimum": 2.31295785309403,
+              "maximum": 9.897883415021658,
+              "std": 5.363352299634211
+            },
+            "postcontact_vertical_peak": {
+              "n": 2,
+              "mean": 49.16876099687544,
+              "minimum": 9.714861986631979,
+              "maximum": 88.62266000711891,
+              "std": 55.79623906878474
+            },
+            "postcontact_slip_energy_per_m": {
+              "n": 2,
+              "mean": 0.10970127284802472,
+              "minimum": 0.0902826894043254,
+              "maximum": 0.12911985629172404,
+              "std": 0.027462024068153214
+            },
+            "recovery_after_first_s": {
+              "n": 2,
+              "mean": 1.302499999999971,
+              "minimum": 1.3019999999999712,
+              "maximum": 1.3029999999999706,
+              "std": 0.0007071067811861557
+            }
+          }
+        }
+      },
+      "paired_costs": [
+        {
+          "seed": 76600,
+          "time_ratio": 0.9766081871345041,
+          "slip_ratio": 0.8746456051488776,
+          "path_ratio": 0.9372748770345406,
+          "time_term": 0.4883040935672521,
+          "slip_term": 0.4373228025744388,
+          "tracking_excess": 0,
+          "total": 0.9256268961416909
+        },
+        {
+          "seed": 76601,
+          "time_ratio": 0.9824561403508754,
+          "slip_ratio": 1.1617802296236088,
+          "path_ratio": 0.8376876700367485,
+          "time_term": 0.4912280701754377,
+          "slip_term": 0.5808901148118044,
+          "tracking_excess": 0,
+          "total": 1.072118184987242
+        }
+      ],
+      "episodes": [
+        {
+          "seed": 76600,
+          "profile": "full",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_001/screen/seed_76600_full",
+          "available": true,
+          "configured_cruise_m_s": 0.388,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 17.100000000000065,
+          "truth_rmse_m": 0.0055801054068882845,
+          "endpoint_m": 0.198421651570526,
+          "whole_vertical_rms": 1.1911764100718376,
+          "whole_vertical_peak": 12.314686288831775,
+          "whole_slip_rms": 0.061939838041520395,
+          "approach_speed_m_s": 0.3837321524914241,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 13.339,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": null,
+          "governor_event_count": 0,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": null,
+          "first_to_caster_s": 0.057000000000000384,
+          "first_to_drive_s": 0.782,
+          "first_50ms_peak": 0.9762764705406983,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.2109999999999985,
+          "postcontact_vertical_rms": 2.1526917542214665,
+          "postcontact_vertical_peak": 12.314686288831775,
+          "postcontact_slip_energy_per_m": 0.10322202372349194,
+          "postcontact_minimum_scale": null,
+          "recovery_after_first_s": null
+        },
+        {
+          "seed": 76600,
+          "profile": "reactive",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_001/screen/seed_76600_reactive",
+          "available": true,
+          "configured_cruise_m_s": 0.4,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 16.700000000000085,
+          "truth_rmse_m": 0.005230092609080992,
+          "endpoint_m": 0.19656832663675963,
+          "whole_vertical_rms": 3.7035186638764563,
+          "whole_vertical_peak": 88.62266000711891,
+          "whole_slip_rms": 0.09844445904711578,
+          "approach_speed_m_s": 0.39637006662253926,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 14.517,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": 0.10199999999997544,
+          "governor_event_count": 1,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": 0.4070000000000018,
+          "first_to_caster_s": 0.09299999999999997,
+          "first_to_drive_s": 0.8239999999999998,
+          "first_50ms_peak": 5.7018566851077725,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.2330000000000005,
+          "postcontact_vertical_rms": 9.897883415021658,
+          "postcontact_vertical_peak": 88.62266000711891,
+          "postcontact_slip_energy_per_m": 0.0902826894043254,
+          "postcontact_minimum_scale": 0.9,
+          "recovery_after_first_s": 1.3019999999999712
+        },
+        {
+          "seed": 76601,
+          "profile": "full",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_001/screen/seed_76601_full",
+          "available": true,
+          "configured_cruise_m_s": 0.388,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 17.10000000000006,
+          "truth_rmse_m": 0.00583532951197682,
+          "endpoint_m": 0.19803304801326765,
+          "whole_vertical_rms": 1.2476507954978984,
+          "whole_vertical_peak": 9.818125838538768,
+          "whole_slip_rms": 0.06308940538713685,
+          "approach_speed_m_s": 0.38407482783817604,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 13.09,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": null,
+          "governor_event_count": 0,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": null,
+          "first_to_caster_s": 0.7750000000000004,
+          "first_to_drive_s": 0.7750000000000004,
+          "first_50ms_peak": 4.84036309914387,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.1999999999999993,
+          "postcontact_vertical_rms": 2.065592389490294,
+          "postcontact_vertical_peak": 9.81044047013467,
+          "postcontact_slip_energy_per_m": 0.11113965705334478,
+          "postcontact_minimum_scale": null,
+          "recovery_after_first_s": null
+        },
+        {
+          "seed": 76601,
+          "profile": "reactive",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_001/screen/seed_76601_reactive",
+          "available": true,
+          "configured_cruise_m_s": 0.4,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 16.800000000000026,
+          "truth_rmse_m": 0.0048881835827845384,
+          "endpoint_m": 0.1855794944098053,
+          "whole_vertical_rms": 1.334513180648061,
+          "whole_vertical_peak": 9.714861986631979,
+          "whole_slip_rms": 0.09922051682437752,
+          "approach_speed_m_s": 0.39628001711174654,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 11.173,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": 0.10299999999997489,
+          "governor_event_count": 1,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": 0.3310000000000013,
+          "first_to_caster_s": 0.054999999999999716,
+          "first_to_drive_s": 0.8070000000000004,
+          "first_50ms_peak": 5.692827601260747,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.2569999999999997,
+          "postcontact_vertical_rms": 2.31295785309403,
+          "postcontact_vertical_peak": 9.714861986631979,
+          "postcontact_slip_energy_per_m": 0.12911985629172404,
+          "postcontact_minimum_scale": 0.9,
+          "recovery_after_first_s": 1.3029999999999706
+        }
+      ]
+    },
+    {
+      "stage": "trial_002",
+      "score": {
+        "value": 1.3997661406676398,
+        "feasible": true,
+        "physical_failures": 0,
+        "paired_costs": [
+          1.231149869991441,
+          1.5683824113438387
+        ]
+      },
+      "groups": {
+        "full": {
+          "requested": 2,
+          "observed": 2,
+          "completed": 2,
+          "physical_successes": 2,
+          "physical_failures": 0,
+          "unavailable": 0,
+          "stable_stops": 2,
+          "metrics": {
+            "time_s": {
+              "n": 2,
+              "mean": 17.150000000000052,
+              "minimum": 17.10000000000006,
+              "maximum": 17.200000000000045,
+              "std": 0.0707106781186457
+            },
+            "truth_rmse_m": {
+              "n": 2,
+              "mean": 0.00391752945377525,
+              "minimum": 0.0037257520397090504,
+              "maximum": 0.00410930686784145,
+              "std": 0.0002712142199292604
+            },
+            "approach_speed_m_s": {
+              "n": 2,
+              "mean": 0.38435392639835564,
+              "minimum": 0.38432728276115,
+              "maximum": 0.38438057003556125,
+              "std": 3.7679793087128376e-05
+            },
+            "whole_vertical_rms": {
+              "n": 2,
+              "mean": 1.5566556871002555,
+              "minimum": 1.3012048926495239,
+              "maximum": 1.8121064815509869,
+              "std": 0.36126197803120624
+            },
+            "whole_vertical_peak": {
+              "n": 2,
+              "mean": 26.1898374825391,
+              "minimum": 15.223581690805515,
+              "maximum": 37.156093274272685,
+              "std": 15.508627669122138
+            },
+            "whole_slip_rms": {
+              "n": 2,
+              "mean": 0.08825795388599673,
+              "minimum": 0.04635752189573961,
+              "maximum": 0.13015838587625386,
+              "std": 0.05925615918991312
+            },
+            "first_50ms_peak": {
+              "n": 2,
+              "mean": 4.699867813236198,
+              "minimum": 4.284435299418538,
+              "maximum": 5.115300327053856,
+              "std": 0.5875102952916816
+            },
+            "contact_to_decision_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            },
+            "motor_target_drop_delay_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            },
+            "first_to_caster_s": {
+              "n": 2,
+              "mean": 0.3694999999999995,
+              "minimum": 0.05099999999999838,
+              "maximum": 0.6880000000000006,
+              "std": 0.4504270196158323
+            },
+            "first_to_drive_s": {
+              "n": 2,
+              "mean": 0.8294999999999995,
+              "minimum": 0.6880000000000006,
+              "maximum": 0.9709999999999983,
+              "std": 0.20011121907579132
+            },
+            "clearance_duration_s": {
+              "n": 2,
+              "mean": 2.2544999999999993,
+              "minimum": 2.1340000000000003,
+              "maximum": 2.3749999999999982,
+              "std": 0.17041273426595646
+            },
+            "postcontact_vertical_rms": {
+              "n": 2,
+              "mean": 3.343350275420036,
+              "minimum": 2.6452281827459387,
+              "maximum": 4.041472368094134,
+              "std": 0.9872937316519953
+            },
+            "postcontact_vertical_peak": {
+              "n": 2,
+              "mean": 26.1898374825391,
+              "minimum": 15.223581690805515,
+              "maximum": 37.156093274272685,
+              "std": 15.508627669122138
+            },
+            "postcontact_slip_energy_per_m": {
+              "n": 2,
+              "mean": 0.14784842840089574,
+              "minimum": 0.08864290431202483,
+              "maximum": 0.20705395248976663,
+              "std": 0.08372925513388821
+            },
+            "recovery_after_first_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            }
+          }
+        },
+        "reactive": {
+          "requested": 2,
+          "observed": 2,
+          "completed": 2,
+          "physical_successes": 2,
+          "physical_failures": 0,
+          "unavailable": 0,
+          "stable_stops": 2,
+          "metrics": {
+            "time_s": {
+              "n": 2,
+              "mean": 16.75000000000003,
+              "minimum": 16.700000000000035,
+              "maximum": 16.800000000000022,
+              "std": 0.0707106781186457
+            },
+            "truth_rmse_m": {
+              "n": 2,
+              "mean": 0.005670643835279315,
+              "minimum": 0.005440875570840541,
+              "maximum": 0.005900412099718089,
+              "std": 0.00032494139577224167
+            },
+            "approach_speed_m_s": {
+              "n": 2,
+              "mean": 0.39581293122897654,
+              "minimum": 0.3957469017683419,
+              "maximum": 0.39587896068961115,
+              "std": 9.337975874568372e-05
+            },
+            "whole_vertical_rms": {
+              "n": 2,
+              "mean": 2.0701150496174883,
+              "minimum": 1.1658542046234102,
+              "maximum": 2.974375894611566,
+              "std": 1.27881795091358
+            },
+            "whole_vertical_peak": {
+              "n": 2,
+              "mean": 42.75718598447424,
+              "minimum": 9.991011923638618,
+              "maximum": 75.52336004530986,
+              "std": 46.33836774391125
+            },
+            "whole_slip_rms": {
+              "n": 2,
+              "mean": 0.08989575390050061,
+              "minimum": 0.0711536817088359,
+              "maximum": 0.10863782609216531,
+              "std": 0.02650529268042786
+            },
+            "first_50ms_peak": {
+              "n": 2,
+              "mean": 40.64138725979182,
+              "minimum": 5.759414474273776,
+              "maximum": 75.52336004530986,
+              "std": 49.33055899560882
+            },
+            "contact_to_decision_s": {
+              "n": 2,
+              "mean": 0.10249999999997517,
+              "minimum": 0.100999999999976,
+              "maximum": 0.10399999999997434,
+              "std": 0.0021213203435584667
+            },
+            "motor_target_drop_delay_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            },
+            "first_to_caster_s": {
+              "n": 2,
+              "mean": 0.1354999999999995,
+              "minimum": 0.12899999999999956,
+              "maximum": 0.14199999999999946,
+              "std": 0.009192388155425047
+            },
+            "first_to_drive_s": {
+              "n": 2,
+              "mean": 0.8685,
+              "minimum": 0.7729999999999997,
+              "maximum": 0.9640000000000004,
+              "std": 0.1350573952066311
+            },
+            "clearance_duration_s": {
+              "n": 2,
+              "mean": 2.246999999999999,
+              "minimum": 2.174999999999999,
+              "maximum": 2.318999999999999,
+              "std": 0.10182337649086293
+            },
+            "postcontact_vertical_rms": {
+              "n": 2,
+              "mean": 2.135275533808608,
+              "minimum": 1.7849752966262467,
+              "maximum": 2.4855757709909696,
+              "std": 0.49539934632580757
+            },
+            "postcontact_vertical_peak": {
+              "n": 2,
+              "mean": 8.233710854860057,
+              "minimum": 7.017881045020097,
+              "maximum": 9.449540664700015,
+              "std": 1.7194430066131712
+            },
+            "postcontact_slip_energy_per_m": {
+              "n": 2,
+              "mean": 0.13326738240029187,
+              "minimum": 0.11873458355864387,
+              "maximum": 0.1478001812419399,
+              "std": 0.02055248122109862
+            },
+            "recovery_after_first_s": {
+              "n": 2,
+              "mean": 1.002499999999972,
+              "minimum": 1.0009999999999728,
+              "maximum": 1.0039999999999711,
+              "std": 0.0021213203435584667
+            }
+          }
+        }
+      },
+      "paired_costs": [
+        {
+          "seed": 76600,
+          "time_ratio": 0.9767441860465104,
+          "slip_ratio": 0.7138244861529254,
+          "path_ratio": 1.4358655338917232,
+          "time_term": 0.4883720930232552,
+          "slip_term": 0.3569122430764627,
+          "tracking_excess": 0.3858655338917232,
+          "total": 1.231149869991441
+        },
+        {
+          "seed": 76601,
+          "time_ratio": 0.9766081871345016,
+          "slip_ratio": 1.3394708181119124,
+          "path_ratio": 1.4603429087206317,
+          "time_term": 0.4883040935672508,
+          "slip_term": 0.6697354090559562,
+          "tracking_excess": 0.4103429087206316,
+          "total": 1.5683824113438387
+        }
+      ],
+      "episodes": [
+        {
+          "seed": 76600,
+          "profile": "full",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_002/screen/seed_76600_full",
+          "available": true,
+          "configured_cruise_m_s": 0.388,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 17.200000000000045,
+          "truth_rmse_m": 0.00410930686784145,
+          "endpoint_m": 0.19818337844706874,
+          "whole_vertical_rms": 1.3012048926495239,
+          "whole_vertical_peak": 15.223581690805515,
+          "whole_slip_rms": 0.13015838587625386,
+          "approach_speed_m_s": 0.38432728276115,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 11.995000000000001,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": null,
+          "governor_event_count": 0,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": null,
+          "first_to_caster_s": 0.05099999999999838,
+          "first_to_drive_s": 0.9709999999999983,
+          "first_50ms_peak": 5.115300327053856,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.3749999999999982,
+          "postcontact_vertical_rms": 2.6452281827459387,
+          "postcontact_vertical_peak": 15.223581690805515,
+          "postcontact_slip_energy_per_m": 0.20705395248976663,
+          "postcontact_minimum_scale": null,
+          "recovery_after_first_s": null
+        },
+        {
+          "seed": 76600,
+          "profile": "reactive",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_002/screen/seed_76600_reactive",
+          "available": true,
+          "configured_cruise_m_s": 0.4,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 16.800000000000022,
+          "truth_rmse_m": 0.005900412099718089,
+          "endpoint_m": 0.18593544341037335,
+          "whole_vertical_rms": 2.974375894611566,
+          "whole_vertical_peak": 75.52336004530986,
+          "whole_slip_rms": 0.10863782609216531,
+          "approach_speed_m_s": 0.39587896068961115,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 10.811,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": 0.100999999999976,
+          "governor_event_count": 1,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": null,
+          "first_to_caster_s": 0.14199999999999946,
+          "first_to_drive_s": 0.9640000000000004,
+          "first_50ms_peak": 75.52336004530986,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.318999999999999,
+          "postcontact_vertical_rms": 2.4855757709909696,
+          "postcontact_vertical_peak": 9.449540664700015,
+          "postcontact_slip_energy_per_m": 0.1478001812419399,
+          "postcontact_minimum_scale": 0.95,
+          "recovery_after_first_s": 1.0009999999999728
+        },
+        {
+          "seed": 76601,
+          "profile": "full",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_002/screen/seed_76601_full",
+          "available": true,
+          "configured_cruise_m_s": 0.388,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 17.10000000000006,
+          "truth_rmse_m": 0.0037257520397090504,
+          "endpoint_m": 0.1887598471216922,
+          "whole_vertical_rms": 1.8121064815509869,
+          "whole_vertical_peak": 37.156093274272685,
+          "whole_slip_rms": 0.04635752189573961,
+          "approach_speed_m_s": 0.38438057003556125,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 12.716,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": null,
+          "governor_event_count": 0,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": null,
+          "first_to_caster_s": 0.6880000000000006,
+          "first_to_drive_s": 0.6880000000000006,
+          "first_50ms_peak": 4.284435299418538,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.1340000000000003,
+          "postcontact_vertical_rms": 4.041472368094134,
+          "postcontact_vertical_peak": 37.156093274272685,
+          "postcontact_slip_energy_per_m": 0.08864290431202483,
+          "postcontact_minimum_scale": null,
+          "recovery_after_first_s": null
+        },
+        {
+          "seed": 76601,
+          "profile": "reactive",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/trial_002/screen/seed_76601_reactive",
+          "available": true,
+          "configured_cruise_m_s": 0.4,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 16.700000000000035,
+          "truth_rmse_m": 0.005440875570840541,
+          "endpoint_m": 0.1903326369977702,
+          "whole_vertical_rms": 1.1658542046234102,
+          "whole_vertical_peak": 9.991011923638618,
+          "whole_slip_rms": 0.0711536817088359,
+          "approach_speed_m_s": 0.3957469017683419,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 11.715,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": 0.10399999999997434,
+          "governor_event_count": 1,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": null,
+          "first_to_caster_s": 0.12899999999999956,
+          "first_to_drive_s": 0.7729999999999997,
+          "first_50ms_peak": 5.759414474273776,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.174999999999999,
+          "postcontact_vertical_rms": 1.7849752966262467,
+          "postcontact_vertical_peak": 7.017881045020097,
+          "postcontact_slip_energy_per_m": 0.11873458355864387,
+          "postcontact_minimum_scale": 0.95,
+          "recovery_after_first_s": 1.0039999999999711
+        }
+      ]
+    },
+    {
+      "stage": "validation",
+      "score": {
+        "value": 0.8214922542333486,
+        "feasible": true,
+        "physical_failures": 0,
+        "paired_costs": [
+          0.8506283857183774,
+          0.746990002375389,
+          0.8668583746062795
+        ]
+      },
+      "groups": {
+        "full": {
+          "requested": 3,
+          "observed": 3,
+          "completed": 3,
+          "physical_successes": 3,
+          "physical_failures": 0,
+          "unavailable": 0,
+          "stable_stops": 3,
+          "metrics": {
+            "time_s": {
+              "n": 3,
+              "mean": 17.20000000000006,
+              "minimum": 17.10000000000007,
+              "maximum": 17.300000000000065,
+              "std": 0.09999999999999787
+            },
+            "truth_rmse_m": {
+              "n": 3,
+              "mean": 0.00517819599558642,
+              "minimum": 0.004750533457393508,
+              "maximum": 0.005664171396512453,
+              "std": 0.00045960185315061235
+            },
+            "approach_speed_m_s": {
+              "n": 3,
+              "mean": 0.38453052772092855,
+              "minimum": 0.3843416066320823,
+              "maximum": 0.38490190021900134,
+              "std": 0.00032163428522500773
+            },
+            "whole_vertical_rms": {
+              "n": 3,
+              "mean": 4.665361657212031,
+              "minimum": 1.013397449003143,
+              "maximum": 9.426806039985173,
+              "std": 4.315040060418432
+            },
+            "whole_vertical_peak": {
+              "n": 3,
+              "mean": 120.50382534770183,
+              "minimum": 9.040546506200434,
+              "maximum": 271.32813411754927,
+              "std": 135.50152272764453
+            },
+            "whole_slip_rms": {
+              "n": 3,
+              "mean": 0.09037208434416709,
+              "minimum": 0.06308739517364942,
+              "maximum": 0.13768202052220557,
+              "std": 0.04113207289946655
+            },
+            "first_50ms_peak": {
+              "n": 3,
+              "mean": 5.202782735888126,
+              "minimum": 4.411717239775417,
+              "maximum": 5.7782507429006795,
+              "std": 0.7083185454092452
+            },
+            "contact_to_decision_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            },
+            "motor_target_drop_delay_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            },
+            "first_to_caster_s": {
+              "n": 3,
+              "mean": 0.34800000000000075,
+              "minimum": 0.16100000000000136,
+              "maximum": 0.718,
+              "std": 0.32043564096398447
+            },
+            "first_to_drive_s": {
+              "n": 3,
+              "mean": 0.8596666666666669,
+              "minimum": 0.718,
+              "maximum": 1.0980000000000008,
+              "std": 0.20762546407734656
+            },
+            "clearance_duration_s": {
+              "n": 3,
+              "mean": 2.267333333333332,
+              "minimum": 2.150999999999998,
+              "maximum": 2.4669999999999987,
+              "std": 0.1737018518419806
+            },
+            "postcontact_vertical_rms": {
+              "n": 3,
+              "mean": 12.706247609409791,
+              "minimum": 2.196750704770903,
+              "maximum": 26.158783987380552,
+              "std": 12.249117142284799
+            },
+            "postcontact_vertical_peak": {
+              "n": 3,
+              "mean": 120.50382534770183,
+              "minimum": 9.040546506200434,
+              "maximum": 271.32813411754927,
+              "std": 135.50152272764453
+            },
+            "postcontact_slip_energy_per_m": {
+              "n": 3,
+              "mean": 0.133556351921822,
+              "minimum": 0.09134047070743176,
+              "maximum": 0.18960980607088368,
+              "std": 0.050574938326560605
+            },
+            "recovery_after_first_s": {
+              "n": 0,
+              "mean": null,
+              "minimum": null,
+              "maximum": null,
+              "std": null
+            }
+          }
+        },
+        "reactive": {
+          "requested": 3,
+          "observed": 3,
+          "completed": 3,
+          "physical_successes": 3,
+          "physical_failures": 0,
+          "unavailable": 0,
+          "stable_stops": 3,
+          "metrics": {
+            "time_s": {
+              "n": 3,
+              "mean": 16.700000000000067,
+              "minimum": 16.70000000000006,
+              "maximum": 16.70000000000008,
+              "std": 1.2306961192854808e-14
+            },
+            "truth_rmse_m": {
+              "n": 3,
+              "mean": 0.004657983665284434,
+              "minimum": 0.0041401211019693514,
+              "maximum": 0.0049774557228813646,
+              "std": 0.00045254989936336797
+            },
+            "approach_speed_m_s": {
+              "n": 3,
+              "mean": 0.3961736103311735,
+              "minimum": 0.39563246229144367,
+              "maximum": 0.39688880570956353,
+              "std": 0.0006460023631027184
+            },
+            "whole_vertical_rms": {
+              "n": 3,
+              "mean": 1.2954218154521553,
+              "minimum": 1.1831264060033253,
+              "maximum": 1.4823593020264354,
+              "std": 0.16298362271650355
+            },
+            "whole_vertical_peak": {
+              "n": 3,
+              "mean": 9.049697826138086,
+              "minimum": 7.455501746431418,
+              "maximum": 9.873830049211607,
+              "std": 1.3808789601107199
+            },
+            "whole_slip_rms": {
+              "n": 3,
+              "mean": 0.09698606628505413,
+              "minimum": 0.08465189805452458,
+              "maximum": 0.1149402491836924,
+              "std": 0.015907057464636835
+            },
+            "first_50ms_peak": {
+              "n": 3,
+              "mean": 6.4885509632986045,
+              "minimum": 5.814005970760677,
+              "maximum": 6.878627269767965,
+              "std": 0.5865547311122582
+            },
+            "contact_to_decision_s": {
+              "n": 3,
+              "mean": 0.10033333333330852,
+              "minimum": 0.09699999999997466,
+              "maximum": 0.10299999999997489,
+              "std": 0.0030550504633041382
+            },
+            "motor_target_drop_delay_s": {
+              "n": 3,
+              "mean": 0.3843333333333341,
+              "minimum": 0.31900000000000084,
+              "maximum": 0.4220000000000006,
+              "std": 0.056800821590302045
+            },
+            "first_to_caster_s": {
+              "n": 3,
+              "mean": 0.11300000000000014,
+              "minimum": 0.05200000000000138,
+              "maximum": 0.1639999999999997,
+              "std": 0.05666568626602782
+            },
+            "first_to_drive_s": {
+              "n": 3,
+              "mean": 0.7299999999999999,
+              "minimum": 0.6920000000000002,
+              "maximum": 0.7629999999999999,
+              "std": 0.035763109484495154
+            },
+            "clearance_duration_s": {
+              "n": 3,
+              "mean": 2.1843333333333326,
+              "minimum": 2.1549999999999994,
+              "maximum": 2.209999999999999,
+              "std": 0.02768272626265925
+            },
+            "postcontact_vertical_rms": {
+              "n": 3,
+              "mean": 1.7235763729022482,
+              "minimum": 1.5671659125670263,
+              "maximum": 1.8516754288833541,
+              "std": 0.14435223562873697
+            },
+            "postcontact_vertical_peak": {
+              "n": 3,
+              "mean": 6.719005932554848,
+              "minimum": 6.385024702910933,
+              "maximum": 6.95244104584234,
+              "std": 0.29677005861808714
+            },
+            "postcontact_slip_energy_per_m": {
+              "n": 3,
+              "mean": 0.08591637624378538,
+              "minimum": 0.06618974278764178,
+              "maximum": 0.10023951554198557,
+              "std": 0.01765630391649989
+            },
+            "recovery_after_first_s": {
+              "n": 3,
+              "mean": 1.3003333333333043,
+              "minimum": 1.2969999999999704,
+              "maximum": 1.3029999999999706,
+              "std": 0.0030550504633041382
+            }
+          }
+        }
+      },
+      "paired_costs": [
+        {
+          "seed": 76700,
+          "time_ratio": 0.9766081871345025,
+          "slip_ratio": 0.7246485843022524,
+          "path_ratio": 0.7309314659013513,
+          "time_term": 0.48830409356725124,
+          "slip_term": 0.3623242921511262,
+          "tracking_excess": 0,
+          "total": 0.8506283857183774
+        },
+        {
+          "seed": 76701,
+          "time_ratio": 0.9653179190751456,
+          "slip_ratio": 0.5286620856756324,
+          "path_ratio": 1.0477677438803605,
+          "time_term": 0.4826589595375728,
+          "slip_term": 0.2643310428378162,
+          "tracking_excess": 0,
+          "total": 0.746990002375389
+        },
+        {
+          "seed": 76702,
+          "time_ratio": 0.9709302325581405,
+          "slip_ratio": 0.7627865166544183,
+          "path_ratio": 0.9485322311050759,
+          "time_term": 0.48546511627907024,
+          "slip_term": 0.38139325832720916,
+          "tracking_excess": 0,
+          "total": 0.8668583746062795
+        }
+      ],
+      "episodes": [
+        {
+          "seed": 76700,
+          "profile": "full",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/validation/screen/seed_76700_full",
+          "available": true,
+          "configured_cruise_m_s": 0.388,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 17.10000000000007,
+          "truth_rmse_m": 0.005664171396512453,
+          "endpoint_m": 0.19354611228175858,
+          "whole_vertical_rms": 3.555881482647778,
+          "whole_vertical_peak": 81.14279541935585,
+          "whole_slip_rms": 0.06308739517364942,
+          "approach_speed_m_s": 0.3843416066320823,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 13.399000000000001,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": null,
+          "governor_event_count": 0,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": null,
+          "first_to_caster_s": 0.718,
+          "first_to_drive_s": 0.718,
+          "first_50ms_peak": 4.411717239775417,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.150999999999998,
+          "postcontact_vertical_rms": 9.763208136077914,
+          "postcontact_vertical_peak": 81.14279541935585,
+          "postcontact_slip_energy_per_m": 0.09134047070743176,
+          "postcontact_minimum_scale": null,
+          "recovery_after_first_s": null
+        },
+        {
+          "seed": 76700,
+          "profile": "reactive",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/validation/screen/seed_76700_reactive",
+          "available": true,
+          "configured_cruise_m_s": 0.4,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 16.70000000000006,
+          "truth_rmse_m": 0.0041401211019693514,
+          "endpoint_m": 0.19275938156397035,
+          "whole_vertical_rms": 1.2207797383267054,
+          "whole_vertical_peak": 7.455501746431418,
+          "whole_slip_rms": 0.08465189805452458,
+          "approach_speed_m_s": 0.39563246229144367,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 13.075,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": 0.100999999999976,
+          "governor_event_count": 1,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": 0.31900000000000084,
+          "first_to_caster_s": 0.05200000000000138,
+          "first_to_drive_s": 0.6920000000000002,
+          "first_50ms_peak": 5.814005970760677,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.1549999999999994,
+          "postcontact_vertical_rms": 1.8516754288833541,
+          "postcontact_vertical_peak": 6.95244104584234,
+          "postcontact_slip_energy_per_m": 0.06618974278764178,
+          "postcontact_minimum_scale": 0.9,
+          "recovery_after_first_s": 1.3009999999999717
+        },
+        {
+          "seed": 76701,
+          "profile": "full",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/validation/screen/seed_76701_full",
+          "available": true,
+          "configured_cruise_m_s": 0.388,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 17.300000000000065,
+          "truth_rmse_m": 0.004750533457393508,
+          "endpoint_m": 0.19625231553701072,
+          "whole_vertical_rms": 1.013397449003143,
+          "whole_vertical_peak": 9.040546506200434,
+          "whole_slip_rms": 0.13768202052220557,
+          "approach_speed_m_s": 0.3843480763117021,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 13.103,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": null,
+          "governor_event_count": 0,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": null,
+          "first_to_caster_s": 0.16500000000000092,
+          "first_to_drive_s": 1.0980000000000008,
+          "first_50ms_peak": 5.7782507429006795,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.4669999999999987,
+          "postcontact_vertical_rms": 2.196750704770903,
+          "postcontact_vertical_peak": 9.040546506200434,
+          "postcontact_slip_energy_per_m": 0.18960980607088368,
+          "postcontact_minimum_scale": null,
+          "recovery_after_first_s": null
+        },
+        {
+          "seed": 76701,
+          "profile": "reactive",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/validation/screen/seed_76701_reactive",
+          "available": true,
+          "configured_cruise_m_s": 0.4,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 16.70000000000008,
+          "truth_rmse_m": 0.0049774557228813646,
+          "endpoint_m": 0.19968369872729855,
+          "whole_vertical_rms": 1.4823593020264354,
+          "whole_vertical_peak": 9.819761682771231,
+          "whole_slip_rms": 0.1149402491836924,
+          "approach_speed_m_s": 0.39688880570956353,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 14.38,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": 0.09699999999997466,
+          "governor_event_count": 1,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": 0.4120000000000008,
+          "first_to_caster_s": 0.1639999999999997,
+          "first_to_drive_s": 0.7629999999999999,
+          "first_50ms_peak": 6.878627269767965,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.209999999999999,
+          "postcontact_vertical_rms": 1.7518877772563644,
+          "postcontact_vertical_peak": 6.385024702910933,
+          "postcontact_slip_energy_per_m": 0.10023951554198557,
+          "postcontact_minimum_scale": 0.9,
+          "recovery_after_first_s": 1.2969999999999704
+        },
+        {
+          "seed": 76702,
+          "profile": "full",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/validation/screen/seed_76702_full",
+          "available": true,
+          "configured_cruise_m_s": 0.388,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 17.200000000000045,
+          "truth_rmse_m": 0.005119883132853301,
+          "endpoint_m": 0.18409571771742136,
+          "whole_vertical_rms": 9.426806039985173,
+          "whole_vertical_peak": 271.32813411754927,
+          "whole_slip_rms": 0.07034683733664625,
+          "approach_speed_m_s": 0.38490190021900134,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 12.126,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": null,
+          "governor_event_count": 0,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": null,
+          "first_to_caster_s": 0.16100000000000136,
+          "first_to_drive_s": 0.7629999999999999,
+          "first_50ms_peak": 5.4183802249882795,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.1839999999999993,
+          "postcontact_vertical_rms": 26.158783987380552,
+          "postcontact_vertical_peak": 271.32813411754927,
+          "postcontact_slip_energy_per_m": 0.11971877898715058,
+          "postcontact_minimum_scale": null,
+          "recovery_after_first_s": null
+        },
+        {
+          "seed": 76702,
+          "profile": "reactive",
+          "case": "/home/tuanmac/ninorobot/rl_runs/classical_governor_crossing_tune_2026-10-16/validation/screen/seed_76702_reactive",
+          "available": true,
+          "configured_cruise_m_s": 0.4,
+          "complete": true,
+          "physical_success": true,
+          "termination": "success",
+          "stop_settled": true,
+          "time_s": 16.70000000000006,
+          "truth_rmse_m": 0.004856374171002587,
+          "endpoint_m": 0.19717571413541218,
+          "whole_vertical_rms": 1.1831264060033253,
+          "whole_vertical_peak": 9.873830049211607,
+          "whole_slip_rms": 0.09136605161694539,
+          "approach_speed_m_s": 0.3959995629925133,
+          "precontact_minimum_scale": 1.0,
+          "first_contact_s": 12.922,
+          "oracle_contact_s": null,
+          "oracle_command_s": null,
+          "contact_to_decision_s": 0.10299999999997489,
+          "governor_event_count": 1,
+          "precontact_event_count": 0,
+          "oracle_stamp_lag_from_first_s": null,
+          "motor_target_drop_delay_s": 0.4220000000000006,
+          "first_to_caster_s": 0.12299999999999933,
+          "first_to_drive_s": 0.7349999999999994,
+          "first_50ms_peak": 6.7730196493671695,
+          "first_50ms_uncontrolled": true,
+          "first_50ms_negative_control_eligible": false,
+          "clearance_available": true,
+          "clearance_duration_s": 2.187999999999999,
+          "postcontact_vertical_rms": 1.5671659125670263,
+          "postcontact_vertical_peak": 6.819552048911273,
+          "postcontact_slip_energy_per_m": 0.09131987040172876,
+          "postcontact_minimum_scale": 0.9,
+          "recovery_after_first_s": 1.3029999999999706
+        }
+      ]
+    }
+  ],
+  "observed_episodes": 18,
+  "native_motion_passes": 18,
+  "budget": 18,
+  "qualification": "Three fixed queued candidates, two dev blocks and at most three separate validation blocks; fixed geometry, no impact or deployment promotion."
+}

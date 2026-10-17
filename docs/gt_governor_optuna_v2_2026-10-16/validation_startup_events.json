@@ -1,0 +1,137 @@
+[
+  {
+    "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v0/screen/seed_77101_full",
+    "aborted": {
+      "kind": "measurement_aborted",
+      "exception_type": "RuntimeError",
+      "message": "Assisted odometry fault: Assisted odometry encoder gap exceeded its bound",
+      "episode": null,
+      "seed": null,
+      "completed_episodes": 0,
+      "success": null,
+      "task_outcome_available": false,
+      "existing_traces_preserved": true
+    },
+    "events": [],
+    "governor_states": [],
+    "logger_diagnostic_range_s": [
+      1.9620000000000002,
+      4.942
+    ],
+    "qualification": "Logger and evaluator are separate consumers; do not infer evaluator delivery from logger coverage."
+  },
+  {
+    "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v3/screen/seed_77106_full",
+    "aborted": {
+      "kind": "measurement_aborted",
+      "exception_type": "RuntimeError",
+      "message": "No stamped drive diagnostics for this action; restart the flat simulator with the updated effort_drive",
+      "episode": 1,
+      "seed": 77106,
+      "completed_episodes": 0,
+      "success": null,
+      "task_outcome_available": false,
+      "existing_traces_preserved": true
+    },
+    "events": [
+      {
+        "event": "reset",
+        "seed": 77106,
+        "time_s": 7.304
+      },
+      {
+        "event": "end",
+        "time_s": 7.404,
+        "termination": "governor_failsafe",
+        "success": false,
+        "governor_fault": "stale_drive_feedback"
+      }
+    ],
+    "governor_states": [
+      {
+        "time_s": 7.304,
+        "governed_linear_m_s": 0.0,
+        "governed_yaw_rad_s": 0.0,
+        "governor_phase": "FAILSAFE",
+        "governor_scale": 0.0,
+        "governor_events": 0,
+        "governor_armed": true,
+        "governor_hold_seconds": 0.0,
+        "governor_quiet_seconds": 0.0,
+        "governor_fault": "stale_drive_feedback",
+        "governor_disturbed": null,
+        "governor_trigger_ratio": null,
+        "governor_filtered_vertical_m_s2": null,
+        "governor_wheel_error_m_s": null,
+        "governor_wheel_error_threshold_m_s": null,
+        "governor_target_scale": null,
+        "governor_wheel_stall_seconds": null,
+        "governor_requested_linear_m_s": 0.39999996871026616,
+        "governor_requested_yaw_rad_s": 0.0007027666575902093,
+        "governor_input_time_s": 7.304
+      }
+    ],
+    "logger_diagnostic_range_s": [
+      4.430000000000001,
+      7.852
+    ],
+    "qualification": "Logger and evaluator are separate consumers; do not infer evaluator delivery from logger coverage."
+  },
+  {
+    "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v1/screen/seed_77102_full",
+    "aborted": {
+      "kind": "measurement_aborted",
+      "exception_type": "RuntimeError",
+      "message": "No stamped drive diagnostics for this action; restart the flat simulator with the updated effort_drive",
+      "episode": 1,
+      "seed": 77102,
+      "completed_episodes": 0,
+      "success": null,
+      "task_outcome_available": false,
+      "existing_traces_preserved": true
+    },
+    "events": [
+      {
+        "event": "reset",
+        "seed": 77102,
+        "time_s": 5.179
+      },
+      {
+        "event": "end",
+        "time_s": 5.279,
+        "termination": "governor_failsafe",
+        "success": false,
+        "governor_fault": "stale_drive_feedback"
+      }
+    ],
+    "governor_states": [
+      {
+        "time_s": 5.179,
+        "governed_linear_m_s": 0.0,
+        "governed_yaw_rad_s": -0.0,
+        "governor_phase": "FAILSAFE",
+        "governor_scale": 0.0,
+        "governor_events": 0,
+        "governor_armed": true,
+        "governor_hold_seconds": 0.0,
+        "governor_quiet_seconds": 0.0,
+        "governor_fault": "stale_drive_feedback",
+        "governor_disturbed": null,
+        "governor_trigger_ratio": null,
+        "governor_filtered_vertical_m_s2": null,
+        "governor_wheel_error_m_s": null,
+        "governor_wheel_error_threshold_m_s": null,
+        "governor_target_scale": null,
+        "governor_wheel_stall_seconds": null,
+        "governor_requested_linear_m_s": 0.39999977383042706,
+        "governor_requested_yaw_rad_s": -0.001886854292923503,
+        "governor_input_time_s": 5.179
+      }
+    ],
+    "logger_diagnostic_range_s": [
+      1.249,
+      5.69
+    ],
+    "qualification": "Logger and evaluator are separate consumers; do not infer evaluator delivery from logger coverage."
+  }
+]

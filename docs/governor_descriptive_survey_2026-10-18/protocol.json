@@ -1,0 +1,397 @@
+{
+  "contract": "descriptive_fixed_reactive_v1_2026_10_18",
+  "status": "authorized_descriptive_prepared",
+  "purpose": "Descriptive repeated comparison of frozen PI and reactive governor; retain proposed criteria without applying them.",
+  "budget": {
+    "maximum_attempts": 16,
+    "blocks": 2,
+    "arms": 2,
+    "replicates_per_cell": 4,
+    "maximum_pairs": 8,
+    "released": true,
+    "retries": 0,
+    "replacements": 0,
+    "automatic_extension": false
+  },
+  "randomization": {
+    "seed": 20261017,
+    "algorithm": "Python random.Random; four rounds, paired adjacent arms; opposite first arms across seeds per round and two AB/two BA per seed",
+    "locked_csv": "run_order.csv"
+  },
+  "schedule": [
+    {
+      "attempt": 1,
+      "round": 1,
+      "pair_id": "seed_77501_repeat_1",
+      "seed": 77501,
+      "repeat": 1,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 2,
+      "round": 1,
+      "pair_id": "seed_77501_repeat_1",
+      "seed": 77501,
+      "repeat": 1,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 3,
+      "round": 1,
+      "pair_id": "seed_77500_repeat_1",
+      "seed": 77500,
+      "repeat": 1,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 4,
+      "round": 1,
+      "pair_id": "seed_77500_repeat_1",
+      "seed": 77500,
+      "repeat": 1,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 5,
+      "round": 2,
+      "pair_id": "seed_77501_repeat_2",
+      "seed": 77501,
+      "repeat": 2,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 6,
+      "round": 2,
+      "pair_id": "seed_77501_repeat_2",
+      "seed": 77501,
+      "repeat": 2,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 7,
+      "round": 2,
+      "pair_id": "seed_77500_repeat_2",
+      "seed": 77500,
+      "repeat": 2,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 8,
+      "round": 2,
+      "pair_id": "seed_77500_repeat_2",
+      "seed": 77500,
+      "repeat": 2,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 9,
+      "round": 3,
+      "pair_id": "seed_77500_repeat_3",
+      "seed": 77500,
+      "repeat": 3,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 10,
+      "round": 3,
+      "pair_id": "seed_77500_repeat_3",
+      "seed": 77500,
+      "repeat": 3,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 11,
+      "round": 3,
+      "pair_id": "seed_77501_repeat_3",
+      "seed": 77501,
+      "repeat": 3,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 12,
+      "round": 3,
+      "pair_id": "seed_77501_repeat_3",
+      "seed": 77501,
+      "repeat": 3,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 13,
+      "round": 4,
+      "pair_id": "seed_77500_repeat_4",
+      "seed": 77500,
+      "repeat": 4,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 14,
+      "round": 4,
+      "pair_id": "seed_77500_repeat_4",
+      "seed": 77500,
+      "repeat": 4,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 15,
+      "round": 4,
+      "pair_id": "seed_77501_repeat_4",
+      "seed": 77501,
+      "repeat": 4,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 16,
+      "round": 4,
+      "pair_id": "seed_77501_repeat_4",
+      "seed": 77501,
+      "repeat": 4,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true
+    }
+  ],
+  "block_interpretation": "New seed labels 77500/77501 on the SAME fixed geometry, not two independent obstacle scenarios or identical-state branches",
+  "fixed": {
+    "route": "E1",
+    "start": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "goal": [
+      6.45,
+      0.0,
+      0.0
+    ],
+    "cruise_m_s": 0.4,
+    "physics_step_s": 0.001,
+    "control_interval_s": 0.1,
+    "IMU_period_s": 0.02,
+    "floor": "10x7x0.1m box, top z=0",
+    "obstacle": "rigid capsule, diameter6mm, cylindrical section4m, x3.1m, yaw+8deg",
+    "effective_geometry_source": "inputs/scenario.sdf, not inherited metadata/config tags",
+    "robot_expected_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+    "PI": {
+      "pi_integrator_profile": "conditional_v1",
+      "velocity_kp": 0.3,
+      "velocity_ki": 0.1,
+      "integral_limit": 4.0,
+      "max_wheel_torque": 4.0,
+      "max_velocity_control_torque": 4.0,
+      "max_wheel_acceleration": 12.0,
+      "max_effort_rate": 10.0,
+      "wheel_radius": 0.0625,
+      "wheel_separation": 0.34273666
+    },
+    "governor_parameters": {
+      "profile": "reactive",
+      "target_scale": 0.9,
+      "scale_rate_per_second": 0.4,
+      "vertical_trigger_m_s2": 1.5,
+      "body_rate_trigger_rad_s": 0.35,
+      "wheel_error_trigger_m_s": 0.06,
+      "wheel_error_acceleration_allowance_s": 0.1,
+      "release_ratio": 0.6,
+      "confirmation_seconds": 0.04,
+      "quiet_seconds": 0.3,
+      "minimum_hold_seconds": 0.8,
+      "maximum_hold_seconds": 1.0,
+      "startup_seconds": 0.8,
+      "wheel_stall_seconds": 1.2,
+      "stall_recovery_enabled": false,
+      "pulse_seconds": 1.0,
+      "vertical_only_trigger_enabled": false,
+      "trigger_to_brake_delay_seconds": 0.0
+    },
+    "randomization_disabled": [
+      "geometry",
+      "adaptive items",
+      "terrain/curriculum",
+      "dynamics domain randomization"
+    ],
+    "only_between_arm_configuration_delta": "governor.parameters.profile: full versus reactive",
+    "note": "Inherited config/metadata contain legacy radius/mesh tags. Preserve bytes; effective collision is verified SDF. PPO/reward fields are inert in this baseline evaluation."
+  },
+  "initialization": {
+    "cold_start_each_attempt": true,
+    "owned_simulator_sequential": true,
+    "post_reset_quiet_s": 0.5,
+    "maximum_gate_wait_sim_s": 5.0,
+    "body_and_driven_wheel_speed_limit_m_s": 0.01,
+    "yaw_rate_limit_rad_s": 0.03,
+    "gate_wait_outside_native_episode_time": true,
+    "post_arrival_observe_sim_s": 2.0,
+    "same_snapshot_claim": false,
+    "control_trace_required": true,
+    "command_ownership": "one inline evaluation governor; no second ROS speed governor"
+  },
+  "outcome_windows": {
+    "primary": "first recorded positive-obstacle manifold +0.05s to +3.0s; fixed for both arms; not guaranteed to remove entire first-impact tail",
+    "whole_route": "unchanged first control input through final action end",
+    "legacy_crossing": "unchanged +50ms to existing clearance plane",
+    "contact_sequence": "existing max(clearance,last closed manifold end+0.2s)",
+    "recovery": "existing concurrent CRUISE scale>=0.98, executed v>=0.392m/s, body v>=0.95 precontact median sustained0.3s after contact end",
+    "negative_control": "precontact approach and first50ms only when every GT/joint interpolation support precedes the first reduced executed command; otherwise mark contaminated/unavailable, never use it as a causal negative control"
+  },
+  "measurement": {
+    "native": "Keep replay and native scores unchanged, separate namespace",
+    "vertical": "Unfiltered original IMU header-time samples; sample RMS and peak; raw values retained; existing signal_stats coverage>=0.98",
+    "slip": "gt_timestamp_series + integrate at original GT stamps; interpolate joints only, maxgap10.001ms, no extrapolation; same ratio clipping/denominator; slip_square_per_m units s/m, not joules",
+    "required": [
+      "arrival",
+      "stall/timeout/failure",
+      "physical path RMSE",
+      "native route time",
+      "post-arrival2s stop",
+      "whole-route and postcontact vibration/slip",
+      "full contact/recovery sequence",
+      "approach/caster diagnostics",
+      "executed command/targets/raw joints/body response",
+      "timestamp ages/skew/coverage"
+    ],
+    "sensitivity": "Retain original-GT slip plus existing20ms grid and+10ms shifted grid on same windows. Require same direction for primary slip effect; report all. No downsampling IMU to10Hz for scoring, no favorable grid selection.",
+    "protection": "No spike removal, no zero imputation, no changes to historical studies/models or parameter configuration"
+  },
+  "causal_scope": {
+    "before_contact": "All commands/governor events and approach pose/speed reported. Any precontact reduced command or failed predeclared approach caliper prevents a clean postcontact-H2 pass; retain attempt, do not exclude/replace.",
+    "calipers": {
+      "window_s": [
+        -0.3,
+        -0.05
+      ],
+      "speed_m_s": [
+        0.39,
+        0.41
+      ],
+      "abs_y_m": 0.01,
+      "abs_yaw_deg": 2.0,
+      "abs_roll_pitch_deg": 2.0,
+      "paired_median_speed_difference_m_s": 0.005,
+      "paired_median_y_difference_m": 0.005,
+      "paired_yaw_difference_deg": 1.0
+    },
+    "authority": "Report detector time, first reduced final executed command and wheel target, body/encoder response, and next loaded-contact times. H2 cannot pass without intervention preceding at least one subsequent loaded contact in each reactive episode; magnitude benefit requires randomized arm comparison, not a body-speed dip alone.",
+    "same_time_reference_not_in_budget": "This two-arm screen only establishes local H2 including the cost of slowdown. No advantage beyond driving slower, tuned-reactive H3, generalization or factory readiness claim."
+  },
+  "analysis": {
+    "unit": "episode, not frames/contact points; eight chronological random-order pairs nested in two fixed seed blocks",
+    "estimand": "For metric M, block benefit=1-mean(M_reactive,4)/mean(M_full,4); aggregate benefit=equal-weight mean of the two block benefits. Undefined PI denominator -> unavailable/inconclusive, no epsilon rescue.",
+    "timing": "equal-block mean of paired governor-minus-PI route seconds; report every pair and each block",
+    "uncertainty": "Prespecified paired bootstrap within each fixed seed: resample four intact pairs with replacement in each block,10000 replicates, rng20261018; percentile95% interval. No frame bootstrap or population-of-terrains inference; tiny-n coverage not guaranteed.",
+    "failures": "Count all16 assigned positions and all attempted outcomes. Any unsuccessful physical arrival/stop means no promotion. Missing/censored quality remains null and denominators reported; no success-only aggregate used for decision.",
+    "early_stopping": "No early benefit/futility check; hard-stop on readiness/timestamp/provenance/measurement integrity, rollover or invalid physical state; no retry/replacement. Ordinary timeout/stall/arrival miss retained and subsequent slots may proceed if infrastructure/physical validity intact. Early stop -> incomplete, never pass.",
+    "historical_data": "77400/77401 and earlier trials are diagnostics only; no pooling into confirmation totals or selecting thresholds from outcomes"
+  },
+  "decision": {
+    "mode": "descriptive_only_no_H2_decision",
+    "primary_metric": null,
+    "minimum_improvement": null,
+    "maximum_added_seconds": null,
+    "H2_decision": "not_assessed",
+    "automatic_promotion": false
+  },
+  "prerequisites": [
+    "explicit descriptive16-attempt user authorization and sealed spec/release",
+    "same physical/runtime source hashes, schedule, reset/stop gates and cleanup",
+    "no retries, replacements, additional smoke episodes or threshold-based decisions"
+  ],
+  "execution": {
+    "runner_implemented": true,
+    "runner": "src/nino_rl/scripts/run_governor_descriptive_survey.py",
+    "mode": "descriptive_only_no_H2_decision"
+  },
+  "frozen_bundle_sha256": {
+    "inputs/scenario.sdf": "8b1fc28bae7254c877cd53a4038924f567f674f0da43a04f200d429a5a26b4fd",
+    "inputs/base_config.yaml": "74a7c9a56eb964727df71998090c1509760aaaf0a9c539a419baff9cabb41235",
+    "inputs/full.yaml": "10864d456148f91b0198d4a0105bd04e02af4c7fd69ee0d2bffc37e1d115450d",
+    "inputs/reference_robot.urdf": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+    "inputs/scenario.json": "603963827d20c4370f1cc4bf83120181bef968f5697f56a2b1ce142f9ff2e457",
+    "inputs/reactive.yaml": "74a7c9a56eb964727df71998090c1509760aaaf0a9c539a419baff9cabb41235",
+    "source_snapshot/03_config.yaml": "74a7c9a56eb964727df71998090c1509760aaaf0a9c539a419baff9cabb41235",
+    "source_snapshot/20_run_frozen_governor_confirmation.py": "5a642f6806e2dd0096e1afa78caeecfc549af056623c2933dbc1f50a2d9fa5be",
+    "source_snapshot/06_governor_core.py": "0b9e78db3b563d0426bd6ee8565e6f055547f014eafec6dc34f0123d539524bb",
+    "source_snapshot/18_prepare_governor_h2_protocol.py": "30d384cc8724b635f12bfa097bfa4fc28fd62aa7c2ab652e55e9cdbe0c3a9558",
+    "source_snapshot/15_audit_governor_phase_slip.py": "2f2262f984e8922e00c82abce1850bf474de9dc90cc3969650c681f4f0d0a04f",
+    "source_snapshot/19_run_clear_floor_repeat.py": "5fc2c2760148444a7c62a857cd1b03caedafb39b32e139a6d3b4f5b54e5da064",
+    "source_snapshot/17_prepare_governor_contact_sequence.py": "b007949e8ebfd6822cb824a0fc29dfbac36e5c96dbd801ab864d9e82cd057c78",
+    "source_snapshot/09_evaluation.py": "3d187d668fb14c6127f31ea404ddd69e000898cdf84874a36b761a42f464e1a0",
+    "source_snapshot/22_run_governor_pi_repeatability.py": "b38a65b30443d18d70ca6271230a15a4f3bb95fc97e73a988c34e2788455c7e7",
+    "source_snapshot/02_robot_description.urdf": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+    "source_snapshot/13_ros_interface.py": "1dc11bc3c0c6f4a0c83c312654fe12f697b506dc196d8090b77f86768cdc5f93",
+    "source_snapshot/07_nino.urdf.xacro": "232a886e6aa8a60c5f4a8eda413edff679067e66156a87b2ddfa2f5674c49bb2",
+    "source_snapshot/14_slip_reporting.py": "3f71c47b9b2db9514c1236578429c4ee3206d75506228d29d5b260e7d115a92c",
+    "source_snapshot/11_reset_standstill.py": "100696f630c013422dd93d21abecfd6dcef6e01ee1eae40a96623fdf780185cd",
+    "source_snapshot/04_control_timing.py": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+    "source_snapshot/01_scenario.sdf": "8b1fc28bae7254c877cd53a4038924f567f674f0da43a04f200d429a5a26b4fd",
+    "source_snapshot/16_audit_gt_timestamp_slip.py": "275ac2424af8af58faa8c212d0a5fdddd60d4ec3e24208e65c750da6493394bb",
+    "source_snapshot/08_core.py": "dc0668707c6b8fda40519aeccd317ff665227a964e5fa8e8e953c256639b1c2a",
+    "source_snapshot/00_scenario.json": "603963827d20c4370f1cc4bf83120181bef968f5697f56a2b1ce142f9ff2e457",
+    "source_snapshot/12_ros_env.py": "d67c0b12f087e10d6e1faf064381dc6c05d56089a7fb7491b438da910f88525e",
+    "source_snapshot/21_run_governor_frozen_repeats.py": "7d39b4c981125cc9cec365edaabd4f5b4f05991ee92360b26c0337455b83fb2c",
+    "source_snapshot/05_effort_drive.py": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+    "source_snapshot/10_governor_logger.py": "c37dbc5f20b021bfb3c1daec43cf68c0a64c33cc1cd30f665e863aac01414afb",
+    "run_order.csv": "f620b0c14c2681cd3f476f5a969c0da7dcf5b4e957134abe273638b7183c2654",
+    "survey_spec.json": "fefed8a4dc744155af12a0118a9379c5e536a0b073f82a978429ff1e51dcb1bf",
+    "user_authorization.json": "6c93335a1116737ad8ea814746cb9b270c343d4512fc645d8e4896d22869cff5",
+    "source_snapshot/descriptive_survey.py": "0da1ae5bbd687c4925a3b7bb2689eede9ecb05288287ff55fa1a637cea2efa06"
+  },
+  "workspace_reference_sha256": {
+    "src/nino_rl/nino_rl/ros_env.py": "d67c0b12f087e10d6e1faf064381dc6c05d56089a7fb7491b438da910f88525e",
+    "src/nino_rl/nino_rl/ros_interface.py": "1dc11bc3c0c6f4a0c83c312654fe12f697b506dc196d8090b77f86768cdc5f93",
+    "src/nino_rl/nino_rl/evaluation.py": "3d187d668fb14c6127f31ea404ddd69e000898cdf84874a36b761a42f464e1a0",
+    "src/nino_rl/nino_rl/reset_standstill.py": "100696f630c013422dd93d21abecfd6dcef6e01ee1eae40a96623fdf780185cd",
+    "src/nino_rl/nino_rl/slip_reporting.py": "3f71c47b9b2db9514c1236578429c4ee3206d75506228d29d5b260e7d115a92c",
+    "src/nino_control/nino_control/governor_core.py": "0b9e78db3b563d0426bd6ee8565e6f055547f014eafec6dc34f0123d539524bb",
+    "src/nino_control/nino_control/effort_drive.py": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+    "src/nino_control/nino_control/control_timing.py": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+    "src/nino_rl/scripts/run_governor_pi_repeatability.py": "b38a65b30443d18d70ca6271230a15a4f3bb95fc97e73a988c34e2788455c7e7",
+    "src/nino_rl/scripts/run_clear_floor_repeat.py": "5fc2c2760148444a7c62a857cd1b03caedafb39b32e139a6d3b4f5b54e5da064",
+    "src/nino_rl/scripts/prepare_governor_contact_sequence.py": "b007949e8ebfd6822cb824a0fc29dfbac36e5c96dbd801ab864d9e82cd057c78",
+    "rl_runs/governor_pi_repeatability_2026-10-17/config.yaml": "74a7c9a56eb964727df71998090c1509760aaaf0a9c539a419baff9cabb41235",
+    "rl_runs/governor_pi_repeatability_2026-10-17/attempt_01/confirmation/height/scenario.sdf": "8b1fc28bae7254c877cd53a4038924f567f674f0da43a04f200d429a5a26b4fd",
+    "rl_runs/governor_pi_repeatability_2026-10-17/attempt_01/confirmation/height/scenario.json": "603963827d20c4370f1cc4bf83120181bef968f5697f56a2b1ce142f9ff2e457",
+    "rl_runs/governor_pi_repeatability_2026-10-17/attempt_01/confirmation/height/screen/seed_77400_full/contact/20261016T231808-066158Z/robot_description.urdf": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+    "src/nino_rl/scripts/audit_gt_timestamp_slip.py": "275ac2424af8af58faa8c212d0a5fdddd60d4ec3e24208e65c750da6493394bb",
+    "src/nino_rl/scripts/audit_governor_phase_slip.py": "2f2262f984e8922e00c82abce1850bf474de9dc90cc3969650c681f4f0d0a04f",
+    "src/nino_rl/scripts/run_governor_frozen_repeats.py": "7d39b4c981125cc9cec365edaabd4f5b4f05991ee92360b26c0337455b83fb2c",
+    "src/nino_rl/scripts/run_frozen_governor_confirmation.py": "5a642f6806e2dd0096e1afa78caeecfc549af056623c2933dbc1f50a2d9fa5be",
+    "src/nino_rl/nino_rl/governor_logger.py": "c37dbc5f20b021bfb3c1daec43cf68c0a64c33cc1cd30f665e863aac01414afb",
+    "src/nino_rl/nino_rl/core.py": "dc0668707c6b8fda40519aeccd317ff665227a964e5fa8e8e953c256639b1c2a",
+    "src/nino_description/urdf/nino.urdf.xacro": "232a886e6aa8a60c5f4a8eda413edff679067e66156a87b2ddfa2f5674c49bb2",
+    "src/nino_rl/scripts/prepare_governor_h2_protocol.py": "30d384cc8724b635f12bfa097bfa4fc28fd62aa7c2ab652e55e9cdbe0c3a9558"
+  },
+  "parent_protocol": {
+    "path": "/home/tuanmac/ninorobot/docs/governor_h2_replication_protocol_2026-10-17",
+    "sha256": "ebbc8e2c3f978ca89f4a0ba170b7b893506d3219a3e8cb6b4ec3efb480e01f0a"
+  }
+}

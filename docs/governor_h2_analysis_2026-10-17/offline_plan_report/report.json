@@ -1,0 +1,2513 @@
+{
+  "schema": "H2_offline_decision_v1",
+  "decision": "chua_du_bang_chung",
+  "decision_label": "Ch\u01b0a \u0111\u1ee7 b\u1eb1ng ch\u1ee9ng",
+  "source_kind": "new_batch",
+  "synthetic_result_is_not_robot_validation": false,
+  "issues": [
+    "batch_authorization_snapshot_missing",
+    "criteria_not_confirmed_or_complete"
+  ],
+  "gates": {
+    "complete_16": null,
+    "physical_arrival_and_stop": null,
+    "measurement_and_provenance": null,
+    "required_metrics_present": null,
+    "approach_comparable": null,
+    "executed_intervention_before_next_contact": null,
+    "worthwhile_primary_benefit": null,
+    "secondary_and_whole_route_no_worsening": null,
+    "complete_contact_sequence_same_direction": null,
+    "existing_time_tracking_caps": null,
+    "application_added_time": null,
+    "primary_sampling_direction_stable": null
+  },
+  "gate_reasons": {
+    "complete_16": "All16 slots must be collected without hard-stop/error/unattempted slots",
+    "physical_arrival_and_stop": "Every arm must have8/8 physical arrivals and observed stable2s stops; retain known failures",
+    "measurement_and_provenance": "Invalid/missing integrity is not evidence of performance benefit or harm",
+    "required_metrics_present": "No missing/nonfinite metric is zero-filled or dropped from the decision population",
+    "approach_comparable": "No failed caliper exclusion; preserve both blocks and all pairs",
+    "executed_intervention_before_next_contact": "Every reactive run needs measured command/target reduction before a subsequent loaded contact and body/joint evidence; precontact intervention invalidates isolation",
+    "worthwhile_primary_benefit": "Both block point benefits and aggregate lower95% bound must meet the prespecified minimum; overlap gives inconclusive",
+    "secondary_and_whole_route_no_worsening": "Point-estimate nonworsening per block; a failed point gate is not a claim of statistically proven harm",
+    "complete_contact_sequence_same_direction": "Do not dilute a longer contact sequence into a favorable fixed-window-only conclusion",
+    "existing_time_tracking_caps": "Each block:mean time<=18.5s and1.05xPI;mean physical RMSE<=1.05xPI",
+    "application_added_time": "Upper95% added-time bound must fit application seconds; interval crossing limit is inconclusive",
+    "primary_sampling_direction_stable": "Any primary-slip sign reversal across originalGT/20ms/+10ms makes evidence inconclusive; never select favorable origin"
+  },
+  "sampling_reversals": [],
+  "approach": {
+    "passed": null,
+    "individual": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "pairs": [
+      {
+        "seed": 77500,
+        "repeat": 1,
+        "passed": null
+      },
+      {
+        "seed": 77500,
+        "repeat": 2,
+        "passed": null
+      },
+      {
+        "seed": 77500,
+        "repeat": 3,
+        "passed": null
+      },
+      {
+        "seed": 77500,
+        "repeat": 4,
+        "passed": null
+      },
+      {
+        "seed": 77501,
+        "repeat": 1,
+        "passed": null
+      },
+      {
+        "seed": 77501,
+        "repeat": 2,
+        "passed": null
+      },
+      {
+        "seed": 77501,
+        "repeat": 3,
+        "passed": null
+      },
+      {
+        "seed": 77501,
+        "repeat": 4,
+        "passed": null
+      }
+    ],
+    "qualification": "A failed/missing caliper invalidates a clean postcontact comparison; do not exclude or replace the episode."
+  },
+  "counts": {
+    "assigned": 16,
+    "input_ledger_rows": 16,
+    "attempted": 0,
+    "physical_failures": 0,
+    "stop_failures": 0,
+    "native_unknown": 16,
+    "missing_metric_counts": {
+      "post_slip": 16,
+      "post_vibration": 16,
+      "whole_slip": 16,
+      "whole_vibration": 16,
+      "native_slip": 16,
+      "time": 16,
+      "tracking": 16,
+      "sequence_slip": 16,
+      "sequence_vibration": 16,
+      "grid_slip": 16,
+      "shifted_slip": 16,
+      "post_peak": 16,
+      "whole_peak": 16,
+      "post_slip_integral": 16,
+      "post_distance": 16,
+      "crossing_slip": 16,
+      "crossing_vibration": 16
+    }
+  },
+  "episodes": [
+    {
+      "attempt": 1,
+      "round": 1,
+      "pair_id": "seed_77501_repeat_1",
+      "seed": 77501,
+      "repeat": 1,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 2,
+      "round": 1,
+      "pair_id": "seed_77501_repeat_1",
+      "seed": 77501,
+      "repeat": 1,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 3,
+      "round": 1,
+      "pair_id": "seed_77500_repeat_1",
+      "seed": 77500,
+      "repeat": 1,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 4,
+      "round": 1,
+      "pair_id": "seed_77500_repeat_1",
+      "seed": 77500,
+      "repeat": 1,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 5,
+      "round": 2,
+      "pair_id": "seed_77501_repeat_2",
+      "seed": 77501,
+      "repeat": 2,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 6,
+      "round": 2,
+      "pair_id": "seed_77501_repeat_2",
+      "seed": 77501,
+      "repeat": 2,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 7,
+      "round": 2,
+      "pair_id": "seed_77500_repeat_2",
+      "seed": 77500,
+      "repeat": 2,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 8,
+      "round": 2,
+      "pair_id": "seed_77500_repeat_2",
+      "seed": 77500,
+      "repeat": 2,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 9,
+      "round": 3,
+      "pair_id": "seed_77500_repeat_3",
+      "seed": 77500,
+      "repeat": 3,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 10,
+      "round": 3,
+      "pair_id": "seed_77500_repeat_3",
+      "seed": 77500,
+      "repeat": 3,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 11,
+      "round": 3,
+      "pair_id": "seed_77501_repeat_3",
+      "seed": 77501,
+      "repeat": 3,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 12,
+      "round": 3,
+      "pair_id": "seed_77501_repeat_3",
+      "seed": 77501,
+      "repeat": 3,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 13,
+      "round": 4,
+      "pair_id": "seed_77500_repeat_4",
+      "seed": 77500,
+      "repeat": 4,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 14,
+      "round": 4,
+      "pair_id": "seed_77500_repeat_4",
+      "seed": 77500,
+      "repeat": 4,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 15,
+      "round": 4,
+      "pair_id": "seed_77501_repeat_4",
+      "seed": 77501,
+      "repeat": 4,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    },
+    {
+      "attempt": 16,
+      "round": 4,
+      "pair_id": "seed_77501_repeat_4",
+      "seed": 77501,
+      "repeat": 4,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "identity_valid": true,
+      "physical_success": null,
+      "stop_pass": null,
+      "termination": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "result_flags": {
+        "setup_pass": null,
+        "provenance_pass": null,
+        "measurement_integrity_pass": null,
+        "physical_state_valid": null,
+        "cleanup_confirmed": null,
+        "quality_available": null
+      },
+      "runner_exit": null,
+      "approach": null,
+      "timing": {
+        "available": false,
+        "reason": "timing_evidence_unavailable"
+      },
+      "native_outcome": null,
+      "error": null
+    }
+  ],
+  "pairs": [
+    {
+      "seed": 77500,
+      "repeat": 1,
+      "pair_id": "seed_77500_repeat_1",
+      "attempts": {
+        "reactive": 3,
+        "full": 4
+      },
+      "metrics": {
+        "post_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "native_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "time": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "tracking": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "grid_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "shifted_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_slip_integral": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_distance": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        }
+      }
+    },
+    {
+      "seed": 77500,
+      "repeat": 2,
+      "pair_id": "seed_77500_repeat_2",
+      "attempts": {
+        "full": 7,
+        "reactive": 8
+      },
+      "metrics": {
+        "post_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "native_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "time": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "tracking": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "grid_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "shifted_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_slip_integral": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_distance": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        }
+      }
+    },
+    {
+      "seed": 77500,
+      "repeat": 3,
+      "pair_id": "seed_77500_repeat_3",
+      "attempts": {
+        "full": 9,
+        "reactive": 10
+      },
+      "metrics": {
+        "post_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "native_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "time": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "tracking": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "grid_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "shifted_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_slip_integral": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_distance": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        }
+      }
+    },
+    {
+      "seed": 77500,
+      "repeat": 4,
+      "pair_id": "seed_77500_repeat_4",
+      "attempts": {
+        "reactive": 13,
+        "full": 14
+      },
+      "metrics": {
+        "post_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "native_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "time": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "tracking": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "grid_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "shifted_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_slip_integral": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_distance": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        }
+      }
+    },
+    {
+      "seed": 77501,
+      "repeat": 1,
+      "pair_id": "seed_77501_repeat_1",
+      "attempts": {
+        "full": 1,
+        "reactive": 2
+      },
+      "metrics": {
+        "post_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "native_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "time": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "tracking": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "grid_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "shifted_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_slip_integral": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_distance": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        }
+      }
+    },
+    {
+      "seed": 77501,
+      "repeat": 2,
+      "pair_id": "seed_77501_repeat_2",
+      "attempts": {
+        "reactive": 5,
+        "full": 6
+      },
+      "metrics": {
+        "post_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "native_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "time": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "tracking": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "grid_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "shifted_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_slip_integral": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_distance": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        }
+      }
+    },
+    {
+      "seed": 77501,
+      "repeat": 3,
+      "pair_id": "seed_77501_repeat_3",
+      "attempts": {
+        "reactive": 11,
+        "full": 12
+      },
+      "metrics": {
+        "post_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "native_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "time": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "tracking": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "grid_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "shifted_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_slip_integral": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_distance": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        }
+      }
+    },
+    {
+      "seed": 77501,
+      "repeat": 4,
+      "pair_id": "seed_77501_repeat_4",
+      "attempts": {
+        "full": 15,
+        "reactive": 16
+      },
+      "metrics": {
+        "post_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "native_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "time": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "tracking": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "sequence_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "grid_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "shifted_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "whole_peak": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_slip_integral": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "post_distance": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_slip": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        },
+        "crossing_vibration": {
+          "full": null,
+          "reactive": null,
+          "delta": null,
+          "relative_benefit": null
+        }
+      }
+    }
+  ],
+  "estimates": {
+    "post_slip": {
+      "unit": "s/m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "post_vibration": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "whole_slip": {
+      "unit": "dimensionless",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "whole_vibration": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "native_slip": {
+      "unit": "dimensionless",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "time": {
+      "unit": "s",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "tracking": {
+      "unit": "m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "sequence_slip": {
+      "unit": "s/m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "sequence_vibration": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "grid_slip": {
+      "unit": "s/m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "shifted_slip": {
+      "unit": "s/m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "post_peak": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "whole_peak": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "post_slip_integral": {
+      "unit": "s",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "post_distance": {
+      "unit": "m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "crossing_slip": {
+      "unit": "s/m",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    },
+    "crossing_vibration": {
+      "unit": "m/s\u00b2",
+      "blocks": {
+        "77500": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        },
+        "77501": {
+          "available_pairs": 0,
+          "expected_pairs": 4,
+          "available": false,
+          "full_mean": null,
+          "reactive_mean": null,
+          "mean_delta": null,
+          "relative_benefit": null,
+          "delta_CI95": null,
+          "benefit_CI95": null,
+          "undefined_bootstrap_denominators": null
+        }
+      },
+      "aggregate": {
+        "available": false,
+        "full_mean": null,
+        "reactive_mean": null,
+        "mean_delta": null,
+        "relative_benefit": null,
+        "delta_CI95": null,
+        "benefit_CI95": null
+      }
+    }
+  },
+  "criteria": {
+    "status": "pending_user_requirement_no_launch",
+    "primary_metric": null,
+    "minimum_relative_improvement": null,
+    "maximum_added_route_seconds": null,
+    "requirement_origin": null,
+    "units": {
+      "minimum_relative_improvement": "fraction, e.g. 0.10 means 10%, not a recommended threshold",
+      "maximum_added_route_seconds": "simulation seconds per E1 route; not startup/reset wait"
+    },
+    "secondary_quality_rule": "No increase in the other postcontact metric or whole-route vibration/slip; if a noninferiority margin is needed, explicitly revise and seal it before any run."
+  },
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 20261018,
+    "unit": "intact pair resampled within fixed seed",
+    "interval": "percentile95",
+    "small_sample_coverage_not_guaranteed": true
+  },
+  "recommended_action": "Stop this frozen intervention/small-screen branch; no automatic extra episodes or parameter search",
+  "automatic_execution": false,
+  "simulation_episodes": 0,
+  "native_scoring_changed": false,
+  "predictor_started": false,
+  "PPO_started": false,
+  "optuna_started": false
+}

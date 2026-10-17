@@ -182,7 +182,7 @@ def plot_timing(results,output,title=None):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    colors={"full":"#333333","moderate":"#2378b5","pulse":"#df7c20"}
+    colors={"full":"#333333","moderate":"#2378b5","pulse":"#df7c20","reactive":"#2378b5"}
     fig,axes=plt.subplots(3,1,figsize=(11,8.5),sharex=True)
     for result in results:
         if not result.get("available"): continue

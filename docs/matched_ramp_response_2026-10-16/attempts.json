@@ -1,0 +1,56 @@
+[
+  {
+    "attempt": 1,
+    "seed": 77300,
+    "complete": true,
+    "passed": true,
+    "logger": "/home/tuanmac/ninorobot/rl_runs/matched_ramp_response_2026-10-16/attempt_01/contact/20261016T074807-190429Z",
+    "returncode": 0,
+    "summary": "/home/tuanmac/ninorobot/rl_runs/matched_ramp_response_2026-10-16/attempt_01/probe/20261016T074813-653811Z/summary.json",
+    "results": [
+      {
+        "case": "matched_governor_ramp",
+        "seed": 77300,
+        "complete": true,
+        "bounded_probe": true,
+        "arrival_evaluation": false,
+        "terminated": false,
+        "termination": null,
+        "run_id": "75b114f690c94ef3b9276463c77f8bca",
+        "attempt": 1,
+        "started_sim_s": 4.621,
+        "steps": 120,
+        "events": 0,
+        "minimum_scale": 1.0,
+        "clock_error_s": 3.907985046680551e-14
+      }
+    ]
+  },
+  {
+    "attempt": 2,
+    "seed": 77301,
+    "complete": true,
+    "passed": true,
+    "logger": "/home/tuanmac/ninorobot/rl_runs/matched_ramp_response_2026-10-16/attempt_02/contact/20261016T074835-715466Z",
+    "returncode": 0,
+    "summary": "/home/tuanmac/ninorobot/rl_runs/matched_ramp_response_2026-10-16/attempt_02/probe/20261016T074842-213430Z/summary.json",
+    "results": [
+      {
+        "case": "matched_governor_ramp",
+        "seed": 77301,
+        "complete": true,
+        "bounded_probe": true,
+        "arrival_evaluation": false,
+        "terminated": false,
+        "termination": null,
+        "run_id": "85226c64e3a941c38f49b7ba1deb2410",
+        "attempt": 1,
+        "started_sim_s": 4.466,
+        "steps": 120,
+        "events": 0,
+        "minimum_scale": 1.0,
+        "clock_error_s": 3.907985046680551e-14
+      }
+    ]
+  }
+]

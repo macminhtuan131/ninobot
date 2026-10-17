@@ -1,0 +1,99 @@
+{
+  "status": "prepared_offline_only_not_executed",
+  "revision": "approach_contact_sequence_v1",
+  "rejected_candidate": "delay_200ms",
+  "default_delay_seconds": 0.0,
+  "runtime_changes": false,
+  "reference_config": "/home/tuanmac/ninorobot/rl_runs/governor_brake_delay_2026-10-16/frozen_reactive.yaml",
+  "reference_config_sha256": "ceafbac82dee74534f12d32af6db2d426fb295c8230f62511bad8f31a031cbcd",
+  "world": "/home/tuanmac/ninorobot/rl_runs/governor_brake_delay_2026-10-16/attempt_01/confirmation/height/scenario.sdf",
+  "world_sha256": "8b1fc28bae7254c877cd53a4038924f567f674f0da43a04f200d429a5a26b4fd",
+  "fixed": {
+    "height_m": 0.006,
+    "x_m": 3.1,
+    "yaw_deg": 8.0,
+    "cruise_m_s": 0.4,
+    "physics_dt_s": 0.001,
+    "control_dt_s": 0.1,
+    "robot_PI_detector_ramp_observations": "unchanged"
+  },
+  "stage_A": {
+    "kind": "PI_only_repeatability_not_intervention",
+    "maximum_attempts": 4,
+    "order": [
+      {
+        "seed": 77400,
+        "repeat": 1,
+        "profile": "full"
+      },
+      {
+        "seed": 77401,
+        "repeat": 1,
+        "profile": "full"
+      },
+      {
+        "seed": 77401,
+        "repeat": 2,
+        "profile": "full"
+      },
+      {
+        "seed": 77400,
+        "repeat": 2,
+        "profile": "full"
+      }
+    ],
+    "cold_start_per_attempt": true,
+    "no_retry": true,
+    "no_controller_search": true,
+    "execution_authorized_by_this_preparation": false
+  },
+  "prospective_diagnostic_limits": {
+    "origin": "Engineering preparation limits, not industry standards or retroactive scoring",
+    "reset_observe_seconds": 0.5,
+    "reset_max_abs_v_m_s": 0.01,
+    "reset_max_abs_w_rad_s": 0.03,
+    "approach_window_before_contact_s": [
+      -0.3,
+      -0.05
+    ],
+    "approach_speed_m_s": [
+      0.39,
+      0.41
+    ],
+    "approach_abs_y_m": 0.01,
+    "approach_abs_yaw_deg": 2.0,
+    "approach_abs_roll_pitch_deg": 2.0,
+    "paired_max_median_speed_difference_m_s": 0.005,
+    "paired_max_wrapped_yaw_difference_deg": 1.0,
+    "paired_max_median_y_difference_m": 0.005,
+    "caster_rule": "Report loaded/unloaded/mixed support and circular angle differences; never force an unloaded caster to meet rolling-speed equality",
+    "enforcement": "Analysis flags only so far; online reset gate not implemented, no caster teleport, no extra reset attempts"
+  },
+  "outcomes": {
+    "legacy": "Keep native/whole-route/crossing(first+50ms to plane+0.5m), physical arrivals and2sstop unchanged",
+    "new": [
+      "all contact identities and sampled loads",
+      "fixed3s after contact: peak/P95/RMS/slip integral/distance/time",
+      "complete contact sequence=max(clearance,last contact end+0.2s)",
+      "all retriggers and command/body recovery sustained0.3s, minimum forward progress, failures"
+    ],
+    "negative_control": "First50ms GT slip only if all GT/joint quadrature support precedes first actual intervention; missing IMU stays missing",
+    "failure_rule": "Retain every attempt, including approach flags/failures/censoring; never success-only averages or zero-imputation"
+  },
+  "stop_and_decision": {
+    "stop_on": "reporting/provenance/physical failure; no retry or replacement",
+    "stage_A_result": "Four PI runs estimate a coarse repeatability range only; no confidence/power claim from n=2 perseed",
+    "balance_failed": "Stop intervention planning; one supported setup correction at most, no new speed parameter",
+    "balance_passed": "Report raw PI-PI differences across metrics, including contact order and negative control; specify smallest worthwhile effect/application cost and comparison budget BEFORE any intervention",
+    "unresolved_noise": "If noise cannot be separated from effect within a justified affordable budget, stop predictive-governor H2 branch; no endless repeats",
+    "stage_B": "No new candidate or run count selected now; separate predeclared randomized blocked experiment only after StageA review",
+    "gate_time_tracking": "Existing limits unchanged: mean time<=18.5s and<=1.05xPI, mean physical RMSE<=1.05xPI",
+    "no_automatic_release": [
+      "Optuna",
+      "predictor",
+      "PPO",
+      "curriculum",
+      "hardware deployment"
+    ]
+  }
+}

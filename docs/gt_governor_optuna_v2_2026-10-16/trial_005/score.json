@@ -1,0 +1,33 @@
+{
+  "value": 1.8408888421126945,
+  "feasible": true,
+  "physical_failures": [],
+  "guards": {
+    "tracking": false,
+    "time": true,
+    "whole_slip": false
+  },
+  "eligible": false,
+  "terms": [
+    {
+      "seed": 77000,
+      "time_ratio": 1.0059880239520886,
+      "crossing_slip_ratio": 0.9783203245748142,
+      "path_ratio": 2.211547405100458,
+      "cost": 2.1537015793639096
+    },
+    {
+      "seed": 77001,
+      "time_ratio": 1.0059880239521017,
+      "crossing_slip_ratio": 1.6287798565770442,
+      "path_ratio": 1.2606921645969067,
+      "cost": 1.5280761048614795
+    }
+  ],
+  "mean_ratios": {
+    "time": 1.0059880239520955,
+    "path": 1.7513512159719071,
+    "whole_slip": 1.1064896404789875,
+    "crossing_slip": 1.2516755769573378
+  }
+}

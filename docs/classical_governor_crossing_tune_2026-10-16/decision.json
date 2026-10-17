@@ -1,0 +1,31 @@
+{
+  "status": "validation_complete",
+  "trial": 1,
+  "parameters": {
+    "target_scale": 0.9,
+    "maximum_hold_seconds": 1.0
+  },
+  "development_value": 0.9988725405644665,
+  "validation_seeds": [
+    76700,
+    76701,
+    76702
+  ],
+  "parameters_frozen": true,
+  "validation_started": true,
+  "validation_score": {
+    "value": 0.8214922542333486,
+    "feasible": true,
+    "physical_failures": 0,
+    "paired_costs": [
+      0.8506283857183774,
+      0.746990002375389,
+      0.8668583746062795
+    ]
+  },
+  "tracking_gate": true,
+  "crossing_screen_pass": true,
+  "impact_benefit_proven": false,
+  "deployment_promoted": false,
+  "predictor_or_ppo_started": false
+}

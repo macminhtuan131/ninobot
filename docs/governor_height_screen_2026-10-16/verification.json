@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "eight_attempts": true,
+    "all_arrival_stop": true,
+    "all_reporting": true,
+    "all_native_replay": true,
+    "all_timestamps": true,
+    "all_logs_closed": true,
+    "same_robot": true,
+    "same_PI_core_timing": true,
+    "same_world_within_height": true,
+    "different_height_worlds": true,
+    "all_mechanism_available": true,
+    "protected_unchanged": true,
+    "owned_processes_closed": true
+  },
+  "all_pass": true,
+  "protected_files": 1180,
+  "changed_protected": [],
+  "raw_input_and_snapshot_files": 152,
+  "remaining_owned_processes": [],
+  "feedback_age_range_s": [
+    0.0,
+    0.020000000000056417
+  ],
+  "minimum_interval_samples": 4,
+  "minimum_GT_whole_coverage": 0.9978698224852071,
+  "minimum_GT_cross_coverage": 1.0,
+  "geometry_protocol_tests_passed": 4,
+  "extra_attempts": false,
+  "hardware_validated": false
+}

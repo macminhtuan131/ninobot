@@ -1,0 +1,12 @@
+{
+  "schema": "gt_timestamp_slip_audit_v1",
+  "no_simulation": true,
+  "native_or_study_changed": false,
+  "sampling": "Original GT header timestamps only, including saved boundary support; GT velocity/pose never resampled",
+  "joint_alignment": "linear interpolation at GT stamps; no extrapolation; max joint gap10ms",
+  "duplicate_policy": "keep last row at stamp; same raw loader as frozen audit",
+  "integration": "same slip formula and gap/coverage/distance rules as frozen audit; quadrature clips segments at fixed boundaries",
+  "boundaries": "unchanged first control input/final action end, first contact+50ms/declared cable-normal clearance from frozen results",
+  "edge_control": "also report all three methods on their shared edge support to isolate boundary-coverage differences",
+  "qualification": "Post-hoc diagnostic, not replacement objective or new candidate selection. Original GT still approximately50Hz, not continuous physical slip."
+}

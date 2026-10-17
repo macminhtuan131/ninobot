@@ -1,0 +1,17 @@
+{
+  "structure_valid": true,
+  "frozen_files_verified": 30,
+  "workspace_references_verified": 23,
+  "maximum_attempts": 16,
+  "pending_application_fields": [
+    "primary_metric_not_selected",
+    "minimum_relative_improvement_not_fixed",
+    "maximum_added_route_seconds_not_fixed",
+    "application_requirement_origin_not_confirmed"
+  ],
+  "budget_released": false,
+  "execution_authorized": false,
+  "run_allowed": false,
+  "simulator_started": false,
+  "next_step": "Fix application values, seal their hash before results, and review/release this concrete budget separately. This tool has no execution mode."
+}

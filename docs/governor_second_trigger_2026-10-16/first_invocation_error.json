@@ -1,0 +1,6 @@
+{
+  "error": "ValueError: Recorded feedback stamp not present in native drive trace",
+  "cause": "First governor input uses a feedback stamp before the first action-window CSV sample.",
+  "resolution": "Exact-stamp lookup from saved raw /nino_drive/diagnostics. No interpolation, future sample, native modification or new simulation.",
+  "simulation_episodes": 0
+}

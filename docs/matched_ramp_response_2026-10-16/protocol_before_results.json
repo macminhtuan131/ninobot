@@ -1,0 +1,33 @@
+{
+  "maximum_attempts": 2,
+  "seeds": [
+    77300,
+    77301
+  ],
+  "variant": "clear_box",
+  "case": "matched_governor_ramp",
+  "duration_each_sim_s": 12.0,
+  "action": "Scripted .400 cruise 7s; .384/.368/.360 at7.0/7.1/7.2s; .376/.392/.400 at8.0/8.1/8.2s; zero10s to12s",
+  "purpose": "Isolate current PI/plant response from obstacle impact; not arrival/H2 quality validation",
+  "source_sha256": {
+    "/home/tuanmac/ninorobot/src/nino_rl/scripts/run_governor_foundation_probe.py": "7e524277138964800c94f136c53322e7bb929acde6966cdce7d8cf1d81c2e90e",
+    "/home/tuanmac/ninorobot/src/nino_rl/scripts/run_matched_ramp_probe.py": "5731df4e7e952c00e7e3ea20990941d9c28412d571562cffe1566b360692f30a",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/ros_env.py": "391b34850b2bfde898e6d903f9b41a5f5aa11da5f9f34f9dbc11edb22f040915",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/ros_interface.py": "c1745e25ed9cb162bc5372133afbe157302c1b6ed4e0e032bced917c555a82f0",
+    "/home/tuanmac/ninorobot/src/nino_control/nino_control/effort_drive.py": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+    "/home/tuanmac/ninorobot/src/nino_control/nino_control/governor_core.py": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+    "/home/tuanmac/ninorobot/src/nino_control/config/effort_drive.yaml": "df7c20f759f7673ccb18e7738d4a5bc05982027908b54a7fee5ff8b75fd327a1",
+    "/home/tuanmac/ninorobot/src/nino_description/urdf/nino.urdf.xacro": "232a886e6aa8a60c5f4a8eda413edff679067e66156a87b2ddfa2f5674c49bb2"
+  },
+  "frozen_config_sha256": "6ce2de78c09eb502e89ab6e81f614a2c0064a05bacc1995df5e421d58e5cb7f5",
+  "no_retry": true,
+  "no_tuning": true,
+  "no_training": true,
+  "physics_step_s": 0.001,
+  "control_interval_s": 0.1,
+  "stop_rule": "Abort remaining attempt if process, clock, telemetry or physical termination fails; preserve all attempts",
+  "measurements": "Raw reference, wheel targets, encoder and GT on native stamps; baseline6.7\u20136.95s, threshold/sustained40ms/gap25ms; report no-response/missing as unavailable",
+  "qualification": "CAD-based simulation only; real caster dimensions remain unverified",
+  "domain": 104,
+  "partition": "nino_clean_response_104"
+}

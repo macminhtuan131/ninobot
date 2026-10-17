@@ -1,5 +1,101 @@
 # Nino reactive speed governor v1 — 14/10/2026
 
+**Gate online và PI-only batch đã hoàn tất:** [kết quả 17/10](GOVERNOR_POST_RESET_PI_REPEATABILITY_2026-10-17.md).
+37 tests đạt;4/4 post-reset gate/arrival/2sstop/reporting đạt. Quality PI–PI
+vẫn biến thiên rõ dù approach cân bằng; chưa chọn can thiệp mới hoặc thêm
+simulation/tuning. Delay200ms tiếp tục bị loại, detector/PI/ramp giữ nguyên.
+
+**Đã chuẩn bị protocol approach/toàn chuỗi contact:** [kế hoạch và công cụ offline](GOVERNOR_APPROACH_SEQUENCE_PLAN_2026-10-16.md).
+6/6 trace cũ đọc được; 4 tests đạt. Hàm post-reset gate và batch PI-only
+tối đa4 attempts đã chuẩn bị, chưa tích hợp gate online hoặc chạy batch.
+Giữ detector/default0ms, loại200ms; không đổi native/study scores.
+
+**Audit trigger lần hai đã hoàn tất:** [seed77320, chỉ offline](GOVERNOR_SECOND_TRIGGER_AUDIT_2026-10-16.md).
+Giữ detector: wheel error vượt 6.317× ngưỡng sau contact chuyển tải bánh phải,
+không có bằng chứng false trigger do BRAKE/RECOVER. Chênh slip đã có trước
+lệnh giảm tốc đầu tiên; không quy toàn bộ cho delay. Không correction hoặc
+simulation mới; delay200ms tiếp tục không được chọn.
+
+**Thí nghiệm delay 200 ms đã hoàn tất:** [6 episodes và quyết định](GOVERNOR_BRAKE_DELAY_2026-10-16.md).
+Đã implement opt-in, mặc định 0 ms. 6/6 physical/reporting/timing gates đạt;
+chất lượng đổi chiều theo seed, mean tracking không đạt mốc so sánh nên
+không chọn candidate. Không retry/sweep/tuning/PPO/predictor. Các cập nhật
+bên dưới giữ trạng thái lịch sử tại thời điểm từng đợt kết thúc.
+
+**Screen hai chiều cao đã hoàn tất:** [8 episodes và audit braking slip](GOVERNOR_HEIGHT_SCREEN_2026-10-16.md).
+8/8 arrival/stop/reporting đạt; 6 mm wheel-first, 22 mm bracket-first ở cả
+manifold và sample có lực. Crossing RMS giảm 4/4 cặp, GT crossing slip chỉ
+giảm 2/4; chưa mở tuning/predictor. Excess ở cặp 6 mm/77311 nằm trong braking,
+không phải HOLD/RECOVER. Chuẩn bị một timing hypothesis delay 200 ms, chưa
+implement hoặc chạy; giữ default controller và scores cũ.
+
+**Đã kiểm tra đúng ramp trên sàn sạch:** [hai maneuver có provenance](MATCHED_RAMP_RESPONSE_2026-10-16.md).
+2 cold starts đủ 120 bước/lượt; body đạt 90% mức giảm sau 239–254 ms, phục
+hồi sau 254–279 ms. Chưa chứng minh crossing benefit hay sim-to-real; không
+sửa PI/ramp hoặc tuning. Đã chuẩn bị screen gờ 6/22 mm, tối đa 8 episodes,
+chưa chạy; phân biệt cơ chế contact dưới giả thiết CAD, không bỏ kết quả 22 mm.
+
+**Audit cửa sổ phản ứng offline đã xong:** [contact, command và body timing](GOVERNOR_CONTACT_TIMING_2026-10-16.md).
+Hai lượt governor ghi body slowdown trước reduced command; PI cố định cũng
+giảm tốc. Command có trước contact bánh chủ động, nhưng chưa chứng minh
+actuator latency hoặc lợi ích H2 lặp lại. 5 tests đạt, không thêm simulation
+hay đổi tham số. Cần xác định hiện có phần cứng để đo hay chỉ làm mô phỏng.
+
+**Đã hoàn tất chuẩn bị đối chiếu cơ khí:** [reference CAD và phiếu đo thật](CASTER_MECHANICAL_REFERENCE_2026-10-16.md).
+Clearance danh nghĩa 9.03 mm, caster Ø32 mm; chưa có số đo thật để chọn
+correction. Tổng mass URDF hiện là 5.591 kg; đã sửa số cũ trong tài liệu,
+không đổi vật lý/controller hoặc mở thêm simulation/tuning.
+
+**Bốn lượt repeatability đã hoàn tất:** [kết quả và audit bracket/contact](GOVERNOR_FROZEN_REPEATS_2026-10-16.md).
+4/4 physical/reporting gates đạt; crossing RMS giảm ở hai cặp nhưng whole
+RMS đổi chiều, spikes biến thiên ở cả hai arm. Chưa chọn correction RECOVER.
+Ưu tiên đối chiếu clearance/caster thật và first-force reference; giữ profile,
+vật lý, study cũ, không mở thêm tuning/PPO/predictor.
+
+**Startup/feedback đã sửa và kiểm tra một cặp:** [báo cáo readiness](GOVERNOR_READINESS_FIX_2026-10-16.md).
+2/2 arrival/stop; native replay/timestamp đạt, feedback age 6/15 ms.
+Tuy nhiên, governor ghi peak đứng 163.5 m/s² trong RECOVER gần lúc bánh
+chủ động rời cáp. Audit offline đã hoàn tất; chưa chứng minh nguyên nhân,
+chưa mở validation rộng/tuning/PPO/predictor hoặc promote cấu hình.
+
+**Cập nhật mới — bounded Optuna v2 đã kết thúc:** [báo cáo 40 attempts](GT_GOVERNOR_OPTUNA_V2_2026-10-16.md).
+Study mới giữ cruise PI/governor 0.400 m/s, tune target/max hold theo GT stamps.
+35 attempts arrival/stop đạt; năm native outcome không khả dụng, gồm hai
+startup feedback failsafe được giữ trong report. Candidate 0.90/max hold 1.0 s
+được khóa trước validation nhưng thiếu ba đối chứng PI nên chưa thể xác nhận.
+Không chạy bù, promote, PPO hoặc predictor; ưu tiên startup/feedback readiness.
+Các cập nhật tiếp theo bên dưới là lịch sử, không ghi đè quyết định mới này.
+
+**Audit timestamp GT gốc hoàn tất:** [kết quả offline 16 trace](gt_timestamp_slip_audit_2026-10-16/REPORT.md).
+GT không đưa qua grid trung gian; chỉ nội suy joint tại GT stamps. Mean whole
+slip RMS +3.86%, crossing slip²/m +4.89%; bất lợi không chỉ do chọn grid.
+Giữ controller, native và decision study; không chạy thêm simulation/tuning.
+
+**Đã kiểm chứng runtime và xác nhận 18 episode:** [kết quả bốn scenario mới](FROZEN_GOVERNOR_CONFIRMATION_2026-10-16.md).
+18/18 arrival/stop; replay/timestamp đạt. Trên 16 lượt xác nhận, mean time
+giảm 2.33% nhưng slip RMS tăng 3.40%, sampled vibration tăng 4.58%; 4/8 cặp
+đổi chiều theo grid. Quyết định measurement-first, không mở Optuna/PPO.
+
+**Reporting timestamp đã chuẩn hóa 16/10:** [triển khai và verification](SLIP_TIMESTAMP_REPORTING_2026-10-16.md).
+Trace mới ghi stamp/giá trị của đúng snapshot native; báo cáo offline dùng
+chung grid/quadrature cho route/crossing/phase. Sáu trace cũ khớp audit trước,
+9 tests offline pass. Giữ nguyên native/governor/study; không chạy simulation.
+Logging mới chưa có kiểm chứng runtime, không tự mở tuning hoặc learning.
+
+**Audit slip theo pha đã hoàn tất 16/10:** [báo cáo cùng sampling](governor_phase_slip_2026-10-16/REPORT.md).
+Sáu trace validation đã được tính lại offline: mean RMS 50 Hz giảm 15.72%,
+nhưng dịch lưới 10 ms chỉ còn giảm 4.83%; native +7.32% vẫn giữ nguyên.
+Slip tập trung tại crossing; chưa có căn cứ sửa recovery/cruise. Ưu tiên
+đồng bộ timestamp/reporting trước khi đổi tham số. Không chạy simulation mới.
+
+**Contract mới theo yêu cầu tuning cổ điển:** [screen thời gian/slip](CLASSICAL_GOVERNOR_TUNING_2026-10-16.md)
+tách khỏi impact optimization. [Audit offline](governor_tuning_readiness_2026-10-16/REPORT.md)
+ủng hộ khảo sát giảm nhẹ/giữ ngắn hơn cho crossing kéo dài; RMS/peak vẫn được
+báo nguyên và chưa đủ để tuyên bố giảm va đập. Không train PPO/predictor.
+Study đã hoàn tất 18/18 motion passes: candidate 0.90/max hold 1.0 s qua
+crossing screen trên ba validation pairs, nhưng whole-route slip RMS tăng
+7.32%. Chưa đổi default; tiếp theo audit slip offline trước correction mới.
+
 **Kết quả tiếp theo 16/10:** [governor so với constant PI 0.388](GOVERNOR_TIME_MATCHED_PI_2026-10-16.md)
 đã hoàn tất 10/10 arrival/stop. Thời gian 17.16/17.52 s chưa trong band 2%;
 governor giảm post RMS/peak/slip ở 2/5 cặp, chưa chứng minh lợi ích ổn định.

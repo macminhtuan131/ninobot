@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "controller": "full_governor_pi",
+  "action_ablation": "none",
+  "baseline_speed_scale": 1.0,
+  "model": null,
+  "phase": 1,
+  "seed": 77107,
+  "randomized": false,
+  "evaluation_seeds": [
+    77107
+  ],
+  "control_trace": true,
+  "benchmark_id": "235aa24f23c0ff77de408a704967d6d147d504d89783c78bbe8c2c6df4165249",
+  "pose_source": "imu_encoder_lidar_odometry",
+  "metric_weighting": "simulation_time_trapezoid",
+  "metric_weighting_by_name": {
+    "rms_wheel_slip": "control_step_arithmetic_mean_square_then_sqrt"
+  },
+  "slip_reporting": {
+    "native_metric": "rms_wheel_slip",
+    "native_changed": false,
+    "snapshot_trace_schema": "native_slip_snapshot_v1",
+    "synchronized_metrics": "offline_separate_report_only",
+    "offline_protocol": {
+      "schema": "synchronized_slip_offline_v1",
+      "period_s": 0.02,
+      "origin": "first control input simulation timestamp of each episode",
+      "timestamp_source": "sensor header simulation stamps, never receipt/wall time",
+      "duplicate_stamps": "keep last row",
+      "alignment": "linear sensor interpolation, then calculate slip; offline/noncausal",
+      "max_ground_gap_s": 0.040001,
+      "max_joint_gap_s": 0.010001,
+      "minimum_coverage_fraction": 0.98,
+      "denominator_floor_m_s": 0.1,
+      "ratio_clip": [
+        -5.0,
+        5.0
+      ],
+      "wheel_radius_m": 0.0625,
+      "wheel_separation_m": 0.34273666,
+      "quadrature": "trapezoid of mean left/right squared ratios, clipped at window boundaries",
+      "rms": "sqrt(integral / covered_seconds)",
+      "integral_unit": "s",
+      "integral_per_distance_unit": "s/m",
+      "distance": "GT xy distance on the same valid segments as slip",
+      "minimum_distance_m": 0.01,
+      "missing": "unavailable/null, never zero or success-only filtering",
+      "native": "unchanged control-step arithmetic mean of squared ratios; separate namespace"
+    }
+  },
+  "reference": "configured drawn routes with ordered spatial gates in odom",
+  "per_episode_plot": "trajectory.png; raw samples are in trajectory.csv",
+  "governor": {
+    "enabled": true,
+    "revision": "motion_trigger_ablation_v1_2026_10_16",
+    "execution": "inline_PI_evaluation",
+    "parameters": {
+      "profile": "full",
+      "target_scale": 0.9,
+      "scale_rate_per_second": 0.4,
+      "vertical_trigger_m_s2": 1.5,
+      "body_rate_trigger_rad_s": 0.35,
+      "wheel_error_trigger_m_s": 0.06,
+      "wheel_error_acceleration_allowance_s": 0.1,
+      "release_ratio": 0.6,
+      "confirmation_seconds": 0.04,
+      "quiet_seconds": 0.3,
+      "minimum_hold_seconds": 0.8,
+      "maximum_hold_seconds": 1.0,
+      "startup_seconds": 0.8,
+      "wheel_stall_seconds": 1.2,
+      "stall_recovery_enabled": false,
+      "pulse_seconds": 1.0,
+      "vertical_only_trigger_enabled": false
+    }
+  },
+  "qualification": "Reactive PI/contact-authority experiment; no predictor or sim-to-real claim",
+  "complete": true,
+  "requested_episodes": 1,
+  "aborted_episode": null,
+  "episodes": 1,
+  "success_rate": 1.0,
+  "on_time_success_rate": 1.0,
+  "termination_counts": {
+    "success": 1
+  },
+  "metrics_all_episodes": {
+    "path_rmse_m": {
+      "mean": 0.005707824884609817,
+      "std": 0.0,
+      "min": 0.005707824884609817,
+      "max": 0.005707824884609817
+    },
+    "cross_track_rmse_m": {
+      "mean": 0.005707728260221551,
+      "std": 0.0,
+      "min": 0.005707728260221551,
+      "max": 0.005707728260221551
+    },
+    "path_p95_m": {
+      "mean": 0.012496359961611112,
+      "std": 0.0,
+      "min": 0.012496359961611112,
+      "max": 0.012496359961611112
+    },
+    "path_max_m": {
+      "mean": 0.018394725810503647,
+      "std": 0.0,
+      "min": 0.018394725810503647,
+      "max": 0.018394725810503647
+    },
+    "heading_rmse_deg": {
+      "mean": 1.4664791062934037,
+      "std": 0.0,
+      "min": 1.4664791062934037,
+      "max": 1.4664791062934037
+    },
+    "endpoint_error_m": {
+      "mean": 0.1914464032031511,
+      "std": 0.0,
+      "min": 0.1914464032031511,
+      "max": 0.1914464032031511
+    },
+    "final_progress_fraction": {
+      "mean": 0.9703330711984556,
+      "std": 0.0,
+      "min": 0.9703330711984556,
+      "max": 0.9703330711984556
+    },
+    "backtracking_m": {
+      "mean": 0.0024091050874330833,
+      "std": 0.0,
+      "min": 0.0024091050874330833,
+      "max": 0.0024091050874330833
+    },
+    "time_seconds": {
+      "mean": 16.70000000000006,
+      "std": 0.0,
+      "min": 16.70000000000006,
+      "max": 16.70000000000006
+    },
+    "rms_vertical_acceleration_m_s2": {
+      "mean": 2.7798653394031416,
+      "std": 0.0,
+      "min": 2.7798653394031416,
+      "max": 2.7798653394031416
+    },
+    "peak_vertical_acceleration_m_s2": {
+      "mean": 62.39943838817846,
+      "std": 0.0,
+      "min": 62.39943838817846,
+      "max": 62.39943838817846
+    },
+    "rms_wheel_slip": {
+      "mean": 0.08722219666731411,
+      "std": 0.0,
+      "min": 0.08722219666731411,
+      "max": 0.08722219666731411
+    },
+    "rms_wheel_torque_nm": {
+      "mean": 0.26547287401048664,
+      "std": 0.0,
+      "min": 0.26547287401048664,
+      "max": 0.26547287401048664
+    },
+    "challenge_choice_fraction": {
+      "mean": 0.0,
+      "std": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "challenge_clear_fraction": {
+      "mean": 0.0,
+      "std": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "truth_path_rmse_m": {
+      "mean": 0.005615478348350122,
+      "std": 0.0,
+      "min": 0.005615478348350122,
+      "max": 0.005615478348350122
+    },
+    "truth_path_p95_m": {
+      "mean": 0.01224907753422962,
+      "std": 0.0,
+      "min": 0.01224907753422962,
+      "max": 0.01224907753422962
+    },
+    "truth_endpoint_error_m": {
+      "mean": 0.1919500097945149,
+      "std": 0.0,
+      "min": 0.1919500097945149,
+      "max": 0.1919500097945149
+    },
+    "truth_heading_rmse_deg": {
+      "mean": 1.4663451194760375,
+      "std": 0.0,
+      "min": 1.4663451194760375,
+      "max": 1.4663451194760375
+    },
+    "odom_truth_position_error_m": {
+      "mean": 0.0005142938040999064,
+      "std": 0.0,
+      "min": 0.0005142938040999064,
+      "max": 0.0005142938040999064
+    }
+  },
+  "metrics_successful_episodes": {
+    "path_rmse_m": 0.005707824884609817,
+    "cross_track_rmse_m": 0.005707728260221551,
+    "path_p95_m": 0.012496359961611112,
+    "path_max_m": 0.018394725810503647,
+    "heading_rmse_deg": 1.4664791062934037,
+    "endpoint_error_m": 0.1914464032031511,
+    "final_progress_fraction": 0.9703330711984556,
+    "backtracking_m": 0.0024091050874330833,
+    "time_seconds": 16.70000000000006,
+    "rms_vertical_acceleration_m_s2": 2.7798653394031416,
+    "peak_vertical_acceleration_m_s2": 62.39943838817846,
+    "rms_wheel_slip": 0.08722219666731411,
+    "rms_wheel_torque_nm": 0.26547287401048664,
+    "challenge_choice_fraction": 0.0,
+    "challenge_clear_fraction": 0.0,
+    "truth_path_rmse_m": 0.005615478348350122,
+    "truth_path_p95_m": 0.01224907753422962,
+    "truth_endpoint_error_m": 0.1919500097945149,
+    "truth_heading_rmse_deg": 1.4663451194760375,
+    "odom_truth_position_error_m": 0.0005142938040999064
+  },
+  "per_route": {
+    "E1": {
+      "episodes": 1,
+      "success_rate": 1.0,
+      "truth_path_rmse_m": 0.005615478348350122,
+      "termination_counts": {
+        "success": 1
+      }
+    }
+  }
+}

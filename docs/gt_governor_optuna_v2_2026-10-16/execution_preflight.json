@@ -1,0 +1,92 @@
+[
+  {
+    "parameters": {
+      "target_scale": 0.9,
+      "maximum_hold_seconds": 1.0
+    },
+    "synthetic_hold": {
+      "start_s": 0.8,
+      "minimum_scale": 0.9,
+      "end_s": 1.8,
+      "commanded_hold_seconds": 1.0,
+      "exit_hold_timer_s": 1.0999999999999999,
+      "quiet_seconds_at_exit": 0.0,
+      "censored": false
+    }
+  },
+  {
+    "parameters": {
+      "target_scale": 0.9,
+      "maximum_hold_seconds": 0.8
+    },
+    "synthetic_hold": {
+      "start_s": 0.8,
+      "minimum_scale": 0.9,
+      "end_s": 1.6,
+      "commanded_hold_seconds": 0.8,
+      "exit_hold_timer_s": 0.8999999999999999,
+      "quiet_seconds_at_exit": 0.0,
+      "censored": false
+    }
+  },
+  {
+    "parameters": {
+      "target_scale": 0.9,
+      "maximum_hold_seconds": 1.2
+    },
+    "synthetic_hold": {
+      "start_s": 0.8,
+      "minimum_scale": 0.9,
+      "end_s": 1.9000000000000001,
+      "commanded_hold_seconds": 1.1,
+      "exit_hold_timer_s": 1.2,
+      "quiet_seconds_at_exit": 0.0,
+      "censored": false
+    }
+  },
+  {
+    "parameters": {
+      "target_scale": 0.95,
+      "maximum_hold_seconds": 0.8
+    },
+    "synthetic_hold": {
+      "start_s": 0.8,
+      "minimum_scale": 0.95,
+      "end_s": 1.6,
+      "commanded_hold_seconds": 0.8,
+      "exit_hold_timer_s": 0.8999999999999999,
+      "quiet_seconds_at_exit": 0.0,
+      "censored": false
+    }
+  },
+  {
+    "parameters": {
+      "target_scale": 0.95,
+      "maximum_hold_seconds": 1.0
+    },
+    "synthetic_hold": {
+      "start_s": 0.8,
+      "minimum_scale": 0.95,
+      "end_s": 1.8,
+      "commanded_hold_seconds": 1.0,
+      "exit_hold_timer_s": 1.0999999999999999,
+      "quiet_seconds_at_exit": 0.0,
+      "censored": false
+    }
+  },
+  {
+    "parameters": {
+      "target_scale": 0.95,
+      "maximum_hold_seconds": 1.2
+    },
+    "synthetic_hold": {
+      "start_s": 0.8,
+      "minimum_scale": 0.95,
+      "end_s": 1.9000000000000001,
+      "commanded_hold_seconds": 1.1,
+      "exit_hold_timer_s": 1.2,
+      "quiet_seconds_at_exit": 0.0,
+      "censored": false
+    }
+  }
+]

@@ -1,0 +1,63 @@
+{
+  "qualification": "Small cold-start screen; not general robustness, causal proof or hardware validation",
+  "variant": "cable_box_capsule",
+  "profiles": [
+    "full",
+    "reactive"
+  ],
+  "seeds": [
+    77001
+  ],
+  "results": [
+    {
+      "seed": 77001,
+      "profile": "full",
+      "passed": false,
+      "evaluation_returncode": 1,
+      "logger": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_001/confirmation/d1/screen/seed_77001_full/contact/20261016T062740-211573Z",
+      "evaluation": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_001/confirmation/d1/screen/seed_77001_full/evaluation/20261016-132747-345873",
+      "evaluation_failure": {
+        "kind": "measurement_aborted",
+        "exception_type": "RuntimeError",
+        "message": "Assisted odometry fault: Assisted odometry cannot interpolate across an IMU gap",
+        "episode": null,
+        "seed": null,
+        "completed_episodes": 0,
+        "success": null,
+        "task_outcome_available": false,
+        "existing_traces_preserved": true
+      },
+      "error": "RuntimeError: Evaluation produced no control trace: {'kind': 'measurement_aborted', 'exception_type': 'RuntimeError', 'message': 'Assisted odometry fault: Assisted odometry cannot interpolate across an IMU gap', 'episode': None, 'seed': None, 'completed_episodes': 0, 'success': None, 'task_outcome_available': False, 'existing_traces_preserved': True}",
+      "audit_error": "ValueError: Select one episode/run for the stability audit"
+    },
+    {
+      "seed": 77001,
+      "profile": "reactive",
+      "passed": false,
+      "evaluation_returncode": 1,
+      "logger": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_001/confirmation/d1/screen/seed_77001_reactive/contact/20261016T062754-520824Z",
+      "evaluation": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_001/confirmation/d1/screen/seed_77001_reactive/evaluation/20261016-132801-922214",
+      "evaluation_failure": {
+        "kind": "measurement_aborted",
+        "exception_type": "RuntimeError",
+        "message": "Assisted odometry fault: Assisted odometry cannot interpolate across an IMU gap",
+        "episode": null,
+        "seed": null,
+        "completed_episodes": 0,
+        "success": null,
+        "task_outcome_available": false,
+        "existing_traces_preserved": true
+      },
+      "error": "RuntimeError: Evaluation produced no control trace: {'kind': 'measurement_aborted', 'exception_type': 'RuntimeError', 'message': 'Assisted odometry fault: Assisted odometry cannot interpolate across an IMU gap', 'episode': None, 'seed': None, 'completed_episodes': 0, 'success': None, 'task_outcome_available': False, 'existing_traces_preserved': True}",
+      "audit_error": "ValueError: Select one episode/run for the stability audit"
+    }
+  ],
+  "oracle_contact": false,
+  "interrupted": false,
+  "all_passed": false,
+  "tilt_diagnostic_limit_deg": 5.0,
+  "post_arrival_window_s": 2.0,
+  "low_tilt_required_during_episode": false,
+  "training_started": false,
+  "optuna_started": false
+}

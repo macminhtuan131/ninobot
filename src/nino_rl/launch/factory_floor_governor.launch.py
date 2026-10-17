@@ -14,6 +14,7 @@ def generate_launch_description():
                               "caster_bracket_left","caster_bracket_right","chassis")]
     return LaunchDescription([
         DeclareLaunchArgument("variant",default_value="cable"),
+        DeclareLaunchArgument("world_override",default_value=""),
         DeclareLaunchArgument("headless",default_value="false"),
         DeclareLaunchArgument("controller_startup_timeout",default_value="300"),
         DeclareLaunchArgument("output_directory",default_value="rl_runs/governor_contact_lab"),
@@ -23,6 +24,7 @@ def generate_launch_description():
         IncludeLaunchDescription(PythonLaunchDescriptionSource(PathJoinSubstitution([
             FindPackageShare("nino_rl"),"launch","factory_floor_training.launch.py"])),
             launch_arguments={"variant":LaunchConfiguration("variant"),"headless":LaunchConfiguration("headless"),
+                "world_override":LaunchConfiguration("world_override"),
                 "controller_startup_timeout":LaunchConfiguration("controller_startup_timeout"),
                 "caster_wheel_damping":LaunchConfiguration("caster_wheel_damping"),
                 "contact_lab":"true","terrain_preview":"false","accept_torque":"false"}.items()),
@@ -31,6 +33,7 @@ def generate_launch_description():
         Node(package="nino_rl",executable="governor_logger",name="governor_logger",output="screen",
              parameters=[{"use_sim_time":True,"output_directory":LaunchConfiguration("output_directory"),
                           "variant":LaunchConfiguration("variant"),
+                          "world_override":LaunchConfiguration("world_override"),
                           "config_file":LaunchConfiguration("config"),
                           "caster_wheel_damping":ParameterValue(LaunchConfiguration("caster_wheel_damping"),value_type=float)}]),
     ])

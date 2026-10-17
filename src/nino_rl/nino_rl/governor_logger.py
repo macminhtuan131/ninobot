@@ -37,6 +37,7 @@ class GovernorLogger(Node):
         self.declare_parameter("output_directory","rl_runs/governor_contact_lab")
         self.declare_parameter("config_file","")
         self.declare_parameter("variant","cable")
+        self.declare_parameter("world_override","")
         self.declare_parameter("contact_sample_rate",100.)
         self.declare_parameter("caster_wheel_damping",.01)
         self.output=Path(self.get_parameter("output_directory").value).expanduser().resolve()/datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S-%fZ")
@@ -80,7 +81,10 @@ class GovernorLogger(Node):
         metadata["timing_telemetry"]=dict(missing_value=-1,
             qualification="PI-update aggregates emitted at the existing 50Hz status rate; no control change")
         variant=self.get_parameter("variant").value
-        world=Path(get_package_share_directory("nino_description"))/"worlds"/f"factory_floor_{variant}_contact_lab.sdf"
+        override=self.get_parameter("world_override").value
+        world=(Path(override).expanduser().resolve() if override else
+               Path(get_package_share_directory("nino_description"))/"worlds"/f"factory_floor_{variant}_contact_lab.sdf")
+        metadata["world_file"]=str(world)
         if world.is_file():
             metadata["world_sha256"]=hashlib.sha256(world.read_bytes()).hexdigest()
             (self.output/"world_metadata.json").write_bytes(world.with_suffix(".json").read_bytes())

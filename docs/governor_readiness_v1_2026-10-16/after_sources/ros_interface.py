@@ -1,0 +1,2045 @@
+"""ROS 2 transport shared by the Gym environment and deployed policy node."""
+
+from __future__ import annotations
+
+from copy import deepcopy
+from collections import deque
+from math import atan2, cos, sin, sqrt, isfinite
+from threading import Lock
+from time import monotonic, sleep
+
+import rclpy
+from geometry_msgs.msg import PoseWithCovarianceStamped, Twist
+from nav_msgs.msg import Odometry, Path
+from rclpy.action import ActionClient
+from rclpy.node import Node
+from rclpy.qos import (
+    DurabilityPolicy,
+    HistoryPolicy,
+    QoSProfile,
+    ReliabilityPolicy,
+)
+from rclpy.time import Time
+from rosgraph_msgs.msg import Clock
+from ros_gz_interfaces.msg import Entity, WorldStatistics
+from ros_gz_interfaces.srv import ControlWorld, DeleteEntity, SetEntityPose, SpawnEntity
+from sensor_msgs.msg import Imu, JointState, LaserScan
+from std_msgs.msg import Float64MultiArray
+from std_srvs.srv import Trigger
+from tf2_ros import Buffer, TransformException, TransformListener
+
+from nino_rl.core import RobotState, quaternion_to_euler
+from nino_rl.control_v2 import ImuWindow, vertical_acceleration
+
+
+SENSOR_QOS = QoSProfile(
+    history=HistoryPolicy.KEEP_LAST,
+    depth=1,
+    reliability=ReliabilityPolicy.BEST_EFFORT,
+)
+
+IMU_QOS = QoSProfile(history=HistoryPolicy.KEEP_LAST, depth=100,
+                     reliability=ReliabilityPolicy.BEST_EFFORT)
+
+AMCL_POSE_QOS = QoSProfile(
+    history=HistoryPolicy.KEEP_LAST,
+    depth=1,
+    reliability=ReliabilityPolicy.RELIABLE,
+    durability=DurabilityPolicy.TRANSIENT_LOCAL,
+)
+
+TERRAIN_SENSOR_HEIGHT_M = 0.2325
+TERRAIN_SENSOR_PITCH_RAD = 0.45
+TERRAIN_HEIGHT_THRESHOLD_M = 0.006
+TERRAIN_PREVIEW_RANGE_M = 1.0
+
+
+class RosRobotInterface(Node):
+    def __init__(
+        self,
+        world_name: str = "long_hall",
+        subscribe_plan: bool = False,
+        use_sim_time: bool = True,
+        node_name: str = "nino_rl_interface",
+        plan_topic: str = "/plan",
+        nav_cmd_topic: str = "/cmd_vel_nav",
+        cmd_vel_topic: str = "/cmd_vel",
+        imu_topic: str = "/imu/data",
+        physics_step_seconds: float = 0.002,
+        terrain_height_threshold_m: float = TERRAIN_HEIGHT_THRESHOLD_M,
+        odometry_assistance: dict | None = None,
+        defer_assisted_until_reset: bool = False,
+    ) -> None:
+        super().__init__(
+            node_name,
+            parameter_overrides=[
+                rclpy.parameter.Parameter("use_sim_time", value=use_sim_time)
+            ],
+        )
+        self._lock = Lock()
+        self._drive_diagnostics = deque(maxlen=20000)
+        self._drive_epoch_min_stamp = -float("inf")
+        self._state = RobotState()
+        from nino_rl.assisted_odometry import ImuEncoderOdometry
+        self._assisted_odometry = (ImuEncoderOdometry(odometry_assistance)
+            if odometry_assistance and odometry_assistance.get("enabled", False) else None)
+        if self._assisted_odometry and odometry_assistance.get('corridor_lidar', {}).get('enabled', False):
+            from nino_rl.corridor_odometry import CorridorOdometry
+            self._assisted_odometry = CorridorOdometry(odometry_assistance)
+        self._assisted_error = None
+        # Simulation transport can join a running DDS graph before its local
+        # odometry origin exists. Do not fuse that discovery backlog. Deployment
+        # callers retain the existing immediate-estimator behavior by default.
+        self._assisted_epoch_active = not defer_assisted_until_reset
+        self.estimated_pose_source = "imu_encoder_odometry" if self._assisted_odometry else "wheel_odometry"
+        if self._assisted_odometry and odometry_assistance.get('corridor_lidar', {}).get('enabled', False):
+            self.estimated_pose_source = 'imu_encoder_lidar_odometry'
+        self.estimated_frame = "odom_imu" if self._assisted_odometry else "odom"
+        if subscribe_plan and self._assisted_odometry:
+            raise ValueError("Internal assisted odometry supports direct drawn/YAML routes, not Nav2 TF localization")
+        self._assisted_publisher = (self.create_publisher(Odometry, "/nino_rl/assisted_odom", 10)
+                                    if self._assisted_odometry else None)
+        self.imu_includes_gravity = True
+        if not isfinite(terrain_height_threshold_m) or terrain_height_threshold_m <= 0:
+            raise ValueError("terrain_height_threshold_m must be positive")
+        self.terrain_height_threshold = float(terrain_height_threshold_m)
+        self.imu_window = ImuWindow()
+        self._imu_epoch_min_stamp = -float("inf")
+        self._sim_clock_stamp = None
+        self._world_stats_stamp = None
+        self._preview = (0.0, 0.0, 0.0)
+        self._preview_received_at = -float("inf")
+        self._received = set()
+        self._received_at: dict[str, float] = {}
+        self._nav_path: tuple[str, list[tuple[float, float]]] | None = None
+        self._desired_twist = (0.0, 0.0)
+        self._nav_goal_handle = None
+        # Gazebo's remove / set-pose services log an error when the target is
+        # absent.  Remember the entities managed by this interface so normal
+        # episode resets do not issue eight guaranteed-to-fail cable removals
+        # or probe a not-yet-created goal marker every time.
+        self._training_cable_names: set[str] | None = None
+        self._adaptive_terrain_present: bool | None = None
+        self._goal_marker_present: bool | None = None
+        self.world_name = world_name
+        if not isfinite(physics_step_seconds) or physics_step_seconds <= 0.0:
+            raise ValueError("physics_step_seconds must be positive and finite")
+        self.physics_step_seconds = float(physics_step_seconds)
+        self.tf_buffer = Buffer()
+        self.tf_listener = TransformListener(self.tf_buffer, self)
+
+        self.torque_publisher = self.create_publisher(
+            Float64MultiArray, "/wheel_torque_commands", 10
+        )
+        self.control_publisher = self.create_publisher(
+            Float64MultiArray, "/nino_rl/control_command", 10
+        )
+        self.cmd_vel_publisher = self.create_publisher(Twist, cmd_vel_topic, 10)
+        self.create_subscription(
+            Float64MultiArray, "/nino_rl/terrain_preview", self._preview_callback, 10
+        )
+        self.create_subscription(
+            LaserScan, "/terrain_scan", self._terrain_scan_callback, SENSOR_QOS
+        )
+        self.create_subscription(Odometry, "/odom", self._odom_callback, 10)
+        self.create_subscription(
+            Odometry, "/ground_truth/odom", self._ground_truth_callback, SENSOR_QOS
+        )
+        self.create_subscription(Clock, "/clock", self._clock_callback, SENSOR_QOS)
+        self.create_subscription(
+            WorldStatistics, f"/world/{world_name}/stats",
+            self._world_stats_callback, SENSOR_QOS,
+        )
+        self.create_subscription(Imu, imu_topic, self._imu_callback, IMU_QOS)
+        self.create_subscription(JointState, "/joint_states", self._joint_callback, SENSOR_QOS)
+        self.create_subscription(LaserScan, "/scan", self._scan_callback, SENSOR_QOS)
+        self.create_subscription(
+            Float64MultiArray,
+            "/wheel_torque_applied",
+            self._applied_torque_callback,
+            10,
+        )
+        self.create_subscription(Float64MultiArray, "/nino_drive/diagnostics",
+                                 self._drive_diagnostic_callback, 100)
+
+        if subscribe_plan:
+            self.create_subscription(Path, plan_topic, self._plan_callback, 10)
+            # Observe the local Nav2 controller before collision_monitor.
+            # effort_drive uses Nav2 /cmd_vel as the baseline controller, while
+            # RL contributes only residual wheel torque.
+            self.create_subscription(Twist, nav_cmd_topic, self._cmd_vel_callback, 10)
+            self.create_subscription(
+                PoseWithCovarianceStamped,
+                "/amcl_pose",
+                self._amcl_callback,
+                AMCL_POSE_QOS,
+            )
+            self.initial_pose_publisher = self.create_publisher(
+                PoseWithCovarianceStamped, "/initialpose", 10
+            )
+            try:
+                from nav2_msgs.action import NavigateToPose
+            except ImportError as error:
+                raise RuntimeError(
+                    "nav2_msgs is required for Nav2-guided training; install "
+                    "ros-jazzy-navigation2 and ros-jazzy-nav2-bringup"
+                ) from error
+            self._navigate_action_type = NavigateToPose
+            self.navigate_to_pose = ActionClient(
+                self, NavigateToPose, "/navigate_to_pose"
+            )
+
+        self.world_control = self.create_client(
+            ControlWorld, f"/world/{world_name}/control"
+        )
+        self.set_entity_pose = self.create_client(
+            SetEntityPose, f"/world/{world_name}/set_pose"
+        )
+        self.reset_odometry = self.create_client(Trigger, "/reset_wheel_odometry")
+        self.spawn_entity = self.create_client(
+            SpawnEntity, f"/world/{world_name}/create"
+        )
+        self.delete_entity = self.create_client(
+            DeleteEntity, f"/world/{world_name}/remove"
+        )
+
+    def _mark_received(self, name: str) -> None:
+        self._received.add(name)
+        self._received_at[name] = monotonic()
+
+    def _odom_callback(self, message: Odometry) -> None:
+        quaternion = message.pose.pose.orientation
+        _, _, yaw = quaternion_to_euler(
+            quaternion.x, quaternion.y, quaternion.z, quaternion.w
+        )
+        with self._lock:
+            self._state.odom_stamp_s = message.header.stamp.sec + message.header.stamp.nanosec * 1e-9
+            self._state.x = float(message.pose.pose.position.x)
+            self._state.y = float(message.pose.pose.position.y)
+            self._state.yaw = yaw
+            self._state.linear_velocity = float(message.twist.twist.linear.x)
+            self._state.yaw_rate = float(message.twist.twist.angular.z)
+            self._mark_received("odom")
+
+    def _ground_truth_callback(self, message: Odometry) -> None:
+        with self._lock:
+            self._state.ground_truth_stamp_s = message.header.stamp.sec + message.header.stamp.nanosec * 1e-9
+            self._state.ground_x = float(message.pose.pose.position.x)
+            self._state.ground_y = float(message.pose.pose.position.y)
+            q = message.pose.pose.orientation
+            self._state.ground_yaw = quaternion_to_euler(q.x, q.y, q.z, q.w)[2]
+            self._state.ground_linear_velocity = float(message.twist.twist.linear.x)
+            self._state.ground_yaw_rate = float(message.twist.twist.angular.z)
+            self._mark_received("ground_truth")
+
+    def _clock_callback(self, message: Clock) -> None:
+        with self._lock:
+            stamp = message.clock.sec + message.clock.nanosec * 1e-9
+            self._sim_clock_stamp = max(self._sim_clock_stamp or stamp, stamp)
+            self._mark_received("clock")
+
+    def _world_stats_callback(self, message: WorldStatistics) -> None:
+        # Gazebo publishes a final paused-world stat even when the /clock bridge
+        # misses the last physics tick. Use its authoritative simulation time.
+        stamp = message.sim_time.sec + message.sim_time.nanosec * 1e-9
+        with self._lock:
+            self._world_stats_stamp = stamp
+            self._sim_clock_stamp = max(self._sim_clock_stamp or stamp, stamp)
+
+    def _imu_callback(self, message: Imu) -> None:
+        stamp = message.header.stamp.sec + message.header.stamp.nanosec * 1e-9
+        quaternion = message.orientation
+        norm = sqrt(
+            quaternion.x * quaternion.x
+            + quaternion.y * quaternion.y
+            + quaternion.z * quaternion.z
+            + quaternion.w * quaternion.w
+        )
+        if norm < 1.0e-12:
+            orientation = (0.0, 0.0, 0.0, 1.0)
+        else:
+            orientation = (
+                quaternion.x / norm,
+                quaternion.y / norm,
+                quaternion.z / norm,
+                quaternion.w / norm,
+            )
+        roll, pitch, imu_yaw = quaternion_to_euler(
+            *orientation
+        )
+        with self._lock:
+            # After an episode reset, DDS may continue delivering queued IMU
+            # samples generated before the paused epoch boundary. Ignore the
+            # whole sample, including actor state, based on simulation time.
+            if stamp <= self._imu_epoch_min_stamp:
+                return
+            self._state.imu_stamp_s = stamp
+            self._state.roll = roll
+            self._state.pitch = pitch
+            self._state.orientation_x = float(orientation[0])
+            self._state.orientation_y = float(orientation[1])
+            self._state.orientation_z = float(orientation[2])
+            self._state.orientation_w = float(orientation[3])
+            self._state.gyro_x = float(message.angular_velocity.x)
+            self._state.gyro_y = float(message.angular_velocity.y)
+            self._state.gyro_z = float(message.angular_velocity.z)
+            self._state.accel_x = float(message.linear_acceleration.x)
+            self._state.accel_y = float(message.linear_acceleration.y)
+            self._state.accel_z = float(message.linear_acceleration.z)
+            self.imu_window.add(stamp, vertical_acceleration(
+                self._state, self.imu_includes_gravity))
+            self._mark_received("imu")
+            if (getattr(self, "_assisted_odometry", None)
+                    and getattr(self, "_assisted_epoch_active", True)
+                    and (not isfinite(norm) or norm < 1.e-12
+                         or getattr(message, "orientation_covariance", [0.])[0] < 0)):
+                self._assisted_error = "IMU-assisted odometry requires an available, valid orientation"
+            else:
+                estimator = getattr(self, '_assisted_odometry', None)
+                if estimator and hasattr(estimator, 'add_scan'):
+                    RosRobotInterface._update_assisted(self, "imu", stamp, imu_yaw, pitch, roll)
+                else:
+                    RosRobotInterface._update_assisted(self, "imu", stamp, imu_yaw, pitch)
+
+    def _joint_callback(self, message: JointState) -> None:
+        velocity = dict(zip(message.name, message.velocity))
+        if "left_wheel_joint" not in velocity or "right_wheel_joint" not in velocity:
+            return
+        with self._lock:
+            self._state.joint_stamp_s = message.header.stamp.sec + message.header.stamp.nanosec * 1e-9
+            self._state.left_wheel_velocity = float(velocity["left_wheel_joint"])
+            self._state.right_wheel_velocity = float(velocity["right_wheel_joint"])
+            self._mark_received("joint")
+            if (getattr(self, "_assisted_odometry", None)
+                    and getattr(self, "_assisted_epoch_active", True)):
+                positions = dict(zip(message.name, message.position))
+                if "left_wheel_joint" not in positions or "right_wheel_joint" not in positions:
+                    self._assisted_error = "Joint feedback lacks encoder positions"
+                else:
+                    self._update_assisted("joint", self._state.joint_stamp_s,
+                        float(positions["left_wheel_joint"]), float(positions["right_wheel_joint"]))
+
+    def _update_assisted(self, sensor, *values):
+        """Called under the transport lock; latch faults instead of killing spin."""
+        estimator = getattr(self, "_assisted_odometry", None)
+        if (estimator is None or self._assisted_error
+                or not getattr(self, "_assisted_epoch_active", True)):
+            return
+        previous = estimator.stamp
+        try:
+            getattr(estimator, "add_" + sensor)(*values)
+        except (ValueError, RuntimeError) as error:
+            self._assisted_error = str(error)
+            return
+        if estimator.ready:
+            self._mark_received("assisted_odom")
+            if estimator.stamp > previous and self._assisted_publisher:
+                msg = Odometry()
+                ns = int(round(estimator.stamp * 1e9))
+                msg.header.stamp.sec, msg.header.stamp.nanosec = divmod(ns, 10**9)
+                msg.header.frame_id = "odom_imu"
+                msg.child_frame_id = "base_footprint"
+                msg.pose.pose.position.x, msg.pose.pose.position.y = estimator.x, estimator.y
+                msg.pose.pose.orientation.z, msg.pose.pose.orientation.w = sin(.5 * estimator.yaw), cos(.5 * estimator.yaw)
+                msg.twist.twist.linear.x, msg.twist.twist.angular.z = estimator.velocity, estimator.yaw_rate
+                # Diagnostic covariance uses the raw driver's conservative
+                # fixed defaults. This estimator is not a covariance filter.
+                for covariance in (msg.pose.covariance, msg.twist.covariance):
+                    covariance[0] = covariance[7] = .02
+                    covariance[14] = covariance[21] = covariance[28] = 1.e6
+                    covariance[35] = .05
+                self._assisted_publisher.publish(msg)
+
+    def _scan_callback(self, message: LaserScan) -> None:
+        with self._lock:
+            self._state.lidar_stamp_s = (
+                message.header.stamp.sec + message.header.stamp.nanosec * 1e-9
+            )
+            self._state.lidar_ranges = tuple(float(value) for value in message.ranges)
+            self._state.lidar_range_max = float(message.range_max)
+            self._mark_received("scan")
+            estimator = getattr(self, '_assisted_odometry', None)
+            if estimator and hasattr(estimator, 'add_scan'):
+                self._update_assisted('scan', self._state.lidar_stamp_s,
+                    self._state.lidar_ranges, float(message.angle_min), float(message.angle_increment),
+                    float(message.range_min), float(message.range_max))
+
+    def _applied_torque_callback(self, message: Float64MultiArray) -> None:
+        if len(message.data) != 2:
+            return
+        with self._lock:
+            self._state.applied_left_torque = float(message.data[0])
+            self._state.applied_right_torque = float(message.data[1])
+            self._mark_received("torque")
+
+    def _drive_diagnostic_callback(self, message: Float64MultiArray) -> None:
+        if not message.layout.dim:
+            return
+        fields = message.layout.dim[0].label.split(",")
+        if (len(fields) != len(message.data) or not fields or fields[0] != "sim_time_s"
+                or not all(isfinite(value) for value in message.data)):
+            return
+        with self._lock:
+            if message.data[0] <= getattr(self, "_drive_epoch_min_stamp", -float("inf")):
+                return
+            self._drive_diagnostics.append(dict(zip(fields, message.data)))
+
+    def drive_diagnostics(self, start: float, end: float) -> list[dict]:
+        """Copy stamped controller samples from one action interval."""
+        with self._lock:
+            return [dict(row) for row in self._drive_diagnostics
+                    if start < row["sim_time_s"] <= end]
+
+    def wait_for_drive_diagnostics(self, start, end, timeout=2.0, max_latest_lag=.10):
+        """Wait for bounded-interval feedback while physics stays paused.
+
+        Never advance physics, reuse a previous interval or accept future data.
+        The executor continues independently; genuine missing feedback times out.
+        """
+        if (not all(isfinite(v) for v in (start, end, timeout, max_latest_lag))
+                or end <= start or timeout <= 0 or max_latest_lag < 0):
+            raise ValueError("Drive barrier requires a finite interval and positive deadline")
+        deadline = monotonic() + timeout
+        latest = None
+        while True:
+            with self._lock:
+                rows = sorted((dict(r) for r in self._drive_diagnostics
+                    if max(start, getattr(self, "_drive_epoch_min_stamp", -float("inf")))
+                    < r["sim_time_s"] <= end), key=lambda r: r["sim_time_s"])
+            if rows:
+                latest = rows[-1]["sim_time_s"]
+                if end - latest <= max_latest_lag + 1e-9:
+                    return rows
+            if monotonic() >= deadline:
+                raise TimeoutError(f"Drive feedback unavailable for ({start:.6f}, {end:.6f}]; "
+                                   f"latest={latest}, max_lag={max_latest_lag:.3f}s")
+            sleep(.002)
+
+    def _plan_callback(self, message: Path) -> None:
+        points = [(pose.pose.position.x, pose.pose.position.y) for pose in message.poses]
+        if len(points) >= 2:
+            with self._lock:
+                self._nav_path = (message.header.frame_id or "odom", points)
+                self._mark_received("plan")
+
+    def _cmd_vel_callback(self, message: Twist) -> None:
+        with self._lock:
+            self._desired_twist = (
+                float(message.linear.x),
+                float(message.angular.z),
+            )
+            self._mark_received("nav_cmd")
+
+    def _amcl_callback(self, _message: PoseWithCovarianceStamped) -> None:
+        with self._lock:
+            self._mark_received("amcl")
+
+    def snapshot(self) -> RobotState:
+        with self._lock:
+            state = deepcopy(self._state)
+            estimator = getattr(self, "_assisted_odometry", None)
+            if estimator:
+                if self._assisted_error:
+                    raise RuntimeError("Assisted odometry fault: " + self._assisted_error)
+                for name, value in estimator.pose().items():
+                    setattr(state, name, value)
+            return state
+
+    def raw_wheel_pose(self):
+        with self._lock:
+            result = dict(raw_wheel_x_m=self._state.x, raw_wheel_y_m=self._state.y,
+                        raw_wheel_yaw_rad=self._state.yaw, raw_wheel_stamp_s=self._state.odom_stamp_s)
+            estimator = getattr(self, '_assisted_odometry', None)
+            if estimator and hasattr(estimator, 'last_fix'):
+                result.update(wall_fix_stamp_s=estimator.last_fix,
+                    wall_fix_age_s=estimator.stamp-estimator.last_fix,
+                    wall_scans_accepted=estimator.accepted_scans)
+            return result
+
+    def nav_path(self) -> tuple[str, list[tuple[float, float]]] | None:
+        with self._lock:
+            return deepcopy(self._nav_path)
+
+    def nav_path_in_odom(
+        self, nav_path: tuple[str, list[tuple[float, float]]] | None = None
+    ) -> list[tuple[float, float]] | None:
+        if nav_path is None:
+            nav_path = self.nav_path()
+        if nav_path is None:
+            return None
+        frame, points = nav_path
+        if frame in ("", "odom"):
+            return points
+        try:
+            transform = self.tf_buffer.lookup_transform("odom", frame, Time())
+        except TransformException:
+            return None
+        translation = transform.transform.translation
+        rotation = transform.transform.rotation
+        _, _, yaw = quaternion_to_euler(
+            rotation.x, rotation.y, rotation.z, rotation.w
+        )
+        c, s = cos(yaw), sin(yaw)
+        return [
+            (
+                translation.x + c * x - s * y,
+                translation.y + s * x + c * y,
+            )
+            for x, y in points
+        ]
+
+    def desired_twist(self) -> tuple[float, float]:
+        with self._lock:
+            return self._desired_twist
+
+    def publish_straight_command(self, linear_m_s: float) -> None:
+        """Publish the direct baseline command; angular velocity is always zero."""
+        self.publish_motion_command(linear_m_s, 0.0)
+
+    def publish_motion_command(self, linear_m_s: float, angular_rad_s: float) -> None:
+        """Send a forward/yaw reference to the existing wheel-speed PI loop."""
+        if not isfinite(linear_m_s) or linear_m_s < 0.0:
+            raise ValueError("straight speed must be finite and non-negative")
+        if not isfinite(angular_rad_s):
+            raise ValueError("yaw reference must be finite")
+        message = Twist()
+        message.linear.x = float(linear_m_s)
+        message.angular.z = float(angular_rad_s)
+        self.cmd_vel_publisher.publish(message)
+        with self._lock:
+            self._desired_twist = (float(linear_m_s), float(angular_rad_s))
+            self._mark_received("straight_cmd")
+
+    def straight_reference_valid(self, stale_after: float = 2.0) -> bool:
+        """Return whether the state needed by the straight controller is fresh.
+
+        LiDAR is deliberately excluded.  Gazebo's GPU ray sensor is an
+        asynchronous, BEST_EFFORT safety aid and must not invalidate the
+        wheel/odometry reference when rendering briefly falls behind.
+        """
+        return not self.stale_straight_reference_streams(stale_after)
+
+    def stale_straight_reference_streams(
+        self, stale_after: float = 2.0
+    ) -> list[str]:
+        """Return missing/stale inputs used by the direct straight controller."""
+        now = monotonic()
+        with self._lock:
+            return [
+                name
+                for name in ("odom", "imu", "joint", "straight_cmd")
+                if name not in self._received_at
+                or now - self._received_at[name] > stale_after
+            ]
+
+    def sensor_stream_ready(self, name: str, stale_after: float = 2.0) -> bool:
+        """Return whether a named stream has delivered a recent DDS sample."""
+        now = monotonic()
+        with self._lock:
+            return (
+                name in self._received_at
+                and now - self._received_at[name] <= stale_after
+            )
+
+    def navigation_valid(self, stale_after: float = 2.0) -> bool:
+        now = monotonic()
+        with self._lock:
+            streams_are_fresh = all(
+                name in self._received_at
+                and now - self._received_at[name] <= stale_after
+                for name in (
+                    "odom",
+                    "imu",
+                    "joint",
+                    "scan",
+                    "plan",
+                    "nav_cmd",
+                )
+            )
+        # /amcl_pose is event-driven and may not be republished while the
+        # robot is stationary. The live map -> odom transform is the correct
+        # localization availability test in that case.
+        return streams_are_fresh and self.tf_buffer.can_transform(
+            "map", "odom", Time()
+        )
+
+    def wait_for_navigation(self, timeout: float, stale_after: float = 2.0) -> None:
+        deadline = monotonic() + timeout
+        while monotonic() < deadline:
+            if self.navigation_valid(stale_after) and self.nav_path_in_odom() is not None:
+                return
+            sleep(0.05)
+        with self._lock:
+            stale = [name for name in ("odom", "imu", "joint", "scan", "plan", "nav_cmd")
+                     if monotonic() - self._received_at.get(name, 0.0) > stale_after]
+        raise TimeoutError(
+            f"Nav2 readiness timed out; missing/stale streams: {stale}; "
+            f"map->odom available: {self.tf_buffer.can_transform('map', 'odom', Time())}"
+        )
+
+    def sensors_ready(self) -> bool:
+        with self._lock:
+            if not {"odom", "imu", "joint", "scan"}.issubset(self._received):
+                return False
+            estimator = getattr(self, '_assisted_odometry', None)
+            if estimator:
+                if self._assisted_error or not estimator.ready:
+                    return False
+                if hasattr(estimator, 'last_fix') and estimator.stamp - estimator.last_fix > estimator.max_scan_age:
+                    return False
+            return True
+
+    def wait_for_sensors(self, timeout: float, *, require_assisted: bool = True) -> None:
+        required = {"odom", "imu", "joint", "scan"}
+        if require_assisted and getattr(self, "_assisted_odometry", None):
+            required.add("assisted_odom")
+        deadline = monotonic() + timeout
+        while monotonic() < deadline:
+            with self._lock:
+                if getattr(self, "_assisted_error", None):
+                    raise RuntimeError("Assisted odometry fault: " + self._assisted_error)
+                missing = sorted(required - self._received)
+            if not missing:
+                return
+            sleep(0.05)
+        # A callback can land between the final loop condition and timeout
+        # reporting. Take one last atomic snapshot so a successful boundary
+        # arrival cannot produce the contradictory "missing: <empty>" error.
+        with self._lock:
+            missing = sorted(required - self._received)
+        if not missing:
+            return
+        raise TimeoutError(
+            "Không nhận đủ dữ liệu ROS trong thời gian chờ; thiếu: " + ", ".join(missing)
+        )
+
+    def publish_torque(self, left_nm: float, right_nm: float) -> None:
+        message = Float64MultiArray()
+        message.data = [float(left_nm), float(right_nm)]
+        self.torque_publisher.publish(message)
+
+    def publish_control(self, scale: float, left_nm: float, right_nm: float) -> None:
+        """Atomic v2 command: scale the straight baseline and add residual torque."""
+        message = Float64MultiArray()
+        message.data = [float(scale), float(left_nm), float(right_nm)]
+        self.control_publisher.publish(message)
+
+    def _preview_callback(self, message) -> None:
+        from math import isfinite
+        if (len(message.data) != 3 or not all(isfinite(x) for x in message.data)
+                or message.data[0] < 0.0):
+            return
+        with self._lock:
+            self._preview = tuple(message.data)
+            self._preview_received_at = monotonic()
+            self._mark_received("terrain")
+
+    def _terrain_scan_callback(self, message: LaserScan) -> None:
+        """Convert the downward fan into distance and signed left/right relief."""
+        samples = []
+        for index, value in enumerate(message.ranges):
+            distance = float(value)
+            if (
+                not isfinite(distance)
+                or distance < float(message.range_min)
+                or distance > float(message.range_max)
+            ):
+                continue
+            angle = float(message.angle_min) + index * float(message.angle_increment)
+            horizontal = distance * cos(TERRAIN_SENSOR_PITCH_RAD)
+            forward = horizontal * cos(angle)
+            lateral = horizontal * sin(angle)
+            height = TERRAIN_SENSOR_HEIGHT_M - distance * sin(
+                TERRAIN_SENSOR_PITCH_RAD
+            )
+            if forward > 0.0 and abs(height) >= getattr(self, "terrain_height_threshold", TERRAIN_HEIGHT_THRESHOLD_M):
+                samples.append((forward, lateral, height))
+
+        def strongest(values) -> float:
+            return float(max(values, key=lambda item: abs(item), default=0.0))
+
+        if samples:
+            preview_distance = min(sample[0] for sample in samples)
+            left_height = strongest(
+                sample[2] for sample in samples if sample[1] >= 0.0
+            )
+            right_height = strongest(
+                sample[2] for sample in samples if sample[1] < 0.0
+            )
+        else:
+            preview_distance = TERRAIN_PREVIEW_RANGE_M
+            left_height = right_height = 0.0
+        with self._lock:
+            self._preview = (preview_distance, left_height, right_height)
+            self._preview_received_at = monotonic()
+            self._mark_received("terrain")
+
+    def terrain_preview(self, timeout: float | None = 0.5):
+        """Return normalized relief, optionally enforcing wall-time freshness.
+
+        Lockstep training passes ``None`` after its post-step callback barrier:
+        a sample cannot become physically stale while Gazebo is paused. Live
+        deployment retains a finite watchdog timeout.
+        """
+        with self._lock:
+            if (
+                timeout is not None
+                and monotonic() - self._preview_received_at > timeout
+            ):
+                return [0.0, 0.0, 0.0, 0.0]
+            distance, left, right = self._preview
+            return [
+                distance / TERRAIN_PREVIEW_RANGE_M,
+                left / 0.1,
+                right / 0.1,
+                1.0,
+            ]
+
+    def wait_for_terrain_preview(self, timeout: float = 5.0) -> None:
+        deadline = monotonic() + timeout
+        while monotonic() < deadline:
+            if self.sensor_stream_ready("terrain", timeout):
+                return
+            sleep(0.05)
+        raise TimeoutError("No downward terrain preview scan was received")
+
+    def measure_impact(self, start, end, sigma=2.0):
+        with self._lock:
+            return self.imu_window.measure(start, end, sigma)
+
+    def estimate_impact(self, start, end, sigma=2.0):
+        with self._lock:
+            return self.imu_window.estimate(start, end, sigma)
+
+    def latest_clock_stamp(self):
+        with self._lock:
+            if self._sim_clock_stamp is None:
+                raise RuntimeError("No /clock sample is available")
+            return self._sim_clock_stamp
+
+    def wait_for_clock_quiescence(self, timeout=2.0, quiet_time=0.05):
+        """Return the actual paused Gazebo time after queued /clock drains."""
+        from nino_rl.timing import wait_for_quiescent_timestamp
+        return wait_for_quiescent_timestamp(
+            self.latest_clock_stamp, timeout, quiet_time
+        )
+
+    def begin_lockstep_epoch(self, timeout=2.0):
+        """Discard pre-reset timing callbacks and establish a fresh epoch.
+
+        Gazebo model reset and DDS delivery are asynchronous. Queued IMU
+        messages are rejected by their simulation timestamp rather than by
+        waiting for a high-rate callback queue to become silent. The single
+        flush step is episode setup overhead, not per-action overhead.
+        """
+        paused_clock = self.wait_for_clock_quiescence(timeout=timeout)
+        with self._lock:
+            self.imu_window.samples.clear()
+            self._imu_epoch_min_stamp = paused_clock
+            self._received.discard("imu")
+            self._received_at.pop("imu", None)
+
+        self.advance_world(1, timeout=timeout)
+        target = paused_clock + self.physics_step_seconds
+        deadline = monotonic() + timeout
+        while monotonic() < deadline:
+            with self._lock:
+                clock = self._sim_clock_stamp
+                ready = (
+                    clock is not None
+                    and clock >= target - 0.5 * self.physics_step_seconds
+                )
+            if ready:
+                break
+            sleep(0.002)
+        else:
+            raise RuntimeError(
+                "No post-boundary /clock sample after lockstep epoch flush"
+            )
+
+        return self.wait_for_clock_quiescence(timeout=timeout)
+
+    def wait_for_impact(self, start, end, sigma=2.0, timeout=0.5,
+                        min_coverage=0.8, max_latest_lag=0.05):
+        # /clock and /imu arrive on different DDS queues. Freeze the requested
+        # interval while waiting; a real missing interval still raises.
+        from nino_rl.timing import wait_for_coverage
+        return wait_for_coverage(lambda: self.measure_impact(start, end, sigma),
+                                 start, end, timeout, min_coverage,
+                                 max_latest_lag)
+
+    def pose_in_frame(self, state, frame):
+        if frame == getattr(self, "estimated_frame", "odom"):
+            return state.x, state.y, state.yaw
+        if getattr(self, "_assisted_odometry", None):
+            raise RuntimeError("Assisted odometry has no map/TF transform; use its local odom_imu frame")
+        try:
+            transform = self.tf_buffer.lookup_transform(frame, "odom", Time())
+        except TransformException as error:
+            raise RuntimeError(f"Cannot score trajectory without {frame} <- odom TF") from error
+        q = transform.transform.rotation
+        _, _, yaw = quaternion_to_euler(q.x, q.y, q.z, q.w)
+        t = transform.transform.translation
+        return (t.x + cos(yaw)*state.x - sin(yaw)*state.y,
+                t.y + sin(yaw)*state.x + cos(yaw)*state.y,
+                state.yaw + yaw)
+
+    def ground_truth_ready(self, timeout=2.0):
+        with self._lock:
+            return monotonic() - self._received_at.get("ground_truth", -float("inf")) <= timeout
+
+    def ground_truth_valid(self):
+        with self._lock:
+            return (
+                isfinite(self._state.ground_linear_velocity)
+                and isfinite(self._state.ground_yaw_rate)
+            )
+
+    def applied_torque_ready(self, timeout=0.5):
+        with self._lock:
+            return (monotonic() - self._received_at.get("torque", -float("inf")) <= timeout
+                    and isfinite(self._state.applied_left_torque)
+                    and isfinite(self._state.applied_right_torque))
+
+    def applied_torque_valid(self):
+        with self._lock:
+            return (
+                isfinite(self._state.applied_left_torque)
+                and isfinite(self._state.applied_right_torque)
+            )
+
+    def sensor_markers(self, names):
+        """Return wall-time callback markers used for a lockstep data barrier."""
+        with self._lock:
+            return {
+                name: self._received_at.get(name, -float("inf"))
+                for name in names
+            }
+
+    def wait_for_sensor_updates(self, previous, timeout=2.0):
+        """Wait until every named stream has delivered a post-step message."""
+        deadline = monotonic() + timeout
+        while monotonic() < deadline:
+            missing = self.missing_sensor_updates(previous)
+            if not missing:
+                return
+            sleep(0.002)
+        raise RuntimeError(
+            "Lockstep sensor updates timed out; missing fresh: "
+            + ", ".join(missing)
+        )
+
+    def missing_sensor_updates(self, previous) -> list[str]:
+        """Return streams that have not advanced beyond callback markers."""
+        with self._lock:
+            return [
+                name for name, marker in previous.items()
+                if self._received_at.get(name, -float("inf")) <= marker
+            ]
+
+    def refresh_reset_sensors(self, names, timeout=5.0, step_timeout=10.0):
+        """Produce a fresh reset view under explicit, bounded physics stepping.
+
+        Entity mutations and model reset are asynchronous. An earlier unpause
+        acknowledgement cannot guarantee publishers are still running after
+        those mutations. Keep motors stopped and deliberately drive the sensor
+        clocks before starting the episode. Never accept cached observations.
+        """
+        self.publish_straight_command(0.0)
+        self.publish_control(0.0, 0.0, 0.0)
+        self.set_world_paused(True, timeout=step_timeout)
+        markers = self.sensor_markers(names)
+        clock_before = self.latest_clock_stamp()
+        steps = max(1, int(round(0.10 / self.physics_step_seconds)))
+        for attempt in range(3):
+            # Separate setup intervals, not retries of a timed-out physics
+            # request: advance_world failures propagate immediately.
+            self.advance_world(steps, timeout=step_timeout)
+            try:
+                self.wait_for_sensor_updates(markers, timeout=timeout)
+                return
+            except RuntimeError as error:
+                missing = self.missing_sensor_updates(markers)
+                detail = (
+                    f"Reset sensor refresh {attempt + 1}/3: missing {missing}; "
+                    f"clock {clock_before} -> {self.latest_clock_stamp()}"
+                )
+                if attempt == 2:
+                    raise RuntimeError(detail) from error
+                self.get_logger().warn(detail)
+
+    def wait_for_motion_state(self, end, timeout=2.0, max_lag=0.04):
+        """Require 50 Hz motion feedback from the end of this action.
+
+        Receiving a new message alone is insufficient: it can describe the
+        beginning of a chunk or an earlier action still in the DDS queue.
+        """
+        if not all(isfinite(value) for value in (end, timeout, max_lag)) or timeout <= 0 or max_lag < 0:
+            raise ValueError("Motion barrier needs finite time, positive timeout and nonnegative lag")
+        deadline = monotonic() + timeout
+        while True:
+            with self._lock:
+                lags = {name: end - getattr(self._state, name + "_stamp_s")
+                        for name in ("odom", "ground_truth", "joint", "imu")}
+                estimator = getattr(self, "_assisted_odometry", None)
+                if estimator:
+                    if self._assisted_error:
+                        raise RuntimeError("Assisted odometry fault: " + self._assisted_error)
+                    lags["assisted_odom"] = end - estimator.stamp
+            missing = {name: lag for name, lag in lags.items()
+                       if not isfinite(lag) or lag > max_lag + 1e-9 or lag < -max_lag - 1e-9}
+            if not missing:
+                return lags
+            if monotonic() >= deadline:
+                raise RuntimeError(f"Motion feedback is outside action boundary {end:.6f}: lags={missing}")
+            sleep(0.002)
+
+    def wait_for_v2_controller(self, timeout=5.0):
+        deadline = monotonic() + timeout
+        while self.control_publisher.get_subscription_count() == 0:
+            if monotonic() > deadline:
+                raise RuntimeError("No v2 effort_drive: rebuild nino_control and restart simulator")
+            sleep(0.05)
+
+    def set_world_paused(self, paused, timeout=5.0):
+        """Set pause state with idempotent retries and independent clock proof.
+
+        ros_gz_bridge may drop a response after Gazebo has executed the
+        request. Reissuing the same pause state is safe, unlike reissuing a
+        multi-step request. A missing response is accepted when /clock proves
+        the requested state was reached.
+        """
+        if not self.world_control.wait_for_service(timeout_sec=timeout):
+            raise RuntimeError("Missing world control bridge for PPO pause/resume")
+        attempts = 3
+        last_error = None
+        for attempt in range(1, attempts + 1):
+            request = ControlWorld.Request()
+            request.world_control.pause = bool(paused)
+            with self._lock:
+                clock_before = self._sim_clock_stamp
+            future = self.world_control.call_async(request)
+            try:
+                result = self._wait_future(future, timeout)
+            except TimeoutError as error:
+                last_error = error
+                if not future.done():
+                    try:
+                        self.world_control.remove_pending_request(future)
+                    except RuntimeError:
+                        pass
+
+                confirmed = False
+                if paused:
+                    try:
+                        self.wait_for_clock_quiescence(
+                            timeout=min(2.0, max(0.2, timeout)),
+                            quiet_time=0.10,
+                        )
+                        confirmed = True
+                    except (RuntimeError, ValueError):
+                        pass
+                elif clock_before is not None:
+                    deadline = monotonic() + min(2.0, max(0.2, timeout))
+                    while monotonic() < deadline:
+                        with self._lock:
+                            clock_after = self._sim_clock_stamp
+                        if (
+                            clock_after is not None
+                            and clock_after
+                            > clock_before + 0.5 * self.physics_step_seconds
+                        ):
+                            confirmed = True
+                            break
+                        sleep(0.002)
+
+                if confirmed:
+                    self.get_logger().warn(
+                        "World pause/resume response timed out, but /clock "
+                        f"confirms paused={bool(paused)}"
+                    )
+                    return
+                self.get_logger().warn(
+                    "World pause/resume response timed out without clock "
+                    f"confirmation; retry {attempt}/{attempts}"
+                )
+                continue
+
+            if result is not None and result.success:
+                if not paused:
+                    return
+                try:
+                    self.wait_for_clock_quiescence(
+                        timeout=min(2.0, max(0.2, timeout)),
+                        quiet_time=0.10,
+                    )
+                    return
+                except (RuntimeError, ValueError) as error:
+                    last_error = error
+                    self.get_logger().warn(
+                        "Gazebo accepted pause but /clock is still advancing; "
+                        f"retry {attempt}/{attempts}"
+                    )
+                    continue
+            last_error = RuntimeError("Gazebo rejected pause/resume request")
+            self.get_logger().warn(
+                f"Gazebo rejected pause={bool(paused)}; retry {attempt}/{attempts}"
+            )
+
+        raise RuntimeError(
+            f"Could not establish Gazebo paused={bool(paused)} after "
+            f"{attempts} idempotent attempts"
+        ) from last_error
+
+    def advance_world(
+        self, physics_steps, timeout=5.0, min_completion_fraction=0.80
+    ):
+        """Wait for physics completion, not just acceptance of multi_step.
+
+        Gazebo acknowledges queued work before executing it. Returning on that
+        acknowledgment lets actions and sensor reads run ahead of the world.
+        Both an accepted (or lost) response AND clock completion are required
+        before another chunk may be submitted. Never retry a physics request.
+        """
+        if not isinstance(physics_steps, int) or physics_steps < 1:
+            raise ValueError("physics_steps must be a positive integer")
+        if not 0.0 < min_completion_fraction <= 1.0:
+            raise ValueError("min_completion_fraction must be in (0, 1]")
+        if not self.world_control.wait_for_service(timeout_sec=timeout):
+            raise RuntimeError("Missing world control bridge for lockstep training")
+        request = ControlWorld.Request()
+        request.world_control.pause = True
+        request.world_control.multi_step = physics_steps
+        with self._lock:
+            clock_before = self._sim_clock_stamp
+            stats_before = getattr(self, "_world_stats_stamp", None)
+        if clock_before is None:
+            raise RuntimeError("Cannot step Gazebo without a /clock baseline")
+        if stats_before is not None:
+            clock_before = max(clock_before, stats_before)
+        requested_duration = physics_steps * self.physics_step_seconds
+        target = clock_before + requested_duration
+        future = self.world_control.call_async(request)
+        deadline = monotonic() + timeout
+        clock_after = clock_before
+
+        response_checked = False
+        while monotonic() < deadline:
+            if not response_checked and future.done():
+                exception = future.exception()
+                if exception is not None:
+                    raise RuntimeError(str(exception)) from exception
+                result = future.result()
+                if result is None or not result.success:
+                    raise RuntimeError("Gazebo rejected lockstep physics request")
+                response_checked = True
+
+            with self._lock:
+                if self._sim_clock_stamp is not None:
+                    clock_after = max(clock_after, self._sim_clock_stamp)
+                stats_after = getattr(self, "_world_stats_stamp", None)
+                if stats_after is not None:
+                    clock_after = max(clock_after, stats_after)
+            if clock_after >= target - 0.5 * self.physics_step_seconds:
+                # A missing reply is tolerable only after full physical
+                # completion. Allow the service bridge to retire it normally.
+                response_deadline = min(deadline, monotonic() + 0.25)
+                while not response_checked and monotonic() < response_deadline and not future.done():
+                    sleep(0.002)
+                if not response_checked and future.done():
+                    exception = future.exception()
+                    if exception is not None:
+                        raise RuntimeError(str(exception)) from exception
+                    result = future.result()
+                    if result is None or not result.success:
+                        raise RuntimeError("Gazebo rejected lockstep physics request")
+                elif not response_checked:
+                    try:
+                        self.world_control.remove_pending_request(future)
+                    except RuntimeError:
+                        pass
+                return requested_duration
+            sleep(0.002)
+
+        # Acknowledgment or partial progress must never consume the full
+        # mission budget. Fail closed instead of silently scoring unrun time.
+        # min_completion_fraction remains accepted for older callers only.
+        if not future.done():
+            try:
+                self.world_control.remove_pending_request(future)
+            except RuntimeError:
+                pass
+        raise TimeoutError(
+            "Lockstep physics did not reach its clock target "
+            f"(before={clock_before:.6f}, after={clock_after:.6f}, "
+            f"target={target:.6f}, acknowledged={response_checked}). "
+            "No simulation time was credited; the request was not retried."
+        )
+
+    def reset_drive_state(self, timeout=5.0):
+        """Reset wheel odometry and release any stale v2 command ownership."""
+        if not self.reset_odometry.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError("Missing /reset_wheel_odometry from effort_drive")
+        # Clear the marker before issuing the request.  effort_drive publishes
+        # an authoritative zero odometry sample inside the reset callback, so
+        # that sample may arrive before the service response and must not be
+        # discarded afterwards.
+        with self._lock:
+            self._received.discard("odom")
+            self._received_at.pop("odom", None)
+        response = self._call_idempotent_service(
+            self.reset_odometry,
+            Trigger.Request,
+            timeout,
+            "wheel odometry reset",
+        )
+        if response is None or not response.success:
+            message = response.message if response is not None else "no response"
+            raise RuntimeError(f"Wheel odometry reset failed: {message}")
+        with self._lock:
+            if hasattr(self, "_drive_diagnostics"):
+                self._drive_diagnostics.clear()
+                self._drive_epoch_min_stamp = self._sim_clock_stamp or 0.
+            estimator = getattr(self, "_assisted_odometry", None)
+            if estimator:
+                # Reset only after the raw reset transaction completes. Never
+                # carry wheel positions or IMU anchors across episodes.
+                estimator.reset(min_stamp=self._sim_clock_stamp or 0.)
+                self._assisted_error = None
+                self._assisted_epoch_active = True
+                self._received.discard("assisted_odom")
+                self._received_at.pop("assisted_odom", None)
+
+    def verify_drive_controller(self, config, timeout=5.0):
+        """Reject a live controller that differs from the saved training profile.
+
+        Call while the node's executor is spinning. This reads parameters and
+        never changes the controller or imports physical pose into control.
+        """
+        expected = config.get("drive_controller", {}).get("parameters", {})
+        if not expected:
+            return
+        from rcl_interfaces.srv import GetParameters
+        client = self.create_client(GetParameters, "/effort_drive/get_parameters")
+        try:
+            if not client.wait_for_service(timeout_sec=timeout):
+                raise TimeoutError("Missing /effort_drive/get_parameters")
+            request = GetParameters.Request(names=list(expected))
+            response = self._wait_future(client.call_async(request), timeout)
+            if len(response.values) != len(expected):
+                raise RuntimeError("Incomplete effort_drive parameter response")
+            for (name, wanted), actual in zip(expected.items(), response.values):
+                value = rclpy.parameter.parameter_value_to_python(actual)
+                matches = (value == wanted if isinstance(wanted, (str, bool)) else
+                           isinstance(value, (float, int)) and abs(value - wanted) < 1e-9)
+                if not matches:
+                    raise RuntimeError(f"Controller mismatch: {name}={value!r}; profile requires {wanted!r}. "
+                                       "Restart Gazebo with the matching PI profile.")
+        finally:
+            self.destroy_client(client)
+
+    @staticmethod
+    def _wait_future(future, timeout: float):
+        deadline = monotonic() + timeout
+        while monotonic() < deadline:
+            if future.done():
+                exception = future.exception()
+                if exception is not None:
+                    raise RuntimeError(str(exception)) from exception
+                return future.result()
+            sleep(0.01)
+        raise TimeoutError("ROS service call timed out")
+
+    def _call_idempotent_service(
+        self, client, request_factory, timeout: float, operation: str,
+        attempts: int = 3,
+    ):
+        """Retry a state-setting service whose duplicate execution is safe."""
+        last_error = None
+        for attempt in range(1, attempts + 1):
+            future = client.call_async(request_factory())
+            try:
+                return self._wait_future(future, timeout)
+            except TimeoutError as error:
+                last_error = error
+                if not future.done():
+                    try:
+                        client.remove_pending_request(future)
+                    except RuntimeError:
+                        pass
+                self.get_logger().warn(
+                    f"{operation} response timed out; retry "
+                    f"{attempt}/{attempts}"
+                )
+        raise TimeoutError(
+            f"{operation} timed out after {attempts} idempotent attempts"
+        ) from last_error
+
+    def _clear_navigation_observations(self) -> None:
+        """Discard plan/cmd observations belonging to the previous episode."""
+        with self._lock:
+            self._nav_path = None
+            self._desired_twist = (0.0, 0.0)
+            for name in ("plan", "nav_cmd"):
+                self._received.discard(name)
+                self._received_at.pop(name, None)
+
+    def _publish_initial_pose(self, x: float, y: float, yaw: float) -> None:
+        message = PoseWithCovarianceStamped()
+        # Time(0) asks TF/AMCL to use the latest available transform. Using a
+        # just-created sim timestamp can otherwise land a few milliseconds
+        # ahead of odom->base_footprint during an episode reset.
+        message.header.stamp = Time().to_msg()
+        message.header.frame_id = "map"
+        message.pose.pose.position.x = float(x)
+        message.pose.pose.position.y = float(y)
+        message.pose.pose.orientation.z = sin(0.5 * float(yaw))
+        message.pose.pose.orientation.w = cos(0.5 * float(yaw))
+        message.pose.covariance[0] = 0.04
+        message.pose.covariance[7] = 0.04
+        message.pose.covariance[35] = 0.03
+        self.initial_pose_publisher.publish(message)
+
+    def set_initial_pose(
+        self,
+        x: float,
+        y: float,
+        yaw: float,
+        timeout: float = 10.0,
+    ) -> None:
+        """Publish /initialpose until AMCL responds to this reset request.
+
+        Important: an existing map->odom transform may belong to the previous
+        episode, so this function deliberately does NOT treat can_transform()
+        alone as proof that localization has settled.
+        """
+        if not hasattr(self, "initial_pose_publisher"):
+            raise RuntimeError(
+                "This ROS interface was created without Nav2 subscriptions"
+            )
+
+        with self._lock:
+            self._received.discard("amcl")
+            self._received_at.pop("amcl", None)
+
+        deadline = monotonic() + timeout
+        next_publish = 0.0
+        first_publish_at = None
+
+        while monotonic() < deadline:
+            now = monotonic()
+
+            if now >= next_publish:
+                if first_publish_at is None:
+                    first_publish_at = now
+                self._publish_initial_pose(x, y, yaw)
+                next_publish = now + 0.25
+
+            with self._lock:
+                amcl_received_at = self._received_at.get("amcl")
+
+            # Require an AMCL callback that happened after this reset started.
+            if (
+                first_publish_at is not None
+                and amcl_received_at is not None
+                and amcl_received_at >= first_publish_at
+            ):
+                return
+
+            sleep(0.05)
+
+        raise TimeoutError(
+            "AMCL did not acknowledge the new initial pose"
+        )
+
+    def wait_for_zero_odometry(
+        self,
+        timeout: float = 3.0,
+        position_tolerance: float = 0.08,
+        yaw_tolerance: float = 0.15,
+    ) -> None:
+        """Wait for a fresh post-reset wheel-odometry sample near zero.
+
+        /reset_wheel_odometry resets the local odom frame to zero even when the
+        robot's requested map-frame start pose is non-zero.
+        """
+        deadline = monotonic() + timeout
+        stable_samples = 0
+        last_pose = None
+
+        while monotonic() < deadline:
+            with self._lock:
+                odom_received_at = self._received_at.get("odom")
+                x = float(self._state.x)
+                y = float(self._state.y)
+                yaw = float(self._state.yaw)
+
+            if odom_received_at is None:
+                sleep(0.02)
+                continue
+
+            position_error = sqrt(x * x + y * y)
+            yaw_error = abs(atan2(sin(yaw), cos(yaw)))
+            last_pose = (x, y, yaw)
+
+            if (
+                position_error <= position_tolerance
+                and yaw_error <= yaw_tolerance
+            ):
+                stable_samples += 1
+                if stable_samples >= 3:
+                    return
+            else:
+                stable_samples = 0
+
+            sleep(0.02)
+
+        raise TimeoutError(
+            "Wheel odometry did not settle at zero after reset; "
+            f"last odom pose={last_pose}"
+        )
+
+    def wait_for_start_pose_in_map(
+        self,
+        x: float,
+        y: float,
+        yaw: float,
+        timeout: float = 8.0,
+        position_tolerance: float = 0.35,
+        yaw_tolerance: float = 0.45,
+    ) -> None:
+        """Wait until live map->base_footprint reflects the new episode pose.
+
+        This closes the reset race where AMCL has accepted /initialpose but
+        Nav2 still sees map->base_footprint from the previous episode.
+        """
+        deadline = monotonic() + timeout
+        next_republish = monotonic() + 0.75
+        stable_samples = 0
+        last_pose = None
+
+        while monotonic() < deadline:
+            now = monotonic()
+
+            # If AMCL is taking time to settle, remind it of the intended pose.
+            # Do not publish every loop; that would continuously restart AMCL.
+            if now >= next_republish:
+                self._publish_initial_pose(x, y, yaw)
+                next_republish = now + 0.75
+
+            try:
+                transform = self.tf_buffer.lookup_transform(
+                    "map",
+                    "base_footprint",
+                    Time(),
+                )
+            except TransformException:
+                stable_samples = 0
+                sleep(0.05)
+                continue
+
+            translation = transform.transform.translation
+            rotation = transform.transform.rotation
+            _, _, current_yaw = quaternion_to_euler(
+                rotation.x,
+                rotation.y,
+                rotation.z,
+                rotation.w,
+            )
+
+            tx = float(translation.x)
+            ty = float(translation.y)
+            last_pose = (tx, ty, current_yaw)
+
+            position_error = sqrt(
+                (tx - float(x)) ** 2 + (ty - float(y)) ** 2
+            )
+            yaw_error = abs(
+                atan2(
+                    sin(current_yaw - float(yaw)),
+                    cos(current_yaw - float(yaw)),
+                )
+            )
+
+            if (
+                position_error <= position_tolerance
+                and yaw_error <= yaw_tolerance
+            ):
+                stable_samples += 1
+                if stable_samples >= 3:
+                    self.get_logger().info(
+                        "Reset TF settled: "
+                        f"map->base_footprint=({tx:.2f}, {ty:.2f}), "
+                        f"position_error={position_error:.3f} m, "
+                        f"yaw_error={yaw_error:.3f} rad"
+                    )
+                    return
+            else:
+                stable_samples = 0
+
+            sleep(0.05)
+
+        raise TimeoutError(
+            "Reset TF did not settle near the requested start pose "
+            f"({x:.2f}, {y:.2f}, {yaw:.2f}); "
+            f"last map->base_footprint={last_pose}"
+        )
+
+    def initialize_navigation(
+        self,
+        start_pose: tuple[float, float, float],
+        goal_pose: tuple[float, float, float],
+        timeout: float = 10.0,
+    ) -> None:
+        """Initialize AMCL, wait for reset TF to settle, then send Nav2 goal."""
+        self.set_initial_pose(*start_pose, timeout=timeout)
+
+        # Do not let Nav2 plan while map->odom still belongs to the previous
+        # episode. This is the key reset-race fix.
+        self.wait_for_start_pose_in_map(
+            *start_pose,
+            timeout=timeout,
+        )
+
+        # Require a fresh plan and fresh local velocity reference for this
+        # goal; never reuse data cached from the previous episode.
+        self._clear_navigation_observations()
+
+        self.send_navigation_goal(
+            *goal_pose,
+            timeout=timeout,
+        )
+
+    def send_navigation_goal(
+        self, x: float, y: float, yaw: float = 0.0, timeout: float = 10.0
+    ) -> None:
+        if not hasattr(self, "navigate_to_pose"):
+            raise RuntimeError("This ROS interface was created without Nav2 subscriptions")
+
+        if self._nav_goal_handle is not None:
+            cancel_future = self._nav_goal_handle.cancel_goal_async()
+            try:
+                self._wait_future(cancel_future, min(timeout, 2.0))
+            except TimeoutError:
+                pass
+
+        if not self.navigate_to_pose.wait_for_server(timeout_sec=timeout):
+            raise TimeoutError("Missing /navigate_to_pose; start Nav2 before training")
+
+        deadline = monotonic() + timeout
+        attempts = 0
+        while monotonic() < deadline:
+            attempts += 1
+            goal = self._navigate_action_type.Goal()
+            goal.pose.header.frame_id = "map"
+            goal.pose.header.stamp = self.get_clock().now().to_msg()
+            goal.pose.pose.position.x = float(x)
+            goal.pose.pose.position.y = float(y)
+            goal.pose.pose.orientation.z = sin(0.5 * yaw)
+            goal.pose.pose.orientation.w = cos(0.5 * yaw)
+            try:
+                handle = self._wait_future(
+                    self.navigate_to_pose.send_goal_async(goal),
+                    max(0.1, deadline - monotonic()),
+                )
+            except TimeoutError:
+                handle = None
+            if handle is not None and handle.accepted:
+                self._nav_goal_handle = handle
+                return
+            # A cancellation from the previous rapid check_env/reset cycle can
+            # still be completing inside bt_navigator. Rejection is transient;
+            # retry with a fresh goal stamp while the action server remains up.
+            sleep(0.10)
+
+        raise RuntimeError(
+            f"Nav2 rejected the hallway goal {attempts} times during reset"
+        )
+
+    def cancel_navigation_goal(self, timeout: float = 2.0) -> None:
+        """Cancel the goal owned by this interface, if it still exists."""
+        if self._nav_goal_handle is None:
+            return
+
+        cancel_future = self._nav_goal_handle.cancel_goal_async()
+        try:
+            self._wait_future(cancel_future, timeout)
+            self._wait_future(self._nav_goal_handle.get_result_async(), timeout)
+        except TimeoutError:
+            pass
+        finally:
+            self._nav_goal_handle = None
+
+    def reset_episode(
+        self,
+        timeout: float = 8.0,
+        start_pose: tuple[float, float, float] = (0.0, 0.0, 0.0),
+        goal_pose: tuple[float, float, float] | None = None,
+    ) -> None:
+        """Reset Gazebo and wheel odometry without racing Nav2 localization.
+
+        Normal training flow:
+            reset_episode(start_pose)
+            configure_training_cables(...)
+            initialize_navigation(start_pose, goal_pose)
+
+        goal_pose remains supported for callers that want reset+navigation in
+        one call.
+        """
+        # ---------------------------------------------------------
+        # 1. Stop the previous Nav2 action and RL residual torque.
+        # ---------------------------------------------------------
+        self.cancel_navigation_goal()
+        self._clear_navigation_observations()
+
+        with self._lock:
+            self._received.discard("amcl")
+            self._received_at.pop("amcl", None)
+            # Suspend fusion across teleport/model mutation, then reset the
+            # estimator explicitly in reset_drive_state. Live episode faults
+            # remain latched until that reset transaction completes.
+            self._assisted_epoch_active = False
+
+        for _ in range(5):
+            self.publish_torque(0.0, 0.0)
+            sleep(0.02)
+
+        # ---------------------------------------------------------
+        # 2. Reset Gazebo model state.
+        # ---------------------------------------------------------
+        if not self.world_control.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError(
+                f"Missing {self.world_control.srv_name}; "
+                "start training_sim.launch.py"
+            )
+
+        request = ControlWorld.Request()
+        request.world_control.reset.model_only = True
+
+        response = self._call_idempotent_service(
+            self.world_control,
+            lambda: deepcopy(request),
+            timeout,
+            "Gazebo model reset",
+        )
+
+        if response is None or not response.success:
+            raise RuntimeError(
+                "Gazebo rejected the model-only episode reset"
+            )
+
+        # Explicitly teleport Nino to the requested start pose. Do this even
+        # after model_only reset so the episode start is deterministic.
+        if not self.set_entity_pose.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError(
+                f"Missing {self.set_entity_pose.srv_name}; "
+                "rebuild and restart training_sim.launch.py"
+            )
+
+        pose_request = SetEntityPose.Request()
+        pose_request.entity.name = "nino"
+        pose_request.entity.type = Entity.MODEL
+        pose_request.pose.position.x = float(start_pose[0])
+        pose_request.pose.position.y = float(start_pose[1])
+        pose_request.pose.position.z = 0.0
+        pose_request.pose.orientation.x = 0.0
+        pose_request.pose.orientation.y = 0.0
+        pose_request.pose.orientation.z = sin(
+            0.5 * float(start_pose[2])
+        )
+        pose_request.pose.orientation.w = cos(
+            0.5 * float(start_pose[2])
+        )
+
+        response = self._call_idempotent_service(
+            self.set_entity_pose,
+            lambda: deepcopy(pose_request),
+            timeout,
+            "Nino start-pose reset",
+        )
+
+        if response is None or not response.success:
+            raise RuntimeError(
+                f"Gazebo rejected reset pose {start_pose}"
+            )
+
+        # A preceding lockstep request leaves Gazebo paused. Although the
+        # environment requests an unpause before reset, ControlWorld's model
+        # reset can race that state transition. Reassert running state after
+        # teleport so controller timers can publish fresh zero odometry.
+        self.set_world_paused(False, timeout=timeout)
+
+        # Give Gazebo one short physics/transport window to expose the new
+        # model pose before resetting local wheel odometry.
+        sleep(0.10)
+
+        # ---------------------------------------------------------
+        # 3. Reset the local wheel-odometry/controller state.
+        # ---------------------------------------------------------
+        self.reset_drive_state(timeout)
+
+        # Keep simulation time moving after the drive reset as well. Without
+        # this, a late pause transition can leave the odometry marker empty
+        # forever even though both reset services succeeded.
+        self.set_world_paused(False, timeout=timeout)
+
+        # Accept the authoritative reset publication even when its callback
+        # raced ahead of the service response, then require a stable zero-ish
+        # observation.
+        self.wait_for_zero_odometry(
+            timeout=min(timeout, 3.0),
+        )
+
+        # ---------------------------------------------------------
+        # 4. Optional one-call navigation startup.
+        # ---------------------------------------------------------
+        if goal_pose is not None:
+            self.initialize_navigation(
+                start_pose,
+                goal_pose,
+                timeout=timeout,
+            )
+
+        # Small settling delay before terrain replacement or environment read.
+        sleep(0.20)
+
+    @staticmethod
+    def _cable_sdf(name: str, x: float, radius: float, angle: float) -> str:
+        length = 4.0 / max(cos(angle), 0.70)
+        return f"""<?xml version='1.0'?>
+<sdf version='1.9'><model name='{name}'><static>true</static>
+<pose>{x:.6f} 0 {radius:.6f} 1.57079632679 0 {angle:.6f}</pose>
+<link name='cable'><collision name='collision'><geometry><cylinder>
+<radius>{radius:.6f}</radius><length>{length:.6f}</length>
+</cylinder></geometry></collision><visual name='visual'><geometry><cylinder>
+<radius>{radius:.6f}</radius><length>{length:.6f}</length>
+</cylinder></geometry><material><ambient>0.08 0.08 0.08 1</ambient>
+<diffuse>0.12 0.12 0.12 1</diffuse></material></visual></link></model></sdf>"""
+
+    def configure_training_cables(
+        self, cables: list[tuple[float, float, float]], timeout: float = 5.0
+    ) -> None:
+        """Replace the legacy dense cable model with this episode's curriculum."""
+        if not self.delete_entity.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError(f"Missing {self.delete_entity.srv_name}")
+
+        # A fresh training world contains only the legacy cable_bumps model.
+        # Do not probe all eight optional names: an absent-entity request can
+        # block the Gazebo service bridge for seconds. If a desired fixed name
+        # survived an earlier run, its create failure below removes and retries
+        # that exact name safely.
+        if self._training_cable_names is None:
+            terrain_names = {"cable_bumps"}
+        else:
+            terrain_names = set(self._training_cable_names)
+
+        def remove_if_present(name):
+            def request():
+                value = DeleteEntity.Request()
+                value.entity.name = name
+                value.entity.type = Entity.MODEL
+                return value
+            response = self._call_idempotent_service(
+                self.delete_entity, request, timeout, f"delete {name}"
+            )
+            # Gazebo reports success=False when the entity is already absent;
+            # that is the desired postcondition for an idempotent reset.
+            return response is not None and response.success
+
+        for name in sorted(terrain_names):
+            remove_if_present(name)
+        self._training_cable_names = set()
+
+        if not cables:
+            return
+
+        if not self.spawn_entity.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError(f"Missing {self.spawn_entity.srv_name}")
+
+        for index, (x, radius, angle) in enumerate(cables):
+            name = f"training_cable_{index}"
+            request = self._cable_spawn_request(name, x, radius, angle)
+            response = self._call_idempotent_service(
+                self.spawn_entity, lambda: deepcopy(request), timeout, f"spawn {name}"
+            )
+            if response is None or not response.success:
+                # A prior asynchronous removal may have raced the first create.
+                # Remove this exact name once more and retry with a fresh request.
+                remove_if_present(name)
+                request = self._cable_spawn_request(name, x, radius, angle)
+                response = self._call_idempotent_service(
+                    self.spawn_entity,
+                    lambda: deepcopy(request),
+                    timeout,
+                    f"spawn {name} after removal",
+                )
+                if response is None or not response.success:
+                    raise RuntimeError(f"Gazebo failed to spawn {name} after retry")
+            self._training_cable_names.add(name)
+
+    @staticmethod
+    def _goal_marker_sdf(name: str, radius: float = 0.10) -> str:
+        """Goal decoration on visibility bit 0x04, excluded by both lidars.
+
+        GPU LiDAR renders visuals, including those without collision shapes.
+        A normal visual pole was a false obstacle immediately before success.
+        """
+        return f"""<?xml version='1.0'?>
+<sdf version='1.9'><model name='{name}'><static>true</static><link name='marker'>
+<visual name='goal_disc'><visibility_flags>4</visibility_flags><pose>0 0 0.01 0 0 0</pose><geometry><cylinder>
+<radius>{radius:.6f}</radius><length>0.02</length></cylinder></geometry><material>
+<ambient>0.05 1 0.05 1</ambient><diffuse>0.05 1 0.05 1</diffuse>
+<emissive>0 0.6 0 1</emissive></material></visual>
+<visual name='goal_pole'><visibility_flags>4</visibility_flags><pose>0 0 0.50 0 0 0</pose><geometry><cylinder>
+<radius>0.025</radius><length>1.0</length></cylinder></geometry><material>
+<ambient>0.05 1 0.05 1</ambient><diffuse>0.05 1 0.05 1</diffuse>
+<emissive>0 0.6 0 1</emissive></material></visual>
+<visual name='goal_flag'><visibility_flags>4</visibility_flags><pose>0.14 0 0.82 0 0 0</pose><geometry><box>
+<size>0.28 0.02 0.20</size></box></geometry><material>
+<ambient>0.05 1 0.05 1</ambient><diffuse>0.05 1 0.05 1</diffuse>
+<emissive>0 0.6 0 1</emissive></material></visual>
+</link></model></sdf>"""
+
+    def configure_goal_marker(
+        self, goal_pose: tuple[float, float, float], timeout: float = 5.0,
+        radius: float = 0.10,
+    ) -> None:
+        """Create the goal marker once, then move it without visual gaps."""
+        name = "training_goal_marker"
+
+        def pose_request():
+            request = SetEntityPose.Request()
+            request.entity.name = name
+            request.entity.type = Entity.MODEL
+            request.pose.position.x = float(goal_pose[0])
+            request.pose.position.y = float(goal_pose[1])
+            request.pose.orientation.z = sin(0.5 * float(goal_pose[2]))
+            request.pose.orientation.w = cos(0.5 * float(goal_pose[2]))
+            return request
+
+        # Once created, moving the fixed-name marker is the cheap common path.
+        # On the first call, create first: probing set_pose for an absent marker
+        # produces a scary Gazebo error even though absence is expected.
+        if self._goal_marker_present is True:
+            if not self.set_entity_pose.wait_for_service(timeout_sec=timeout):
+                raise TimeoutError(f"Missing {self.set_entity_pose.srv_name}")
+            response = self._call_idempotent_service(
+                self.set_entity_pose,
+                pose_request,
+                timeout,
+                "move goal marker",
+            )
+            if response is not None and response.success:
+                return
+            self._goal_marker_present = None
+
+        if not self.spawn_entity.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError(f"Missing {self.spawn_entity.srv_name}")
+
+        def spawn_request():
+            request = SpawnEntity.Request()
+            request.entity_factory.name = name
+            request.entity_factory.allow_renaming = False
+            request.entity_factory.sdf = self._goal_marker_sdf(name, radius)
+            request.entity_factory.pose.position.x = float(goal_pose[0])
+            request.entity_factory.pose.position.y = float(goal_pose[1])
+            request.entity_factory.pose.orientation.z = sin(0.5 * float(goal_pose[2]))
+            request.entity_factory.pose.orientation.w = cos(0.5 * float(goal_pose[2]))
+            return request
+
+        response = self._call_idempotent_service(
+            self.spawn_entity,
+            spawn_request,
+            timeout,
+            "create goal marker",
+        )
+        if response is None or not response.success:
+            # Another asynchronous caller may have created the fixed-name
+            # marker between set_pose and create. Moving it is idempotent and
+            # avoids the delete/recreate interval that made it disappear.
+            response = self._call_idempotent_service(
+                self.set_entity_pose,
+                pose_request,
+                timeout,
+                "move goal marker after create race",
+            )
+            if response is None or not response.success:
+                raise RuntimeError("Gazebo failed to create or move the visual goal marker")
+        self._goal_marker_present = True
+
+    @staticmethod
+    def _adaptive_terrain_sdf(
+        name: str, features: list[tuple[str, float, float, float]],
+    ) -> str:
+        """Build one static model containing randomized path hazards."""
+        from math import atan2, cos, pi, sin
+
+        links = []
+        for index, (kind, x, y, size) in enumerate(features):
+            prefix = f"feature_{index}_{kind}"
+            if kind == "obstacle":
+                # Retained only for explicit route-planning worlds. This
+                # 35 cm post is intentionally not sampled or rewarded by the
+                # traversable wheel-control curriculum.
+                height = 0.35
+                body = f"""
+<collision name='{prefix}_collision'><pose>{x:.6f} {y:.6f} {0.5 * height:.6f} 0 0 0</pose>
+<geometry><cylinder><radius>{size:.6f}</radius><length>{height:.6f}</length></cylinder></geometry></collision>
+<visual name='{prefix}_visual'><pose>{x:.6f} {y:.6f} {0.5 * height:.6f} 0 0 0</pose>
+<geometry><cylinder><radius>{size:.6f}</radius><length>{height:.6f}</length></cylinder></geometry>
+<material><ambient>0.85 0.20 0.04 1</ambient><diffuse>1 0.28 0.05 1</diffuse></material></visual>"""
+            elif kind == "bump":
+                # Five shallow concentric steps approximate a rounded 25 mm
+                # mound without presenting a caster with one blocking face.
+                # The largest edge is 5 mm, well below the 16 mm caster radius.
+                layers = 5
+                bump_parts = []
+                for layer in range(layers):
+                    layer_radius = size * (layers - layer) / layers
+                    height = 0.005 * (layer + 1)
+                    pose = f"{x:.6f} {y:.6f} {0.5 * height:.6f} 0 0 0"
+                    geometry = (
+                        f"<geometry><cylinder><radius>{layer_radius:.6f}</radius>"
+                        f"<length>{height:.6f}</length></cylinder></geometry>"
+                    )
+                    bump_parts.append(f"""
+<collision name='{prefix}_{layer}_collision'><pose>{pose}</pose>{geometry}
+<surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface></collision>
+<visual name='{prefix}_{layer}_visual'><pose>{pose}</pose>{geometry}
+<material><ambient>0.55 0.24 0.03 1</ambient><diffuse>0.90 0.38 0.04 1</diffuse></material></visual>""")
+                body = "".join(bump_parts)
+            elif kind == "cable":
+                length = 0.55
+                body = f"""
+<collision name='{prefix}_collision'><pose>{x:.6f} {y:.6f} {size:.6f} 1.57079632679 0 0</pose>
+<geometry><cylinder><radius>{size:.6f}</radius><length>{length:.6f}</length></cylinder></geometry></collision>
+<visual name='{prefix}_visual'><pose>{x:.6f} {y:.6f} {size:.6f} 1.57079632679 0 0</pose>
+<geometry><cylinder><radius>{size:.6f}</radius><length>{length:.6f}</length></cylinder></geometry>
+<material><ambient>0.08 0.08 0.08 1</ambient><diffuse>0.12 0.12 0.12 1</diffuse></material></visual>"""
+            elif kind == "groove":
+                # Gazebo cannot subtract a runtime shape from the hall floor.
+                # Two shallow, sloped road shoulders create a physical 20 mm
+                # relative drop into the floor-level transverse channel. The
+                # 6 mm bodies are mostly embedded, leaving gentle outer edges.
+                length = 0.70
+                ramp_width = 1.8 * size
+                depth = 0.4 * size
+                thickness = 0.006
+                slope = atan2(depth, ramp_width)
+                shoulder_parts = []
+                for side, offset, pitch in (
+                    ("before", -(size + 0.5 * ramp_width), -slope),
+                    ("after", size + 0.5 * ramp_width, slope),
+                ):
+                    cx = x + offset
+                    pose = f"{cx:.6f} {y:.6f} {0.5 * depth:.6f} 0 {pitch:.6f} 0"
+                    geometry = (
+                        f"<geometry><box><size>{ramp_width:.6f} {length:.6f} "
+                        f"{thickness:.6f}</size></box></geometry>"
+                    )
+                    shoulder_parts.append(f"""
+<collision name='{prefix}_{side}_collision'><pose>{pose}</pose>{geometry}
+<surface><friction><ode><mu>0.95</mu><mu2>0.95</mu2></ode></friction></surface></collision>
+<visual name='{prefix}_{side}_visual'><pose>{pose}</pose>{geometry}
+<material><ambient>0.26 0.27 0.29 1</ambient><diffuse>0.34 0.35 0.37 1</diffuse></material></visual>""")
+                body = f"""
+<visual name='{prefix}_channel'><pose>{x:.6f} {y:.6f} 0.001 0 0 0</pose>
+<geometry><box><size>{2.0 * size:.6f} {length:.6f} 0.002</size></box></geometry>
+<material><ambient>0.025 0.025 0.03 1</ambient><diffuse>0.04 0.04 0.05 1</diffuse></material></visual>
+{''.join(shoulder_parts)}"""
+            elif kind == "pothole":
+                # Runtime spawning cannot subtract the hall's box floor. Use a
+                # round basin surrogate: 24 overlapping outer/inner ramps make
+                # a 30 mm relative depression with about a 12.5 degree grade.
+                # The 3 mm leading edge and broad 0.60 m diameter are traversable
+                # by the 16 mm casters while still demanding wheel effort.
+                segments = 24
+                ramp_width = 0.45 * size
+                rim_height = 0.10 * size
+                thickness = 0.006
+                slope = atan2(rim_height, ramp_width)
+                rim_parts = []
+                for part in range(segments):
+                    angle = 2.0 * pi * part / segments
+                    for side, radius, pitch in (
+                        ("outer", size - 0.5 * ramp_width, slope),
+                        ("inner", size - 1.5 * ramp_width, -slope),
+                    ):
+                        cx = x + radius * cos(angle)
+                        cy = y + radius * sin(angle)
+                        tangent_width = 2.10 * max(
+                            size - ramp_width, radius
+                        ) * sin(pi / segments)
+                        pose = (
+                            f"{cx:.6f} {cy:.6f} {0.5 * rim_height:.6f} "
+                            f"0 {pitch:.6f} {angle:.6f}"
+                        )
+                        geometry = (
+                            f"<geometry><box><size>{ramp_width:.6f} "
+                            f"{tangent_width:.6f} {thickness:.6f}</size></box></geometry>"
+                        )
+                        rim_parts.append(f"""
+<collision name='{prefix}_{side}_{part}_collision'><pose>{pose}</pose>{geometry}
+<surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface></collision>
+<visual name='{prefix}_{side}_{part}_visual'><pose>{pose}</pose>{geometry}
+<material><ambient>0.20 0.12 0.05 1</ambient><diffuse>0.28 0.16 0.06 1</diffuse></material></visual>""")
+                body = f"""
+<visual name='{prefix}_depression'><pose>{x:.6f} {y:.6f} 0.001 0 0 0</pose>
+<geometry><cylinder><radius>{size:.6f}</radius><length>0.002</length></cylinder></geometry>
+<material><ambient>0.015 0.015 0.018 1</ambient><diffuse>0.025 0.025 0.03 1</diffuse></material></visual>
+{''.join(rim_parts)}"""
+            else:
+                raise ValueError(f"Unknown adaptive terrain kind: {kind}")
+            links.append(f"<link name='{prefix}'>{body}</link>")
+        return (
+            "<?xml version='1.0'?><sdf version='1.9'><model name='"
+            + name + "'><static>true</static>" + "".join(links) + "</model></sdf>"
+        )
+
+    def configure_adaptive_terrain(
+        self,
+        features: list[tuple[str, float, float, float]],
+        timeout: float = 5.0,
+        *, carved_floor_config: dict | None = None,
+    ) -> None:
+        """Replace adaptive side clutter with one efficiently spawned model."""
+        if carved_floor_config is not None:
+            return self._configure_carved_floor(features, carved_floor_config, timeout)
+        name = "adaptive_training_terrain"
+        if not self.delete_entity.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError(f"Missing {self.delete_entity.srv_name}")
+
+        def remove_if_present() -> None:
+            def request():
+                value = DeleteEntity.Request()
+                value.entity.name = name
+                value.entity.type = Entity.MODEL
+                return value
+            self._call_idempotent_service(
+                self.delete_entity, request, timeout, f"delete {name}"
+            )
+
+        # A fresh world has no adaptive model. Create first instead of issuing
+        # an expected-to-fail removal; if a fixed-name model survived an older
+        # run, the create failure below removes and retries it safely.
+        if self._adaptive_terrain_present is True:
+            remove_if_present()
+            self._adaptive_terrain_present = False
+        if not features:
+            if self._adaptive_terrain_present is None:
+                remove_if_present()
+                self._adaptive_terrain_present = False
+            return
+        if not self.spawn_entity.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError(f"Missing {self.spawn_entity.srv_name}")
+
+        def spawn_request():
+            request = SpawnEntity.Request()
+            request.entity_factory.name = name
+            request.entity_factory.allow_renaming = False
+            request.entity_factory.sdf = self._adaptive_terrain_sdf(name, features)
+            return request
+
+        response = self._call_idempotent_service(
+            self.spawn_entity,
+            spawn_request,
+            timeout,
+            f"spawn {name}",
+        )
+        if response is None or not response.success:
+            remove_if_present()
+            response = self._call_idempotent_service(
+                self.spawn_entity,
+                spawn_request,
+                timeout,
+                f"spawn {name} after removal",
+            )
+            if response is None or not response.success:
+                raise RuntimeError("Gazebo failed to spawn adaptive training terrain")
+        self._adaptive_terrain_present = True
+
+    def _configure_carved_floor(self, features, config, timeout):
+        """Replace the whole floor while paused; retain walls and six cables."""
+        from pathlib import Path
+        import tempfile
+        import xml.etree.ElementTree as ET
+        from nino_rl.carved_floor import floor_model
+
+        if self.world_name != "factory_floor_lab":
+            raise ValueError("Carved-floor replacement is restricted to its own world")
+        if not self.delete_entity.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError(f"Missing {self.delete_entity.srv_name}")
+        if not self.spawn_entity.wait_for_service(timeout_sec=timeout):
+            raise TimeoutError(f"Missing {self.spawn_entity.srv_name}")
+        if not hasattr(self, "_carved_floor_cache"):
+            self._carved_floor_cache = Path(tempfile.mkdtemp(prefix="nino_carved_floor_"))
+            self._carved_floor_history = []
+        sdf, paths = floor_model(features, config, self._carved_floor_cache)
+        root = ET.fromstring(sdf)
+        # Keep existing local bump / short-cable mechanics, but potholes and
+        # grooves are exclusively in the replacement negative-height mesh.
+        positive = [f for f in features if f[0] not in ("pothole", "groove")]
+        if positive:
+            extra = ET.fromstring(self._adaptive_terrain_sdf("positive", positive)).find("model")
+            for child in extra.findall("link"):
+                root.find("model").append(child)
+        sdf = ET.tostring(root, encoding="unicode")
+        name = "factory_contact_floor"
+
+        # Deleting this model removes the support under Nino too. Entity
+        # services do not pause physics themselves; replacing a floor in a
+        # running world lets the robot fall before the create request arrives.
+        # Leave it paused until the caller explicitly refreshes reset sensors.
+        self.publish_straight_command(0.0)
+        self.publish_control(0.0, 0.0, 0.0)
+        self.set_world_paused(True, timeout=timeout)
+
+        def remove():
+            request = DeleteEntity.Request()
+            request.entity.name = name
+            request.entity.type = Entity.MODEL
+            return request
+
+        removed = self._call_idempotent_service(self.delete_entity, remove, timeout, f"remove {name}")
+        if removed is None or not removed.success:
+            raise RuntimeError("Cannot replace carved floor: old floor removal unconfirmed")
+
+        def spawn():
+            request = SpawnEntity.Request()
+            request.entity_factory.name = name
+            request.entity_factory.allow_renaming = False
+            request.entity_factory.sdf = sdf
+            request.entity_factory.pose.orientation.w = 1.0
+            return request
+
+        response = self._call_idempotent_service(self.spawn_entity, spawn, timeout, f"spawn {name}")
+        if response is None or not response.success:
+            raise RuntimeError("Gazebo failed to spawn complete carved floor; stop this run")
+        # Gazebo paths must remain valid for asynchronous visual loading. Keep
+        # current and previous layouts; removed older models no longer use them.
+        self._carved_floor_history.append(set(paths))
+        self._carved_floor_history = self._carved_floor_history[-2:]
+        keep = set().union(*self._carved_floor_history)
+        for path in self._carved_floor_cache.glob("*.stl"):
+            if str(path.resolve()) not in keep:
+                path.unlink()
+
+    @classmethod
+    def _cable_spawn_request(cls, name: str, x: float, radius: float, angle: float):
+        request = SpawnEntity.Request()
+        request.entity_factory.name = name
+        request.entity_factory.allow_renaming = False
+        request.entity_factory.sdf = cls._cable_sdf(name, x, radius, angle)
+
+        # EntityFactory.pose overrides the SDF model pose. Leaving its default
+        # identity pose spawns an upright cylinder at the robot's origin.
+        pose = request.entity_factory.pose
+        pose.position.x = float(x)
+        pose.position.z = float(radius)
+
+        # Quaternion for roll=pi/2, pitch=0, yaw=angle: cable lies on the floor.
+        pose.orientation.x = sqrt(0.5) * cos(0.5 * angle)
+        pose.orientation.y = sqrt(0.5) * sin(0.5 * angle)
+        pose.orientation.z = sqrt(0.5) * sin(0.5 * angle)
+        pose.orientation.w = sqrt(0.5) * cos(0.5 * angle)
+        return request

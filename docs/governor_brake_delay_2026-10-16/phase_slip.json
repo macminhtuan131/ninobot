@@ -1,0 +1,501 @@
+[
+  {
+    "seed": 77320,
+    "available": true,
+    "boundaries_s": [
+      0.05,
+      0.07599999999997209,
+      0.17599999999997173,
+      0.2759999999999714,
+      0.375999999999971,
+      0.47599999999997067,
+      0.5759999999999703,
+      0.67599999999997,
+      0.7759999999999696,
+      0.8759999999999692,
+      0.9759999999999689,
+      1.0759999999999685,
+      1.1759999999999682,
+      1.2759999999999678,
+      1.3759999999999675,
+      1.4759999999999671,
+      1.5759999999999668,
+      1.6759999999999664,
+      1.775999999999966,
+      1.8759999999999657,
+      1.9720000000000013
+    ],
+    "segment_labels": [
+      "event_0_cruise",
+      "event_1_delay",
+      "event_1_delay",
+      "event_1_braking",
+      "event_1_braking",
+      "event_1_holding",
+      "event_1_holding",
+      "event_1_holding",
+      "event_1_holding",
+      "event_1_holding",
+      "event_2_delay",
+      "event_2_delay",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding"
+    ],
+    "arms": {
+      "full": {
+        "phases": {
+          "event_0_cruise": {
+            "duration_s": 0.025999999999972087,
+            "slip_square_integral_s": 0.0005837906149628263,
+            "distance_m": 0.0071103480409518156,
+            "rms": 0.1498448704190505,
+            "slip_square_per_m": null
+          },
+          "event_1_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 0.005846210543819212,
+            "distance_m": 0.06899746090577903,
+            "rms": 0.17097091190929575,
+            "slip_square_per_m": 0.0847308070046611
+          },
+          "event_1_braking": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 8.411599035648201e-07,
+            "distance_m": 0.080277528814677,
+            "rms": 0.002050804602546063,
+            "slip_square_per_m": 1.047814894136393e-05
+          },
+          "event_1_holding": {
+            "duration_s": 0.4999999999999982,
+            "slip_square_integral_s": 0.0007373226535250499,
+            "distance_m": 0.19308304648352467,
+            "rms": 0.03840111075281684,
+            "slip_square_per_m": 0.003818681479049296
+          },
+          "event_2_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 3.554015246338357e-07,
+            "distance_m": 0.08055623930518963,
+            "rms": 0.0013330444940695659,
+            "slip_square_per_m": 4.411843548050783e-06
+          },
+          "event_2_holding": {
+            "duration_s": 0.7960000000000331,
+            "slip_square_integral_s": 1.168517350303083e-06,
+            "distance_m": 0.319270099001405,
+            "rms": 0.0012116049772857948,
+            "slip_square_per_m": 3.659964882267101e-06
+          }
+        },
+        "common_window": {
+          "available": true,
+          "start_s": 11.718,
+          "end_s": 13.64,
+          "duration_s": 1.9220000000000006,
+          "coverage_s": 1.9220000000000006,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.007169688891085589,
+          "slip_square_integral_s": 0.007169688891085589,
+          "rms": 0.061076404663341154,
+          "distance_m": 0.749294722551527,
+          "slip_square_per_m": 0.009568583196036788
+        },
+        "phase_sum_s": 0.00716968889108559,
+        "coverage_pass": true,
+        "conservation_pass": true
+      },
+      "frozen_reactive": {
+        "phases": {
+          "event_0_cruise": {
+            "duration_s": 0.025999999999972087,
+            "slip_square_integral_s": 0.0016235880059948084,
+            "distance_m": 0.007587597420926774,
+            "rms": 0.24989136147199825,
+            "slip_square_per_m": null
+          },
+          "event_1_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 0.0055796818648524375,
+            "distance_m": 0.058940069615978974,
+            "rms": 0.16702816925375877,
+            "slip_square_per_m": 0.09466703892965467
+          },
+          "event_1_braking": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 1.3976467229272106e-06,
+            "distance_m": 0.0737357776903591,
+            "rms": 0.002643526738021781,
+            "slip_square_per_m": 1.8954797341344807e-05
+          },
+          "event_1_holding": {
+            "duration_s": 0.4999999999999982,
+            "slip_square_integral_s": 0.0006846485972175977,
+            "distance_m": 0.1762233349532414,
+            "rms": 0.03700401592307516,
+            "slip_square_per_m": 0.0038851188317328145
+          },
+          "event_2_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 3.8262575635496325e-06,
+            "distance_m": 0.07366433444982431,
+            "rms": 0.004373932763286174,
+            "slip_square_per_m": 5.1941792349401426e-05
+          },
+          "event_2_holding": {
+            "duration_s": 0.7960000000000331,
+            "slip_square_integral_s": 2.2287098016033435e-06,
+            "distance_m": 0.3181941845804118,
+            "rms": 0.0016732861935219627,
+            "slip_square_per_m": 7.004244293597765e-06
+          }
+        },
+        "common_window": {
+          "available": true,
+          "start_s": 15.161000000000001,
+          "end_s": 17.083000000000002,
+          "duration_s": 1.9220000000000006,
+          "coverage_s": 1.9220000000000006,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.007895371082152922,
+          "slip_square_integral_s": 0.007895371082152922,
+          "rms": 0.06409284970270869,
+          "distance_m": 0.7083452987107425,
+          "slip_square_per_m": 0.01114621794839786
+        },
+        "phase_sum_s": 0.007895371082152923,
+        "coverage_pass": true,
+        "conservation_pass": true
+      },
+      "delayed_200ms": {
+        "phases": {
+          "event_0_cruise": {
+            "duration_s": 0.025999999999972087,
+            "slip_square_integral_s": 0.002351178797918882,
+            "distance_m": 0.006561173767760768,
+            "rms": 0.3007157358140873,
+            "slip_square_per_m": null
+          },
+          "event_1_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 0.018038715381852907,
+            "distance_m": 0.04665938626545793,
+            "rms": 0.30032245488685133,
+            "slip_square_per_m": 0.38660421462095007
+          },
+          "event_1_braking": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 2.6188267545074254e-05,
+            "distance_m": 0.07717951872081386,
+            "rms": 0.011442960181935954,
+            "slip_square_per_m": 0.0003393162846714121
+          },
+          "event_1_holding": {
+            "duration_s": 0.4999999999999982,
+            "slip_square_integral_s": 0.000493029808302156,
+            "distance_m": 0.17472440110838,
+            "rms": 0.03140158621159631,
+            "slip_square_per_m": 0.0028217570366507305
+          },
+          "event_2_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 0.0015996654733490716,
+            "distance_m": 0.04933497836429279,
+            "rms": 0.08943336830705521,
+            "slip_square_per_m": 0.03242457028230629
+          },
+          "event_2_holding": {
+            "duration_s": 0.7960000000000331,
+            "slip_square_integral_s": 2.3012482190187565e-05,
+            "distance_m": 0.2955787556930472,
+            "rms": 0.005376816298262342,
+            "slip_square_per_m": 7.785567043284255e-05
+          }
+        },
+        "common_window": {
+          "available": true,
+          "start_s": 13.777000000000001,
+          "end_s": 15.699000000000002,
+          "duration_s": 1.9220000000000006,
+          "coverage_s": 1.9220000000000006,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.022531790211158274,
+          "slip_square_integral_s": 0.022531790211158274,
+          "rms": 0.10827324620364277,
+          "distance_m": 0.6500382139197524,
+          "slip_square_per_m": 0.034662254816206606
+        },
+        "phase_sum_s": 0.022531790211158278,
+        "coverage_pass": true,
+        "conservation_pass": true
+      }
+    },
+    "qualification": "GT native timestamps; candidate command-phase boundaries translated to each reference's own first manifold, retaining all re-triggers. Secondary diagnostic, not replacement scoring or causal intervention from identical state."
+  },
+  {
+    "seed": 77321,
+    "available": true,
+    "boundaries_s": [
+      0.05,
+      0.07099999999997308,
+      0.17099999999997273,
+      0.2709999999999724,
+      0.370999999999972,
+      0.47099999999997166,
+      0.5709999999999713,
+      0.670999999999971,
+      0.7709999999999706,
+      0.8709999999999702,
+      0.9709999999999699,
+      1.0709999999999695,
+      1.1709999999999692,
+      1.2709999999999688,
+      1.3709999999999685,
+      1.470999999999968,
+      1.5709999999999678,
+      1.6709999999999674,
+      1.770999999999967,
+      1.8709999999999667,
+      1.9709999999999663,
+      1.9859999999999989
+    ],
+    "segment_labels": [
+      "event_0_cruise",
+      "event_1_delay",
+      "event_1_delay",
+      "event_1_braking",
+      "event_1_braking",
+      "event_1_holding",
+      "event_1_holding",
+      "event_1_holding",
+      "event_2_delay",
+      "event_2_delay",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_holding",
+      "event_2_recover"
+    ],
+    "arms": {
+      "delayed_200ms": {
+        "phases": {
+          "event_0_cruise": {
+            "duration_s": 0.020999999999973082,
+            "slip_square_integral_s": 0.000939493419257185,
+            "distance_m": 0.006265186145834895,
+            "rms": 0.21151307730125604,
+            "slip_square_per_m": null
+          },
+          "event_1_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 0.012384809031379519,
+            "distance_m": 0.054399018828716186,
+            "rms": 0.24884542422334754,
+            "slip_square_per_m": 0.2276660369624501
+          },
+          "event_1_braking": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 2.760564164250773e-06,
+            "distance_m": 0.07744583532883909,
+            "rms": 0.0037152147745795148,
+            "slip_square_per_m": 3.564509508522017e-05
+          },
+          "event_1_holding": {
+            "duration_s": 0.29999999999999893,
+            "slip_square_integral_s": 0.0002273422474875408,
+            "distance_m": 0.10572922583830971,
+            "rms": 0.027528303464346267,
+            "slip_square_per_m": 0.0021502308910803175
+          },
+          "event_2_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 0.00023510899254821044,
+            "distance_m": 0.07067698661851794,
+            "rms": 0.03428622117908382,
+            "slip_square_per_m": 0.0033265282491063363
+          },
+          "event_2_holding": {
+            "duration_s": 0.9999999999999964,
+            "slip_square_integral_s": 3.556185413924643e-06,
+            "distance_m": 0.3652863937302532,
+            "rms": 0.0018857850921896312,
+            "slip_square_per_m": 9.735335000051271e-06
+          },
+          "event_2_recover": {
+            "duration_s": 0.015000000000032543,
+            "slip_square_integral_s": 9.80721910126666e-08,
+            "distance_m": 0.00546698879833082,
+            "rms": 0.0025569798723292527,
+            "slip_square_per_m": null
+          }
+        },
+        "common_window": {
+          "available": true,
+          "start_s": 12.502,
+          "end_s": 14.437999999999999,
+          "duration_s": 1.9359999999999982,
+          "coverage_s": 1.9359999999999982,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.013793168512441646,
+          "slip_square_integral_s": 0.013793168512441646,
+          "rms": 0.08440717097868418,
+          "distance_m": 0.6852696352888019,
+          "slip_square_per_m": 0.020128089444133353
+        },
+        "phase_sum_s": 0.013793168512441643,
+        "coverage_pass": true,
+        "conservation_pass": true
+      },
+      "frozen_reactive": {
+        "phases": {
+          "event_0_cruise": {
+            "duration_s": 0.020999999999973082,
+            "slip_square_integral_s": 0.0011686765443859539,
+            "distance_m": 0.005951255641436561,
+            "rms": 0.2359052013382708,
+            "slip_square_per_m": null
+          },
+          "event_1_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 0.016360711832722117,
+            "distance_m": 0.05135371632489033,
+            "rms": 0.2860132150156892,
+            "slip_square_per_m": 0.31858866316929707
+          },
+          "event_1_braking": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 1.4801177618554984e-06,
+            "distance_m": 0.07345916247531539,
+            "rms": 0.002720402324891948,
+            "slip_square_per_m": 2.0148851579309318e-05
+          },
+          "event_1_holding": {
+            "duration_s": 0.29999999999999893,
+            "slip_square_integral_s": 0.0003080035830392774,
+            "distance_m": 0.10539962767175673,
+            "rms": 0.03204182594876466,
+            "slip_square_per_m": 0.002922245456108107
+          },
+          "event_2_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 0.0009438787770931484,
+            "distance_m": 0.07068908523260128,
+            "rms": 0.06869784483858106,
+            "slip_square_per_m": 0.01335253913652059
+          },
+          "event_2_holding": {
+            "duration_s": 0.9999999999999964,
+            "slip_square_integral_s": 1.0550876784338029e-05,
+            "distance_m": 0.3928027912109661,
+            "rms": 0.003248211320763793,
+            "slip_square_per_m": 2.6860493408946716e-05
+          },
+          "event_2_recover": {
+            "duration_s": 0.015000000000032543,
+            "slip_square_integral_s": 8.54574864160623e-09,
+            "distance_m": 0.0060111166819932765,
+            "rms": 0.0007547957181289822,
+            "slip_square_per_m": null
+          }
+        },
+        "common_window": {
+          "available": true,
+          "start_s": 13.691,
+          "end_s": 15.626999999999999,
+          "duration_s": 1.9359999999999982,
+          "coverage_s": 1.9359999999999982,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.01879331027753532,
+          "slip_square_integral_s": 0.01879331027753532,
+          "rms": 0.09852557214497933,
+          "distance_m": 0.7056667552389596,
+          "slip_square_per_m": 0.026631990437428716
+        },
+        "phase_sum_s": 0.018793310277535332,
+        "coverage_pass": true,
+        "conservation_pass": true
+      },
+      "full": {
+        "phases": {
+          "event_0_cruise": {
+            "duration_s": 0.020999999999973082,
+            "slip_square_integral_s": 0.0008977526635464642,
+            "distance_m": 0.005652314211657353,
+            "rms": 0.20676103800184578,
+            "slip_square_per_m": null
+          },
+          "event_1_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 0.011952215042797388,
+            "distance_m": 0.056623613706566614,
+            "rms": 0.24446078461378454,
+            "slip_square_per_m": 0.21108181305304602
+          },
+          "event_1_braking": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 2.4658447241089515e-06,
+            "distance_m": 0.08180593629741932,
+            "rms": 0.0035112994205201017,
+            "slip_square_per_m": 3.014261355244387e-05
+          },
+          "event_1_holding": {
+            "duration_s": 0.29999999999999893,
+            "slip_square_integral_s": 0.0008216005590390236,
+            "distance_m": 0.11523109129442263,
+            "rms": 0.05233228955558975,
+            "slip_square_per_m": 0.007130024976850935
+          },
+          "event_2_delay": {
+            "duration_s": 0.1999999999999993,
+            "slip_square_integral_s": 0.00010603578592053362,
+            "distance_m": 0.07956623809082551,
+            "rms": 0.023025614641148454,
+            "slip_square_per_m": 0.0013326731094097084
+          },
+          "event_2_holding": {
+            "duration_s": 0.9999999999999964,
+            "slip_square_integral_s": 2.2947980841488926e-06,
+            "distance_m": 0.4028428215140482,
+            "rms": 0.0015148590971271554,
+            "slip_square_per_m": 5.696509808773809e-06
+          },
+          "event_2_recover": {
+            "duration_s": 0.015000000000032543,
+            "slip_square_integral_s": 4.747606153092949e-10,
+            "distance_m": 0.006016275766892919,
+            "rms": 0.0001779064576883528,
+            "slip_square_per_m": null
+          }
+        },
+        "common_window": {
+          "available": true,
+          "start_s": 12.584000000000001,
+          "end_s": 14.52,
+          "duration_s": 1.9359999999999982,
+          "coverage_s": 1.9359999999999982,
+          "coverage_fraction": 1.0,
+          "observed_slip_square_integral_s": 0.01378236516887228,
+          "slip_square_integral_s": 0.01378236516887228,
+          "rms": 0.08437410902153479,
+          "distance_m": 0.7477382908818329,
+          "slip_square_per_m": 0.01843207086883069
+        },
+        "phase_sum_s": 0.013782365168872282,
+        "coverage_pass": true,
+        "conservation_pass": true
+      }
+    },
+    "qualification": "GT native timestamps; candidate command-phase boundaries translated to each reference's own first manifold, retaining all re-triggers. Secondary diagnostic, not replacement scoring or causal intervention from identical state."
+  }
+]

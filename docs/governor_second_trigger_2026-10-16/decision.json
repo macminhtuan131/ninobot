@@ -1,0 +1,17 @@
+{
+  "status": "contact_transition_supported_keep_detector",
+  "detector_correction_supported": false,
+  "reason": "Recorded wheel error crosses threshold while driven wheel reverses against a forward target and right-wheel floor/cable load changes precede trigger; no evidence of a BRAKE/RECOVER command reversal causing a false event.",
+  "delay_200ms_remains_rejected": true,
+  "default_delay_seconds": 0.0,
+  "next_action": "Keep detector; decide how to control/compare complete multi-contact sequences with reset/contact variability before another intervention budget. No automatic suppression of second event.",
+  "input_files_protected": 302,
+  "changed_protected": [],
+  "new_simulation_episodes": 0,
+  "runtime_changes": false,
+  "native_metric_changes": false,
+  "study_score_changes": false,
+  "optuna_started": false,
+  "predictor_started": false,
+  "training_started": false
+}

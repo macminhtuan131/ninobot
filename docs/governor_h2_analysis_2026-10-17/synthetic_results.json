@@ -1,0 +1,122 @@
+[
+  {
+    "synthetic_only": true,
+    "case": "pass",
+    "decision": "dat",
+    "label": "\u0110\u1ea1t",
+    "primary": {
+      "available": true,
+      "full_mean": 10.25,
+      "reactive_mean": 8.2,
+      "mean_delta": -2.0499999999999994,
+      "relative_benefit": 0.20000000000000007,
+      "delta_CI95": [
+        -2.249999999999999,
+        -1.8250000000000002
+      ],
+      "benefit_CI95": [
+        0.19999999999999984,
+        0.20000000000000007
+      ]
+    },
+    "physical_failures": 0
+  },
+  {
+    "synthetic_only": true,
+    "case": "insufficient_improvement",
+    "decision": "khong_dat",
+    "label": "Kh\u00f4ng \u0111\u1ea1t",
+    "primary": {
+      "available": true,
+      "full_mean": 10.25,
+      "reactive_mean": 9.7375,
+      "mean_delta": -0.5125000000000006,
+      "relative_benefit": 0.04999999999999993,
+      "delta_CI95": [
+        -0.5625000000000009,
+        -0.4562500000000007
+      ],
+      "benefit_CI95": [
+        0.04999999999999993,
+        0.050000000000000155
+      ]
+    },
+    "physical_failures": 0
+  },
+  {
+    "synthetic_only": true,
+    "case": "uncertain_interval",
+    "decision": "chua_du_bang_chung",
+    "label": "Ch\u01b0a \u0111\u1ee7 b\u1eb1ng ch\u1ee9ng",
+    "primary": {
+      "available": true,
+      "full_mean": 10.0,
+      "reactive_mean": 8.5,
+      "mean_delta": -1.5,
+      "relative_benefit": 0.15000000000000002,
+      "delta_CI95": [
+        -3.125,
+        -0.25
+      ],
+      "benefit_CI95": [
+        0.025000000000000022,
+        0.3125
+      ]
+    },
+    "physical_failures": 0
+  },
+  {
+    "synthetic_only": true,
+    "case": "sampling_reversal",
+    "decision": "chua_du_bang_chung",
+    "label": "Ch\u01b0a \u0111\u1ee7 b\u1eb1ng ch\u1ee9ng",
+    "primary": {
+      "available": true,
+      "full_mean": 10.25,
+      "reactive_mean": 8.2,
+      "mean_delta": -2.0499999999999994,
+      "relative_benefit": 0.20000000000000007,
+      "delta_CI95": [
+        -2.249999999999999,
+        -1.8250000000000002
+      ],
+      "benefit_CI95": [
+        0.19999999999999984,
+        0.20000000000000007
+      ]
+    },
+    "physical_failures": 0
+  },
+  {
+    "synthetic_only": true,
+    "case": "missing_data",
+    "decision": "chua_du_bang_chung",
+    "label": "Ch\u01b0a \u0111\u1ee7 b\u1eb1ng ch\u1ee9ng",
+    "primary": {
+      "available": false,
+      "full_mean": null,
+      "reactive_mean": null,
+      "mean_delta": null,
+      "relative_benefit": null,
+      "delta_CI95": null,
+      "benefit_CI95": null
+    },
+    "physical_failures": 0
+  },
+  {
+    "synthetic_only": true,
+    "case": "physical_failure",
+    "decision": "khong_dat",
+    "label": "Kh\u00f4ng \u0111\u1ea1t",
+    "primary": {
+      "available": false,
+      "full_mean": null,
+      "reactive_mean": null,
+      "mean_delta": null,
+      "relative_benefit": null,
+      "delta_CI95": null,
+      "benefit_CI95": null
+    },
+    "physical_failures": 1
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "status": "readiness_and_coarse_balance_passed_review_PI_ranges_before_new_intervention",
+  "attempted": 4,
+  "completed": 4,
+  "readiness_and_reporting_pass": true,
+  "coarse_balance_pass": true,
+  "changed_protected": [],
+  "protected_files": 1265,
+  "new_intervention_selected": false,
+  "smallest_worthwhile_effect_fixed": false,
+  "why_no_automatic_candidate": "Four PI runs only bound observed variability; application mechanical/production tolerance is not supplied. Do not manufacture a 10-15% threshold or confidence interval.",
+  "delay_200ms_rejected": true,
+  "detector_changed": false,
+  "native_scoring_changed": false,
+  "study_scores_changed": false,
+  "extra_simulation_episodes": 0,
+  "training_started": false,
+  "predictor_started": false,
+  "optuna_started": false
+}

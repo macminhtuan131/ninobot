@@ -22,6 +22,8 @@ class GovernorSettings:
     release_ratio: float = .6
     filter_seconds: float = .05
     confirmation_seconds: float = .04
+    # Opt-in timing experiment; never delays stop, freshness or stall checks.
+    trigger_to_brake_delay_seconds: float = 0.
     quiet_seconds: float = .30
     startup_seconds: float = .80
     minimum_hold_seconds: float = .80
@@ -116,14 +118,27 @@ class ReactiveGovernor:
         self.armed = True
         self.events = 0
         self.fault = ""
+        self.pending_until = None
+        self.trigger_elapsed_s = self.brake_onset_elapsed_s = None
 
     def fail(self,reason):
+        self.pending_until = None
         self.phase,self.scale,self.fault = "FAILSAFE",0.,reason
         return self._decision(reason=reason)
 
     def _decision(self,**extra):
         return dict(phase=self.phase,scale=self.scale,events=self.events,armed=self.armed,
-                    hold_seconds=self.hold_elapsed,quiet_seconds=self.quiet,fault=self.fault,**extra)
+                    hold_seconds=self.hold_elapsed,quiet_seconds=self.quiet,fault=self.fault,
+                    elapsed_seconds=self.elapsed,trigger_elapsed_s=self.trigger_elapsed_s,
+                    brake_onset_elapsed_s=self.brake_onset_elapsed_s,
+                    delay_remaining_seconds=max(0.,self.pending_until-self.elapsed) if self.pending_until is not None else 0.,**extra)
+
+    def cancel_pending_delay(self):
+        """Discard a pending event on external stop/disable, without replay."""
+        if self.phase == "DELAY":
+            self.pending_until = None
+            self.phase = "CRUISE"
+            self.hold_elapsed = self.confirmed = 0.
 
     def update(self,frame,dt,requested_linear,requested_yaw=0.,fresh=True):
         c = self.settings
@@ -138,6 +153,7 @@ class ReactiveGovernor:
         # A stop is always immediate; reverse/in-place turns do not trigger a
         # forward-crossing governor. No minimum speed may override zero input.
         if requested_linear <= 0:
+            self.pending_until = None
             self.phase,self.scale = "CRUISE",1.
             self.hold_elapsed=self.stall_elapsed=self.stall_recovery_elapsed=0.
             self.confirmed=0.
@@ -168,6 +184,7 @@ class ReactiveGovernor:
             if not c.stall_recovery_enabled:
                 return self.fail("persistent_wheel_stall")
             self.phase = "STALL"
+            self.pending_until = None
             self.stall_recovery_elapsed = 0.
         if self.phase == "STALL":
             self.stall_recovery_elapsed += dt
@@ -176,12 +193,19 @@ class ReactiveGovernor:
                 self.stall_elapsed=0.
             elif self.stall_recovery_elapsed >= c.stall_recovery_seconds:
                 return self.fail("wheel_stall_recovery_exhausted")
-        if (c.profile != "full" and self.phase != "STALL" and self.armed and moving
+        if (c.profile != "full" and self.phase not in ("STALL","DELAY") and self.armed and moving
                 and self.elapsed >= c.startup_seconds and self.confirmed >= c.confirmation_seconds):
-            self.phase = "HOLD"
+            self.trigger_elapsed_s = self.elapsed
+            self.brake_onset_elapsed_s = None
+            self.pending_until = self.elapsed+c.trigger_to_brake_delay_seconds
+            self.phase = "DELAY"
             self.hold_elapsed = 0.
             self.armed = False
             self.events += 1
+        if self.phase == "DELAY" and self.elapsed >= self.pending_until-1e-9:
+            self.phase = "HOLD"
+            self.brake_onset_elapsed_s = self.elapsed
+            self.pending_until = None
         if self.phase == "HOLD":
             self.hold_elapsed += dt
             reached = self.scale <= c.target+1e-9
@@ -189,7 +213,8 @@ class ReactiveGovernor:
                        self.hold_elapsed >= c.minimum_hold_seconds and reached and self.quiet >= c.quiet_seconds)
             if release or self.hold_elapsed >= c.maximum_hold_seconds:
                 self.phase = "RECOVER"
-        target = c.target if self.phase == "HOLD" else c.stall_recovery_scale if self.phase == "STALL" else 1.
+        target = (c.target if self.phase == "HOLD" else self.scale if self.phase == "DELAY"
+                  else c.stall_recovery_scale if self.phase == "STALL" else 1.)
         delta = c.scale_rate_per_second*dt
         self.scale += max(-delta,min(delta,target-self.scale))
         self.scale = max(.55,min(1.,self.scale))

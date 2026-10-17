@@ -1,0 +1,86 @@
+[
+  {
+    "attempt": 1,
+    "profile": "reactive",
+    "precontact_window_s": [
+      -0.3,
+      -0.05
+    ],
+    "caster_floor_force": {
+      "left": {
+        "samples": 22,
+        "median_abs_vertical_support_N": 19.340381623660015,
+        "mean_abs_vertical_support_N": 12.288359184574244
+      },
+      "right": {
+        "samples": 22,
+        "median_abs_vertical_support_N": 0.0,
+        "mean_abs_vertical_support_N": 8.191926944856199
+      }
+    },
+    "qualification": "Sampled vertical wrench magnitude, not calibrated load cells or proof of wheel slip; absent stream stays unavailable"
+  },
+  {
+    "attempt": 2,
+    "profile": "full",
+    "precontact_window_s": [
+      -0.3,
+      -0.05
+    ],
+    "caster_floor_force": {
+      "left": {
+        "samples": 22,
+        "median_abs_vertical_support_N": 0.0,
+        "mean_abs_vertical_support_N": 9.075055799965666
+      },
+      "right": {
+        "samples": 22,
+        "median_abs_vertical_support_N": 17.706132622472303,
+        "mean_abs_vertical_support_N": 11.691750581600807
+      }
+    },
+    "qualification": "Sampled vertical wrench magnitude, not calibrated load cells or proof of wheel slip; absent stream stays unavailable"
+  },
+  {
+    "attempt": 3,
+    "profile": "full",
+    "precontact_window_s": [
+      -0.3,
+      -0.05
+    ],
+    "caster_floor_force": {
+      "left": {
+        "samples": 22,
+        "median_abs_vertical_support_N": 15.164963016397213,
+        "mean_abs_vertical_support_N": 10.216277846812401
+      },
+      "right": {
+        "samples": 23,
+        "median_abs_vertical_support_N": 0.0,
+        "mean_abs_vertical_support_N": 8.828183765459384
+      }
+    },
+    "qualification": "Sampled vertical wrench magnitude, not calibrated load cells or proof of wheel slip; absent stream stays unavailable"
+  },
+  {
+    "attempt": 4,
+    "profile": "reactive",
+    "precontact_window_s": [
+      -0.3,
+      -0.05
+    ],
+    "caster_floor_force": {
+      "left": {
+        "samples": 22,
+        "median_abs_vertical_support_N": 19.42034702346551,
+        "mean_abs_vertical_support_N": 12.687341310138265
+      },
+      "right": {
+        "samples": 22,
+        "median_abs_vertical_support_N": 0.0,
+        "mean_abs_vertical_support_N": 6.888710817390072
+      }
+    },
+    "qualification": "Sampled vertical wrench magnitude, not calibrated load cells or proof of wheel slip; absent stream stays unavailable"
+  }
+]

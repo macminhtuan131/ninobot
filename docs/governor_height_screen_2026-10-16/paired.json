@@ -1,0 +1,98 @@
+[
+  {
+    "height_m": 0.006,
+    "seed": 77310,
+    "available": true,
+    "attempted_arms": [
+      "full",
+      "reactive"
+    ],
+    "ratios": {
+      "time_s": 1.0060240963855418,
+      "physical_rmse_m": 1.2553575155501342,
+      "whole_vertical_rms": 0.9132283166418614,
+      "whole_vertical_peak": 1.066578641454111,
+      "crossing_vertical_rms": 0.731222073936539,
+      "gt_native_whole_slip_rms": 0.8703853933585454,
+      "gt_native_crossing_slip2_per_m": 0.66323783022403,
+      "primary_whole_slip_rms": 0.8530329987952646,
+      "primary_crossing_slip2_per_m": 0.6455982528946892,
+      "shifted_whole_slip_rms": 0.9647788465244547,
+      "shifted_crossing_slip2_per_m": 0.9034895770104048
+    },
+    "governor_events": 1,
+    "slip_grid_ranking_reversal": false
+  },
+  {
+    "height_m": 0.006,
+    "seed": 77311,
+    "available": true,
+    "attempted_arms": [
+      "reactive",
+      "full"
+    ],
+    "ratios": {
+      "time_s": 1.0060240963855411,
+      "physical_rmse_m": 0.9137099126307835,
+      "whole_vertical_rms": 0.4302739410608417,
+      "whole_vertical_peak": 0.22313118074808738,
+      "crossing_vertical_rms": 0.2853777768557761,
+      "gt_native_whole_slip_rms": 1.0688624745125257,
+      "gt_native_crossing_slip2_per_m": 1.1904239102588252,
+      "primary_whole_slip_rms": 1.0187069044082284,
+      "primary_crossing_slip2_per_m": 1.0762314934079549,
+      "shifted_whole_slip_rms": 1.0505599281860762,
+      "shifted_crossing_slip2_per_m": 1.0921967467037628
+    },
+    "governor_events": 1,
+    "slip_grid_ranking_reversal": false
+  },
+  {
+    "height_m": 0.022,
+    "seed": 77310,
+    "available": true,
+    "attempted_arms": [
+      "reactive",
+      "full"
+    ],
+    "ratios": {
+      "time_s": 0.9940828402366878,
+      "physical_rmse_m": 1.6044551522320478,
+      "whole_vertical_rms": 0.683157334649213,
+      "whole_vertical_peak": 0.639229836924306,
+      "crossing_vertical_rms": 0.7627099959297778,
+      "gt_native_whole_slip_rms": 0.7336560431294485,
+      "gt_native_crossing_slip2_per_m": 0.5096638592822332,
+      "primary_whole_slip_rms": 0.7700374658505285,
+      "primary_crossing_slip2_per_m": 0.5707246157038168,
+      "shifted_whole_slip_rms": 0.7217617208212354,
+      "shifted_crossing_slip2_per_m": 0.4992574299550504
+    },
+    "governor_events": 1,
+    "slip_grid_ranking_reversal": false
+  },
+  {
+    "height_m": 0.022,
+    "seed": 77311,
+    "available": true,
+    "attempted_arms": [
+      "full",
+      "reactive"
+    ],
+    "ratios": {
+      "time_s": 1.0059880239520964,
+      "physical_rmse_m": 1.0803453129661331,
+      "whole_vertical_rms": 0.2761503472338677,
+      "whole_vertical_peak": 0.09306499180004092,
+      "crossing_vertical_rms": 0.20921265428596128,
+      "gt_native_whole_slip_rms": 1.002978329202397,
+      "gt_native_crossing_slip2_per_m": 1.0200321899839193,
+      "primary_whole_slip_rms": 1.1186751548573295,
+      "primary_crossing_slip2_per_m": 1.2972828619098689,
+      "shifted_whole_slip_rms": 0.9741948991685204,
+      "shifted_crossing_slip2_per_m": 0.9339440412137915
+    },
+    "governor_events": 1,
+    "slip_grid_ranking_reversal": true
+  }
+]

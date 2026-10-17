@@ -1,0 +1,13 @@
+[INFO] [1792132310.979179096] [nino_rl_interface]: Route E1: 6.45 m, goal=(6.45, 0.0), deadline=87.2s
+[INFO] [1792132310.980200426] [nino_rl_interface]: Curriculum phase 1 at training step 0
+[WARN] [1792132312.421002562] [nino_rl_interface]: EPISODE END: governor_failsafe | t=0.10s | goal_dist=6.45m | heading_err=0.0deg | lateral=-0.00m | v=-0.00m/s | reference_valid=True | challenges=0/0 | lidar_min=2.19m | collision_clearance=2.15m | roll=-0.0deg | pitch=-0.0deg
+Traceback (most recent call last):
+  File "/home/tuanmac/ninorobot/install/nino_rl/lib/nino_rl/evaluate_baseline", line 33, in <module>
+    sys.exit(load_entry_point('nino-rl', 'console_scripts', 'evaluate_baseline')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tuanmac/ninorobot/build/nino_rl/nino_rl/evaluate_baseline.py", line 6, in main
+    run(baseline=True)
+  File "/home/tuanmac/ninorobot/build/nino_rl/nino_rl/evaluation.py", line 241, in run
+    raise RuntimeError("No stamped drive diagnostics for this action; restart the flat simulator with the updated effort_drive")
+RuntimeError: No stamped drive diagnostics for this action; restart the flat simulator with the updated effort_drive
+[ros2run]: Process exited with failure 1

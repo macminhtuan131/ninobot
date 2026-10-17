@@ -1,0 +1,10 @@
+{
+  "scope": "Exactly four saved PI runs; original contacts, GT, joints and IMU",
+  "phase_window": "first cable manifold to +3s; diagnostic, native metrics retained",
+  "phase_checks": "All 10 interpolated 50Hz grid offsets 0:2:18ms; all 5 original-sample 10Hz decimation residues",
+  "peak_context": "Whole-route and fixed postcontact peak; +/-60ms contact wrench samples; causal past and explicitly labeled future body/wheel states",
+  "no_simulation": true,
+  "no_new_candidate": true,
+  "no_native_rescoring": true,
+  "limitation": "50Hz acquisition phase cannot be recovered from existing 50Hz samples; no high-frequency reconstruction or force impulse claims"
+}

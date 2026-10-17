@@ -1,0 +1,80 @@
+[
+  {
+    "trial": 0,
+    "profile": "full",
+    "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_000/confirmation/d1/screen/seed_77001_full",
+    "imu_count": 1366,
+    "imu_stamp_range_s": [
+      0.002,
+      27.5
+    ],
+    "imu_max_gap_s": 0.13999999999999968,
+    "imu_gaps_above_0p1_s": [
+      {
+        "start_s": 4.2,
+        "end_s": 4.34,
+        "gap_s": 0.13999999999999968
+      }
+    ],
+    "imu_nonmonotonic_receipts": 0,
+    "joint_stamp_range_s": [
+      1.084,
+      27.506
+    ],
+    "qualification": "Independent logger receipts are not evaluator callback history; absence of a logger gap does not exclude a consumer gap."
+  },
+  {
+    "trial": 0,
+    "profile": "reactive",
+    "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_000/confirmation/d1/screen/seed_77001_reactive",
+    "imu_count": 1300,
+    "imu_stamp_range_s": [
+      0.02,
+      26.08
+    ],
+    "imu_max_gap_s": 0.07999999999999996,
+    "imu_gaps_above_0p1_s": [],
+    "imu_nonmonotonic_receipts": 0,
+    "joint_stamp_range_s": [
+      0.004,
+      26.088
+    ],
+    "qualification": "Independent logger receipts are not evaluator callback history; absence of a logger gap does not exclude a consumer gap."
+  },
+  {
+    "trial": 1,
+    "profile": "full",
+    "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_001/confirmation/d1/screen/seed_77001_full",
+    "imu_count": 255,
+    "imu_stamp_range_s": [
+      0.02,
+      5.1
+    ],
+    "imu_max_gap_s": 0.020000000000000462,
+    "imu_gaps_above_0p1_s": [],
+    "imu_nonmonotonic_receipts": 0,
+    "joint_stamp_range_s": [
+      0.004,
+      5.1
+    ],
+    "qualification": "Independent logger receipts are not evaluator callback history; absence of a logger gap does not exclude a consumer gap."
+  },
+  {
+    "trial": 1,
+    "profile": "reactive",
+    "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_001/confirmation/d1/screen/seed_77001_reactive",
+    "imu_count": 277,
+    "imu_stamp_range_s": [
+      0.02,
+      5.54
+    ],
+    "imu_max_gap_s": 0.020000000000000462,
+    "imu_gaps_above_0p1_s": [],
+    "imu_nonmonotonic_receipts": 0,
+    "joint_stamp_range_s": [
+      0.060000000000000005,
+      5.534
+    ],
+    "qualification": "Independent logger receipts are not evaluator callback history; absence of a logger gap does not exclude a consumer gap."
+  }
+]

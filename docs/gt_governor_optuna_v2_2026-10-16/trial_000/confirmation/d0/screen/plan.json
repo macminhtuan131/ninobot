@@ -1,0 +1,33 @@
+{
+  "variant": "cable_box_capsule",
+  "seeds": [
+    77000
+  ],
+  "profiles": [
+    "full",
+    "reactive"
+  ],
+  "oracle_contact": false,
+  "source_sha256": {},
+  "shuffle_order": true,
+  "order_seed": 77050,
+  "case_order": [
+    [
+      77000,
+      "full"
+    ],
+    [
+      77000,
+      "reactive"
+    ]
+  ],
+  "full_reference_speed_m_s": 0.4,
+  "world_override": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_000/confirmation/d0/scenario.sdf",
+  "ros_domain": "94",
+  "gz_partition": "nino_gt_tune_94",
+  "caster_wheel_damping": 0.001,
+  "physics_step_s": 0.001,
+  "control_interval_s": 0.1,
+  "stop_window_s": 2.0,
+  "qualification": "Bounded native PI screen; no learning or Optuna"
+}

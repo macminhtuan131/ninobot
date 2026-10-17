@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/home/tuanmac/ninorobot/install/nino_rl/lib/nino_rl/evaluate_baseline", line 33, in <module>
+    sys.exit(load_entry_point('nino-rl', 'console_scripts', 'evaluate_baseline')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tuanmac/ninorobot/build/nino_rl/nino_rl/evaluate_baseline.py", line 6, in main
+    run(baseline=True)
+  File "/home/tuanmac/ninorobot/build/nino_rl/nino_rl/evaluation.py", line 221, in run
+    env = (env_factory or NinoGazeboEnv)(config, total_training_steps=1)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tuanmac/ninorobot/build/nino_rl/nino_rl/ros_env.py", line 156, in __init__
+    self._prepare_initial_sensors()
+  File "/home/tuanmac/ninorobot/build/nino_rl/nino_rl/ros_env.py", line 1514, in _prepare_initial_sensors
+    self.ros.wait_for_sensors(self.sensor_timeout, require_assisted=False)
+  File "/home/tuanmac/ninorobot/build/nino_rl/nino_rl/ros_interface.py", line 564, in wait_for_sensors
+    raise RuntimeError("Assisted odometry fault: " + self._assisted_error)
+RuntimeError: Assisted odometry fault: Assisted odometry cannot interpolate across an IMU gap
+[ros2run]: Process exited with failure 1

@@ -1,0 +1,2179 @@
+{
+  "synthetic_only": true,
+  "protocol": {
+    "schedule": [
+      {
+        "attempt": 1,
+        "round": 1,
+        "pair_id": "seed_77501_repeat_1",
+        "seed": 77501,
+        "repeat": 1,
+        "position_in_pair": 1,
+        "profile": "full",
+        "cold_start": true
+      },
+      {
+        "attempt": 2,
+        "round": 1,
+        "pair_id": "seed_77501_repeat_1",
+        "seed": 77501,
+        "repeat": 1,
+        "position_in_pair": 2,
+        "profile": "reactive",
+        "cold_start": true
+      },
+      {
+        "attempt": 3,
+        "round": 1,
+        "pair_id": "seed_77500_repeat_1",
+        "seed": 77500,
+        "repeat": 1,
+        "position_in_pair": 1,
+        "profile": "reactive",
+        "cold_start": true
+      },
+      {
+        "attempt": 4,
+        "round": 1,
+        "pair_id": "seed_77500_repeat_1",
+        "seed": 77500,
+        "repeat": 1,
+        "position_in_pair": 2,
+        "profile": "full",
+        "cold_start": true
+      },
+      {
+        "attempt": 5,
+        "round": 2,
+        "pair_id": "seed_77501_repeat_2",
+        "seed": 77501,
+        "repeat": 2,
+        "position_in_pair": 1,
+        "profile": "reactive",
+        "cold_start": true
+      },
+      {
+        "attempt": 6,
+        "round": 2,
+        "pair_id": "seed_77501_repeat_2",
+        "seed": 77501,
+        "repeat": 2,
+        "position_in_pair": 2,
+        "profile": "full",
+        "cold_start": true
+      },
+      {
+        "attempt": 7,
+        "round": 2,
+        "pair_id": "seed_77500_repeat_2",
+        "seed": 77500,
+        "repeat": 2,
+        "position_in_pair": 1,
+        "profile": "full",
+        "cold_start": true
+      },
+      {
+        "attempt": 8,
+        "round": 2,
+        "pair_id": "seed_77500_repeat_2",
+        "seed": 77500,
+        "repeat": 2,
+        "position_in_pair": 2,
+        "profile": "reactive",
+        "cold_start": true
+      },
+      {
+        "attempt": 9,
+        "round": 3,
+        "pair_id": "seed_77500_repeat_3",
+        "seed": 77500,
+        "repeat": 3,
+        "position_in_pair": 1,
+        "profile": "full",
+        "cold_start": true
+      },
+      {
+        "attempt": 10,
+        "round": 3,
+        "pair_id": "seed_77500_repeat_3",
+        "seed": 77500,
+        "repeat": 3,
+        "position_in_pair": 2,
+        "profile": "reactive",
+        "cold_start": true
+      },
+      {
+        "attempt": 11,
+        "round": 3,
+        "pair_id": "seed_77501_repeat_3",
+        "seed": 77501,
+        "repeat": 3,
+        "position_in_pair": 1,
+        "profile": "reactive",
+        "cold_start": true
+      },
+      {
+        "attempt": 12,
+        "round": 3,
+        "pair_id": "seed_77501_repeat_3",
+        "seed": 77501,
+        "repeat": 3,
+        "position_in_pair": 2,
+        "profile": "full",
+        "cold_start": true
+      },
+      {
+        "attempt": 13,
+        "round": 4,
+        "pair_id": "seed_77500_repeat_4",
+        "seed": 77500,
+        "repeat": 4,
+        "position_in_pair": 1,
+        "profile": "reactive",
+        "cold_start": true
+      },
+      {
+        "attempt": 14,
+        "round": 4,
+        "pair_id": "seed_77500_repeat_4",
+        "seed": 77500,
+        "repeat": 4,
+        "position_in_pair": 2,
+        "profile": "full",
+        "cold_start": true
+      },
+      {
+        "attempt": 15,
+        "round": 4,
+        "pair_id": "seed_77501_repeat_4",
+        "seed": 77501,
+        "repeat": 4,
+        "position_in_pair": 1,
+        "profile": "full",
+        "cold_start": true
+      },
+      {
+        "attempt": 16,
+        "round": 4,
+        "pair_id": "seed_77501_repeat_4",
+        "seed": 77501,
+        "repeat": 4,
+        "position_in_pair": 2,
+        "profile": "reactive",
+        "cold_start": true
+      }
+    ]
+  },
+  "slots": [
+    {
+      "attempt": 1,
+      "round": 1,
+      "pair_id": "seed_77501_repeat_1",
+      "seed": 77501,
+      "repeat": 1,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77501,
+        "profile": "full",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.01,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 2.0,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.03,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.02
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 10.0
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 2.0
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 10.0
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 2.0
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": null,
+              "slip_square_integral_s": 10.0,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 2.0,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 10.0
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "round": 1,
+      "pair_id": "seed_77501_repeat_1",
+      "seed": 77501,
+      "repeat": 1,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77501,
+        "profile": "reactive",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.21,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 1.9,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.029,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.019
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 8.0
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 1.9
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 8.0
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 1.9
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 8.0,
+              "slip_square_integral_s": 8.0,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 1.9,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 8.0
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 8.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "round": 1,
+      "pair_id": "seed_77500_repeat_1",
+      "seed": 77500,
+      "repeat": 1,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77500,
+        "profile": "reactive",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.21,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 1.9,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.029,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.019
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 8.0
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 1.9
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 8.0
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 1.9
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 8.0,
+              "slip_square_integral_s": 8.0,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 1.9,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 8.0
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 8.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 4,
+      "round": 1,
+      "pair_id": "seed_77500_repeat_1",
+      "seed": 77500,
+      "repeat": 1,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77500,
+        "profile": "full",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.01,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 2.0,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.03,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.02
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 10.0
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 2.0
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 10.0
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 2.0
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 10.0,
+              "slip_square_integral_s": 10.0,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 2.0,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 10.0
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 10.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 5,
+      "round": 2,
+      "pair_id": "seed_77501_repeat_2",
+      "seed": 77501,
+      "repeat": 2,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77501,
+        "profile": "reactive",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.22,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 1.9,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.029,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.019
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 9.600000000000001
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 1.9
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 9.600000000000001
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 1.9
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 9.600000000000001,
+              "slip_square_integral_s": 9.600000000000001,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 1.9,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 9.600000000000001
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 9.600000000000001
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 6,
+      "round": 2,
+      "pair_id": "seed_77501_repeat_2",
+      "seed": 77501,
+      "repeat": 2,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77501,
+        "profile": "full",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.02,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 2.0,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.03,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.02
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 12.0
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 2.0
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 12.0
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 2.0
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 12.0,
+              "slip_square_integral_s": 12.0,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 2.0,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 12.0
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 12.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 7,
+      "round": 2,
+      "pair_id": "seed_77500_repeat_2",
+      "seed": 77500,
+      "repeat": 2,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77500,
+        "profile": "full",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.02,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 2.0,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.03,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.02
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 12.0
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 2.0
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 12.0
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 2.0
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 12.0,
+              "slip_square_integral_s": 12.0,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 2.0,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 12.0
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 12.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 8,
+      "round": 2,
+      "pair_id": "seed_77500_repeat_2",
+      "seed": 77500,
+      "repeat": 2,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77500,
+        "profile": "reactive",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.22,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 1.9,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.029,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.019
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 9.600000000000001
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 1.9
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 9.600000000000001
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 1.9
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 9.600000000000001,
+              "slip_square_integral_s": 9.600000000000001,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 1.9,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 9.600000000000001
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 9.600000000000001
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 9,
+      "round": 3,
+      "pair_id": "seed_77500_repeat_3",
+      "seed": 77500,
+      "repeat": 3,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77500,
+        "profile": "full",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.03,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 2.0,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.03,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.02
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 8.0
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 2.0
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 8.0
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 2.0
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 8.0,
+              "slip_square_integral_s": 8.0,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 2.0,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 8.0
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 8.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 10,
+      "round": 3,
+      "pair_id": "seed_77500_repeat_3",
+      "seed": 77500,
+      "repeat": 3,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77500,
+        "profile": "reactive",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.23,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 1.9,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.029,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.019
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 6.4
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 1.9
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 6.4
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 1.9
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 6.4,
+              "slip_square_integral_s": 6.4,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 1.9,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 6.4
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 6.4
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 11,
+      "round": 3,
+      "pair_id": "seed_77501_repeat_3",
+      "seed": 77501,
+      "repeat": 3,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77501,
+        "profile": "reactive",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.23,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 1.9,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.029,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.019
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 6.4
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 1.9
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 6.4
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 1.9
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 6.4,
+              "slip_square_integral_s": 6.4,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 1.9,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 6.4
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 6.4
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 12,
+      "round": 3,
+      "pair_id": "seed_77501_repeat_3",
+      "seed": 77501,
+      "repeat": 3,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77501,
+        "profile": "full",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.03,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 2.0,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.03,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.02
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 8.0
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 2.0
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 8.0
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 2.0
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 8.0,
+              "slip_square_integral_s": 8.0,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 2.0,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 8.0
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 8.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 13,
+      "round": 4,
+      "pair_id": "seed_77500_repeat_4",
+      "seed": 77500,
+      "repeat": 4,
+      "position_in_pair": 1,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77500,
+        "profile": "reactive",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.24,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 1.9,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.029,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.019
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 8.8
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 1.9
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 8.8
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 1.9
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 8.8,
+              "slip_square_integral_s": 8.8,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 1.9,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 8.8
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 8.8
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 14,
+      "round": 4,
+      "pair_id": "seed_77500_repeat_4",
+      "seed": 77500,
+      "repeat": 4,
+      "position_in_pair": 2,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77500,
+        "profile": "full",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.04,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 2.0,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.03,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.02
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 11.0
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 2.0
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 11.0
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 2.0
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 11.0,
+              "slip_square_integral_s": 11.0,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 2.0,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 11.0
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 11.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 15,
+      "round": 4,
+      "pair_id": "seed_77501_repeat_4",
+      "seed": 77501,
+      "repeat": 4,
+      "position_in_pair": 1,
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77501,
+        "profile": "full",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.04,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 2.0,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.03,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.02
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 11.0
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 2.0
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 11.0
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 2.0
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 11.0,
+              "slip_square_integral_s": 11.0,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 2.0,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 11.0
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 11.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 16,
+      "round": 4,
+      "pair_id": "seed_77501_repeat_4",
+      "seed": 77501,
+      "repeat": 4,
+      "position_in_pair": 2,
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "collected",
+      "result": {
+        "seed": 77501,
+        "profile": "reactive",
+        "physical_success": true,
+        "stop_pass": true,
+        "termination": "success",
+        "setup_pass": true,
+        "provenance_pass": true,
+        "measurement_integrity_pass": true,
+        "physical_state_valid": true,
+        "quality_available": true,
+        "cleanup_confirmed": true,
+        "runner_exit": 0,
+        "native_outcome": {
+          "success": "True",
+          "termination": "success",
+          "synthetic_only": true
+        },
+        "quality": {
+          "existing_reports": {
+            "time_s": 16.24,
+            "physical_rmse_m": 0.005,
+            "whole_vertical_rms": 1.9,
+            "whole_vertical_peak": 10.0,
+            "native_slip_rms": 0.029,
+            "gt_native": {
+              "whole_route": {
+                "available": true,
+                "rms": 0.019
+              },
+              "crossing": {
+                "available": true,
+                "slip_square_per_m": 8.8
+              }
+            },
+            "crossing_vertical": {
+              "available": true,
+              "rms": 1.9
+            },
+            "sequence": {
+              "available": true,
+              "approach": {
+                "v": {
+                  "minimum": 0.39990000000000003,
+                  "maximum": 0.4001,
+                  "median": 0.4
+                },
+                "y": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "yaw": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "roll": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "pitch": {
+                  "minimum": -0.0001,
+                  "maximum": 0.0001,
+                  "median": 0.0
+                },
+                "coverage_fraction": 1.0
+              },
+              "metrics": {
+                "whole_contact_sequence": {
+                  "slip": {
+                    "available": true,
+                    "slip_square_per_m": 8.8
+                  },
+                  "vertical": {
+                    "available": true,
+                    "rms": 1.9
+                  }
+                }
+              }
+            }
+          },
+          "postcontact": {
+            "available": true,
+            "GT_slip": {
+              "available": true,
+              "slip_square_per_m": 8.8,
+              "slip_square_integral_s": 8.8,
+              "distance_m": 1.0
+            },
+            "vertical": {
+              "available": true,
+              "rms": 1.9,
+              "peak": 10.0
+            },
+            "grid20ms": {
+              "available": true,
+              "slip_square_per_m": 8.8
+            },
+            "shifted10ms": {
+              "available": true,
+              "slip_square_per_m": 8.8
+            }
+          }
+        }
+      }
+    }
+  ],
+  "criteria": {
+    "status": "confirmed",
+    "primary_metric": "postcontact_GT_slip_square_per_m",
+    "minimum_relative_improvement": 0.1,
+    "maximum_added_route_seconds": 0.5,
+    "requirement_origin": "user_accepted_engineering_assumption",
+    "synthetic_only": true
+  },
+  "evidence": {
+    "1": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "2": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "3": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "4": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "5": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "6": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "7": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "8": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "9": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "10": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "11": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "12": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "13": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "14": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "15": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    },
+    "16": {
+      "available": true,
+      "timing_pass": true,
+      "precontact_reduction": false,
+      "synthetic_only": true,
+      "response_snapshots": "synthetic, not physical data"
+    }
+  }
+}

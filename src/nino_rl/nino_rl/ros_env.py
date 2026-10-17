@@ -27,6 +27,7 @@ from nino_rl.core import (
     wheel_slip_ratios,
 )
 from nino_rl.ros_interface import RosRobotInterface
+from nino_rl.slip_reporting import native_slip_trace
 from nino_rl.trajectory_metrics import EpisodeTrajectory
 from nino_rl.task_geometry import approach_speed, goal_overshot, task_succeeded, objective_state
 from nino_rl.flat_feedback import flat_motion_command
@@ -51,6 +52,10 @@ class NinoGazeboEnv(gym.Env):
         self.governor = None
         self.governor_trace = {}
         self.governor_imu = {}
+        self.reset_standstill_report = None
+        if config.get("reset_standstill_gate",{}).get("enabled",False) and not (
+                config.get("evaluation_baseline",False) and config.get("governor",{}).get("enabled",False)):
+            raise ValueError("Post-reset standstill gate is an opt-in PI governor evaluation contract")
         if config.get("governor", {}).get("enabled", False):
             if not config.get("evaluation_baseline",False) or config.get("action_mode") != "wheel_torque":
                 raise ValueError("Reactive governor contract is PI evaluation only; PPO is not enabled")
@@ -137,6 +142,7 @@ class NinoGazeboEnv(gym.Env):
             physics_step_seconds=self.physics_dt,
             terrain_height_threshold_m=float(config["policy_v2"].get("terrain_height_threshold_m", .006)),
             odometry_assistance=config.get("odometry_assistance"),
+            defer_assisted_until_reset=True,
         )
         self.ros.imu_includes_gravity = bool(config["policy_v2"]["imu_includes_gravity"])
         # This executor already has its own dedicated Python thread. Using a
@@ -659,8 +665,10 @@ class NinoGazeboEnv(gym.Env):
             )
             self.world_is_paused = False
         self.attempt_number += 1
+        self.reset_standstill_report = None
         if self.governor is not None:
             self.governor.reset()
+            self.governor_epoch_sim_s = None
             self.governor_imu = {}
             self.governor_trace = {}
         self.episode_steps = 0
@@ -825,6 +833,20 @@ class NinoGazeboEnv(gym.Env):
             # so use the dedicated simulation-service deadline.
             timeout=self.simulation_step_timeout
         )
+        if self.governor is not None:
+            # Epoch-filtered drive feedback is mandatory before first motion;
+            # sensor readiness alone does not prove this DDS stream arrived.
+            self.ros.wait_for_drive_diagnostics(
+                self.lockstep_sim_time - .10, self.lockstep_sim_time,
+                timeout=self.sensor_timeout)
+        if self.config.get("reset_standstill_gate",{}).get("enabled",False):
+            from nino_rl.reset_standstill import run_gate
+            def record_reset_gate(report):
+                self.reset_standstill_report=report
+            self.lockstep_sim_time=run_gate(self.ros,self.lockstep_sim_time,
+                self.simulation_step_timeout,self.sensor_timeout,record_reset_gate)
+            self.episode_started_at=monotonic()
+            self.episode_start_time_unix=time()
         truth = self.ros.snapshot()
         self.episode_started_sim = self.lockstep_sim_time
         if self.governor is not None:
@@ -885,8 +907,12 @@ class NinoGazeboEnv(gym.Env):
         from nino_rl.governor_adapter import frame_from_state
         from std_msgs.msg import String
         end=self.lockstep_sim_time
-        rows=self.ros.drive_diagnostics(end-.25,end+1e-6)
-        if not rows or end-rows[-1]["sim_time_s"] > .10:
+        try:
+            rows=self.ros.wait_for_drive_diagnostics(end-.10,end,
+                timeout=self.config["policy_v2"].get("sensor_wait_timeout_seconds",2.0))
+        except TimeoutError:
+            rows=[]
+        if not rows:
             decision=self.governor.fail("stale_drive_feedback")
         else:
             feedback=rows[-1]
@@ -897,10 +923,21 @@ class NinoGazeboEnv(gym.Env):
         # Fixed schema keeps CSV columns stable across failsafe and phase changes.
         keys=("phase","scale","events","armed","hold_seconds","quiet_seconds","fault",
               "disturbed","trigger_ratio","filtered_vertical_m_s2","wheel_error_m_s",
-              "wheel_error_threshold_m_s","target_scale","wheel_stall_seconds")
+              "wheel_error_threshold_m_s","target_scale","wheel_stall_seconds",
+              "elapsed_seconds","trigger_elapsed_s","brake_onset_elapsed_s","delay_remaining_seconds")
         self.governor_trace={"governor_"+key:decision.get(key,None) for key in keys}
+        # Core times share an elapsed clock; map to this command-input boundary,
+        # not to the end of the action interval recorded by control_trace.
+        if self.governor_epoch_sim_s is None:
+            self.governor_epoch_sim_s=end-self.governor.elapsed
+        epoch=self.governor_epoch_sim_s
+        for event in ("trigger","brake_onset"):
+            elapsed=decision.get(event+"_elapsed_s")
+            self.governor_trace["governor_"+event+"_time_s"]=epoch+elapsed if elapsed is not None else None
         self.governor_trace.update(governor_requested_linear_m_s=linear,governor_requested_yaw_rad_s=angular,
-                                  governor_input_time_s=end)
+                                  governor_input_time_s=end,
+                                  governor_feedback_stamp_s=rows[-1]["sim_time_s"] if rows else None,
+                                  governor_feedback_age_s=end-rows[-1]["sim_time_s"] if rows else None)
         self.governor_reference_sim_s=end
         linear*=decision["scale"]
         angular*=decision["scale"]
@@ -1045,6 +1082,11 @@ class NinoGazeboEnv(gym.Env):
             timeout=self.config["policy_v2"].get("sensor_wait_timeout_seconds", 2.0),
             max_lag=self.config["policy_v2"].get("motion_max_lag_seconds", 0.04),
         )
+        drive_interval = None
+        if self.governor is not None and not self.governor.fault:
+            drive_interval = self.ros.wait_for_drive_diagnostics(
+                started_sim, ended_sim,
+                timeout=self.config["policy_v2"].get("sensor_wait_timeout_seconds",2.0))
         self.max_clock_error = max(self.max_clock_error, abs(clock_error))
         self.max_motion_sensor_lag = max(self.max_motion_sensor_lag, *motion_lags.values())
         if self.config["policy_v2"].get("imu_strict_coverage", False):
@@ -1470,6 +1512,14 @@ class NinoGazeboEnv(gym.Env):
         if self.config.get("evaluation_control_trace", False):
             info["control_trace"] = {
                 **self.governor_trace,
+                **({"drive_interval_latest_stamp_s": drive_interval[-1]["sim_time_s"] if drive_interval else None,
+                    "drive_interval_latest_age_s": ended_sim-drive_interval[-1]["sim_time_s"] if drive_interval else None,
+                    "drive_interval_sample_count": len(drive_interval) if drive_interval else 0}
+                   if self.governor is not None else {}),
+                # Reporting only: preserve the exact native snapshot and its
+                # sensor stamps. Do not align or replace reward/metric inputs.
+                **native_slip_trace(truth, ended_sim, slip_left, slip_right,
+                                    self.episode_steps, self.slip_square_sum),
                 "sim_time_s": ended_sim, "elapsed_s": elapsed,
                 "action_speed": float(raw_action[0]),
                 "action_yaw": float(raw_action[-1]),
@@ -1504,8 +1554,8 @@ class NinoGazeboEnv(gym.Env):
         # A previous session may leave the robot at the goal while the new
         # local estimator starts at zero. Verify transport while commanding
         # stop; require wall localization after reset establishes the origin.
-        corridor = self.config.get('odometry_assistance', {}).get('corridor_lidar', {}).get('enabled', False)
-        if corridor:
+        assisted = self.config.get('odometry_assistance', {}).get('enabled', False)
+        if assisted:
             self.ros.wait_for_sensors(self.sensor_timeout, require_assisted=False)
         else:
             self.ros.wait_for_sensors(self.sensor_timeout)

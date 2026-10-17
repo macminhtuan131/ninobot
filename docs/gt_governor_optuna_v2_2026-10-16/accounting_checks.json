@@ -1,0 +1,518 @@
+{
+  "blocks": [
+    {
+      "stage": "trial_000",
+      "expected": 4,
+      "observed": 4,
+      "unique_case_contract": true,
+      "completed": 4,
+      "physical_passes": 4,
+      "aborted_or_unavailable": 0,
+      "completed_native_physical_failures": 0
+    },
+    {
+      "stage": "trial_001",
+      "expected": 4,
+      "observed": 4,
+      "unique_case_contract": true,
+      "completed": 2,
+      "physical_passes": 2,
+      "aborted_or_unavailable": 2,
+      "completed_native_physical_failures": 0
+    },
+    {
+      "stage": "trial_002",
+      "expected": 4,
+      "observed": 4,
+      "unique_case_contract": true,
+      "completed": 4,
+      "physical_passes": 4,
+      "aborted_or_unavailable": 0,
+      "completed_native_physical_failures": 0
+    },
+    {
+      "stage": "trial_003",
+      "expected": 4,
+      "observed": 4,
+      "unique_case_contract": true,
+      "completed": 4,
+      "physical_passes": 4,
+      "aborted_or_unavailable": 0,
+      "completed_native_physical_failures": 0
+    },
+    {
+      "stage": "trial_004",
+      "expected": 4,
+      "observed": 4,
+      "unique_case_contract": true,
+      "completed": 4,
+      "physical_passes": 4,
+      "aborted_or_unavailable": 0,
+      "completed_native_physical_failures": 0
+    },
+    {
+      "stage": "trial_005",
+      "expected": 4,
+      "observed": 4,
+      "unique_case_contract": true,
+      "completed": 4,
+      "physical_passes": 4,
+      "aborted_or_unavailable": 0,
+      "completed_native_physical_failures": 0
+    },
+    {
+      "stage": "validation",
+      "expected": 16,
+      "observed": 16,
+      "unique_case_contract": true,
+      "completed": 13,
+      "physical_passes": 13,
+      "aborted_or_unavailable": 3,
+      "completed_native_physical_failures": 0
+    }
+  ],
+  "planned_case_counts_match": true,
+  "provenance": {
+    "robot_description_sha256": [
+      "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b"
+    ],
+    "governor_core_sha256": [
+      "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593"
+    ],
+    "effort_drive_sha256": [
+      "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376"
+    ],
+    "control_timing_sha256": [
+      "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1"
+    ]
+  },
+  "fixed_robot_pi_core": true,
+  "paired_world_hashes_match": true,
+  "complete_native_replays": 35,
+  "complete_timestamp_checks": 35,
+  "gt_route_and_crossing_available": 35,
+  "case_configs": [
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_000/confirmation/d0/screen/seed_77000_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_000/confirmation/d0/screen/seed_77000_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_000/confirmation/d1/screen/seed_77001_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_000/confirmation/d1/screen/seed_77001_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_001/confirmation/d0/screen/seed_77000_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 0.8,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_001/confirmation/d0/screen/seed_77000_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 0.8,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_001/confirmation/d1/screen/seed_77001_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 0.8,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_001/confirmation/d1/screen/seed_77001_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 0.8,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_002/confirmation/d0/screen/seed_77000_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.2,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_002/confirmation/d0/screen/seed_77000_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.2,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_002/confirmation/d1/screen/seed_77001_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.2,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_002/confirmation/d1/screen/seed_77001_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.2,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_003/confirmation/d0/screen/seed_77000_reactive",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 0.8,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_003/confirmation/d0/screen/seed_77000_full",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 0.8,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_003/confirmation/d1/screen/seed_77001_full",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 0.8,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_003/confirmation/d1/screen/seed_77001_reactive",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 0.8,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_004/confirmation/d0/screen/seed_77000_reactive",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_004/confirmation/d0/screen/seed_77000_full",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_004/confirmation/d1/screen/seed_77001_full",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_004/confirmation/d1/screen/seed_77001_reactive",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_005/confirmation/d0/screen/seed_77000_reactive",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 1.2,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_005/confirmation/d0/screen/seed_77000_full",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 1.2,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_005/confirmation/d1/screen/seed_77001_full",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 1.2,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/trial_005/confirmation/d1/screen/seed_77001_reactive",
+      "cruise": 0.4,
+      "target": 0.95,
+      "maximum_hold": 1.2,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v0/screen/seed_77101_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v0/screen/seed_77100_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v0/screen/seed_77101_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v0/screen/seed_77100_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v3/screen/seed_77106_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v3/screen/seed_77106_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v3/screen/seed_77107_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v3/screen/seed_77107_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v2/screen/seed_77105_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v2/screen/seed_77104_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v2/screen/seed_77104_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v2/screen/seed_77105_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v1/screen/seed_77103_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v1/screen/seed_77102_reactive",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "reactive",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v1/screen/seed_77103_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    },
+    {
+      "case": "/home/tuanmac/ninorobot/rl_runs/gt_governor_optuna_v2_2026-10-16/validation/confirmation/v1/screen/seed_77102_full",
+      "cruise": 0.4,
+      "target": 0.9,
+      "maximum_hold": 1.0,
+      "minimum_hold": 0.8,
+      "profile": "full",
+      "other_config_sha256": "d4fac203220cdca3cffd7b67b13cabf54e9dc75d577f49fe2f9d1c9a622340cb"
+    }
+  ],
+  "only_search_and_profile_config_changes": true,
+  "all_cruise_0p4_and_minimum_hold_0p8": true,
+  "protected_files": 489,
+  "changed_protected_files": [],
+  "decision": {
+    "status": "validation_unavailable_no_retry",
+    "selection": {
+      "trial": 0,
+      "parameters": {
+        "target_scale": 0.9,
+        "maximum_hold_seconds": 1.0
+      },
+      "development_cost": 0.7902069610510052,
+      "validation_scenarios": [
+        {
+          "id": "v0",
+          "x_m": 2.35,
+          "angle_deg": -12,
+          "seeds": [
+            77100,
+            77101
+          ]
+        },
+        {
+          "id": "v1",
+          "x_m": 2.85,
+          "angle_deg": 12,
+          "seeds": [
+            77102,
+            77103
+          ]
+        },
+        {
+          "id": "v2",
+          "x_m": 3.35,
+          "angle_deg": -6,
+          "seeds": [
+            77104,
+            77105
+          ]
+        },
+        {
+          "id": "v3",
+          "x_m": 3.65,
+          "angle_deg": 6,
+          "seeds": [
+            77106,
+            77107
+          ]
+        }
+      ],
+      "parameters_frozen": true
+    },
+    "validation_started": true,
+    "validation_pass": null,
+    "error": "ValueError:PI reference failed/unavailable; comparison is not a score",
+    "parameters_promoted": false,
+    "training_started": false,
+    "predictor_started": false,
+    "extra_trials": false
+  },
+  "no_rescoring": true
+}

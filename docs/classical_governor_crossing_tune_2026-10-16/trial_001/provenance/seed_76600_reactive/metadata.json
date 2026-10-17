@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "complete": true,
+  "logger_only": true,
+  "sim_contact_is_privileged": true,
+  "ground_truth_is_evaluation_only": true,
+  "governor_has_no_oracle_input": true,
+  "contact_forces_may_be_unavailable": true,
+  "impulse_not_inferred_without_valid_force_timing": true,
+  "qualification": "Instrumentation/authority experiment, not a learning or sim-to-real result",
+  "contact_components": [
+    "left_wheel",
+    "right_wheel",
+    "caster_left_wheel",
+    "caster_right_wheel",
+    "caster_bracket_left",
+    "caster_bracket_right",
+    "chassis"
+  ],
+  "caster_wheel_damping_declared": 0.001,
+  "robot_description_validated": true,
+  "source_config_sha256": "cf959d8ba0f38381a20ca821dd3d42acd944bdbe54d94acadb2331aa4b9a297e",
+  "governor_core_sha256": "bd801abb1f8f48a45c007e40572ee34432e853ca2c95f503456d1718c5fb9593",
+  "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+  "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+  "timing_telemetry": {
+    "missing_value": -1,
+    "qualification": "PI-update aggregates emitted at the existing 50Hz status rate; no control change"
+  },
+  "world_sha256": "614545ef980460b8068a95cfa8e54eed76b53c2342f33b7927f0327d8f3a199f",
+  "logger_sha256": "ee9155c13d289317883a6d8dd1378b60ee11d85f3bef1a5a238916d7bdb95f96",
+  "caster_wheel_damping_observed": {
+    "left": 0.001,
+    "right": 0.001
+  },
+  "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+  "message_counts": {
+    "/nino/contact_lab/left_wheel": 2420,
+    "/nino/contact_lab/caster_right_wheel": 2387,
+    "/nino/contact_lab/right_wheel": 2423,
+    "/nino/contact_lab/caster_left_wheel": 2391,
+    "/imu/data": 1346,
+    "/joint_states": 12878,
+    "/ground_truth/odom": 1345,
+    "/odom": 1274,
+    "/nino_drive/diagnostics": 1274,
+    "/nino/governor/episode": 2,
+    "/nino/governor/state": 167,
+    "/nino/contact_lab/caster_bracket_left": 25,
+    "/nino/contact_lab/caster_bracket_right": 34
+  }
+}

@@ -14,6 +14,7 @@ import numpy as np
 from nino_rl.core import load_config
 from nino_rl.control_v2 import baseline_action, action_size, validate_model, validate_action_mode
 from nino_rl.trajectory_metrics import write_csv
+from nino_rl.slip_reporting import SLIP_REPORTING_PROTOCOL
 
 METRICS = ("path_rmse_m", "cross_track_rmse_m", "path_p95_m", "path_max_m",
            "heading_rmse_deg", "endpoint_error_m", "final_progress_fraction",
@@ -22,6 +23,33 @@ METRICS = ("path_rmse_m", "cross_track_rmse_m", "path_p95_m", "path_max_m",
            "challenge_choice_fraction", "challenge_clear_fraction")
 TRUTH_METRICS = ("truth_path_rmse_m", "truth_path_p95_m", "truth_endpoint_error_m",
                  "truth_heading_rmse_deg", "odom_truth_position_error_m")
+
+
+def append_action_traces(ros, info, start, end, seed, streams, writers, output, timeout):
+    """Persist the completed control step even if its drive telemetry is missing."""
+    for index in (0, 1):
+        if index == 0:
+            samples = [info["control_trace"]]
+        else:
+            try:
+                samples = ros.wait_for_drive_diagnostics(start, end, timeout=timeout)
+            except BaseException as error:
+                from nino_rl.governor_logger import finite_json
+                context = dict(kind="drive_trace_unavailable", step_completed=True,
+                    start_sim_s=start, end_sim_s=end, seed=seed,
+                    exception_type=type(error).__name__, message=str(error),
+                    native_terminal_outcome=info.get("episode_metrics"),
+                    qualification="Observed terminal outcome, if present; no fabricated success or zero metric")
+                (output/"trace_failure_context.json").write_text(json.dumps(finite_json(context),
+                    indent=2, allow_nan=False, default=lambda v: v.item() if isinstance(v,np.generic) else str(v))+"\n")
+                raise
+        for sample in samples:
+            sample = {"seed": seed, **sample}
+            if writers[index] is None:
+                writers[index] = csv.DictWriter(streams[index], fieldnames=list(sample))
+                writers[index].writeheader()
+            writers[index].writerow(sample)
+        streams[index].flush()
 
 
 def benchmark_id(config):
@@ -183,6 +211,18 @@ def run(baseline=False, *, env_factory=None, experiment_metadata=None):
         "pose_source": ("imu_encoder_odometry" if config.get("odometry_assistance", {}).get("enabled", False)
                         else "wheel_odometry"),
         "metric_weighting": "simulation_time_trapezoid",
+        # Retain the historical key above for compatibility, and clarify the
+        # slip exception. Synchronized metrics are a separate offline report.
+        "metric_weighting_by_name": {
+            "rms_wheel_slip": "control_step_arithmetic_mean_square_then_sqrt",
+        },
+        "slip_reporting": {
+            "native_metric": "rms_wheel_slip",
+            "native_changed": False,
+            "snapshot_trace_schema": "native_slip_snapshot_v1" if args.control_trace else None,
+            "synchronized_metrics": "offline_separate_report_only",
+            "offline_protocol": SLIP_REPORTING_PROTOCOL,
+        },
         "reference": "configured drawn routes with ordered spatial gates in odom" if
                      config.get("routes", {}).get("enabled", False) else
                      "fixed straight line from configured start_pose to goal_pose in odom",
@@ -223,18 +263,9 @@ def run(baseline=False, *, env_factory=None, experiment_metadata=None):
                 try:
                     observation, _, terminated, truncated, info = env.step(action)
                     if args.control_trace:
-                        samples = env.ros.drive_diagnostics(start_sim, env.lockstep_sim_time)
-                        if not samples:
-                            raise RuntimeError("No stamped drive diagnostics for this action; restart the flat simulator with the updated effort_drive")
-                        sample_sets = ([info["control_trace"]], samples)
-                        for index, sample_rows in enumerate(sample_sets):
-                            for sample in sample_rows:
-                                sample = {"seed": scenario_seed, **sample}
-                                if trace_writers[index] is None:
-                                    trace_writers[index] = csv.DictWriter(trace_files[index], fieldnames=list(sample))
-                                    trace_writers[index].writeheader()
-                                trace_writers[index].writerow(sample)
-                            trace_files[index].flush()
+                        append_action_traces(env.ros, info, start_sim, env.lockstep_sim_time,
+                            scenario_seed, trace_files, trace_writers, episode_output,
+                            config["policy_v2"].get("sensor_wait_timeout_seconds",2.0))
                 except BaseException:
                     for stream in trace_files:
                         stream.close()
@@ -270,6 +301,10 @@ def run(baseline=False, *, env_factory=None, experiment_metadata=None):
     finally:
         try:
             if env is not None:
+                gate_report=getattr(env,"reset_standstill_report",None)
+                if gate_report is not None:
+                    (output/f"reset_standstill_{(episode or 0)+1:03d}.json").write_text(
+                        json.dumps(gate_report,indent=2,allow_nan=False)+"\n")
                 env.close()
         finally:
             state={**metadata,"complete":failed_episode is None and len(rows)==args.episodes,

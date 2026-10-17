@@ -234,20 +234,37 @@ need to know whether the joint backend is Gazebo or CyberGear CAN hardware.
 
 ## Physics and collision model
 
-The supplied CAD masses, centers of mass, and inertia tensors are retained.
-Left/right inertial and contact properties are symmetric; the effective wheel
-separation uses the measured tyre contact centers. The chassis collision uses
-the same `base_link.STL`, origin, and scale as its visual, so their surfaces are
-exactly aligned. Rolling surfaces use exact measured cylinders for stable
-contact. The caster bracket collision uses its CAD mesh in the same frame as
-the visual mesh, keeping the open fork clear.
-The modeled moving mass is `4.6888672492 kg`; its aggregate center of mass in
-`base_footprint` is approximately `[0.056018, 0.0, 0.127546] m`. Every inertia
-tensor is positive definite and satisfies the rigid-body triangle conditions.
+These are **simulation parameters derived from CAD and configuration**, not
+confirmed physical measurements. In particular, the chassis mass is configured
+as `2.5 kg`, with scaled CAD moments and symmetric lateral properties; the
+model does not retain every original CAD mass/inertia unchanged. Wheel
+dimensions and effective separation are derived from the supplied exports.
+The chassis and caster bracket use matching visual/collision mesh files and
+frames. That alignment does not establish how the physics engine resolves
+the open fork or whether contact agrees with the physical robot. Rolling
+collisions use cylinders; their dimensions and contact behavior still need
+hardware validation.
 
-The default closed hall is 34 m long and 4 m wide. Its 29 cable bumps
+For the expanded robot used in the 16 October frozen governor screen, the
+modeled mass is **`5.5905812626 kg`** and aggregate COM at zero joint angles in
+`base_footprint` is approximately **`[0.081196, 0.0, 0.137831] m`**. The former
+`4.6888672492 kg` entry was stale. This is a documentation correction, not a
+mass or dynamics change. The configured LiDAR link alone contributes `1.3 kg`;
+its physical mass has not been confirmed here.
+
+The same nominal model has **9.03 mm minimum bracket-to-floor clearance** and
+**32 mm caster diameter**. The recent single-obstacle screen uses a **22 mm
+high rigid capsule ridge**. These values identify geometry to compare with
+hardware; clearance alone is not the maximum traversable obstacle height.
+See the [mechanical reference and measurement procedure](CASTER_MECHANICAL_REFERENCE_2026-10-16.md)
+for provenance, limits and the two measurements still needed.
+
+The older closed-hall world is 34 m long and 4 m wide. Its 29 cable bumps
 vary from 16–44 mm diameter and −22° to +24°. Every angled cable length is
 `4.0 / cos(angle)`, so it reaches both inner wall faces. A marked
 `1.30 x 1.00 m` area centered on `(0,0,0)` remains cable-free for deterministic
 spawning and resets; the nearest cable centers are at `x=-1.10 m` and
 `x=0.90 m`.
+This describes that world, not the factory-floor contact lab or the recent
+single-obstacle frozen screen. Use the selected launch/config and captured
+world when interpreting an experiment.
