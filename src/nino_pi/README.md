@@ -6,6 +6,10 @@ Gazebo, PyTorch, CUDA hay checkpoint RL. Đây là tầng navigation phía trên
 driver vật lý; bundle **không chứa driver CyberGear/CAN, IMU hoặc LiDAR**.
 Repository hiện chưa có backend CyberGear `ros2_control` cho robot thật.
 
+**Thu thập dữ liệu chỉ đọc:** xem [REAL_DATA_COLLECTION.md](REAL_DATA_COLLECTION.md)
+cho danh mục số liệu cần đo, config, live monitor và collector ROS bag có giới
+hạn trên Ubuntu Server/Pi qua SSH. Không khởi động motor hoặc gửi lệnh chuyển động.
+
 ## 1. Kiểm tra Pi trước
 
 **Xem trạng thái trực tiếp khi robot đang chạy:**

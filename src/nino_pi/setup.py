@@ -5,7 +5,7 @@ setup(
     name="nino_pi", version="0.1.0", packages=find_packages(exclude=["test"]),
     data_files=[
         ("share/ament_index/resource_index/packages", ["resource/nino_pi"]),
-        ("share/nino_pi", ["package.xml", "README.md"]),
+        ("share/nino_pi", ["package.xml", "README.md", "REAL_DATA_COLLECTION.md"]),
         ("share/nino_pi/launch", glob("launch/*.launch.py")),
         ("share/nino_pi/config", glob("config/*.yaml")),
         ("share/nino_pi/config", glob("config/*.json")),
@@ -18,5 +18,6 @@ setup(
     entry_points={"console_scripts": ["command_gate = nino_pi.command_gate:main",
                                       "keyboard_teleop = nino_pi.keyboard:main",
                                       "hardware_audit = nino_pi.hardware_audit:main",
-                                      "state_monitor = nino_pi.state_monitor:main"]},
+                                      "state_monitor = nino_pi.state_monitor:main",
+                                      "collect_real_data = nino_pi.collect_real_data:main"]},
 )

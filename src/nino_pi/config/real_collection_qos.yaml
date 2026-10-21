@@ -1,0 +1,23 @@
+# Sensor best-effort reader accepts best-effort and reliable publishers.
+# Raw rosbag uses automatic QoS for other topics. EDIT names if remapped.
+# Match actual endpoints from hardware_audit; incompatible QoS means missing data.
+/imu/data:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 1000
+/joint_states:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 1000
+/scan:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 100
+/tf_static:
+  reliability: reliable
+  durability: transient_local
+  history: keep_last
+  depth: 100

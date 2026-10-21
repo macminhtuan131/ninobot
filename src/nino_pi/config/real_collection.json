@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "duration_s": 60,
+  "max_session_mb": 1024,
+  "reserve_disk_mb": 1024,
+  "note": "EDIT names for your real drivers. Required means needed for the initial sensor/command dataset, not proof of readiness. Optional missing topics stay unavailable. No automatic actuation.",
+  "topics": [
+    {"name": "/imu/data", "required": true, "purpose": "Raw acceleration, gyro, orientation/covariance, source stamp and sensor frame"},
+    {"name": "/joint_states", "required": true, "purpose": "Named wheel position/velocity and reported effort if actually supplied"},
+    {"name": "/scan", "required": true, "purpose": "Complete horizontal LiDAR ranges, geometry and per-beam timing"},
+    {"name": "/odom", "required": true, "purpose": "Estimator pose/twist/covariance; not independent slip ground truth"},
+    {"name": "/tf", "required": true, "purpose": "Dynamic frame tree and ownership"},
+    {"name": "/tf_static", "required": true, "purpose": "Declared IMU/LiDAR/base/wheel mounting transforms"},
+    {"name": "/cmd_vel", "required": true, "purpose": "Final velocity command visible on ROS, not necessarily executed wheel target"},
+    {"name": "/cmd_vel_nav", "required": false, "purpose": "Navigation source command if stack uses this topic"},
+    {"name": "/cmd_vel_teleop", "required": false, "purpose": "Teleoperation source command if stack uses this topic"},
+    {"name": "/cmd_vel_selected", "required": false, "purpose": "Command arbitration output"},
+    {"name": "/cmd_vel_smoothed", "required": false, "purpose": "Velocity smoother output before collision monitor"},
+    {"name": "/nino_drive/diagnostics", "required": false, "purpose": "PI target/feedback, requested/limited torque, saturation, integrator when real backend provides these fields"},
+    {"name": "/wheel_effort_controller/commands", "required": false, "purpose": "Torque COMMAND only if real robot uses this interface; never launch a simulation controller to populate it"},
+    {"name": "/wheel_torque_applied", "required": false, "purpose": "Limited/applied torque COMMAND if published, not measured torque"},
+    {"name": "/battery_state", "required": false, "purpose": "Reported supply voltage/current/temperature/charge if instrumented"},
+    {"name": "/diagnostics", "required": false, "purpose": "Driver faults, motor/thermal/power and communication diagnostics"}
+  ]
+}
