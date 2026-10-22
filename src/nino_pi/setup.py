@@ -5,7 +5,7 @@ setup(
     name="nino_pi", version="0.1.0", packages=find_packages(exclude=["test"]),
     data_files=[
         ("share/ament_index/resource_index/packages", ["resource/nino_pi"]),
-        ("share/nino_pi", ["package.xml", "README.md", "REAL_DATA_COLLECTION.md", "LAPTOP_CONTROL_AND_COLLECTION.md"]),
+        ("share/nino_pi", ["package.xml", "README.md", "REAL_DATA_COLLECTION.md", "LAPTOP_CONTROL_AND_COLLECTION.md", "REAL_SESSION_FIELD_GUIDE.md"]),
         ("share/nino_pi/launch", glob("launch/*.launch.py")),
         ("share/nino_pi/config", glob("config/*.yaml")),
         ("share/nino_pi/config", glob("config/*.json")),

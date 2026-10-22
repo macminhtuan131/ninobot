@@ -27,6 +27,10 @@ giả trong ROS domain localhost riêng, không chạy Gazebo hoặc robot thậ
 
 ## 2. Dữ liệu nào cần? Lấy bằng cách nào?
 
+**Tra từng ô trong biểu mẫu:** [REAL_SESSION_FIELD_GUIDE.md](REAL_SESSION_FIELD_GUIDE.md)
+liệt kê toàn bộ field, kiểu JSON/đơn vị, cách lấy, giới hạn bằng chứng và cách
+tạo session đứng yên mà giữ các giá trị chưa biết là `null`.
+
 ### A. Cần ngay, trước khi thử chuyển động
 
 | Dữ liệu | Cách thu và bằng chứng cần lưu | Có tự lấy được không? |
