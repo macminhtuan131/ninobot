@@ -1,5 +1,10 @@
 # Thu thập dữ liệu robot thật Nino — Ubuntu 24.04 / ROS 2 Jazzy / Pi 5
 
+**Điều khiển từ laptop khi thu:** xem
+[LAPTOP_CONTROL_AND_COLLECTION.md](LAPTOP_CONTROL_AND_COLLECTION.md) cho helper
+SSH keyboard, mapping/Nav2/RViz, build trên Pi và quy trình vừa lái vừa ghi.
+Collector vẫn chỉ đọc; điều khiển được khởi động/bật riêng bởi người vận hành.
+
 ## 1. Bộ này làm gì?
 
 Thu thập **chỉ đọc** từ driver đang có. Không khởi động driver, Nav2, PI,

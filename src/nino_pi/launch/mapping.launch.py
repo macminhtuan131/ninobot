@@ -12,9 +12,11 @@ def generate_launch_description():
         DeclareLaunchArgument("use_sim_time",default_value="false"),
         DeclareLaunchArgument("slam_params_file",default_value=PathJoinSubstitution([share,"config","mapping.yaml"])),
         DeclareLaunchArgument("joystick",default_value="false"),
+        DeclareLaunchArgument("control_params",default_value=PathJoinSubstitution([share,"config","control.yaml"])),
         IncludeLaunchDescription(PythonLaunchDescriptionSource(PathJoinSubstitution([
             share,"launch","teleop.launch.py"])),launch_arguments={
-                "joystick":LaunchConfiguration("joystick")}.items()),
+                "joystick":LaunchConfiguration("joystick"),
+                "control_params":LaunchConfiguration("control_params")}.items()),
         IncludeLaunchDescription(PythonLaunchDescriptionSource(PathJoinSubstitution([
             FindPackageShare("slam_toolbox"),"launch","online_async_launch.py"])),launch_arguments={
                 "use_sim_time":"false","autostart":"true",

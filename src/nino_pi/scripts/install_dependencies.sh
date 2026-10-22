@@ -18,4 +18,5 @@ sudo apt-get install -y \
   python3-colcon-common-extensions python3-yaml \
   ros-jazzy-navigation2 ros-jazzy-nav2-bringup ros-jazzy-slam-toolbox \
   ros-jazzy-teleop-twist-joy ros-jazzy-joy \
-  ros-jazzy-tf2-ros
+  ros-jazzy-tf2-ros \
+  ros-jazzy-rosbag2 ros-jazzy-rosbag2-storage-default-plugins

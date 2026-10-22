@@ -10,6 +10,11 @@ Repository hiện chưa có backend CyberGear `ros2_control` cho robot thật.
 cho danh mục số liệu cần đo, config, live monitor và collector ROS bag có giới
 hạn trên Ubuntu Server/Pi qua SSH. Không khởi động motor hoặc gửi lệnh chuyển động.
 
+**Lái từ laptop và ghi dữ liệu:** xem
+[LAPTOP_CONTROL_AND_COLLECTION.md](LAPTOP_CONTROL_AND_COLLECTION.md).
+Helper SSH dùng keyboard node trên Pi; navigation/mapping dùng stack có sẵn,
+không tự enable. Config tại `config/laptop_control.example.json`.
+
 ## 1. Kiểm tra Pi trước
 
 **Xem trạng thái trực tiếp khi robot đang chạy:**

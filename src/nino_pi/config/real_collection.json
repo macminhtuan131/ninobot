@@ -20,6 +20,11 @@
     {"name": "/wheel_effort_controller/commands", "required": false, "purpose": "Torque COMMAND only if real robot uses this interface; never launch a simulation controller to populate it"},
     {"name": "/wheel_torque_applied", "required": false, "purpose": "Limited/applied torque COMMAND if published, not measured torque"},
     {"name": "/battery_state", "required": false, "purpose": "Reported supply voltage/current/temperature/charge if instrumented"},
-    {"name": "/diagnostics", "required": false, "purpose": "Driver faults, motor/thermal/power and communication diagnostics"}
+    {"name": "/diagnostics", "required": false, "purpose": "Driver faults, motor/thermal/power and communication diagnostics"},
+    {"name": "/nino/emergency_stop", "required": false, "purpose": "Observed software stop requests; not proof of a physical stop"},
+    {"name": "/collision_monitor_state", "required": false, "purpose": "Collision monitor intervention state if published"},
+    {"name": "/amcl_pose", "required": false, "purpose": "Localization estimate/covariance during mapped navigation"},
+    {"name": "/plan", "required": false, "purpose": "Global reference path if navigation publishes it"},
+    {"name": "/map", "required": false, "purpose": "Real occupancy map context if mapping or navigation is active"}
   ]
 }

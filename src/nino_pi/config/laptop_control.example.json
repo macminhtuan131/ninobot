@@ -1,0 +1,11 @@
+{
+  "host": "192.168.0.107",
+  "user": "d",
+  "port": 22,
+  "ros_domain_id": null,
+  "robot_setup": "~/nino_pi_ws/install/setup.bash",
+  "driver_setup": null,
+  "control_params": "~/nino_data_tools/src/nino_pi/config/control.yaml",
+  "navigation_params": "~/nino_data_tools/src/nino_pi/config/navigation.yaml",
+  "note": "Set domain to the REAL driver domain before use; IP is an example from 2026-10-21. Set driver_setup if custom interfaces are in another overlay. No automatic enable. SSH-only keyboard does not require ROS on laptop or DDS across Wi-Fi. RViz needs ROS and matching network/domain separately."
+}
