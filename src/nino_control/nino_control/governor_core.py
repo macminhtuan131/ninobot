@@ -140,7 +140,7 @@ class ReactiveGovernor:
             self.phase = "CRUISE"
             self.hold_elapsed = self.confirmed = 0.
 
-    def update(self,frame,dt,requested_linear,requested_yaw=0.,fresh=True):
+    def update(self,frame,dt,requested_linear,requested_yaw=0.,fresh=True,*,target_acceleration_m_s2=None):
         c = self.settings
         if self.phase == "FAILSAFE":
             return self._decision(reason=self.fault)
@@ -163,6 +163,12 @@ class ReactiveGovernor:
         targets = (frame.left_target_rad_s,frame.right_target_rad_s)
         target_accel = (max(abs(a-b) for a,b in zip(targets,self.previous_targets))*c.wheel_radius_m/dt
                         if self.previous_targets is not None else 0.)
+        # Optional fixed-duration observation for the isolated cadence experiment.
+        # Legacy callers retain exactly the original previous-update calculation.
+        if target_acceleration_m_s2 is not None:
+            if not isfinite(target_acceleration_m_s2) or target_acceleration_m_s2 < 0:
+                return self.fail("invalid_target_acceleration_observation")
+            target_accel = target_acceleration_m_s2
         self.previous_targets = targets
         wheel_error = max(abs(frame.left_velocity_rad_s-targets[0]),
                           abs(frame.right_velocity_rad_s-targets[1]))*c.wheel_radius_m

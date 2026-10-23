@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "complete": true,
+  "logger_only": true,
+  "sim_contact_is_privileged": true,
+  "ground_truth_is_evaluation_only": true,
+  "governor_has_no_oracle_input": true,
+  "contact_forces_may_be_unavailable": true,
+  "impulse_not_inferred_without_valid_force_timing": true,
+  "qualification": "Instrumentation/authority experiment, not a learning or sim-to-real result",
+  "contact_components": [
+    "left_wheel",
+    "right_wheel",
+    "caster_left_wheel",
+    "caster_right_wheel",
+    "caster_bracket_left",
+    "caster_bracket_right",
+    "chassis"
+  ],
+  "caster_wheel_damping_declared": 0.001,
+  "robot_description_validated": true,
+  "source_config_sha256": "22b3d3dbfa754cbcb2cb0408c7e248240b25bd1e5090efbfdbe642b9cc2aaf37",
+  "governor_core_sha256": "0de39d7b567891204301c8ff3fda226744dae9dfbe36a55bede0199e873d763b",
+  "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+  "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+  "timing_telemetry": {
+    "missing_value": -1,
+    "qualification": "PI-update aggregates emitted at the existing 50Hz status rate; no control change"
+  },
+  "world_file": "/home/tuanmac/ninorobot/docs/governor_corrected_logger_cadence_2026-10-21/inputs/scenario.sdf",
+  "world_sha256": "8b1fc28bae7254c877cd53a4038924f567f674f0da43a04f200d429a5a26b4fd",
+  "logger_sha256": "0a1f07bf4a691233edcdd368e63a6c8f4d42c671d90759a08b07729feb714e58",
+  "observer_health_source_sha256": "a7a0cce94124be647a6a5c2f3720ef1961e96d540d4c97cdd8fb64446f4b2740",
+  "observer_health": {
+    "schema": "observer_health_v1",
+    "complete": true,
+    "callback_count": 144,
+    "recorded": 144,
+    "overflow": 0,
+    "errors": 0,
+    "maximum_records": 100000,
+    "callback_kinds": {
+      "description": 1,
+      "sensor": 139,
+      "state": 2,
+      "contact": 1,
+      "flush": 1
+    },
+    "valid": true,
+    "sidecar_written_after_collection": true,
+    "qualification": "Monotonic durations diagnose observer service; inter-callback gaps alone cannot distinguish scheduling from absent delivery. Not a control or coverage metric."
+  },
+  "acquisition_session_id": "942e1b6861254f3dbdda1a4edb56695a",
+  "acquisition_protocol_sha256": "a7d6d309d4538f473e888f534c349631522dd1124c0bea772229ff9c8b0828bb",
+  "caster_wheel_damping_observed": {
+    "left": 0.001,
+    "right": 0.001
+  },
+  "robot_description_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+  "observer_shutdown_signals": [
+    2
+  ],
+  "message_counts": {
+    "/imu/data": 31,
+    "/joint_states": 85,
+    "/ground_truth/odom": 23,
+    "/nino/governor/episode": 2,
+    "/nino/contact_lab/right_wheel": 1
+  }
+}

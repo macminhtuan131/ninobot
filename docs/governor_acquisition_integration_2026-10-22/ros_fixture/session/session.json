@@ -1,0 +1,34 @@
+{
+  "schema": "isolated_joint_gt_integration_v1",
+  "session_id": "6f36c2ec82cb44d582c847ebebc1f196",
+  "directory": "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/session",
+  "job": {
+    "seed": 77600,
+    "profile": "full"
+  },
+  "roles": [
+    "primary",
+    "joint_gt"
+  ],
+  "timeout_s": 10.0,
+  "max_status_age_s": 2.0,
+  "max_source_age_s": 0.1,
+  "source_sha256": {
+    "primary": {
+      "governor_logger.py": "0a1f07bf4a691233edcdd368e63a6c8f4d42c671d90759a08b07729feb714e58",
+      "observer_health.py": "a7a0cce94124be647a6a5c2f3720ef1961e96d540d4c97cdd8fb64446f4b2740",
+      "acquisition_contract.py": "8d4b1471d29674fa064cb178624d01a85e10da849c227864a4eb29183e336194"
+    },
+    "joint_gt": {
+      "isolated_acquisition.py": "6dba06578259cb1030b633cabb277912ebc787d21ccd1e0fce1f613c3be97d12",
+      "acquisition_frames.py": "ceefbb4229185ca4d1c46e6a2811a1de7c8c08f2dd216004af3bb0610e96a2ad",
+      "acquisition_contract.py": "8d4b1471d29674fa064cb178624d01a85e10da849c227864a4eb29183e336194"
+    }
+  },
+  "protocol_path": "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/fixture_protocol.json",
+  "protocol_sha256": "a7d6d309d4538f473e888f534c349631522dd1124c0bea772229ff9c8b0828bb",
+  "config_path": "/home/tuanmac/ninorobot/docs/governor_corrected_logger_cadence_2026-10-21/inputs/full.yaml",
+  "config_sha256": "22b3d3dbfa754cbcb2cb0408c7e248240b25bd1e5090efbfdbe642b9cc2aaf37",
+  "world_path": "/home/tuanmac/ninorobot/docs/governor_corrected_logger_cadence_2026-10-21/inputs/scenario.sdf",
+  "world_sha256": "8b1fc28bae7254c877cd53a4038924f567f674f0da43a04f200d429a5a26b4fd"
+}

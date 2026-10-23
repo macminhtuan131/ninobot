@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "complete": true,
+  "logger_only": true,
+  "sim_contact_is_privileged": true,
+  "ground_truth_is_evaluation_only": true,
+  "governor_has_no_oracle_input": true,
+  "contact_forces_may_be_unavailable": true,
+  "impulse_not_inferred_without_valid_force_timing": true,
+  "qualification": "Instrumentation/authority experiment, not a learning or sim-to-real result",
+  "contact_components": [
+    "left_wheel",
+    "right_wheel",
+    "caster_left_wheel",
+    "caster_right_wheel",
+    "caster_bracket_left",
+    "caster_bracket_right",
+    "chassis"
+  ],
+  "caster_wheel_damping_declared": 0.01,
+  "robot_description_validated": false,
+  "governor_core_sha256": "0de39d7b567891204301c8ff3fda226744dae9dfbe36a55bede0199e873d763b",
+  "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+  "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+  "timing_telemetry": {
+    "missing_value": -1,
+    "qualification": "PI-update aggregates emitted at the existing 50Hz status rate; no control change"
+  },
+  "world_file": "/home/tuanmac/ninorobot/install/nino_description/share/nino_description/worlds/factory_floor_cable_contact_lab.sdf",
+  "world_sha256": "31a735373631b3c6232366d7bdbc0489b3e5bd61abd7748c7a081a30854af63f",
+  "logger_sha256": "9482b79169a5e2067199aaa5b24d4a0ac847d7affce42fd583bf4c161011ad16",
+  "observer_health_source_sha256": "a7a0cce94124be647a6a5c2f3720ef1961e96d540d4c97cdd8fb64446f4b2740",
+  "observer_health": {
+    "schema": "observer_health_v1",
+    "complete": true,
+    "callback_count": 457,
+    "recorded": 457,
+    "overflow": 0,
+    "errors": 0,
+    "maximum_records": 100000,
+    "callback_kinds": {
+      "sensor": 456,
+      "flush": 1
+    },
+    "valid": true,
+    "sidecar_written_after_collection": true,
+    "qualification": "Monotonic durations diagnose observer service; inter-callback gaps alone cannot distinguish scheduling from absent delivery. Not a control or coverage metric."
+  },
+  "observer_shutdown_signals": [
+    2,
+    2
+  ],
+  "message_counts": {
+    "/imu/data": 228,
+    "/joint_states": 228
+  }
+}

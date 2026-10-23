@@ -30,6 +30,15 @@ def protocol():
 def bundle(tmp_path):
     path=tmp_path/"bundle"
     shutil.copytree(ROOT/"docs/governor_h2_replication_protocol_2026-10-17",path)
+    # A temporary SOFTWARE fixture uses today's code. The archived production
+    # protocol stays immutable and must reject its now-stale source hashes.
+    protocol=json.loads((path/"protocol.json").read_text())
+    protocol["workspace_reference_sha256"]={name:sha(ROOT/name)
+        for name in protocol["workspace_reference_sha256"]}
+    write(path/"protocol.json",protocol)
+    manifest=json.loads((path/"prepared_manifest.json").read_text())
+    manifest["protocol_sha256"]=sha(path/"protocol.json")
+    write(path/"prepared_manifest.json",manifest)
     return path
 
 

@@ -1,0 +1,36 @@
+{
+  "offline_tests_passed": 63,
+  "synthetic_ROS_fault_runs": 3,
+  "initial_wire_comparison_failure_preserved": true,
+  "final_fault_test_passed": true,
+  "captured_counts": {
+    "/joint_states": 600,
+    "/ground_truth/odom": 60
+  },
+  "baseline_counts": {
+    "/joint_states": 479,
+    "/ground_truth/odom": 53
+  },
+  "injected_contact_stall_wall_s": 0.250083047,
+  "all_original_timestamps_order_fields_preserved": true,
+  "composed_view_validated": true,
+  "simulator_episodes": 0,
+  "hardware_connected": false,
+  "motor_commands": 0,
+  "existing_runtime_sources_unchanged": true,
+  "new_runtime_files": [
+    "src/nino_rl/nino_rl/acquisition_frames.py",
+    "src/nino_rl/nino_rl/isolated_acquisition.py"
+  ],
+  "protected_saved_input_files_unchanged": 86,
+  "coverage_threshold_unchanged": 0.98,
+  "Gazebo_validated": false,
+  "enabled_in_existing_launch": false,
+  "legacy_executor_scoring_compatible": false,
+  "source_sha256": {
+    "src/nino_rl/nino_rl/acquisition_frames.py": "ceefbb4229185ca4d1c46e6a2811a1de7c8c08f2dd216004af3bb0610e96a2ad",
+    "src/nino_rl/nino_rl/isolated_acquisition.py": "3a134dde53ff0c0ae76f31a20fa68b3ac052c91d8907a3f314634ba3b2a6b64d",
+    "src/nino_rl/test/test_isolated_acquisition.py": "1071513af596db2c5f49a3e62d4f9fd6a3c4ec33aef344624ed5c29f59729f6e",
+    "docs/governor_observer_health_tools_2026-10-20/fault_test_isolated_acquisition.py": "ae703b74723add779c61a56ed0254a5aa3fb9871556f732794d739d98d338fae"
+  }
+}

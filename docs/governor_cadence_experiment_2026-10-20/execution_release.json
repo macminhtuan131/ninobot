@@ -1,0 +1,10 @@
+{
+  "execution_authorized": true,
+  "budget_released": true,
+  "maximum_attempts": 12,
+  "mode": "descriptive_cadence_experiment",
+  "protocol_sha256": "7c483ebec986bc020a630bd696b654d97216436b0da54ed6685fc4a8700a4340",
+  "thresholds_applied": false,
+  "application_thresholds": "proposal_only",
+  "authorization_reference": "User instruction on 2026-10-20: run the prepared 100 ms versus 20 ms descriptive experiment, exactly 12 assigned attempts with integration inside budget, no retries or extra episodes; predictor/PPO/Optuna on hold."
+}

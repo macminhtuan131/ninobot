@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "complete": true,
+  "logger_only": true,
+  "sim_contact_is_privileged": true,
+  "ground_truth_is_evaluation_only": true,
+  "governor_has_no_oracle_input": true,
+  "contact_forces_may_be_unavailable": true,
+  "impulse_not_inferred_without_valid_force_timing": true,
+  "qualification": "Instrumentation/authority experiment, not a learning or sim-to-real result",
+  "contact_components": [
+    "left_wheel",
+    "right_wheel",
+    "caster_left_wheel",
+    "caster_right_wheel",
+    "caster_bracket_left",
+    "caster_bracket_right",
+    "chassis"
+  ],
+  "caster_wheel_damping_declared": 0.01,
+  "robot_description_validated": false,
+  "governor_core_sha256": "0de39d7b567891204301c8ff3fda226744dae9dfbe36a55bede0199e873d763b",
+  "effort_drive_sha256": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+  "control_timing_sha256": "54f3f4f90c0d4ad83e35408bdf6e4d7076e9defb02ef6dfb2a4a8d050502d4e1",
+  "timing_telemetry": {
+    "missing_value": -1,
+    "qualification": "PI-update aggregates emitted at the existing 50Hz status rate; no control change"
+  },
+  "world_file": "/home/tuanmac/ninorobot/install/nino_description/share/nino_description/worlds/factory_floor_cable_contact_lab.sdf",
+  "world_sha256": "31a735373631b3c6232366d7bdbc0489b3e5bd61abd7748c7a081a30854af63f",
+  "logger_sha256": "9472a5c8ab19ba29ed426b763d50970dd4d963e5b9547c9f512ffb6faeb583fe",
+  "observer_health_source_sha256": "a7a0cce94124be647a6a5c2f3720ef1961e96d540d4c97cdd8fb64446f4b2740",
+  "observer_health": {
+    "schema": "observer_health_v1",
+    "complete": true,
+    "callback_count": 638,
+    "recorded": 638,
+    "overflow": 0,
+    "errors": 0,
+    "maximum_records": 100000,
+    "callback_kinds": {
+      "flush": 5,
+      "state": 2,
+      "sensor": 531,
+      "contact": 100
+    },
+    "valid": true,
+    "sidecar_written_after_collection": true,
+    "qualification": "Monotonic durations diagnose observer service; inter-callback gaps alone cannot distinguish scheduling from absent delivery. Not a control or coverage metric."
+  },
+  "message_counts": {
+    "/nino/governor/episode": 2,
+    "/joint_states": 478,
+    "/ground_truth/odom": 53,
+    "/nino/contact_lab/right_wheel": 65
+  },
+  "observer_shutdown_signals": [
+    2
+  ]
+}

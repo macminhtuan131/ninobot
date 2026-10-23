@@ -1,0 +1,69 @@
+{
+  "synthetic_ROS_only": true,
+  "simulation_episodes": 0,
+  "hardware_connected": false,
+  "motor_commands_published": 0,
+  "child_returncode": 0,
+  "metadata_complete": true,
+  "health_valid": true,
+  "shutdown_signals": [
+    2,
+    2
+  ],
+  "message_counts": {
+    "/imu/data": 297,
+    "/joint_states": 297
+  },
+  "observer_health": {
+    "valid": true,
+    "summary": {
+      "schema": "observer_health_v1",
+      "complete": true,
+      "callback_count": 595,
+      "recorded": 595,
+      "overflow": 0,
+      "errors": 0,
+      "maximum_records": 100000,
+      "callback_kinds": {
+        "sensor": 594,
+        "flush": 1
+      },
+      "valid": true,
+      "sidecar_written_after_collection": true,
+      "qualification": "Monotonic durations diagnose observer service; inter-callback gaps alone cannot distinguish scheduling from absent delivery. Not a control or coverage metric."
+    },
+    "longest_callback": {
+      "sequence": 595,
+      "kind": "flush",
+      "topic": "flush",
+      "source_stamp_s": null,
+      "enter_monotonic_ns": 55236935167548,
+      "since_previous_exit_ns": 201311354,
+      "stages_ns": {
+        "raw_flush": 298813,
+        "event_flush": 3320,
+        "metadata_write": 682371
+      },
+      "failed": false,
+      "exit_monotonic_ns": 55236936201410,
+      "duration_ns": 1033862
+    },
+    "longest_inter_callback": {
+      "sequence": 595,
+      "kind": "flush",
+      "topic": "flush",
+      "source_stamp_s": null,
+      "enter_monotonic_ns": 55236935167548,
+      "since_previous_exit_ns": 201311354,
+      "stages_ns": {
+        "raw_flush": 298813,
+        "event_flush": 3320,
+        "metadata_write": 682371
+      },
+      "failed": false,
+      "exit_monotonic_ns": 55236936201410,
+      "duration_ns": 1033862
+    }
+  },
+  "qualification": "Lifecycle/close verification only, not contact/sensor fidelity, sampling coverage or governor performance validation."
+}

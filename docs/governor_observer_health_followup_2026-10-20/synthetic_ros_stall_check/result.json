@@ -1,0 +1,74 @@
+{
+  "synthetic_ROS_only": true,
+  "simulation_episodes": 0,
+  "hardware_connected": false,
+  "motor_commands_published": 0,
+  "child_returncode": 0,
+  "metadata_complete": true,
+  "health_valid": true,
+  "shutdown_signals": [
+    2,
+    2
+  ],
+  "message_counts": {
+    "/imu/data": 228,
+    "/joint_states": 228
+  },
+  "observer_health": {
+    "valid": true,
+    "summary": {
+      "schema": "observer_health_v1",
+      "complete": true,
+      "callback_count": 457,
+      "recorded": 457,
+      "overflow": 0,
+      "errors": 0,
+      "maximum_records": 100000,
+      "callback_kinds": {
+        "sensor": 456,
+        "flush": 1
+      },
+      "valid": true,
+      "sidecar_written_after_collection": true,
+      "qualification": "Monotonic durations diagnose observer service; inter-callback gaps alone cannot distinguish scheduling from absent delivery. Not a control or coverage metric."
+    },
+    "longest_callback": {
+      "sequence": 100,
+      "kind": "sensor",
+      "topic": "/joint_states",
+      "source_stamp_s": 1792510731.620778,
+      "enter_monotonic_ns": 55321675121162,
+      "since_previous_exit_ns": 100050,
+      "stages_ns": {
+        "message_convert": 22840,
+        "injected_raw_write": 200151391,
+        "sanitize": 52020,
+        "json_encode": 77973,
+        "raw_write": 3620
+      },
+      "failed": false,
+      "receipt_sim_s": 1792510731.6215541,
+      "exit_monotonic_ns": 55321875509530,
+      "duration_ns": 200388368
+    },
+    "longest_inter_callback": {
+      "sequence": 457,
+      "kind": "flush",
+      "topic": "flush",
+      "source_stamp_s": null,
+      "enter_monotonic_ns": 55322531175964,
+      "since_previous_exit_ns": 201273376,
+      "stages_ns": {
+        "raw_flush": 281827,
+        "event_flush": 3764,
+        "metadata_write": 630854
+      },
+      "failed": false,
+      "exit_monotonic_ns": 55322532142198,
+      "duration_ns": 966234
+    }
+  },
+  "injected_writer_stall_seconds": 0.2,
+  "qualification": "Synthetic lifecycle/fault injection only; not contact/sensor fidelity, sampling coverage, governor benefit, or proof of the original gap cause.",
+  "detected_injected_writer_stall_seconds": 0.200151391
+}

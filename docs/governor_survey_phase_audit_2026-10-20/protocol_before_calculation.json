@@ -1,0 +1,18 @@
+{
+  "schema": "frozen_survey_phase_audit_v1",
+  "no_simulation": true,
+  "score_or_controller_changes": false,
+  "H2_decision": null,
+  "thresholds_applied": false,
+  "pairing": "All 8 distinct seed+repeat pairs; no failure or missing-data deletion",
+  "sampling": "Original GT header stamps, keep-last duplicates; joints linearly interpolated at GT stamps, max gap .010001s. Frozen slip formula and boundary-clipped trapezoids, max GT gap .040001s, coverage >=.98; every spike retained",
+  "original_windows": "Whole route, original crossing, tc+.05 to tc+3, and complete contact sequence retained and checked against frozen report",
+  "phases": "startup1s, precontact, contact_before_brake, braking, holding, recovery, after_recovery; exhaustive route partition. Transition uses FIRST SAVED DRIVE PUBLICATION acknowledging the changed governor input, conservative publication bound, not claimed actuator latency",
+  "executed_mapping": "Drive command_received_sim_s as-of governor_input_time_s, max age .100001s; requested v must equal upstream requested v * governor scale; no future control lookup",
+  "PI_alignment": "Use the paired governor's phase offsets relative to each run's own first recorded cable manifold; startup and route end remain own. Event-aligned PI windows are diagnostic, not equal contact identity, pose, or exposure",
+  "repeats": "Every executed sequence supported; retriggers must be rejected explicitly rather than silently cut away. This batch has one sequence per governor",
+  "context": "Command/limit stats at original drive publications; body at original GT stamps; original IMU sample RMS/peak. At each GT timestamp, drive/contact as-of only, bounded age .050001/.020001s. Interpolated joints offline may use later support, explicitly recorded",
+  "contact": "Positive obstacle manifold events retained separately from loaded samples (depth>0 and wrench norm>1e-6 N). Sample force is not impulse. Floor support fraction is sample fraction, not load guarantee",
+  "limits": "Applied/PI/requested Nm are commands, not measured motor torque. limited flags combine torque/rate/soft-speed limits; absence at 50Hz publications cannot exclude transient limiting at 500Hz PI updates",
+  "interpretation": "Integral (s) is additive across phases, slip\u00b2/m and RMS are not. No causal attribution from pair delta alone; contact/reset variability and different sampled exposure remain"
+}

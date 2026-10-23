@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "/joint_states": {
+      "messages": 600,
+      "all_fields_and_order_and_timestamps_match": true
+    },
+    "/ground_truth/odom": {
+      "messages": 60,
+      "all_fields_and_order_and_timestamps_match": true
+    }
+  },
+  "original_result_unchanged": true,
+  "reason": "Initial wire-hash equality failed; all deserialized ROS fields are identical. Subsequent harness compares complete semantic payload and source stamps, with CRC/SHA still checking capture-file bytes."
+}

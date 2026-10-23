@@ -1,0 +1,94 @@
+{
+  "schema": "isolated_joint_gt_integration_v1",
+  "session_id": "6f36c2ec82cb44d582c847ebebc1f196",
+  "protocol_sha256": "a7d6d309d4538f473e888f534c349631522dd1124c0bea772229ff9c8b0828bb",
+  "role": "joint_gt",
+  "source_sha256": {
+    "isolated_acquisition.py": "6dba06578259cb1030b633cabb277912ebc787d21ccd1e0fce1f613c3be97d12",
+    "acquisition_frames.py": "ceefbb4229185ca4d1c46e6a2811a1de7c8c08f2dd216004af3bb0610e96a2ad",
+    "acquisition_contract.py": "8d4b1471d29674fa064cb178624d01a85e10da849c227864a4eb29183e336194"
+  },
+  "output": "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/joint_gt",
+  "pid": 190238,
+  "counts": {
+    "/joint_states": 23,
+    "/ground_truth/odom": 20
+  },
+  "latest_source_ns": {
+    "/joint_states": 1792649423196972256,
+    "/ground_truth/odom": 1792649423196972256
+  },
+  "ready": true,
+  "closed": false,
+  "error": null,
+  "lifecycle": [
+    {
+      "event": "reset",
+      "run_id": "software-integration",
+      "attempt": 1,
+      "seed": 77600,
+      "time_s": 1792649423.2162616,
+      "settings": {
+        "enabled": true,
+        "revision": "motion_trigger_ablation_v1_2026_10_16",
+        "execution": "inline_PI_evaluation",
+        "parameters": {
+          "profile": "full",
+          "target_scale": 0.9,
+          "scale_rate_per_second": 0.4,
+          "vertical_trigger_m_s2": 1.5,
+          "body_rate_trigger_rad_s": 0.35,
+          "wheel_error_trigger_m_s": 0.06,
+          "wheel_error_acceleration_allowance_s": 0.1,
+          "release_ratio": 0.6,
+          "confirmation_seconds": 0.04,
+          "quiet_seconds": 0.3,
+          "minimum_hold_seconds": 0.8,
+          "maximum_hold_seconds": 1.0,
+          "startup_seconds": 0.8,
+          "wheel_stall_seconds": 1.2,
+          "stall_recovery_enabled": false,
+          "pulse_seconds": 1.0,
+          "vertical_only_trigger_enabled": false,
+          "trigger_to_brake_delay_seconds": 0.0
+        },
+        "world_chunk_seconds": 0.02
+      }
+    }
+  ],
+  "now_ns": 1792649423266797353,
+  "monotonic_ns": 194013320411771,
+  "marker": {
+    "event": "reset",
+    "run_id": "software-integration",
+    "attempt": 1,
+    "seed": 77600,
+    "time_s": 1792649423.2162616,
+    "settings": {
+      "enabled": true,
+      "revision": "motion_trigger_ablation_v1_2026_10_16",
+      "execution": "inline_PI_evaluation",
+      "parameters": {
+        "profile": "full",
+        "target_scale": 0.9,
+        "scale_rate_per_second": 0.4,
+        "vertical_trigger_m_s2": 1.5,
+        "body_rate_trigger_rad_s": 0.35,
+        "wheel_error_trigger_m_s": 0.06,
+        "wheel_error_acceleration_allowance_s": 0.1,
+        "release_ratio": 0.6,
+        "confirmation_seconds": 0.04,
+        "quiet_seconds": 0.3,
+        "minimum_hold_seconds": 0.8,
+        "maximum_hold_seconds": 1.0,
+        "startup_seconds": 0.8,
+        "wheel_stall_seconds": 1.2,
+        "stall_recovery_enabled": false,
+        "pulse_seconds": 1.0,
+        "vertical_only_trigger_enabled": false,
+        "trigger_to_brake_delay_seconds": 0.0
+      },
+      "world_chunk_seconds": 0.02
+    }
+  }
+}

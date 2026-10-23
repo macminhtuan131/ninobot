@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "schema": "isolated_joint_gt_candidate_view_v1",
+  "validation": {
+    "valid": true,
+    "epoch": 1,
+    "counts": {
+      "/joint_states": 600,
+      "/ground_truth/odom": 60
+    },
+    "qualification": "Epoch/identity only; does not replace native timestamps, gap/coverage tests or prove DDS loss-free delivery"
+  },
+  "run_id": "isolated-fixture",
+  "attempt": 1,
+  "window_ns": [
+    100000000000,
+    101200000000
+  ],
+  "input_sha256": {
+    "/home/tuanmac/ninorobot/docs/governor_isolated_acquisition_2026-10-21/ros_contact_stall_with_view/contact/20261021T080436-069412Z/samples.jsonl": "e81a847d7f4d5d05963b7d02f716a832ce5874b2259c4de1804836f6db2923ed",
+    "/home/tuanmac/ninorobot/docs/governor_isolated_acquisition_2026-10-21/ros_contact_stall_with_view/contact/20261021T080436-069412Z/metadata.json": "8dc9ae29f7a8e673a6290fc058e3d4e8e72440731393a82908ddd1d8d863d2af",
+    "/home/tuanmac/ninorobot/docs/governor_isolated_acquisition_2026-10-21/ros_contact_stall_with_view/capture/joint_gt.frames": "f0cd6ad6a80c18d54824bc7198e413474d22546e2dd576d4ad5e0ee227a135c9",
+    "/home/tuanmac/ninorobot/docs/governor_isolated_acquisition_2026-10-21/ros_contact_stall_with_view/capture/capture_manifest.json": "ffdd927d856888769f66be41e9175af6763ce7bd8ff39718f04ebb6983b48e6e"
+  },
+  "isolated_topic_counts": {
+    "/ground_truth/odom": 60,
+    "/joint_states": 600
+  },
+  "replaced_primary_topic_counts": {
+    "/ground_truth/odom": 53,
+    "/joint_states": 479
+  },
+  "measurement_authority": {
+    "/ground_truth/odom": "isolated_capture_only",
+    "/joint_states": "isolated_capture_only"
+  },
+  "missing_values_filled": false,
+  "resampling": false,
+  "native_scores_modified": false,
+  "valid_for_existing_scoring": false,
+  "qualification": "Per-topic order retained; aux rows precede sensor rows, no total cross-process callback order claimed. A new integration contract must verify provenance, original sampling/coverage and all native gates. Not a drop-in legacy logger directory."
+}

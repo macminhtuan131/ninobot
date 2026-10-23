@@ -1,0 +1,16 @@
+{
+  "schema": "observer_health_v1",
+  "complete": true,
+  "callback_count": 595,
+  "recorded": 595,
+  "overflow": 0,
+  "errors": 0,
+  "maximum_records": 100000,
+  "callback_kinds": {
+    "sensor": 594,
+    "flush": 1
+  },
+  "valid": true,
+  "sidecar_written_after_collection": true,
+  "qualification": "Monotonic durations diagnose observer service; inter-callback gaps alone cannot distinguish scheduling from absent delivery. Not a control or coverage metric."
+}

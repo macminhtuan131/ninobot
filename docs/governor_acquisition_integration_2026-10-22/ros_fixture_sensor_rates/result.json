@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "software_fixture_only": true,
+  "simulation_episodes": 0,
+  "known_publisher_counts": {
+    "/joint_states": {
+      "sent": 160,
+      "received": 159,
+      "missing_source_ns": [
+        1792649489340179912
+      ]
+    },
+    "/ground_truth/odom": {
+      "sent": 16,
+      "received": 16,
+      "missing_source_ns": []
+    }
+  },
+  "received_fields_and_stamps_equal": true,
+  "both_readiness_reset_end_close": true,
+  "view_admitted": true,
+  "process_exit_codes": [
+    0,
+    0
+  ],
+  "injected_contact_stall_ns": 200029439,
+  "native_failure_retained": {
+    "physical_success": false,
+    "termination": "timeout"
+  },
+  "isolated_counts": {
+    "/ground_truth/odom": 16,
+    "/joint_states": 159
+  },
+  "qualification": "Injected software fault only; not Gazebo coverage, cadence authority or hardware proof"
+}

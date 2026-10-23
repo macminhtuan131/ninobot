@@ -1,0 +1,64 @@
+{
+  "fixed": {
+    "route": "E1",
+    "start": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "goal": [
+      6.45,
+      0.0,
+      0.0
+    ],
+    "cruise_m_s": 0.4,
+    "physics_step_s": 0.001,
+    "control_interval_s": 0.1,
+    "IMU_period_s": 0.02,
+    "floor": "10x7x0.1m box, top z=0",
+    "obstacle": "rigid capsule, diameter6mm, cylindrical section4m, x3.1m, yaw+8deg",
+    "effective_geometry_source": "inputs/scenario.sdf, not inherited metadata/config tags",
+    "robot_expected_sha256": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+    "PI": {
+      "pi_integrator_profile": "conditional_v1",
+      "velocity_kp": 0.3,
+      "velocity_ki": 0.1,
+      "integral_limit": 4.0,
+      "max_wheel_torque": 4.0,
+      "max_velocity_control_torque": 4.0,
+      "max_wheel_acceleration": 12.0,
+      "max_effort_rate": 10.0,
+      "wheel_radius": 0.0625,
+      "wheel_separation": 0.34273666
+    },
+    "governor_parameters": {
+      "profile": "reactive",
+      "target_scale": 0.9,
+      "scale_rate_per_second": 0.4,
+      "vertical_trigger_m_s2": 1.5,
+      "body_rate_trigger_rad_s": 0.35,
+      "wheel_error_trigger_m_s": 0.06,
+      "wheel_error_acceleration_allowance_s": 0.1,
+      "release_ratio": 0.6,
+      "confirmation_seconds": 0.04,
+      "quiet_seconds": 0.3,
+      "minimum_hold_seconds": 0.8,
+      "maximum_hold_seconds": 1.0,
+      "startup_seconds": 0.8,
+      "wheel_stall_seconds": 1.2,
+      "stall_recovery_enabled": false,
+      "pulse_seconds": 1.0,
+      "vertical_only_trigger_enabled": false,
+      "trigger_to_brake_delay_seconds": 0.0
+    },
+    "randomization_disabled": [
+      "geometry",
+      "adaptive items",
+      "terrain/curriculum",
+      "dynamics domain randomization"
+    ],
+    "only_between_arm_configuration_delta": "profile full/reactive and opt-in20ms governor cadence; common20ms world transactions in ALL arms; environment/scoring/follower remain100ms",
+    "note": "Inherited config/metadata contain legacy radius/mesh tags. Preserve bytes; effective collision is verified SDF. PPO/reward fields are inert in this baseline evaluation.",
+    "common_lockstep_transaction_s": 0.02
+  }
+}

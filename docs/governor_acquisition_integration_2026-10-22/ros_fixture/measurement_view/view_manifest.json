@@ -1,0 +1,79 @@
+{
+  "complete": true,
+  "schema": "isolated_joint_gt_integration_v1",
+  "validation": {
+    "valid": true,
+    "epoch": 1,
+    "counts": {
+      "/joint_states": 159,
+      "/ground_truth/odom": 159
+    },
+    "qualification": "Epoch/identity only; does not replace native timestamps, gap/coverage tests or prove DDS loss-free delivery"
+  },
+  "run_id": "software-integration",
+  "attempt": 1,
+  "window_ns": [
+    1792649423216261632,
+    1792649423857459712
+  ],
+  "input_sha256": {
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/session/session.json": "11837e9bc2d6c09de9433092e0f88ba9ff3d918fed7945f959197e1ca31cda12",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/session/readiness_pair.json": "078374594db54f1200cdab359e7aa3b610de32ad5ef7027cba36743acf679abd",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/session/expected_end.json": "ab83c8550321f2ac17cc1587f64afc1f014803f339c421aadb58f838656ff363",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/session/primary_status.json": "919a84c04dea34f08ca45d7fe27e59d307ed37b327b5845316676b58c7f2685e",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/session/primary_reset.json": "2764bc1a7c510b7cf53f358f734de01b1949a64930214c30b350b6a99f62f256",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/session/primary_end.json": "a9c9c83dadb4460b37038dfd053f661b94f9d2e80f5fe4622d3dfbaf637ecb06",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/session/joint_gt_status.json": "94f604ec208b6ff9af1d9263ef8bc2a082c2f9e8dbaa1b84b02454544be5411a",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/session/joint_gt_reset.json": "e021b8a0c595cd0ddd8566c587e4eb547239bf7254b95eb19aeaf8df5437e282",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/session/joint_gt_end.json": "aebdc42ad7b05d61d6486fce6b93c83c9c14557803200289bbd15381a7144b34",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/contact/20261022T061022-932335Z/contact_events.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/contact/20261022T061022-932335Z/resolved_config.json": "ea0952a1bcece0cdae535cdf740f6261129ff697c684c44b0b85860890d50de5",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/contact/20261022T061022-932335Z/source_config.yaml": "22b3d3dbfa754cbcb2cb0408c7e248240b25bd1e5090efbfdbe642b9cc2aaf37",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/contact/20261022T061022-932335Z/robot_description.urdf": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/contact/20261022T061022-932335Z/observer_health_summary.json": "6f250c28dacc53b60a010d848617ddde19e420230084bd53e92e309007f88281",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/contact/20261022T061022-932335Z/observer_health.jsonl": "63a81ccc20b9b350e749b4f2c7c756fa0519877520d648e775d3258fa71c733f",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/contact/20261022T061022-932335Z/samples.jsonl": "e5bf5850c7c9e28e8b259ef7ac7d8b658e94de35cb95ae5287d1b5f5213e2b27",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/contact/20261022T061022-932335Z/metadata.json": "9348709b40c0ccca35d217c7e7cf66497407350e2fba88335a77aa29033d3109",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/joint_gt/joint_gt.frames": "f53981a15cc9173f50b539c6e57a0a54f75b01ddec69dc9f0b3f97932a85403b",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/joint_gt/capture_manifest.json": "e4efb69437c4b626c0620fea6f420a164408f4ef58358d905ae0c3b7b72da5df",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/fixture_protocol.json": "a7d6d309d4538f473e888f534c349631522dd1124c0bea772229ff9c8b0828bb",
+    "/home/tuanmac/ninorobot/docs/governor_corrected_logger_cadence_2026-10-21/inputs/full.yaml": "22b3d3dbfa754cbcb2cb0408c7e248240b25bd1e5090efbfdbe642b9cc2aaf37",
+    "/home/tuanmac/ninorobot/docs/governor_corrected_logger_cadence_2026-10-21/inputs/scenario.sdf": "8b1fc28bae7254c877cd53a4038924f567f674f0da43a04f200d429a5a26b4fd"
+  },
+  "isolated_topic_counts": {
+    "/ground_truth/odom": 159,
+    "/joint_states": 159
+  },
+  "replaced_primary_topic_counts": {
+    "/ground_truth/odom": 78,
+    "/joint_states": 79
+  },
+  "measurement_authority": {
+    "/ground_truth/odom": "isolated_capture_only",
+    "/joint_states": "isolated_capture_only"
+  },
+  "missing_values_filled": false,
+  "resampling": false,
+  "native_scores_modified": false,
+  "valid_for_existing_scoring": false,
+  "selected_epoch_only": true,
+  "qualification": "Explicit two-process contract only. CRC/closure are not sampling coverage. Original native replay, timestamp, per-window coverage and stopping gates remain mandatory.",
+  "admitted_for_new_contract": true,
+  "session_id": "6f36c2ec82cb44d582c847ebebc1f196",
+  "protocol_sha256": "a7d6d309d4538f473e888f534c349631522dd1124c0bea772229ff9c8b0828bb",
+  "primary_logger": "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/contact/20261022T061022-932335Z",
+  "session_path": "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/session/session.json",
+  "both_loggers_closed": true,
+  "derived_sha256": {
+    "observer_health.jsonl": "63a81ccc20b9b350e749b4f2c7c756fa0519877520d648e775d3258fa71c733f",
+    "source_config.yaml": "22b3d3dbfa754cbcb2cb0408c7e248240b25bd1e5090efbfdbe642b9cc2aaf37",
+    "robot_description.urdf": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+    "contact_events.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "samples.jsonl": "afeae31cbd5e993635e959208a7e8e3759053893cf6838de8ad6596178b17e8d",
+    "resolved_config.json": "ea0952a1bcece0cdae535cdf740f6261129ff697c684c44b0b85860890d50de5",
+    "primary_metadata.json": "9348709b40c0ccca35d217c7e7cf66497407350e2fba88335a77aa29033d3109",
+    "observer_health_summary.json": "6f250c28dacc53b60a010d848617ddde19e420230084bd53e92e309007f88281",
+    "decoded_sensor_source/decode_manifest.json": "2d4db91f1528f602f2d856fc43d7b7f3fd0c0dfa58b908b399b5f1a3059ea1da",
+    "decoded_sensor_source/samples.jsonl": "6e9bc3ca0301ff1aff3b569d93ee2a03e8315e61db51aba3afe8aa5de6d3c770"
+  }
+}

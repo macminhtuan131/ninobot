@@ -1,0 +1,56 @@
+{
+  "primary": {
+    "schema": "isolated_joint_gt_integration_v1",
+    "session_id": "6f36c2ec82cb44d582c847ebebc1f196",
+    "protocol_sha256": "a7d6d309d4538f473e888f534c349631522dd1124c0bea772229ff9c8b0828bb",
+    "role": "primary",
+    "source_sha256": {
+      "governor_logger.py": "0a1f07bf4a691233edcdd368e63a6c8f4d42c671d90759a08b07729feb714e58",
+      "observer_health.py": "a7a0cce94124be647a6a5c2f3720ef1961e96d540d4c97cdd8fb64446f4b2740",
+      "acquisition_contract.py": "8d4b1471d29674fa064cb178624d01a85e10da849c227864a4eb29183e336194"
+    },
+    "output": "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/contact/20261022T061022-932335Z",
+    "pid": 190237,
+    "counts": {
+      "/joint_states": 11,
+      "/ground_truth/odom": 10
+    },
+    "latest_source_ns": {
+      "/joint_states": 1792649423186051007,
+      "/ground_truth/odom": 1792649423186051007
+    },
+    "ready": true,
+    "closed": false,
+    "error": null,
+    "lifecycle": [],
+    "now_ns": 1792649423188893960,
+    "monotonic_ns": 194013242479068
+  },
+  "joint_gt": {
+    "schema": "isolated_joint_gt_integration_v1",
+    "session_id": "6f36c2ec82cb44d582c847ebebc1f196",
+    "protocol_sha256": "a7d6d309d4538f473e888f534c349631522dd1124c0bea772229ff9c8b0828bb",
+    "role": "joint_gt",
+    "source_sha256": {
+      "isolated_acquisition.py": "6dba06578259cb1030b633cabb277912ebc787d21ccd1e0fce1f613c3be97d12",
+      "acquisition_frames.py": "ceefbb4229185ca4d1c46e6a2811a1de7c8c08f2dd216004af3bb0610e96a2ad",
+      "acquisition_contract.py": "8d4b1471d29674fa064cb178624d01a85e10da849c227864a4eb29183e336194"
+    },
+    "output": "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture/joint_gt",
+    "pid": 190238,
+    "counts": {
+      "/joint_states": 16,
+      "/ground_truth/odom": 13
+    },
+    "latest_source_ns": {
+      "/joint_states": 1792649423122462465,
+      "/ground_truth/odom": 1792649423122462465
+    },
+    "ready": true,
+    "closed": false,
+    "error": null,
+    "lifecycle": [],
+    "now_ns": 1792649423129889358,
+    "monotonic_ns": 194013183472882
+  }
+}

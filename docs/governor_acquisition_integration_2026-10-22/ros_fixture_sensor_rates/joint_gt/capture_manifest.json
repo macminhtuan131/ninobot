@@ -1,0 +1,37 @@
+{
+  "schema": "isolated_joint_gt_frames_v1",
+  "capture_id": "814055a3-97cd-43bc-b3dc-d1e9b19600cd",
+  "complete": true,
+  "maximum_bytes": 536870912,
+  "topic_ids": {
+    "1": "/joint_states",
+    "2": "/ground_truth/odom",
+    "3": "/nino/governor/episode"
+  },
+  "process_isolated": true,
+  "logger_only": true,
+  "source_sha256": "6dba06578259cb1030b633cabb277912ebc787d21ccd1e0fce1f613c3be97d12",
+  "frames_source_sha256": "ceefbb4229185ca4d1c46e6a2811a1de7c8c08f2dd216004af3bb0610e96a2ad",
+  "sensor_qos": {
+    "depth": 5,
+    "history": "KEEP_LAST",
+    "reliability": "BEST_EFFORT"
+  },
+  "maximum_callback_ns": 192607,
+  "epoch": 1,
+  "qualification": "Raw ROS CDR, source timestamps unchanged. Callback sequence counts received messages only; source loss still requires coverage checks.",
+  "acquisition_session_id": "942e1b6861254f3dbdda1a4edb56695a",
+  "acquisition_protocol_sha256": "a7d6d309d4538f473e888f534c349631522dd1124c0bea772229ff9c8b0828bb",
+  "shutdown_signals": [
+    2
+  ],
+  "frames": 207,
+  "bytes": 57408,
+  "counts": {
+    "/joint_states": 174,
+    "/ground_truth/odom": 31,
+    "/nino/governor/episode": 2
+  },
+  "sha256": "ec36a0cc2ec577175d0b6025a8cf09b7bebb3676be324256e61258055c8e4bdd",
+  "error": null
+}

@@ -1,0 +1,571 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "arm": "full",
+      "status": "collected",
+      "arrival": true,
+      "observer_health": {
+        "valid": true,
+        "summary": {
+          "schema": "observer_health_v1",
+          "complete": true,
+          "callback_count": 72040,
+          "recorded": 72040,
+          "overflow": 0,
+          "errors": 0,
+          "maximum_records": 100000,
+          "callback_kinds": {
+            "description": 1,
+            "flush": 46,
+            "contact": 55446,
+            "sensor": 16379,
+            "state": 168
+          },
+          "valid": true,
+          "sidecar_written_after_collection": true,
+          "qualification": "Monotonic durations diagnose observer service; inter-callback gaps alone cannot distinguish scheduling from absent delivery. Not a control or coverage metric."
+        },
+        "longest_callback": {
+          "sequence": 40644,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/right_wheel",
+          "source_stamp_s": 14.915,
+          "enter_monotonic_ns": 97831925875859,
+          "since_previous_exit_ns": 273787,
+          "stages_ns": {
+            "message_convert": 47500509,
+            "sanitize": 79154,
+            "json_encode": 103626,
+            "raw_write": 6615
+          },
+          "failed": false,
+          "receipt_sim_s": 14.919,
+          "exit_monotonic_ns": 97831973621977,
+          "duration_ns": 47746118
+        },
+        "longest_inter_callback": {
+          "sequence": 3,
+          "kind": "flush",
+          "topic": "flush",
+          "source_stamp_s": null,
+          "enter_monotonic_ns": 97802430027955,
+          "since_previous_exit_ns": 999727329,
+          "stages_ns": {
+            "raw_flush": 8247,
+            "event_flush": 3332,
+            "metadata_write": 682092
+          },
+          "failed": false,
+          "exit_monotonic_ns": 97802430771257,
+          "duration_ns": 743302
+        }
+      },
+      "summary": {
+        "schema": "observer_health_v1",
+        "complete": true,
+        "callback_count": 72040,
+        "recorded": 72040,
+        "overflow": 0,
+        "errors": 0,
+        "maximum_records": 100000,
+        "callback_kinds": {
+          "description": 1,
+          "flush": 46,
+          "contact": 55446,
+          "sensor": 16379,
+          "state": 168
+        },
+        "valid": true,
+        "sidecar_written_after_collection": true,
+        "qualification": "Monotonic durations diagnose observer service; inter-callback gaps alone cannot distinguish scheduling from absent delivery. Not a control or coverage metric."
+      },
+      "stage_costs": {
+        "metadata_write": {
+          "calls": 47,
+          "total_ns": 17911238,
+          "maximum_ns": 682092
+        },
+        "raw_flush": {
+          "calls": 46,
+          "total_ns": 14520453,
+          "maximum_ns": 1290730
+        },
+        "event_flush": {
+          "calls": 46,
+          "total_ns": 255319,
+          "maximum_ns": 46574
+        },
+        "sanitize": {
+          "calls": 25418,
+          "total_ns": 907726289,
+          "maximum_ns": 3061904
+        },
+        "json_encode": {
+          "calls": 25418,
+          "total_ns": 1333238260,
+          "maximum_ns": 631321
+        },
+        "event_write": {
+          "calls": 31,
+          "total_ns": 57438,
+          "maximum_ns": 4542
+        },
+        "message_convert": {
+          "calls": 25250,
+          "total_ns": 3213233784,
+          "maximum_ns": 47500509
+        },
+        "raw_write": {
+          "calls": 25418,
+          "total_ns": 54704028,
+          "maximum_ns": 1181732
+        }
+      },
+      "longest_callbacks": [
+        {
+          "sequence": 40644,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/right_wheel",
+          "source_stamp_s": 14.915,
+          "enter_monotonic_ns": 97831925875859,
+          "since_previous_exit_ns": 273787,
+          "stages_ns": {
+            "message_convert": 47500509,
+            "sanitize": 79154,
+            "json_encode": 103626,
+            "raw_write": 6615
+          },
+          "failed": false,
+          "receipt_sim_s": 14.919,
+          "exit_monotonic_ns": 97831973621977,
+          "duration_ns": 47746118
+        },
+        {
+          "sequence": 5027,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/caster_left_wheel",
+          "source_stamp_s": 2.848,
+          "enter_monotonic_ns": 97808138867574,
+          "since_previous_exit_ns": 274650,
+          "stages_ns": {
+            "message_convert": 23332507,
+            "sanitize": 72316,
+            "json_encode": 101672,
+            "raw_write": 1010
+          },
+          "failed": false,
+          "receipt_sim_s": 2.8520000000000003,
+          "exit_monotonic_ns": 97808162425202,
+          "duration_ns": 23557628
+        },
+        {
+          "sequence": 412,
+          "kind": "sensor",
+          "topic": "/ground_truth/odom",
+          "source_stamp_s": 0.18000000000000002,
+          "enter_monotonic_ns": 97805362765785,
+          "since_previous_exit_ns": 194181,
+          "stages_ns": {
+            "message_convert": 189192,
+            "sanitize": 3061904,
+            "json_encode": 631321,
+            "raw_write": 38881
+          },
+          "failed": false,
+          "receipt_sim_s": 0.18200000000000002,
+          "exit_monotonic_ns": 97805367089116,
+          "duration_ns": 4323331
+        },
+        {
+          "sequence": 6419,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/caster_left_wheel",
+          "source_stamp_s": 3.524,
+          "enter_monotonic_ns": 97808814799934,
+          "since_previous_exit_ns": 305465,
+          "stages_ns": {
+            "message_convert": 2278806,
+            "sanitize": 104674,
+            "json_encode": 211991,
+            "raw_write": 11661
+          },
+          "failed": false,
+          "receipt_sim_s": 3.527,
+          "exit_monotonic_ns": 97808817555322,
+          "duration_ns": 2755388
+        },
+        {
+          "sequence": 414,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/right_wheel",
+          "source_stamp_s": 0.187,
+          "enter_monotonic_ns": 97805372582681,
+          "since_previous_exit_ns": 941250,
+          "stages_ns": {
+            "message_convert": 1158159,
+            "sanitize": 214862,
+            "json_encode": 287254,
+            "raw_write": 4118
+          },
+          "failed": false,
+          "receipt_sim_s": 0.18200000000000002,
+          "exit_monotonic_ns": 97805374636478,
+          "duration_ns": 2053797
+        },
+        {
+          "sequence": 60889,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/left_wheel",
+          "source_stamp_s": 20.86,
+          "enter_monotonic_ns": 97839811425564,
+          "since_previous_exit_ns": 328624,
+          "stages_ns": {
+            "message_convert": 300321,
+            "sanitize": 1564199,
+            "json_encode": 102885,
+            "raw_write": 1395
+          },
+          "failed": false,
+          "receipt_sim_s": 20.864,
+          "exit_monotonic_ns": 97839813452306,
+          "duration_ns": 2026742
+        },
+        {
+          "sequence": 47470,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/left_wheel",
+          "source_stamp_s": 16.896,
+          "enter_monotonic_ns": 97834558711350,
+          "since_previous_exit_ns": 288781,
+          "stages_ns": {
+            "message_convert": 1551146,
+            "sanitize": 224822,
+            "json_encode": 177290,
+            "raw_write": 1628
+          },
+          "failed": false,
+          "receipt_sim_s": 16.899,
+          "exit_monotonic_ns": 97834560736636,
+          "duration_ns": 2025286
+        },
+        {
+          "sequence": 17439,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/left_wheel",
+          "source_stamp_s": 7.636,
+          "enter_monotonic_ns": 97815265172874,
+          "since_previous_exit_ns": 342083,
+          "stages_ns": {
+            "message_convert": 1761077,
+            "sanitize": 86145,
+            "json_encode": 99607,
+            "raw_write": 1305
+          },
+          "failed": false,
+          "receipt_sim_s": 7.640000000000001,
+          "exit_monotonic_ns": 97815267178840,
+          "duration_ns": 2005966
+        },
+        {
+          "sequence": 39763,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/left_wheel",
+          "source_stamp_s": 14.64,
+          "enter_monotonic_ns": 97828501455483,
+          "since_previous_exit_ns": 1220011,
+          "stages_ns": {
+            "sanitize": 319067,
+            "json_encode": 343311,
+            "event_write": 2885,
+            "message_convert": 1091818,
+            "raw_write": 2954
+          },
+          "failed": false,
+          "receipt_sim_s": 14.64,
+          "exit_monotonic_ns": 97828503425217,
+          "duration_ns": 1969734
+        },
+        {
+          "sequence": 14225,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/left_wheel",
+          "source_stamp_s": 6.606,
+          "enter_monotonic_ns": 97813934312315,
+          "since_previous_exit_ns": 330034,
+          "stages_ns": {
+            "message_convert": 1661003,
+            "sanitize": 67341,
+            "json_encode": 84125,
+            "raw_write": 1333
+          },
+          "failed": false,
+          "receipt_sim_s": 6.61,
+          "exit_monotonic_ns": 97813936185420,
+          "duration_ns": 1873105
+        }
+      ],
+      "longest_inter_callback_gaps": [
+        {
+          "sequence": 3,
+          "kind": "flush",
+          "topic": "flush",
+          "source_stamp_s": null,
+          "enter_monotonic_ns": 97802430027955,
+          "since_previous_exit_ns": 999727329,
+          "stages_ns": {
+            "raw_flush": 8247,
+            "event_flush": 3332,
+            "metadata_write": 682092
+          },
+          "failed": false,
+          "exit_monotonic_ns": 97802430771257,
+          "duration_ns": 743302
+        },
+        {
+          "sequence": 4,
+          "kind": "flush",
+          "topic": "flush",
+          "source_stamp_s": null,
+          "enter_monotonic_ns": 97803429972831,
+          "since_previous_exit_ns": 999201574,
+          "stages_ns": {
+            "raw_flush": 7541,
+            "event_flush": 3340,
+            "metadata_write": 663214
+          },
+          "failed": false,
+          "exit_monotonic_ns": 97803430713985,
+          "duration_ns": 741154
+        },
+        {
+          "sequence": 5,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/left_wheel",
+          "source_stamp_s": 0.001,
+          "enter_monotonic_ns": 97804411438820,
+          "since_previous_exit_ns": 980724835,
+          "stages_ns": {
+            "sanitize": 130625,
+            "json_encode": 182607,
+            "event_write": 4277,
+            "message_convert": 417979,
+            "raw_write": 3520
+          },
+          "failed": false,
+          "receipt_sim_s": 0.0,
+          "exit_monotonic_ns": 97804412402237,
+          "duration_ns": 963417
+        },
+        {
+          "sequence": 2,
+          "kind": "flush",
+          "topic": "flush",
+          "source_stamp_s": null,
+          "enter_monotonic_ns": 97801429890924,
+          "since_previous_exit_ns": 974109057,
+          "stages_ns": {
+            "raw_flush": 6465,
+            "event_flush": 2004,
+            "metadata_write": 373655
+          },
+          "failed": false,
+          "exit_monotonic_ns": 97801430300626,
+          "duration_ns": 409702
+        },
+        {
+          "sequence": 67423,
+          "kind": "flush",
+          "topic": "flush",
+          "source_stamp_s": null,
+          "enter_monotonic_ns": 97843429493126,
+          "since_previous_exit_ns": 822867375,
+          "stages_ns": {
+            "raw_flush": 136241,
+            "event_flush": 1580,
+            "metadata_write": 316665
+          },
+          "failed": false,
+          "exit_monotonic_ns": 97843429966298,
+          "duration_ns": 473172
+        },
+        {
+          "sequence": 19,
+          "kind": "sensor",
+          "topic": "/joint_states",
+          "source_stamp_s": 0.004,
+          "enter_monotonic_ns": 97805023113696,
+          "since_previous_exit_ns": 592759818,
+          "stages_ns": {
+            "message_convert": 142452,
+            "sanitize": 50338,
+            "json_encode": 120260,
+            "raw_write": 3184
+          },
+          "failed": false,
+          "receipt_sim_s": 0.004,
+          "exit_monotonic_ns": 97805023525102,
+          "duration_ns": 411406
+        },
+        {
+          "sequence": 67424,
+          "kind": "contact",
+          "topic": "/nino/contact_lab/left_wheel",
+          "source_stamp_s": 22.893,
+          "enter_monotonic_ns": 97843931572488,
+          "since_previous_exit_ns": 501606190,
+          "stages_ns": {
+            "sanitize": 42310,
+            "json_encode": 72124,
+            "event_write": 2845,
+            "message_convert": 127036,
+            "raw_write": 1138
+          },
+          "failed": false,
+          "receipt_sim_s": 22.893,
+          "exit_monotonic_ns": 97843931899539,
+          "duration_ns": 327051
+        },
+        {
+          "sequence": 1524,
+          "kind": "sensor",
+          "topic": "/imu/data",
+          "source_stamp_s": 0.66,
+          "enter_monotonic_ns": 97806169479639,
+          "since_previous_exit_ns": 306195228,
+          "stages_ns": {
+            "message_convert": 169936,
+            "sanitize": 40476,
+            "json_encode": 80807,
+            "raw_write": 3045
+          },
+          "failed": false,
+          "receipt_sim_s": 0.666,
+          "exit_monotonic_ns": 97806169833469,
+          "duration_ns": 353830
+        },
+        {
+          "sequence": 24,
+          "kind": "sensor",
+          "topic": "/joint_states",
+          "source_stamp_s": 0.006,
+          "enter_monotonic_ns": 97805186859099,
+          "since_previous_exit_ns": 161349401,
+          "stages_ns": {
+            "message_convert": 145187,
+            "sanitize": 32860,
+            "json_encode": 82350,
+            "raw_write": 2730
+          },
+          "failed": false,
+          "receipt_sim_s": 0.008,
+          "exit_monotonic_ns": 97805187191373,
+          "duration_ns": 332274
+        },
+        {
+          "sequence": 11537,
+          "kind": "flush",
+          "topic": "flush",
+          "source_stamp_s": null,
+          "enter_monotonic_ns": 97811429490392,
+          "since_previous_exit_ns": 116634669,
+          "stages_ns": {
+            "raw_flush": 435183,
+            "event_flush": 1782,
+            "metadata_write": 334451
+          },
+          "failed": false,
+          "exit_monotonic_ns": 97811430282680,
+          "duration_ns": 792288
+        }
+      ],
+      "raw_header_max_gap_s": {
+        "/ground_truth/odom": 0.17999999999999994,
+        "/joint_states": 0.18900000000000006,
+        "/imu/data": 0.18000000000000005
+      },
+      "native_measurement_integrity_pass": true,
+      "whole_GT_coverage": 0.9963855421686746
+    },
+    {
+      "attempt": 2,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 3,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 4,
+      "arm": "full",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 5,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 6,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 7,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 8,
+      "arm": "full",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 9,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 10,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 11,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 12,
+      "arm": "full",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    }
+  ],
+  "simulator_launches": 0,
+  "metrics_changed": false,
+  "qualification": "Measured observer costs and inter-callback intervals only. An idle interval alone is not proof of scheduling or DDS loss; a stage duration is observer work/blocking including descheduling during that stage. This is telemetry, not a new quality gate."
+}

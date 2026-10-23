@@ -1,0 +1,48 @@
+{
+  "synthetic_ROS_only": true,
+  "Gazebo_episodes": 0,
+  "hardware_connected": false,
+  "motor_commands": 0,
+  "process_pids": [
+    129865,
+    129866
+  ],
+  "separate_processes": true,
+  "requested_joint_hz": 500,
+  "requested_GT_hz": 50,
+  "published_counts": {
+    "/joint_states": 600,
+    "/ground_truth/odom": 60
+  },
+  "captured_counts": {
+    "/joint_states": 600,
+    "/ground_truth/odom": 60
+  },
+  "baseline_counts": {
+    "/joint_states": 478,
+    "/ground_truth/odom": 53
+  },
+  "exact_order_timestamp_payload": {
+    "/joint_states": false,
+    "/ground_truth/odom": true
+  },
+  "decode_validation": {
+    "valid": true,
+    "epoch": 1,
+    "counts": {
+      "/joint_states": 600,
+      "/ground_truth/odom": 60
+    },
+    "qualification": "Epoch/identity only; does not replace native timestamps, gap/coverage tests or prove DDS loss-free delivery"
+  },
+  "injected_stall": {
+    "kind": "synthetic_contact_conversion_busy_stall",
+    "begin_monotonic_ns": 113993700808633,
+    "end_monotonic_ns": 113993951038335
+  },
+  "process_exit_codes": [
+    0,
+    0
+  ],
+  "qualification": "Known synthetic contact/GIL stall, original QoS depth5. Does not prove capture cannot lose samples under other CPU/disk/DDS loads or validate Gazebo coverage."
+}

@@ -1,0 +1,18 @@
+{
+  "tests_passed": 49,
+  "old72_inputs_unchanged": true,
+  "old_cadence_batch_closed_at": 9,
+  "new_diagnostic_batch_closed_at": 1,
+  "shutdown_fix_Gazebo_validated": false,
+  "synthetic_ROS_checks_passed": 2,
+  "injected_writer_seconds": 0.2,
+  "measured_writer_seconds": 0.200151391,
+  "no_new_rescue_budget": true,
+  "real_data_is_not_the_immediate_blocker": true,
+  "controller_sampling_scoring_unchanged": true,
+  "source_sha256": {
+    "docs/governor_observer_health_followup_2026-10-20/offline_shutdown_fix/governor_logger.py": "9472a5c8ab19ba29ed426b763d50970dd4d963e5b9547c9f512ffb6faeb583fe",
+    "docs/governor_observer_health_followup_2026-10-20/offline_shutdown_fix/observer_health.py": "a7a0cce94124be647a6a5c2f3720ef1961e96d540d4c97cdd8fb64446f4b2740",
+    "docs/governor_observer_health_followup_2026-10-20/offline_shutdown_fix/test_observer_health.py": "edf2ebd593729b95a75c6ba1667dcd7acd666510d00b5db7a4314c8d95aefbaa"
+  }
+}

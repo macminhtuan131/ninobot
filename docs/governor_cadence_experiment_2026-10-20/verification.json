@@ -1,0 +1,31 @@
+{
+  "prepared": true,
+  "maximum_attempts": 12,
+  "execution_authorized": false,
+  "simulator_started": false,
+  "physical_integration_validated": false,
+  "protocol_sha256": "7c483ebec986bc020a630bd696b654d97216436b0da54ed6685fc4a8700a4340",
+  "application_thresholds": "proposal_only",
+  "targeted_tests_passed": 39,
+  "targeted_tests_failed": 0,
+  "tests": [
+    "src/nino_rl/test/test_governor_cadence_experiment.py",
+    "src/nino_control/test/test_governor_core.py",
+    "src/nino_control/test/test_governor_brake_delay.py"
+  ],
+  "test_source_sha256": "3c51f837eb34ba4d679d563ced5091f564d525ae57e5debc00e1f333969bfe9b",
+  "source_import_check": "ROS environment and installed cadence module imported without initializing nodes or simulation",
+  "production_step_prefix_all3_arms": true,
+  "legacy_core_400_frames_bit_identical": true,
+  "native_scoring_tail_unchanged": true,
+  "synthetic_adapter_calls": 12,
+  "simulation_launches": 0,
+  "protected_parent_inputs_verified": 70,
+  "parent_data_modified": false,
+  "authorized_source_revisions_verified": [
+    "src/nino_control/nino_control/governor_core.py",
+    "src/nino_rl/nino_rl/evaluation.py",
+    "src/nino_rl/nino_rl/ros_env.py"
+  ],
+  "live_release_exists": false
+}

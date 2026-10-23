@@ -1,0 +1,583 @@
+{
+  "summary": {
+    "mode": "descriptive_cadence_experiment",
+    "status": "hard_stop_missing_successful_traversal_reporting",
+    "maximum_attempts": 12,
+    "adapter_calls": 1,
+    "simulation_launches": 1,
+    "physical_failures": 0,
+    "missing_outcomes": 0,
+    "unattempted": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "retries": 0,
+    "replacements": 0,
+    "extra_smoke": 0,
+    "automatic_extension": false,
+    "H2_decision": "not_assessed",
+    "thresholds_applied": false,
+    "PPO": false,
+    "optuna": false,
+    "predictor": false
+  },
+  "all_assigned_attempts": [
+    {
+      "attempt": 1,
+      "seed": 77600,
+      "repeat": 1,
+      "arm": "full",
+      "status": "collected",
+      "physical_success": true
+    },
+    {
+      "attempt": 2,
+      "seed": 77600,
+      "repeat": 1,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "physical_success": null
+    },
+    {
+      "attempt": 3,
+      "seed": 77600,
+      "repeat": 1,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "physical_success": null
+    },
+    {
+      "attempt": 4,
+      "seed": 77601,
+      "repeat": 1,
+      "arm": "full",
+      "status": "not_attempted",
+      "physical_success": null
+    },
+    {
+      "attempt": 5,
+      "seed": 77601,
+      "repeat": 1,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "physical_success": null
+    },
+    {
+      "attempt": 6,
+      "seed": 77601,
+      "repeat": 1,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "physical_success": null
+    },
+    {
+      "attempt": 7,
+      "seed": 77601,
+      "repeat": 2,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "physical_success": null
+    },
+    {
+      "attempt": 8,
+      "seed": 77601,
+      "repeat": 2,
+      "arm": "full",
+      "status": "not_attempted",
+      "physical_success": null
+    },
+    {
+      "attempt": 9,
+      "seed": 77601,
+      "repeat": 2,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "physical_success": null
+    },
+    {
+      "attempt": 10,
+      "seed": 77600,
+      "repeat": 2,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "physical_success": null
+    },
+    {
+      "attempt": 11,
+      "seed": 77600,
+      "repeat": 2,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "physical_success": null
+    },
+    {
+      "attempt": 12,
+      "seed": 77600,
+      "repeat": 2,
+      "arm": "full",
+      "status": "not_attempted",
+      "physical_success": null
+    }
+  ],
+  "corrected_logger_Gazebo_closure_validated": true,
+  "passed_checks": {
+    "setup_pass": true,
+    "provenance_pass": true,
+    "measurement_integrity_pass": true,
+    "physical_success": true,
+    "stop_pass": true,
+    "cleanup_confirmed": true
+  },
+  "cadence_integrity": {
+    "valid": true,
+    "micro_updates": 0,
+    "score_rows": 166
+  },
+  "health_integrity": {
+    "valid": true,
+    "summary": {
+      "schema": "observer_health_v1",
+      "complete": true,
+      "callback_count": 72040,
+      "recorded": 72040,
+      "overflow": 0,
+      "errors": 0,
+      "maximum_records": 100000,
+      "callback_kinds": {
+        "description": 1,
+        "flush": 46,
+        "contact": 55446,
+        "sensor": 16379,
+        "state": 168
+      },
+      "valid": true,
+      "sidecar_written_after_collection": true,
+      "qualification": "Monotonic durations diagnose observer service; inter-callback gaps alone cannot distinguish scheduling from absent delivery. Not a control or coverage metric."
+    },
+    "longest_callback": {
+      "sequence": 40644,
+      "kind": "contact",
+      "topic": "/nino/contact_lab/right_wheel",
+      "source_stamp_s": 14.915,
+      "enter_monotonic_ns": 97831925875859,
+      "since_previous_exit_ns": 273787,
+      "stages_ns": {
+        "message_convert": 47500509,
+        "sanitize": 79154,
+        "json_encode": 103626,
+        "raw_write": 6615
+      },
+      "failed": false,
+      "receipt_sim_s": 14.919,
+      "exit_monotonic_ns": 97831973621977,
+      "duration_ns": 47746118
+    },
+    "longest_inter_callback": {
+      "sequence": 3,
+      "kind": "flush",
+      "topic": "flush",
+      "source_stamp_s": null,
+      "enter_monotonic_ns": 97802430027955,
+      "since_previous_exit_ns": 999727329,
+      "stages_ns": {
+        "raw_flush": 8247,
+        "event_flush": 3332,
+        "metadata_write": 682092
+      },
+      "failed": false,
+      "exit_monotonic_ns": 97802430771257,
+      "duration_ns": 743302
+    }
+  },
+  "quality_available": false,
+  "whole_GT": {
+    "available": true,
+    "start_s": 6.292,
+    "end_s": 22.892000000000063,
+    "duration_s": 16.600000000000065,
+    "coverage_s": 16.540000000000063,
+    "coverage_fraction": 0.9963855421686746,
+    "observed_slip_square_integral_s": 0.01653924717235999,
+    "slip_square_integral_s": 0.01653924717235999,
+    "rms": 0.03162205692903629,
+    "distance_m": 6.23993434411112,
+    "slip_square_per_m": 0.0026505482686638767
+  },
+  "native_replay": {
+    "available": true,
+    "reason": null,
+    "steps": 166,
+    "square_sum": 0.05627176399231128,
+    "rms": 0.01841158684291401
+  },
+  "crossing": {
+    "available": false,
+    "start_s": 13.963000000000001,
+    "end_s": 15.9,
+    "duration_s": 1.9369999999999994,
+    "coverage_s": 1.876999999999999,
+    "coverage_fraction": 0.9690242643262775,
+    "observed_slip_square_integral_s": 0.010926758472201656,
+    "slip_square_integral_s": null,
+    "rms": null,
+    "distance_m": null,
+    "slip_square_per_m": null
+  },
+  "postcontact": {
+    "available": false,
+    "start_s": 13.963000000000001,
+    "end_s": 16.913,
+    "GT_slip": {
+      "available": false,
+      "start_s": 13.963000000000001,
+      "end_s": 16.913,
+      "duration_s": 2.9499999999999993,
+      "coverage_s": 2.889999999999999,
+      "coverage_fraction": 0.9796610169491524,
+      "observed_slip_square_integral_s": 0.01092767354606974,
+      "slip_square_integral_s": null,
+      "rms": null,
+      "distance_m": null,
+      "slip_square_per_m": null
+    },
+    "vertical": {
+      "available": true,
+      "coverage_fraction": 1.0,
+      "rms": 2.746454091248618,
+      "peak": 27.130223927014228,
+      "p95_abs": 4.779341994822583,
+      "definition": "Unfiltered samples at original IMU timestamps; sample RMS/percentile, no fabricated high-frequency peak or impulse."
+    },
+    "grid20ms": {
+      "available": false,
+      "start_s": 13.963000000000001,
+      "end_s": 16.913,
+      "duration_s": 2.9499999999999993,
+      "coverage_s": 2.8900000000000006,
+      "coverage_fraction": 0.979661016949153,
+      "observed_slip_square_integral_s": 0.010639505130100218,
+      "slip_square_integral_s": null,
+      "rms": null,
+      "distance_m": null,
+      "slip_square_per_m": null
+    },
+    "shifted10ms": {
+      "available": false,
+      "start_s": 13.963000000000001,
+      "end_s": 16.913,
+      "duration_s": 2.9499999999999993,
+      "coverage_s": 2.889999999999999,
+      "coverage_fraction": 0.9796610169491524,
+      "observed_slip_square_integral_s": 0.011648371619319125,
+      "slip_square_integral_s": null,
+      "rms": null,
+      "distance_m": null,
+      "slip_square_per_m": null
+    }
+  },
+  "missing_joint_intervals": [
+    {
+      "start_s": 14.918,
+      "end_s": 14.954,
+      "gap_s": 0.036000000000001364
+    }
+  ],
+  "invalid_GT_slip_stamps_s": [
+    14.92,
+    14.94
+  ],
+  "callback_neighborhood": [
+    {
+      "sequence": 40640,
+      "kind": "contact",
+      "topic": "/nino/contact_lab/caster_left_wheel",
+      "source_stamp_s": 14.913,
+      "enter_monotonic_ns": 97831924520971,
+      "since_previous_exit_ns": 137982,
+      "stages_ns": {},
+      "failed": false,
+      "exit_monotonic_ns": 97831924528966,
+      "duration_ns": 7995
+    },
+    {
+      "sequence": 40641,
+      "kind": "contact",
+      "topic": "/nino/contact_lab/caster_right_wheel",
+      "source_stamp_s": 14.913,
+      "enter_monotonic_ns": 97831924662933,
+      "since_previous_exit_ns": 133967,
+      "stages_ns": {},
+      "failed": false,
+      "exit_monotonic_ns": 97831924670346,
+      "duration_ns": 7413
+    },
+    {
+      "sequence": 40642,
+      "kind": "sensor",
+      "topic": "/joint_states",
+      "source_stamp_s": 14.918,
+      "enter_monotonic_ns": 97831925173075,
+      "since_previous_exit_ns": 502729,
+      "stages_ns": {
+        "message_convert": 40804,
+        "sanitize": 14939,
+        "json_encode": 33578,
+        "raw_write": 1221
+      },
+      "failed": false,
+      "receipt_sim_s": 14.919,
+      "exit_monotonic_ns": 97831925291824,
+      "duration_ns": 118749
+    },
+    {
+      "sequence": 40643,
+      "kind": "contact",
+      "topic": "/nino/contact_lab/left_wheel",
+      "source_stamp_s": 14.914,
+      "enter_monotonic_ns": 97831925592301,
+      "since_previous_exit_ns": 300477,
+      "stages_ns": {},
+      "failed": false,
+      "exit_monotonic_ns": 97831925602072,
+      "duration_ns": 9771
+    },
+    {
+      "sequence": 40644,
+      "kind": "contact",
+      "topic": "/nino/contact_lab/right_wheel",
+      "source_stamp_s": 14.915,
+      "enter_monotonic_ns": 97831925875859,
+      "since_previous_exit_ns": 273787,
+      "stages_ns": {
+        "message_convert": 47500509,
+        "sanitize": 79154,
+        "json_encode": 103626,
+        "raw_write": 6615
+      },
+      "failed": false,
+      "receipt_sim_s": 14.919,
+      "exit_monotonic_ns": 97831973621977,
+      "duration_ns": 47746118
+    },
+    {
+      "sequence": 40645,
+      "kind": "contact",
+      "topic": "/nino/contact_lab/caster_left_wheel",
+      "source_stamp_s": 14.957,
+      "enter_monotonic_ns": 97831973874930,
+      "since_previous_exit_ns": 252953,
+      "stages_ns": {
+        "message_convert": 110154,
+        "sanitize": 28413,
+        "json_encode": 45422,
+        "raw_write": 922
+      },
+      "failed": false,
+      "receipt_sim_s": 14.919,
+      "exit_monotonic_ns": 97831974112085,
+      "duration_ns": 237155
+    },
+    {
+      "sequence": 40646,
+      "kind": "contact",
+      "topic": "/nino/contact_lab/caster_right_wheel",
+      "source_stamp_s": 14.957,
+      "enter_monotonic_ns": 97831974292247,
+      "since_previous_exit_ns": 180162,
+      "stages_ns": {
+        "message_convert": 95253,
+        "sanitize": 27561,
+        "json_encode": 39723,
+        "raw_write": 922
+      },
+      "failed": false,
+      "receipt_sim_s": 14.919,
+      "exit_monotonic_ns": 97831974499206,
+      "duration_ns": 206959
+    },
+    {
+      "sequence": 40647,
+      "kind": "sensor",
+      "topic": "/imu/data",
+      "source_stamp_s": 14.92,
+      "enter_monotonic_ns": 97831975156127,
+      "since_previous_exit_ns": 656921,
+      "stages_ns": {
+        "message_convert": 98073,
+        "sanitize": 23117,
+        "json_encode": 45442,
+        "raw_write": 1184
+      },
+      "failed": false,
+      "receipt_sim_s": 14.963000000000001,
+      "exit_monotonic_ns": 97831975356911,
+      "duration_ns": 200784
+    },
+    {
+      "sequence": 40648,
+      "kind": "sensor",
+      "topic": "/joint_states",
+      "source_stamp_s": 14.954,
+      "enter_monotonic_ns": 97831975462426,
+      "since_previous_exit_ns": 105515,
+      "stages_ns": {
+        "message_convert": 39577,
+        "sanitize": 15921,
+        "json_encode": 42384,
+        "raw_write": 1115
+      },
+      "failed": false,
+      "receipt_sim_s": 14.963000000000001,
+      "exit_monotonic_ns": 97831975589313,
+      "duration_ns": 126887
+    },
+    {
+      "sequence": 40649,
+      "kind": "sensor",
+      "topic": "/nino_drive/diagnostics",
+      "source_stamp_s": null,
+      "enter_monotonic_ns": 97831975707016,
+      "since_previous_exit_ns": 117703,
+      "stages_ns": {
+        "message_convert": 48620,
+        "sanitize": 16635,
+        "json_encode": 34733,
+        "raw_write": 814
+      },
+      "failed": false,
+      "receipt_sim_s": 14.963000000000001,
+      "exit_monotonic_ns": 97831975831815,
+      "duration_ns": 124799
+    },
+    {
+      "sequence": 40650,
+      "kind": "sensor",
+      "topic": "/ground_truth/odom",
+      "source_stamp_s": 14.92,
+      "enter_monotonic_ns": 97831975987455,
+      "since_previous_exit_ns": 155640,
+      "stages_ns": {
+        "message_convert": 148278,
+        "sanitize": 34102,
+        "json_encode": 42693,
+        "raw_write": 888
+      },
+      "failed": false,
+      "receipt_sim_s": 14.963000000000001,
+      "exit_monotonic_ns": 97831976251034,
+      "duration_ns": 263579
+    },
+    {
+      "sequence": 40651,
+      "kind": "sensor",
+      "topic": "/odom",
+      "source_stamp_s": 14.928,
+      "enter_monotonic_ns": 97831976393027,
+      "since_previous_exit_ns": 141993,
+      "stages_ns": {
+        "message_convert": 139753,
+        "sanitize": 33788,
+        "json_encode": 37610,
+        "raw_write": 710
+      },
+      "failed": false,
+      "receipt_sim_s": 14.963000000000001,
+      "exit_monotonic_ns": 97831976632426,
+      "duration_ns": 239399
+    }
+  ],
+  "original_drive_records_during_joint_gap": [
+    {
+      "seed": "77600",
+      "sim_time_s": "14.928",
+      "requested_linear_m_s": "0.399999257334527",
+      "requested_yaw_rad_s": "-0.0034256922642272565",
+      "executed_linear_m_s": "0.399999257334527",
+      "executed_yaw_rad_s": "-0.0034256922642272565",
+      "speed_scale": "1.0",
+      "filtered_speed_scale": "1.0",
+      "left_target_rad_s": "6.409380999951065",
+      "right_target_rad_s": "6.3905952347538",
+      "left_actual_rad_s": "6.4770726535978005",
+      "right_actual_rad_s": "6.423634871626224",
+      "left_pi_nm": "0.17744671581987234",
+      "right_pi_nm": "0.16223713134563583",
+      "left_residual_nm": "0.0",
+      "right_residual_nm": "0.0",
+      "left_requested_effort_nm": "0.17744671581987234",
+      "right_requested_effort_nm": "0.16223713134563583",
+      "left_applied_nm": "0.17744671581987234",
+      "right_applied_nm": "0.16223713134563583",
+      "left_limited": "0.0",
+      "right_limited": "0.0",
+      "cmd_fresh": "1.0",
+      "policy_fresh": "0.0",
+      "have_wheel_state": "1.0",
+      "control_updates": "10.0",
+      "control_raw_dt_sum_s": "0.020000000000000004",
+      "control_raw_dt_min_s": "0.002",
+      "control_raw_dt_max_s": "0.002",
+      "control_dt_fallbacks": "0.0",
+      "control_dt_invalid": "0.0",
+      "control_dt_over_4ms": "0.0",
+      "control_joint_age_max_s": "0.002",
+      "control_future_joint_updates": "0.0",
+      "control_configured_period_s": "0.002",
+      "command_received_sim_s": "14.892000000000001"
+    },
+    {
+      "seed": "77600",
+      "sim_time_s": "14.948",
+      "requested_linear_m_s": "0.399999257334527",
+      "requested_yaw_rad_s": "-0.0034256922642272565",
+      "executed_linear_m_s": "0.399999257334527",
+      "executed_yaw_rad_s": "-0.0034256922642272565",
+      "speed_scale": "1.0",
+      "filtered_speed_scale": "1.0",
+      "left_target_rad_s": "6.409380999951065",
+      "right_target_rad_s": "6.3905952347538",
+      "left_actual_rad_s": "6.482224059009697",
+      "right_actual_rad_s": "6.435415347406612",
+      "left_pi_nm": "0.17576899961206977",
+      "right_pi_nm": "0.15862807925660075",
+      "left_residual_nm": "0.0",
+      "right_residual_nm": "0.0",
+      "left_requested_effort_nm": "0.17576899961206977",
+      "right_requested_effort_nm": "0.15862807925660075",
+      "left_applied_nm": "0.17576899961206977",
+      "right_applied_nm": "0.15862807925660075",
+      "left_limited": "0.0",
+      "right_limited": "0.0",
+      "cmd_fresh": "1.0",
+      "policy_fresh": "0.0",
+      "have_wheel_state": "1.0",
+      "control_updates": "10.0",
+      "control_raw_dt_sum_s": "0.020000000000000004",
+      "control_raw_dt_min_s": "0.002",
+      "control_raw_dt_max_s": "0.002",
+      "control_dt_fallbacks": "0.0",
+      "control_dt_invalid": "0.0",
+      "control_dt_over_4ms": "0.0",
+      "control_joint_age_max_s": "0.002",
+      "control_future_joint_updates": "0.0",
+      "control_configured_period_s": "0.002",
+      "command_received_sim_s": "14.892000000000001"
+    }
+  ],
+  "decision": "Keep the batch stopped at attempt1. No fast-governor run or cadence benefit estimate. Logger closure passes; crossing measurement fails.",
+  "next_proposal": "Decouple high-rate joint/GT acquisition from synchronous contact conversion; first verify capture/ordering/no-loss with injected callback stalls offline. No queue/rate/coverage/controller changes or new simulation in this review.",
+  "causal_limit": "Measured time lies within contact message conversion, including any GC/descheduling. This does not uniquely identify CPU conversion, GC, DDS or OS scheduling, nor prove the older3.32s gap had the same cause.",
+  "simulation_launches_by_review": 0,
+  "metrics_changed": false,
+  "thresholds_applied": false,
+  "H2_decision": "not_assessed"
+}

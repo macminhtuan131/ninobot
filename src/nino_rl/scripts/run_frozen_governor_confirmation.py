@@ -86,7 +86,7 @@ def batch(root):
     (folder/"execution_result.json").write_text(json.dumps(result, indent=2)+"\n")
 
 
-def analyze_batch(root):
+def analyze_batch(root,*,logger_override=None):
     from audit_single_cable_screen import analyze
     from audit_governor_phase_slip import load
     from analyze_governor_experiment import stamp, energy
@@ -109,7 +109,8 @@ def analyze_batch(root):
                        physical_pass=status["passed"], **native_status(case), case=str(case),
                        available=False, error=status.get("error"))
             try:
-                raw = analyze(case)
+                raw = analyze(case,logger_override=logger_override) if logger_override else analyze(case)
+                if logger_override:row["logger"]=str(logger_override)
                 data = load(case, {**raw, **row})
                 # The plane normal is perpendicular to the tilted cable axis.
                 clear = clearance_time(data["ground"], data["first"], scenario)
@@ -131,7 +132,8 @@ def analyze_batch(root):
                         roll,pitch,_ = quaternion_rpy(tuple(d["orientation"][k] for k in ("x","y","z","w")))
                         imu.append((t, vertical_acceleration(tuple(d["linear_acceleration"][k] for k in ("x","y","z")), roll, pitch,
                                                            includes_gravity)))
-                meta = json.loads((data["logger"]/"metadata.json").read_text())
+                from nino_rl.acquisition_contract import metadata_for_view
+                meta = metadata_for_view(data["logger"])
                 row.update(available=True, native_outcome=native, time_s=float(native["time_seconds"]),
                     physical_rmse_m=float(native["truth_path_rmse_m"]),
                     native_slip_rms=float(native["rms_wheel_slip"]),

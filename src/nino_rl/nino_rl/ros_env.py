@@ -73,6 +73,10 @@ class NinoGazeboEnv(gym.Env):
         self.world_paused_for_update = False
         self.total_training_steps = max(1, int(total_training_steps))
         self.control_dt = 1.0 / float(config["control_hz"])
+        self.governor_cadence = None
+        if config.get("governor", {}).get("cadence_experiment", {}).get("enabled", False):
+            from nino_rl.governor_cadence import GovernorCadence
+            self.governor_cadence = GovernorCadence(self)
         self.sensor_timeout = float(config["sensor_timeout_seconds"])
         self.physics_dt = float(
             config["policy_v2"].get("simulation_physics_step_seconds", 0.005)
@@ -668,6 +672,8 @@ class NinoGazeboEnv(gym.Env):
         self.reset_standstill_report = None
         if self.governor is not None:
             self.governor.reset()
+            if self.governor_cadence is not None:
+                self.governor_cadence.reset()
             self.governor_epoch_sim_s = None
             self.governor_imu = {}
             self.governor_trace = {}
@@ -880,6 +886,8 @@ class NinoGazeboEnv(gym.Env):
             if not hasattr(self,"governor_state_publisher"):
                 self.governor_state_publisher = self.ros.create_publisher(String,"/nino/governor/state",10)
                 self.governor_episode_publisher = self.ros.create_publisher(String,"/nino/governor/episode",10)
+                from nino_rl.acquisition_contract import episode_publisher
+                self.governor_episode_publisher=episode_publisher(self.governor_episode_publisher,self.ros)
             self.governor_episode_publisher.publish(String(data=json.dumps(dict(
                 event="reset",run_id=self.governor_run_id,attempt=self.attempt_number,seed=seed,time_s=self.lockstep_sim_time,
                 route=self.episode_route["id"] if self.episode_route else "E1",
@@ -904,6 +912,8 @@ class NinoGazeboEnv(gym.Env):
         }
 
     def _governor_command(self,linear,angular):
+        if self.governor_cadence is not None:
+            return self.governor_cadence.begin(linear, angular, self.lockstep_sim_time)
         from nino_rl.governor_adapter import frame_from_state
         from std_msgs.msg import String
         end=self.lockstep_sim_time
@@ -998,6 +1008,13 @@ class NinoGazeboEnv(gym.Env):
         # Two 50 ms bursts give odometry, lidar and applied-torque callbacks a
         # scheduling boundary without returning to the old five-call cost.
         max_chunk_steps = max(1, self.physics_steps_per_control // 2)
+        if self.config.get("governor", {}).get("world_chunk_seconds") is not None:
+            # Common transport schedule for ALL three cadence-experiment arms;
+            # never confound extra world transactions with the fast controller.
+            chunk_seconds = self.config["governor"]["world_chunk_seconds"]
+            if chunk_seconds != .02 or not np.isclose(self.physics_dt, .001):
+                raise ValueError("Cadence transport requires20ms chunks and1ms physics")
+            max_chunk_steps = int(round(chunk_seconds / self.physics_dt))
         advanced_sim = 0.0
 
         def advance_chunked(steps):
@@ -1005,12 +1022,16 @@ class NinoGazeboEnv(gym.Env):
             remaining = int(steps)
             while remaining > 0:
                 chunk = min(max_chunk_steps, remaining)
+                if self.governor_cadence is not None:
+                    chunk = self.governor_cadence.chunk(advanced_sim, chunk, self.physics_dt)
                 advanced_sim += self.ros.advance_world(
                     chunk,
                     timeout=step_timeout,
                     min_completion_fraction=self.lockstep_min_completion_fraction,
                 )
                 remaining -= chunk
+                if self.governor_cadence is not None:
+                    self.governor_cadence.boundary(started_sim + advanced_sim, advanced_sim)
 
         if delay_steps:
             advance_chunked(delay_steps)
@@ -1510,6 +1531,8 @@ class NinoGazeboEnv(gym.Env):
                     event="end",run_id=self.governor_run_id,attempt=self.attempt_number,time_s=ended_sim,
                     metrics=info["episode_metrics"],governor=self.governor_trace))))
         if self.config.get("evaluation_control_trace", False):
+            if self.governor_cadence is not None:
+                info["governor_update_trace"] = list(self.governor_cadence.updates)
             info["control_trace"] = {
                 **self.governor_trace,
                 **({"drive_interval_latest_stamp_s": drive_interval[-1]["sim_time_s"] if drive_interval else None,

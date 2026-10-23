@@ -27,6 +27,17 @@ TRUTH_METRICS = ("truth_path_rmse_m", "truth_path_p95_m", "truth_endpoint_error_
 
 def append_action_traces(ros, info, start, end, seed, streams, writers, output, timeout):
     """Persist the completed control step even if its drive telemetry is missing."""
+    if "governor_update_trace" in info:
+        path = output / "governor_update_trace.csv"
+        samples = info["governor_update_trace"]
+        if not samples:
+            raise ValueError("Missing cadence commands; never infer them from100ms control trace")
+        new = not path.exists()
+        with path.open("a", newline="", encoding="utf-8") as stream:
+            writer = csv.DictWriter(stream, fieldnames=["seed", *samples[0]])
+            if new:
+                writer.writeheader()
+            writer.writerows(dict(seed=seed, **row) for row in samples)
     for index in (0, 1):
         if index == 0:
             samples = [info["control_trace"]]

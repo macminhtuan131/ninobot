@@ -1,0 +1,54 @@
+{
+  "complete": true,
+  "validation": {
+    "valid": true,
+    "epoch": 1,
+    "counts": {
+      "/joint_states": 159,
+      "/ground_truth/odom": 159
+    },
+    "qualification": "Epoch/identity only; does not replace native timestamps, gap/coverage tests or prove DDS loss-free delivery"
+  },
+  "capture_manifest": {
+    "schema": "isolated_joint_gt_frames_v1",
+    "capture_id": "963bf108-c173-46e0-be57-0544f1e67387",
+    "complete": true,
+    "maximum_bytes": 536870912,
+    "topic_ids": {
+      "1": "/joint_states",
+      "2": "/ground_truth/odom",
+      "3": "/nino/governor/episode"
+    },
+    "process_isolated": true,
+    "logger_only": true,
+    "source_sha256": "6dba06578259cb1030b633cabb277912ebc787d21ccd1e0fce1f613c3be97d12",
+    "frames_source_sha256": "ceefbb4229185ca4d1c46e6a2811a1de7c8c08f2dd216004af3bb0610e96a2ad",
+    "sensor_qos": {
+      "depth": 5,
+      "history": "KEEP_LAST",
+      "reliability": "BEST_EFFORT"
+    },
+    "maximum_callback_ns": 153605,
+    "epoch": 1,
+    "qualification": "Raw ROS CDR, source timestamps unchanged. Callback sequence counts received messages only; source loss still requires coverage checks.",
+    "acquisition_session_id": "6f36c2ec82cb44d582c847ebebc1f196",
+    "acquisition_protocol_sha256": "a7d6d309d4538f473e888f534c349631522dd1124c0bea772229ff9c8b0828bb",
+    "shutdown_signals": [
+      2
+    ],
+    "frames": 363,
+    "bytes": 170956,
+    "counts": {
+      "/joint_states": 182,
+      "/ground_truth/odom": 179,
+      "/nino/governor/episode": 2
+    },
+    "sha256": "f53981a15cc9173f50b539c6e57a0a54f75b01ddec69dc9f0b3f97932a85403b",
+    "error": null
+  },
+  "source_timestamps_unchanged": true,
+  "all_frames_retained": true,
+  "resampling": false,
+  "valid_for_existing_scoring": false,
+  "qualification": "Candidate sensor-only view. Requires explicit contact/aux view provenance integration and original coverage scoring before any experiment use."
+}

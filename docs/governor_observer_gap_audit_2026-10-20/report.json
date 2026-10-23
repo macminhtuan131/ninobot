@@ -1,0 +1,1280 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "arm": "full",
+      "route_start_s": 4.913,
+      "route_end_s": 21.51300000000004,
+      "logger_complete": true,
+      "raw_bytes": 30819184,
+      "malformed_lines": 0,
+      "metadata_count_differences": {},
+      "channels": {
+        "/nino/governor/state": {
+          "rows": 166,
+          "largest_header_gap": {
+            "start_s": 15.912999999999961,
+            "end_s": 16.012999999999963,
+            "gap_s": 0.10000000000000142
+          },
+          "largest_receipt_sim_gap": null
+        },
+        "/joint_states": {
+          "rows": 8300,
+          "largest_header_gap": {
+            "start_s": 6.557,
+            "end_s": 6.5600000000000005,
+            "gap_s": 0.0030000000000001137
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 10.105,
+            "end_s": 10.111,
+            "gap_s": 0.006000000000000227
+          }
+        },
+        "/nino/contact_lab/left_wheel": {
+          "rows": 1513,
+          "largest_header_gap": {
+            "start_s": 10.087,
+            "end_s": 10.101,
+            "gap_s": 0.014000000000001123
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 6.7940000000000005,
+            "end_s": 6.8100000000000005,
+            "gap_s": 0.016000000000000014
+          }
+        },
+        "/nino/contact_lab/right_wheel": {
+          "rows": 1515,
+          "largest_header_gap": {
+            "start_s": 11.085,
+            "end_s": 11.099,
+            "gap_s": 0.013999999999999346
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 18.713,
+            "end_s": 18.729000000000003,
+            "gap_s": 0.01600000000000179
+          }
+        },
+        "/nino/contact_lab/caster_left_wheel": {
+          "rows": 1495,
+          "largest_header_gap": {
+            "start_s": 13.103,
+            "end_s": 13.24,
+            "gap_s": 0.13700000000000045
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.105,
+            "end_s": 13.241000000000001,
+            "gap_s": 0.136000000000001
+          }
+        },
+        "/nino/contact_lab/caster_right_wheel": {
+          "rows": 1500,
+          "largest_header_gap": {
+            "start_s": 13.242,
+            "end_s": 13.374,
+            "gap_s": 0.13199999999999967
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.243,
+            "end_s": 13.375,
+            "gap_s": 0.13199999999999967
+          }
+        },
+        "/imu/data": {
+          "rows": 830,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 10.08,
+            "end_s": 10.105,
+            "gap_s": 0.025000000000000355
+          }
+        },
+        "/ground_truth/odom": {
+          "rows": 830,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 21.380000000000003,
+            "end_s": 21.404,
+            "gap_s": 0.023999999999997357
+          }
+        },
+        "/nino_drive/diagnostics": {
+          "rows": 830,
+          "largest_header_gap": {
+            "start_s": 16.046,
+            "end_s": 16.066000000000003,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 10.087,
+            "end_s": 10.111,
+            "gap_s": 0.02400000000000091
+          }
+        },
+        "/odom": {
+          "rows": 830,
+          "largest_header_gap": {
+            "start_s": 16.15,
+            "end_s": 16.17,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.49,
+            "end_s": 13.513000000000002,
+            "gap_s": 0.023000000000001464
+          }
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "arm": "reactive_20ms",
+      "route_start_s": 6.93,
+      "route_end_s": 23.630000000000077,
+      "logger_complete": true,
+      "raw_bytes": 35279369,
+      "malformed_lines": 0,
+      "metadata_count_differences": {
+        "/nino/contact_lab/left_wheel": {
+          "file_count": 2387,
+          "metadata_count": 2388
+        }
+      },
+      "channels": {
+        "/joint_states": {
+          "rows": 8340,
+          "largest_header_gap": {
+            "start_s": 14.774000000000001,
+            "end_s": 14.78,
+            "gap_s": 0.005999999999998451
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 10.001000000000001,
+            "end_s": 10.01,
+            "gap_s": 0.008999999999998565
+          }
+        },
+        "/nino/contact_lab/caster_right_wheel": {
+          "rows": 1487,
+          "largest_header_gap": {
+            "start_s": 15.319,
+            "end_s": 15.447,
+            "gap_s": 0.12799999999999834
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 15.32,
+            "end_s": 15.448,
+            "gap_s": 0.1280000000000001
+          }
+        },
+        "/nino/governor/state": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.009999999999966,
+            "end_s": 16.02999999999997,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": null
+        },
+        "/nino/contact_lab/left_wheel": {
+          "rows": 1509,
+          "largest_header_gap": {
+            "start_s": 14.567,
+            "end_s": 14.607,
+            "gap_s": 0.03999999999999915
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 14.57,
+            "end_s": 14.608,
+            "gap_s": 0.038000000000000256
+          }
+        },
+        "/nino/contact_lab/caster_left_wheel": {
+          "rows": 1489,
+          "largest_header_gap": {
+            "start_s": 15.173,
+            "end_s": 15.314,
+            "gap_s": 0.14100000000000001
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 15.177000000000001,
+            "end_s": 15.315000000000001,
+            "gap_s": 0.1379999999999999
+          }
+        },
+        "/nino/contact_lab/right_wheel": {
+          "rows": 1510,
+          "largest_header_gap": {
+            "start_s": 10.286,
+            "end_s": 10.3,
+            "gap_s": 0.014000000000001123
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 23.131,
+            "end_s": 23.147000000000002,
+            "gap_s": 0.01600000000000179
+          }
+        },
+        "/imu/data": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 11.381,
+            "end_s": 11.405000000000001,
+            "gap_s": 0.02400000000000091
+          }
+        },
+        "/ground_truth/odom": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 9.88,
+            "end_s": 9.903,
+            "gap_s": 0.022999999999999687
+          }
+        },
+        "/odom": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.144,
+            "end_s": 16.164,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 9.986,
+            "end_s": 10.01,
+            "gap_s": 0.023999999999999133
+          }
+        },
+        "/nino_drive/diagnostics": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 20.488,
+            "end_s": 20.509,
+            "gap_s": 0.021000000000000796
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 17.428,
+            "end_s": 17.450000000000003,
+            "gap_s": 0.022000000000002018
+          }
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "arm": "reactive_100ms",
+      "route_start_s": 5.039,
+      "route_end_s": 21.739000000000043,
+      "logger_complete": true,
+      "raw_bytes": 30990110,
+      "malformed_lines": 0,
+      "metadata_count_differences": {},
+      "channels": {
+        "/nino/governor/state": {
+          "rows": 167,
+          "largest_header_gap": {
+            "start_s": 15.938999999999961,
+            "end_s": 16.038999999999962,
+            "gap_s": 0.10000000000000142
+          },
+          "largest_receipt_sim_gap": null
+        },
+        "/imu/data": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 11.48,
+            "end_s": 11.504000000000001,
+            "gap_s": 0.02400000000000091
+          }
+        },
+        "/joint_states": {
+          "rows": 8346,
+          "largest_header_gap": {
+            "start_s": 19.72,
+            "end_s": 19.724,
+            "gap_s": 0.004000000000001336
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.445,
+            "end_s": 16.455000000000002,
+            "gap_s": 0.010000000000001563
+          }
+        },
+        "/ground_truth/odom": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 11.48,
+            "end_s": 11.504000000000001,
+            "gap_s": 0.02400000000000091
+          }
+        },
+        "/nino/contact_lab/left_wheel": {
+          "rows": 1526,
+          "largest_header_gap": {
+            "start_s": 12.681000000000001,
+            "end_s": 12.699,
+            "gap_s": 0.017999999999998906
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 5.042000000000001,
+            "end_s": 5.058000000000001,
+            "gap_s": 0.016000000000000014
+          }
+        },
+        "/nino/contact_lab/right_wheel": {
+          "rows": 1519,
+          "largest_header_gap": {
+            "start_s": 12.752,
+            "end_s": 12.809,
+            "gap_s": 0.05699999999999861
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 12.755,
+            "end_s": 12.81,
+            "gap_s": 0.054999999999999716
+          }
+        },
+        "/nino/contact_lab/caster_left_wheel": {
+          "rows": 1501,
+          "largest_header_gap": {
+            "start_s": 13.296,
+            "end_s": 13.447,
+            "gap_s": 0.1509999999999998
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.3,
+            "end_s": 13.448,
+            "gap_s": 0.1479999999999997
+          }
+        },
+        "/nino/contact_lab/caster_right_wheel": {
+          "rows": 1507,
+          "largest_header_gap": {
+            "start_s": 13.45,
+            "end_s": 13.595,
+            "gap_s": 0.14500000000000135
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.451,
+            "end_s": 13.596,
+            "gap_s": 0.14499999999999957
+          }
+        },
+        "/odom": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.144,
+            "end_s": 16.164,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 10.184000000000001,
+            "end_s": 10.208,
+            "gap_s": 0.023999999999999133
+          }
+        },
+        "/nino_drive/diagnostics": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.052,
+            "end_s": 16.072000000000003,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.432000000000002,
+            "end_s": 16.457,
+            "gap_s": 0.02499999999999858
+          }
+        }
+      }
+    },
+    {
+      "attempt": 4,
+      "arm": "full",
+      "route_start_s": 4.824,
+      "route_end_s": 21.42400000000004,
+      "logger_complete": true,
+      "raw_bytes": 30428940,
+      "malformed_lines": 0,
+      "metadata_count_differences": {},
+      "channels": {
+        "/odom": {
+          "rows": 831,
+          "largest_header_gap": {
+            "start_s": 16.144,
+            "end_s": 16.164,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.744,
+            "end_s": 16.769000000000002,
+            "gap_s": 0.02500000000000213
+          }
+        },
+        "/joint_states": {
+          "rows": 8125,
+          "largest_header_gap": {
+            "start_s": 10.508,
+            "end_s": 10.514,
+            "gap_s": 0.006000000000000227
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 19.157,
+            "end_s": 19.164,
+            "gap_s": 0.0070000000000014495
+          }
+        },
+        "/nino/governor/state": {
+          "rows": 166,
+          "largest_header_gap": {
+            "start_s": 15.92399999999996,
+            "end_s": 16.023999999999962,
+            "gap_s": 0.10000000000000142
+          },
+          "largest_receipt_sim_gap": null
+        },
+        "/nino/contact_lab/left_wheel": {
+          "rows": 1492,
+          "largest_header_gap": {
+            "start_s": 12.456,
+            "end_s": 12.492,
+            "gap_s": 0.036000000000001364
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 12.46,
+            "end_s": 12.493,
+            "gap_s": 0.032999999999999474
+          }
+        },
+        "/nino/contact_lab/right_wheel": {
+          "rows": 1494,
+          "largest_header_gap": {
+            "start_s": 12.546,
+            "end_s": 12.582,
+            "gap_s": 0.036000000000001364
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 12.547,
+            "end_s": 12.583,
+            "gap_s": 0.03599999999999959
+          }
+        },
+        "/nino/contact_lab/caster_left_wheel": {
+          "rows": 1475,
+          "largest_header_gap": {
+            "start_s": 13.034,
+            "end_s": 13.166,
+            "gap_s": 0.13199999999999967
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.038,
+            "end_s": 13.167000000000002,
+            "gap_s": 0.12900000000000134
+          }
+        },
+        "/nino/contact_lab/caster_right_wheel": {
+          "rows": 1471,
+          "largest_header_gap": {
+            "start_s": 13.171,
+            "end_s": 13.302,
+            "gap_s": 0.13100000000000023
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.172,
+            "end_s": 13.304,
+            "gap_s": 0.13199999999999967
+          }
+        },
+        "/nino_drive/diagnostics": {
+          "rows": 830,
+          "largest_header_gap": {
+            "start_s": 16.052,
+            "end_s": 16.072000000000003,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 10.812000000000001,
+            "end_s": 10.837000000000002,
+            "gap_s": 0.025000000000000355
+          }
+        },
+        "/imu/data": {
+          "rows": 830,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 11.780000000000001,
+            "end_s": 11.804,
+            "gap_s": 0.023999999999999133
+          }
+        },
+        "/ground_truth/odom": {
+          "rows": 830,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 12.08,
+            "end_s": 12.103000000000002,
+            "gap_s": 0.023000000000001464
+          }
+        }
+      }
+    },
+    {
+      "attempt": 5,
+      "arm": "reactive_100ms",
+      "route_start_s": 6.536,
+      "route_end_s": 23.236000000000068,
+      "logger_complete": true,
+      "raw_bytes": 34091026,
+      "malformed_lines": 0,
+      "metadata_count_differences": {},
+      "channels": {
+        "/joint_states": {
+          "rows": 8340,
+          "largest_header_gap": {
+            "start_s": 12.158,
+            "end_s": 12.168,
+            "gap_s": 0.009999999999999787
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 12.167000000000002,
+            "end_s": 12.176,
+            "gap_s": 0.008999999999998565
+          }
+        },
+        "/nino/contact_lab/right_wheel": {
+          "rows": 1524,
+          "largest_header_gap": {
+            "start_s": 12.15,
+            "end_s": 12.166,
+            "gap_s": 0.016000000000000014
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.678,
+            "end_s": 16.694000000000003,
+            "gap_s": 0.01600000000000179
+          }
+        },
+        "/nino/governor/state": {
+          "rows": 167,
+          "largest_header_gap": {
+            "start_s": 16.035999999999966,
+            "end_s": 16.135999999999967,
+            "gap_s": 0.10000000000000142
+          },
+          "largest_receipt_sim_gap": null
+        },
+        "/nino/contact_lab/left_wheel": {
+          "rows": 1518,
+          "largest_header_gap": {
+            "start_s": 14.172,
+            "end_s": 14.213,
+            "gap_s": 0.04099999999999859
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 14.175,
+            "end_s": 14.214,
+            "gap_s": 0.0389999999999997
+          }
+        },
+        "/nino/contact_lab/caster_left_wheel": {
+          "rows": 1497,
+          "largest_header_gap": {
+            "start_s": 14.771,
+            "end_s": 14.906,
+            "gap_s": 0.1349999999999998
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 14.776000000000002,
+            "end_s": 14.907000000000002,
+            "gap_s": 0.13100000000000023
+          }
+        },
+        "/nino/contact_lab/caster_right_wheel": {
+          "rows": 1489,
+          "largest_header_gap": {
+            "start_s": 14.91,
+            "end_s": 15.055,
+            "gap_s": 0.14499999999999957
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 14.911000000000001,
+            "end_s": 15.056000000000001,
+            "gap_s": 0.14499999999999957
+          }
+        },
+        "/imu/data": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 20.18,
+            "end_s": 20.203000000000003,
+            "gap_s": 0.02300000000000324
+          }
+        },
+        "/nino_drive/diagnostics": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.02,
+            "end_s": 16.040000000000003,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 18.28,
+            "end_s": 18.305,
+            "gap_s": 0.02499999999999858
+          }
+        },
+        "/ground_truth/odom": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 20.18,
+            "end_s": 20.203000000000003,
+            "gap_s": 0.02300000000000324
+          }
+        },
+        "/odom": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.022,
+            "end_s": 16.042,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 15.042000000000002,
+            "end_s": 15.068000000000001,
+            "gap_s": 0.0259999999999998
+          }
+        }
+      }
+    },
+    {
+      "attempt": 6,
+      "arm": "reactive_20ms",
+      "route_start_s": 5.981,
+      "route_end_s": 22.681000000000058,
+      "logger_complete": true,
+      "raw_bytes": 33109182,
+      "malformed_lines": 0,
+      "metadata_count_differences": {},
+      "channels": {
+        "/nino/governor/state": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.160999999999962,
+            "end_s": 16.180999999999965,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": null
+        },
+        "/joint_states": {
+          "rows": 8340,
+          "largest_header_gap": {
+            "start_s": 8.344,
+            "end_s": 8.35,
+            "gap_s": 0.006000000000000227
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 20.974,
+            "end_s": 20.979000000000003,
+            "gap_s": 0.005000000000002558
+          }
+        },
+        "/nino/contact_lab/left_wheel": {
+          "rows": 1527,
+          "largest_header_gap": {
+            "start_s": 13.61,
+            "end_s": 13.656,
+            "gap_s": 0.04600000000000115
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.615,
+            "end_s": 13.657,
+            "gap_s": 0.041999999999999815
+          }
+        },
+        "/nino/contact_lab/right_wheel": {
+          "rows": 1528,
+          "largest_header_gap": {
+            "start_s": 13.703,
+            "end_s": 13.733,
+            "gap_s": 0.030000000000001137
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.704,
+            "end_s": 13.734,
+            "gap_s": 0.02999999999999936
+          }
+        },
+        "/nino/contact_lab/caster_left_wheel": {
+          "rows": 1506,
+          "largest_header_gap": {
+            "start_s": 14.232,
+            "end_s": 14.37,
+            "gap_s": 0.1379999999999999
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 14.239,
+            "end_s": 14.371,
+            "gap_s": 0.13199999999999967
+          }
+        },
+        "/nino/contact_lab/caster_right_wheel": {
+          "rows": 1508,
+          "largest_header_gap": {
+            "start_s": 14.375,
+            "end_s": 14.515,
+            "gap_s": 0.14000000000000057
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 14.375000000000002,
+            "end_s": 14.516000000000002,
+            "gap_s": 0.14100000000000001
+          }
+        },
+        "/nino_drive/diagnostics": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.11,
+            "end_s": 16.130000000000003,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 6.691000000000001,
+            "end_s": 6.714,
+            "gap_s": 0.022999999999999687
+          }
+        },
+        "/odom": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.118,
+            "end_s": 16.138,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.578,
+            "end_s": 16.6,
+            "gap_s": 0.022000000000002018
+          }
+        },
+        "/imu/data": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 8.42,
+            "end_s": 8.441,
+            "gap_s": 0.021000000000000796
+          }
+        },
+        "/ground_truth/odom": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 8.42,
+            "end_s": 8.441,
+            "gap_s": 0.021000000000000796
+          }
+        }
+      }
+    },
+    {
+      "attempt": 7,
+      "arm": "reactive_100ms",
+      "route_start_s": 5.531,
+      "route_end_s": 22.23100000000005,
+      "logger_complete": true,
+      "raw_bytes": 32255422,
+      "malformed_lines": 0,
+      "metadata_count_differences": {},
+      "channels": {
+        "/nino/governor/state": {
+          "rows": 167,
+          "largest_header_gap": {
+            "start_s": 16.030999999999963,
+            "end_s": 16.130999999999965,
+            "gap_s": 0.10000000000000142
+          },
+          "largest_receipt_sim_gap": null
+        },
+        "/joint_states": {
+          "rows": 8342,
+          "largest_header_gap": {
+            "start_s": 13.472,
+            "end_s": 13.48,
+            "gap_s": 0.008000000000000895
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.481000000000002,
+            "end_s": 13.489,
+            "gap_s": 0.007999999999999119
+          }
+        },
+        "/nino_drive/diagnostics": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.052,
+            "end_s": 16.072000000000003,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.592,
+            "end_s": 13.615,
+            "gap_s": 0.022999999999999687
+          }
+        },
+        "/nino/contact_lab/left_wheel": {
+          "rows": 1524,
+          "largest_header_gap": {
+            "start_s": 13.171,
+            "end_s": 13.201,
+            "gap_s": 0.030000000000001137
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.173,
+            "end_s": 13.202,
+            "gap_s": 0.028999999999999915
+          }
+        },
+        "/nino/contact_lab/right_wheel": {
+          "rows": 1520,
+          "largest_header_gap": {
+            "start_s": 13.259,
+            "end_s": 13.284,
+            "gap_s": 0.025000000000000355
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.260000000000002,
+            "end_s": 13.285,
+            "gap_s": 0.02499999999999858
+          }
+        },
+        "/nino/contact_lab/caster_left_wheel": {
+          "rows": 1497,
+          "largest_header_gap": {
+            "start_s": 13.771,
+            "end_s": 13.918,
+            "gap_s": 0.14699999999999847
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.775,
+            "end_s": 13.919,
+            "gap_s": 0.14400000000000013
+          }
+        },
+        "/nino/contact_lab/caster_right_wheel": {
+          "rows": 1497,
+          "largest_header_gap": {
+            "start_s": 13.917,
+            "end_s": 14.066,
+            "gap_s": 0.1490000000000009
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.918000000000001,
+            "end_s": 14.067,
+            "gap_s": 0.14899999999999913
+          }
+        },
+        "/imu/data": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 12.082,
+            "end_s": 12.106,
+            "gap_s": 0.023999999999999133
+          }
+        },
+        "/ground_truth/odom": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 13.442,
+            "end_s": 13.465000000000002,
+            "gap_s": 0.023000000000001464
+          }
+        },
+        "/odom": {
+          "rows": 835,
+          "largest_header_gap": {
+            "start_s": 16.144,
+            "end_s": 16.164,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 6.5840000000000005,
+            "end_s": 6.6080000000000005,
+            "gap_s": 0.02400000000000002
+          }
+        }
+      }
+    },
+    {
+      "attempt": 8,
+      "arm": "full",
+      "route_start_s": 6.574,
+      "route_end_s": 23.174000000000067,
+      "logger_complete": true,
+      "raw_bytes": 32819436,
+      "malformed_lines": 0,
+      "metadata_count_differences": {
+        "/nino/contact_lab/right_wheel": {
+          "file_count": 2287,
+          "metadata_count": 2288
+        }
+      },
+      "channels": {
+        "/joint_states": {
+          "rows": 8300,
+          "largest_header_gap": {
+            "start_s": 10.654,
+            "end_s": 10.658,
+            "gap_s": 0.0039999999999995595
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 14.202000000000002,
+            "end_s": 14.209000000000001,
+            "gap_s": 0.006999999999999673
+          }
+        },
+        "/nino/governor/state": {
+          "rows": 166,
+          "largest_header_gap": {
+            "start_s": 16.073999999999966,
+            "end_s": 16.173999999999968,
+            "gap_s": 0.10000000000000142
+          },
+          "largest_receipt_sim_gap": null
+        },
+        "/nino/contact_lab/left_wheel": {
+          "rows": 1509,
+          "largest_header_gap": {
+            "start_s": 22.588,
+            "end_s": 22.603,
+            "gap_s": 0.015000000000000568
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 9.756,
+            "end_s": 9.773000000000001,
+            "gap_s": 0.017000000000001236
+          }
+        },
+        "/nino/contact_lab/right_wheel": {
+          "rows": 1505,
+          "largest_header_gap": {
+            "start_s": 14.285,
+            "end_s": 14.331,
+            "gap_s": 0.045999999999999375
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 14.289000000000001,
+            "end_s": 14.332,
+            "gap_s": 0.04299999999999926
+          }
+        },
+        "/nino/contact_lab/caster_left_wheel": {
+          "rows": 1488,
+          "largest_header_gap": {
+            "start_s": 14.78,
+            "end_s": 14.924,
+            "gap_s": 0.14400000000000013
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 14.784,
+            "end_s": 14.925,
+            "gap_s": 0.14100000000000001
+          }
+        },
+        "/nino/contact_lab/caster_right_wheel": {
+          "rows": 1487,
+          "largest_header_gap": {
+            "start_s": 14.928,
+            "end_s": 15.063,
+            "gap_s": 0.1349999999999998
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 14.929,
+            "end_s": 15.064,
+            "gap_s": 0.1349999999999998
+          }
+        },
+        "/imu/data": {
+          "rows": 830,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 17.880000000000003,
+            "end_s": 17.904,
+            "gap_s": 0.023999999999997357
+          }
+        },
+        "/ground_truth/odom": {
+          "rows": 830,
+          "largest_header_gap": {
+            "start_s": 16.08,
+            "end_s": 16.1,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 17.880000000000003,
+            "end_s": 17.904,
+            "gap_s": 0.023999999999997357
+          }
+        },
+        "/nino_drive/diagnostics": {
+          "rows": 830,
+          "largest_header_gap": {
+            "start_s": 12.907,
+            "end_s": 12.928,
+            "gap_s": 0.021000000000000796
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 18.589000000000002,
+            "end_s": 18.613,
+            "gap_s": 0.023999999999997357
+          }
+        },
+        "/odom": {
+          "rows": 830,
+          "largest_header_gap": {
+            "start_s": 16.112,
+            "end_s": 16.132,
+            "gap_s": 0.020000000000003126
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 17.892,
+            "end_s": 17.914,
+            "gap_s": 0.022000000000002018
+          }
+        }
+      }
+    },
+    {
+      "attempt": 9,
+      "arm": "reactive_20ms",
+      "route_start_s": 6.429,
+      "route_end_s": 23.12900000000007,
+      "logger_complete": true,
+      "raw_bytes": 29346126,
+      "malformed_lines": 0,
+      "metadata_count_differences": {},
+      "channels": {
+        "/nino/governor/state": {
+          "rows": 679,
+          "largest_header_gap": {
+            "start_s": 16.38899999999997,
+            "end_s": 19.529000000000018,
+            "gap_s": 3.1400000000000468
+          },
+          "largest_receipt_sim_gap": null
+        },
+        "/joint_states": {
+          "rows": 6695,
+          "largest_header_gap": {
+            "start_s": 16.408,
+            "end_s": 19.72,
+            "gap_s": 3.3119999999999976
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.409000000000002,
+            "end_s": 19.729000000000003,
+            "gap_s": 3.3200000000000003
+          }
+        },
+        "/nino/contact_lab/left_wheel": {
+          "rows": 1211,
+          "largest_header_gap": {
+            "start_s": 16.398,
+            "end_s": 19.725,
+            "gap_s": 3.3270000000000017
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.401,
+            "end_s": 19.729000000000003,
+            "gap_s": 3.328000000000003
+          }
+        },
+        "/nino/contact_lab/right_wheel": {
+          "rows": 1215,
+          "largest_header_gap": {
+            "start_s": 16.402,
+            "end_s": 19.725,
+            "gap_s": 3.3230000000000004
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.406000000000002,
+            "end_s": 19.729000000000003,
+            "gap_s": 3.3230000000000004
+          }
+        },
+        "/nino/contact_lab/caster_left_wheel": {
+          "rows": 1193,
+          "largest_header_gap": {
+            "start_s": 16.396,
+            "end_s": 19.725,
+            "gap_s": 3.3290000000000006
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.398,
+            "end_s": 19.729000000000003,
+            "gap_s": 3.331000000000003
+          }
+        },
+        "/nino/contact_lab/caster_right_wheel": {
+          "rows": 1193,
+          "largest_header_gap": {
+            "start_s": 16.404,
+            "end_s": 19.725,
+            "gap_s": 3.3210000000000015
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.408,
+            "end_s": 19.729000000000003,
+            "gap_s": 3.3210000000000015
+          }
+        },
+        "/nino_drive/diagnostics": {
+          "rows": 674,
+          "largest_header_gap": {
+            "start_s": 16.392,
+            "end_s": 19.632,
+            "gap_s": 3.240000000000002
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.392,
+            "end_s": 19.729000000000003,
+            "gap_s": 3.3370000000000033
+          }
+        },
+        "/imu/data": {
+          "rows": 674,
+          "largest_header_gap": {
+            "start_s": 16.4,
+            "end_s": 19.64,
+            "gap_s": 3.240000000000002
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.401,
+            "end_s": 19.729000000000003,
+            "gap_s": 3.328000000000003
+          }
+        },
+        "/ground_truth/odom": {
+          "rows": 674,
+          "largest_header_gap": {
+            "start_s": 16.4,
+            "end_s": 19.64,
+            "gap_s": 3.240000000000002
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.401,
+            "end_s": 19.729000000000003,
+            "gap_s": 3.328000000000003
+          }
+        },
+        "/odom": {
+          "rows": 674,
+          "largest_header_gap": {
+            "start_s": 16.404,
+            "end_s": 19.644,
+            "gap_s": 3.2399999999999984
+          },
+          "largest_receipt_sim_gap": {
+            "start_s": 16.406000000000002,
+            "end_s": 19.729000000000003,
+            "gap_s": 3.3230000000000004
+          }
+        }
+      }
+    }
+  ],
+  "attempt9_native_outcome_preserved": {
+    "physical_success": true,
+    "stop_pass": true,
+    "native_replay_matches": true,
+    "whole_GT": {
+      "available": false,
+      "start_s": 6.429,
+      "end_s": 23.12900000000007,
+      "duration_s": 16.700000000000067,
+      "coverage_s": 13.380000000000068,
+      "coverage_fraction": 0.80119760479042,
+      "observed_slip_square_integral_s": 0.02190561280797233,
+      "slip_square_integral_s": null,
+      "rms": null,
+      "distance_m": null,
+      "slip_square_per_m": null
+    }
+  },
+  "logger_source_matches_executed_hash": true,
+  "decision": "Observer-side acquisition interruption with shallow retained queues; no evidence of a global sensor/control outage. Exact blocking component unidentifiable from saved wall-time-free records.",
+  "next_correction_proposal": "Observer-only monotonic callback-entry/exit and serialization/write/flush duration telemetry with sequence/overflow counters. No queue/QoS or control change justified yet.",
+  "simulation_launches": 0,
+  "metrics_changed": false,
+  "H2_decision": "not_assessed"
+}

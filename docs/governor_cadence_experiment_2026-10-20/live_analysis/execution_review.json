@@ -1,0 +1,1091 @@
+{
+  "summary": {
+    "mode": "descriptive_cadence_experiment",
+    "status": "hard_stop_measurement_integrity_pass",
+    "maximum_attempts": 12,
+    "adapter_calls": 9,
+    "simulation_launches": 9,
+    "physical_failures": 0,
+    "missing_outcomes": 0,
+    "unattempted": [
+      10,
+      11,
+      12
+    ],
+    "retries": 0,
+    "replacements": 0,
+    "extra_smoke": 0,
+    "automatic_extension": false,
+    "H2_decision": "not_assessed",
+    "thresholds_applied": false,
+    "PPO": false,
+    "optuna": false,
+    "predictor": false
+  },
+  "assigned_rows": [
+    {
+      "attempt": 1,
+      "seed": 77600,
+      "repeat": 1,
+      "arm": "full",
+      "status": "collected",
+      "arrival": true,
+      "stop_pass": true,
+      "setup_pass": true,
+      "provenance_pass": true,
+      "measurement_integrity_pass": true,
+      "quality_available": true,
+      "cadence_integrity": {
+        "valid": true,
+        "micro_updates": 0,
+        "score_rows": 166
+      },
+      "native_replay_matches": true,
+      "GT_slip_coverage": 1.0,
+      "cleanup_confirmed": true,
+      "metrics": {
+        "post_slip": 0.007444887540163826,
+        "post_vibration": 10.054509829409207,
+        "whole_slip": 0.02799439535015314,
+        "whole_vibration": 4.363012737451294,
+        "native_slip": 0.020990620017838506,
+        "time": 16.60000000000004,
+        "tracking": 0.002855053841241775,
+        "sequence_slip": 0.016379331503855985,
+        "sequence_vibration": 12.241597597325423,
+        "grid_slip": 0.005998234955735646,
+        "shifted_slip": 0.00818806756013988,
+        "post_peak": 92.10405731941161,
+        "whole_peak": 92.10405731941161,
+        "post_slip_integral": 0.008623433567492478,
+        "post_distance": 1.1583027306954752,
+        "crossing_slip": 0.011469372634119384,
+        "crossing_vibration": 12.435583915395984
+      },
+      "first_input_after_contact_ms": null,
+      "first_publication_after_contact_ms": null,
+      "next_loaded_component": null,
+      "next_loaded_contact_after_first_ms": null,
+      "timing_available": true,
+      "timing_error": null,
+      "response_snapshots": null
+    },
+    {
+      "attempt": 2,
+      "seed": 77600,
+      "repeat": 1,
+      "arm": "reactive_20ms",
+      "status": "collected",
+      "arrival": true,
+      "stop_pass": true,
+      "setup_pass": true,
+      "provenance_pass": true,
+      "measurement_integrity_pass": true,
+      "quality_available": true,
+      "cadence_integrity": {
+        "valid": true,
+        "micro_updates": 835,
+        "score_rows": 167,
+        "qualification": "Timestamp/coverage checks only; body response/benefit still needs analysis"
+      },
+      "native_replay_matches": true,
+      "GT_slip_coverage": 1.0,
+      "cleanup_confirmed": true,
+      "metrics": {
+        "post_slip": 0.0067373507362678345,
+        "post_vibration": 11.834224358219863,
+        "whole_slip": 0.02959780168418038,
+        "whole_vibration": 5.023147177953329,
+        "native_slip": 0.032135770830173375,
+        "time": 16.700000000000077,
+        "tracking": 0.0042529214600279235,
+        "sequence_slip": 0.018605814997522292,
+        "sequence_vibration": 14.092504306171591,
+        "grid_slip": 0.010043280671185487,
+        "shifted_slip": 0.006737350736267878,
+        "post_peak": 94.34407785199976,
+        "whole_peak": 94.34407785199976,
+        "post_slip_integral": 0.007547431313790584,
+        "post_distance": 1.1202372578233168,
+        "crossing_slip": 0.010107720721729102,
+        "crossing_vibration": 12.697637478261758
+      },
+      "first_input_after_contact_ms": 35.99999999997294,
+      "first_publication_after_contact_ms": 54.00000000000027,
+      "next_loaded_component": "caster_right_wheel",
+      "next_loaded_contact_after_first_ms": 80.99999999999952,
+      "timing_available": true,
+      "timing_error": null,
+      "response_snapshots": {
+        "before_execution": {
+          "body": {
+            "stamp_s": 14.58,
+            "age_s": 0.008000000000000895,
+            "value": {
+              "linear": {
+                "x": 0.2530545335299088,
+                "y": -9.981546752127735e-05,
+                "z": 0.045221801190679076
+              },
+              "angular": {
+                "x": 0.23835959902698853,
+                "y": -0.06851484059410694,
+                "z": 0.5355944166273571
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 14.588000000000001,
+            "age_s": 0.0,
+            "value": {
+              "caster_left_swivel_joint": -9.83502211962528e-12,
+              "caster_left_wheel_joint": -0.12702753500638214,
+              "caster_right_swivel_joint": -1.0928375744493138e-11,
+              "caster_right_wheel_joint": -0.04284915202314531,
+              "left_wheel_joint": 6.407587239488644,
+              "right_wheel_joint": 5.1845331712277725
+            }
+          }
+        },
+        "at_execution": {
+          "body": {
+            "stamp_s": 14.6,
+            "age_s": 0.008000000000000895,
+            "value": {
+              "linear": {
+                "x": 0.2339765291966998,
+                "y": -0.0011921419273339898,
+                "z": -0.04171637162696927
+              },
+              "angular": {
+                "x": -0.20269043254061528,
+                "y": 0.13446077677826124,
+                "z": 0.4033311714832887
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 14.608,
+            "age_s": 0.0,
+            "value": {
+              "caster_left_swivel_joint": 1.9038825193303184,
+              "caster_left_wheel_joint": 19.793942842688956,
+              "caster_right_swivel_joint": -1.695011947640268e-11,
+              "caster_right_wheel_joint": 0.07156400216265223,
+              "left_wheel_joint": 6.985239643865603,
+              "right_wheel_joint": 6.0126710573254805
+            }
+          }
+        },
+        "next_loaded_contact": {
+          "body": {
+            "stamp_s": 14.62,
+            "age_s": 0.015000000000000568,
+            "value": {
+              "linear": {
+                "x": 0.32087676317390074,
+                "y": 6.122429885268793e-05,
+                "z": -0.08208678949397888
+              },
+              "angular": {
+                "x": -0.42819811123631696,
+                "y": -0.4323302981266549,
+                "z": 0.2920114702916198
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 14.634,
+            "age_s": 0.0009999999999994458,
+            "value": {
+              "caster_left_swivel_joint": 1.0861336244456787e-12,
+              "caster_left_wheel_joint": 2.49548878887884,
+              "caster_right_swivel_joint": -5.715050913117576e-12,
+              "caster_right_wheel_joint": -0.08688929285653273,
+              "left_wheel_joint": 2.516721229596235,
+              "right_wheel_joint": 5.120808466395977
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "seed": 77600,
+      "repeat": 1,
+      "arm": "reactive_100ms",
+      "status": "collected",
+      "arrival": true,
+      "stop_pass": true,
+      "setup_pass": true,
+      "provenance_pass": true,
+      "measurement_integrity_pass": true,
+      "quality_available": true,
+      "cadence_integrity": {
+        "valid": true,
+        "micro_updates": 0,
+        "score_rows": 167
+      },
+      "native_replay_matches": true,
+      "GT_slip_coverage": 0.9999999999999998,
+      "cleanup_confirmed": true,
+      "metrics": {
+        "post_slip": 0.018736146446938606,
+        "post_vibration": 8.208207490731684,
+        "whole_slip": 0.04023484594129848,
+        "whole_vibration": 3.5106175782118014,
+        "native_slip": 0.04558138610052833,
+        "time": 16.700000000000045,
+        "tracking": 0.0037729261609300373,
+        "sequence_slip": 0.03494963479451882,
+        "sequence_vibration": 9.691899948308729,
+        "grid_slip": 0.018656468948614682,
+        "shifted_slip": 0.021027271606887183,
+        "post_peak": 96.79308244232628,
+        "whole_peak": 96.79308244232628,
+        "post_slip_integral": 0.020768293043145297,
+        "post_distance": 1.1084612890896106,
+        "crossing_slip": 0.02774957436626772,
+        "crossing_vibration": 9.841022576231957
+      },
+      "first_input_after_contact_ms": 80.99999999997287,
+      "first_publication_after_contact_ms": 94.0000000000012,
+      "next_loaded_component": "left_wheel",
+      "next_loaded_contact_after_first_ms": 642.0000000000013,
+      "timing_available": true,
+      "timing_error": null,
+      "response_snapshots": {
+        "before_execution": {
+          "body": {
+            "stamp_s": 12.72,
+            "age_s": 0.012000000000000455,
+            "value": {
+              "linear": {
+                "x": 0.3084815332366853,
+                "y": -0.00011397358466589339,
+                "z": -0.05101964313630967
+              },
+              "angular": {
+                "x": -0.27546999570547087,
+                "y": -0.36077338277612003,
+                "z": 0.3544337125594152
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 12.732,
+            "age_s": 1.7763568394002505e-15,
+            "value": {
+              "caster_left_swivel_joint": 1.7467169204088417e-12,
+              "caster_left_wheel_joint": 1.8767464669116958,
+              "caster_right_swivel_joint": -1.3363595779557376e-12,
+              "caster_right_wheel_joint": -0.08458301500507656,
+              "left_wheel_joint": 2.6596112844604654,
+              "right_wheel_joint": 5.155814788652893
+            }
+          }
+        },
+        "at_execution": {
+          "body": {
+            "stamp_s": 12.74,
+            "age_s": 0.012000000000000455,
+            "value": {
+              "linear": {
+                "x": 0.24452866818471142,
+                "y": -5.4129410704337363e-05,
+                "z": 0.00190658368797988
+              },
+              "angular": {
+                "x": -0.006792971899228459,
+                "y": 0.2865369499830708,
+                "z": 0.4525494384817713
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 12.752,
+            "age_s": 0.0,
+            "value": {
+              "caster_left_swivel_joint": -9.176451807625663e-12,
+              "caster_left_wheel_joint": -0.21286005268291225,
+              "caster_right_swivel_joint": 0.548881354325452,
+              "caster_right_wheel_joint": 10.964439980092674,
+              "left_wheel_joint": 2.106339294392303,
+              "right_wheel_joint": 8.802627030378408
+            }
+          }
+        },
+        "next_loaded_contact": {
+          "body": {
+            "stamp_s": 13.3,
+            "age_s": 0.0,
+            "value": {
+              "linear": {
+                "x": 0.32412876186170403,
+                "y": -0.0054393547100700206,
+                "z": 0.0581470904518534
+              },
+              "angular": {
+                "x": 0.3017247402826416,
+                "y": 0.12727449556411277,
+                "z": 0.28542657604742716
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 13.3,
+            "age_s": 0.0,
+            "value": {
+              "caster_left_swivel_joint": 3.4761154458357035e-12,
+              "caster_left_wheel_joint": 0.21310643705287538,
+              "caster_right_swivel_joint": 3.1283691916697802,
+              "caster_right_wheel_joint": 23.56408393157885,
+              "left_wheel_joint": 4.633894644501046,
+              "right_wheel_joint": 6.010622679498193
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 4,
+      "seed": 77601,
+      "repeat": 1,
+      "arm": "full",
+      "status": "collected",
+      "arrival": true,
+      "stop_pass": true,
+      "setup_pass": true,
+      "provenance_pass": true,
+      "measurement_integrity_pass": true,
+      "quality_available": true,
+      "cadence_integrity": {
+        "valid": true,
+        "micro_updates": 0,
+        "score_rows": 166
+      },
+      "native_replay_matches": true,
+      "GT_slip_coverage": 1.0,
+      "cleanup_confirmed": true,
+      "metrics": {
+        "post_slip": 0.01369815734310909,
+        "post_vibration": 1.5715742842799492,
+        "whole_slip": 0.03671728331231747,
+        "whole_vibration": 1.0998884321454936,
+        "native_slip": 0.010360116601752602,
+        "time": 16.600000000000037,
+        "tracking": 0.0038718720832859933,
+        "sequence_slip": 0.02879468134527699,
+        "sequence_vibration": 1.9698383603596443,
+        "grid_slip": 0.014887523874148755,
+        "shifted_slip": 0.012297448017803999,
+        "post_peak": 8.11797806785946,
+        "whole_peak": 8.11797806785946,
+        "post_slip_integral": 0.015772160055759318,
+        "post_distance": 1.1514074236921772,
+        "crossing_slip": 0.021036524340562086,
+        "crossing_vibration": 1.876862835549253
+      },
+      "first_input_after_contact_ms": null,
+      "first_publication_after_contact_ms": null,
+      "next_loaded_component": null,
+      "next_loaded_contact_after_first_ms": null,
+      "timing_available": true,
+      "timing_error": null,
+      "response_snapshots": null
+    },
+    {
+      "attempt": 5,
+      "seed": 77601,
+      "repeat": 1,
+      "arm": "reactive_100ms",
+      "status": "collected",
+      "arrival": true,
+      "stop_pass": true,
+      "setup_pass": true,
+      "provenance_pass": true,
+      "measurement_integrity_pass": true,
+      "quality_available": true,
+      "cadence_integrity": {
+        "valid": true,
+        "micro_updates": 0,
+        "score_rows": 167
+      },
+      "native_replay_matches": true,
+      "GT_slip_coverage": 1.0,
+      "cleanup_confirmed": true,
+      "metrics": {
+        "post_slip": 0.00926685570969143,
+        "post_vibration": 1.1421797528552569,
+        "whole_slip": 0.03031097951614667,
+        "whole_vibration": 1.1606301951415936,
+        "native_slip": 0.028934546884234177,
+        "time": 16.700000000000067,
+        "tracking": 0.0037928743317198078,
+        "sequence_slip": 0.019632709411899308,
+        "sequence_vibration": 1.7681266424662547,
+        "grid_slip": 0.009378227202750562,
+        "shifted_slip": 0.010497119916967551,
+        "post_peak": 5.060077435800315,
+        "whole_peak": 9.84683737813517,
+        "post_slip_integral": 0.010362875445918362,
+        "post_distance": 1.1182730982938147,
+        "crossing_slip": 0.013755954033387292,
+        "crossing_vibration": 1.3084349711631726
+      },
+      "first_input_after_contact_ms": 82.99999999997176,
+      "first_publication_after_contact_ms": 86.99999999999974,
+      "next_loaded_component": "caster_right_wheel",
+      "next_loaded_contact_after_first_ms": 89.00000000000041,
+      "timing_available": true,
+      "timing_error": null,
+      "response_snapshots": {
+        "before_execution": {
+          "body": {
+            "stamp_s": 14.22,
+            "age_s": 0.0,
+            "value": {
+              "linear": {
+                "x": 0.3090722629821099,
+                "y": 9.197134318820735e-05,
+                "z": -0.08249019312090775
+              },
+              "angular": {
+                "x": -0.4170059791022571,
+                "y": -0.3934419336092421,
+                "z": 0.24104526388138242
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 14.22,
+            "age_s": 0.0,
+            "value": {
+              "caster_left_swivel_joint": 1.2824168810210423e-11,
+              "caster_left_wheel_joint": 11.774037290400932,
+              "caster_right_swivel_joint": -1.0995616092981941e-11,
+              "caster_right_wheel_joint": -0.010108373182056745,
+              "left_wheel_joint": 6.477171261301852,
+              "right_wheel_joint": 5.638466516738523
+            }
+          }
+        },
+        "at_execution": {
+          "body": {
+            "stamp_s": 14.24,
+            "age_s": 0.0,
+            "value": {
+              "linear": {
+                "x": 0.2486664928924712,
+                "y": 0.00020854720117117635,
+                "z": -0.0027280126497164956
+              },
+              "angular": {
+                "x": 0.007069713009075679,
+                "y": 0.2799255002688559,
+                "z": 0.4196073389989582
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 14.24,
+            "age_s": 0.0,
+            "value": {
+              "caster_left_swivel_joint": 0.3682116865034324,
+              "caster_left_wheel_joint": 11.636073727599026,
+              "caster_right_swivel_joint": 4.950287087798072e-12,
+              "caster_right_wheel_joint": -0.07966690470204585,
+              "left_wheel_joint": 2.5491404351313727,
+              "right_wheel_joint": 4.848819381108329
+            }
+          }
+        },
+        "next_loaded_contact": {
+          "body": {
+            "stamp_s": 14.24,
+            "age_s": 0.002000000000000668,
+            "value": {
+              "linear": {
+                "x": 0.2486664928924712,
+                "y": 0.00020854720117117635,
+                "z": -0.0027280126497164956
+              },
+              "angular": {
+                "x": 0.007069713009075679,
+                "y": 0.2799255002688559,
+                "z": 0.4196073389989582
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 14.242,
+            "age_s": 0.0,
+            "value": {
+              "caster_left_swivel_joint": 8.144572516410875e-11,
+              "caster_left_wheel_joint": 8.362061399984858,
+              "caster_right_swivel_joint": 34.65499520678128,
+              "caster_right_wheel_joint": -5.899324279363884,
+              "left_wheel_joint": 2.604537520260787,
+              "right_wheel_joint": 5.260967618270741
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 6,
+      "seed": 77601,
+      "repeat": 1,
+      "arm": "reactive_20ms",
+      "status": "collected",
+      "arrival": true,
+      "stop_pass": true,
+      "setup_pass": true,
+      "provenance_pass": true,
+      "measurement_integrity_pass": true,
+      "quality_available": true,
+      "cadence_integrity": {
+        "valid": true,
+        "micro_updates": 835,
+        "score_rows": 167,
+        "qualification": "Timestamp/coverage checks only; body response/benefit still needs analysis"
+      },
+      "native_replay_matches": true,
+      "GT_slip_coverage": 0.9999999999999998,
+      "cleanup_confirmed": true,
+      "metrics": {
+        "post_slip": 0.010929958493076722,
+        "post_vibration": 1.1818458975152029,
+        "whole_slip": 0.03415104458556415,
+        "whole_vibration": 0.764095559762464,
+        "native_slip": 0.010778113829534433,
+        "time": 16.70000000000006,
+        "tracking": 0.003314307466378819,
+        "sequence_slip": 0.025127494659835454,
+        "sequence_vibration": 1.5637023288666538,
+        "grid_slip": 0.011035234004067904,
+        "shifted_slip": 0.00947920742816031,
+        "post_peak": 6.872393280246696,
+        "whole_peak": 6.872393280246696,
+        "post_slip_integral": 0.012212124420736239,
+        "post_distance": 1.1173074836900496,
+        "crossing_slip": 0.01635308418184705,
+        "crossing_vibration": 1.3791589481304025
+      },
+      "first_input_after_contact_ms": 35.99999999997294,
+      "first_publication_after_contact_ms": 44.99999999999993,
+      "next_loaded_component": "caster_right_wheel",
+      "next_loaded_contact_after_first_ms": 80.99999999999952,
+      "timing_available": true,
+      "timing_error": null,
+      "response_snapshots": {
+        "before_execution": {
+          "body": {
+            "stamp_s": 13.62,
+            "age_s": 0.010000000000001563,
+            "value": {
+              "linear": {
+                "x": 0.280346430867774,
+                "y": -0.0002106869345658945,
+                "z": 0.08308486454750728
+              },
+              "angular": {
+                "x": 0.43810835542056725,
+                "y": -0.19786192355730262,
+                "z": 0.6209262598309381
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 13.63,
+            "age_s": 0.0,
+            "value": {
+              "caster_left_swivel_joint": -1.3192724649811922e-11,
+              "caster_left_wheel_joint": 0.3307409227690054,
+              "caster_right_swivel_joint": -1.509593188300795e-11,
+              "caster_right_wheel_joint": -0.04191051359536507,
+              "left_wheel_joint": 6.391734715973109,
+              "right_wheel_joint": 5.587788687754647
+            }
+          }
+        },
+        "at_execution": {
+          "body": {
+            "stamp_s": 13.64,
+            "age_s": 0.009999999999999787,
+            "value": {
+              "linear": {
+                "x": 0.24630101851577235,
+                "y": -0.0004933772029367632,
+                "z": 0.0037665463447470356
+              },
+              "angular": {
+                "x": 0.021208591579571067,
+                "y": 0.01096255890361443,
+                "z": 0.455417426011293
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 13.65,
+            "age_s": 0.0,
+            "value": {
+              "caster_left_swivel_joint": 0.10871225730805484,
+              "caster_left_wheel_joint": -15.135010597089227,
+              "caster_right_swivel_joint": -5.896380104552894e-12,
+              "caster_right_wheel_joint": -0.024329700961439875,
+              "left_wheel_joint": 6.381887593114986,
+              "right_wheel_joint": 4.862136781465023
+            }
+          }
+        },
+        "next_loaded_contact": {
+          "body": {
+            "stamp_s": 13.68,
+            "age_s": 0.006000000000000227,
+            "value": {
+              "linear": {
+                "x": 0.2686220920321704,
+                "y": 0.00012994965454717528,
+                "z": -0.0021266079246655264
+              },
+              "angular": {
+                "x": 0.004961907843414049,
+                "y": 0.06314694799244573,
+                "z": 0.4638277379025494
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 13.686,
+            "age_s": 0.0,
+            "value": {
+              "caster_left_swivel_joint": -4.632411229783806e-11,
+              "caster_left_wheel_joint": 0.1755775741517076,
+              "caster_right_swivel_joint": 33.46228423634142,
+              "caster_right_wheel_joint": -4.427189083811627,
+              "left_wheel_joint": 2.4668539448128497,
+              "right_wheel_joint": 5.491856776963902
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 7,
+      "seed": 77601,
+      "repeat": 2,
+      "arm": "reactive_100ms",
+      "status": "collected",
+      "arrival": true,
+      "stop_pass": true,
+      "setup_pass": true,
+      "provenance_pass": true,
+      "measurement_integrity_pass": true,
+      "quality_available": true,
+      "cadence_integrity": {
+        "valid": true,
+        "micro_updates": 0,
+        "score_rows": 167
+      },
+      "native_replay_matches": true,
+      "GT_slip_coverage": 1.0,
+      "cleanup_confirmed": true,
+      "metrics": {
+        "post_slip": 0.013615451573785057,
+        "post_vibration": 7.9208491940300165,
+        "whole_slip": 0.03516520011653826,
+        "whole_vibration": 3.5691718062763504,
+        "native_slip": 0.02911106571395015,
+        "time": 16.700000000000053,
+        "tracking": 0.003932261921947892,
+        "sequence_slip": 0.02640817370206404,
+        "sequence_vibration": 9.41821223849183,
+        "grid_slip": 0.014182413750677294,
+        "shifted_slip": 0.012876884543669895,
+        "post_peak": 66.70256142486225,
+        "whole_peak": 66.70256142486225,
+        "post_slip_integral": 0.015196801191263655,
+        "post_distance": 1.116143751010308,
+        "crossing_slip": 0.020198506134142608,
+        "crossing_vibration": 9.251562972951293
+      },
+      "first_input_after_contact_ms": 81.99999999997232,
+      "first_publication_after_contact_ms": 83.00000000000018,
+      "next_loaded_component": "caster_right_wheel",
+      "next_loaded_contact_after_first_ms": 87.99999999999919,
+      "timing_available": true,
+      "timing_error": null,
+      "response_snapshots": {
+        "before_execution": {
+          "body": {
+            "stamp_s": 13.2,
+            "age_s": 0.012000000000002231,
+            "value": {
+              "linear": {
+                "x": 0.2589920620834557,
+                "y": -0.002964376520304503,
+                "z": -0.03970256504057303
+              },
+              "angular": {
+                "x": -0.20037523661829787,
+                "y": -0.07452887196217213,
+                "z": 0.35149350440139426
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 13.212,
+            "age_s": 1.7763568394002505e-15,
+            "value": {
+              "caster_left_swivel_joint": -0.6011224220606257,
+              "caster_left_wheel_joint": 20.321733934145342,
+              "caster_right_swivel_joint": 3.489748962894057e-12,
+              "caster_right_wheel_joint": 0.013808139799804157,
+              "left_wheel_joint": 6.543636932574383,
+              "right_wheel_joint": 6.15398134845253
+            }
+          }
+        },
+        "at_execution": {
+          "body": {
+            "stamp_s": 13.22,
+            "age_s": 0.012000000000000455,
+            "value": {
+              "linear": {
+                "x": 0.3007726614412964,
+                "y": 0.00017224006837494605,
+                "z": -0.044112907701628686
+              },
+              "angular": {
+                "x": -0.21777046281971182,
+                "y": -0.24649016045060002,
+                "z": 0.42389088106779604
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 13.232,
+            "age_s": 1.7763568394002505e-15,
+            "value": {
+              "caster_left_swivel_joint": 1.711277442229115,
+              "caster_left_wheel_joint": 12.170168861563727,
+              "caster_right_swivel_joint": -1.0741032890182857e-11,
+              "caster_right_wheel_joint": -0.0795197543220292,
+              "left_wheel_joint": 2.4342346386138525,
+              "right_wheel_joint": 5.190261229909297
+            }
+          }
+        },
+        "next_loaded_contact": {
+          "body": {
+            "stamp_s": 13.22,
+            "age_s": 0.01699999999999946,
+            "value": {
+              "linear": {
+                "x": 0.3007726614412964,
+                "y": 0.00017224006837494605,
+                "z": -0.044112907701628686
+              },
+              "angular": {
+                "x": -0.21777046281971182,
+                "y": -0.24649016045060002,
+                "z": 0.42389088106779604
+              }
+            }
+          },
+          "joints": {
+            "stamp_s": 13.236,
+            "age_s": 0.0009999999999994458,
+            "value": {
+              "caster_left_swivel_joint": 3.077812787619094e-10,
+              "caster_left_wheel_joint": 11.895257682562807,
+              "caster_right_swivel_joint": 7.44355149214079e-12,
+              "caster_right_wheel_joint": -0.07566575523717695,
+              "left_wheel_joint": 2.320071450699067,
+              "right_wheel_joint": 5.090708157031433
+            }
+          }
+        }
+      }
+    },
+    {
+      "attempt": 8,
+      "seed": 77601,
+      "repeat": 2,
+      "arm": "full",
+      "status": "collected",
+      "arrival": true,
+      "stop_pass": true,
+      "setup_pass": true,
+      "provenance_pass": true,
+      "measurement_integrity_pass": true,
+      "quality_available": true,
+      "cadence_integrity": {
+        "valid": true,
+        "micro_updates": 0,
+        "score_rows": 166
+      },
+      "native_replay_matches": true,
+      "GT_slip_coverage": 1.0000000000000002,
+      "cleanup_confirmed": true,
+      "metrics": {
+        "post_slip": 0.018703486162161973,
+        "post_vibration": 1.4284991414123027,
+        "whole_slip": 0.03835733918327837,
+        "whole_vibration": 1.2311079711039368,
+        "native_slip": 0.01915891774535223,
+        "time": 16.600000000000065,
+        "tracking": 0.003089536444702617,
+        "sequence_slip": 0.031478488299542785,
+        "sequence_vibration": 2.1535798657973473,
+        "grid_slip": 0.016037958646185957,
+        "shifted_slip": 0.018171335499335303,
+        "post_peak": 8.14736476687178,
+        "whole_peak": 9.84057840631822,
+        "post_slip_integral": 0.02148115841823726,
+        "post_distance": 1.1485109370516524,
+        "crossing_slip": 0.028633911462728368,
+        "crossing_vibration": 1.711677778807284
+      },
+      "first_input_after_contact_ms": null,
+      "first_publication_after_contact_ms": null,
+      "next_loaded_component": null,
+      "next_loaded_contact_after_first_ms": null,
+      "timing_available": true,
+      "timing_error": null,
+      "response_snapshots": null
+    },
+    {
+      "attempt": 9,
+      "seed": 77601,
+      "repeat": 2,
+      "arm": "reactive_20ms",
+      "status": "collected",
+      "arrival": true,
+      "stop_pass": true,
+      "setup_pass": true,
+      "provenance_pass": true,
+      "measurement_integrity_pass": false,
+      "quality_available": false,
+      "cadence_integrity": {
+        "valid": true,
+        "micro_updates": 835,
+        "score_rows": 167,
+        "qualification": "Timestamp/coverage checks only; body response/benefit still needs analysis"
+      },
+      "native_replay_matches": true,
+      "GT_slip_coverage": 0.80119760479042,
+      "cleanup_confirmed": true,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": 2.683258659045716,
+        "native_slip": 0.030711177593437788,
+        "time": 16.700000000000067,
+        "tracking": 0.004437031998419527,
+        "sequence_slip": 0.02785726483557107,
+        "sequence_vibration": 6.85445305350509,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": 67.37009878565628,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": 0.018035380706380055,
+        "crossing_vibration": 6.864081813671585
+      },
+      "first_input_after_contact_ms": null,
+      "first_publication_after_contact_ms": null,
+      "next_loaded_component": null,
+      "next_loaded_contact_after_first_ms": null,
+      "timing_available": false,
+      "timing_error": "ValueError: incomplete_or_gapped_body_timing_support",
+      "response_snapshots": null
+    },
+    {
+      "attempt": 10,
+      "seed": 77600,
+      "repeat": 2,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "stop_pass": null,
+      "setup_pass": null,
+      "provenance_pass": null,
+      "measurement_integrity_pass": null,
+      "quality_available": null,
+      "cadence_integrity": null,
+      "native_replay_matches": null,
+      "GT_slip_coverage": null,
+      "cleanup_confirmed": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "first_input_after_contact_ms": null,
+      "first_publication_after_contact_ms": null,
+      "next_loaded_component": null,
+      "next_loaded_contact_after_first_ms": null,
+      "timing_available": false,
+      "timing_error": null,
+      "response_snapshots": null
+    },
+    {
+      "attempt": 11,
+      "seed": 77600,
+      "repeat": 2,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "stop_pass": null,
+      "setup_pass": null,
+      "provenance_pass": null,
+      "measurement_integrity_pass": null,
+      "quality_available": null,
+      "cadence_integrity": null,
+      "native_replay_matches": null,
+      "GT_slip_coverage": null,
+      "cleanup_confirmed": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "first_input_after_contact_ms": null,
+      "first_publication_after_contact_ms": null,
+      "next_loaded_component": null,
+      "next_loaded_contact_after_first_ms": null,
+      "timing_available": false,
+      "timing_error": null,
+      "response_snapshots": null
+    },
+    {
+      "attempt": 12,
+      "seed": 77600,
+      "repeat": 2,
+      "arm": "full",
+      "status": "not_attempted",
+      "arrival": null,
+      "stop_pass": null,
+      "setup_pass": null,
+      "provenance_pass": null,
+      "measurement_integrity_pass": null,
+      "quality_available": null,
+      "cadence_integrity": null,
+      "native_replay_matches": null,
+      "GT_slip_coverage": null,
+      "cleanup_confirmed": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "first_input_after_contact_ms": null,
+      "first_publication_after_contact_ms": null,
+      "next_loaded_component": null,
+      "next_loaded_contact_after_first_ms": null,
+      "timing_available": false,
+      "timing_error": null,
+      "response_snapshots": null
+    }
+  ],
+  "attempt9_gap_evidence": {
+    "ground": {
+      "maximum_allowed_gap_s": 0.040001,
+      "gaps": [
+        {
+          "start_s": 16.4,
+          "end_s": 19.64,
+          "duration_s": 3.240000000000002
+        }
+      ]
+    },
+    "joints": {
+      "maximum_allowed_gap_s": 0.010001,
+      "gaps": [
+        {
+          "start_s": 16.408,
+          "end_s": 19.72,
+          "duration_s": 3.3119999999999976
+        }
+      ]
+    },
+    "route_start_s": 6.429,
+    "route_end_s": 23.12900000000007,
+    "whole_slip": {
+      "available": false,
+      "start_s": 6.429,
+      "end_s": 23.12900000000007,
+      "duration_s": 16.700000000000067,
+      "coverage_s": 13.380000000000068,
+      "coverage_fraction": 0.80119760479042,
+      "observed_slip_square_integral_s": 0.02190561280797233,
+      "slip_square_integral_s": null,
+      "rms": null,
+      "distance_m": null,
+      "slip_square_per_m": null
+    },
+    "invalid_joint_interpolation_GT_stamps_s": [
+      19.64,
+      19.66,
+      19.68,
+      19.7
+    ],
+    "qualification": "Saved observer trace has gaps. No identified transport/logger root cause; do not infer physical sensor outage or fill gaps."
+  },
+  "conclusions": {
+    "command_timing": "Two valid fast/reference pairs: reduced drive publication40/42ms earlier; remaining planned pairs unavailable.",
+    "physical_response": "Not established as earlier causal speed response: contact disturbed body/wheel speed before command, snapshots nonmonotonic, incomplete batch.",
+    "quality": "Planned aggregate comparisons/CI unavailable. Opposite slip directions in first two valid pairs; do not average a selected subset or promote candidate.",
+    "decision": "Stop this released batch at the measurement hard stop. Slots10\u201312 remain unattempted; no resume, retries, replacement, extra smoke or new tuning.",
+    "next_step": "A bounded offline check of observer acquisition/queue/backpressure over the attempt9 gap; preserve controller, scoring, coverage and dataset. No new simulation budget."
+  },
+  "H2_decision": "not_assessed",
+  "thresholds_applied": false,
+  "sampling_changed": false
+}

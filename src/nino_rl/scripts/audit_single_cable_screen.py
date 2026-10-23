@@ -16,10 +16,10 @@ from audit_clear_floor_stability import sustained_start
 from nino_rl.core import load_config
 
 
-def analyze(case,clearance_distance=.5):
+def analyze(case,clearance_distance=.5,*,logger_override=None):
     case=Path(case)
     evaluation=next((case/"evaluation").glob("*/summary.json")).parent
-    logger=next((case/"contact").glob("*/metadata.json")).parent
+    logger=Path(logger_override) if logger_override else next((case/"contact").glob("*/metadata.json")).parent
     config=load_config(evaluation/"config.yaml")
     summary=json.loads((evaluation/"summary.json").read_text())
     paths=list(evaluation.glob("episode-*/control_trace.csv"))

@@ -82,7 +82,11 @@ def settling_audit(logger,end,seconds=2.):
 
 def audit(evaluation,logger):
     evaluation=resolve(evaluation,"metadata.json")
-    logger=resolve(logger,"metadata.json")
+    logger=Path(logger)
+    if (logger/"view_manifest.json").exists():
+        from nino_rl.acquisition_contract import verify_view
+        verify_view(logger)
+    else:logger=resolve(logger,"metadata.json")
     paths=list(evaluation.glob("episode-*/control_trace.csv"))
     if len(paths)!=1: raise ValueError("Select one episode/run for the stability audit")
     rows=list(csv.DictReader(paths[0].open()))

@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-22",
+  "review": "conditional_recommendation_for_descriptive_screen_not_execution_authorization",
+  "contract": "isolated_joint_gt_cadence_v2_2026_10_22",
+  "protocol_path": "docs/governor_isolated_cadence_contract_v2_2026-10-22/protocol.json",
+  "protocol_sha256": "e573217d959e5b4a26e52f733d5cb4c4387284f9f1e27c1643cf72397f85ba0c",
+  "offline_tests_passed": 125,
+  "new_boundary_regression_tests": 2,
+  "new_tests_failed_before_fix": true,
+  "correction": "Select reset epoch before validating the opt-in derived view; raw frames retained, old-epoch start-stamp samples never supply support; missing current streams still fail closed. Legacy decoder remains strict.",
+  "native_metrics_sampling_coverage_changed": false,
+  "maximum_attempts_proposed": 12,
+  "integration_slots_within_budget": [1, 2],
+  "budget_released": false,
+  "execution_authorized": false,
+  "simulation_attempts": 0,
+  "closed_batch_slots_reused": false,
+  "application_thresholds_applied": false,
+  "questions_in_order": ["earlier_command_arrival", "actual_wheel_and_body_response_before_next_contact", "crossing_quality_with_time_tracking_tradeoff"],
+  "automatic_extension": false,
+  "predictor_PPO_Optuna_started": false
+}

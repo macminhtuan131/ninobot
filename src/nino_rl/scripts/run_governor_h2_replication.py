@@ -197,19 +197,22 @@ def stop_child(process):
 
 
 class LiveAdapter:
-    def __init__(self,bundle,domain,popen=None,collector=None):
+    def __init__(self,bundle,domain,popen=None,collector=None,command_factory=None,environment_overrides=None):
         self.bundle=bundle;self.domain=domain;self.popen=popen or subprocess.Popen
         self.collector=collector or collect_attempt
+        self.command_factory=command_factory or child_command
+        self.environment_overrides=environment_overrides or {}
 
     def __call__(self,job,attempt):
         stage=attempt/"confirmation/height";stage.mkdir(parents=True,exist_ok=False)
         for name in ("scenario.sdf","scenario.json"):
             shutil.copy2(self.bundle/"inputs"/name,stage/name)
         atomic_json(attempt/"protocol_before_results.json",dict(scenarios=[dict(id="height",x_m=3.1,angle_deg=8.,seeds=[job["seed"]])]))
-        command=child_command(self.bundle,job,stage)
+        command=self.command_factory(self.bundle,job,stage)
         environment=os.environ.copy()
         environment.update(ROS_DOMAIN_ID=str(self.domain),NINO_ROS_DOMAIN_ID=str(self.domain),
             ROS_AUTOMATIC_DISCOVERY_RANGE="LOCALHOST",GZ_PARTITION=f"nino_h2_replication_{self.domain}")
+        environment.update(self.environment_overrides)
         atomic_json(attempt/"launch_plan.json",dict(command=command,cold_start=True,maximum_child_episodes=1,
             domain=self.domain,partition=environment["GZ_PARTITION"],retry_allowed=False))
         process=None;cleanup=False;interrupted=False;error=None
@@ -242,7 +245,7 @@ def one(paths, description):
     return paths[0]
 
 
-def collect_attempt(bundle,job,attempt):
+def collect_attempt(bundle,job,attempt,*,measurement_logger=None):
     """Read only this new child output; never fill absent arms or launch analysis."""
     sys.path[:0]=[str(ROOT/"src/nino_rl"),str(ROOT/"src/nino_control")]
     from summarize_contact_oracle_h2 import native_status
@@ -269,6 +272,15 @@ def collect_attempt(bundle,job,attempt):
         evaluation=one(case.glob("evaluation/*/summary.json"),"evaluation summary").parent
         result["evaluation"]=str(evaluation);result["logger"]=str(logger)
         metadata=json.loads((logger/"metadata.json").read_text())
+        if measurement_logger:
+            from nino_rl.acquisition_contract import verify_view
+            view=verify_view(measurement_logger)
+            if view["primary_logger"]!=str(logger.resolve()):
+                raise ValueError("Measurement view belongs to another primary logger")
+            result["primary_logger"]=str(logger)
+            logger=Path(measurement_logger)
+            result["logger"]=str(logger)
+            result["acquisition_integrity"]=view
         protocol=json.loads((bundle/"protocol.json").read_text())
         expected=yaml.safe_load((bundle/f"inputs/{job['profile']}.yaml").read_text())
         resolved=json.loads((logger/"resolved_config.json").read_text())
@@ -316,11 +328,13 @@ def collect_attempt(bundle,job,attempt):
         result["stop_pass"]=stop.get("settled") if result["physical_success"] else None
         # Existing read-only analyzer is called only after one-result summary
         # validation; it cannot invent an absent opposite arm for this attempt.
-        analyze_batch(attempt)
+        if measurement_logger:analyze_batch(attempt,logger_override=measurement_logger)
+        else:analyze_batch(attempt)
         rows=json.loads((attempt/"confirmation_episodes.json").read_text())
         if len(rows)!=1:
             raise ValueError("Analysis must retain exactly the assigned attempt")
         row=dict(rows[0],arm=job["profile"])
+        if measurement_logger:row["logger"]=str(measurement_logger)
         result["quality"]=dict(existing_reports=row,postcontact=dict(available=False,
             reason="missing_or_censored_contact_window_not_zero"))
         if row.get("available") and row.get("clearance_s") is not None and row.get("first_contact_s") is not None:

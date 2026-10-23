@@ -1,0 +1,98 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "arm": "full",
+      "status": "collected",
+      "arrival": true,
+      "observer_health": {
+        "valid": false,
+        "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/tuanmac/ninorobot/rl_runs/governor_observer_health_followup_2026-10-20/attempt_01/confirmation/height/screen/seed_77600_full/contact/20261020T153303-789328Z/observer_health_summary.json'"
+      },
+      "unavailable": "health_summary_missing_after_interrupted_close",
+      "valid_prefix_rows": 862,
+      "first_malformed_line": null,
+      "qualification": "Partial prefix is not complete observer telemetry; no costs inferred for the run"
+    },
+    {
+      "attempt": 2,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 3,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 4,
+      "arm": "full",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 5,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 6,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 7,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 8,
+      "arm": "full",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 9,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 10,
+      "arm": "reactive_20ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 11,
+      "arm": "reactive_100ms",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    },
+    {
+      "attempt": 12,
+      "arm": "full",
+      "status": "not_attempted",
+      "arrival": null,
+      "observer_health": null
+    }
+  ],
+  "simulator_launches": 0,
+  "metrics_changed": false,
+  "qualification": "Measured observer costs and inter-callback intervals only. An idle interval alone is not proof of scheduling or DDS loss; a stage duration is observer work/blocking including descheduling during that stage. This is telemetry, not a new quality gate."
+}

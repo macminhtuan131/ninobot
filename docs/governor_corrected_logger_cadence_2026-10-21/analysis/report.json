@@ -1,0 +1,2199 @@
+{
+  "mode": "descriptive_cadence_experiment",
+  "H2_decision": "not_assessed",
+  "thresholds_applied": false,
+  "automatic_promotion": false,
+  "structural_issues": [],
+  "episodes": [
+    {
+      "attempt": 1,
+      "seed": 77600,
+      "repeat": 1,
+      "triad_id": "seed_77600_repeat_1",
+      "position": 1,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true,
+      "status": "collected",
+      "physical_success": true,
+      "termination": "success",
+      "stop_pass": true,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": 2.746454091248618,
+        "whole_slip": 0.03162205692903629,
+        "whole_vibration": 1.616328410730261,
+        "native_slip": 0.01841158684291401,
+        "time": 16.600000000000065,
+        "tracking": 0.003766778450077093,
+        "sequence_slip": null,
+        "sequence_vibration": 3.3869595336702676,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": 27.130223927014228,
+        "whole_peak": 27.130223927014228,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": 3.379214914261838
+      },
+      "native_outcome": {
+        "governor_profile": "full",
+        "governor_run_id": "bd0bc141acf941daa601dd32c4b9a2de",
+        "governor_events": "0",
+        "governor_final_phase": "CRUISE",
+        "governor_fault": "",
+        "route_id": "E1",
+        "route_length_m": "6.45",
+        "route_gates_passed": "6",
+        "route_gates_total": "6",
+        "goal_x_m": "6.45",
+        "goal_y_m": "0.0",
+        "max_episode_seconds": "87.25",
+        "clock_origin_sim_s": "6.28",
+        "duration_s": "16.599999999999998",
+        "samples": "167",
+        "path_rmse_m": "0.0037924546797690538",
+        "cross_track_rmse_m": "0.003791970129555947",
+        "path_mae_m": "0.0026965027722267495",
+        "path_p95_m": "0.007819516997830796",
+        "path_max_m": "0.008939654054392773",
+        "endpoint_error_m": "0.1881411894673953",
+        "final_progress_fraction": "0.9708399677076095",
+        "max_progress_fraction": "0.9708399677076095",
+        "backtracking_m": "0.0",
+        "reference_length_m": "6.45",
+        "travelled_distance_m": "6.263763624048851",
+        "heading_rmse_deg": "0.668349117686974",
+        "truth_path_rmse_m": "0.003766778450077093",
+        "truth_path_p95_m": "0.007811868332329301",
+        "truth_endpoint_error_m": "0.1887971596059267",
+        "truth_heading_rmse_deg": "0.6683508079577524",
+        "odom_truth_position_error_m": "0.000770856158249802",
+        "trajectory_frame": "odom_imu",
+        "trajectory_pose_source": "imu_encoder_lidar_odometry",
+        "reward_pose_source": "ground_truth",
+        "success": "True",
+        "time_seconds": "16.600000000000065",
+        "progress_m": "6.261917791714081",
+        "remaining_m": "0.18808220828591882",
+        "endpoint_distance_m": "0.1881411894673953",
+        "lateral_error_m": "-0.004710636952500308",
+        "heading_error_deg": "-1.266891423466805",
+        "roll_deg": "-0.0001775895867338399",
+        "pitch_deg": "-0.012886449168375932",
+        "attempt": "1",
+        "episode_start_time_unix": "1792553223.4610255",
+        "final_arrival_time_seconds": "16.600000000000065",
+        "goal_reached": "True",
+        "lidar_min_m": "1.5469943284988403",
+        "collision_clearance_m": "1.5101943284988153",
+        "adaptive_terrain_features": "0",
+        "next_adaptive_terrain_features": "0",
+        "adaptive_terrain_rolling_success": "0.0",
+        "adaptive_terrain_window_episodes": "0",
+        "adaptive_terrain_level_advanced": "False",
+        "flat_curriculum_stage": "",
+        "next_flat_curriculum_stage": "",
+        "successful_episodes": "1",
+        "difficult_path_chosen": "False",
+        "challenges_chosen": "0",
+        "challenges_cleared": "0",
+        "traversable_challenges": "0",
+        "challenge_choice_fraction": "0.0",
+        "challenge_clear_fraction": "0.0",
+        "final_lateral_drift_m": "-0.004710636952500308",
+        "final_abs_lateral_drift_m": "0.004710636952500308",
+        "return": "154.41176924590064",
+        "reward_totals": "{'progress': 73.37416781689782, 'lateral': -0.013236269916092855, 'heading': -0.08592208190549107, 'impact': -4.098141845920966, 'body_rate': -0.008706749143075437, 'attitude': 0.0, 'slip': -0.2719713219583663, 'smoothness': 0.0, 'saturation': 0.0, 'effort': -0.008396195982397409, 'residual_effort': 0.0, 'torque_rate': -0.0003437586829521459, 'velocity': -0.025189763997844353, 'yaw_tracking': -0.15497177661978467, 'goal_braking': -0.26823361579229826, 'time': -33.20000000000013, 'stall': 0.0, 'challenge_entry': 0.0, 'challenge_clear': 0.0, 'challenge_goal': 0.0, 'success_position': -13.039493368500345, 'success_heading': -0.22165425643977207, 'on_time_success': 32.433862433862366, 'terminal': 100.0}",
+        "clock_elapsed_seconds": "16.6",
+        "max_clock_error_seconds": "6.394884621840902e-14",
+        "max_motion_sensor_lag_seconds": "0.012000000000064404",
+        "curriculum_phase": "1",
+        "terrain_height_scale": "1.0",
+        "terrain_layout": "[]",
+        "peak_vertical_acceleration_m_s2": "27.130223927014228",
+        "rms_vertical_acceleration_m_s2": "1.616328410730261",
+        "mean_abs_lateral_error_m": "0.0027072842323142446",
+        "rms_path_deviation_m": "0.00380074939268364",
+        "max_path_deviation_m": "0.008939654054392773",
+        "mean_abs_roll_deg": "0.012983510558424024",
+        "mean_abs_pitch_deg": "0.019092603951423592",
+        "mean_imu_angular_xy_rad_s": "0.007867893055673068",
+        "mean_imu_acceleration_change_m_s2": "1.4771206227305367",
+        "max_tilt_deg": "0.9551051120255128",
+        "rms_wheel_slip": "0.01841158684291401",
+        "max_abs_wheel_slip": "0.16414456807662917",
+        "rms_wheel_torque_nm": "0.17779815428925247",
+        "max_abs_wheel_torque_nm": "0.7260930430171136",
+        "rms_imu_acceleration_m_s2": "5.715164278963437",
+        "mean_speed_scale": "1.0",
+        "min_speed_scale": "1.0",
+        "max_speed_scale": "1.0",
+        "mean_ground_speed_m_s": "0.37769225605361273",
+        "waypoint_arrival_times_seconds": "[5.4999999999999805, 10.599999999999978, 15.60000000000005]",
+        "waypoint_time_budgets_seconds": "[8.0, 13.0, 18.0]",
+        "finished_within_target_time": "True",
+        "time_margin_seconds": "30.649999999999935",
+        "target_finish_seconds": "47.25",
+        "final_speed_m_s": "0.16564889093874216",
+        "final_yaw_rate_rad_s": "0.020076367321936555",
+        "wrong_direction_duration_seconds": "0.0",
+        "termination": "success",
+        "episode": "1",
+        "seed": "77600",
+        "controller": "full_governor_pi",
+        "phase": "1",
+        "cable_count": "0",
+        "cable_diameter_m": "0.0",
+        "cable_angle_deg": "0.0"
+      },
+      "cadence_integrity": {
+        "valid": true,
+        "micro_updates": 0,
+        "score_rows": 166
+      }
+    },
+    {
+      "attempt": 2,
+      "seed": 77600,
+      "repeat": 1,
+      "triad_id": "seed_77600_repeat_1",
+      "position": 2,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "physical_success": null,
+      "termination": null,
+      "stop_pass": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "native_outcome": null,
+      "cadence_integrity": null
+    },
+    {
+      "attempt": 3,
+      "seed": 77600,
+      "repeat": 1,
+      "triad_id": "seed_77600_repeat_1",
+      "position": 3,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "physical_success": null,
+      "termination": null,
+      "stop_pass": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "native_outcome": null,
+      "cadence_integrity": null
+    },
+    {
+      "attempt": 4,
+      "seed": 77601,
+      "repeat": 1,
+      "triad_id": "seed_77601_repeat_1",
+      "position": 1,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true,
+      "status": "not_attempted",
+      "physical_success": null,
+      "termination": null,
+      "stop_pass": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "native_outcome": null,
+      "cadence_integrity": null
+    },
+    {
+      "attempt": 5,
+      "seed": 77601,
+      "repeat": 1,
+      "triad_id": "seed_77601_repeat_1",
+      "position": 2,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "physical_success": null,
+      "termination": null,
+      "stop_pass": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "native_outcome": null,
+      "cadence_integrity": null
+    },
+    {
+      "attempt": 6,
+      "seed": 77601,
+      "repeat": 1,
+      "triad_id": "seed_77601_repeat_1",
+      "position": 3,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "physical_success": null,
+      "termination": null,
+      "stop_pass": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "native_outcome": null,
+      "cadence_integrity": null
+    },
+    {
+      "attempt": 7,
+      "seed": 77601,
+      "repeat": 2,
+      "triad_id": "seed_77601_repeat_2",
+      "position": 1,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "physical_success": null,
+      "termination": null,
+      "stop_pass": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "native_outcome": null,
+      "cadence_integrity": null
+    },
+    {
+      "attempt": 8,
+      "seed": 77601,
+      "repeat": 2,
+      "triad_id": "seed_77601_repeat_2",
+      "position": 2,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true,
+      "status": "not_attempted",
+      "physical_success": null,
+      "termination": null,
+      "stop_pass": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "native_outcome": null,
+      "cadence_integrity": null
+    },
+    {
+      "attempt": 9,
+      "seed": 77601,
+      "repeat": 2,
+      "triad_id": "seed_77601_repeat_2",
+      "position": 3,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "physical_success": null,
+      "termination": null,
+      "stop_pass": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "native_outcome": null,
+      "cadence_integrity": null
+    },
+    {
+      "attempt": 10,
+      "seed": 77600,
+      "repeat": 2,
+      "triad_id": "seed_77600_repeat_2",
+      "position": 1,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "physical_success": null,
+      "termination": null,
+      "stop_pass": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "native_outcome": null,
+      "cadence_integrity": null
+    },
+    {
+      "attempt": 11,
+      "seed": 77600,
+      "repeat": 2,
+      "triad_id": "seed_77600_repeat_2",
+      "position": 2,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true,
+      "status": "not_attempted",
+      "physical_success": null,
+      "termination": null,
+      "stop_pass": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "native_outcome": null,
+      "cadence_integrity": null
+    },
+    {
+      "attempt": 12,
+      "seed": 77600,
+      "repeat": 2,
+      "triad_id": "seed_77600_repeat_2",
+      "position": 3,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true,
+      "status": "not_attempted",
+      "physical_success": null,
+      "termination": null,
+      "stop_pass": null,
+      "metrics": {
+        "post_slip": null,
+        "post_vibration": null,
+        "whole_slip": null,
+        "whole_vibration": null,
+        "native_slip": null,
+        "time": null,
+        "tracking": null,
+        "sequence_slip": null,
+        "sequence_vibration": null,
+        "grid_slip": null,
+        "shifted_slip": null,
+        "post_peak": null,
+        "whole_peak": null,
+        "post_slip_integral": null,
+        "post_distance": null,
+        "crossing_slip": null,
+        "crossing_vibration": null
+      },
+      "native_outcome": null,
+      "cadence_integrity": null
+    }
+  ],
+  "contrasts": {
+    "reactive_20ms_minus_reactive_100ms": {
+      "post_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "whole_slip": {
+        "unit": "dimensionless",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "whole_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "native_slip": {
+        "unit": "dimensionless",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "time": {
+        "unit": "s",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "tracking": {
+        "unit": "m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "sequence_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "sequence_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "grid_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "shifted_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_peak": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "whole_peak": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_slip_integral": {
+        "unit": "s",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_distance": {
+        "unit": "m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "crossing_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "crossing_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      }
+    },
+    "reactive_100ms_minus_full": {
+      "post_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "whole_slip": {
+        "unit": "dimensionless",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "whole_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "native_slip": {
+        "unit": "dimensionless",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "time": {
+        "unit": "s",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "tracking": {
+        "unit": "m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "sequence_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "sequence_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "grid_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "shifted_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_peak": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "whole_peak": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_slip_integral": {
+        "unit": "s",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_distance": {
+        "unit": "m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "crossing_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "crossing_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      }
+    },
+    "reactive_20ms_minus_full": {
+      "post_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "whole_slip": {
+        "unit": "dimensionless",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "whole_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "native_slip": {
+        "unit": "dimensionless",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "time": {
+        "unit": "s",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "tracking": {
+        "unit": "m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "sequence_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "sequence_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "grid_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "shifted_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_peak": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "whole_peak": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_slip_integral": {
+        "unit": "s",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "post_distance": {
+        "unit": "m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "crossing_slip": {
+        "unit": "s/m",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      },
+      "crossing_vibration": {
+        "unit": "m/s\u00b2",
+        "blocks": {
+          "77600": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          },
+          "77601": {
+            "complete_pairs": 0,
+            "reference_mean": null,
+            "candidate_mean": null,
+            "delta": null,
+            "relative_benefit": null
+          }
+        },
+        "aggregate": {
+          "delta": null,
+          "delta_CI95": null,
+          "relative_benefit": null,
+          "benefit_CI95": null
+        }
+      }
+    }
+  },
+  "sampling_sensitivity": {
+    "reactive_20ms_minus_reactive_100ms": {
+      "77600": {
+        "values": {
+          "post_slip": null,
+          "grid_slip": null,
+          "shifted_slip": null
+        },
+        "sign_reversal": null
+      },
+      "77601": {
+        "values": {
+          "post_slip": null,
+          "grid_slip": null,
+          "shifted_slip": null
+        },
+        "sign_reversal": null
+      },
+      "aggregate": {
+        "values": {
+          "post_slip": null,
+          "grid_slip": null,
+          "shifted_slip": null
+        },
+        "sign_reversal": null
+      }
+    },
+    "reactive_100ms_minus_full": {
+      "77600": {
+        "values": {
+          "post_slip": null,
+          "grid_slip": null,
+          "shifted_slip": null
+        },
+        "sign_reversal": null
+      },
+      "77601": {
+        "values": {
+          "post_slip": null,
+          "grid_slip": null,
+          "shifted_slip": null
+        },
+        "sign_reversal": null
+      },
+      "aggregate": {
+        "values": {
+          "post_slip": null,
+          "grid_slip": null,
+          "shifted_slip": null
+        },
+        "sign_reversal": null
+      }
+    },
+    "reactive_20ms_minus_full": {
+      "77600": {
+        "values": {
+          "post_slip": null,
+          "grid_slip": null,
+          "shifted_slip": null
+        },
+        "sign_reversal": null
+      },
+      "77601": {
+        "values": {
+          "post_slip": null,
+          "grid_slip": null,
+          "shifted_slip": null
+        },
+        "sign_reversal": null
+      },
+      "aggregate": {
+        "values": {
+          "post_slip": null,
+          "grid_slip": null,
+          "shifted_slip": null
+        },
+        "sign_reversal": null
+      }
+    }
+  },
+  "counts": {
+    "assigned": 12,
+    "arrivals": 1,
+    "failures": 0,
+    "unknown": 11
+  },
+  "uncertainty": "Only2 triads per block: bootstrap intervals descriptive, no guaranteed power/coverage. No metric/interval fills missing data or drops failures.",
+  "timing": {
+    "1": {
+      "available": false,
+      "precontact_reduction": null,
+      "timing_pass": null,
+      "error": "ValueError: incomplete_or_gapped_joints_timing_support",
+      "precontact_slip": {
+        "available": true,
+        "start_s": 13.613,
+        "end_s": 13.863,
+        "duration_s": 0.25,
+        "coverage_s": 0.25,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 4.839048598020149e-07,
+        "slip_square_integral_s": 4.839048598020149e-07,
+        "rms": 0.0013912654093335534,
+        "distance_m": 0.09935405920973209,
+        "slip_square_per_m": 4.870509203660344e-06
+      },
+      "first50ms_fixed_diagnostic_not_necessarily_negative_control": {
+        "available": true,
+        "start_s": 13.913,
+        "end_s": 13.963000000000001,
+        "duration_s": 0.05000000000000071,
+        "coverage_s": 0.05000000000000071,
+        "coverage_fraction": 1.0,
+        "observed_slip_square_integral_s": 0.005229520783217965,
+        "slip_square_integral_s": 0.005229520783217965,
+        "rms": 0.3234044150353514,
+        "distance_m": 0.013811695038150633,
+        "slip_square_per_m": 0.3786299052196703
+      },
+      "first_contact_s": 13.913,
+      "execution_after_contact_s": null
+    },
+    "2": {
+      "available": false,
+      "reason": "contact_window_unavailable_not_zero"
+    },
+    "3": {
+      "available": false,
+      "reason": "contact_window_unavailable_not_zero"
+    },
+    "4": {
+      "available": false,
+      "reason": "contact_window_unavailable_not_zero"
+    },
+    "5": {
+      "available": false,
+      "reason": "contact_window_unavailable_not_zero"
+    },
+    "6": {
+      "available": false,
+      "reason": "contact_window_unavailable_not_zero"
+    },
+    "7": {
+      "available": false,
+      "reason": "contact_window_unavailable_not_zero"
+    },
+    "8": {
+      "available": false,
+      "reason": "contact_window_unavailable_not_zero"
+    },
+    "9": {
+      "available": false,
+      "reason": "contact_window_unavailable_not_zero"
+    },
+    "10": {
+      "available": false,
+      "reason": "contact_window_unavailable_not_zero"
+    },
+    "11": {
+      "available": false,
+      "reason": "contact_window_unavailable_not_zero"
+    },
+    "12": {
+      "available": false,
+      "reason": "contact_window_unavailable_not_zero"
+    }
+  },
+  "preintervention_pairs": [
+    {
+      "seed": 77600,
+      "repeat": 1,
+      "candidate": "reactive_20ms",
+      "reference": "reactive_100ms",
+      "end_offset_s": null,
+      "windows": {
+        "reactive_100ms": null,
+        "reactive_20ms": null
+      },
+      "command_execution_offsets_s": {
+        "reactive_100ms": null,
+        "reactive_20ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    },
+    {
+      "seed": 77600,
+      "repeat": 1,
+      "candidate": "reactive_100ms",
+      "reference": "full",
+      "end_offset_s": null,
+      "windows": {
+        "full": null,
+        "reactive_100ms": null
+      },
+      "command_execution_offsets_s": {
+        "full": null,
+        "reactive_100ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    },
+    {
+      "seed": 77600,
+      "repeat": 1,
+      "candidate": "reactive_20ms",
+      "reference": "full",
+      "end_offset_s": null,
+      "windows": {
+        "full": null,
+        "reactive_20ms": null
+      },
+      "command_execution_offsets_s": {
+        "full": null,
+        "reactive_20ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    },
+    {
+      "seed": 77600,
+      "repeat": 2,
+      "candidate": "reactive_20ms",
+      "reference": "reactive_100ms",
+      "end_offset_s": null,
+      "windows": {
+        "reactive_100ms": null,
+        "reactive_20ms": null
+      },
+      "command_execution_offsets_s": {
+        "reactive_100ms": null,
+        "reactive_20ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    },
+    {
+      "seed": 77600,
+      "repeat": 2,
+      "candidate": "reactive_100ms",
+      "reference": "full",
+      "end_offset_s": null,
+      "windows": {
+        "full": null,
+        "reactive_100ms": null
+      },
+      "command_execution_offsets_s": {
+        "full": null,
+        "reactive_100ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    },
+    {
+      "seed": 77600,
+      "repeat": 2,
+      "candidate": "reactive_20ms",
+      "reference": "full",
+      "end_offset_s": null,
+      "windows": {
+        "full": null,
+        "reactive_20ms": null
+      },
+      "command_execution_offsets_s": {
+        "full": null,
+        "reactive_20ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    },
+    {
+      "seed": 77601,
+      "repeat": 1,
+      "candidate": "reactive_20ms",
+      "reference": "reactive_100ms",
+      "end_offset_s": null,
+      "windows": {
+        "reactive_100ms": null,
+        "reactive_20ms": null
+      },
+      "command_execution_offsets_s": {
+        "reactive_100ms": null,
+        "reactive_20ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    },
+    {
+      "seed": 77601,
+      "repeat": 1,
+      "candidate": "reactive_100ms",
+      "reference": "full",
+      "end_offset_s": null,
+      "windows": {
+        "full": null,
+        "reactive_100ms": null
+      },
+      "command_execution_offsets_s": {
+        "full": null,
+        "reactive_100ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    },
+    {
+      "seed": 77601,
+      "repeat": 1,
+      "candidate": "reactive_20ms",
+      "reference": "full",
+      "end_offset_s": null,
+      "windows": {
+        "full": null,
+        "reactive_20ms": null
+      },
+      "command_execution_offsets_s": {
+        "full": null,
+        "reactive_20ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    },
+    {
+      "seed": 77601,
+      "repeat": 2,
+      "candidate": "reactive_20ms",
+      "reference": "reactive_100ms",
+      "end_offset_s": null,
+      "windows": {
+        "reactive_100ms": null,
+        "reactive_20ms": null
+      },
+      "command_execution_offsets_s": {
+        "reactive_100ms": null,
+        "reactive_20ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    },
+    {
+      "seed": 77601,
+      "repeat": 2,
+      "candidate": "reactive_100ms",
+      "reference": "full",
+      "end_offset_s": null,
+      "windows": {
+        "full": null,
+        "reactive_100ms": null
+      },
+      "command_execution_offsets_s": {
+        "full": null,
+        "reactive_100ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    },
+    {
+      "seed": 77601,
+      "repeat": 2,
+      "candidate": "reactive_20ms",
+      "reference": "full",
+      "end_offset_s": null,
+      "windows": {
+        "full": null,
+        "reactive_20ms": null
+      },
+      "command_execution_offsets_s": {
+        "full": null,
+        "reactive_20ms": null
+      },
+      "candidate_minus_reference_command_offset_s": null,
+      "qualification": "Same contact-relative duration before EITHER intervention, not identical contact state; check sensor supports before treating as negative control"
+    }
+  ]
+}

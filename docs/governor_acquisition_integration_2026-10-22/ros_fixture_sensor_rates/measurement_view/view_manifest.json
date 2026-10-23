@@ -1,0 +1,79 @@
+{
+  "complete": true,
+  "schema": "isolated_joint_gt_integration_v1",
+  "validation": {
+    "valid": true,
+    "epoch": 1,
+    "counts": {
+      "/joint_states": 159,
+      "/ground_truth/odom": 16
+    },
+    "qualification": "Epoch/identity only; does not replace native timestamps, gap/coverage tests or prove DDS loss-free delivery"
+  },
+  "run_id": "software-integration",
+  "attempt": 1,
+  "window_ns": [
+    1792649489239661568,
+    1792649489858350592
+  ],
+  "input_sha256": {
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/session/session.json": "a955a854445afdbd7adfe514afa2b43947c5ddcddff4f1876e23f73e9f37f7ff",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/session/readiness_pair.json": "71c43ae55d83e10a24aff91faae59eacc6357953274950f1ab966ea2f0ceeb24",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/session/expected_end.json": "5a3e7fcd239775e2c296c3aad22a24851142c883fb1057704753d78c5af7781b",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/session/primary_status.json": "d146c81fb3086757a19ec998723ca1ef3ef2a89715c9f0fd4435d877894f2aa8",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/session/primary_reset.json": "eedfd15dee9eaebd21ac5fce65266adeff9fa23a3637688944767828db644308",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/session/primary_end.json": "4fc3f916b279e1206f0aba5ae18e32c6801dbc9ee2b6a16f4509223b868ddca0",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/session/joint_gt_status.json": "4c49ab4ed13f90579ef75df646b697952875447f9a41ac2b9a7c51545fa16a2e",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/session/joint_gt_reset.json": "1de5e9c632e41d69c77514a0b55632c871dc5af932ad4515aad735d7bff2caa5",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/session/joint_gt_end.json": "ee1714f1ff0a87d9628708d9f2a5eb29057c354a7b4ec429b5f036580a2ec75a",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/contact/20261022T061128-996359Z/contact_events.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/contact/20261022T061128-996359Z/resolved_config.json": "ea0952a1bcece0cdae535cdf740f6261129ff697c684c44b0b85860890d50de5",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/contact/20261022T061128-996359Z/source_config.yaml": "22b3d3dbfa754cbcb2cb0408c7e248240b25bd1e5090efbfdbe642b9cc2aaf37",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/contact/20261022T061128-996359Z/robot_description.urdf": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/contact/20261022T061128-996359Z/observer_health_summary.json": "8aa06ef485ae217022385574c416dcfd869972420b07a90e3e25570c54984fa5",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/contact/20261022T061128-996359Z/observer_health.jsonl": "edcd4270ff03181e4605e8eccc89ff01392c87fc37c8e06603e4f0ae88a14553",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/contact/20261022T061128-996359Z/samples.jsonl": "a75e31ac4d1a36260e9d88909547f347153fe794a0e9696f440fc68aa26ecfc3",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/contact/20261022T061128-996359Z/metadata.json": "4ef88cf229dee926403f47812a0b95399f87fe03d6f3789fd7daaba1ff7ae185",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/joint_gt/joint_gt.frames": "ec36a0cc2ec577175d0b6025a8cf09b7bebb3676be324256e61258055c8e4bdd",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/joint_gt/capture_manifest.json": "ae1dd5b3c06cc85a3b2186f6084ae341bdf8fdb3d82a5af7af2b4bf083c6c5ce",
+    "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/fixture_protocol.json": "a7d6d309d4538f473e888f534c349631522dd1124c0bea772229ff9c8b0828bb",
+    "/home/tuanmac/ninorobot/docs/governor_corrected_logger_cadence_2026-10-21/inputs/full.yaml": "22b3d3dbfa754cbcb2cb0408c7e248240b25bd1e5090efbfdbe642b9cc2aaf37",
+    "/home/tuanmac/ninorobot/docs/governor_corrected_logger_cadence_2026-10-21/inputs/scenario.sdf": "8b1fc28bae7254c877cd53a4038924f567f674f0da43a04f200d429a5a26b4fd"
+  },
+  "isolated_topic_counts": {
+    "/ground_truth/odom": 16,
+    "/joint_states": 159
+  },
+  "replaced_primary_topic_counts": {
+    "/ground_truth/odom": 23,
+    "/joint_states": 85
+  },
+  "measurement_authority": {
+    "/ground_truth/odom": "isolated_capture_only",
+    "/joint_states": "isolated_capture_only"
+  },
+  "missing_values_filled": false,
+  "resampling": false,
+  "native_scores_modified": false,
+  "valid_for_existing_scoring": false,
+  "selected_epoch_only": true,
+  "qualification": "Explicit two-process contract only. CRC/closure are not sampling coverage. Original native replay, timestamp, per-window coverage and stopping gates remain mandatory.",
+  "admitted_for_new_contract": true,
+  "session_id": "942e1b6861254f3dbdda1a4edb56695a",
+  "protocol_sha256": "a7d6d309d4538f473e888f534c349631522dd1124c0bea772229ff9c8b0828bb",
+  "primary_logger": "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/contact/20261022T061128-996359Z",
+  "session_path": "/home/tuanmac/ninorobot/docs/governor_acquisition_integration_2026-10-22/ros_fixture_sensor_rates/session/session.json",
+  "both_loggers_closed": true,
+  "derived_sha256": {
+    "observer_health.jsonl": "edcd4270ff03181e4605e8eccc89ff01392c87fc37c8e06603e4f0ae88a14553",
+    "source_config.yaml": "22b3d3dbfa754cbcb2cb0408c7e248240b25bd1e5090efbfdbe642b9cc2aaf37",
+    "robot_description.urdf": "6e74ef55720b5878ddca1c60fe6a7b4e5d82b7a68aa4934d2d1a026451c4878b",
+    "contact_events.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "samples.jsonl": "ea24a7f1ae8cb35aff16e84c259b2ceef9ddf2f61695f118ffe500fe6be4f087",
+    "resolved_config.json": "ea0952a1bcece0cdae535cdf740f6261129ff697c684c44b0b85860890d50de5",
+    "primary_metadata.json": "4ef88cf229dee926403f47812a0b95399f87fe03d6f3789fd7daaba1ff7ae185",
+    "observer_health_summary.json": "8aa06ef485ae217022385574c416dcfd869972420b07a90e3e25570c54984fa5",
+    "decoded_sensor_source/decode_manifest.json": "9f0a5cec5ab41800907c93dd8907d3349881936434e523093419ffe84e580488",
+    "decoded_sensor_source/samples.jsonl": "8afb724d7566661565b17417853c02b64756f6d1986c4705a4cc26afe43a65c6"
+  }
+}

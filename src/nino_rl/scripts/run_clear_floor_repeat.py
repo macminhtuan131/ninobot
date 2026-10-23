@@ -92,7 +92,23 @@ def main():
     parser.add_argument("--order-seed",type=int,default=0)
     parser.add_argument("--full-reference-speed",type=float,
         help="Constant PI reference in m/s for Full arm only; adaptive arms retain common cruise")
+    parser.add_argument("--acquisition-contract",type=Path,
+                        help="Opt-in NEW frozen two-logger protocol; never reuse a closed batch")
+    parser.add_argument("--acquisition-job",help="Exact assigned job JSON for the new acquisition contract")
     args = parser.parse_args()
+    acquisition_protocol=None
+    if args.acquisition_contract:
+        from prepare_isolated_cadence_contract import validate as validate_acquisition
+        validate_acquisition(args.acquisition_contract.resolve().parent)
+        acquisition_protocol=json.loads(args.acquisition_contract.read_text())
+        job=json.loads(args.acquisition_job or "null")
+        if (job not in acquisition_protocol["schedule"] or len(args.seeds)!=1 or len(args.profiles)!=1
+                or (job["seed"],job["profile"])!=(args.seeds[0],args.profiles[0]) or not args.world):
+            parser.error("Isolated acquisition needs exactly one frozen assigned job and world")
+    elif args.acquisition_job:
+        parser.error("Acquisition job requires new contract")
+    elif os.environ.get("NINO_ACQUISITION_SESSION"):
+        parser.error("Inherited acquisition session forbidden without explicit new contract")
     if args.world:
         args.world=args.world.expanduser().resolve()
         if args.variant!="cable_box_capsule" or not args.world.is_file() or not args.world.with_suffix(".json").is_file():
@@ -154,7 +170,15 @@ def main():
             config.write_text(yaml.safe_dump(values, sort_keys=False))
         result = {"seed": seed, "profile": profile, "passed": False, "evaluation_returncode": None}
         print(f"START {args.variant} E1 seed {seed}, profile {profile}", flush=True)
-        launch = None
+        launch = capture = None
+        capture_log=None
+        child_environment=os.environ.copy()
+        session=None
+        if acquisition_protocol:
+            from nino_rl.acquisition_contract import create_session,wait_pair
+            session=create_session(case/"acquisition",args.acquisition_contract,config,args.world,job)
+            child_environment["NINO_ACQUISITION_SESSION"]=str(session)
+            result["acquisition_session"]=str(session)
         interrupted = False
         try:
             with (case / "gazebo.log").open("w") as stream:
@@ -163,7 +187,13 @@ def main():
                     f"variant:={args.variant}", "caster_wheel_damping:=0.001",
                     f"world_override:={args.world or ''}",
                     f"config:={config}", "headless:=true", f"output_directory:={case.resolve() / 'contact'}"],
-                    cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT, start_new_session=True)
+                    cwd=ROOT,env=child_environment, stdout=stream, stderr=subprocess.STDOUT, start_new_session=True)
+                if session:
+                    capture_log=(case/"joint_gt.log").open("w")
+                    capture=subprocess.Popen([sys.executable,"-m","nino_rl.isolated_acquisition",
+                        "--output",str(case.resolve()/"joint_gt"),"--use-sim-time"],
+                        cwd=ROOT,env=child_environment,stdout=capture_log,stderr=subprocess.STDOUT,
+                        start_new_session=True)
                 deadline = time.monotonic() + 360
                 while True:
                     if launch.poll() is not None:
@@ -180,6 +210,11 @@ def main():
                         raise TimeoutError("Controller/model startup deadline")
                     time.sleep(.5)
                 result["logger"] = str(logger)
+                if session:
+                    result["acquisition_readiness"]=wait_pair(session,
+                        alive=lambda:launch.poll() is None and capture.poll() is None)
+                    from nino_rl.acquisition_frames import atomic_json
+                    atomic_json(session.parent/"readiness_pair.json",result["acquisition_readiness"])
                 with (case / "evaluate.log").open("w") as evaluation_log:
                     entry = ([sys.executable, str(ROOT/"src/nino_rl/scripts/evaluate_contact_oracle.py")]
                              if args.oracle_contact else ["ros2", "run", "nino_rl", "evaluate_baseline"])
@@ -187,12 +222,16 @@ def main():
                         str(config),
                         "--route", "E1", "--episodes", "1", "--seed", str(seed),
                         "--control-trace", "--output", str(case.resolve() / "evaluation")],
-                        cwd=ROOT, stdout=evaluation_log, stderr=subprocess.STDOUT, start_new_session=True)
+                        cwd=ROOT,env=child_environment, stdout=evaluation_log, stderr=subprocess.STDOUT, start_new_session=True)
                     try:
                         evaluator.wait(timeout=900)
                     finally:
                         stop_owned(evaluator)
                 result["evaluation_returncode"] = evaluator.returncode
+                if session and evaluator.returncode==0:
+                    terminal=json.loads((session.parent/"expected_end.json").read_text())
+                    result["acquisition_end_ack"]=wait_pair(session,marker=terminal,
+                        alive=lambda:launch.poll() is None and capture.poll() is None)
                 evaluation = resolve(case / "evaluation", "summary.json")
                 result["evaluation"] = str(evaluation)
                 traces=list(evaluation.glob("episode-*/control_trace.csv"))
@@ -205,7 +244,14 @@ def main():
                 if rows:
                     end = float(rows[-1]["sim_time_s"])
                     deadline = time.monotonic() + 120
-                    while (latest_sim_time(logger / "samples.jsonl") or 0) < end + 2.1:
+                    def latest():
+                        if session:
+                            status=json.loads((session.parent/"joint_gt_status.json").read_text())
+                            return status["latest_source_ns"].get("/ground_truth/odom",0)*1e-9
+                        return latest_sim_time(logger / "samples.jsonl") or 0
+                    while latest() < end + 2.1:
+                        if session and capture.poll() is not None:
+                            raise RuntimeError("Joint/GT recorder exited before stopping window")
                         if time.monotonic() > deadline:
                             raise TimeoutError("No complete two-second simulated stop window")
                         time.sleep(.5)
@@ -216,8 +262,15 @@ def main():
         except Exception as error:
             result["error"] = f"{type(error).__name__}: {error}"
         finally:
-            if launch is not None:
-                stop_owned(launch)
+            try:
+                if launch is not None:stop_owned(launch)
+            finally:
+                try:
+                    if capture is not None:stop_owned(capture)
+                finally:
+                    if capture_log is not None:capture_log.close()
+            if session:
+                result["joint_gt_returncode"]=capture.returncode if capture else None
         if not result.get("evaluation"):
             try:
                 result["evaluation"] = str(resolve(case / "evaluation", "summary.json"))
@@ -225,9 +278,14 @@ def main():
                 pass
         try:
             if result.get("evaluation"):
-                data = audit(result["evaluation"], result["logger"])
+                if session:
+                    from nino_rl.acquisition_contract import finalize_view
+                    measurement=finalize_view(case,result["evaluation"],result["logger"],session)
+                    result["measurement_logger"]=str(measurement)
+                else:measurement=result["logger"]
+                data = audit(result["evaluation"], measurement)
                 if "stop_window_start_s" in result:
-                    data["post_arrival_stop"] = settling_audit(result["logger"], result["stop_window_start_s"])
+                    data["post_arrival_stop"] = settling_audit(measurement, result["stop_window_start_s"])
                 (case / "audit.json").write_text(json.dumps(data, indent=2, allow_nan=False) + "\n")
                 result["audit"] = data
                 result["passed"]=motion_screen_passed(data,result["evaluation_returncode"],

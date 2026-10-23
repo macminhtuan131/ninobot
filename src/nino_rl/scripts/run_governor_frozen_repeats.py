@@ -30,7 +30,7 @@ def write(path, value):
 def enrich(row):
     case = Path(row["case"])
     evaluation = next(case.glob("evaluation/*/summary.json")).parent
-    logger = next(case.glob("contact/*/metadata.json")).parent
+    logger = Path(row["logger"]) if row.get("logger") else next(case.glob("contact/*/metadata.json")).parent
     data = load(case, dict(evaluation=str(evaluation), logger=str(logger),
                           seed=row["seed"], profile=row["profile"]))
     signal = gt_timestamp_series(data)

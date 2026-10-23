@@ -1,0 +1,57 @@
+{
+  "control_trace.csv": {
+    "rows_in_observer_gap": 33,
+    "first_stamp_s": 16.428999999999974,
+    "last_stamp_s": 19.62900000000002,
+    "largest_gap": {
+      "start_s": 16.428999999999974,
+      "end_s": 16.528999999999975,
+      "gap_s": 0.10000000000000142
+    },
+    "sensor_age_ranges_s": {
+      "slip_joint_age_s": [
+        0.0009999999999728004,
+        0.0010000000000189857
+      ],
+      "slip_ground_truth_age_s": [
+        0.00899999999997192,
+        0.009000000000018105
+      ]
+    }
+  },
+  "governor_update_trace.csv": {
+    "rows_in_observer_gap": 165,
+    "first_stamp_s": 16.428999999999974,
+    "last_stamp_s": 19.709000000000017,
+    "largest_gap": {
+      "start_s": 16.508999999999972,
+      "end_s": 16.528999999999975,
+      "gap_s": 0.020000000000003126
+    },
+    "sensor_age_ranges_s": {
+      "imu_stamp_s": [
+        0.00899999999997192,
+        0.009000000000018105
+      ],
+      "joint_stamp_s": [
+        0.0009999999999728004,
+        0.0010000000000189857
+      ],
+      "governor_feedback_stamp_s": [
+        0.01699999999997104,
+        0.017000000000017224
+      ]
+    }
+  },
+  "drive_trace.csv": {
+    "rows_in_observer_gap": 166,
+    "first_stamp_s": 16.412000000000003,
+    "last_stamp_s": 19.712,
+    "largest_gap": {
+      "start_s": 16.552,
+      "end_s": 16.572000000000003,
+      "gap_s": 0.020000000000003126
+    },
+    "sensor_age_ranges_s": {}
+  }
+}

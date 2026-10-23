@@ -15,7 +15,7 @@ from analyze_governor_experiment import stamp
 
 
 def audit(case, outcome):
-    logger = next(case.glob("contact/*/metadata.json")).parent
+    logger = Path(outcome["logger"]) if outcome.get("logger") else next(case.glob("contact/*/metadata.json")).parent
     evaluation = next(case.glob("evaluation/*/summary.json")).parent
     controls = list(csv.DictReader(next(evaluation.glob("episode-*/control_trace.csv")).open()))
     drives = list(csv.DictReader(next(evaluation.glob("episode-*/drive_trace.csv")).open()))
