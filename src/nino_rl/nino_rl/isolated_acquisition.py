@@ -8,7 +8,7 @@ from time import monotonic_ns
 
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import qos_profile_sensor_data
+from rclpy.qos import QoSProfile,qos_profile_sensor_data
 from rclpy.clock import Clock,ClockType
 from rclpy.signals import SignalHandlerOptions
 from rclpy.serialization import serialize_message,deserialize_message
@@ -22,17 +22,32 @@ from nino_rl.observer_health import ObserverShutdown
 from nino_rl.governor_logger import finite_json
 
 TYPES={"/joint_states":JointState,"/ground_truth/odom":Odometry,"/nino/governor/episode":String}
+SENSOR_QUEUE_DEPTH=100
+
+
+def capture_sensor_qos():
+    """Bounded receipt buffer local to this recorder; never mutate shared QoS.
+
+    A larger queue tolerates finite callback-service pauses. BEST_EFFORT can
+    still lose source samples, so original timestamp/coverage gates remain.
+    """
+    s=qos_profile_sensor_data
+    return QoSProfile(depth=SENSOR_QUEUE_DEPTH,history=s.history,reliability=s.reliability,
+        durability=s.durability,lifespan=s.lifespan,deadline=s.deadline,
+        liveliness=s.liveliness,liveliness_lease_duration=s.liveliness_lease_duration,
+        avoid_ros_namespace_conventions=s.avoid_ros_namespace_conventions)
 
 
 class IsolatedAcquisition(Node):
     def __init__(self,output,use_sim_time=False,maximum_bytes=512*1024*1024):
         super().__init__("isolated_joint_gt_acquisition",parameter_overrides=[
             rclpy.parameter.Parameter("use_sim_time",value=use_sim_time)])
+        self.sensor_qos=capture_sensor_qos()
         self.writer=FrameWriter(output,maximum_bytes=maximum_bytes,metadata=dict(
             process_isolated=True,logger_only=True,source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
             frames_source_sha256=hashlib.sha256(Path(__file__).with_name("acquisition_frames.py").read_bytes()).hexdigest(),
-            sensor_qos=dict(depth=qos_profile_sensor_data.depth,history=qos_profile_sensor_data.history.name,
-                            reliability=qos_profile_sensor_data.reliability.name),
+            sensor_qos=dict(depth=self.sensor_qos.depth,history=self.sensor_qos.history.name,
+                            reliability=self.sensor_qos.reliability.name),
             maximum_callback_ns=0,epoch=0,
             qualification="Raw ROS CDR, source timestamps unchanged. Callback sequence counts received messages only; source loss still requires coverage checks."))
         self.epoch=0
@@ -46,7 +61,7 @@ class IsolatedAcquisition(Node):
             self.create_timer(.1,lambda:self.lifecycle.publish(self.get_clock().now().nanoseconds),
                               clock=Clock(clock_type=ClockType.STEADY_TIME))
         for identifier,topic in ((1,"/joint_states"),(2,"/ground_truth/odom")):
-            self.create_subscription(TYPES[topic],topic,lambda msg,i=identifier:self.record(i,msg),qos_profile_sensor_data)
+            self.create_subscription(TYPES[topic],topic,lambda msg,i=identifier:self.record(i,msg),self.sensor_qos)
         self.create_subscription(String,"/nino/governor/episode",self.episode,10)
         atomic_json(self.writer.directory/"ready.json",dict(ready=True,pid=__import__("os").getpid(),
             subscriptions=list(TYPES),contact_subscriptions=False,motor_publishers=False))

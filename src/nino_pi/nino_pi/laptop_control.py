@@ -25,7 +25,13 @@ def load_config(path):
     if type(config.get("port")) is not int or not 1 <= config["port"] <= 65535:
         raise ValueError("port must be 1..65535")
     if type(config.get("ros_domain_id")) is not int or not 0 <= config["ros_domain_id"] <= 232:
-        raise ValueError("set ros_domain_id to the domain used by the REAL drivers; example null is not a value")
+        raise ValueError(
+            f"config {path}: ros_domain_id must be an integer in 0..232; "
+            "example null is not a value. Edit this config with the domain used by "
+            "the REAL drivers. Check printenv ROS_DOMAIN_ID in the Pi terminal "
+            "that starts the drivers, or their service configuration. "
+            "An empty value in a new SSH terminal does not identify a running driver's domain."
+        )
     for key in ("robot_setup", "control_params", "navigation_params"):
         remote_path(config.get(key))
     if config.get("driver_setup") is not None:

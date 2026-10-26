@@ -1,0 +1,23 @@
+{
+  "v7": {
+    "valid": true,
+    "contract": "isolated_joint_gt_cadence_v7_2026_10_23",
+    "protocol_sha256": "571f72edfaf74710390b59db784805da1d1015425255b4dc5d415492bcc0a351",
+    "execution_authorized": false,
+    "budget_released": false,
+    "simulation_attempts": 0,
+    "live_integration_validated": false,
+    "application_thresholds": "proposal_only"
+  },
+  "v6_closed_files_unchanged": 73,
+  "v6_v7_physical_inputs_schedule_fixed_identical": true,
+  "changed_execution_dependencies": [
+    "src/nino_rl/nino_rl/isolated_acquisition.py",
+    "src/nino_rl/scripts/prepare_isolated_cadence_contract.py"
+  ],
+  "diagnosis_fixture_source_hashes_match": true,
+  "archived_fixture_hashes_match": true,
+  "software_test_sources_match": true,
+  "v6_simulation_attempts": 1,
+  "v7_simulation_attempts": 0
+}

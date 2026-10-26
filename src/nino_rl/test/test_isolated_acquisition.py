@@ -10,6 +10,21 @@ sys.path.insert(0,str(ROOT/"src/nino_rl"))
 from nino_rl.acquisition_frames import FrameWriter,read_frames,validate_episode
 
 
+def test_capture_queue_does_not_change_other_sensor_consumers():
+    from rclpy.qos import qos_profile_sensor_data,QoSHistoryPolicy,QoSReliabilityPolicy
+    from nino_rl.isolated_acquisition import capture_sensor_qos
+    shared_before=qos_profile_sensor_data.get_c_qos_profile().to_dict()
+    first,second=capture_sensor_qos(),capture_sensor_qos()
+    assert first is not second and first is not qos_profile_sensor_data
+    assert first.depth==second.depth==100
+    assert first.history==QoSHistoryPolicy.KEEP_LAST
+    assert first.reliability==QoSReliabilityPolicy.BEST_EFFORT
+    first.depth=1
+    assert second.depth==100
+    assert qos_profile_sensor_data.get_c_qos_profile().to_dict()==shared_before
+    assert qos_profile_sensor_data.depth==5
+
+
 def test_payload_timestamps_order_and_equal_source_stamps_preserved(tmp_path):
     w=FrameWriter(tmp_path/"capture")
     for i,topic in enumerate((1,2,1)):

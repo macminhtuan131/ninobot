@@ -1,0 +1,92 @@
+{
+  "mode": "synthetic_ROS_reader_queue_fault_fixture",
+  "simulation_attempts": 0,
+  "motor_publishers": false,
+  "domain": 199,
+  "rows": [
+    {
+      "reader_depth": 5,
+      "writer_depth": 100,
+      "consumer_pause_wall_s": 0.09162568200554233,
+      "source_rate_hz": {
+        "/joint_states": 500,
+        "/ground_truth/odom": 50
+      },
+      "sent": {
+        "/joint_states": 50,
+        "/ground_truth/odom": 5
+      },
+      "received": {
+        "/joint_states": 25,
+        "/ground_truth/odom": 5
+      },
+      "missing_source_stamps_ns": {
+        "/joint_states": [
+          1020000000,
+          1022000000,
+          1024000000,
+          1026000000,
+          1028000000,
+          1030000000,
+          1032000000,
+          1034000000,
+          1036000000,
+          1038000000,
+          1040000000,
+          1042000000,
+          1044000000,
+          1046000000,
+          1048000000,
+          1050000000,
+          1052000000,
+          1054000000,
+          1056000000,
+          1058000000,
+          1060000000,
+          1062000000,
+          1064000000,
+          1066000000,
+          1068000000
+        ],
+        "/ground_truth/odom": []
+      },
+      "maximum_source_gap_ms": {
+        "/joint_states": 52.0,
+        "/ground_truth/odom": 20.0
+      },
+      "frame_integrity_passed": true
+    },
+    {
+      "reader_depth": 100,
+      "writer_depth": 100,
+      "consumer_pause_wall_s": 0.09180232799553778,
+      "source_rate_hz": {
+        "/joint_states": 500,
+        "/ground_truth/odom": 50
+      },
+      "sent": {
+        "/joint_states": 50,
+        "/ground_truth/odom": 5
+      },
+      "received": {
+        "/joint_states": 50,
+        "/ground_truth/odom": 5
+      },
+      "missing_source_stamps_ns": {
+        "/joint_states": [],
+        "/ground_truth/odom": []
+      },
+      "maximum_source_gap_ms": {
+        "/joint_states": 2.0,
+        "/ground_truth/odom": 20.0
+      },
+      "frame_integrity_passed": true
+    }
+  ],
+  "fixture_directory": "/tmp/nino_depth_fault_fixture_jm_w54r3",
+  "candidate_prevents_fixture_loss": true,
+  "depth5_loses_in_fixture": true,
+  "qualification": "Supports queue capacity as a possible mechanism under a forced consumer pause; not unique attribution of the Gazebo loss or a production coverage guarantee.",
+  "recorder_source_sha256": "309b8e1317985bcd2b5792526b214402173c91838a141abe812baf8650c71e7b",
+  "fixture_source_sha256": "24350c5a3d9f2321c83a4f99e6c2582162474545be258a59339d457c8ffbea81"
+}

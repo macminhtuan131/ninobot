@@ -1,0 +1,136 @@
+{
+  "mode": "offline_recorded_artifact_fixture",
+  "simulation_attempts": 0,
+  "closed_batch_remains_invalid": true,
+  "performance_comparison": false,
+  "work_directory": "/tmp/nino_v4_recorded_schema_fixture_uyxas65y",
+  "fixture_code_sha256": "7b7f4ea9d6a1ddc18c02861d6cc8263c2bfeab372190c1cb8eb13de1f6c88128",
+  "candidate_composition": {
+    "run_id": "113a9a04b7244679979b9c34c70525f0",
+    "native_identity_source": "/home/tuanmac/ninorobot/rl_runs/governor_isolated_cadence_v4_2026-10-23/attempt_01/confirmation/height/screen/seed_77600_full/evaluation/20261023-190544-446565/episodes.csv",
+    "isolated_topic_counts": {
+      "/ground_truth/odom": 950,
+      "/joint_states": 9625
+    },
+    "missing_values_filled": false,
+    "resampling": false
+  },
+  "stopping_fixture": {
+    "available": true,
+    "reason": null,
+    "qualification": "2s stopped-command diagnostic, independent of arrival scoring; 5deg/.01m_s are declared diagnostic thresholds",
+    "end_time_s": 22.303000000000054,
+    "window_seconds": 2.0,
+    "pose_samples": 100,
+    "drive_samples": 100,
+    "pose_coverage_s": 1.9800000000000004,
+    "commanded_stop": true,
+    "max_abs_roll_deg": 0.0020428284478745374,
+    "max_abs_pitch_deg": 0.010916348196204545,
+    "last": {
+      "time_s": 24.3,
+      "roll_deg": -0.0005615393504564074,
+      "pitch_deg": -0.0005042771339014411,
+      "x_m": 6.280348835676777,
+      "y_m": -0.00041546366500364615,
+      "speed_m_s": 0.0
+    },
+    "chassis_contact_messages": 0,
+    "settled": true
+  },
+  "coverage_fixture": {
+    "gt_native": {
+      "whole_route": {
+        "available": true,
+        "coverage_fraction": 0.9965662650602408
+      },
+      "crossing": {
+        "available": true,
+        "coverage_fraction": 1.0
+      },
+      "post": {
+        "available": true,
+        "coverage_fraction": 1.0
+      }
+    },
+    "grid20ms": {
+      "whole_route": {
+        "available": true,
+        "coverage_fraction": 0.9963855421686716
+      },
+      "crossing": {
+        "available": true,
+        "coverage_fraction": 1.0
+      },
+      "post": {
+        "available": true,
+        "coverage_fraction": 1.0
+      }
+    },
+    "shifted10ms": {
+      "whole_route": {
+        "available": true,
+        "coverage_fraction": 0.9951807228915631
+      },
+      "crossing": {
+        "available": true,
+        "coverage_fraction": 1.0
+      },
+      "post": {
+        "available": true,
+        "coverage_fraction": 1.0
+      }
+    }
+  },
+  "native_replay_matches": true,
+  "sequence_fixture": {
+    "available": true,
+    "reason": null,
+    "windows": {
+      "legacy_crossing": {
+        "slip": {
+          "available": true,
+          "coverage_fraction": 1.0
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0
+        }
+      },
+      "fixed_3s_after_contact": {
+        "slip": {
+          "available": true,
+          "coverage_fraction": 1.0
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0
+        }
+      },
+      "whole_contact_sequence": {
+        "slip": {
+          "available": true,
+          "coverage_fraction": 1.0
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0
+        }
+      },
+      "contact_and_confirmed_recovery": {
+        "slip": {
+          "available": true,
+          "coverage_fraction": 1.0
+        },
+        "vertical": {
+          "available": true,
+          "coverage_fraction": 1.0
+        }
+      }
+    }
+  },
+  "stability_fixture_completed": true,
+  "software_path_completed": true,
+  "diagnostic_view_quarantined": true,
+  "closed_run_files_unchanged": true
+}

@@ -112,6 +112,37 @@ def check_status(session, status, role, *, now_mono_ns=None, marker=None, closed
     return True
 
 
+def check_delivery(session, live, receipt, role, marker, *, now_mono_ns=None):
+    """Bind an immutable marker ACK to a fresh heartbeat from the same process.
+
+    Evaluator native persistence may take longer than the heartbeat age bound.
+    The receipt establishes exact delivery at its recorded instant; it cannot
+    establish current liveness. Keep the original wall-age limit on live status.
+    """
+    check_status(session, receipt, role, marker=marker,
+                 now_mono_ns=receipt["monotonic_ns"])
+    for key in ("schema", "session_id", "protocol_sha256", "role", "source_sha256", "pid", "output"):
+        if live.get(key) != receipt.get(key):
+            raise ValueError("Live/receipt identity mismatch: " + key)
+    if live.get("error") or live.get("ready") is not True or live.get("closed") is not False:
+        raise ValueError("Live process is not ready/open/error-free")
+    now_mono_ns = time.monotonic_ns() if now_mono_ns is None else now_mono_ns
+    age = (now_mono_ns-live["monotonic_ns"])*1e-9
+    if not 0 <= age <= session["max_status_age_s"]:
+        raise ValueError("Stale/future live heartbeat: " + role)
+    if receipt["monotonic_ns"] > live["monotonic_ns"]:
+        raise ValueError("Receipt newer than live evidence: " + role)
+    if marker not in live.get("lifecycle", []):
+        raise ValueError("Live process does not acknowledge expected marker: " + role)
+    for topic in SENSOR_TOPICS:
+        if (not live["counts"].get(topic)
+                or live["counts"][topic] < receipt["counts"][topic]
+                or live["latest_source_ns"].get(topic) is None
+                or live["latest_source_ns"][topic] < receipt["latest_source_ns"][topic]):
+            raise ValueError("Live stream missing/regressed: " + topic)
+    return True
+
+
 def wait_pair(session_path, *, marker=None, alive=lambda: True, pump=None):
     session = read_session(session_path)
     end = time.monotonic()+session["timeout_s"]
@@ -124,7 +155,11 @@ def wait_pair(session_path, *, marker=None, alive=lambda: True, pump=None):
             for role in ROLE_SOURCES:
                 suffix = marker["event"] if marker else "status"
                 value = json.loads((Path(session["directory"])/(role+"_"+suffix+".json")).read_text())
-                check_status(session, value, role, marker=marker)
+                if marker is None:
+                    check_status(session, value, role)
+                else:
+                    live = json.loads((Path(session["directory"])/(role+"_status.json")).read_text())
+                    check_delivery(session, live, value, role, marker)
                 values[role] = value
             if values["primary"]["pid"] == values["joint_gt"]["pid"]:
                 raise ValueError("Joint/GT acquisition is not process isolated")
@@ -180,10 +215,26 @@ def finalize_view(case, evaluation, primary, session_path):
     from nino_rl.observer_health import check_sidecar
     case, evaluation, primary = Path(case), Path(evaluation), Path(primary)
     session = read_session(session_path)
-    controls = list(csv.DictReader(next(evaluation.glob("episode-*/control_trace.csv")).open()))
+    traces = list(evaluation.glob("episode-*/control_trace.csv"))
+    if len(traces) != 1:
+        raise ValueError("Exactly one control trace required for acquisition identity")
+    control_path = traces[0]
+    controls = list(csv.DictReader(control_path.open()))
     if not controls:
         raise ValueError("Missing native controls, no inferred lifecycle window")
-    run_id = controls[0]["governor_run_id"]
+    native_path = evaluation/"episodes.csv"
+    native = list(csv.DictReader(native_path.open()))
+    if len(native) != 1:
+        raise ValueError("Exactly one native outcome required for acquisition identity")
+    run_id = native[0].get("governor_run_id", "")
+    if (not run_id or run_id.strip() != run_id
+            or int(native[0]["seed"]) != session["job"]["seed"]
+            or int(native[0]["attempt"]) != 1):
+        raise ValueError("Native outcome identity missing or foreign")
+    # Production traces carry input/end timestamps but no run ID column.
+    # If a future trace includes one, it must agree on EVERY row.
+    if any("governor_run_id" in row and row["governor_run_id"] != run_id for row in controls):
+        raise ValueError("Control/native run identity disagreement")
     start = float(controls[0]["governor_input_time_s"])
     end = float(controls[-1]["sim_time_s"])
     capture = case/"joint_gt"
@@ -194,7 +245,10 @@ def finalize_view(case, evaluation, primary, session_path):
     readiness=json.loads(readiness_path.read_text())
     expected_end_path=Path(session["directory"])/"expected_end.json"
     expected_end=json.loads(expected_end_path.read_text())
-    inputs = [Path(session_path),readiness_path,expected_end_path]
+    if (expected_end.get("run_id") != run_id
+            or expected_end.get("metrics", {}).get("governor_run_id") != run_id):
+        raise ValueError("Native outcome differs from terminal marker identity")
+    inputs = [Path(session_path),readiness_path,expected_end_path,native_path,control_path]
     for role, source in (("primary", primary), ("joint_gt", capture)):
         status_path = Path(session["directory"])/(role+"_status.json")
         value = json.loads(status_path.read_text())
@@ -242,7 +296,7 @@ def finalize_view(case, evaluation, primary, session_path):
     result = compose_view(primary, capture, output, run_id, 1, round(start*1e9), round(end*1e9),
                           selected_epoch_only=True)
     # Files are copied verbatim; view deliberately has no legacy metadata.json.
-    auxiliary = ("contact_events.jsonl", "resolved_config.json", "source_config.yaml",
+    auxiliary = ("contact_events.jsonl", "world_metadata.json", "resolved_config.json", "source_config.yaml",
                  "robot_description.urdf", "observer_health_summary.json", "observer_health.jsonl")
     for name in auxiliary:
         inputs.append(primary/name)
@@ -251,6 +305,7 @@ def finalize_view(case, evaluation, primary, session_path):
                capture/"joint_gt.frames", capture/"capture_manifest.json"]
     inputs += [Path(session[k+"_path"]) for k in ("protocol", "config", "world")]
     result.update(schema=SCHEMA, valid_for_existing_scoring=False,
+        native_identity_source=str(native_path.resolve()),
         admitted_for_new_contract=True, session_id=session["session_id"],
         protocol_sha256=session["protocol_sha256"], primary_logger=str(primary.resolve()),
         session_path=str(Path(session_path).resolve()), both_loggers_closed=True,

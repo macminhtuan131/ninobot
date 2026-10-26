@@ -1,0 +1,137 @@
+{
+  "mode": "offline_gap_diagnosis",
+  "simulation_attempts": 0,
+  "thresholds_changed": false,
+  "original_crossing": {
+    "available": false,
+    "start_s": 15.242,
+    "end_s": 17.22,
+    "duration_s": 1.977999999999998,
+    "coverage_s": 1.9379999999999988,
+    "coverage_fraction": 0.9797775530839236,
+    "observed_slip_square_integral_s": 0.025047221330998057,
+    "slip_square_integral_s": null,
+    "rms": null,
+    "distance_m": null,
+    "slip_square_per_m": null
+  },
+  "invalid_quadrature_segments": [
+    {
+      "gt_segment_s": [
+        17.16,
+        17.18
+      ],
+      "overlap_s": 0.019999999999999574,
+      "mean_square_finite": [
+        true,
+        false
+      ],
+      "joint_support_s": [
+        [
+          17.16,
+          17.16
+        ],
+        [
+          17.17,
+          17.192
+        ]
+      ]
+    },
+    {
+      "gt_segment_s": [
+        17.18,
+        17.2
+      ],
+      "overlap_s": 0.019999999999999574,
+      "mean_square_finite": [
+        false,
+        true
+      ],
+      "joint_support_s": [
+        [
+          17.17,
+          17.192
+        ],
+        [
+          17.2,
+          17.2
+        ]
+      ]
+    }
+  ],
+  "invalid_seconds": 0.03999999999999915,
+  "isolated_joint_gaps": [
+    {
+      "start_s": 17.17,
+      "end_s": 17.192,
+      "source_gap_ms": 22.0,
+      "receipt_wall_gap_ms": 57.993452999999995,
+      "receipt_sim_gap_ms": 31.0,
+      "sequence_before": 9441,
+      "sequence_after": 9442,
+      "primary_joint_stamps_inside_s": [
+        17.172,
+        17.174,
+        17.176000000000002,
+        17.178,
+        17.18,
+        17.182000000000002,
+        17.184,
+        17.186,
+        17.188000000000002,
+        17.19
+      ]
+    }
+  ],
+  "raw_capture_integrity_passed": true,
+  "raw_to_view_stamps_unchanged": {
+    "joint": true,
+    "gt": true
+  },
+  "gt_source_max_gap_ms": 20.0,
+  "drive_context": [
+    {
+      "sim_time_s": "17.144000000000002",
+      "have_wheel_state": "1.0",
+      "control_updates": "10.0",
+      "control_raw_dt_max_s": "0.002",
+      "control_dt_over_4ms": "0.0",
+      "control_joint_age_max_s": "0.002"
+    },
+    {
+      "sim_time_s": "17.164",
+      "have_wheel_state": "1.0",
+      "control_updates": "10.0",
+      "control_raw_dt_max_s": "0.002",
+      "control_dt_over_4ms": "0.0",
+      "control_joint_age_max_s": "0.002"
+    },
+    {
+      "sim_time_s": "17.184",
+      "have_wheel_state": "1.0",
+      "control_updates": "10.0",
+      "control_raw_dt_max_s": "0.002",
+      "control_dt_over_4ms": "0.0",
+      "control_joint_age_max_s": "0.002"
+    },
+    {
+      "sim_time_s": "17.204",
+      "have_wheel_state": "1.0",
+      "control_updates": "10.0",
+      "control_raw_dt_max_s": "0.002",
+      "control_dt_over_4ms": "0.0",
+      "control_joint_age_max_s": "0.002"
+    },
+    {
+      "sim_time_s": "17.224",
+      "have_wheel_state": "1.0",
+      "control_updates": "10.0",
+      "control_raw_dt_max_s": "0.002",
+      "control_dt_over_4ms": "0.0",
+      "control_joint_age_max_s": "0.002"
+    }
+  ],
+  "qualification": "A timestamp present in primary but absent in recorder proves delivery to another consumer, not the exact drop location or cause. Contiguous frame sequence validates recorded frames, not source publication completeness.",
+  "source_sha256": "968245db2668b7b7868d5290e7ad8d826f35ef016d45484b1e0afb4de3e98b4e",
+  "closed_run_files_unchanged": true
+}

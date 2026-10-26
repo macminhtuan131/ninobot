@@ -59,7 +59,7 @@ def require_release(bundle,path):
     if path is None:raise ValueError("New acquisition budget is not released")
     r=json.loads(Path(path).read_text())
     if not (r.get("contract")==checked["contract"] and r.get("protocol_sha256")==checked["protocol_sha256"]
-            and r.get("executor_sha256")==sha(__file__)
+            and r.get("executor_sha256")==sha(Path(__file__))
             and r.get("execution_authorized") is True and r.get("budget_released") is True
             and type(r.get("maximum_attempts")) is int and r["maximum_attempts"]==12 and r.get("thresholds_applied") is False
             and isinstance(r.get("authorization_reference"),str) and r["authorization_reference"].strip()):

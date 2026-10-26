@@ -1,0 +1,32 @@
+{
+  "software_tests_passed": 140,
+  "offline_candidate_tests_passed": 17,
+  "closed_v3_run_files_unchanged": 60,
+  "physical_controller_inputs_identical_v3_v4": true,
+  "schedule_and_fixed_settings_identical": true,
+  "v4": {
+    "valid": true,
+    "contract": "isolated_joint_gt_cadence_v4_2026_10_23",
+    "protocol_sha256": "36845e6aa41c1b984b325ebe891b05c2a9d9059be24d15f751a0b7d7ed586ac9",
+    "execution_authorized": false,
+    "budget_released": false,
+    "simulation_attempts": 0,
+    "live_integration_validated": false,
+    "application_thresholds": "proposal_only"
+  },
+  "simulation_attempts_this_turn": 1,
+  "closed_v3_remaining_slots": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "v4_budget_released": false
+}

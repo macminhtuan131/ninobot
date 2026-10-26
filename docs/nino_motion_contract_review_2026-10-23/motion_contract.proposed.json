@@ -1,0 +1,86 @@
+{
+  "schema": "nino_motion_contract_research_proposal_v1",
+  "date": "2026-10-23",
+  "status": "proposal_not_runtime_configuration",
+  "authorization": {
+    "simulation_released": false,
+    "hardware_access_authorized_by_this_document": false,
+    "motion_authorized": false,
+    "controller_change_authorized": false,
+    "application_thresholds_accepted": false
+  },
+  "source_review": {
+    "report": "../NINO_MOTION_CONTRACT_REVIEW_2026-10-23.md",
+    "source_projection": "audit.json",
+    "meaning": "Source and YAML candidates, not observed installed parameters or robot state. Does not replace the frozen v7 simulation contract."
+  },
+  "proposed_initial_hardware_profile": {
+    "role": "classical_baseline_inventory_then_identification",
+    "governor_enabled": false,
+    "learned_policy_enabled": false,
+    "reference_shaping_owner": "nav2_velocity_smoother_if_existing_command_stack_is_verified",
+    "final_velocity_owner": "collision_monitor_if_existing_command_stack_is_verified",
+    "actual_command_stack_observed": null,
+    "actual_final_command_topic": null,
+    "actual_final_command_type": null,
+    "actual_final_publisher_identity": null,
+    "backend_mode": null,
+    "pi_location": null,
+    "encoder_left_right_mapping_and_units": null,
+    "backend_watchdog_and_stop_semantics": null,
+    "power_verification": null,
+    "payload_and_surface": null,
+    "speed_and_ramp_for_motion": null,
+    "explanation": "False governor/learning fields are a proposed baseline choice, not a claim that these are disabled on the actual robot. Unknown hardware fields stay null."
+  },
+  "backend_choices_pending_evidence": {
+    "speed_mode": {
+      "velocity_loop_owner": "confirmed_motor_firmware",
+      "host_command": "limited_wheel_speed_reference",
+      "run_external_effort_drive_velocity_pi": false
+    },
+    "current_or_torque_mode": {
+      "velocity_loop_owner": "one_confirmed_external_controller",
+      "requires": ["command_units_sign_and_semantics", "current_inner_loop_contract", "actual_wheel_feedback_age", "limits_and_watchdog", "loaded_response"],
+      "reuse_simulation_effort_drive_as_hardware_driver": false
+    }
+  },
+  "minimum_evidence_by_claim": {
+    "stationary_inventory": {
+      "existing_tools": ["src/nino_pi/nino_pi/hardware_audit.py", "src/nino_pi/nino_pi/collect_real_data.py"],
+      "needs_motor_actuation": false,
+      "needs_known_mcu_model": false,
+      "needs_independent_body_reference": false,
+      "needs_governor_feedback_schema": false,
+      "evidence": ["actual_topic_types_and_endpoints", "valid_raw_imu_encoder_samples", "source_and_receipt_clock_metadata", "command_ownership_observed", "available_motor_fault_power_channels", "configuration_versions_with_unknowns_preserved"],
+      "actual_session": null
+    },
+    "wheel_response": {
+      "before_motion": ["backend_branch_confirmed", "one_final_command_owner_confirmed", "encoder_units_mapping_and_age_confirmed", "limits_watchdog_and_power_confirmed", "motion_profile_separately_specified"],
+      "signals": ["selected_and_final_base_command", "requested_and_limited_wheel_target", "actual_wheel_speed_with_source_age", "faults_limits_and_mode"],
+      "cannot_claim": ["absolute_body_slip", "cargo_damage_reduction", "contact_control_authority"],
+      "actual_dataset": null
+    },
+    "body_response_or_slip": {
+      "additional_evidence": ["independent_body_reference_with_calibration", "loaded_effective_wheel_radius", "cross_stream_clock_uncertainty"],
+      "encoder_odometry_is_independent_reference": false,
+      "actual_reference": null
+    },
+    "transfer_of_frozen_governor": {
+      "status": "blocked_by_non_equivalent_contracts_and_unknown_hardware",
+      "requires_separate_review": ["effective_parameters_including_inherited_defaults", "imu_window_and_coverage_semantics", "target_acceleration_window", "reference_shaping_and_zero_handling", "per_channel_feedback_freshness", "imu_mount_gravity_orientation", "backend_executed_targets_and_limits"],
+      "copy_frozen_scale_or_gains_automatically": false,
+      "start_simulated_driver_to_populate_missing_diagnostics": false
+    }
+  },
+  "measurement_refinement_of_existing_T3": {
+    "new_experiment_budget_created": false,
+    "stationary_session_duration_s": null,
+    "later_response_design": "Existing proposal: hold and matched-ramp, three repetitions each, only after hardware motion is separately opened.",
+    "speed_amplitude_and_limits": null,
+    "primary_outputs": ["command_target_encoder_timeline", "body_timeline_only_if_independent_reference_valid", "onset_settling_intervals_with_clock_uncertainty", "limiter_fault_and_power_context"],
+    "analysis_split": "Whole response repetitions; no overlapping-frame random split. Compare a small delay/lag/deadband model with persistence, retain a complete repetition outside fit.",
+    "stop_or_unknown": ["no_motion_while_backend_owner_power_unknown", "missing_limited_target_prevents_actuator_latency_attribution", "missing_body_reference_keeps_body_slip_unknown", "source_age_not_inferred_from_fresh_container_stamp", "no_automatic_gain_tuning_or_extra_trials"]
+  },
+  "decision": "Prepare evidence for the classical baseline first. This proposal grants no hardware or simulation execution. Keep H2 unknown and frozen v7 unchanged."
+}

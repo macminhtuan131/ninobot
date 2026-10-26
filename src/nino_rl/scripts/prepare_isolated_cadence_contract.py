@@ -15,7 +15,9 @@ from prepare_governor_cadence_experiment import validate_schedule,ARMS
 from nino_rl.acquisition_contract import SCHEMA
 
 PARENT=ROOT/"docs/governor_corrected_logger_cadence_2026-10-21"
-CONTRACT="isolated_joint_gt_cadence_v2_2026_10_22"
+CONTRACT="isolated_joint_gt_cadence_v7_2026_10_23"
+RECEIPT_QUEUE=dict(depth=100,history="KEEP_LAST",reliability="BEST_EFFORT",
+    scope="isolated_joint_gt_only_common_to_all_arms",shared_sensor_qos_unchanged=True)
 
 
 def validate(bundle):
@@ -27,6 +29,7 @@ def validate(bundle):
     if (p["contract"]!=CONTRACT
             or p["acquisition"]["schema"]!=SCHEMA
             or p["acquisition"]["all_arms"]!={a:"isolated_joint_gt" for a in ARMS}
+            or p["acquisition"].get("receipt_queue")!=RECEIPT_QUEUE
             or p["budget"]["released"] is not False or p["thresholds_applied"] is not False
             or p["budget"]["maximum_attempts"]!=12):
         raise ValueError("Acquisition architecture/budget/threshold contract drift")
@@ -63,10 +66,14 @@ def prepare(output):
                     slots_reused=False,parent_data_not_overwritten=True),
         parent_input_sha256={p.name:sha(p) for p in (PARENT/"inputs").iterdir() if p.is_file()},
         acquisition=dict(schema=SCHEMA,all_arms={a:"isolated_joint_gt" for a in ARMS},
+            receipt_queue=deepcopy(RECEIPT_QUEUE),
             authority={"joint_gt":"isolated_process_only","imu_contact_aux":"primary_observer_only"},
             readiness="Both source-bound processes fresh <=100ms, live status <=2s; discovery before reset; exact reset/end ACK, no world steps while waiting;10s wall deadline, no retry",
             closure="Both closed manifests/status + primary health + capture CRC/SHA/epoch; immutable source hashes; no legacy metadata masquerade or gap fill",
             epoch_selection="Validate selected reset epoch before deriving view. Pre-reset samples equal to start timestamp stay raw, never support current windows. Missing current streams, wrong sequence or regression still fail; no metric/coverage change.",
+            lifecycle_receipt="Exact immutable reset/end ACK is validated at receipt time and bound by PID/output/source/identity to a current live heartbeat <=2s old. Receipt age is not heartbeat age. Marker membership and stream progression required; readiness keeps100ms source age. No world steps during wait;10s deadline unchanged.",
+            native_identity="Run ID from the single native episodes.csv outcome, with assigned seed/native attempt1 and exact terminal/reset/end identity agreement. Production control trace need not carry run ID; any present column must agree on every row. Native outcome and control trace hashed in measurement view provenance; neither rewritten.",
+            auxiliary_metadata="Copy primary world_metadata.json verbatim with other required analysis auxiliaries; hash both source and derived file. Missing or tampered metadata is not quality-ready. No reconstruction, geometry/scoring/sampling change or closed-run repair.",
             scoring="Unchanged100ms native replay, GT-header sampling/joint interpolation,98percent coverage EACH original window,20ms/+10ms sensitivity and2s stopping",
             evidence_order=["earlier_reduced_command","earlier_actual_wheel_body_before_next_contact","crossing_quality_tracking_time"],
             live_integration_validated=False),

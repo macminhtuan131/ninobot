@@ -1,6 +1,89 @@
 # PROMPT DEEP RESEARCH — ĐÁNH GIÁ TOÀN DIỆN VÀ ĐỊNH HƯỚNG DỰ ÁN NINO
 
-**Ngày tổng hợp: 23/10/2026. Hiện trạng kỹ thuật mới nhất được cung cấp: 22/10/2026.**
+**Ngày tổng hợp: 23/10/2026. Cập nhật bằng chứng: 24/10/2026. Contract phần mềm hiện tại: v7 ngày 23/10/2026.**
+
+> **Kiểm tra tiếp tục ngày 24/10/2026:** chưa tìm thấy inventory phần cứng
+> thật hoặc source/config driver CyberGear–STM32 mới trong workspace và các
+> archive liên quan đã kiểm tra. Các artifact Pi tìm được là công cụ/bundle,
+> không phải session đo thật; phiếu caster vẫn chưa có số đo. Đây là giới
+> hạn bằng chứng được cung cấp, không khẳng định driver/dữ liệu không tồn
+> tại trên robot. Review offline đã tới điểm dừng: H2 vẫn unknown, v7 chưa
+> release. Input tối thiểu để đi tiếp là `hardware_audit/report.json` của
+> phiên thật hoặc source/config driver motor; chưa cần toàn bộ raw bag.
+> Không mở thêm audit cùng trace, simulation, hardware hoặc correction từ
+> yêu cầu tiếp tục này.
+
+> **Bước tiếp tục hướng cổ điển đã hoàn tất:**
+> [motion contract từ reference đến backend](NINO_MOTION_CONTRACT_REVIEW_2026-10-23.md).
+> Audit source phát hiện ROS wrapper và inline frozen khác settings, IMU/
+> target-acceleration history, shaping/zero handling và telemetry contract.
+> Đã chuẩn bị proposal inventory/response tối thiểu, giữ hardware unknown=null;
+> không sửa controller/config, không chạy ROS/simulation/hardware hoặc cấp
+> release. V7 và H2 không đổi; chưa nên bật wrapper như controller đã test.
+
+> **Đã có báo cáo phản biện tổng hợp:**
+> [Nino — phản biện độc lập và quyết định đầu tư tiếp](NINO_INDEPENDENT_REVIEW_2026-10-23.md).
+> Review 17 nguồn ngoài và kiểm tra v7 offline; không chạy simulation/ROS
+> node/hardware hoặc sửa controller trong lượt review này. Ưu tiên motion
+> contract cổ điển/envelope; dự phòng route memory; predictor tiếp tục hoãn.
+> Các screen/threshold trong báo cáo là đề xuất, không phải release.
+
+> **Cập nhật mới nhất:** batch v6 đóng ở **1/12**: PI arrival/stopping,
+> lifecycle/provenance/native replay đạt, nhưng crossing slip coverage
+> **97,9777553% <98%**. Recorder riêng thiếu 10 joint samples, source gap
+> 22 ms; primary có đủ các mẫu đó, raw→view giữ nguyên timestamps. Fixture
+> ROS tổng hợp qua QoS builder production tái hiện loss depth 5, depth 100
+> nhận đủ joint 50/50 và GT 5/5 khi consumer tạm không được service.
+> Đã sửa duy nhất bounded queue recorder riêng 5→100, giữ BEST_EFFORT /
+> KEEP_LAST, shared sensor QoS/controller/scoring không đổi; **156 test đạt**.
+> Contract `isolated_joint_gt_cadence_v7_2026_10_23`, SHA
+> `571f72edfaf74710390b59db784805da1d1015425255b4dc5d415492bcc0a351`,
+> **chưa release/chạy Gazebo**. Fixture không chứng minh nguyên nhân duy
+> nhất v6 hoặc coverage v7 trong Gazebo. Đọc
+> `docs/GOVERNOR_ISOLATED_CADENCE_V6_RESULT_2026-10-23.md` trước lịch sử
+> bên dưới. V6 không được vá/cứu, 11 slot đóng; H2 vẫn unknown. Correction
+> này là điểm dừng vòng sửa hiện tại, không tự thêm batch khi failure mới.
+
+> **Lịch sử v5/v6:** batch v5 đóng ở 1/12: PI arrival/stopping,
+> lifecycle, provenance và native replay đạt, nhưng quality analyzer thiếu
+> `world_metadata.json` trong measurement view. Không có governor run mới.
+> Đã copy/hash auxiliary đúng nguồn, **155 test đạt** và thêm fixture trên
+> artifact thật chạy toàn bộ collector/quality/metric extraction/timing;
+> 17/17 metric khả dụng trong fixture, không cứu kết quả v5. Contract mới
+> `isolated_joint_gt_cadence_v6_2026_10_23`, SHA
+> `567228933edaece4fd4e615986316d150f18be40754e320eb26d3709828be153`,
+> tại thời điểm chuẩn bị **chưa release/chạy**. Đọc
+> `docs/GOVERNOR_ISOLATED_CADENCE_V5_RESULT_2026-10-23.md` trước các lịch sử
+> bên dưới. Các batch cũ đều đóng; H2 vẫn chưa được xác lập.
+
+> **Lịch sử v4/v5:** v4 đã chạy một attempt PI mới, vượt end ACK và đóng
+> hai logger, nhưng measurement view fail vì giả định control trace có cột
+> `governor_run_id`; ID thực nằm trong native CSV. Batch v4 đóng ở 1/12,
+> arrival thành công, stopping trong ledger vẫn chưa được admit; không có
+> governor contrast mới. Đã sửa native identity/provenance, **151 test đạt**,
+> thêm offline recorded-artifact fixture kiểm tra view/native/coverage/stop;
+> fixture không cứu batch cũ. Contract mới
+> `isolated_joint_gt_cadence_v5_2026_10_23`, SHA
+> `5c0a619e8ef8741b8708e008ece50fc5929c8805776699cf03a54d4bd9eff747`,
+> tại thời điểm chuẩn bị **chưa release/chạy**. V3/v4 đều đóng, không dùng lại slot. Đọc
+> `docs/GOVERNOR_ISOLATED_CADENCE_V4_RESULT_2026-10-23.md` trước các tài liệu
+> lịch sử. Phần §6.6 mô tả v2, không phải contract mới nhất.
+
+> **Lịch sử v3:** một PI attempt arrival thành công nhưng end/lifecycle
+> timeout vì immutable ACK bị kiểm tra như heartbeat. Batch đóng ở 1/12;
+> correction v4 được kiểm tra bằng 140 test trước lượt v4 kể trên. Chi tiết:
+> `docs/GOVERNOR_ISOLATED_CADENCE_RESULT_2026-10-23.md`.
+
+> **Bổ sung sau phản biện ngày 23/10:** đã hoàn tất audit timing-envelope
+> offline, đọc 25 run đã lưu và giữ đủ 28 slot của hai batch; không chạy
+> simulation mới. Sau 200 ms từ first manifold, PI còn 3,03–7,09% tích phân
+> slip² trong cửa sổ bổ sung `tc..tc+3s`, nhưng rung muộn biến thiên lớn.
+> Đây không phải tỷ lệ có thể ngăn được hoặc primary metric thay thế.
+> Actual causal response vẫn chưa xác lập; contract v2 vẫn chưa release.
+> Đọc `docs/GOVERNOR_H2_TIMING_ENVELOPE_2026-10-23.md` và
+> `docs/NINO_OPERATING_ENVELOPE_AND_NEXT_STEPS_2026-10-23.md` trước các báo cáo
+> lịch sử. Không đề xuất audit lại cùng trace nếu không có câu hỏi mới có
+> khả năng thay đổi quyết định. Các mục bên dưới giữ nguyên bối cảnh lịch sử.
 
 Bạn là nhóm phản biện độc lập về robot di động bánh xe, điều khiển, nhận dạng
 hệ thống, học máy, ROS 2, mô phỏng tiếp xúc và sim-to-real. Hãy nghiên cứu

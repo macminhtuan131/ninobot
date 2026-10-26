@@ -1,0 +1,16 @@
+{
+  "schema": "offline_h2_timing_envelope_v1",
+  "scope": "Existing 16 survey runs and all 12 assigned slots of the closed cadence batch; no simulation, tuning or release",
+  "decision": "Determine whether a plausible late-contact opportunity remains; actual causal response stays unknown without a counterfactual",
+  "sampling": "Reuse original GT-header slip, joint support, native replay and 98% coverage unchanged. Actual trajectory diagnostics use original source stamps and backward-only reference lookup.",
+  "timing_origin": "Each run's first saved obstacle manifold; also retain first loaded contact for every component",
+  "remaining_cost_offsets_s": [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.5, 0.6, 0.8, 1.0],
+  "remaining_cost": "Slip integral remaining until tc+3, divided by total tc..tc+3. IMU: unfiltered squared-sample sum remaining, not energy or a time integral; export native sample RMS/peak separately. These are observed contributions, not preventable fractions.",
+  "pair_diagnostics": "All eight survey pairs and all four assigned cadence 20ms-vs-100ms pairs. Source-stamp candidate minus backward-only reference, subtract precontact median difference (-0.3..-0.05s); no causal interpretation.",
+  "divergence_sensitivities_m_s": [0.01, 0.02, 0.04],
+  "divergence_rule": "First sustained negative baseline-adjusted difference for >=60ms, source gaps <=40.001ms body /10.001ms wheel. Search -0.3..1s, retain any pre-command crossing and its source support. Report bracket and confirmation, no interpolated onset. Sensitivities are diagnostics, not application thresholds.",
+  "clean_floor_comparison": "Historical 239..254ms body90 response from first ramp input is a scenario-transfer illustration only; includes ramp already, not a measured contact-response bound.",
+  "missing": "Keep failed/unrun slots; no quality comparison on an integrity-failed cadence batch; valid timing pairs are descriptive only",
+  "stop": "One offline analysis and targeted helper tests, ending in a written decision; no repeated audit of unchanged evidence",
+  "thresholds_applied": false
+}

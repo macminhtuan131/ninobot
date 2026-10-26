@@ -1,0 +1,150 @@
+{
+  "contract": "isolated_joint_gt_cadence_v6_2026_10_23",
+  "protocol_sha256": "567228933edaece4fd4e615986316d150f18be40754e320eb26d3709828be153",
+  "executor_sha256": "518a4bbffa5b10b43a6a5dd1d0a65cd9af95e92c6909e8bb391f8ff718a8cf79",
+  "execution_authorized": true,
+  "budget_released": true,
+  "maximum_attempts": 12,
+  "mode": "descriptive_cadence_experiment",
+  "thresholds_applied": false,
+  "application_thresholds": "proposal_only",
+  "authorization_reference": "User current-turn request on 2026-10-23: evaluate the current situation and continously do what suggested. The immediately preceding recommendation was live integration v6 in a new bounded budget.",
+  "authorization_interpretation": "Continuation authorizes one new maximum-12 v6 descriptive batch under the prepared schedule. First PI and20ms runs check integration inside budget. Stop on integrity fault; no closed-slot reuse, retry, replacement, extra smoke, other contracts or automatic extension.",
+  "authorized_schedule": [
+    {
+      "attempt": 1,
+      "seed": 77600,
+      "repeat": 1,
+      "triad_id": "seed_77600_repeat_1",
+      "position": 1,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 2,
+      "seed": 77600,
+      "repeat": 1,
+      "triad_id": "seed_77600_repeat_1",
+      "position": 2,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 3,
+      "seed": 77600,
+      "repeat": 1,
+      "triad_id": "seed_77600_repeat_1",
+      "position": 3,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 4,
+      "seed": 77601,
+      "repeat": 1,
+      "triad_id": "seed_77601_repeat_1",
+      "position": 1,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 5,
+      "seed": 77601,
+      "repeat": 1,
+      "triad_id": "seed_77601_repeat_1",
+      "position": 2,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 6,
+      "seed": 77601,
+      "repeat": 1,
+      "triad_id": "seed_77601_repeat_1",
+      "position": 3,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 7,
+      "seed": 77601,
+      "repeat": 2,
+      "triad_id": "seed_77601_repeat_2",
+      "position": 1,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 8,
+      "seed": 77601,
+      "repeat": 2,
+      "triad_id": "seed_77601_repeat_2",
+      "position": 2,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 9,
+      "seed": 77601,
+      "repeat": 2,
+      "triad_id": "seed_77601_repeat_2",
+      "position": 3,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 10,
+      "seed": 77600,
+      "repeat": 2,
+      "triad_id": "seed_77600_repeat_2",
+      "position": 1,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 11,
+      "seed": 77600,
+      "repeat": 2,
+      "triad_id": "seed_77600_repeat_2",
+      "position": 2,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 12,
+      "seed": 77600,
+      "repeat": 2,
+      "triad_id": "seed_77600_repeat_2",
+      "position": 3,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true
+    }
+  ],
+  "integration_attempts": [
+    1,
+    2
+  ],
+  "retries": 0,
+  "replacements": 0,
+  "extra_smoke": 0,
+  "old_slots_reused": false,
+  "hard_stop_on_integrity_fault": true,
+  "automatic_extension": false,
+  "hardware": "on_hold",
+  "PPO": false,
+  "predictor": false,
+  "Optuna": false,
+  "created_at": "2026-10-23T12:24:30.849513+00:00"
+}

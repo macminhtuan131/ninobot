@@ -1,0 +1,142 @@
+{
+  "current_input_files": 164,
+  "current_inputs_unchanged": true,
+  "historical_input_files": 110,
+  "historical_matching_files": 108,
+  "historical_source_drift": [
+    "/home/tuanmac/ninorobot/src/nino_rl/scripts/prepare_governor_contact_sequence.py",
+    "/home/tuanmac/ninorobot/src/nino_control/nino_control/governor_core.py"
+  ],
+  "used_function_equivalence": [
+    {
+      "current": "src/nino_control/nino_control/governor_core.py",
+      "historical_source_sha256": "0b9e78db3b563d0426bd6ee8565e6f055547f014eafec6dc34f0123d539524bb",
+      "snapshot_matches_historical_audit": true,
+      "used_functions_unchanged": {
+        "quaternion_rpy": true,
+        "vertical_acceleration": true
+      }
+    },
+    {
+      "current": "src/nino_rl/scripts/prepare_governor_contact_sequence.py",
+      "historical_source_sha256": "b007949e8ebfd6822cb824a0fc29dfbac36e5c96dbd801ab864d9e82cd057c78",
+      "snapshot_matches_historical_audit": true,
+      "used_functions_unchanged": {
+        "signal_stats": true
+      }
+    }
+  ],
+  "qualification": "Two source files changed before this audit; exact used helper ASTs match hash-verified historical snapshots. Raw historical artifacts match.",
+  "native_replay": [
+    {
+      "id": "survey_01",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_02",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_03",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_04",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_05",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_06",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_07",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_08",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_09",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_10",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_11",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_12",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_13",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_14",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_15",
+      "native_rms_matches": true
+    },
+    {
+      "id": "survey_16",
+      "native_rms_matches": true
+    },
+    {
+      "id": "cadence_01",
+      "native_rms_matches": true
+    },
+    {
+      "id": "cadence_02",
+      "native_rms_matches": true
+    },
+    {
+      "id": "cadence_03",
+      "native_rms_matches": true
+    },
+    {
+      "id": "cadence_04",
+      "native_rms_matches": true
+    },
+    {
+      "id": "cadence_05",
+      "native_rms_matches": true
+    },
+    {
+      "id": "cadence_06",
+      "native_rms_matches": true
+    },
+    {
+      "id": "cadence_07",
+      "native_rms_matches": true
+    },
+    {
+      "id": "cadence_08",
+      "native_rms_matches": true
+    },
+    {
+      "id": "cadence_09",
+      "native_rms_matches": true
+    }
+  ],
+  "contract": {
+    "valid": true,
+    "contract": "isolated_joint_gt_cadence_v2_2026_10_22",
+    "protocol_sha256": "e573217d959e5b4a26e52f733d5cb4c4387284f9f1e27c1643cf72397f85ba0c",
+    "execution_authorized": false,
+    "budget_released": false,
+    "simulation_attempts": 0,
+    "live_integration_validated": false,
+    "application_thresholds": "proposal_only"
+  }
+}

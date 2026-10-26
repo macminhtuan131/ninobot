@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-23",
+  "sources": [
+    {
+      "id": "S1",
+      "source_and_status": "Lee, Kim, Seo, *Design and analysis of a mobile robot with novel caster mechanism for high step-overcoming capability*, Scientific Reports 14:13745, 2024; **peer-reviewed**",
+      "url": "https://doi.org/10.1038/s41598-024-63825-y",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Publisher text qua search index: design/simulation/experiments/conclusions; open trực tiếp HTML/PDF bị redirect IDP. Không tự suy số lặp hoặc rate"
+    },
+    {
+      "id": "S2",
+      "source_and_status": "Arrizabalaga et al., *A caster-wheel-aware MPC-based motion planner for mobile robotics*, **ICAR2021 peer-reviewed**; bản tác giả arXiv2110.05604",
+      "url": "https://arxiv.org/html/2110.05604",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "HTML model/estimator/experiments; DOI10.1109/ICAR53236.2021.9659478 xác nhận trên arXiv"
+    },
+    {
+      "id": "S3",
+      "source_and_status": "Park, Lee, Kuipers, *Discrete-time Dynamic Modeling and Calibration of Differential-Drive Mobile Robots with Friction*, **ICRA2017 peer-reviewed**",
+      "url": "https://web.eecs.umich.edu/~kuipers/research/pubs/Park-icra-17.html",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Trang tác giả và indexed author PDF; fetch PDF trực tiếp timeout. Không lấy tốc độ laptop thành compute budget Pi"
+    },
+    {
+      "id": "S4",
+      "source_and_status": "Siwek et al., *Identification of Differential Drive Robot Dynamic Model Parameters*, Materials16(2):683, 2023; **peer-reviewed**",
+      "url": "https://www.mdpi.com/1996-1944/16/2/683",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Publisher index có model/conclusions; PMC captcha, publisher direct429. Không suy independent body GT từ tracking paper"
+    },
+    {
+      "id": "S5",
+      "source_and_status": "Yu et al., *Fully Proprioceptive Slip-Velocity-Aware State Estimation for Mobile Robots via Invariant Kalman Filtering and Disturbance Observer*, **IROS2023 peer-reviewed**",
+      "url": "https://arxiv.org/html/2209.15140",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Author arXivv2/HTML: observability, experiments, discussion; không dùng abstract thay điều kiện α/covariance"
+    },
+    {
+      "id": "S6",
+      "source_and_status": "*Analysis and Experimental Kinematics of a Skid-Steering Wheeled Robot Based on a Laser Scanner Sensor*, Sensors15:9681–9702, 2015; **peer-reviewed**",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4481911/",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Full indexed publisher/PMC text, experimental setup; directfetch bị hạn chế. Phân biệt scanner ngoài với LiDAR trên robot"
+    },
+    {
+      "id": "S7",
+      "source_and_status": "Kahn, Abbeel, Levine, *BADGR: An Autonomous Self-Supervised Learning-Based Navigation System*, **RA-L2021 peer-reviewed**, DOI10.1109/LRA.2021.3057023",
+      "url": "https://arxiv.org/html/2002.05700",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Author arXiv2002.05700v2/HTML + publisher metadata; không tải/chạy repository hoặc checkpoints"
+    },
+    {
+      "id": "S8",
+      "source_and_status": "Garone, Di Cairano, Kolmanovsky, *Reference and Command Governors for Systems with Constraints: A Survey on Theory and Applications*, **Automatica75:306–328, 2017 peer-reviewed**",
+      "url": "https://merl.com/publications/docs/TR2016-102.pdf",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Author MERL TR2016-102 PDF; đọc intro/architecture/uncertainty, không claim toàn bộ proofs đã audit"
+    },
+    {
+      "id": "S9",
+      "source_and_status": "Le Lidec et al., *Contact Models in Robotics: a Comparative Analysis*, bản tác giả **preprint v3 21/7/2024** được đọc",
+      "url": "https://arxiv.org/html/2304.06372",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Full HTML modelling/benchmark outline; có bản T-RO2024, nhưng review nội dung theo bản arXiv được chỉ rõ, không audit phần hardware Nino"
+    },
+    {
+      "id": "S10",
+      "source_and_status": "ROS2 Jazzy, *Quality of Service settings*; **official docs**",
+      "url": "https://raw.githubusercontent.com/ros2/ros2_documentation/jazzy/source/Concepts/Intermediate/About-Quality-of-Service-Settings.rst",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "`ros2_documentation/jazzy` raw RST; docs.ros.org bị Anubis, dùng bản nguồn cùng branch"
+    },
+    {
+      "id": "S11",
+      "source_and_status": "ROS2 Jazzy, *Executors*; **official docs**",
+      "url": "https://raw.githubusercontent.com/ros2/ros2_documentation/jazzy/source/Concepts/Intermediate/About-Executors.rst",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Raw RST cùng branch; giải thích chủ yếu rclcpp, không lấy làm proof cụ thể GIL/GC của Nino"
+    },
+    {
+      "id": "S12",
+      "source_and_status": "`ros2/rosbag2`, Jazzy README; **official repository**",
+      "url": "https://raw.githubusercontent.com/ros2/rosbag2/jazzy/README.md",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Raw README recording/sim-time/QoS; không benchmark mất mẫu trên máy Nino"
+    },
+    {
+      "id": "S13",
+      "source_and_status": "Nav2 Jazzy, *Velocity Smoother*; **official docs**",
+      "url": "https://docs.nav2.org/jazzy/configuration_and_development/configuration_guide/core_servers/configuring_velocity_smoother/",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Các mục feedback/accel/deadband/timestamps; không dùng default Rolling cho Jazzy"
+    },
+    {
+      "id": "S14",
+      "source_and_status": "Nav2 Jazzy, *Speed Filter Parameters*; **official docs**",
+      "url": "https://docs.nav2.org/jazzy/configuration_and_development/configuration_guide/core_servers/costmap_2d/costmap_filters/speed_filter/",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Mask/speed-limit semantics; không tự là traversability memory đã đánh giá"
+    },
+    {
+      "id": "S15",
+      "source_and_status": "Nav2 Jazzy, *Using Collision Monitor*; **official docs**",
+      "url": "https://docs.nav2.org/jazzy/tutorials/general_tutorials/using_collision_monitor/using_collision_monitor/",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Sensor chain và last velocity link; không claim chứng nhận an toàn hoặc detect mọi vật cản thấp"
+    },
+    {
+      "id": "S16",
+      "source_and_status": "maxon, *EPOS4/IDX: Important steps during initial commissioning*, cập nhật2024; **official vendor docs**",
+      "url": "https://support.maxongroup.com/hc/en-us/articles/6719969220380-EPOS4-IDX-Important-steps-during-initial-commissioning",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "Current→velocity/position và tải; khác hãng CyberGear, chỉ tham khảo commissioning principle"
+    },
+    {
+      "id": "S17",
+      "source_and_status": "Ross, Gordon, Bagnell, *A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning*, **AISTATS2011 peer-reviewed**",
+      "url": "https://proceedings.mlr.press/v15/ross11a.html",
+      "accessed": "2026-10-23",
+      "access_scope_and_limits": "PMLR abstract/PDF intro, sequential distribution shift; không là Nino traversal experiment"
+    }
+  ],
+  "method": "Mechanism-oriented targeted search; not an exhaustive novelty or registered systematic review.",
+  "query_examples": [
+    "differential drive caster wheel robot step obstacle traversal vibration experiment speed caster",
+    "A caster-wheel-aware MPC-based motion planner for mobile robotics",
+    "Fully Proprioceptive Slip-Velocity-Aware State Estimation for Mobile Robots",
+    "BADGR autonomous robot navigation collision bumpiness action conditioned",
+    "Reference and Command Governors for Systems with Constraints Garone",
+    "CyberGear User Manual pdf Xiaomi",
+    "ROS Jazzy QoS Executors rosbag2",
+    "Nav2 Jazzy Velocity Smoother Speed Filter Collision Monitor"
+  ],
+  "excluded_evidence": [
+    "Reddit and general blogs",
+    "Secondary AI-generated summaries",
+    "Unverified CyberGear parameter maps",
+    "Legged-robot success claims as direct evidence for Nino"
+  ]
+}

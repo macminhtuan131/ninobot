@@ -1,0 +1,56 @@
+{
+  "roles": {
+    "primary": {
+      "exact_end_ack": true,
+      "pid": 33190,
+      "closed": true,
+      "error": null,
+      "same_pid": true,
+      "ack_to_evaluator_summary_file_seconds": 2.2316417694091797,
+      "counts_at_ack": {
+        "/joint_states": 10981,
+        "/ground_truth/odom": 1149
+      },
+      "counts_at_close": {
+        "/joint_states": 15284,
+        "/ground_truth/odom": 1667
+      }
+    },
+    "joint_gt": {
+      "exact_end_ack": true,
+      "pid": 33167,
+      "closed": true,
+      "error": null,
+      "same_pid": true,
+      "ack_to_evaluator_summary_file_seconds": 2.2300307750701904,
+      "counts_at_ack": {
+        "/joint_states": 11478,
+        "/ground_truth/odom": 1149
+      },
+      "counts_at_close": {
+        "/joint_states": 16835,
+        "/ground_truth/odom": 1668
+      }
+    }
+  },
+  "max_status_age_s": 2.0,
+  "diagnosis": "wait_pair reads immutable *_end.json and check_status applies current 2s heartbeat age to this historic receipt; evaluator summary is persisted >2s after both ACK files",
+  "qualification": "File mtimes bound persistence delay; no live-status history proves heartbeat freshness at the failed wait. A corrected run still needs a fresh-live gate; this run remains invalid.",
+  "native_arrival": true,
+  "stopping": null,
+  "measurement_valid": false,
+  "performance_comparison": false,
+  "closed_remaining_slots": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ]
+}

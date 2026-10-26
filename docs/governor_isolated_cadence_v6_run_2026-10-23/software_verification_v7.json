@@ -1,0 +1,19 @@
+{
+  "mode": "software_tests_no_simulation",
+  "passed": 156,
+  "failed": 0,
+  "duration_s": 11.91,
+  "command": "python -m pytest -q src/nino_rl/test/test_acquisition_contract.py src/nino_rl/test/test_isolated_acquisition.py src/nino_rl/test/test_governor_cadence_experiment.py src/nino_rl/test/test_observer_health.py src/nino_rl/test/test_governor_h2_executor.py src/nino_rl/test/test_clear_floor_stability.py src/nino_rl/test/test_governor_contact_sequence_plan.py src/nino_rl/test/test_slip_reporting.py src/nino_rl/test/test_frozen_governor_confirmation.py",
+  "test_sha256": {
+    "test_acquisition_contract.py": "1250226585ed38b4c90d7d8b9c2e0408777708540f8e74a418b40554d85f9301",
+    "test_isolated_acquisition.py": "a8c4de19cf41d9fda2cade706cf6895564408f1307b275ec504615b26118040b",
+    "test_governor_cadence_experiment.py": "3c51f837eb34ba4d679d563ced5091f564d525ae57e5debc00e1f333969bfe9b",
+    "test_observer_health.py": "edf2ebd593729b95a75c6ba1667dcd7acd666510d00b5db7a4314c8d95aefbaa",
+    "test_governor_h2_executor.py": "dd1bcdb3154320c58c7244a35e7b7ef33585d3a9654a350f579efbbb16474553",
+    "test_clear_floor_stability.py": "fe0b1b0112c39570300de95db202256dcdd60a5160845296482a23be5e411b86",
+    "test_governor_contact_sequence_plan.py": "c08e03c8ddef1d6150db763972248ea9e16bfcd397a9b931eb6d9ac73ded6b91",
+    "test_slip_reporting.py": "6d22200934d2056ba3b3ef1c3a51c41fa4918fabffd97263ada1cfdd8e04e674",
+    "test_frozen_governor_confirmation.py": "4e7b770ba494a716c2f243aaad4b041f53a094a439fcc6a2b38323b25a67e32d"
+  },
+  "qualification": "Recorded from completed pytest output; software assertions are not traversal trials or a Gazebo coverage guarantee."
+}

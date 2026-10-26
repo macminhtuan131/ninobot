@@ -1,0 +1,12 @@
+{
+  "status": "preclaim_startup_failure_no_attempt_launched",
+  "exception": "AttributeError: str object has no attribute read_bytes",
+  "cause": "Executor called sha(__file__) instead of sha(Path(__file__))",
+  "simulation_attempts": 0,
+  "budget_claim_created": false,
+  "correction": "One executor path-type correction; matching-release regression test",
+  "software_tests_passed": 126,
+  "released_v2_not_used": true,
+  "superseded_by_contract": "isolated_joint_gt_cadence_v3_2026_10_23",
+  "old_frozen_artifacts_untouched": true
+}

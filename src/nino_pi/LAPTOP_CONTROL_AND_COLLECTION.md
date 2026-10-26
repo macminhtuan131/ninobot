@@ -78,7 +78,26 @@ nano ~/nino_laptop_control.json
 - `control_params`, `navigation_params`: các file thật trên Pi, chỉnh
   footprint/frame/topic/limits theo phần cứng. Không sửa PI/ramp qua helper.
 
-Helper từ chối config ví dụ còn domain `null`. Kiểm tra script mà chưa kết nối:
+Helper từ chối config ví dụ còn domain `null`.
+
+Nếu cả `--dry-run`, `check` và `teleop` báo `ros_domain_id`, chúng đang dừng
+ở bước đọc cấu hình trên laptop, trước khi kết nối SSH. File mặc định là
+`~/nino_laptop_control.json`; nếu đặt `NINO_LAPTOP_CONFIG` thì helper đọc
+file được biến đó chỉ định. Không copy lại example đè lên cấu hình đã sửa.
+
+Trong **chính terminal trên Pi dùng để khởi chạy driver thật**, kiểm tra:
+
+```bash
+printf 'ROS_DOMAIN_ID=%s\n' "${ROS_DOMAIN_ID:-<chưa đặt trong terminal này>}"
+```
+
+Nếu có số, đối chiếu lệnh/launch driver có ghi đè domain hay không, rồi điền
+domain thực vào JSON dưới dạng số nguyên, không có dấu nháy. Nếu chưa đặt
+hoặc driver chạy bằng service, cần kiểm tra lệnh khởi chạy/service; môi
+trường của một SSH shell mới chưa xác nhận domain của process đang chạy.
+Không chọn số domain mô phỏng chỉ để bỏ qua lỗi.
+
+Sau khi điền domain đã xác nhận, kiểm tra script mà chưa kết nối:
 
 ```bash
 bash ~/ninorobot/src/nino_pi/scripts/laptop_control.sh --dry-run teleop

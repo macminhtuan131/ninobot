@@ -1,0 +1,24 @@
+{
+  "schema": "isolated_cadence_v5_descriptive_analysis_plan",
+  "population": "Every assigned v4 slot; no failures, spikes, pre-intervention differences or unrun slots removed",
+  "measurement_admission": "Use existing isolated-acquisition analyzer, native replay, exact provenance, lifecycle, original sampling and >=98% coverage EACH required window. Any integrity failure blocks controller performance comparison for this batch.",
+  "ordered_questions": [
+    "First reduced input, driver receipt and first acknowledging publication, aligned to each run's first manifold; retain earlier loaded contacts",
+    "Actual wheel/body trajectories and source-stamp uncertainty before every subsequent loaded component contact; earlier commands or targets do not answer this question",
+    "Unchanged crossing/post-contact/whole-route slip, vibration, tracking, arrival/stopping and time; original paired/block estimand and sampling sensitivities"
+  ],
+  "actual_response_diagnostics": "Reuse offline H2 diagnostic sensitivities 0.01/0.02/0.04 m/s and >=60ms sustained difference, with original candidate source stamps and backward-only reference lookup. Subtract precontact median candidate-minus-reference on -0.3..-0.05s; retain unadjusted baseline and all differences before first input. These are descriptive between-run divergence, never an identified causal onset or a promotion gate.",
+  "actual_response_source_gaps": {
+    "body_max_s": 0.040001,
+    "wheel_max_s": 0.010001
+  },
+  "contrasts": [
+    "20ms vs 100ms",
+    "100ms vs PI",
+    "20ms vs PI"
+  ],
+  "uncertainty": "Keep original paired/block bootstrap descriptive uncertainty; four triads on two blocks are not a generalization test. GT ~50Hz limits timing resolution; do not invent finer measurements by resampling.",
+  "application_thresholds": "10% / +0.5s remain proposals; no automatic H2 pass/fail or tuning",
+  "stop": "At integrity fault or 12 attempts, close batch with no retry/extension. Diagnose a concrete fault offline if present; never rescue a closed run with relaxed gates. No new simulation contract is automatically released.",
+  "protocol_sha256": "5c0a619e8ef8741b8708e008ece50fc5929c8805776699cf03a54d4bd9eff747"
+}

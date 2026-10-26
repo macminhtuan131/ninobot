@@ -66,6 +66,52 @@ def test_both_readiness_and_exact_ack_required_no_world_steps(tmp_path):
     with pytest.raises(RuntimeError):ac.wait_pair(path,alive=lambda:False)
 
 
+def test_delayed_end_receipt_requires_fresh_live_heartbeat_without_world_steps(tmp_path,monkeypatch):
+    path=session(tmp_path)
+    primary=ready(path,"primary",tmp_path/"primary")
+    sensor=ready(path,"joint_gt",tmp_path/"capture")
+    marker=dict(event="end",run_id="r",attempt=1,time_s=1.)
+    for life in (primary,sensor):life.marker(marker,1_000_000_000)
+    receipt=json.loads((path.parent/"primary_end.json").read_text())
+    delayed=receipt["monotonic_ns"]+3_000_000_000
+    with pytest.raises(ValueError,match="Stale logger status"):
+        ac.check_status(ac.read_session(path),receipt,"primary",marker=marker,now_mono_ns=delayed)
+    monkeypatch.setattr(ac.time,"monotonic_ns",lambda:delayed)
+    for life in (primary,sensor):life.publish(1_000_000_000)
+    values=ac.wait_pair(path,marker=marker,pump=lambda:pytest.fail("No stepping or retry needed"))
+    assert values["primary"]==receipt
+    # Fresh receipt alone cannot replace a stale heartbeat.
+    monkeypatch.setattr(ac.time,"monotonic_ns",lambda:delayed+3_000_000_000)
+    with pytest.raises(ValueError,match="Stale/future live heartbeat"):
+        ac.check_delivery(ac.read_session(path),primary.status,receipt,"primary",marker)
+
+
+@pytest.mark.parametrize("fault",["future","closed","error","not_ready","pid","output",
+    "session","source","foreign_marker","missing_live_marker","receipt_newer","missing_stream","regressed_stream"])
+def test_marker_receipt_cannot_hide_live_process_fault(tmp_path,fault):
+    path=session(tmp_path);life=ready(path,"primary",tmp_path/"primary")
+    marker=dict(event="end",run_id="r",attempt=1,time_s=1.)
+    life.marker(marker,1_000_000_000)
+    receipt=json.loads((path.parent/"primary_end.json").read_text())
+    live=deepcopy(life.status);now=receipt["monotonic_ns"]+3_000_000_000
+    live["monotonic_ns"]=now
+    if fault=="future":live["monotonic_ns"]+=1
+    elif fault=="closed":live["closed"]=True
+    elif fault=="error":live["error"]="disk error"
+    elif fault=="not_ready":live["ready"]=False
+    elif fault=="pid":live["pid"]+=1
+    elif fault=="output":live["output"]="/other"
+    elif fault=="session":live["session_id"]="other"
+    elif fault=="source":live["source_sha256"]={}
+    elif fault=="foreign_marker":marker=dict(marker,run_id="other")
+    elif fault=="missing_live_marker":live["lifecycle"]=[]
+    elif fault=="receipt_newer":receipt["monotonic_ns"]=now+1
+    elif fault=="missing_stream":live["counts"]["/joint_states"]=0
+    elif fault=="regressed_stream":live["latest_source_ns"]["/joint_states"]-=1
+    with pytest.raises(ValueError):
+        ac.check_delivery(ac.read_session(path),live,receipt,"primary",marker,now_mono_ns=now)
+
+
 def test_legacy_publisher_unchanged_end_ack_deferred_to_preserve_native_outcome(tmp_path,monkeypatch):
     publisher=Mock();ros=Mock()
     monkeypatch.delenv("NINO_ACQUISITION_SESSION",raising=False)
@@ -93,7 +139,8 @@ def closed_fixture(tmp_path,*,boundary_pre_reset=False,omit_current_gt=False):
         source_sha256=s["source_sha256"]["joint_gt"]["isolated_acquisition.py"],
         frames_source_sha256=s["source_sha256"]["joint_gt"]["acquisition_frames.py"]))
     reset=dict(event="reset",run_id="r",attempt=1,seed=s["job"]["seed"],time_s=1.,settings={})
-    end=dict(event="end",run_id="r",attempt=1,time_s=2.,metrics=dict(termination="timeout"))
+    end=dict(event="end",run_id="r",attempt=1,time_s=2.,
+             metrics=dict(termination="timeout",governor_run_id="r"))
     a=JointState();a.header.stamp.sec=1;a.header.stamp.nanosec=20_000_000
     a.name=["left_wheel_joint","right_wheel_joint"];a.velocity=[4.,5.];a.effort=[.3,.4]
     b=Odometry();b.header=a.header;b.twist.twist.linear.x=.3;b.pose.pose.orientation.w=1.
@@ -128,6 +175,7 @@ def closed_fixture(tmp_path,*,boundary_pre_reset=False,omit_current_gt=False):
     (primary/"samples.jsonl").write_text("".join(json.dumps(r)+"\n" for r in rows))
     for name in ("contact_events.jsonl","robot_description.urdf","source_config.yaml"):
         (primary/name).write_text("raw unchanged\n")
+    atomic_json(primary/"world_metadata.json",dict(cables=[dict(x_m=3.1,angle_deg=8.)],fixture=True))
     atomic_json(primary/"resolved_config.json",dict(governor={}))
     pair={}
     for role,output in (("primary",primary),("joint_gt",capture)):
@@ -139,8 +187,13 @@ def closed_fixture(tmp_path,*,boundary_pre_reset=False,omit_current_gt=False):
     atomic_json(path.parent/"expected_end.json",end)
     evaluation=tmp_path/"evaluation";(evaluation/"episode-001").mkdir(parents=True)
     with (evaluation/"episode-001/control_trace.csv").open("w") as f:
-        w=csv.DictWriter(f,fieldnames=["governor_run_id","governor_input_time_s","sim_time_s"])
-        w.writeheader();w.writerow(dict(governor_run_id="r",governor_input_time_s=1.,sim_time_s=2.))
+        # Real evaluator traces do not carry governor_run_id. Identity lives
+        # in the single native outcome and must agree with lifecycle markers.
+        w=csv.DictWriter(f,fieldnames=["seed","governor_input_time_s","sim_time_s"])
+        w.writeheader();w.writerow(dict(seed=s["job"]["seed"],governor_input_time_s=1.,sim_time_s=2.))
+    with (evaluation/"episodes.csv").open("w") as f:
+        w=csv.DictWriter(f,fieldnames=["governor_run_id","seed","attempt"])
+        w.writeheader();w.writerow(dict(governor_run_id="r",seed=s["job"]["seed"],attempt=1))
     return path,primary,evaluation
 
 
@@ -160,6 +213,71 @@ def test_full_composition_both_closures_source_hash_epoch_and_no_legacy_patch(tm
     assert ac.sha(primary/"samples.jsonl")==before
     (primary/"samples.jsonl").write_text("tamper")
     with pytest.raises(ValueError,match="input changed"):ac.verify_view(view)
+
+
+def test_real_trace_schema_binds_native_id_without_fabricating_trace_column(tmp_path):
+    path,primary,evaluation=closed_fixture(tmp_path)
+    trace=evaluation/"episode-001/control_trace.csv"
+    before=trace.read_bytes()
+    assert "governor_run_id" not in next(csv.DictReader(trace.open()))
+    view=ac.finalize_view(tmp_path,evaluation,primary,path)
+    assert ac.verify_view(view)["run_id"]=="r"
+    assert trace.read_bytes()==before
+
+
+@pytest.mark.parametrize("fault",["missing_native","empty_native","duplicate_native","empty_id",
+    "foreign_id","wrong_seed","wrong_attempt","foreign_trace_id"])
+def test_native_identity_missing_ambiguous_or_foreign_fails_closed(tmp_path,fault):
+    path,primary,evaluation=closed_fixture(tmp_path)
+    native=evaluation/"episodes.csv"
+    if fault=="missing_native":native.unlink()
+    elif fault=="empty_native":native.write_text("governor_run_id,seed,attempt\n")
+    elif fault=="duplicate_native":
+        with native.open("a") as f:f.write("r,77600,1\n")
+    elif fault=="foreign_trace_id":
+        (evaluation/"episode-001/control_trace.csv").write_text(
+            "governor_run_id,governor_input_time_s,sim_time_s\nother,1,2\n")
+    else:
+        row=dict(governor_run_id="r",seed=77600,attempt=1)
+        row[{"empty_id":"governor_run_id","foreign_id":"governor_run_id",
+             "wrong_seed":"seed","wrong_attempt":"attempt"}[fault]]={
+            "empty_id":"","foreign_id":"other","wrong_seed":77601,"wrong_attempt":2}[fault]
+        with native.open("w") as f:
+            w=csv.DictWriter(f,fieldnames=list(row));w.writeheader();w.writerow(row)
+    with pytest.raises((ValueError,FileNotFoundError)):
+        ac.finalize_view(tmp_path,evaluation,primary,path)
+    assert not (tmp_path/"measurement_view").exists()
+
+
+@pytest.mark.parametrize("filename",["episodes.csv","episode-001/control_trace.csv"])
+def test_native_identity_and_trace_are_in_view_provenance(tmp_path,filename):
+    path,primary,evaluation=closed_fixture(tmp_path)
+    view=ac.finalize_view(tmp_path,evaluation,primary,path)
+    changed=evaluation/filename
+    with changed.open("a") as f:f.write("tamper\n")
+    with pytest.raises(ValueError,match="input changed"):ac.verify_view(view)
+
+
+def test_world_metadata_required_by_quality_analyzer_is_copied_verbatim(tmp_path):
+    path,primary,evaluation=closed_fixture(tmp_path)
+    view=ac.finalize_view(tmp_path,evaluation,primary,path)
+    assert (view/"world_metadata.json").read_bytes()==(primary/"world_metadata.json").read_bytes()
+    assert "world_metadata.json" in ac.verify_view(view)["derived_sha256"]
+
+
+@pytest.mark.parametrize("location",["source","view"])
+def test_world_metadata_tamper_blocks_view_admission(tmp_path,location):
+    path,primary,evaluation=closed_fixture(tmp_path)
+    view=ac.finalize_view(tmp_path,evaluation,primary,path)
+    target=(primary if location=="source" else view)/"world_metadata.json"
+    target.write_text("changed geometry metadata")
+    with pytest.raises(ValueError,match="changed"):ac.verify_view(view)
+
+
+def test_missing_world_metadata_cannot_make_quality_ready_view(tmp_path):
+    path,primary,evaluation=closed_fixture(tmp_path)
+    (primary/"world_metadata.json").unlink()
+    with pytest.raises(FileNotFoundError):ac.finalize_view(tmp_path,evaluation,primary,path)
 
 
 def test_paused_clock_boundary_pre_reset_rows_retained_raw_never_supply_view(tmp_path):
@@ -241,6 +359,20 @@ def test_closed_production_batch_cannot_accept_current_sources():
     from prepare_governor_h2_protocol import validate_bundle
     with pytest.raises(ValueError,match="Workspace contract changed"):
         validate_bundle(ROOT/"docs/governor_h2_replication_protocol_2026-10-17")
+
+
+def test_matching_release_accepts_executor_file_path_and_rejects_drift(monkeypatch,tmp_path):
+    import run_isolated_governor_cadence as runner
+    monkeypatch.setattr(runner,"validate",lambda _:dict(contract="new",protocol_sha256="newhash"))
+    release=tmp_path/"release.json"
+    binding=dict(execution_authorized=True,budget_released=True,maximum_attempts=12,
+        contract="new",protocol_sha256="newhash",thresholds_applied=False,
+        executor_sha256=runner.sha(Path(runner.__file__)),
+        authorization_reference="Bounded test release; no simulation")
+    atomic_json(release,binding)
+    assert runner.require_release(tmp_path,release)==binding
+    atomic_json(release,dict(binding,executor_sha256="foreign_executor"))
+    with pytest.raises(ValueError):runner.require_release(tmp_path,release)
 
 
 def test_new_freeze_is_offline_same_inputs_all_arms_and_detects_drift(tmp_path,monkeypatch):

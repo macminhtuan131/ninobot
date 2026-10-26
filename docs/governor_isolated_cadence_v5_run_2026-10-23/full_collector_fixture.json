@@ -1,0 +1,53 @@
+{
+  "mode": "offline_full_collector_recorded_fixture",
+  "simulation_attempts": 0,
+  "closed_batch_remains_invalid": true,
+  "performance_comparison": false,
+  "fixture_directory": "/tmp/nino_v5_full_collector_fixture_5muv7ymm",
+  "fixture_source_sha256": "4e834512b461011d3bc5a800f435db5e3a5cafe1e330c19895bd1035316d136a",
+  "collector_flags": {
+    "physical_success": true,
+    "stop_pass": true,
+    "setup_pass": true,
+    "provenance_pass": true,
+    "measurement_integrity_pass": true,
+    "quality_available": true,
+    "physical_state_valid": true,
+    "cleanup_confirmed": true
+  },
+  "collector_errors": {
+    "collection_error": null,
+    "acquisition_error": null,
+    "hard_stop_reason": null
+  },
+  "executor_classification": null,
+  "metric_availability": {
+    "post_slip": true,
+    "post_vibration": true,
+    "whole_slip": true,
+    "whole_vibration": true,
+    "native_slip": true,
+    "time": true,
+    "tracking": true,
+    "sequence_slip": true,
+    "sequence_vibration": true,
+    "grid_slip": true,
+    "shifted_slip": true,
+    "post_peak": true,
+    "whole_peak": true,
+    "post_slip_integral": true,
+    "post_distance": true,
+    "crossing_slip": true,
+    "crossing_vibration": true
+  },
+  "native_replay_matches": true,
+  "timing_reader_completed": true,
+  "cadence_check": {
+    "valid": true,
+    "micro_updates": 0,
+    "score_rows": 166
+  },
+  "software_path_completed": true,
+  "diagnostic_view_quarantined": true,
+  "closed_run_files_unchanged": true
+}

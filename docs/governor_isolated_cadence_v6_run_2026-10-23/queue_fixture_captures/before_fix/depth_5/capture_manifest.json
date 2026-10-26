@@ -1,0 +1,31 @@
+{
+  "schema": "isolated_joint_gt_frames_v1",
+  "capture_id": "6b944162-f8a1-47f6-a2ce-9292cc25056d",
+  "complete": true,
+  "maximum_bytes": 536870912,
+  "topic_ids": {
+    "1": "/joint_states",
+    "2": "/ground_truth/odom",
+    "3": "/nino/governor/episode"
+  },
+  "process_isolated": true,
+  "logger_only": true,
+  "source_sha256": "31f36042d71605c74bd4f9b6feb272dfb73255a1c5dff132dc0e2d82c80762ad",
+  "frames_source_sha256": "ceefbb4229185ca4d1c46e6a2811a1de7c8c08f2dd216004af3bb0610e96a2ad",
+  "sensor_qos": {
+    "depth": 5,
+    "history": "KEEP_LAST",
+    "reliability": "BEST_EFFORT"
+  },
+  "maximum_callback_ns": 166555,
+  "epoch": 0,
+  "qualification": "Raw ROS CDR, source timestamps unchanged. Callback sequence counts received messages only; source loss still requires coverage checks.",
+  "frames": 50,
+  "bytes": 23650,
+  "counts": {
+    "/joint_states": 25,
+    "/ground_truth/odom": 25
+  },
+  "sha256": "8f52e3891fe498db6682f73c7427558941807fe2217fe4fa0002dfeadc99182f",
+  "error": null
+}

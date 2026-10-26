@@ -1,0 +1,28 @@
+[
+  {
+    "label": "before_fix",
+    "result": "queue_fault_fixture_before_fix.json",
+    "capture_directory": "docs/governor_isolated_cadence_v6_run_2026-10-23/queue_fixture_captures/before_fix",
+    "sha256": {
+      "depth_5/joint_gt.frames": "8f52e3891fe498db6682f73c7427558941807fe2217fe4fa0002dfeadc99182f",
+      "depth_5/ready.json": "72b13e0b472d0fb6cc6129bc39e8386c2f298b1a0693c988b576317481fa60eb",
+      "depth_5/capture_manifest.json": "5435c09590ff88e7a7097b9fc013cc52546aa5b3e3bca48c664413d6b2e04645",
+      "depth_100/joint_gt.frames": "8f20f5c5d11551b5e6bb6a47bc0efbd8b1bc66e8c43f31d3526131751dd384b0",
+      "depth_100/ready.json": "72b13e0b472d0fb6cc6129bc39e8386c2f298b1a0693c988b576317481fa60eb",
+      "depth_100/capture_manifest.json": "083bfa2719a0425705d384b29dc144f7c59a7e5258ee6f26863a2bd504168d21"
+    }
+  },
+  {
+    "label": "production_qos",
+    "result": "queue_fault_fixture.json",
+    "capture_directory": "docs/governor_isolated_cadence_v6_run_2026-10-23/queue_fixture_captures/production_qos",
+    "sha256": {
+      "depth_5/joint_gt.frames": "8111cece4c678d3b1b5c1d476702488c5fe13eb376f1584916c8a9934997078b",
+      "depth_5/ready.json": "744877741ddfca2cf68abf2f414c8c74688bf35c29fbaf0ba0e9eab9e11883bd",
+      "depth_5/capture_manifest.json": "cc89f7e18aabf78d5795ec8fd639dafa357106a313e7f620b3cf9add68832c0b",
+      "depth_100/joint_gt.frames": "14ef0cb2e92d709891e2361b846d82b25979d19a8f5900adec02d588f299f87b",
+      "depth_100/ready.json": "744877741ddfca2cf68abf2f414c8c74688bf35c29fbaf0ba0e9eab9e11883bd",
+      "depth_100/capture_manifest.json": "05718d1d796844b159103163da9b73176ce8100fcf0c938605f26c4ffaec42d5"
+    }
+  }
+]

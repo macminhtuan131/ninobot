@@ -92,6 +92,22 @@ def test_dry_run_does_not_connect_or_enable(tmp_path, monkeypatch, capsys):
     assert "teleop.launch.py" in capsys.readouterr().out
 
 
+def test_null_domain_error_identifies_config_and_never_connects(tmp_path, monkeypatch, capsys):
+    path = tmp_path / "my_laptop.json"
+    data = config()
+    data["ros_domain_id"] = None
+    original = json.dumps(data)
+    path.write_text(original)
+    monkeypatch.setattr(control.subprocess, "call", lambda *a, **k: pytest.fail("SSH must not run"))
+    with pytest.raises(SystemExit) as exc:
+        control.main(["--config", str(path), "--dry-run", "teleop"])
+    assert exc.value.code == 2
+    error = capsys.readouterr().err
+    assert str(path) in error
+    assert "printenv ROS_DOMAIN_ID" in error
+    assert path.read_text() == original
+
+
 def test_ssh_connection_failure_is_not_hidden(tmp_path, monkeypatch):
     path = tmp_path / "laptop.json"
     path.write_text(json.dumps(config()))

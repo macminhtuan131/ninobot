@@ -1,0 +1,332 @@
+{
+  "mode": "offline_source_contract_review",
+  "date": "2026-10-23",
+  "simulation_launches": 0,
+  "ros_nodes_started": 0,
+  "hardware_access": false,
+  "controller_updates": 0,
+  "runtime_config_changes": false,
+  "release_created": false,
+  "thresholds_accepted": false,
+  "core_defaults": {
+    "profile": "reactive",
+    "target_scale": 0.7,
+    "scale_rate_per_second": 0.4,
+    "vertical_trigger_m_s2": 1.5,
+    "vertical_only_trigger_enabled": true,
+    "body_rate_trigger_rad_s": 0.35,
+    "wheel_error_trigger_m_s": 0.06,
+    "wheel_error_acceleration_allowance_s": 0.1,
+    "release_ratio": 0.6,
+    "filter_seconds": 0.05,
+    "confirmation_seconds": 0.04,
+    "trigger_to_brake_delay_seconds": 0.0,
+    "quiet_seconds": 0.3,
+    "startup_seconds": 0.8,
+    "minimum_hold_seconds": 0.8,
+    "maximum_hold_seconds": 2.5,
+    "pulse_seconds": 0.8,
+    "minimum_trigger_speed_m_s": 0.1,
+    "wheel_radius_m": 0.0625,
+    "wheel_stall_speed_m_s": 0.02,
+    "wheel_stall_seconds": 1.2,
+    "stall_recovery_enabled": false,
+    "stall_recovery_scale": 0.85,
+    "stall_recovery_seconds": 0.6,
+    "max_update_seconds": 0.25
+  },
+  "wrapper_core_settings_candidate": {
+    "profile": "reactive",
+    "target_scale": 0.7,
+    "scale_rate_per_second": 0.4,
+    "vertical_trigger_m_s2": 1.5,
+    "vertical_only_trigger_enabled": true,
+    "body_rate_trigger_rad_s": 0.35,
+    "wheel_error_trigger_m_s": 0.06,
+    "wheel_error_acceleration_allowance_s": 0.1,
+    "release_ratio": 0.6,
+    "filter_seconds": 0.05,
+    "confirmation_seconds": 0.04,
+    "trigger_to_brake_delay_seconds": 0.0,
+    "quiet_seconds": 0.3,
+    "startup_seconds": 0.8,
+    "minimum_hold_seconds": 0.8,
+    "maximum_hold_seconds": 2.5,
+    "pulse_seconds": 0.8,
+    "minimum_trigger_speed_m_s": 0.1,
+    "wheel_radius_m": 0.0625,
+    "wheel_stall_speed_m_s": 0.02,
+    "wheel_stall_seconds": 1.2,
+    "stall_recovery_enabled": false,
+    "stall_recovery_scale": 0.85,
+    "stall_recovery_seconds": 0.6,
+    "max_update_seconds": 0.25
+  },
+  "frozen_inline_core_settings": {
+    "profile": "reactive",
+    "target_scale": 0.9,
+    "scale_rate_per_second": 0.4,
+    "vertical_trigger_m_s2": 1.5,
+    "vertical_only_trigger_enabled": false,
+    "body_rate_trigger_rad_s": 0.35,
+    "wheel_error_trigger_m_s": 0.06,
+    "wheel_error_acceleration_allowance_s": 0.1,
+    "release_ratio": 0.6,
+    "filter_seconds": 0.05,
+    "confirmation_seconds": 0.04,
+    "trigger_to_brake_delay_seconds": 0.0,
+    "quiet_seconds": 0.3,
+    "startup_seconds": 0.8,
+    "minimum_hold_seconds": 0.8,
+    "maximum_hold_seconds": 1.0,
+    "pulse_seconds": 1.0,
+    "minimum_trigger_speed_m_s": 0.1,
+    "wheel_radius_m": 0.0625,
+    "wheel_stall_speed_m_s": 0.02,
+    "wheel_stall_seconds": 1.2,
+    "stall_recovery_enabled": false,
+    "stall_recovery_scale": 0.85,
+    "stall_recovery_seconds": 0.6,
+    "max_update_seconds": 0.25
+  },
+  "core_setting_differences": {
+    "target_scale": {
+      "wrapper_candidate": 0.7,
+      "frozen_inline": 0.9
+    },
+    "vertical_only_trigger_enabled": {
+      "wrapper_candidate": true,
+      "frozen_inline": false
+    },
+    "maximum_hold_seconds": {
+      "wrapper_candidate": 2.5,
+      "frozen_inline": 1.0
+    },
+    "pulse_seconds": {
+      "wrapper_candidate": 0.8,
+      "frozen_inline": 1.0
+    }
+  },
+  "candidate_wrapper_launch_limits": {
+    "max_forward_m_s": 0.2,
+    "max_reverse_m_s": 0.1,
+    "max_yaw_rad_s": 0.6,
+    "max_linear_acceleration_m_s2": 0.25,
+    "max_linear_deceleration_m_s2": 0.5,
+    "max_yaw_acceleration_rad_s2": 1.0
+  },
+  "wrapper_required_feedback_fields": [
+    "sim_time_s",
+    "executed_linear_m_s",
+    "left_actual_rad_s",
+    "right_actual_rad_s",
+    "left_target_rad_s",
+    "right_target_rad_s",
+    "have_wheel_state",
+    "cmd_fresh"
+  ],
+  "wrapper_method_lines": {
+    "__init__": {
+      "start": 22,
+      "end": 68
+    },
+    "now": {
+      "start": 70,
+      "end": 71
+    },
+    "mark": {
+      "start": 73,
+      "end": 74
+    },
+    "on_reference": {
+      "start": 76,
+      "end": 85
+    },
+    "on_imu": {
+      "start": 87,
+      "end": 105
+    },
+    "on_feedback": {
+      "start": 107,
+      "end": 119
+    },
+    "on_enable": {
+      "start": 121,
+      "end": 136
+    },
+    "on_reset": {
+      "start": 138,
+      "end": 151
+    },
+    "fresh": {
+      "start": 153,
+      "end": 156
+    },
+    "publish": {
+      "start": 158,
+      "end": 169
+    },
+    "tick": {
+      "start": 171,
+      "end": 221
+    }
+  },
+  "feature_example": {
+    "kind": "synthetic_feature_replay_not_robot_data",
+    "samples": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.02,
+        10.0
+      ],
+      [
+        0.04,
+        0.0
+      ],
+      [
+        0.06,
+        0.0
+      ],
+      [
+        0.08,
+        0.0
+      ],
+      [
+        0.1,
+        0.0
+      ]
+    ],
+    "decision_s": 0.1,
+    "wrapper_last_imu_used_s": 0.04,
+    "wrapper_since_last_used_rms": 0.0,
+    "wrapper_since_last_used_peak": 0.0,
+    "production_ImuWindow_100ms": {
+      "latest_stamp": 0.1,
+      "duration": 0.1,
+      "square_integral": 2.0,
+      "impact_integral": 1.62,
+      "peak": 10.0
+    },
+    "production_100ms_rms": 4.47213595499958,
+    "qualification": "Demonstrates unequal summary features only; no core update or trigger outcome evaluated."
+  },
+  "baseline_config": {
+    "nino_command_gate": {
+      "ros__parameters": {
+        "use_sim_time": false,
+        "command_timeout": 0.3,
+        "max_forward": 0.2,
+        "max_reverse": 0.1,
+        "max_yaw": 0.6,
+        "publish_rate": 20.0
+      }
+    },
+    "velocity_smoother": {
+      "ros__parameters": {
+        "use_sim_time": false,
+        "enable_stamped_cmd_vel": false,
+        "smoothing_frequency": 20.0,
+        "feedback": "OPEN_LOOP",
+        "scale_velocities": false,
+        "max_velocity": [
+          0.2,
+          0.0,
+          0.6
+        ],
+        "min_velocity": [
+          -0.1,
+          0.0,
+          -0.6
+        ],
+        "max_accel": [
+          0.25,
+          0.0,
+          1.0
+        ],
+        "max_decel": [
+          -0.5,
+          0.0,
+          -1.5
+        ],
+        "velocity_timeout": 0.3,
+        "deadband_velocity": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "odom_topic": "/odom"
+      }
+    },
+    "collision_monitor": {
+      "ros__parameters": {
+        "use_sim_time": false,
+        "enable_stamped_cmd_vel": false,
+        "base_frame_id": "base_footprint",
+        "odom_frame_id": "odom",
+        "cmd_vel_in_topic": "/cmd_vel_smoothed",
+        "cmd_vel_out_topic": "/cmd_vel",
+        "state_topic": "/collision_monitor_state",
+        "transform_tolerance": 0.2,
+        "source_timeout": 0.5,
+        "base_shift_correction": true,
+        "stop_pub_timeout": 1.0,
+        "polygons": [
+          "StopZone"
+        ],
+        "StopZone": {
+          "type": "polygon",
+          "action_type": "stop",
+          "points": "[[0.46, 0.34], [0.46, -0.34], [-0.40, -0.34], [-0.40, 0.34]]",
+          "min_points": 3,
+          "visualize": true,
+          "polygon_pub_topic": "/stop_zone",
+          "enabled": true
+        },
+        "observation_sources": [
+          "scan"
+        ],
+        "scan": {
+          "type": "scan",
+          "topic": "/scan",
+          "enabled": true
+        }
+      }
+    }
+  },
+  "nominal_reference_math": {
+    "baseline_forward_limit_m_s": 0.2,
+    "wheel_target_at_nominal_radius_rad_s": 3.2,
+    "ideal_reference_deceleration_time_s": 0.4,
+    "qualification": "Config arithmetic only; not a measured motor speed or stopping bound."
+  },
+  "v7_protocol_sha256": "571f72edfaf74710390b59db784805da1d1015425255b4dc5d415492bcc0a351",
+  "v7_execution_dependencies_unchanged": 249,
+  "input_sha256": {
+    "src/nino_control/nino_control/governor_core.py": "0de39d7b567891204301c8ff3fda226744dae9dfbe36a55bede0199e873d763b",
+    "src/nino_control/nino_control/speed_governor.py": "d4889273974bda2c75a109ee5f34f908083e081fca0e76773bde79143f4d0dd5",
+    "src/nino_control/nino_control/effort_drive.py": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+    "src/nino_control/config/speed_governor.yaml": "f4812014beafc5249d451d126b9aa1dc5786fe2aadab3f5130f0df8d2884f418",
+    "src/nino_control/config/effort_drive.yaml": "df7c20f759f7673ccb18e7738d4a5bc05982027908b54a7fee5ff8b75fd327a1",
+    "src/nino_control/config/controllers.yaml": "e6ffe12c4fe354d53f81c77d63bb7b16b2188c7f470e40964347dda8550cac8b",
+    "src/nino_pi/launch/command_stack.launch.py": "b1b447067dc1598fcd4e7ab0c8cb8cc5fbb92b715aed05062d3cd199704f63af",
+    "src/nino_pi/launch/navigation.launch.py": "31f24e446f483fbf51bfd8566127b540b0e8cb92cc7d45fd09fe91294ad9d848",
+    "src/nino_pi/launch/teleop.launch.py": "cfbb5eb699c25c07813461564f4122770d80bed32e169118bf570ba104831fc5",
+    "src/nino_pi/nino_pi/command_gate.py": "db6fe37bc28252cecf649a64af257c17004b487c66b6407e86fc450780d6cd74",
+    "src/nino_pi/nino_pi/selection.py": "7573bbf15300b907d8728f6831f229509955a53cbc6df95b7847b526d81c939e",
+    "src/nino_pi/config/control.yaml": "f92c19fc69e98162e395d860f77b99bacf9db0411f0c9dbd53dc1eba84495671",
+    "src/nino_pi/config/navigation.yaml": "34cf19223a59c7ed9099fb36701ea57068a0c34fe21af62f6c8d391118e8d8cd",
+    "src/nino_pi/config/real_collection.json": "3dc1fd8993bcf3230256181a2e46b02f50bac532eb7b5d478328d8c73471aff1",
+    "src/nino_pi/config/real_collection_qos.yaml": "e998bab30a18c17cfe5f64667f64efc10af8218a0a1a20d07c6c23ff531d1612",
+    "src/nino_pi/config/real_session.template.json": "8a8cf1fe63d6410d42c8e9179ee644d39501a8960ae2dbd645d65408aca1a722",
+    "src/nino_rl/nino_rl/governor_cadence.py": "626bd95e86a47ae88a2f83b31c493775911b5489768f14f08d79d3152be537e3",
+    "src/nino_rl/nino_rl/governor_adapter.py": "9eaec7c35b8644c480574643369581c2d31e6d1c266ef11656822f1a65cae389",
+    "src/nino_rl/nino_rl/control_v2.py": "f2b6e78aa6535861a402365e47d3f43a76168e2f920aeaf7009bebf7e308dd1c",
+    "docs/governor_isolated_cadence_contract_v7_2026-10-23/inputs/reactive_20ms.yaml": "8ea7c15abeaa0b35faa59630520df952fa1b897fbdfa8afbbf337a20442a9c19",
+    "docs/governor_isolated_cadence_contract_v7_2026-10-23/inputs/reactive_100ms.yaml": "95e018b814a35343b27ef0705aa489ec685594cc27f66acddfc8a74bb5adf0e6"
+  },
+  "script_sha256": "724798f4e692af6a353959ef01ddef56b2ee98562559ef012fc257051a7f6ddf",
+  "qualification": "Source/YAML projection, not resolved installed ROS parameters or verified hardware state."
+}

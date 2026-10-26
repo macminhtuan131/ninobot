@@ -1,0 +1,150 @@
+{
+  "contract": "isolated_joint_gt_cadence_v2_2026_10_22",
+  "protocol_sha256": "e573217d959e5b4a26e52f733d5cb4c4387284f9f1e27c1643cf72397f85ba0c",
+  "executor_sha256": "c9b83a53dfda149367bcfc697628d542feb211e19a4a73e767bd471f5e32d8c5",
+  "execution_authorized": true,
+  "budget_released": true,
+  "maximum_attempts": 12,
+  "mode": "descriptive_cadence_experiment",
+  "thresholds_applied": false,
+  "application_thresholds": "proposal_only",
+  "authorization_reference": "User current-turn request on 2026-10-23: evaluate the current situation and continously do what suggested. The immediately preceding recommendation was one new bounded v2 cadence screen, maximum 12 attempts.",
+  "authorization_interpretation": "Continuation of the concrete preceding recommendation is treated as authorization for this batch only; it is not authorization for hardware, tuning, learning, retries, other contracts or extensions.",
+  "authorized_schedule": [
+    {
+      "attempt": 1,
+      "seed": 77600,
+      "repeat": 1,
+      "triad_id": "seed_77600_repeat_1",
+      "position": 1,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 2,
+      "seed": 77600,
+      "repeat": 1,
+      "triad_id": "seed_77600_repeat_1",
+      "position": 2,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 3,
+      "seed": 77600,
+      "repeat": 1,
+      "triad_id": "seed_77600_repeat_1",
+      "position": 3,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 4,
+      "seed": 77601,
+      "repeat": 1,
+      "triad_id": "seed_77601_repeat_1",
+      "position": 1,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 5,
+      "seed": 77601,
+      "repeat": 1,
+      "triad_id": "seed_77601_repeat_1",
+      "position": 2,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 6,
+      "seed": 77601,
+      "repeat": 1,
+      "triad_id": "seed_77601_repeat_1",
+      "position": 3,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 7,
+      "seed": 77601,
+      "repeat": 2,
+      "triad_id": "seed_77601_repeat_2",
+      "position": 1,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 8,
+      "seed": 77601,
+      "repeat": 2,
+      "triad_id": "seed_77601_repeat_2",
+      "position": 2,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true
+    },
+    {
+      "attempt": 9,
+      "seed": 77601,
+      "repeat": 2,
+      "triad_id": "seed_77601_repeat_2",
+      "position": 3,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 10,
+      "seed": 77600,
+      "repeat": 2,
+      "triad_id": "seed_77600_repeat_2",
+      "position": 1,
+      "arm": "reactive_20ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 11,
+      "seed": 77600,
+      "repeat": 2,
+      "triad_id": "seed_77600_repeat_2",
+      "position": 2,
+      "arm": "reactive_100ms",
+      "profile": "reactive",
+      "cold_start": true
+    },
+    {
+      "attempt": 12,
+      "seed": 77600,
+      "repeat": 2,
+      "triad_id": "seed_77600_repeat_2",
+      "position": 3,
+      "arm": "full",
+      "profile": "full",
+      "cold_start": true
+    }
+  ],
+  "integration_attempts": [
+    1,
+    2
+  ],
+  "retries": 0,
+  "replacements": 0,
+  "extra_smoke": 0,
+  "automatic_extension": false,
+  "old_slots_reused": false,
+  "hard_stop_on_integrity_fault": true,
+  "robot_hardware": "on_hold",
+  "PPO": false,
+  "predictor": false,
+  "Optuna": false,
+  "created_at": "2026-10-23T11:54:24.514675+00:00"
+}
