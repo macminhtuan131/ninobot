@@ -5,6 +5,18 @@
   "robot_id": null,
   "date_utc": null,
   "notes": "Null means unknown, never zero. Units are encoded in field names. Fill evidence/uncertainty; this file is a measurement form, not controller parameters.",
+  "firmware_integration": {
+    "source_repository": null,
+    "reviewed_source_commit": null,
+    "flashed_source_commit_and_evidence": null,
+    "flashed_binary_sha256_and_evidence": null,
+    "board_model_revision_and_mcu_part": null,
+    "usb_vid_pid_serial_and_device_path": null,
+    "agent_version_launch_domain_and_environment": null,
+    "motor_protocol_and_board_pinout_verified": null,
+    "boot_enable_and_rc_arbitration_verified": null,
+    "collection_profile_and_claim_scope": null
+  },
   "hardware": {
     "pi_model_ram": null,
     "motor_model_left_right": null,

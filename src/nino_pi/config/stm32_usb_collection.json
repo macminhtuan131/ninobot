@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "duration_s": 60,
+  "max_session_mb": 1024,
+  "reserve_disk_mb": 1024,
+  "note": "EDIT names for your real drivers. Required means needed for the initial sensor/command dataset, not proof of readiness. Optional missing topics stay unavailable. No automatic actuation.",
+  "topics": [
+    {
+      "name": "/imu/data",
+      "required": true,
+      "purpose": "Raw acceleration, gyro, orientation/covariance, source stamp and sensor frame"
+    },
+    {
+      "name": "/joint_states",
+      "required": true,
+      "purpose": "Named wheel position/velocity and reported effort if actually supplied"
+    },
+    {
+      "name": "/scan",
+      "required": true,
+      "purpose": "Complete horizontal LiDAR ranges, geometry and per-beam timing"
+    },
+    {
+      "name": "/odom",
+      "required": true,
+      "purpose": "Estimator pose/twist/covariance; not independent slip ground truth"
+    },
+    {
+      "name": "/tf",
+      "required": true,
+      "purpose": "Dynamic frame tree and ownership"
+    },
+    {
+      "name": "/tf_static",
+      "required": true,
+      "purpose": "Declared IMU/LiDAR/base/wheel mounting transforms"
+    },
+    {
+      "name": "/cmd_vel",
+      "required": true,
+      "purpose": "Final velocity command visible on ROS, not necessarily executed wheel target"
+    },
+    {
+      "name": "/cmd_vel_nav",
+      "required": false,
+      "purpose": "Navigation source command if stack uses this topic"
+    },
+    {
+      "name": "/cmd_vel_teleop",
+      "required": false,
+      "purpose": "Teleoperation source command if stack uses this topic"
+    },
+    {
+      "name": "/cmd_vel_selected",
+      "required": false,
+      "purpose": "Command arbitration output"
+    },
+    {
+      "name": "/cmd_vel_smoothed",
+      "required": false,
+      "purpose": "Velocity smoother output before collision monitor"
+    },
+    {
+      "name": "/nino_drive/diagnostics",
+      "required": false,
+      "purpose": "PI target/feedback, requested/limited torque, saturation, integrator when real backend provides these fields"
+    },
+    {
+      "name": "/wheel_effort_controller/commands",
+      "required": false,
+      "purpose": "Torque COMMAND only if real robot uses this interface; never launch a simulation controller to populate it"
+    },
+    {
+      "name": "/wheel_torque_applied",
+      "required": false,
+      "purpose": "Limited/applied torque COMMAND if published, not measured torque"
+    },
+    {
+      "name": "/battery_state",
+      "required": false,
+      "purpose": "Reported supply voltage/current/temperature/charge if instrumented"
+    },
+    {
+      "name": "/diagnostics",
+      "required": false,
+      "purpose": "Driver faults, motor/thermal/power and communication diagnostics"
+    },
+    {
+      "name": "/nino/emergency_stop",
+      "required": false,
+      "purpose": "Observed software stop requests; not proof of a physical stop"
+    },
+    {
+      "name": "/collision_monitor_state",
+      "required": false,
+      "purpose": "Collision monitor intervention state if published"
+    },
+    {
+      "name": "/amcl_pose",
+      "required": false,
+      "purpose": "Localization estimate/covariance during mapped navigation"
+    },
+    {
+      "name": "/plan",
+      "required": false,
+      "purpose": "Global reference path if navigation publishes it"
+    },
+    {
+      "name": "/map",
+      "required": false,
+      "purpose": "Real occupancy map context if mapping or navigation is active"
+    },
+    {
+      "name": "/motor_fb",
+      "required": true,
+      "purpose": "Original firmware wheel feedback before bridge; reported values require matching fresh status, names and clock verification"
+    },
+    {
+      "name": "/motor_status",
+      "required": true,
+      "purpose": "Firmware raw status bitmask; decode only against the flashed firmware version"
+    },
+    {
+      "name": "/imu/debug",
+      "required": false,
+      "purpose": "Firmware IMU diagnostics; not an estimator input"
+    },
+    {
+      "name": "/imu/bridge",
+      "required": false,
+      "purpose": "Bridge IMU output; header may have been sanitized"
+    },
+    {
+      "name": "/odom/unfiltered",
+      "required": false,
+      "purpose": "Bridge encoder odometry; not independent body ground truth"
+    },
+    {
+      "name": "/scan_raw",
+      "required": false,
+      "purpose": "LiDAR input before optional scan deskew"
+    },
+    {
+      "name": "/motor_enable",
+      "required": false,
+      "purpose": "Observed firmware enable requests; recording does not publish or disable motors"
+    },
+    {
+      "name": "/cmd_mit",
+      "required": false,
+      "purpose": "Observed MIT command; never replay on connected motors"
+    },
+    {
+      "name": "/cmd_torque",
+      "required": false,
+      "purpose": "Observed torque command, not measured torque"
+    }
+  ],
+  "profile_id": "stm32_usb_full_v1",
+  "claim_scope": "Full sensor/command dataset with original STM32 channels. Software completeness does not validate motor freshness, mode, safety, slip or timing."
+}

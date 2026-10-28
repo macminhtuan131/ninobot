@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "duration_s": 60,
+  "max_session_mb": 1024,
+  "reserve_disk_mb": 1024,
+  "note": "A separate initial commissioning contract, not a relaxed full dataset. Missing valid IMU remains incomplete; diagnose with /imu/debug. No automatic actuation.",
+  "topics": [
+    {
+      "name": "/imu/data",
+      "required": true,
+      "purpose": "Original firmware IMU including source stamp; verify calibration, time sync and sample validity"
+    },
+    {
+      "name": "/motor_status",
+      "required": true,
+      "purpose": "Original firmware status; lack of motor freshness is expected with motor power disconnected"
+    },
+    {
+      "name": "/motor_fb",
+      "required": false,
+      "purpose": "Original firmware wheel feedback before bridge; reported values require matching fresh status, names and clock verification"
+    },
+    {
+      "name": "/imu/debug",
+      "required": false,
+      "purpose": "Firmware IMU diagnostics; not an estimator input"
+    },
+    {
+      "name": "/motor_enable",
+      "required": false,
+      "purpose": "Observed firmware enable requests; recording does not publish or disable motors"
+    },
+    {
+      "name": "/cmd_mit",
+      "required": false,
+      "purpose": "Observed MIT command; never replay on connected motors"
+    },
+    {
+      "name": "/cmd_torque",
+      "required": false,
+      "purpose": "Observed torque command, not measured torque"
+    },
+    {
+      "name": "/cmd_vel",
+      "required": false,
+      "purpose": "Observe unexpected velocity command publishers; recorder sends no commands"
+    }
+  ],
+  "profile_id": "stm32_usb_imu_inventory_v1",
+  "claim_scope": "USB/IMU inventory only with motor power disconnected; no claim about encoders, motor response, navigation, slip, crossing or deployment."
+}

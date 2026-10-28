@@ -6,9 +6,21 @@ Gazebo, PyTorch, CUDA hay checkpoint RL. Đây là tầng navigation phía trên
 driver vật lý; bundle **không chứa driver CyberGear/CAN, IMU hoặc LiDAR**.
 Repository hiện chưa có backend CyberGear `ros2_control` cho robot thật.
 
+**Hiện trạng 28/10/2026:** đã có dữ liệu sensor/STM32/LiDAR thật được kiểm
+ngày 27/10; chưa có motion-response dataset đã xác minh. Xem
+[đánh giá tiến độ và công việc kế tiếp](../../../docs/NINO_PROGRESS_AND_NEXT_STEPS_2026-10-28.md)
+và [protocol/profile wheel response](WHEEL_RESPONSE_PROTOCOL.md). Profile
+wheel-level riêng không yêu cầu full navigation; command path và giới hạn
+thật vẫn cần được chốt trước lượt motor.
+
 **Thu thập dữ liệu chỉ đọc:** xem [REAL_DATA_COLLECTION.md](REAL_DATA_COLLECTION.md)
 cho danh mục số liệu cần đo, config, live monitor và collector ROS bag có giới
 hạn trên Ubuntu Server/Pi qua SSH. Không khởi động motor hoặc gửi lệnh chuyển động.
+
+**Firmware STM32H723 qua USB:** xem
+[STM32_USB_INTEGRATION.md](STM32_USB_INTEGRATION.md) cho profile thu raw,
+metadata bản firmware và cách kiểm tra agent; USB/IMU có phạm vi riêng với
+bộ dữ liệu đầy đủ. Không tự nạp board hoặc enable motor.
 
 **Lái từ laptop và ghi dữ liệu:** xem
 [LAPTOP_CONTROL_AND_COLLECTION.md](LAPTOP_CONTROL_AND_COLLECTION.md).

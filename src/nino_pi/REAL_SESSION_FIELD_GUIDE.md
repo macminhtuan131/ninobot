@@ -2,6 +2,12 @@
 
 Biểu mẫu: `config/real_session.template.json`.
 
+Cho pilot command→wheel, dùng
+[`config/wheel_response_session.template.json`](config/wheel_response_session.template.json)
+và [WHEEL_RESPONSE_PROTOCOL.md](WHEEL_RESPONSE_PROTOCOL.md). Form này bổ sung
+owner/RC/stop/profile, clocks/events và cách xử lý trial; unknown vẫn null.
+Đây là metadata chuẩn bị, chưa phải release hoặc bộ kiểm motion readiness.
+
 **Không phải điền hết mới được thu dữ liệu.** Đây là metadata: giúp hiểu và
 tái lập một lần thu. Nó không cấu hình motor, PI hay governor. Telemetry biến
 thiên theo thời gian vẫn được ghi trong bag; không chép từng sample vào form.
@@ -48,13 +54,35 @@ held-out split… **không phải điều kiện để chạy một audit đứn
 thiếu feedback/limits/watchdog/power verification vẫn ngăn kết luận robot sẵn
 sàng thử chuyển động. Chưa có independent body reference thì chưa đo slip tuyệt đối.
 
-Không cần nhập lại 81 trường bằng tay mỗi phiên. `hardware`, phần geometry
+Không cần nhập lại toàn bộ trường bằng tay mỗi phiên. `hardware`, phần geometry
 không đổi, mounting và cấu hình controller có thể tái sử dụng từ bản inventory
 đã kiểm tra, kèm version/evidence. Cập nhật khi thay bánh/caster, firmware,
 driver, gain/limits, sensor mount hoặc cấu hình nguồn. Ngày, payload, điều kiện
 sàn, route/obstacle, mode và outcome phải phản ánh đúng phiên hiện tại.
 
 ## 3. Thông tin chung
+
+### Metadata firmware khi dùng STM32 USB
+
+`firmware_integration` là mục bổ sung, không cấu hình hoặc nạp board:
+
+- `source_repository`, `reviewed_source_commit`: URL và commit đã đọc/build.
+- `flashed_source_commit_and_evidence`, `flashed_binary_sha256_and_evidence`:
+  bản thực sự đã nạp cùng log/provenance; chưa xác định thì giữ `null`.
+  Checkout trên laptop và tên USB không xác nhận bản firmware trên board.
+- `board_model_revision_and_mcu_part`: nhãn board, revision và mã MCU thực.
+- `usb_vid_pid_serial_and_device_path`: descriptor, serial và đường dẫn
+  thiết bị quan sát trong phiên, có thể kèm evidence/ngày.
+- `agent_version_launch_domain_and_environment`: version/commit agent, lệnh,
+  ROS domain và RMW/discovery thực dùng. Domain của host chưa chứng minh
+  domain client firmware hoặc static library đã build.
+- `motor_protocol_and_board_pinout_verified`,
+  `boot_enable_and_rc_arbitration_verified`: evidence đối chiếu đúng firmware,
+  wiring/motor và RC; chưa xác minh giữ `null`, không tự đặt `true` từ README.
+- `collection_profile_and_claim_scope`: tên profile và phạm vi kết luận.
+  Profile USB/IMU không chứng minh encoder/motor hoặc navigation hoạt động.
+
+Xem [STM32_USB_INTEGRATION.md](STM32_USB_INTEGRATION.md) cho profile riêng.
 
 | Trường | Kiểu cần | Lấy từ đâu / cách điền |
 |---|---|---|

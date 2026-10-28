@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "profile_id": "stm32_usb_command_to_wheel_v1_draft",
+  "duration_s": 60,
+  "max_session_mb": 1024,
+  "reserve_disk_mb": 1024,
+  "note": "Draft collection plan only. This recorder creates no command publisher and does not enable, stop or lock motors. duration_s is a proposed recording budget, not an accepted motion duration. Required topics need message validity, timing and freshness review beyond counts. Before claiming full command-chain tracing, copy this profile and make every active source/intermediate command topic required; do not silently accept a missing source trace.",
+  "claim_scope": "Final ROS velocity command to reported wheel feedback on clear floor. Not executed wheel target, motor PI latency, independent body motion, slip, stopping certification, navigation, obstacle crossing or governor benefit. Missing target telemetry limits identification to the combined command-to-wheel path.",
+  "topics": [
+    {
+      "name": "/cmd_vel",
+      "required": true,
+      "purpose": "Final velocity request visible on ROS. Twist has no header; bag time is recorder receipt, not STM32 receipt or actuator execution time."
+    },
+    {
+      "name": "/motor_fb",
+      "required": true,
+      "purpose": "Original named left/right JointState position rad and velocity rad/s from STM32. Verify mapping, units, source clock and freshness. Effort remains reported_unverified, not independently measured torque or current."
+    },
+    {
+      "name": "/motor_status",
+      "required": true,
+      "purpose": "Raw status bitmask with matching firmware schema. Freshness, bus-off and timeout support interpretation. Bit 4 is firmware g_system_enabled before RC arbitration; it is not effective_enable, physical motor power or measured torque."
+    },
+    {
+      "name": "/imu/data",
+      "required": false,
+      "purpose": "Original IMU with sensor-frame values and source header. Supports gyro/acceleration inspection but alone does not give independent body speed."
+    },
+    {
+      "name": "/cmd_vel_teleop",
+      "required": false,
+      "purpose": "Teleop source request if this source is active. Must be required in the run-specific profile when claiming source-to-final chain tracing."
+    },
+    {
+      "name": "/cmd_vel_selected",
+      "required": false,
+      "purpose": "Arbitration output if active. Must be required in the run-specific profile when claiming this stage was traced."
+    },
+    {
+      "name": "/cmd_vel_smoothed",
+      "required": false,
+      "purpose": "Shaped reference before collision monitor if active. Must be required in the run-specific profile when claiming this stage was traced; still not an executed wheel target."
+    },
+    {
+      "name": "/motor_enable",
+      "required": false,
+      "purpose": "Observed ROS enable requests only. RC requests and effective state may not be visible on this topic; recording never sends enable or disable."
+    },
+    {
+      "name": "/cmd_mit",
+      "required": false,
+      "purpose": "Observe conflicting or mode-changing MIT requests if present. Do not create or replay commands to populate this channel."
+    },
+    {
+      "name": "/cmd_torque",
+      "required": false,
+      "purpose": "Observe conflicting or mode-changing torque requests if present. A command is not measured torque; do not create or replay it."
+    },
+    {
+      "name": "/joint_states",
+      "required": false,
+      "purpose": "Bridge conversion for comparison with original /motor_fb. Not an additional independent wheel measurement."
+    },
+    {
+      "name": "/imu/bridge",
+      "required": false,
+      "purpose": "Bridge IMU for comparison; header may be sanitized."
+    },
+    {
+      "name": "/odom/unfiltered",
+      "required": false,
+      "purpose": "Encoder-derived odometry with declared geometry. Not independent body speed or slip ground truth."
+    },
+    {
+      "name": "/scan_raw",
+      "required": false,
+      "purpose": "Horizontal LiDAR context if already running. No body-reference claim without a separately validated estimator, clock and uncertainty."
+    },
+    {
+      "name": "/tf",
+      "required": false,
+      "purpose": "Dynamic declared frame context if supplied; a full odom frame tree is not required for the command-to-wheel claim."
+    },
+    {
+      "name": "/tf_static",
+      "required": false,
+      "purpose": "Declared sensor mounting context if supplied."
+    }
+  ]
+}

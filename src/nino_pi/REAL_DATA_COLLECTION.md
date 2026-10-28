@@ -1,11 +1,24 @@
 # Thu thập dữ liệu robot thật Nino — Ubuntu 24.04 / ROS 2 Jazzy / Pi 5
 
+**Cập nhật 28/10/2026:** đã có các phiên sensor/STM32/LiDAR thật ngày
+27/10 được kiểm raw/hash và đối chiếu bridge; xem
+[báo cáo hiện trạng](../../../docs/NINO_PROGRESS_AND_NEXT_STEPS_2026-10-28.md).
+Bước kế tiếp là [wheel response trên sàn sạch](WHEEL_RESPONSE_PROTOCOL.md)
+với profile và session form riêng. Dataset motion này chưa được thu;
+profile full/navigation giữ required cũ. `--check` chỉ kiểm đầu vào/kế hoạch,
+không chứng minh command ownership, coverage hoặc motion readiness.
+
 **Điều khiển từ laptop khi thu:** xem
 [LAPTOP_CONTROL_AND_COLLECTION.md](LAPTOP_CONTROL_AND_COLLECTION.md) cho helper
 SSH keyboard, mapping/Nav2/RViz, build trên Pi và quy trình vừa lái vừa ghi.
 Collector vẫn chỉ đọc; điều khiển được khởi động/bật riêng bởi người vận hành.
 
 ## 1. Bộ này làm gì?
+
+**Với firmware Microros_H723_USB:** xem
+[STM32_USB_INTEGRATION.md](STM32_USB_INTEGRATION.md). Dùng profile riêng
+để giữ `/motor_fb`, `/motor_status`, `/imu/data` trước bridge và ghi bản
+firmware đã kiểm tra; không suy firmware đang nạp từ tên USB.
 
 Thu thập **chỉ đọc** từ driver đang có. Không khởi động driver, Nav2, PI,
 governor hoặc teleop; không gửi lệnh motor, không sửa parameter hay gain.
@@ -22,8 +35,10 @@ Không cần màn hình trên Ubuntu Server. Chạy qua SSH được.
   `config/motor_telemetry.example.json`.
 
 Đây là công cụ lấy bằng chứng, **chưa xác nhận robot ổn định hoặc governor
-có ích**. Chưa được thử trên Pi/driver của bạn. Test tích hợp dùng sensor
-giả trong ROS domain localhost riêng, không chạy Gazebo hoặc robot thật.
+có ích**. Collector/sensor stage đã được dùng trên Pi/driver trong các
+phiên 27/10; phạm vi đã kiểm là acquisition/inventory, chưa phải wheel/body
+response hoặc navigation. Các test tích hợp phần mềm trước đó dùng sensor
+giả trong ROS domain localhost riêng; chúng không phải thử nghiệm robot thật.
 
 ## 2. Dữ liệu nào cần? Lấy bằng cách nào?
 

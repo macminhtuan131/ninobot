@@ -1,0 +1,27 @@
+{
+  "status": "offline_preparation_verified_not_hardware_ready",
+  "required_topics": [
+    "/cmd_vel",
+    "/motor_fb",
+    "/motor_status"
+  ],
+  "full_navigation_requirements_preserved": true,
+  "generic_evidence_sections_preserved": true,
+  "unaccepted_limits_and_trial_budget_remain_null": true,
+  "collector_check_exit_code": 0,
+  "process_creation_blocked_during_check": true,
+  "rclpy_imported": false,
+  "output_directory_created": false,
+  "motion_commands_sent": 0,
+  "hardware_trials": 0,
+  "simulation_runs": 0,
+  "package_share_protocol_entry_present": true,
+  "received_report_hash_matches": true,
+  "artifact_sha256": {
+    "src/nino_pi/config/stm32_usb_wheel_response_collection.json": "7b99fd497dcac5e2a4ba1bb633ba17494e649af1bdb999108e16b5175ebd06db",
+    "src/nino_pi/config/wheel_response_session.template.json": "a02935e801623816c5faebf39cb15c94d4fbdc33259408e70975be7981e1280e",
+    "src/nino_pi/WHEEL_RESPONSE_PROTOCOL.md": "af1bb6787715b96985c0cb7f7ce7e0420c5fcafc63605da8005309663ddaa404",
+    "docs/NINO_PROGRESS_AND_NEXT_STEPS_2026-10-28.md": "2e05139fd9931f4971b31ab4f0f7750c5ac1fbb2085956df07a4b5b492572c94",
+    "docs/NINO_RESEARCH_REPORT_SOURCE_CHECK_2026-10-28.md": "23e07074e29a3490fe5fa69616a241b699d408817d9e9f8d3d877ca899f16aa7"
+  }
+}
