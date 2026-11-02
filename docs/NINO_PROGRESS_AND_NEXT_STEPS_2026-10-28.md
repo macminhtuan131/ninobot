@@ -1,5 +1,49 @@
 # Nino — đánh giá tiến độ và kế hoạch sau Deep Research, 28/10/2026
 
+> **Cập nhật sau reboot 02/11:** Agent và sensor readers đã nối lại ở boot 415f7fe9; raw IMU/hai bánh/LiDAR/TF có dữ liệu. Pilot v2 **đóng ở 1/3**, hai slot còn lại đóng: trial source đã kết thúc nhưng recorder chưa có closure trước reboot. Giữ raw, chưa retry. Không dùng lệnh thu bên dưới để chạy lại đợt đã đóng.
+
+
+> **Cập nhật mới nhất 02/11: pilot v2 đã được đồng ý và chuẩn bị, 0/3 lượt.**
+> V1 vẫn đóng ở 1/3, hai slot cũ không tái sử dụng. Readiness mới kiểm live
+> trước cấp slot; zero-only preflight đạt, chưa chạy motion pilot.
+> [Lệnh thu lượt 1 và điểm dừng](NINO_WHEEL_REPEATABILITY_PILOT_V2_2026-11-02.md).
+> Các cập nhật cũ bên dưới là lịch sử.
+
+
+## Cập nhật sau followup RC AUTO ngày 02/11/2026
+
+Đã có một bag tiến–zero hợp lệ với phản ứng hai bánh và người vận hành
+xác nhận tiến/tự dừng, không lệch/giật rõ. Firmware giữ nguyên; RC AUTO
+là điều kiện vận hành. Thu/measurement và command-to-wheel feasibility
+đã qua cho một lượt sàn sạch. Chưa là calibrated ID, repeatability hoặc
+physical stop/slip proof. Bước tiếp theo đề xuất là3lượt cùng profile kiểm
+độ lặp/chênh hai bánh; protocol draft chưa release, không mở PPO/governor
+hoặc obstacle trial. Xem [hiện trạng mới nhất](NINO_CURRENT_FIRMWARE_COLLECTION_2026-11-02.md).
+
+## Cập nhật commissioning 02/11/2026
+
+Đã có bag tiến–zero hợp lệ, đủ command trace và feedback; final ROS đạt
+0,05 m/s nhưng bánh gần như không đổi góc, người vận hành báo xe không di
+chuyển. Thu/audit đạt cho câu hỏi hiện tại; chưa có command-to-wheel
+response hữu ích. Đóng một lượt commissioning đã chọn, không mở pilot hoặc
+retry. Việc ngay là đọc LCD RC/effective arbitration của firmware hiện có;
+chưa thay firmware. Xem [hiện trạng 02/11](NINO_CURRENT_FIRMWARE_COLLECTION_2026-11-02.md)
+và báo cáo workspace `artifacts/wheel_commissioning_evaluation_2026-11-02/REPORT.md`.
+
+> **Mới nhất 02/11:** giữ firmware cũ theo correction của người dùng. Agent
+> đã nối và reader được phục hồi, nhưng lần kiểm còn thiếu fresh CAN/scan;
+> người dùng sau đó cấp nguồn và restart, Pi hiện mất kết nối. Helper thu
+> một lượt qua ROS enable đã kiểm offline, chưa deploy/release.
+> [Hiện trạng và gate trước khi thu](NINO_CURRENT_FIRMWARE_COLLECTION_2026-11-02.md).
+
+> **Cập nhật vận hành 01/11:** đã nối SSH tới Pi `.109`, khôi phục sensor-only
+> runtime, kiểm live TF/topic, build `nino_pi` và sửa helper domain/overlay.
+> [Chi tiết và artifact](NINO_PI_RECONNECT_2026-11-01.md). P0 phần package
+> đã tiến thêm. **Cập nhật tiếp:** scan/odom TF và preflight chuỗi command
+> riêng đã đạt; người dùng đã kiểm RC/stop và chọn một lượt 0,05 m/s.
+> [Lệnh thu và giới hạn](NINO_WHEEL_COLLECTION_READY_2026-11-01.md).
+> Chưa thực hiện lượt motor-driven mới. Các bảng ngày 28/10 bên dưới là mốc lịch sử.
+
 ## 1. Quyết định hiện tại
 
 **Nino đã hoàn thành bước tích hợp/kiểm dữ liệu cảm biến ban đầu và đang

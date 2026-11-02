@@ -1,5 +1,12 @@
 # PROMPT DEEP RESEARCH — NINO: HIỆN TRẠNG, PHẢN BIỆN VÀ LỘ TRÌNH PHÁT TRIỂN
 
+> **Hiện trạng vận hành mới hơn bản prompt:** xem
+> [nối lại Pi 01/11/2026](NINO_PI_RECONNECT_2026-11-01.md). Đã khôi phục
+> sensor-only runtime và cài `nino_pi`; helper domain/overlay đã được sửa.
+> Chưa có dataset điều khiển motor mới; scan/odom TF và motion contract
+> vẫn chưa đóng. Nội dung dưới đây giữ mốc bối cảnh 28/10, không phải
+> inventory runtime ngày 01/11.
+
 Ngày tổng hợp: **28/10/2026**, múi giờ UTC+7. Bằng chứng phần cứng mới nhất
 được mô tả dưới đây được thu/kiểm ngày **27/10/2026**. Đây là bản cập nhật
 thay cho nhận định cũ rằng dự án chưa có dữ liệu robot thật. Không suy ra

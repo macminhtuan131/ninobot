@@ -77,6 +77,17 @@ def quaternion(q):
     return [float(q.x), float(q.y), float(q.z), float(q.w)]
 
 
+def diagnostic_level(value):
+    """ROS byte fields can be exposed as one byte or an integer by Python."""
+    if isinstance(value, (bytes, bytearray)):
+        if len(value) != 1:
+            raise ValueError("diagnostic level needs exactly one byte")
+        return value[0]
+    if type(value) is int and 0 <= value <= 255:
+        return value
+    raise ValueError("diagnostic level needs a byte or uint8 integer")
+
+
 def extract(msg, kind):
     """Store compact measurements, not complete laser arrays or arbitrary secrets."""
     result = {}
@@ -116,7 +127,7 @@ def extract(msg, kind):
                                     rotation=quaternion(t.transform.rotation)) for t in msg.transforms]
     elif kind == "diagnostics":
         # Do not dump arbitrary diagnostic key/value strings (may contain credentials).
-        result["statuses"] = [dict(name=s.name, level=int(s.level), message=s.message[:300]) for s in msg.status]
+        result["statuses"] = [dict(name=s.name, level=diagnostic_level(s.level), message=s.message[:300]) for s in msg.status]
     elif kind == "clock":
         result["clock_ns"] = stamp_ns(msg.clock)
     elif hasattr(msg, "data") and not isinstance(msg.data, str):

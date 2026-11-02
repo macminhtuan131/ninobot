@@ -134,3 +134,16 @@ def test_invalid_limits(option,value,tmp_path):
     with pytest.raises(SystemExit):
         audit.main(["--output",str(tmp_path/"new"),option,value])
     assert not (tmp_path/"new").exists()
+
+
+@pytest.mark.parametrize("level,expected",[(0,0),(3,3),(b"\x00",0),(b"\x03",3),(bytearray([2]),2)])
+def test_diagnostic_byte_level_representation(level,expected):
+    status=NS(name="test",level=level,message="diagnostic")
+    result=audit.extract(NS(status=[status]),"diagnostics")
+    assert result["statuses"] == [dict(name="test",level=expected,message="diagnostic")]
+
+
+@pytest.mark.parametrize("level",[b"",b"\x00\x01",-1,256,True,"0"])
+def test_invalid_diagnostic_byte_is_reported(level):
+    with pytest.raises(ValueError):
+        audit.extract(NS(status=[NS(name="test",level=level,message="diagnostic")]),"diagnostics")
