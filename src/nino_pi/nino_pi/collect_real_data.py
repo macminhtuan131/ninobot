@@ -47,14 +47,19 @@ def load_config(path):
         value = config.get(key)
         if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or not lo <= value <= hi:
             raise ValueError(f"{key} must be finite in {lo}..{hi}")
+    if config.get("storage_preset_profile", "none") not in ("none", "resilient"):
+        raise ValueError("storage_preset_profile must be none or resilient")
     return config
 
 
 def bag_command(directory, config, qos):
-    return ["ros2", "bag", "record", "--storage", "sqlite3", "--output", str(directory / "bag"),
+    command = ["ros2", "bag", "record", "--storage", "sqlite3", "--output", str(directory / "bag"),
             "--disable-keyboard-controls", "--node-name", "nino_real_data_recorder",
-            "--max-cache-size", "16777216", "--qos-profile-overrides-path", str(qos),
-            "--topics", *[row["name"] for row in config["topics"]]]
+            "--max-cache-size", "16777216", "--qos-profile-overrides-path", str(qos)]
+    # Explicit opt-in; historical configs keep their original command line.
+    if "storage_preset_profile" in config:
+        command.extend(["--storage-preset-profile", config["storage_preset_profile"]])
+    return command + ["--topics", *[row["name"] for row in config["topics"]]]
 
 
 def stop_child(child, grace=15):

@@ -36,11 +36,24 @@ def test_default_configuration_and_no_simulated_clock_or_all_topics(tmp_path):
     assert not {"-a", "--all", "--use-sim-time", "--no-discovery"}.intersection(argv)
     assert "/tf_static" in argv and "--disable-keyboard-controls" in argv
     assert "--storage" in argv and "sqlite3" in argv
+    assert "--storage-preset-profile" not in argv
+
+
+def test_resilient_storage_is_explicit_opt_in(tmp_path):
+    config = collect.load_config(CONFIG / "real_collection.json")
+    config["storage_preset_profile"] = "resilient"
+    target = tmp_path / "config.json"
+    target.write_text(json.dumps(config))
+    loaded = collect.load_config(target)
+    argv = collect.bag_command(tmp_path, loaded, CONFIG / "real_collection_qos.yaml")
+    i = argv.index("--storage-preset-profile")
+    assert argv[i + 1] == "resilient" and i < argv.index("--topics")
 
 
 @pytest.mark.parametrize("change", [
     {"duration_s": 0}, {"duration_s": float("nan")}, {"reserve_disk_mb": -1},
     {"max_session_mb": True}, {"schema_version": 2}, {"topics": []},
+    {"storage_preset_profile": "typo"}, {"storage_preset_profile": None},
     {"topics": [{"name": "relative", "required": True, "purpose": "test"}]},
     {"topics": [{"name": "/a", "required": "true", "purpose": "test"}]},
     {"topics": [{"name": "/a", "required": True, "purpose": "a"}] * 2},

@@ -6,6 +6,13 @@ Gazebo, PyTorch, CUDA hay checkpoint RL. Đây là tầng navigation phía trên
 driver vật lý; bundle **không chứa driver CyberGear/CAN, IMU hoặc LiDAR**.
 Repository hiện chưa có backend CyberGear `ros2_control` cho robot thật.
 
+**GUI chuyển nguồn / ARM / DISARM (03/11/2026):** xem
+[CONTROL_MODES_GUI.md](CONTROL_MODES_GUI.md). Có tab chọn nguồn và tab thu
+đứng yên/zero/tiến–dừng/teleop, metadata, recorder và kiểm hash; Nav2 là
+observer, chưa có chức năng gửi goal. Có app laptop và firmware
+authority opt-in để chọn ROS không cần tay RC. Đã kiểm offline; chưa flash
+hoặc kiểm trên robot. Firmware RC cũ không thể đổi quyền chỉ bằng GUI.
+
 **Hiện trạng 28/10/2026:** đã có dữ liệu sensor/STM32/LiDAR thật được kiểm
 ngày 27/10; chưa có motion-response dataset đã xác minh. Xem
 [đánh giá tiến độ và công việc kế tiếp](../../../docs/NINO_PROGRESS_AND_NEXT_STEPS_2026-10-28.md)
@@ -311,3 +318,9 @@ Nguồn thiết kế: [Nav2 velocity smoother Jazzy](https://docs.nav2.org/jazzy
 [Nav2 collision monitor](https://docs.nav2.org/jazzy/tutorials/general_tutorials/using_collision_monitor/using_collision_monitor/),
 [teleop_twist_keyboard ROS 2](https://github.com/ros-teleop/teleop_twist_keyboard/tree/ros2).
 Thông số và launch đã đối chiếu với package Jazzy cài trong workspace máy phát triển.
+# Hồ sơ tiến độ trong GUI v3
+
+`bash ~/ninorobot/src/nino_pi/scripts/mode_gui.sh --project` mở tab hồ sơ
+local: data đã/chưa thu, kết quả/thông số có nguồn, to-do và chất lượng
+Q0–Q4 theo claim. Không tự kết nối hoặc ARM. Xem
+[CONTROL_MODES_GUI.md](CONTROL_MODES_GUI.md) để biết giới hạn triển khai.

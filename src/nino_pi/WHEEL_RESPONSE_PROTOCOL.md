@@ -1,5 +1,10 @@
 # Command → wheel response trên sàn sạch — bản chuẩn bị
 
+> Cập nhật 02/11/2026: các đợt V1/V2 đã đóng ở 1/3, không dùng các thiết kế
+> draft bên dưới để mở lại slot. Bản sửa khởi tạo helper nằm tại
+> `docs/NINO_WHEEL_STARTUP_FIX_2026-11-02.md`, đã kiểm phần mềm, chưa release
+> lượt chuyển động mới và chưa xác nhận đã giải quyết nguyên nhân xe không tiến.
+
 Ngày soạn: 28/10/2026. **Draft, chưa release một lượt chuyển động.**
 
 Mục tiêu là đo quan hệ giữa velocity command cuối nhìn thấy trên ROS và
@@ -79,6 +84,13 @@ Theo source tham khảo `Microros_H723_USB` commit
 - `/motor_status` bit 4 là `g_system_enabled` trước RC arbitration, có thể
   khác `effective_enable`; bit mode là trạng thái firmware, không readback
   trực tiếp của motor. Status không thay bằng chứng nguồn/torque hoặc RC.
+- Không chấp nhận bit enable đã bật sẵn như ACK của một lần enable mới.
+  Helper khởi tạo cần tắt Pi gate, phát zero, request firmware disable và
+  nhận status sau request với bit enable tắt; giữ baseline zero, rồi request
+  enable và nhận status mới có bit bật trước tiến. Nếu không có ACK hoặc
+  firmware bật lại trong baseline thì hủy. Trong source tham khảo, cấu hình
+  mode motor được gửi lại trên chuyển đổi disable→enable; quy trình này
+  vẫn không thay readback mode/power thực hoặc xác nhận quyền RC.
 - Target bánh sau limiter và current/voltage/temperature chưa có telemetry
   được xác nhận. Không điền target=requested hoặc suy current/torque thật
   từ `/cmd_vel` hay tên trường effort.
@@ -171,6 +183,11 @@ Counts/SQLite/hash/closure chỉ là software integrity. Cần kiểm sample
 validity, freshness, gap/coverage trong từng cửa sổ baseline/ramp/hold/stop;
 ngưỡng coverage và gap phục vụ câu hỏi phải được chốt cho protocol này,
 không tự bê 98% của sim hoặc tùy ý nới sau kết quả.
+
+`source_sequence_completed` chỉ xác nhận helper hoàn tất chuỗi lệnh.
+Không dùng nó làm physical-motion success; nếu người vận hành báo thân xe
+không tiến trong khi encoder thay đổi thì giữ sự không khớp và báo unknown
+cho outcome vật lý, không tự gán trượt hoặc bỏ qua quan sát.
 
 ## 6. Gate và điểm dừng
 

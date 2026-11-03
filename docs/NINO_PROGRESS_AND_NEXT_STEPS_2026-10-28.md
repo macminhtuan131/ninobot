@@ -1,5 +1,11 @@
 # Nino — đánh giá tiến độ và kế hoạch sau Deep Research, 28/10/2026
 
+> **Kết quả mới nhất:** stationaryv2đạt,22/22hash,SQLiteok,cótelemetrycuốiphiên. Không chạy lại capture đã dùng. [Bước hiện tại](NINO_CURRENT_STATUS_2026-11-02.md): đề xuất motion pilot mới có giới hạn, chưa release. Nội dung dưới đây là lịch sử.
+
+
+> **Correction mới:** người dùng xác nhận reboot/ngắt nguồn trong phiên đứng yên v1; không suy collector/Pi tự lỗi. V1 vẫn incomplete. Đã chuẩn bị một capture đứng yên mới, storage resilient, chưa chạy; [bước hiện tại](NINO_RECORDER_CLOSURE_NEXT_STEP_2026-11-02.md). Motion pilot vẫn đóng.
+
+
 > **Cập nhật sau reboot 02/11:** Agent và sensor readers đã nối lại ở boot 415f7fe9; raw IMU/hai bánh/LiDAR/TF có dữ liệu. Pilot v2 **đóng ở 1/3**, hai slot còn lại đóng: trial source đã kết thúc nhưng recorder chưa có closure trước reboot. Giữ raw, chưa retry. Không dùng lệnh thu bên dưới để chạy lại đợt đã đóng.
 
 

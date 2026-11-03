@@ -1,0 +1,1088 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-11-03",
+  "data_cutoff": "2026-11-02",
+  "scope": "Snapshot từ báo cáo local đã review; chưa kiểm kê Pi lại. Config ≠ số đo; GUI/demo/tests không thêm real data.",
+  "next_action": "Ưu tiên: xác minh backend/endpoint read-only → 1 diagnostic có video bánh/thân/mốc sàn → review → mới đề nghị độ lặp.",
+  "data": [
+    {
+      "id": "D01",
+      "name": "Raw IMU: accel XYZ, gyro XYZ, orientation/covariance, frame/header",
+      "status": "Đã có cho claim hẹp",
+      "result": "Đã có. Inventory 27/10: 2.708 mẫu; còn có các phiên sau",
+      "missing": "Không cần lặp inventory giống hệt. Noise/filter/range/scale/delay chỉ xác minh thêm khi ảnh hưởng metric hoặc detector",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D02",
+      "name": "Trục IMU và dấu quay Z",
+      "status": "Đã có cho claim hẹp",
+      "result": "Đã có ở mức thô. 708 mẫu xác minh ứng viên yaw +90°; 718 mẫu yên/trái/phải kiểm dấu Z",
+      "missing": "Chưa là calibration scale, gyro drift dài hạn hoặc góc chính xác; không thu lại cùng phép sign nếu không đổi mounting/driver",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D03",
+      "name": "Vị trí/hướng lắp IMU và LiDAR, TF so thân",
+      "status": "Một phần",
+      "result": "Một phần. Số đo người dùng gần đúng đã áp và từng kiểm TF live",
+      "missing": "Fine roll/pitch, LiDAR yaw, độ cứng gá và uncertainty chưa định lượng. Kiểm lại nếu tháo/lắp hoặc định lượng body/contact cần độ chính xác đó",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D04",
+      "name": "Raw feedback hai bánh: tên, góc rad, vận tốc rad/s, reported effort nếu có",
+      "status": "Đã có cho claim hẹp",
+      "result": "Đã có raw; calibration một phần. Inventory 2.707 mẫu và nhiều motion traces; status freshness hai bánh đã quan sát",
+      "missing": "Mapping trái/phải, sign/scale dưới chuyển động vật lý và effective rolling geometry chưa được xác minh độc lập đầy đủ",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D05",
+      "name": "LiDAR: ranges, góc, range limits, scan/time_increment, header/frame",
+      "status": "Đã có cho claim hẹp",
+      "result": "Đã có. Inventory 394 scan, 720 beams/scan; có scan trong motion sessions",
+      "missing": "Chưa kiểm chuẩn khoảng cách/per-beam timing hoặc body-speed estimator. Có raw scan không chứng minh phát hiện mọi dây thấp/hõm",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D06",
+      "name": "Raw ↔ bridge, `/joint_states`, `/imu/bridge`, `/odom/unfiltered`",
+      "status": "Đã có cho claim hẹp",
+      "result": "Đã có đối chiếu trong phiên. Payload/header đã so trên cửa sổ giao nhau",
+      "missing": "Encoder odometry không là body ground truth; chưa có localization/navigation được kiểm chuẩn",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D07",
+      "name": "Timestamp, clock, rates, gap, QoS, coverage từng cửa sổ",
+      "status": "Một phần",
+      "result": "Một phần. Inventory IMU/feedback ~47,13 Hz, LiDAR ~6,95 Hz; có audit và review riêng từng lượt",
+      "missing": "Đánh giá lại trên lượt mới có motion/GUI. Rate quan sát không là deadline, transport latency hoặc coverage bảo đảm",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D08",
+      "name": "File raw, SQLite/metadata, manifest/hash, dữ liệu cuối phiên",
+      "status": "Đã có cho claim hẹp",
+      "result": "Đã có cho các capture được review. Stationary v2: 20.749 messages, 22 file hash, đủ cửa sổ 55–60 s",
+      "missing": "Kiểm mỗi phiên mới; phiên interrupted/incomplete vẫn giữ nguyên. Mang cả WAL/SHM nếu có, không chỉ `.db3`",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D09",
+      "name": "Session metadata: pose, caster, sàn, tải, nguồn/pin, firmware/config, operator",
+      "status": "Một phần",
+      "result": "Một phần. Đã có session forms và ghi chú từng lượt",
+      "missing": "Cần ghi nhất quán từng lượt; hướng caster chưa biết ghi unknown, không tự điền 0 hoặc gọi paired seeds là cùng trạng thái vật lý",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D10",
+      "name": "Source → selected → smoothed → final command, ownership và trạng thái Collision Monitor",
+      "status": "Đã có cho claim hẹp",
+      "result": "Đã có trong các phiên. Có cả input bị STOP và một clear-zone profile đi qua final",
+      "missing": "Xác nhận endpoint/owner/config/live readiness ở phiên mới. Không dùng source có lệnh tiến làm bằng chứng STM32 nhận hoặc thực thi lệnh đó",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D11",
+      "name": "Zero → enable → disable, freshness/mode/fault theo firmware",
+      "status": "Một phần",
+      "result": "Một phần trên firmware cũ. Probe `043000235565Z` giữ raw zero, Bool true/false và status đổi tương ứng; operator báo không giật",
+      "missing": "Manifest gốc vẫn incomplete do lỗi audit khi đó; không promote. ACK theo status không là readback motor hoặc stopping time. GUI authority mới chưa có kiểm thực",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D12",
+      "name": "Tiến–dừng và đáp ứng riêng bánh trái/phải",
+      "status": "Một phần",
+      "result": "Một phần. Hai phiên từng được operator xác nhận tiến/tự dừng; clear-zone có primary hợp lệ",
+      "missing": "Chưa có bộ system ID/độ lặp; một lượt V2 final/feedback tăng nhưng operator báo thân không tiến. Giữ outcome unknown và cần đối chứng vật lý",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D13",
+      "name": "Độ lặp cùng profile, sàn/tải/pose/caster và điều kiện pin",
+      "status": "Chưa đủ / chưa xác nhận",
+      "result": "Chưa có campaign hoàn chỉnh. Các pilot cũ dừng hoặc unknown, không đủ ba repeats hợp lệ",
+      "missing": "Sau lượt chẩn đoán đạt mới chốt campaign mới có giới hạn, review từng lượt; không gộp các lượt khác điều kiện hoặc dùng lại slot đã đóng",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D14",
+      "name": "Video/reference độc lập thấy bánh và thân so mốc sàn",
+      "status": "Chưa đủ / chưa xác nhận",
+      "result": "Chưa xác nhận trong artifact đã rà. Chưa thấy video/reference độc lập",
+      "missing": "**Cần ngay cho lượt chẩn đoán kế tiếp.** Video đủ góc nhìn/mốc trước mắt giải quyết có tiến hay không; chưa đủ hiệu chuẩn thì chỉ kết luận định tính",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D15",
+      "name": "Bán kính lăn hiệu dụng L/R, separation, mass/payload, caster/clearance thật",
+      "status": "Một phần",
+      "result": "Một phần. Có kích thước mounting gần đúng; Pi khai báo R=0,060 m, track=0,345 m",
+      "missing": "Chưa là effective rolling calibration. Đo geometry/mass/caster theo claim cần dùng; không lấy cao trục 0,056 m làm bán kính lăn hoặc dùng URDF làm cân thật",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D16",
+      "name": "Target bánh sau limit/ramp, actuator mode/readback, limits, current/voltage/temperature/fault nếu backend có",
+      "status": "Chưa đủ / chưa xác nhận",
+      "result": "Chưa xác nhận đủ telemetry độc lập. Có raw status/feedback và source tham khảo",
+      "missing": "Kiểm interface hiện hữu, bổ sung đúng kênh khi cần. Không tạo target bằng cách đổi `/cmd_vel` rồi coi là target thực; phân biệt effort/torque report, Iq estimate và torque đo độc lập",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D17",
+      "name": "Command → wheel → body onset/ramp/settling và stopping thân xe",
+      "status": "Một phần",
+      "result": "Một phần ở đường ROS→reported wheel. Có waveform và mốc input/receipt; chưa có body reference",
+      "missing": "Kết hợp video/reference, clock và uncertainty. Nếu thiếu target/readback thì chỉ nhận dạng đường tổng hợp; không gọi wheel mean gần zero là body stopping",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D18",
+      "name": "Body displacement/speed định lượng và slip",
+      "status": "Chưa đủ / chưa xác nhận",
+      "result": "Chưa có bộ đã kiểm chứng. Encoder odom/EKF không thay reference độc lập",
+      "missing": "Sau khi xác nhận chuyển động: hiệu chuẩn mốc/clock của video/tracker hoặc LiDAR estimator có đối chứng, kết hợp rolling radius và uncertainty trước khi tính slip",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D19",
+      "name": "Nguồn Pi/motor dưới tải, điện áp/dòng/fault liên quan reset",
+      "status": "Một phần",
+      "result": "Một phần. Có log/power snapshots và lịch sử undervoltage; một phiên ngắt do operator đã được xác nhận",
+      "missing": "Chưa có bằng chứng “đã sửa nguồn” hoặc current-limit readback chống reboot. Lưu trạng thái từng phiên; chỉ mở điều tra sâu khi lỗi lặp/ảnh hưởng phép đo, không tự đổi dòng",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D20",
+      "name": "Navigation thật: goal/path, localization/TF, tracking, arrival, thời gian/throughput",
+      "status": "Chưa đủ / chưa xác nhận",
+      "result": "Chưa có bộ đánh giá đã kiểm chứng. GUI Nav2 hiện chỉ observer",
+      "missing": "Motion backend đủ tin cậy; commissioning estimator/TF và Nav2 riêng. Full navigation không là điều kiện để tiếp tục wheel-response",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D21",
+      "name": "Operating envelope, geometry/material của gờ/rãnh/hõm/dây mềm; approach và contact order",
+      "status": "Chưa đủ / chưa xác nhận",
+      "result": "Chưa có dataset crossing thật được kiểm chứng",
+      "missing": "Chốt envelope cơ khí, mục tiêu ứng dụng và phép đo; tách từng cơ chế, không lấy rigid capsule sim đại diện dây mềm/rãnh",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D22",
+      "name": "Baseline/can thiệp governor, executed response, quality/arrival/stall/tracking/time",
+      "status": "Chưa đủ / chưa xác nhận",
+      "result": "Chưa có lợi ích governor được chứng minh trên robot thật",
+      "missing": "Có baseline lặp và cửa sổ actuator tác động hữu ích; H2 trước predictor/H3. Không dùng arrival hoặc command giảm để suy giảm contact risk",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D23",
+      "name": "Payload, điều kiện sàn, nhiều route/obstacle/session và test bank độc lập",
+      "status": "Chưa đủ / chưa xác nhận",
+      "result": "Chưa có bộ generalization",
+      "missing": "Sau feasibility/measurement và lợi ích baseline rõ; group toàn run/layout/session, giữ failures; chưa đầu tư RL/BC chỉ để tăng số bước",
+      "sources": [
+        "checklist",
+        "status"
+      ],
+      "kind": "[N] Tổng hợp báo cáo đã review"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "IMU / motor feedback rate",
+      "value": "≈47,13 Hz",
+      "kind": "[N] Đo trong inventory 27/10",
+      "limits": "Không là 500 Hz telemetry, deadline hoặc actuator bandwidth.",
+      "sources": [
+        "sensor"
+      ]
+    },
+    {
+      "name": "LiDAR rate",
+      "value": "≈6,95 Hz; 720 beams/scan",
+      "kind": "[N] Đo trong inventory 27/10",
+      "limits": "Không kết luận lỗi từ danh định; không preview mọi dây thấp/hõm.",
+      "sources": [
+        "sensor"
+      ]
+    },
+    {
+      "name": "Inventory raw",
+      "value": "IMU 2708; feedback 2707; status 270; LiDAR 394",
+      "kind": "[N] Counts trong phiên",
+      "limits": "Counts không thay coverage/header/clock hoặc calibration.",
+      "sources": [
+        "sensor"
+      ]
+    },
+    {
+      "name": "IMU axes",
+      "value": "Xbody=−Ysensor; Ybody=+Xsensor; Zbody=+Zsensor",
+      "kind": "[N] 708 mẫu xác minh tư thế",
+      "limits": "Coarse axes, không fine calibration.",
+      "sources": [
+        "mount"
+      ]
+    },
+    {
+      "name": "Gyro Z mean — đứng yên",
+      "value": "−0,000453 rad/s (240 mẫu)",
+      "kind": "[N] Phép sign theo nhãn",
+      "limits": "Chưa là bias/drift dài hạn.",
+      "sources": [
+        "gyro"
+      ]
+    },
+    {
+      "name": "Gyro Z mean — trái / CCW",
+      "value": "+0,303611 rad/s (239 mẫu)",
+      "kind": "[N] Phép sign theo nhãn",
+      "limits": "Chưa đo góc/quy mô quay độc lập.",
+      "sources": [
+        "gyro"
+      ]
+    },
+    {
+      "name": "Gyro Z mean — phải / CW",
+      "value": "−0,359153 rad/s (239 mẫu)",
+      "kind": "[N] Phép sign theo nhãn",
+      "limits": "Không là hiệu chuẩn gyro scale.",
+      "sources": [
+        "gyro"
+      ]
+    },
+    {
+      "name": "IMU translation so base_link",
+      "value": "[−0,050; −0,020; +0,014] m",
+      "kind": "[N] Người vận hành đo gần đúng; TF đã áp",
+      "limits": "Uncertainty chưa định lượng.",
+      "sources": [
+        "mount"
+      ]
+    },
+    {
+      "name": "IMU yaw mounting",
+      "value": "+π/2 rad (+90°)",
+      "kind": "[N] TF đã áp / coarse axes",
+      "limits": "Quay Z đơn độc không xác minh mounting yaw.",
+      "sources": [
+        "mount"
+      ]
+    },
+    {
+      "name": "LiDAR translation so base_link",
+      "value": "[+0,220; 0; +0,189] m",
+      "kind": "[N] Người vận hành đo gần đúng",
+      "limits": "Cao tâm so sàn ≈0,245 m; LiDAR yaw chưa fine calibration.",
+      "sources": [
+        "mount"
+      ]
+    },
+    {
+      "name": "Cao trục bánh so sàn",
+      "value": "≈0,056 m",
+      "kind": "[N] Người vận hành đo gần đúng",
+      "limits": "Không tự là bán kính lăn hiệu dụng.",
+      "sources": [
+        "mount"
+      ]
+    },
+    {
+      "name": "Rolling radius / track Pi",
+      "value": "R=0,060 m; b=0,345 m",
+      "kind": "[N] Cấu hình, chưa hiệu chuẩn",
+      "limits": "Không đổi thành số đo; b là separation toàn phần.",
+      "sources": [
+        "mount"
+      ]
+    },
+    {
+      "name": "Clear-zone primary Δmean wheel L / R",
+      "value": "+0,834241 / +0,820122 rad/s",
+      "kind": "[N] Derived từ raw trong cửa sổ đã chốt",
+      "limits": "Một lượt; reported wheel, không vận tốc thân.",
+      "sources": [
+        "clear_zone"
+      ]
+    },
+    {
+      "name": "Clear-zone L−R Δmean",
+      "value": "+0,014119 rad/s",
+      "kind": "[N] Derived một lượt",
+      "limits": "Không chứng minh equivalence, hiệu chỉnh gain hoặc CV.",
+      "sources": [
+        "clear_zone"
+      ]
+    },
+    {
+      "name": "Clear-zone source duration",
+      "value": "2,0169 s",
+      "kind": "[N] ROS trace",
+      "limits": "Lệnh yêu cầu, không thời gian thân chạy.",
+      "sources": [
+        "clear_zone"
+      ]
+    },
+    {
+      "name": "Final zero sau source fall",
+      "value": "≈0,6232 s",
+      "kind": "[N] ROS trace một phiên",
+      "limits": "Không là stopping latency thân hoặc toàn bộ actuator.",
+      "sources": [
+        "clear_zone"
+      ]
+    },
+    {
+      "name": "Quãng encoder clear-zone danh nghĩa",
+      "value": "≈0,09650 m",
+      "kind": "[N] Derived với R cấu hình 0,060 m",
+      "limits": "Không là body displacement; chưa dùng tính slip.",
+      "sources": [
+        "clear_zone"
+      ]
+    },
+    {
+      "name": "V2 discrepancy Δmean L / R",
+      "value": "+0,82244 / +0,74366 rad/s",
+      "kind": "[N] Raw/derived + operator báo không tiến",
+      "limits": "Giữ unknown; cần video thấy bánh/thân/sàn.",
+      "sources": [
+        "v2"
+      ]
+    },
+    {
+      "name": "Inventory local bag",
+      "value": "15 phiên; 10 captured_not_calibrated, 3 incomplete, 2 started",
+      "kind": "[N] Audit local 03/11",
+      "limits": "13 manifest hash khớp; không là 10 motion passes; chưa kiểm lại Pi.",
+      "sources": [
+        "status"
+      ]
+    },
+    {
+      "name": "Stationary v2",
+      "value": "20.749 messages; 22 hash; tail 55–60 s đạt",
+      "kind": "[N] Raw/closure review",
+      "limits": "Một phiên, không xác nhận mọi điều kiện tải/mất điện.",
+      "sources": [
+        "stationary"
+      ]
+    },
+    {
+      "name": "Profile lượt chẩn đoán kế tiếp",
+      "value": "+0,05 m/s; ramp 0,10 m/s²; source 2 s; bag 60 s",
+      "kind": "[Đ] Kế hoạch, giữ profile cũ",
+      "limits": "Chưa release / chưa chạy; không mở lại pilot đóng.",
+      "sources": [
+        "checklist"
+      ]
+    },
+    {
+      "name": "Body displacement / speed / slip",
+      "value": "Chưa có reference định lượng đã review",
+      "kind": "[N] Khoảng trống trong bằng chứng",
+      "limits": "Unknown giữ nguyên; không điền zero hoặc dùng config thay đo.",
+      "sources": [
+        "status",
+        "checklist"
+      ]
+    },
+    {
+      "name": "Body stopping latency",
+      "value": "Chưa đo",
+      "kind": "[N] Khoảng trống trong bằng chứng",
+      "limits": "Unknown giữ nguyên; không điền zero hoặc dùng config thay đo.",
+      "sources": [
+        "status",
+        "checklist"
+      ]
+    },
+    {
+      "name": "CV repeatability cùng điều kiện",
+      "value": "Chưa có campaign hoàn chỉnh",
+      "kind": "[N] Khoảng trống trong bằng chứng",
+      "limits": "Unknown giữ nguyên; không điền zero hoặc dùng config thay đo.",
+      "sources": [
+        "status",
+        "checklist"
+      ]
+    },
+    {
+      "name": "Target sau limit / actuator limits",
+      "value": "Chưa có readback độc lập đủ",
+      "kind": "[N] Khoảng trống trong bằng chứng",
+      "limits": "Unknown giữ nguyên; không điền zero hoặc dùng config thay đo.",
+      "sources": [
+        "status",
+        "checklist"
+      ]
+    },
+    {
+      "name": "GUI authority trên robot",
+      "value": "Build/offline; chưa flash/kiểm thực",
+      "kind": "[N] Khoảng trống trong bằng chứng",
+      "limits": "Unknown giữ nguyên; không điền zero hoặc dùng config thay đo.",
+      "sources": [
+        "status",
+        "checklist"
+      ]
+    }
+  ],
+  "sessions": [
+    {
+      "id": "sensor_inventory_20261027T040428773075Z",
+      "level": "Q3",
+      "claim": "Inventory / bridge trong phiên",
+      "outcome": "Raw IMU/feedback/status/scan, 20 hash và SQLite đạt",
+      "limits": "Không calibration/bandwidth/ổn định mọi phiên.",
+      "raw_quality": "Đạt trong review",
+      "measurement_validity": "Inventory có header/bridge comparison",
+      "physical_evidence": "Không đánh giá chuyển động",
+      "repeatability": "Chưa có campaign hoàn chỉnh",
+      "sources": [
+        "sensor"
+      ],
+      "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    },
+    {
+      "id": "imu_axes_20261027T062331920164Z",
+      "level": "Q3",
+      "claim": "Dấu/trục thô theo tư thế",
+      "outcome": "708 mẫu, yaw +90° phù hợp",
+      "limits": "Không fine calibration hoặc nhiều repeats độc lập.",
+      "raw_quality": "Hash theo review",
+      "measurement_validity": "Tư thế có nhãn",
+      "physical_evidence": "Nhãn operator",
+      "repeatability": "Chưa có campaign hoàn chỉnh",
+      "sources": [
+        "mount"
+      ],
+      "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    },
+    {
+      "id": "gyro_yaw_20261027T115928157994Z",
+      "level": "Q3",
+      "claim": "Dấu gyro Z theo nhãn",
+      "outcome": "718 mẫu; trái dương, phải âm",
+      "limits": "Không scale/góc/drift dài hạn.",
+      "raw_quality": "Hash đạt theo review",
+      "measurement_validity": "Rule sign đã chốt",
+      "physical_evidence": "Nhãn operator",
+      "repeatability": "Chưa có campaign hoàn chỉnh",
+      "sources": [
+        "gyro"
+      ],
+      "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    },
+    {
+      "id": "zero_feedback_20261102T043000235565Z",
+      "level": "Q1",
+      "claim": "Chẩn đoán raw zero / enable / disable",
+      "outcome": "23 hash/SQLite đạt; manifest gốc incomplete",
+      "limits": "Lỗi audit lịch sử được giữ; ACK firmware không motor readback.",
+      "raw_quality": "Raw hash đạt, manifest incomplete",
+      "measurement_validity": "Chỉ diagnostic, không promote",
+      "physical_evidence": "Operator: yên, không giật",
+      "repeatability": "Chưa có campaign hoàn chỉnh",
+      "sources": [
+        "zero"
+      ],
+      "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    },
+    {
+      "id": "stationary_closure_v2_20261102T085404983306Z",
+      "level": "Q3",
+      "claim": "Closure/metadata và tail 55–60 s",
+      "outcome": "22 hash; 20.749 messages; đủ cuối phiên",
+      "limits": "Không chịu lỗi mọi tải; không motion gate.",
+      "raw_quality": "Đạt trong review",
+      "measurement_validity": "Tail/window review đạt",
+      "physical_evidence": "Không motion claim",
+      "repeatability": "Chưa có campaign hoàn chỉnh",
+      "sources": [
+        "stationary"
+      ],
+      "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    },
+    {
+      "id": "rc_auto_followup_20261102T050858953708Z",
+      "level": "Q2",
+      "claim": "Raw + feasibility theo quan sát",
+      "outcome": "24.608 messages; operator báo tiến/tự dừng",
+      "limits": "Không áp primary protocol ra sau để promote; thiếu body reference.",
+      "raw_quality": "23 hash/SQLite đạt",
+      "measurement_validity": "Feasibility, không repeatability",
+      "physical_evidence": "Operator; chưa video đo",
+      "repeatability": "Chưa có campaign hoàn chỉnh",
+      "sources": [
+        "rc_auto"
+      ],
+      "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    },
+    {
+      "id": "wheel_clear_zone_20261102T094226594883Z",
+      "level": "Q3",
+      "claim": "Reported-wheel primary window một lượt",
+      "outcome": "L/R Δmean 0,834241 / 0,820122 rad/s; operator báo tiến/tự dừng",
+      "limits": "Q3 chỉ waveform/window; body/slip/stopping chưa đo.",
+      "raw_quality": "25 hash/SQLite đạt",
+      "measurement_validity": "Primary window hợp lệ theo review",
+      "physical_evidence": "Operator; chưa video đo",
+      "repeatability": "Chưa có campaign hoàn chỉnh",
+      "sources": [
+        "clear_zone"
+      ],
+      "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    },
+    {
+      "id": "wheel_repeatability_v3_20261102T091339485407Z",
+      "level": "Q2",
+      "claim": "Chẩn đoán command bị STOP",
+      "outcome": "24.882 messages; stopped 1/3",
+      "limits": "Không phải repeatability success; pilot đã đóng.",
+      "raw_quality": "Raw đã kiểm theo review",
+      "measurement_validity": "Primary bị STOP",
+      "physical_evidence": "Operator xác nhận có người/vật sát sau",
+      "repeatability": "Chưa có campaign hoàn chỉnh",
+      "sources": [
+        "status"
+      ],
+      "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    },
+    {
+      "id": "clear_floor_repeatability_20261102T100409043176Z",
+      "level": "Q2",
+      "claim": "Chẩn đoán STOP chặn input",
+      "outcome": "Source tiến, final zero; stopped 1/3",
+      "limits": "Không tăng tốc/bỏ monitor hoặc dùng slot còn lại.",
+      "raw_quality": "25 hash/SQLite đạt",
+      "measurement_validity": "Không có input motion hữu ích",
+      "physical_evidence": "Operator không tiến",
+      "repeatability": "Chưa có campaign hoàn chỉnh",
+      "sources": [
+        "v1"
+      ],
+      "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    },
+    {
+      "id": "clear_floor_repeatability_v2_20261102T102247471316Z",
+      "level": "Q2",
+      "claim": "Raw diagnostic, outcome unknown",
+      "outcome": "Final .05 và feedback tăng; operator báo không tiến",
+      "limits": "Chưa phân biệt wheel/body/map/scale; không tự kết luận slip.",
+      "raw_quality": "25 hash/SQLite đạt",
+      "measurement_validity": "Primary arithmetic có, causal/body chưa rõ",
+      "physical_evidence": "Bất đồng với reported wheel",
+      "repeatability": "Chưa có campaign hoàn chỉnh",
+      "sources": [
+        "v2"
+      ],
+      "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    },
+    {
+      "id": "wheel_startup_verification_20261102T104845142374Z",
+      "level": "Q2",
+      "claim": "Chẩn đoán endpoint/discovery",
+      "outcome": "23.632 messages; failed 1/1 trước forward",
+      "limits": "Prepared endpoint fix chưa motion-validated; không gọi ready.",
+      "raw_quality": "25 hash/SQLite đạt",
+      "measurement_validity": "Fail trước enable=true/forward",
+      "physical_evidence": "Không có motion thử trong slot này",
+      "repeatability": "Chưa có campaign hoàn chỉnh",
+      "sources": [
+        "status"
+      ],
+      "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "K01",
+      "priority": "Đã đủ",
+      "status": "Đã review",
+      "action": "Inventory raw/bridge và checksum local.",
+      "gate": "Claim trong phiên, không là deployment gate.",
+      "sources": [
+        "sensor",
+        "status"
+      ]
+    },
+    {
+      "id": "K02",
+      "priority": "Đã đủ",
+      "status": "Đã review",
+      "action": "IMU coarse axes, yaw +90°, dấu gyro Z.",
+      "gate": "Không thu lại nếu không đổi mounting/driver.",
+      "sources": [
+        "mount",
+        "gyro"
+      ]
+    },
+    {
+      "id": "K03",
+      "priority": "Đã đủ",
+      "status": "Đã review",
+      "action": "Stationary v2 đóng đủ 60 s; kiểm cuối phiên 55–60 s.",
+      "gate": "Không cần một vòng logger audit giống hệt.",
+      "sources": [
+        "stationary"
+      ]
+    },
+    {
+      "id": "K04",
+      "priority": "Offline",
+      "status": "Đã chuẩn bị; chưa live",
+      "action": "GUI nguồn/thu; hồ sơ, chất lượng và to-do. Firmware authority build, chưa flash.",
+      "gate": "Software/demo không xác nhận robot; không đổi data gate.",
+      "sources": [
+        "review"
+      ]
+    },
+    {
+      "id": "T01",
+      "priority": "P0",
+      "status": "Chưa hoàn tất",
+      "action": "Kết nối lại Pi, kiểm kê file mới/chưa copy; lưu raw probe endpoint còn trên Pi nếu có, không đếm bản copy trùng thành session mới.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "inventory",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T02",
+      "priority": "P0",
+      "status": "Chưa hoàn tất",
+      "action": "Xác nhận read-only phiên live: domain/agent, raw sensor/feedback, boot/GID/endpoint, command owner, Collision Monitor và cấu hình profile.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "inventory",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T03",
+      "priority": "P0",
+      "status": "Chưa hoàn tất",
+      "action": "Chốt backend sẽ dùng. Firmware RC hiện có và firmware GUI authority có contract enable khác nhau; không trộn helper/protocol.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "inventory",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T04",
+      "priority": "P0",
+      "status": "Chưa hoàn tất",
+      "action": "Xác nhận đúng MCU/board và rollback, triển khai firmware tương thích/bridge; kiểm boot DISARM, source/ACK, mất link và recorder. Chưa có bằng chứng đã flash/kiểm live. Không cần flash chỉ để tiếp tục đọc raw bằng công cụ đang có.",
+      "condition": "nếu dùng GUI không cần RC",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "gui_authority",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T05",
+      "priority": "P0",
+      "status": "Chưa hoàn tất",
+      "action": "Chốt protocol mới cho **một lượt chẩn đoán có video**, tiêu chí data/stop/unknown và thao tác người vận hành. Giữ mọi ledger/slot cũ đã đóng.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "diagnostic",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T06",
+      "priority": "P0",
+      "status": "Chưa hoàn tất",
+      "action": "Chuẩn bị camera/mốc sàn và nhãn đồng bộ; ghi pose/caster/sàn/tải. Đảm bảo góc nhìn phân biệt được bánh quay, thân tiến, quay tại chỗ hoặc bị giữ.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "diagnostic",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T07",
+      "priority": "P1",
+      "status": "Chưa hoàn tất",
+      "action": "Người vận hành thực hiện lượt mới khi readiness/stop/control contract đạt; thu bag 60 s và video theo D10–D14. Assistant không tự chạy từ checklist này.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "diagnostic",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T08",
+      "priority": "P1",
+      "status": "Chưa hoàn tất",
+      "action": "Kiểm integrity/closure/hash và samples/gap/coverage từng cửa sổ; đối chiếu source→final→hai bánh→video, giữ spike/failure.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "review",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T09",
+      "priority": "P1",
+      "status": "Chưa hoàn tất",
+      "action": "Kết luận theo bằng chứng: input bị STOP / không có response / có wheel nhưng chưa thấy body / có tiến và tự dừng. Nếu bất đồng còn tồn tại, dừng trước tuning và repeatability; không tự gán là slip.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "review",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T10",
+      "priority": "P1",
+      "status": "Chưa hoàn tất",
+      "action": "Nếu lượt đầu giải quyết được bất đồng và data hợp lệ, chốt một đợt độ lặp mới tối đa ba lượt cùng điều kiện, review trước lượt kế. Không tự bù slot/tăng sample size hoặc gọi ba lượt là đủ generalization.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "repeatability",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T11",
+      "priority": "P1",
+      "status": "Chưa hoàn tất",
+      "action": "Báo từng bánh, chênh trái–phải, biến thiên từng lượt và failures; chưa tự chỉnh gain/current từ một mean hoặc một phiên.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "review",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T12",
+      "priority": "P2",
+      "status": "Sau gate trước",
+      "action": "Hiệu chuẩn body reference/đồng bộ và rolling geometry ở mức đủ cho displacement/speed/slip; nêu uncertainty. Video định tính ở T07 không tự hoàn tất bước này.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "body_reference",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T13",
+      "priority": "P2",
+      "status": "Sau gate trước",
+      "action": "Xác nhận target/mode/limits/telemetry thực sự có; đo command→wheel/body ramp/settling trong phạm vi được chọn. Thiếu target thì giữ claim tổng hợp.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "inventory",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T14",
+      "priority": "P2",
+      "status": "Sau gate trước",
+      "action": "Chọn trade-off ứng dụng tạm thời: payload, tracking, thời gian tăng thêm, rung/failure cần quan tâm; ngưỡng chưa được chấp nhận phải ghi là đề xuất.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "body_reference",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T15",
+      "priority": "P3",
+      "status": "Sau gate trước",
+      "action": "Commissioning navigation nếu mục tiêu ưu tiên là tự tới đích; đánh giá estimator/TF/path/time riêng.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "future",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T16",
+      "priority": "P3",
+      "status": "Sau gate trước",
+      "action": "Đo envelope cơ khí/caster và thử một loại vật cản đã chốt với baseline cổ điển, body/contact reference phù hợp.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "future",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T17",
+      "priority": "P3",
+      "status": "Sau gate trước",
+      "action": "Kiểm H2 quyền điều khiển hữu ích trước khi đầu tư predictor; chỉ so H3/governor khi phép đo và baseline đủ.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "future",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    },
+    {
+      "id": "T18",
+      "priority": "P3",
+      "status": "Sau gate trước",
+      "action": "Mở payload/layout/route/session held-out và learning khi có lợi thế cần thiết; chưa chạy PPO/BC/Optuna mở rộng trong checklist này.",
+      "condition": "",
+      "sources": [
+        "checklist",
+        "commands"
+      ],
+      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "command_recipe": "future",
+      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+    }
+  ],
+  "corrections": [
+    "[N] Báo cáo cũ chỉ đếm một bag chuyển động và 0/3; local review mới có 15 bag, hai phiên operator báo tiến/tự dừng, nhiều failed/unknown. Không gộp chúng thành độ lặp đạt.",
+    "[N] IMU/feedback inventory ≈47,13 Hz; LiDAR ≈6,95 Hz. CONTROL_PERIOD_MS=2 trong source không chứng minh ROS telemetry hoặc PI actuator 500 Hz.",
+    "[N] Source motor_task dùng SPD_REF và velocity loop trong actuator. Binary/mode thực chưa readback đầy đủ; không sửa PI/PWM/deadband dựa trên giả định STM32 PI.",
+    "[S] Rev30/downward LiDAR là cấu hình lịch sử cần gắn checkpoint. Nó không mô tả mặc định governor proprioceptive hiện tại; không xóa observation/controller đang dùng vì report gọi 300 chiều là quá lớn.",
+    "[S] Survey governor dùng PI/reactive, không có evidence PPO cùng chạy. Control-authority redundancy với PPO không giải thích được kết quả survey này.",
+    "[Đ] Giữ hỗ trợ command tracing, body reference và baseline công bằng. Tối giản bỏ full Nav2 khỏi wheel ID, nhưng giữ TF scan → thân mà Collision Monitor đang cần; không bypass STOP.",
+    "[S] Encoder gần zero chỉ cho reported-wheel settling. Body stopping cần reference độc lập, clock và uncertainty; dùng dải noise + dwell thay điều kiện ω=0 tuyệt đối.",
+    "[S] Với b là toàn bộ track: yaw_enc=(Rr·ωr−Rl·ωl)/b. Residual yaw không phát hiện common-mode longitudinal slip; chỉ là consistency proxy.",
+    "[S] a_z trừ mean đứng yên là proxy rung trong điều kiện orientation hẹp. Khi quay/nghiêng cần xử lý gravity, frame, lever arm; torque RMS không là năng lượng hoặc force.",
+    "[Đ] CV<3%, asym<5%, body stop<150 ms, benefit>15%, 10–20 seeds và nhảy tốc .2–.4 m/s là đề xuất ngoài; chưa là ngưỡng chấp nhận, budget hoặc chuẩn chứng nhận Nino.",
+    "[S] Ba lượt pilot không đóng P0/safety/generalization; paired seeds không exact-state. Không chọn sampling có lợi, bỏ spike hoặc mở lại slot đóng. Wilson phải dùng k nguyên; 95% không khả dĩ ở n=3/5/10.",
+    "[T] arXiv:2307.15931 v3 có rover case simulation-based (2026), không là bằng chứng bánh/caster thật. arXiv:1812.03201 là block assembly, không thử AMR qua cáp.",
+    "[T] arXiv:2609.28969 là WHILL/AWSIM/ROS2 + Bayesian ID và DreamerV3; abstract xác nhận transfer tránh hộp, không chứng minh Nino contact authority. Các paper khác chưa kiểm full text trong lần này.",
+    "[S] Không nhận claim corner LiDAR chính xác mm, delay Pi 15–45 ms hoặc frame stack 300 ms đủ cho mọi contact nếu chưa đo. 3 mẫu cách 100 ms chỉ span 200 ms; actuator lag vẫn còn.",
+    "[Đ] Ưu tiên motion contract + một diagnostic có video; sau đó mới bounded repeatability. Dự phòng dùng firmware RC hiện tại nếu GUI firmware chưa triển khai. Chưa cần train PPO/BC, flash hay tăng current để làm dashboard."
+  ],
+  "sources": {
+    "checklist": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_REAL_DATA_CHECKLIST_2026-11-03.md",
+      "sha256": "246e31f4b92b59b188a6e02ddfd81b1fc95abfbce5452bc6771c6cb0cd9c5f42",
+      "scope": "Tổng hợp claim/data/to-do; không phải raw mới"
+    },
+    "status": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_REAL_DATA_STATUS_2026-11-03.md",
+      "sha256": "cc338063f703e32ee2f3015a5292b5fce942b8d3235db182d5dbbb151f846449",
+      "scope": "Review local 03/11; real data đến 02/11"
+    },
+    "attachment": {
+      "path": "/home/tuanmac/.codex/attachments/d278c50b-8547-478d-8147-3ba2f48f7dc5/Pasted text.txt",
+      "sha256": "be2c72cdfe539bc5390b94b01c7afced9f7711ea3ed4d58bc14502183297b21a",
+      "scope": "Báo cáo người dùng; cần correction, không là hiện trạng mặc định"
+    },
+    "sensor": {
+      "path": "/home/tuanmac/ninorobot/docs/REAL_SENSOR_INTEGRATION_2026-10-27.md",
+      "sha256": "13c607813164eb3a31b97749cd728ec3bb5e29418ac31091938c4e0b432c2a9d",
+      "scope": "Inventory/bridge lịch sử"
+    },
+    "mount": {
+      "path": "/home/tuanmac/ninorobot/docs/IMU_TF_APPLIED_AND_MOUNTING_GUIDE_2026-10-27.md",
+      "sha256": "1f4c96535c3991651f8fad3edb7d795bc07629a2c95b8fa6cadcc4af2e7a0f24",
+      "scope": "Mounting gần đúng / gyro sign"
+    },
+    "gyro": {
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gyro_yaw_evaluation_2026-10-27/REPORT.md",
+      "sha256": "b070967e502f09af5b1a17e356052ecf2028c22d4b0cf36d0838e3c57b36e465",
+      "scope": "Kiểm dấu theo nhãn operator"
+    },
+    "stationary": {
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/stationary_closure_v2_evaluation_2026-11-02/REPORT.md",
+      "sha256": "d4e5e694cbc1d0242509f8435d26fd7b5f52634705b9a81db10a5aa9ecda58c2",
+      "scope": "Review closure/tail"
+    },
+    "clear_zone": {
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/clear_zone_motion_evaluation_2026-11-02/REPORT.md",
+      "sha256": "0dceb94557d215a7944759b652139ecd756706a0778112ddcdcc262417740632",
+      "scope": "Primary reported wheel / operator outcome"
+    },
+    "rc_auto": {
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/rc_auto_followup_evaluation_2026-11-02/REPORT.md",
+      "sha256": "4e204ed9ee742a7eec50a31b0327c96c4d2fb70a89923bbce50a6290048c40e8",
+      "scope": "Feasibility riêng từng lượt"
+    },
+    "zero": {
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/zero_feedback_probe_2026-11-02/evaluation_043000/REPORT.md",
+      "sha256": "b2216ae0a5edcf765b3eb2fb3abfbdf250d9a4b8dc1ebb6746f909c776216d64",
+      "scope": "Manifest gốc incomplete, raw giữ"
+    },
+    "v2": {
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/clear_floor_repeatability_v2_evaluation_2026-11-02/slot1/REPORT.md",
+      "sha256": "cc104342bfe634a1e148679df8816985bd4cac5bfdf2f1512f15b0b53ffb047f",
+      "scope": "Feedback/body discrepancy"
+    },
+    "v1": {
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/clear_floor_repeatability_evaluation_2026-11-02/slot1/REPORT.md",
+      "sha256": "0205db8783f8dce756394049ed2cf3285cca05dd2c1719616f6363872ce08168",
+      "scope": "STOP blocked trial"
+    },
+    "review": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_REPORT_REASSESSMENT_AND_GUI_2026-11-03.md",
+      "sha256": "36ca389efb1c68e498a117de4b6a0d3fdb1e8ad5c42befaa8e0ed7cf7c6df1cd",
+      "scope": "Correction và kế hoạch mới"
+    },
+    "commands": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_COLLECTION_COMMANDS_2026-11-03.md",
+      "sha256": "044ab7f8860a6ef2dfbc6bafd1e5899c4fc7d28d03dd5a0e07ccd541fd6cc016",
+      "scope": "Lệnh copy-only chuẩn bị; không là data mới hoặc live validation"
+    }
+  },
+  "quality_rules": [
+    "Chấm theo claim và cửa sổ, không có điểm tổng 0–100 hoặc % readiness giả chính xác.",
+    "Kiểm riêng: closure/hash/SQLite; topic/header/clock/gap/coverage; command/STOP/confound; body reference; repeats/generalization.",
+    "Tự động tối đa Q2 từ manifest collector + file hashes + required counts. Q3/Q4 cần review có nguồn; không chỉ từ checkbox hoặc lời báo chạy xong.",
+    "Phiên raw đạt vẫn có thể không dùng được cho wheel response nếu final bị STOP, hoặc body outcome unknown.",
+    "Thiếu metric giữ unknown/null. Coverage/gap/window/effect threshold phải khóa theo câu hỏi trong protocol riêng; không tự áp 98% từ sim cho real.",
+    "Nhãn operator là quan sát, không body ground truth định lượng. Tích phân gyro không là heading reference tuyệt đối; v≈0 cần regularization khi tính slip.",
+    "DEMO luôn Q0 cho dữ liệu thật. Dữ liệu mới không tự thêm vào snapshot lịch sử hoặc đánh dấu to-do hoàn tất.",
+    "Q3 không chứng nhận an toàn hoặc cho phép motion tiếp. Không mở lại budgets hoặc tăng tốc/gain/current từ mức quality."
+  ]
+}

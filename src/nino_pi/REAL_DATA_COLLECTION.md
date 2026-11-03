@@ -1,17 +1,32 @@
-# Thu thập dữ liệu robot thật Nino — Ubuntu 24.04 / ROS 2 Jazzy / Pi 5
+# Thu thập dữ liệu robot thật Nino — Ubuntu24.04 / ROS2Jazzy / Pi5
 
-**Cập nhật 28/10/2026:** đã có các phiên sensor/STM32/LiDAR thật ngày
-27/10 được kiểm raw/hash và đối chiếu bridge; xem
-[báo cáo hiện trạng](../../../docs/NINO_PROGRESS_AND_NEXT_STEPS_2026-10-28.md).
-Bước kế tiếp là [wheel response trên sàn sạch](WHEEL_RESPONSE_PROTOCOL.md)
-với profile và session form riêng. Dataset motion này chưa được thu;
-profile full/navigation giữ required cũ. `--check` chỉ kiểm đầu vào/kế hoạch,
-không chứng minh command ownership, coverage hoặc motion readiness.
+## Hiện trạng dữ liệu — rà soát03/11/2026
 
-**Điều khiển từ laptop khi thu:** xem
-[LAPTOP_CONTROL_AND_COLLECTION.md](LAPTOP_CONTROL_AND_COLLECTION.md) cho helper
-SSH keyboard, mapping/Nav2/RViz, build trên Pi và quy trình vừa lái vừa ghi.
-Collector vẫn chỉ đọc; điều khiển được khởi động/bật riêng bởi người vận hành.
+**Lệnh thu:** đã thêm recipe copy theo từng terminal trong to-do GUI;
+[commands và cách dùng](../../docs/NINO_COLLECTION_COMMANDS_2026-11-03.md).
+Bộ diagnostic dùng firmware RC hiện có, không yêu cầu nạp firmware GUI;
+chưa chạy/deploy trên Pi trong lần chuẩn bị này.
+
+**Checklist cập nhật:** [dữ liệu đã có / còn thiếu và to-do theo thứ tự](../../docs/NINO_REAL_DATA_CHECKLIST_2026-11-03.md).
+GUI v3 đã có hồ sơ/quality/to-do offline; chưa tính demo/software tests thành data thật.
+Mở `bash ~/ninorobot/src/nino_pi/scripts/mode_gui.sh --project` để xem
+và đọc [đánh giá lại báo cáo mới](../../docs/NINO_REPORT_REASSESSMENT_AND_GUI_2026-11-03.md).
+
+- Đã có rawIMU/encoder/status/LiDAR, đối chiếu bridge, IMUaxis/gyroZ và capture
+  đứng yên đóng sạch. Có các trace command→reportedwheel thật.
+- Chưa có pilot độ lặp hoàn chỉnh hoặc bodyreference/slip. LượtV2 có sự không
+  khớp giữa reportedfeedback và quan sát không tiến, giữunknown.
+- Lượt startup verification mới nhất đãfailed/closed1/1 trướcforward do check
+  tênendpoint. Bản sửa endpoint chuẩn bị, chưa có motionverification saufix.
+- Không cònhelpermotion đangreleased trong bằng chứng giữ. Không chạy lại
+  các slotđãđóng hoặc dùng configgeneric như lệnh cho phép xe chạy.
+- Pi192.168.0.109 khôngreachable lúc ràsoát; chưa xác nhận códata mới trênPi.
+
+[Xem bảngsession, bằng chứng và việc tiếp theo](../../docs/NINO_REAL_DATA_STATUS_2026-11-03.md).
+[Các ghi chú tiến độ cũ được giữ ở archive](../../docs/archive/REAL_DATA_COLLECTION_STATUS_NOTES_2026-11-02.md).
+
+Tài liệu bên dưới mô tả công cụ thu; runtime/protocol riêng của mỗi lượt mới
+quy định topicrequired, limits, release và budget. Collector không cấp quyềnchạy.
 
 ## 1. Bộ này làm gì?
 
@@ -295,6 +310,15 @@ messages có thể chứa chuỗi riêng của driver. Không commit bag vào Gi
 3. **Sau đó:** crossing một vật cản đã đo, video đồng bộ và repeats có kiểm
    soát. Dùng thông tin này để hiệu chỉnh sim và kiểm tra H2 trước predictor.
 
-Chưa có driver/topic thực nên chưa thể cung cấp adapter CAN/CyberGear hoặc
-torque sensor giả định cho robot của bạn. Bộ này cho biết dữ liệu nào có,
-trống hoặc cần bổ sung thay vì che phần thiếu đó.
+Bộ collector không kèm driver CAN/CyberGear hoặc torque sensor. Raw sensor
+và driver bên ngoài đã được dùng trên robot theo status ở đầu tài liệu;
+telemetry actuator độc lập và body reference vẫn chưa đủ.
+
+## GUI tiến độ và chất lượng dữ liệu — 03/11/2026
+
+Xem [đánh giá lại báo cáo mới](../../docs/NINO_REPORT_REASSESSMENT_AND_GUI_2026-11-03.md).
+GUI v3 có tab **Tiến độ / kết quả / to-do**, hồ sơ dữ liệu đã/chưa thu,
+thông số và kết quả có nguồn, cùng thang Q0–Q4 theo claim. Mở offline bằng
+`bash ~/ninorobot/src/nino_pi/scripts/mode_gui.sh --project`.
+Hash/closure đạt chỉ đủ kiểm raw; không tự xác nhận thân xe tiến, slip,
+body stopping hoặc độ lặp. Mọi raw/failure và ledger cũ giữ nguyên.

@@ -1,5 +1,17 @@
 # Nino — chuẩn bị thu trên firmware hiện tại, 02/11/2026
 
+> **Kết quả mới nhất:** v3 đã đóng1/3;raw đạt nhưng primaryunknown do StopZone can thiệp. Người dùng xác nhận có người/đồ vật phía sau. Không chạy lại slot2/3. [Đánh giá và bước tiếp theo](NINO_WHEEL_REPEATABILITY_PILOT_V3_RESULT_2026-11-02.md). Nội dung cũ bên dưới là lịch sử.
+
+
+> **Bước mới nhất:** pilot chuyển động v3 đã được yêu cầu, triển khai và kiểm readiness trên boot49371bb8; hiện0/3. [Lệnh thu lượt1](NINO_WHEEL_REPEATABILITY_PILOT_V3_2026-11-02.md). Các pilot cũ giữ đóng; chưa chạy motion v3.
+
+
+> **Kết quả mới nhất:** stationaryv2đạt,22/22hash,SQLiteok,cótelemetrycuốiphiên. Không chạy lại capture đã dùng. [Bước hiện tại](NINO_CURRENT_STATUS_2026-11-02.md): đề xuất motion pilot mới có giới hạn, chưa release. Nội dung dưới đây là lịch sử.
+
+
+> **Correction mới:** người dùng xác nhận reboot/ngắt nguồn trong phiên đứng yên v1; không suy collector/Pi tự lỗi. V1 vẫn incomplete. Đã chuẩn bị một capture đứng yên mới, storage resilient, chưa chạy; [bước hiện tại](NINO_RECORDER_CLOSURE_NEXT_STEP_2026-11-02.md). Motion pilot vẫn đóng.
+
+
 > **Đánh giá raw lượt v2 bị ngắt:** chỉ còn 3,703 s trước trial; mẫu cuối trước forward 5,381 s. SQLite index integrity fail, không còn primary motion window. Helper log source completed không thay raw. Pilot giữ stopped 1/3; chưa thu thêm. Báo cáo workspace: `artifacts/interrupted_pilot_v2_evaluation_2026-11-02/REPORT.md`. Đề xuất tiếp: một capture đứng yên kiểm recorder closure trước ngân sách motion mới.
 
 
