@@ -1,0 +1,110 @@
+{
+  "date": "2026-11-04",
+  "status": "completed_descriptive_not_promoted",
+  "task_fingerprint": "7025cd96dc133cd41d99c00068f56728e9014b4e8f908e2839fec26a95ce7dae",
+  "protocol_sha256": "e0d57dcc67754b8f9afa5d05e556d9199626694b47c9c0f0ade7e5efae552ad9",
+  "abi_sha256": "c6ad0de923b19b19b90335b07d16049757cddbe5f7ac9229446f3fccef898083",
+  "artifact_root": "/home/tuanmac/nino_research/sim_task_v2",
+  "artifacts": [
+    {
+      "path": "/home/tuanmac/nino_research/sim_task_v2/20261104T083830480301Z_sim-v2-baselines",
+      "action": "sim-v2-baselines",
+      "status": "completed",
+      "files_verified": 53,
+      "task_fingerprint": "7025cd96dc133cd41d99c00068f56728e9014b4e8f908e2839fec26a95ce7dae",
+      "job": {
+        "action": "sim-v2-baselines",
+        "status": "completed",
+        "error": null,
+        "wall_s": 180.7906633859966,
+        "hardware_actions": 0
+      },
+      "physics_requests": 1160,
+      "physics_completed": 1160,
+      "physics_retries": 0,
+      "parameter_calls": 8,
+      "parameter_completed": 8
+    },
+    {
+      "path": "/home/tuanmac/nino_research/sim_task_v2/20261104T084149528335Z_sim-v2-train",
+      "action": "sim-v2-train",
+      "status": "completed",
+      "files_verified": 51,
+      "task_fingerprint": "7025cd96dc133cd41d99c00068f56728e9014b4e8f908e2839fec26a95ce7dae",
+      "job": {
+        "action": "sim-v2-train",
+        "status": "completed",
+        "error": null,
+        "wall_s": 193.01119862799533,
+        "hardware_actions": 0
+      },
+      "physics_requests": 1064,
+      "physics_completed": 1064,
+      "physics_retries": 0,
+      "parameter_calls": 8,
+      "parameter_completed": 8
+    },
+    {
+      "path": "/home/tuanmac/nino_research/sim_task_v2/20261104T084546131055Z_sim-v2-evaluate",
+      "action": "sim-v2-evaluate",
+      "status": "completed",
+      "files_verified": 73,
+      "task_fingerprint": "7025cd96dc133cd41d99c00068f56728e9014b4e8f908e2839fec26a95ce7dae",
+      "job": {
+        "action": "sim-v2-evaluate",
+        "status": "completed",
+        "error": null,
+        "wall_s": 321.0341332900134,
+        "hardware_actions": 0
+      },
+      "physics_requests": 1740,
+      "physics_completed": 1740,
+      "physics_retries": 0,
+      "parameter_calls": 12,
+      "parameter_completed": 12
+    }
+  ],
+  "files_sha256_verified": 177,
+  "world_control_requests": 3964,
+  "world_control_completed": 3964,
+  "world_control_retries": 0,
+  "parameter_calls": 28,
+  "parameter_completed": 28,
+  "replay_rows_checked": 512,
+  "portable_actor_replay_observations_checked": 512,
+  "portable_actor_max_error": 2.086162567138672e-07,
+  "tests": {
+    "sim_tests": {
+      "tests": 35,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "gui_tests": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "gui_actual_artifacts": {
+    "v2_verified_stages": 3,
+    "v2_table_rows": 6,
+    "v1_verified_stages": 3,
+    "v1_table_rows": 3,
+    "job_started_on_open": false,
+    "closed_v2_stages_cannot_repeat_from_gui": true
+  },
+  "colcon_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "installed_source_matches": true,
+  "hardware_actions": 0,
+  "real_datasets_added": 0,
+  "benefit_verified": false,
+  "owned_sim_processes_remaining": [],
+  "qa_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_task_v2_2026-11-04",
+  "source_snapshot_sha256": "1b190148dcc64b068fc663201a6bcae892924569e963df386fa8b989653f4912",
+  "next_recommendation": "Separate path guidance and velocity residual; clear-floor frozen-checkpoint bias diagnostic under a new protocol before longer training."
+}

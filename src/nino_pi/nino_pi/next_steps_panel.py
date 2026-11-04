@@ -12,8 +12,8 @@ class NextStepsPanel(Q.QWidget):
         layout=Q.QVBoxLayout(self)
         title=Q.QLabel('VIỆC CẦN LÀM · chọn từng bước để xem thao tác và dữ liệu')
         title.setWordWrap(True);title.setStyleSheet('font-size:20px;font-weight:700');layout.addWidget(title)
-        current=Q.QLabel('ĐANG Ở BƯỚC 01–02: Studio chỉ đọc → QC → giải thích lệnh → bánh → thân xe.\n'
-            'Các bài kiểm History/TD3/PPO đã chạy ở phần mềm. Model Nino, train nghiên cứu và residual trên robot còn chờ bằng chứng.')
+        current=Q.QLabel('ƯU TIÊN NHÁNH SIM: B0 → TD3 h5 có giới hạn → so baseline. Không cần đợi real dataset.\n'
+            'Nhánh dữ liệu thật chạy song song cho SysID/calibration; triển khai residual trên robot là gate riêng.')
         current.setWordWrap(True);current.setStyleSheet('color:#72ded0;padding:8px;background:#173743;');layout.addWidget(current)
         split=Q.QSplitter(C.Qt.Horizontal);layout.addWidget(split,1)
         self.list=Q.QListWidget();self.list.setMinimumWidth(245);self.list.setMaximumWidth(345)

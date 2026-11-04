@@ -18,6 +18,12 @@ JOBS={
     'sim-baselines':('SIM 1 · B0 sàn sạch / gờ 6 mm / mixed 22 mm',()),
     'sim-train':('SIM 2 · TD3 h5 · pilot 256 bước',('sim-baselines',)),
     'sim-evaluate':('SIM 3 · B0 / B1 yaw / TD3 h5',('sim-train',)),
+    'sim-v2-baselines':('SIM V2 · B0 tracking + dừng · 2 lượt/môi trường',()),
+    'sim-v2-train':('SIM V2 · TD3 h5 · tối đa 512 transition',('sim-v2-baselines',)),
+    'sim-v2-evaluate':('SIM V2 · B0 / speed control / TD3 · 2 lượt/arm',('sim-v2-train',)),
+    'sim-bias-clear':('SIM · Checkpoint V2 đóng băng trên sàn sạch · 4 lượt',()),
+    'sim-guidance-contract':('SIM · Reference follower → residual · kiểm offline',('sim-bias-clear',)),
+    'sim-v3-baselines':('SIM V3 · Estimator + follower trong Gazebo · residual zero',()),
     'sysid':('7 · Phân tích SysID đã đăng ký',()),
 }
 
@@ -36,10 +42,35 @@ def workflow_state(root):
             # GUI uses system Python; workers use the research venv. Display
             # verified historical results; each worker rechecks its own runtime.
             path=latest(root,action,check_runtime=False)
+            if action=='sim-bias-clear':
+                from nino_rl.residual_clear_bias import validated_latest
+                path=validated_latest(root,check_runtime=False)
+            if action=='sim-guidance-contract':
+                from nino_rl.residual_guidance_workflow import validated_latest
+                path=validated_latest(root,check_runtime=False)
+            if action=='sim-v3-baselines':
+                from nino_rl.residual_guided_baseline import validated_latest
+                path=validated_latest(root,check_runtime=False)
+            if action.startswith('sim-v2-'):
+                from nino_rl.residual_sim_task import validated_latest
+                path=validated_latest(root,action,check_runtime=False)
             if action in ('sim-baselines','sim-train','sim-evaluate'):
                 from nino_rl.residual_sim_pilot import fingerprint
                 manifest=json.loads((path/'manifest.json').read_text())
                 if manifest.get('pilot_fingerprint')!=fingerprint():raise ValueError('Sim pilot source/protocol changed; retained artifact is historical')
+                if action=='sim-train':
+                    baseline=latest(root,'sim-baselines',check_runtime=False)
+                    dependency=json.loads((path/'dependencies.json').read_text())
+                    if dependency.get('baseline')!=str(baseline) or dependency.get('manifest_sha256')!=hashlib.sha256((baseline/'manifest.json').read_bytes()).hexdigest():
+                        raise ValueError('B0 artifact changed after training; review the retained dependency chain')
+                if action=='sim-evaluate':
+                    trained=latest(root,'sim-train',check_runtime=False)
+                    baseline=latest(root,'sim-baselines',check_runtime=False)
+                    dependency=json.loads((trained/'dependencies.json').read_text())
+                    if dependency.get('baseline')!=str(baseline) or dependency.get('manifest_sha256')!=hashlib.sha256((baseline/'manifest.json').read_bytes()).hexdigest():
+                        raise ValueError('Evaluation input training belongs to an older B0 artifact')
+                    evaluation=json.loads((path/'evaluation_result.json').read_text())
+                    if evaluation.get('checkpoint')!=str(trained):raise ValueError('Checkpoint changed; retained evaluation is historical')
             if action=='factory-td3':
                 from nino_rl.residual_factory_workflow import factory_fingerprint
                 manifest=json.loads((path/'manifest.json').read_text())
@@ -53,7 +84,9 @@ def workflow_state(root):
                 current=latest(root,'train-td3',check_runtime=False)
                 if manifest.get('input_artifact')!=str(current) or manifest.get('input_manifest_sha256')!=hashlib.sha256((current/'manifest.json').read_bytes()).hexdigest():
                     raise ValueError('TD3 checkpoint changed; audit the current one')
-            label='PILOT MÔ TẢ · CHƯA PROMOTE' if action in ('sim-baselines','sim-train','sim-evaluate') else 'SMOKE ĐẠT · TASK CHƯA XÁC NHẬN' if action=='factory-td3' else 'ĐẠT PHẦN MỀM' if action!='sysid' else 'CANDIDATE · CẦN REVIEW'
+            label='PILOT MÔ TẢ · CHƯA PROMOTE' if action.startswith('sim-') else 'SMOKE ĐẠT · TASK CHƯA XÁC NHẬN' if action=='factory-td3' else 'ĐẠT PHẦN MỀM' if action!='sysid' else 'CANDIDATE · CẦN REVIEW'
+            if action=='sim-guidance-contract':label='ĐẠT OFFLINE · CHƯA NỐI GAZEBO / ROBOT'
+            if action=='sim-v3-baselines':label='BASELINE GAZEBO · RESIDUAL ZERO · CHƯA LEARNING'
             result[action]=dict(state='verified',path=str(path),label=label)
         except (OSError,ValueError,KeyError,TypeError) as exc:
             result[action]=dict(state='pending',path=None,label='CHƯA ĐẠT / ARTIFACT CŨ',error=str(exc))
@@ -70,6 +103,8 @@ class ResearchRunner(C.QObject):
     def start(self,action):
         if self.busy or action not in JOBS:return False
         state=workflow_state(self.root)
+        if (action.startswith('sim-v2-') or action in ('sim-bias-clear','sim-guidance-contract','sim-v3-baselines')) and state[action]['state']=='verified':
+            raise ValueError('Stage đã hoàn tất; xem kết quả. Mở budget/task mới bằng protocol có phiên bản, không bấm lại stage đã đóng.')
         for dep in JOBS[action][1]:
             if state[dep]['state']!='verified':raise ValueError('Chạy và đạt '+dep+' trước')
         if action=='sysid' and not (self.root/'registration.json').is_file():raise ValueError('Đăng ký CSV + metadata trước')
@@ -78,6 +113,13 @@ class ResearchRunner(C.QObject):
         if action=='factory-td3':command=['/usr/bin/setsid','/bin/bash',str(repository()/'src/nino_rl/scripts/residual_factory_smoke.sh'),'--output',str(self.root)]
         if action in ('sim-baselines','sim-train','sim-evaluate'):
             command=['/usr/bin/setsid','/bin/bash',str(repository()/'src/nino_rl/scripts/residual_sim_pilot.sh'),action,'--output',str(self.root)]
+        if action.startswith('sim-v2-'):
+            command=['/usr/bin/setsid','/bin/bash',str(repository()/'src/nino_rl/scripts/residual_sim_task.sh'),action,'--output',str(self.root)]
+        if action in ('sim-bias-clear','sim-guidance-contract'):
+            script='residual_clear_bias.sh' if action=='sim-bias-clear' else 'residual_guidance_check.sh'
+            command=['/usr/bin/setsid','/bin/bash',str(repository()/'src/nino_rl/scripts'/script),'--output',str(self.root)]
+        if action=='sim-v3-baselines':
+            command=['/usr/bin/setsid','/bin/bash',str(repository()/'src/nino_rl/scripts/residual_guided_baseline.sh'),'--output',str(self.root)]
         self.action=action;self.last={};self.cancelling=False;self.buffer=b''
         p=C.QProcess(self);self.process=p;p.setProcessChannelMode(C.QProcess.MergedChannels)
         p.readyReadStandardOutput.connect(self.read);p.finished.connect(self.finished);p.errorOccurred.connect(self.error)

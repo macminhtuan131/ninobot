@@ -1,3 +1,7 @@
+> **04/11 — sim tiếp tục:** checkpoint V2 vẫn có steering bias trên clear floor (4 lượt, zero training). Reference follower đạt offline, chưa nối Gazebo. [Kết quả và bước V3](NINO_SIM_CLEAR_BIAS_RESULT_2026-11-04.md).
+
+> **04/11 — ưu tiên nhánh sim theo yêu cầu mới:** B0 → TD3 h5 pilot có giới hạn → đánh giá, không cần đợi thu real data. Xem [protocol nhánh sim](NINO_SIM_BRANCH_PROTOCOL_2026-11-04.md). Các gate robot thật và calibration phía dưới là nhánh song song.
+
 # Chuẩn hóa TD3 và Nino Real Data Studio — 04/11/2026
 
 ## Quyết định sau khi đối chiếu báo cáo với source

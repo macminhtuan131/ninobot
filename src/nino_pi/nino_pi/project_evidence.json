@@ -3,7 +3,7 @@
   "review_date": "2026-11-04",
   "data_cutoff": "2026-11-02",
   "scope": "Snapshot real data đến 02/11; cập nhật phần mềm 04/11, chưa kiểm kê Pi lại. GUI software fixture không thêm real data.",
-  "next_action": "Studio v7 chỉ đọc: review dữ liệu có sẵn, kiểm observer sensor/storage, ghi/QC/import khi có câu hỏi cần trả lời. Profile TD3 có version/hash trong Xây project; chưa train nghiên cứu/deploy real.",
+  "next_action": "Đang chạy V3 causal wheel+IMU estimator + follower trong Gazebo; residual zero, 8 lượt clear floor. Chờ đủ kết quả để quyết định task/TD3 V3; không cần real dataset hoặc hardware motion.",
   "data": [
     {
       "id": "D01",
@@ -1304,5 +1304,28 @@
     "DEMO luôn Q0 cho dữ liệu thật. Dữ liệu mới không tự thêm vào snapshot lịch sử hoặc đánh dấu to-do hoàn tất.",
     "Q3 không chứng nhận an toàn hoặc cho phép motion tiếp. Không mở lại budgets hoặc tăng tốc/gain/current từ mức quality."
   ],
-  "research_plan_id": "nino_bounded_velocity_research_v1"
+  "research_plan_id": "nino_bounded_velocity_research_v1",
+  "simulation_update": {
+    "date": "2026-11-04",
+    "protocol": "nino_frozen_v2_clear_bias_v1_2026_11_04",
+    "real_data_added": 0,
+    "training_transitions": 0,
+    "clear_floor_runs": 4,
+    "task_and_stop_successes": 4,
+    "td3_mean_yaw_reference_rad_s": [
+      -0.07549773518575568,
+      -0.07590208198153241
+    ],
+    "td3_lateral_rmse_m": [
+      0.145010465723882,
+      0.1448969848454271
+    ],
+    "b0_lateral_rmse_m": [
+      0.0008117525839840471,
+      0.001253714376873611
+    ],
+    "guidance_offline_fixtures": 5,
+    "guidance_gazebo_connected": false,
+    "benefit_verified": false
+  }
 }

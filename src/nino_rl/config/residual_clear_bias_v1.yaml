@@ -1,0 +1,20 @@
+# Diagnostic only. Checkpoint, V2 task/reward/ABI and motor backend stay frozen.
+schema_version: 1
+protocol_id: nino_frozen_v2_clear_bias_v1_2026_11_04
+action: sim-bias-clear
+checkpoint: /home/tuanmac/nino_research/sim_task_v2/20261104T084149528335Z_sim-v2-train
+checkpoint_workflow_root: /home/tuanmac/nino_research/sim_task_v2
+checkpoint_manifest_sha256: 634c4bd3de416d73da20aeb7bb5a3f7e5177346a1908a98b1c24aa229776179b
+checkpoint_task_fingerprint: 7025cd96dc133cd41d99c00068f56728e9014b4e8f908e2839fec26a95ce7dae
+scenario: clear_box
+order: [B0, TD3_h5, TD3_h5, B0]
+repeats_per_arm: 2
+steps_per_rollout: 140
+maximum_transitions: 560
+training_transitions: 0
+steady_window_s: [3.0, 8.0]
+numerical_yaw_floor_rad_s: 0.000001
+minimum_effect_accepted: null
+wall_deadline_s: 1200
+hardware_actions: 0
+note: Descriptive steering-bias diagnostic; fresh launches are not exact-state counterfactuals or independent training seeds. No automatic correction/retry or larger training release.

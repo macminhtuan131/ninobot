@@ -1,0 +1,36 @@
+schema_version: 1
+protocol_id: nino_guided_zero_residual_baseline_v3_2026_11_04
+action: sim-v3-baselines
+training_transitions: 0
+hardware_actions: 0
+scenario: clear_box
+horizon_s: 14.0
+command_until_s: 8.0
+warmup_s: 0.5
+steps_per_rollout: 140
+maximum_transitions: 1120
+repeats_per_condition: 2
+path_length_m: 3.0
+initial_pose_m_rad: [0.0, 0.0, 0.0]
+heading_error_definition: robot yaw 0 minus path bearing; no robot teleport or truth-based estimator initialization
+order:
+  - {arm: constant, path_bearing_deg: 5.0, repeat: 0}
+  - {arm: guided, path_bearing_deg: -5.0, repeat: 0}
+  - {arm: guided, path_bearing_deg: 5.0, repeat: 0}
+  - {arm: constant, path_bearing_deg: -5.0, repeat: 0}
+  - {arm: constant, path_bearing_deg: -5.0, repeat: 1}
+  - {arm: guided, path_bearing_deg: 5.0, repeat: 1}
+  - {arm: guided, path_bearing_deg: -5.0, repeat: 1}
+  - {arm: constant, path_bearing_deg: 5.0, repeat: 1}
+estimator:
+  maximum_gap_s: 0.04
+  gyro_bias_rad_s: 0.0
+  maximum_buffer: 4096
+functional_proposals:
+  maximum_guided_cross_track_m: 0.04
+  maximum_estimator_position_error_m: 0.05
+  maximum_estimator_yaw_error_rad: 0.05
+  local_progress_marker_m: 0.95
+minimum_effect_accepted: null
+wall_deadline_s: 1800
+note: Simulation engineering proposals, not factory or hardware acceptance. Two fresh launches per condition are descriptive; no exact-state pairing or statistical benefit certification.

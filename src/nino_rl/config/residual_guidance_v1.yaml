@@ -1,0 +1,24 @@
+# Offline preparation only; no ROS node, Gazebo release or hardware deployment.
+schema_version: 1
+baseline_id: nino_estimated_pose_guidance_v1
+pose_source: wheel_imu_odometry
+pose_frame_id: odom
+command_frame_id: base_footprint
+clock_id: declared_common_control_clock
+allow_sim_truth_oracle: false
+maximum_pose_age_s: 0.2
+maximum_corridor_error_m: 0.4
+maximum_goal_overshoot_m: 0.1
+path_points_m: [[0.0, 0.0], [1.5, 0.0]]
+goal_tolerance_m: 0.05
+goal_heading_tolerance_deg: 15.0
+navigation:
+  straight_speed_m_s: 0.2
+  minimum_approach_speed_m_s: 0.03
+  goal_stop_tolerance_m: 0.03
+  goal_slowdown_distance_m: 0.4
+  path_feedback:
+    enabled: true
+    lookahead_m: 0.45
+    max_yaw_rate_rad_s: 0.5
+    residual_fade_distance_m: 1.0

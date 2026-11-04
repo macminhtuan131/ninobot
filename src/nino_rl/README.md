@@ -1,3 +1,7 @@
+> **04/11 — sim tiếp tục:** checkpoint V2 vẫn có steering bias trên clear floor (4 lượt, zero training). Reference follower đạt offline, chưa nối Gazebo. [Kết quả và bước V3](../../docs/NINO_SIM_CLEAR_BIAS_RESULT_2026-11-04.md).
+
+> **04/11 — nhánh sim đã chạy:** B0 ba môi trường → TD3 h5 256 transition/240 optimizer updates → B0/B1/TD3 evaluation. Không cần real dataset để train sim. Checkpoint chưa promote; xem [kết quả và điểm dừng](../../docs/NINO_SIM_BRANCH_RESULT_2026-11-04.md).
+
 > **04/11 — parameter catalog:** `config/td3_parameter_profiles.yaml` + `nino_rl.td3_config` kiểm schema/hash và tạo config/ABI draft; smoke dùng profile chung. h1/h5/h8 research còn là đề xuất. Không mở budget hoặc hardware authority. Xem [Studio / contract](../nino_pi/REAL_DATA_STUDIO.md).
 
 # Nino residual learning package

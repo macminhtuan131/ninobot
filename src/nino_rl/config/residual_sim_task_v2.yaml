@@ -1,0 +1,34 @@
+# Independent finite task/reward experiment. V1 results remain immutable.
+extends: residual_factory_td3_smoke.yaml
+purpose: bounded_sim_task_tracking_stop_v2
+backend:
+  horizon_s: 14.0
+  command_until_s: 8.0
+  max_episodes: 4
+task:
+  id: nino_sim_task_tracking_stop_v2_2026_11_04
+  source_warmup_s: 0.5
+  command_until_s: 8.0
+  horizon_s: 14.0
+  steps_per_rollout: 140
+  training_transitions: 512
+  learner_seed: 7
+  baseline_scenarios: [clear_box, box_c1_6mm]
+  baseline_repeats: 2
+  evaluation_arms: [B0, B_speed_control, TD3_h5]
+  evaluation_repeats: 2
+  evaluation_order: [B0, B_speed_control, TD3_h5, TD3_h5, B_speed_control, B0]
+  speed_control_delta_m_s: 0.02348807  # V1 observed mean boost; diagnostic, not tuned.
+  local_marker_x_m: 0.95
+  stop_speed_norm_m_s: 0.01
+  stop_yaw_rad_s: 0.05
+  stop_wheel_rad_s: 0.15
+  stop_reference_wheel_m_s: 0.000001
+  stop_continuous_s: 2.0
+  reward_scales: {speed_m_s: 0.2, yaw_rad_s: 0.5, lateral_m: 0.05}
+  reward_weights: {tracking: 1.0, yaw: 0.2, lateral: 0.5, action: 0.01, action_change: 0.001, time: 0.02}
+  terminal_penalties: {missing_marker: 5.0, not_stopped: 10.0, physical_failure: 10.0}
+  minimum_effect_accepted: null
+  wall_deadline_per_job_s: 1800
+  hardware_actions: 0
+  note: Fixed 14 s task, terminal deadline (not external truncation). Two fresh launches are descriptive repeats, not exact-state pairs or independent learner seeds. All thresholds are sim engineering proposals.

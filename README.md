@@ -1,3 +1,7 @@
+> **04/11 — sim tiếp tục:** checkpoint V2 vẫn có steering bias trên clear floor (4 lượt, zero training). Reference follower đạt offline, chưa nối Gazebo. [Kết quả và bước V3](docs/NINO_SIM_CLEAR_BIAS_RESULT_2026-11-04.md).
+
+> **Nhánh sim 04/11 đã triển khai:** [B0 → TD3 h5 → evaluation](docs/NINO_SIM_BRANCH_RESULT_2026-11-04.md). GUI có tab NHÁNH SIM và bảng kết quả; không đợi real dataset.
+
 > **04/11 — [Nino Real Data Studio v7](src/nino_pi/REAL_DATA_STUDIO.md):** recorder chỉ đọc + QC/export; [chuẩn hóa TD3 và định hướng](docs/NINO_TD3_DATA_STUDIO_STANDARDIZATION_2026-11-04.md). Các smoke trước giữ nguyên là bằng chứng lịch sử, không là deployment.
 
 # Nino: contact-informed speed adaptation over low floor obstacles

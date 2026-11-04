@@ -8,7 +8,7 @@
   "physical_backend": "CyberGear velocity mode qua STM32/CAN theo source; PI actuator và binary/rate thực cần xác minh, không giả định STM32 PWM PI 500 Hz",
   "residual_interface": "common/diff wheel-linear velocity correction m/s → left/right → body reference; không effort/torque/PWM",
   "actor_contract": "nino_residual_velocity_v1: 20 feature × 5 frame = 100; span đề xuất 0,4 s ở 10 Hz; không terrain/GT/pose/contact/caster privileged",
-  "status": "software_integration_available_physical_validation_pending",
+  "status": "v3_guided_zero_residual_baseline_running",
   "training_allowed": false,
   "hardware_residual_authority": 0,
   "stages": [
@@ -123,14 +123,14 @@
   "next_steps": [
     {
       "id": "01",
-      "name": "Chuẩn bị Studio và review dữ liệu hiện có",
-      "status": "VIỆC NGAY · OBSERVER",
-      "owner": "Assistant kiểm phần mềm; bạn nối robot và xác nhận metadata",
-      "work": "Mở Studio chỉ đọc. Chuẩn bị observer có hash, chọn kịch bản, kiểm sensor/storage/disk. Dùng dữ liệu đã có để xác định phần thiếu trước khi thu lại. GUI không chuyển RC, enable hoặc tự chạy trajectory; commissioning cũ nằm ở trang riêng.",
-      "data": "Inventory/sign đã có không cần lặp nếu không có câu hỏi mới. Cần kiểm source/receipt clock, raw feedback/status, các tầng command thực sự tồn tại, metadata/version, video/reference theo claim.",
-      "output": "Một phiên ghi chỉ đọc có raw MCAP/SQLite, metadata, annotation, checksum và QC. Bảng raw Q2 không đồng nghĩa wheel/body claim đạt.",
-      "gate": "Observer đóng bag đúng, re-read raw và hashes đạt. Nếu thiếu clock/coverage/reference thì WARN/unknown; không chấp nhận 95% từ ví dụ. Không tự mở slot motion.",
-      "action": "studio"
+      "name": "Sim V3: estimator + follower → baseline zero residual",
+      "status": "8 LƯỢT BASELINE GAZEBO ĐANG CHẠY",
+      "owner": "Assistant triển khai/chạy trên laptop",
+      "work": "Không đợi real dataset. Nối causal wheel+IMU odometry vào follower và ResidualPipeline trong Gazebo. Robot yaw 0, tuyến ±5° tạo heading error; B0 constant/guided × 2 bearings × 2 lượt. Residual zero, không actor/optimizer. GT chỉ reset/evaluation.",
+      "data": "Raw sensor/GT/caster/drive + từng estimator update với gyro stamp/wheel support stamp, pose source/clock/epoch, guidance reference/accepted/final/target. Estimate không là body GT.",
+      "output": "Artifact V3 với path cross-track, heading, estimator drift, reference v/yaw tracking và quiet stop. Candidate baseline chỉ được xác nhận sau đủ tám lượt theo gate đề xuất.",
+      "gate": "Không lấp estimator drift bằng GT alignment. Thiếu causal support/source fault hoặc physical failure đóng batch, không retry. Qua baseline gate mới thiết kế/release TD3 V3 riêng, không resume V2 theo ABI đơn thuần.",
+      "action": null
     },
     {
       "id": "02",
@@ -179,7 +179,7 @@
     {
       "id": "06",
       "name": "Train và so TD3/PPO/History/Governor",
-      "status": "CHƯA MỞ TRAIN NGHIÊN CỨU",
+      "status": "V2 ĐÃ TRAIN; CLEAR BIAS ĐÃ KIỂM; V3/HISTORY/MULTI-SEED CHƯA TRAIN",
       "owner": "Assistant triển khai/chạy theo protocol và ngân sách được chốt",
       "work": "Train TD3 và PPO bằng tương tác với simulator đã kiểm, có nhiều training seed theo ngân sách mới. Real bags dùng để nhận dạng/kiểm model. So B0, B1, Governor và các policy qua cùng evaluator; ablation history một frame/nhiều frame, authority/projection và governor khi cần. Profile chuẩn hóa có h1/h5/h8 và hash; h8 chưa được train/so sánh. Action common/differential wheel-linear và normalization vật lý giữ nguyên ABI hiện hành; mask/train-stat normalization cần adapter và validation riêng.",
       "data": "Rollouts observation→proposal→accepted reference→feedback→reward; config/checkpoint/hash; labels chỉ cho evaluator; split toàn session/layout/payload; failures/interventions và held-out tests.",
@@ -210,7 +210,7 @@
       "action": null
     }
   ],
-  "next_steps_scope": "Research roadmap proposals. Read-only Studio implementation does not grant motor motion, new pilot slots, training budgets, numeric QC thresholds or deployment.",
+  "next_steps_scope": "Bounded simulation pilot completed under user authorization; real data is not required to continue sim study. Any expanded sim budget/objective gets a separate protocol; no hardware release.",
   "data_studio": {
     "mode": "observer_only",
     "recorder_motor_commands": 0,
@@ -235,5 +235,88 @@
     "normalization": "fixed_physical_scales_v1",
     "independent_actor_critic_lr_supported": false,
     "scientific_training_released": false
+  },
+  "sim_branch": {
+    "protocol_id": "nino_guided_zero_residual_baseline_v3_2026_11_04",
+    "jobs": [
+      "sim-v3-baselines"
+    ],
+    "real_data_prerequisite": false,
+    "training_transitions": 0,
+    "maximum_evaluation_transitions": 1120,
+    "evaluation_runs": 8,
+    "hardware_authority": 0,
+    "status": "running",
+    "result_root": "/home/tuanmac/nino_research/sim_guided_baseline_v3",
+    "gazebo_guidance_connected": true,
+    "truth_used_for_guidance": false,
+    "estimator_initialization": "declared_scenario_pose_not_truth_readback",
+    "benefit_verified": false
+  },
+  "training_scope": "V3 classical guided-baseline screen only: 8 launches/1120 transitions, zero actor/optimizer. Real data is not required; TD3 V3 gets a separate task/budget.",
+  "sim_branch_v1_history": {
+    "protocol_id": "nino_sim_branch_pilot_v1_2026_11_04",
+    "jobs": [
+      "sim-baselines",
+      "sim-train",
+      "sim-evaluate"
+    ],
+    "real_data_prerequisite": false,
+    "training_transitions": 256,
+    "learner_seeds": [
+      7
+    ],
+    "evaluation_runs_per_arm": 1,
+    "hardware_authority": 0,
+    "scope": "bounded simulation-only pilot; real data supports later calibration and deployment",
+    "status": "completed_descriptive_not_promoted",
+    "result_root": "/home/tuanmac/nino_research/sim_branch_pilot_v1",
+    "checkpoint": "/home/tuanmac/nino_research/sim_branch_pilot_v1/20261104T080431003518Z_sim-train",
+    "optimizer_updates": 240,
+    "benefit_verified": false
+  },
+  "sim_branch_v2_history": {
+    "protocol_id": "nino_sim_task_tracking_stop_v2_2026_11_04",
+    "jobs": [
+      "sim-v2-baselines",
+      "sim-v2-train",
+      "sim-v2-evaluate"
+    ],
+    "real_data_prerequisite": false,
+    "training_transitions": 512,
+    "learner_seeds": [
+      7
+    ],
+    "evaluation_runs_per_arm": 2,
+    "hardware_authority": 0,
+    "status": "completed_descriptive_not_promoted",
+    "result_root": "/home/tuanmac/nino_research/sim_task_v2",
+    "benefit_verified": false,
+    "optimizer_updates": 496,
+    "checkpoint": "/home/tuanmac/nino_research/sim_task_v2/20261104T084149528335Z_sim-v2-train",
+    "evaluation_task_successes": 6,
+    "evaluation_runs": 6,
+    "next_action": "Separate path-follower guidance from velocity residual; inspect frozen checkpoint steering bias on clear floor before larger training."
+  },
+  "sim_clear_bias_history": {
+    "protocol_id": "nino_frozen_v2_clear_bias_v1_2026_11_04",
+    "jobs": [
+      "sim-bias-clear",
+      "sim-guidance-contract"
+    ],
+    "real_data_prerequisite": false,
+    "training_transitions": 0,
+    "learner_seeds": [
+      7
+    ],
+    "learner_seed_note": "Frozen V2 seed, no new training",
+    "evaluation_runs_per_arm": 2,
+    "hardware_authority": 0,
+    "status": "completed_clear_floor_bias_observed",
+    "result_root": "/home/tuanmac/nino_research/sim_clear_bias_v1",
+    "clear_floor_reference_bias_observed": true,
+    "guidance_scope": "offline_adapter_prepared_only",
+    "gazebo_guidance_connected": false,
+    "benefit_verified": false
   }
 }

@@ -1,0 +1,505 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-04",
+  "status": "bounded_sim_pilot_completed_not_promoted",
+  "current_jobs": {
+    "sim-baselines": {
+      "path": "/home/tuanmac/nino_research/sim_branch_pilot_v1/20261104T075951409906Z_sim-baselines",
+      "manifest_sha256": "6dabdc7c5a036587aedf34b6c24ee7be0d86d5d59e3db1ae7d573e0637f20eac",
+      "status": "completed",
+      "checked_files": 43,
+      "job": {
+        "action": "sim-baselines",
+        "status": "completed",
+        "error": null,
+        "wall_s": 230.73204985099437,
+        "hardware_actions": 0
+      }
+    },
+    "sim-train": {
+      "path": "/home/tuanmac/nino_research/sim_branch_pilot_v1/20261104T080431003518Z_sim-train",
+      "manifest_sha256": "88f5a8e471d7903eedce4346bdb86171924416ed0ebf54f88cfbbafc6fe3a426",
+      "status": "completed",
+      "checked_files": 42,
+      "job": {
+        "action": "sim-train",
+        "status": "completed",
+        "error": null,
+        "wall_s": 117.83461530199565,
+        "hardware_actions": 0
+      }
+    },
+    "sim-evaluate": {
+      "path": "/home/tuanmac/nino_research/sim_branch_pilot_v1/20261104T080705305625Z_sim-evaluate",
+      "manifest_sha256": "ae6fb477954d5dfd5b2500420def6de6a783005be60176a392c9674c9d15e6b0",
+      "status": "completed",
+      "checked_files": 42,
+      "job": {
+        "action": "sim-evaluate",
+        "status": "completed",
+        "error": null,
+        "wall_s": 118.35345398400386,
+        "hardware_actions": 0
+      }
+    }
+  },
+  "retained_attempts": [
+    {
+      "action": "sim-baselines",
+      "path": "20261104T075008377630Z_sim-baselines",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "action": "sim-train",
+      "path": "20261104T075446718330Z_sim-train",
+      "status": "failed",
+      "error": "Parameter readback timed out"
+    },
+    {
+      "action": "sim-baselines",
+      "path": "20261104T075725817397Z_sim-baselines",
+      "status": "failed",
+      "error": "Stale/future input: {'imu': 0.009999999999999787, 'wheel': 0.0, 'final': -8.881784197001252e-16, 'baseline': 0.0, 'status': -8.881784197001252e-16}"
+    },
+    {
+      "action": "sim-baselines",
+      "path": "20261104T075951409906Z_sim-baselines",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "action": "sim-train",
+      "path": "20261104T080431003518Z_sim-train",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "action": "sim-evaluate",
+      "path": "20261104T080705305625Z_sim-evaluate",
+      "status": "completed",
+      "error": null
+    }
+  ],
+  "tests": {
+    "simulation_tests.xml": {
+      "tests": 34,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "89ed4fdd1fbc88600700e6904ed3f32d79b0ca6847d4a8828a03a2f1bfc371e0"
+    },
+    "gui_final_tests.xml": {
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "91219954c313befa12c28a827e6b65eacabe5f355b71fb25aad0854b9833bbfc"
+    }
+  },
+  "training": {
+    "scenario": "box_c1_6mm",
+    "transitions": 256,
+    "optimizer_updates": 240,
+    "learner_seed": 7,
+    "actor_parameter_l1_change": 47.03567426651716,
+    "replay_rows_checked": 256,
+    "portable_actor": {
+      "max_inference_error": 1.1920928955078125e-07,
+      "numpy_only": true,
+      "hardware_authorized": false
+    },
+    "benefit_verified": false,
+    "hardware_authorized": false
+  },
+  "evaluation": {
+    "scenario": "box_c1_6mm",
+    "arms": {
+      "B0": {
+        "steps": 100,
+        "return_value": 14.236347717006035,
+        "final_x_m": 1.4557254533577075,
+        "forward_displacement_m": 1.456378066005335,
+        "maximum_x_m": 1.4557254533577075,
+        "local_marker_x_m": 0.95,
+        "local_marker_reached": true,
+        "local_marker_time_s": 6.6,
+        "lateral_rmse_m": 0.002976667875771615,
+        "yaw_rmse_rad": 0.00792990035210274,
+        "body_to_executed_reference_rmse_m_s": 0.0266962473556364,
+        "wheel_target_rmse_rad_s": [
+          0.44904109086094546,
+          0.44793954505484757
+        ],
+        "maximum_abs_wheel_rad_s": 3.9880192433003825,
+        "maximum_abs_body_speed_m_s": 0.26120586746494634,
+        "final_body_speed_m_s": 0.001825247993321388,
+        "final_wheel_rad_s": [
+          0.014351541692612824,
+          0.014313093634849094
+        ],
+        "physical_failure": false,
+        "time_limit_truncations": 1,
+        "reference_modifications": 38,
+        "accepted_residual_samples": 0,
+        "motion_source_steps": 75,
+        "contact_callback_counts": {
+          "contact_left_wheel": 12253,
+          "contact_caster_right_wheel": 12253,
+          "contact_caster_left_wheel": 12253,
+          "contact_right_wheel": 12253
+        },
+        "c1_manifold_callback_counts": {
+          "contact_caster_right_wheel": 318,
+          "contact_caster_left_wheel": 318,
+          "contact_left_wheel": 340,
+          "contact_right_wheel": 336
+        },
+        "max_observed_source_gap_s": {
+          "imu": 0.02000000000000135,
+          "wheel": 0.0030000000000001137,
+          "truth": 0.02000000000000135,
+          "drive": 0.17999999999999994
+        },
+        "caveats": [
+          "Contact counts are manifolds, not force/load/severity.",
+          "Body reference is simulation truth, not a deployable input.",
+          "Max gaps/counts are not a proof of full acquisition coverage.",
+          "A fresh launch is not an exact-state paired counterfactual."
+        ]
+      },
+      "B1_yaw": {
+        "steps": 100,
+        "return_value": 11.49584445580481,
+        "final_x_m": 1.2042669716329353,
+        "forward_displacement_m": 1.2049271816143245,
+        "maximum_x_m": 1.2042669716329353,
+        "local_marker_x_m": 0.95,
+        "local_marker_reached": true,
+        "local_marker_time_s": 8.1,
+        "lateral_rmse_m": 0.059535339465892886,
+        "yaw_rmse_rad": 0.17607805223518377,
+        "body_to_executed_reference_rmse_m_s": 0.0830044429613517,
+        "wheel_target_rmse_rad_s": [
+          1.0793826713014985,
+          1.6086194666949414
+        ],
+        "maximum_abs_wheel_rad_s": 6.506076684815563,
+        "maximum_abs_body_speed_m_s": 0.2765446050581396,
+        "final_body_speed_m_s": 0.036489026764690805,
+        "final_wheel_rad_s": [
+          0.5787683475614678,
+          0.6011442827358455
+        ],
+        "physical_failure": false,
+        "time_limit_truncations": 1,
+        "reference_modifications": 50,
+        "accepted_residual_samples": 53,
+        "motion_source_steps": 75,
+        "contact_callback_counts": {
+          "contact_left_wheel": 12292,
+          "contact_caster_right_wheel": 12292,
+          "contact_caster_left_wheel": 12292,
+          "contact_right_wheel": 12292
+        },
+        "c1_manifold_callback_counts": {
+          "contact_caster_left_wheel": 251,
+          "contact_caster_right_wheel": 245,
+          "contact_left_wheel": 404,
+          "contact_right_wheel": 2293
+        },
+        "max_observed_source_gap_s": {
+          "imu": 0.02000000000000135,
+          "wheel": 0.0030000000000001137,
+          "truth": 0.02000000000000135,
+          "drive": 0.02000000000000135
+        },
+        "caveats": [
+          "Contact counts are manifolds, not force/load/severity.",
+          "Body reference is simulation truth, not a deployable input.",
+          "Max gaps/counts are not a proof of full acquisition coverage.",
+          "A fresh launch is not an exact-state paired counterfactual."
+        ]
+      },
+      "TD3_h5": {
+        "steps": 100,
+        "return_value": 15.89023766311071,
+        "final_x_m": 1.6220638298014471,
+        "forward_displacement_m": 1.6227703291083564,
+        "maximum_x_m": 1.6220638298014471,
+        "local_marker_x_m": 0.95,
+        "local_marker_reached": true,
+        "local_marker_time_s": 6.199999999999999,
+        "lateral_rmse_m": 0.008926561264299786,
+        "yaw_rmse_rad": 0.04911247005957569,
+        "body_to_executed_reference_rmse_m_s": 0.030011098653764383,
+        "wheel_target_rmse_rad_s": [
+          0.6802799486615011,
+          0.39763259638327164
+        ],
+        "maximum_abs_wheel_rad_s": 5.173321003849226,
+        "maximum_abs_body_speed_m_s": 0.2861296328372952,
+        "final_body_speed_m_s": 0.03707342000187799,
+        "final_wheel_rad_s": [
+          0.6459842441951154,
+          0.5366263238326783
+        ],
+        "physical_failure": false,
+        "time_limit_truncations": 1,
+        "reference_modifications": 66,
+        "accepted_residual_samples": 55,
+        "motion_source_steps": 75,
+        "contact_callback_counts": {
+          "contact_left_wheel": 12420,
+          "contact_caster_right_wheel": 12361,
+          "contact_caster_left_wheel": 12334,
+          "contact_right_wheel": 12420
+        },
+        "c1_manifold_callback_counts": {
+          "contact_caster_left_wheel": 230,
+          "contact_caster_right_wheel": 232,
+          "contact_left_wheel": 518,
+          "contact_right_wheel": 309
+        },
+        "max_observed_source_gap_s": {
+          "imu": 0.02000000000000135,
+          "wheel": 0.0030000000000001137,
+          "truth": 0.02000000000000135,
+          "drive": 0.02000000000000135
+        },
+        "caveats": [
+          "Contact counts are manifolds, not force/load/severity.",
+          "Body reference is simulation truth, not a deployable input.",
+          "Max gaps/counts are not a proof of full acquisition coverage.",
+          "A fresh launch is not an exact-state paired counterfactual."
+        ]
+      }
+    },
+    "checkpoint": "/home/tuanmac/nino_research/sim_branch_pilot_v1/20261104T080431003518Z_sim-train",
+    "learner_seeds": 1,
+    "evaluation_runs_per_arm": 1,
+    "inference": "deterministic actor; fresh launch per arm; no exploration at evaluation",
+    "baseline": "B0 same shaping; B1 predefined yaw P, not a tuned optimal controller",
+    "conclusion": "descriptive pilot only; no accepted effect threshold or independent-seed confidence interval",
+    "benefit_verified": false,
+    "hardware_authorized": false,
+    "full_factory_generalization": false
+  },
+  "native_window_checks": {
+    "B0_clear_box": {
+      "window_sim_s": [
+        5.089,
+        15.089
+      ],
+      "scope": "Policy window only; excludes startup/settling",
+      "counts": {
+        "wheel": 5000,
+        "imu": 500,
+        "truth": 500,
+        "drive": 500
+      },
+      "max_source_gap_s": {
+        "wheel": 0.0039999999999995595,
+        "imu": 0.02000000000000135,
+        "truth": 0.02000000000000135,
+        "drive": 0.021000000000000796
+      },
+      "max_boundary_lag_s": {
+        "imu": 0.009000000000000341,
+        "wheel": 0.0010000000000012221,
+        "truth": 0.009000000000000341,
+        "drive": 0.005000000000000782
+      },
+      "note": "These statistics are not loaded-contact coverage or a damage/impact measurement."
+    },
+    "B0_box_c1_6mm": {
+      "window_sim_s": [
+        2.787,
+        12.787
+      ],
+      "scope": "Policy window only; excludes startup/settling",
+      "counts": {
+        "wheel": 5000,
+        "drive": 500,
+        "imu": 500,
+        "truth": 500
+      },
+      "max_source_gap_s": {
+        "wheel": 0.004999999999999893,
+        "drive": 0.02000000000000135,
+        "imu": 0.02000000000000135,
+        "truth": 0.02000000000000135
+      },
+      "max_boundary_lag_s": {
+        "imu": 0.0070000000000014495,
+        "wheel": 0.0010000000000012221,
+        "truth": 0.0070000000000014495,
+        "drive": 0.019000000000000128
+      },
+      "note": "These statistics are not loaded-contact coverage or a damage/impact measurement."
+    },
+    "B0_mixed_original_22mm": {
+      "window_sim_s": [
+        2.873,
+        12.873
+      ],
+      "scope": "Policy window only; excludes startup/settling",
+      "counts": {
+        "wheel": 5000,
+        "imu": 500,
+        "truth": 500,
+        "drive": 500
+      },
+      "max_source_gap_s": {
+        "wheel": 0.002000000000000668,
+        "imu": 0.02000000000000135,
+        "truth": 0.02000000000000135,
+        "drive": 0.02000000000000135
+      },
+      "max_boundary_lag_s": {
+        "imu": 0.013000000000000789,
+        "wheel": 0.0010000000000012221,
+        "truth": 0.013000000000000789,
+        "drive": 0.013000000000000789
+      },
+      "note": "These statistics are not loaded-contact coverage or a damage/impact measurement."
+    },
+    "evaluation_B0": {
+      "window_sim_s": [
+        2.253,
+        12.253
+      ],
+      "scope": "Policy window only; excludes startup/settling",
+      "counts": {
+        "wheel": 5000,
+        "imu": 500,
+        "truth": 500,
+        "drive": 499
+      },
+      "max_source_gap_s": {
+        "wheel": 0.0030000000000001137,
+        "imu": 0.02000000000000135,
+        "truth": 0.02000000000000135,
+        "drive": 0.020999999999999908
+      },
+      "max_boundary_lag_s": {
+        "imu": 0.013000000000001677,
+        "wheel": 0.0019999999999997797,
+        "truth": 0.013000000000001677,
+        "drive": 0.019000000000000128
+      },
+      "note": "These statistics are not loaded-contact coverage or a damage/impact measurement."
+    },
+    "evaluation_B1_yaw": {
+      "window_sim_s": [
+        2.292,
+        12.292
+      ],
+      "scope": "Policy window only; excludes startup/settling",
+      "counts": {
+        "wheel": 5001,
+        "truth": 500,
+        "imu": 500,
+        "drive": 500
+      },
+      "max_source_gap_s": {
+        "wheel": 0.0030000000000001137,
+        "truth": 0.02000000000000135,
+        "imu": 0.02000000000000135,
+        "drive": 0.02000000000000135
+      },
+      "max_boundary_lag_s": {
+        "imu": 0.012000000000000455,
+        "wheel": 0.0019999999999997797,
+        "truth": 0.012000000000000455,
+        "drive": 0.010000000000001563
+      },
+      "note": "These statistics are not loaded-contact coverage or a damage/impact measurement."
+    },
+    "evaluation_TD3_h5": {
+      "window_sim_s": [
+        2.42,
+        12.42
+      ],
+      "scope": "Policy window only; excludes startup/settling",
+      "counts": {
+        "wheel": 5001,
+        "truth": 501,
+        "imu": 501,
+        "drive": 500
+      },
+      "max_source_gap_s": {
+        "wheel": 0.0030000000000001137,
+        "truth": 0.02000000000000135,
+        "imu": 0.02000000000000135,
+        "drive": 0.02000000000000135
+      },
+      "max_boundary_lag_s": {
+        "imu": 0.020000000000000462,
+        "wheel": 0.0019999999999997797,
+        "truth": 0.020000000000000462,
+        "drive": 0.008000000000000895
+      },
+      "note": "These statistics are not loaded-contact coverage or a damage/impact measurement."
+    }
+  },
+  "physics": {
+    "requests": 1828,
+    "completed": 1828,
+    "retries": 0,
+    "exact_completion_required": true
+  },
+  "parameter_readbacks": {
+    "attempts": 18,
+    "timeouts": 0,
+    "maximum_attempts_per_call": 2
+  },
+  "source_snapshot": {
+    "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_branch_pilot_2026-11-04/source_snapshot",
+    "index_sha256": "cb2a86f380457198816d4df154f7c808d8d66c0629d5a4e3a6103313079a9a8c",
+    "source_fingerprint": "f1a97c385059bcdc8da2de4c7992e2ff79ff0db12734d2049246bab072a18907",
+    "pilot_fingerprint": "c7e6ce3c7015828e3ab9ffcdf13ec7a8cef3d03575394597d17dd675358c6e54"
+  },
+  "gui": {
+    "default_research_section": "NHÁNH SIM",
+    "root": "/home/tuanmac/nino_research/sim_branch_pilot_v1",
+    "all_three_jobs_verified": true,
+    "result_rows": 3,
+    "workflow_progress": 100,
+    "screenshot": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_branch_pilot_2026-11-04/sim_gui_result.png"
+  },
+  "build": {
+    "packages": [
+      "nino_control",
+      "nino_description",
+      "nino_pi",
+      "nino_rl"
+    ],
+    "status": "passed",
+    "logs": [
+      "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_branch_pilot_2026-11-04/build.log",
+      "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_branch_pilot_2026-11-04/final_repackage.log"
+    ]
+  },
+  "artifacts": {
+    "analysis.json": "4f92645b034206765907870b47b0528292beedd029c1c2ff5ecd9e916669ae91",
+    "pilot_trace.png": "66ac6106faa6f7f0a89d1fb183ede2ead49535daa8407821376f0874a363c062",
+    "sim_gui_result.png": "9669e89a2dde3f84cdc8de844e0475a131f71298f8138c25a9394e80414e4ec2",
+    "analyze_pilot.py": "625654422ff38d4b49e125f1e6dca4196934a7e86e7d75bf453f9ec64a38f6f9"
+  },
+  "authority": {
+    "hardware_actions": 0,
+    "ssh_to_pi": false,
+    "firmware_changes": 0,
+    "hardware_residual_authority": 0,
+    "real_dataset_prerequisite_for_this_pilot": false
+  },
+  "limitations": [
+    "One learner seed, one fresh evaluation per arm; no independent-seed CI or heldout layout generalization.",
+    "B0 6 mm outcome differs across revisions/fresh launches; do not attribute this causally to read-only RPC/clock fixes.",
+    "TD3 increases executed speed and has greater lateral/nominal tracking error and nonzero speed at horizon; no benefit promotion.",
+    "Stop window 2 s is too short to guarantee zero after up to 0.24 m/s under 0.1 m/s2 ramp; current trials remain unchanged.",
+    "Original mixed 22 mm run remained poor before C1 contact; not solely evidence of obstacle-height limitation.",
+    "No new robot data or sim-to-real calibration claim."
+  ]
+}

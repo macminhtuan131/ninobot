@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-04",
+  "status": "clear_floor_bias_observed_guidance_offline_only",
+  "protocol_id": "nino_frozen_v2_clear_bias_v1_2026_11_04",
+  "diagnostic_fingerprint": "a4d3a581c0db226b16c8d7a014287bac215a2e4772405a8053002871caa773c3",
+  "guidance_fingerprint": "d2d88e3c23a899e7cf9bae9ac3ea2fd87a6a09ada08f599ac4cda9669100ffc9",
+  "frozen_v2_task_fingerprint": "7025cd96dc133cd41d99c00068f56728e9014b4e8f908e2839fec26a95ce7dae",
+  "frozen_checkpoint_manifest_sha256": "634c4bd3de416d73da20aeb7bb5a3f7e5177346a1908a98b1c24aa229776179b",
+  "upstream_checkpoint_files_verified": 51,
+  "artifacts": [
+    {
+      "action": "sim-bias-clear",
+      "path": "/home/tuanmac/nino_research/sim_clear_bias_v1/20261104T090840575566Z_sim-bias-clear",
+      "status": "completed",
+      "job": {
+        "action": "sim-bias-clear",
+        "status": "completed",
+        "error": null,
+        "wall_s": 164.22911605300033,
+        "hardware_actions": 0
+      },
+      "manifest_sha256": "a8546c7a6e9e634397ab35b1cf978e94092495e45b58d1763bb81b519534ac14",
+      "files_verified": 53,
+      "physics_requests": 1160,
+      "physics_completed": 1160,
+      "physics_retries": 0,
+      "parameter_calls": 8,
+      "parameter_completed": 8
+    },
+    {
+      "action": "sim-guidance-contract",
+      "path": "/home/tuanmac/nino_research/sim_clear_bias_v1/20261104T091546639276Z_sim-guidance-contract",
+      "status": "completed",
+      "job": {
+        "action": "sim-guidance-contract",
+        "status": "completed",
+        "error": null,
+        "wall_s": 0.13227738300338387,
+        "hardware_actions": 0
+      },
+      "manifest_sha256": "509b1cc6bed5b7c2b923ee79277be0fd0100ed31a2b808608e6f7a266ddb9da3",
+      "files_verified": 9,
+      "physics_requests": 0,
+      "physics_completed": 0,
+      "physics_retries": 0,
+      "parameter_calls": 0,
+      "parameter_completed": 0
+    }
+  ],
+  "files_verified": 62,
+  "physics_requests": 1160,
+  "physics_completed": 1160,
+  "physics_retries": 0,
+  "parameter_calls": 8,
+  "parameter_completed": 8,
+  "gazebo_evaluation_rollouts": 4,
+  "evaluation_transitions": 560,
+  "training_transitions": 0,
+  "offline_guidance_fixture_cases": 5,
+  "offline_fixture_ticks": 175,
+  "guidance_connected_to_gazebo": false,
+  "localization_verified": false,
+  "tests": {
+    "sim_tests": {
+      "tests": 50,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "gui_tests": {
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "colcon_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "installed_source_matches": true,
+  "gui_actual_artifacts": {
+    "current_diagnostic_rows": 4,
+    "guidance_fixtures": 5,
+    "v2_history_rows": 6,
+    "v1_history_rows": 3,
+    "job_started_on_open": false
+  },
+  "source_snapshot_files": 60,
+  "source_snapshot_sha256": "25c8768ef036f0c5965f96b40607ef36122dda1bfb3b6869d1b0ddcb916df6e2",
+  "owned_sim_processes_remaining": [],
+  "hardware_actions": 0,
+  "real_datasets_added": 0,
+  "benefit_verified": false,
+  "qa_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_clear_bias_2026-11-04",
+  "next_recommendation": "V3 causal wheel/IMU estimator + guidance in Gazebo, zero-residual classical baseline before learning."
+}

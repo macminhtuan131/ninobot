@@ -22,6 +22,16 @@ def stamp(message):
     return message.header.stamp.sec+message.header.stamp.nanosec*1e-9
 
 
+def simulation_seconds(value):
+    """Canonical Gazebo nanosecond clock; remove binary-float spelling differences.
+
+    Gazebo/ROS stamps already have integer nanosecond resolution. This does not
+    interpolate samples or accept a truly future tick, even one nanosecond.
+    """
+    if not math.isfinite(value):raise ValueError('Invalid simulation clock')
+    return round(value*1_000_000_000)/1_000_000_000
+
+
 class FactoryVelocityBackend:
     residual_contract_id=CONTRACT_ID
     kind='gazebo_nino_factory_velocity_pi'
@@ -41,7 +51,7 @@ class FactoryVelocityBackend:
 
     def _store(self,key,source,payload):
         with self.lock:
-            self.messages[key]=dict(stamp_s=source,values=payload,receipt_monotonic_s=time.monotonic())
+            self.messages[key]=dict(stamp_s=simulation_seconds(source),values=payload,receipt_monotonic_s=time.monotonic())
             self.counts[key]=self.counts.get(key,0)+1
             self.raw.append(dict(channel=key,**self.messages[key]))
 
@@ -175,10 +185,26 @@ class FactoryVelocityBackend:
     def _parameter_readback(self,client,names):
         from rcl_interfaces.srv import GetParameters
         if not client.wait_for_service(timeout_sec=5):raise RuntimeError('Missing parameter readback')
-        future=client.call_async(GetParameters.Request(names=names));end=time.monotonic()+5
-        while not future.done() and time.monotonic()<end:time.sleep(.01)
-        if not future.done():raise TimeoutError('Parameter readback timed out')
-        return future.result().values
+        # A service can be discovered before its response endpoint has matched.
+        # Observed Jazzy warning: failed to send response (timeout). These are
+        # read-only parameter requests; one bounded retry cannot advance physics
+        # or send a reference. World-control multi_step remains single-request.
+        time.sleep(.5)
+        for attempt in (1,2):
+            future=client.call_async(GetParameters.Request(names=names));end=time.monotonic()+5
+            while not future.done() and time.monotonic()<end:self._check();time.sleep(.01)
+            complete=future.done()
+            if hasattr(self,'episode_dir'):
+                with (self.episode_dir/'parameter_readback.jsonl').open('a') as stream:
+                    stream.write(json.dumps(dict(names=names,attempt=attempt,completed=complete,
+                        operation='read_only_get_parameters',physics_requests_retried=0))+'\n')
+            if complete:
+                result=future.result()
+                if result is None or len(result.values)!=len(names):raise RuntimeError('Invalid parameter readback response')
+                return result.values
+            client.remove_pending_request(future)
+            if attempt==1:time.sleep(.5)
+        raise TimeoutError('Parameter readback timed out after two read-only attempts')
 
     def reset(self,seed=None):
         if self.episode+1>=int(self.config['backend']['max_episodes']):
@@ -249,7 +275,7 @@ class FactoryVelocityBackend:
             (self.episode_dir/'settling.json').write_text(json.dumps(dict(rows=rows,passed=quiet>=.5-1e-8),indent=2)+'\n')
 
     def view(self):
-        with self.lock:m=deepcopy(self.messages);now=self.time
+        with self.lock:m=deepcopy(self.messages);now=simulation_seconds(self.time)
         for key,channel in [('imu','imu'),('wheel','wheel')]:
             row=m[key];self.assembler.push(channel,row['values'],row['stamp_s'],row['stamp_s'])
         drive=m['drive']['values'];ds=m['drive']['stamp_s']

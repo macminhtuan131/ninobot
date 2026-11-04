@@ -1,3 +1,13 @@
+> **04/11 — bước sim mới đã hoàn tất:** [checkpoint V2 trên sàn sạch](NINO_SIM_CLEAR_BIAS_RESULT_2026-11-04.md). Bốn lượt, không train thêm; bias yaw vẫn có. [Guidance contract](NINO_SIM_GUIDANCE_CONTRACT_2026-11-04.md) đạt offline, chưa nối Gazebo. V1/V2 giữ lịch sử.
+
+## Việc tiếp theo trên nhánh sim
+
+1. Nối estimator wheel+IMU causal vào guidance adapter với frame/clock/epoch đã khai báo; không lấy GT sửa estimate. Encoder odometry không là ground truth.
+2. Protocol V3 cho B0 có guidance, residual zero, trên clear floor: kiểm initial heading error, tracking tuyến/reference, ramp và stop. So constant-straight B0. Chốt điều kiện/lặp/deadline trước chạy; chưa chạy ở cập nhật này.
+3. Sau baseline hợp lệ mới định nghĩa velocity/yaw tracking reward và checkpoint/baseline identity V3; xem xét zero-init residual, rồi budget TD3 riêng. Không resume policy V2 dưới reference mới chỉ vì cùng ABI.
+
+**GUI:** NHÁNH SIM → **Tiếp theo · kiểm bias sàn sạch + reference follower**. Hai stage đã đóng: xem bảng 4 lượt và kết quả 5 fixture offline. Chưa cần bấm chạy lại, chưa cần thu real data cho bước sim này.
+
 # Các việc cần làm tiếp theo — Nino
 
 Ngày 04/11/2026. Theo hồ sơ đã review, dữ liệu thật mới nhất vẫn đến 02/11; chưa kiểm live Pi trong lần làm rõ này.
@@ -6,10 +16,10 @@ Ngày 04/11/2026. Theo hồ sơ đã review, dữ liệu thật mới nhất v�
 
 - **Đã có:** code History/Governor/projection, TD3/PPO optimizer smoke, ROS/Gazebo integration fixture và công cụ SysID.
 - **Chưa có:** model Nino được hiệu chuẩn/kiểm holdout, benchmark learning đủ mạnh, real shadow và lợi ích residual trên robot.
-- **Việc đang chặn tiến độ:** giải thích được command, feedback hai bánh và chuyển động thân trong một phiên thật.
+- **Gate riêng của robot thật:** giải thích command, feedback hai bánh và chuyển động thân; không chặn việc nghiên cứu sim.
 - Các nút kiểm phần mềm đã có artifact hiện hành không cần bấm chạy lại nếu source/config/hash không đổi.
 
-## Thứ tự thực hiện
+## Nhánh robot thật song song — thứ tự thực hiện
 
 **01 diagnostic → 02 đánh giá → 03 độ lặp → 04 wheel ID + reference thân → 05 model/baseline → 06 train/evaluate → 07 real shadow → 08 bounded robot trial.**
 
@@ -17,7 +27,7 @@ Các bước sau là kế hoạch có điều kiện; không mở lại ledger �
 
 ## 01. Hoàn thiện một phiên tiến–dừng có video
 
-**Trạng thái:** VIỆC NGAY. **Người làm:** Bạn thao tác robot; assistant chuẩn bị/kiểm bộ thu.
+**Trạng thái:** KHI MỞ NHÁNH ROBOT THẬT. **Người làm:** Bạn thao tác robot; assistant chuẩn bị/kiểm bộ thu.
 
 **Làm gì:** Kiểm live Agent/topic/owner/STOP sau khi nối Pi. Dùng lại phiên cũ nếu đã có bag và video đủ rõ; nếu thiếu thì thu một diagnostic mới trên sàn trống. Giữ 0,05 m/s, ramp 0,10 m/s², source 2 s, zero/disable, bag 60 s. Quay đồng thời bánh, thân và mốc sàn; ghi mốc đồng bộ.
 
@@ -111,13 +121,13 @@ Các bước sau là kế hoạch có điều kiện; không mở lại ledger �
 
 **Điều kiện chuyển bước:** Chỉ mở sau model/baseline/shadow và stopping/authority đủ bằng chứng. Không tự tăng tốc, alpha hoặc phạm vi vật cản. Không đạt mục tiêu thì dùng baseline hoặc đổi hướng theo kết quả.
 
-## Bấm gì ngay trong GUI?
+## Khi thực hiện nhánh robot thật trong GUI
 
 1. Mở **Nino → Xây project / sơ đồ → Việc cần làm**; chọn bước 01.
 2. Bấm **Mở phiên diagnostic** để đến tab thu hiện có. Đây chỉ là chuyển trang.
 3. Khi thực sự chuẩn bị thu: chuẩn bị bộ thu → Agent/cảm biến → inventory → đường lệnh ZERO → metadata/video → thu 60 s → bấm tiến riêng → chờ recorder đóng → QC → lưu quan sát → tải gói dữ liệu.
 4. Dừng ở bước 02 để đánh giá trước khi mở đợt lặp mới.
 
-**Kết quả cần nhận ngay:** một bag và video cùng session để trả lời “lệnh có đến đúng tầng, feedback có là phản ứng bánh, thân có tiến và tự dừng không?”. Chưa cần chạy lại TD3/PPO smoke hoặc tăng tốc.
+**Kết quả cần nhận cho nhánh thật:** một bag và video cùng session để trả lời “lệnh có đến đúng tầng, feedback có là phản ứng bánh, thân có tiến và tự dừng không?”. Chưa cần chạy lại TD3/PPO smoke hoặc tăng tốc.
 
 Nguồn hiện trạng: [triển khai phần mềm](NINO_RESIDUAL_IMPLEMENTATION_2026-11-04.md), [ledger kiểm chứng](NINO_RESIDUAL_VERIFICATION_2026-11-04.json). Nội dung outline được dùng chung từ `research_plan.json` trong GUI.
