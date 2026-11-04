@@ -42,13 +42,13 @@
     "total_mass_kg": null,
     "payload_mass_kg_and_position_m": null,
     "center_of_mass_estimate_base_frame_m": null,
-    "caster_wheel_radius_m_front_rear": null,
     "caster_swivel_positions_base_frame_m": null,
     "caster_trail_m": null,
     "caster_initial_orientation_rad_and_evidence": null,
     "caster_free_rolling_swivel_friction_or_drag_evidence": null,
     "wheel_caster_load_distribution_N_and_method": null,
-    "measurement_method_uncertainty": null
+    "measurement_method_uncertainty": null,
+    "caster_wheel_radius_m_left_right": null
   },
   "controller": {
     "control_source_manual_or_navigation": null,
@@ -103,5 +103,37 @@
     "stop_settling_duration_s": null,
     "dataset_split_development_or_held_out_test": null,
     "paired_run_group_and_repetition": null
+  },
+  "research": {
+    "plan_id": "nino_bounded_velocity_research_v1",
+    "stage": null,
+    "claim_and_independent_unit": null,
+    "protocol_sha256": null,
+    "actor_contract_id": null,
+    "feature_order_normalization_history_and_checkpoint_sha256": null,
+    "baseline_reference_fields_units_clock": null,
+    "policy_proposal_fields_units_clock": null,
+    "accepted_reference_fields_units_clock": null,
+    "final_ros_command_fields_units_clock": null,
+    "actual_actuator_target_readback_fields_units_clock": null,
+    "projection_intervention_reason": null,
+    "synchronization_uncertainty_s": null,
+    "independent_body_reference_calibration": null,
+    "maneuver_block_layout_payload_session_and_split": null,
+    "failure_or_censoring_reason": null,
+    "video_body_wheel_floor_file_and_sync_event": null,
+    "operator_outcome": null
+  },
+  "dataset_contract": {
+    "dataset_kind": null,
+    "scenario_id": null,
+    "reviewed_motion_protocol_id": null,
+    "independent_body_reference_and_sync_uncertainty": null,
+    "parameter_profile_id_sha256": null,
+    "feature_abi_sha256": null,
+    "normalization_identity": null,
+    "grouped_split_session_layout_condition": null,
+    "qc_rubric_and_claim_review": null,
+    "note": "Form only. Teleop/SysID bags are not automatically valid TD3 replay. Missing actuator targets remain unknown."
   }
 }

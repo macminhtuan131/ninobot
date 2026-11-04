@@ -1,0 +1,27 @@
+# Observer only. It never publishes cmd_vel, residual references or motor_enable.
+# These are proposed numerical limits, NOT released hardware controller settings.
+experiment_contract: nino_residual_velocity_v1
+algorithm: TD3
+control_interval_s: 0.1
+actor: {history_frames: 5, max_history_gap_s: 0.15, privileged_inputs: []}
+nominal_geometry: {radius_l: 0.060, radius_r: 0.060, separation: 0.345}
+reference_limits:
+  separation_m: 0.345
+  wheel_speed_m_s: 0.4
+  forward_m_s: 0.4
+  yaw_rad_s: 0.5
+  wheel_acceleration_m_s2: 0.1
+  residual_wheel_m_s: 0.04
+  max_age_s: 0.2
+imu_yaw_rad: 1.5707963267948966
+# Set this from a raw message, not the transformed /imu/bridge frame.
+imu_frame: null
+wheel_names: [left_wheel, right_wheel]
+hardware_authority: 0.0
+topics:
+  imu: /imu/data
+  wheel: /motor_fb
+  status: /motor_status
+  baseline: /cmd_vel_selected
+  final: /cmd_vel
+  trace: /nino/residual/shadow_trace

@@ -1,0 +1,62 @@
+schema_version: 1
+profiles:
+  nino_td3_smoke_h5_v1:
+    profile_id: nino_td3_smoke_h5_v1
+    status: software_smoke_only
+    algorithm: &smoke
+      actor_lr: 0.0003
+      critic_lr: 0.0003
+      gamma: 0.99
+      tau: 0.005
+      batch_size: 32
+      buffer_size: 2048
+      learning_starts: 16
+      policy_delay: 2
+      target_policy_noise: 0.2
+      target_noise_clip: 0.5
+      exploration_noise: 0.1
+      train_freq: 1
+      gradient_steps: 1
+      network_arch: [32, 32]
+    observation: &h5
+      history_len: 5
+      policy_rate_hz: 10
+      normalization: fixed_physical_scales_v1
+      missing_data: reject_and_refill_history
+    action: &action
+      schema: common_differential_wheel_linear_v1
+      projection_required: true
+      hardware_residual_scale: null
+    evaluation: &evaluation
+      seeds: [7]
+      grouped_splits: [session, layout, payload_block]
+      baseline: same_backend_classical
+      minimum_effect_accepted: null
+  nino_td3_research_h5_v1:
+    profile_id: nino_td3_research_h5_v1
+    status: research_proposal
+    algorithm: &research
+      <<: *smoke
+      batch_size: 256
+      buffer_size: 1000000
+      learning_starts: 10000
+      network_arch: [256, 256]
+    observation: *h5
+    action: *action
+    evaluation: &research_evaluation
+      <<: *evaluation
+      seeds: [11, 22, 33]
+  nino_td3_research_h1_v1:
+    profile_id: nino_td3_research_h1_v1
+    status: research_proposal
+    algorithm: *research
+    observation: {<<: *h5, history_len: 1}
+    action: *action
+    evaluation: *research_evaluation
+  nino_td3_research_h8_v1:
+    profile_id: nino_td3_research_h8_v1
+    status: research_proposal
+    algorithm: *research
+    observation: {<<: *h5, history_len: 8}
+    action: *action
+    evaluation: *research_evaluation

@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-04",
+  "status": "software_verified_hardware_pending",
+  "source_fingerprint": "f1a97c385059bcdc8da2de4c7992e2ff79ff0db12734d2049246bab072a18907",
+  "factory_fingerprint": "5eac1923786ec37a93d9c8fa8abc2c394ca0f17d5ab5b50fa35274e1daf59e16",
+  "observer_bundle_sha256": "acb95d1d23646940e95e7c14c53883ab3b6d3c63911ba39120a201ed97d1fee8",
+  "observer_namespace": "studio_observer_v1_acb95d1d23646940",
+  "sources": {
+    "src/nino_pi/nino_pi/studio_panel.py": "a138137eeea4c2574429a08a8b32c3de6b47c5acf4bade11d3ea8e812e015fe1",
+    "src/nino_pi/nino_pi/studio_contract.py": "22c763c26ce42679394424af0478a1071e1dac44663fd3bbeae91e568ec8de65",
+    "src/nino_pi/nino_pi/studio_runner.py": "92746cc226bae718ea54ef26ee98b8f545a5b31f351114098937540441feba60",
+    "src/nino_pi/nino_pi/studio_telemetry.py": "3704127c9d31ec445986f2ef2c96d03c40319c0886d517637f5a84c31754c9d8",
+    "src/nino_pi/nino_pi/studio_remote.py": "e787515998512e95402cda00d211c394d9ed8c792331b013fd78e4cace988100",
+    "src/nino_pi/nino_pi/studio_index.py": "f275098beef883a9199a5c2934b119beae017430fd88841b5273be32b2f503f6",
+    "src/nino_pi/nino_pi/studio_transport.py": "77c8f868d7a14716e56e671038ebcfa72051ec8a2186e41a0fd6a8738b7729b1",
+    "src/nino_pi/nino_pi/studio_quality.py": "0a3b304c15cc1850b8ad067e428325b665a31e9fe252341e9a0c80c93a5c68c1",
+    "src/nino_pi/nino_pi/bag_io.py": "fc572c44767431bcfc89a3c2b60ce7b7cb2429b36bcfd7aa54f9ab4de602172d",
+    "src/nino_pi/nino_pi/dataset_exporter.py": "fb731c71f50b7824ff91309632c1edc4b267a4d4c8ed320133cb8319620eab0d",
+    "src/nino_pi/nino_pi/td3_parameter_panel.py": "b993cc06fa331e2167c07469d3d5da93f3ba0e31d6a6b7df6a0805a2d1f6c517",
+    "src/nino_pi/nino_pi/mode_gui.py": "9849f69b416fc3b73f15fc3b93701b168bdefff24b6ab50671af562ef26f83a6",
+    "src/nino_pi/nino_pi/research_panel.py": "17329ea9e99240df56f1fb1a65a8473b17aeb29b60322fabd9ebed6565855f53",
+    "src/nino_pi/nino_pi/next_steps_panel.py": "76d71d9193745b21c5a9f0078e5c5a8e41795bc23a38ddef31f723766032192e",
+    "src/nino_pi/nino_pi/collect_real_data.py": "e29cb0ad66b952cb82e20d12e4bc370f4dbcd029b5c26eb9956f153279dd91d8",
+    "src/nino_pi/nino_pi/research_plan.json": "a5b4da4e17914d10a997c280a199776e7d343c3a38fe1c9d8729a1a3f721cb6c",
+    "src/nino_pi/nino_pi/project_evidence.json": "be02c35bc506368b491bf575dc7b0ee857dc1d28509e8326260d1e7eb8173b07",
+    "src/nino_rl/nino_rl/td3_config.py": "704f2b3aab6b7bf5c09c02e8671186934b64caa7207e61d83e1dee660532e91a",
+    "src/nino_rl/nino_rl/residual_experiment.py": "7875bc0247d813c8550faf5af85baf74349ece3e138a44151db9d80b2927bec1",
+    "src/nino_rl/nino_rl/residual_workflow.py": "8bf180ada737039fed786a33e3e8ebcbd5c9fa6241517af475bbc144ab9861de",
+    "src/nino_rl/nino_rl/residual_factory_workflow.py": "a19566ab54a4b4d5862bee230c559548e75f6c12a080a54b4db20c29417e38c9",
+    "src/nino_rl/config/td3_parameter_profiles.yaml": "5ec69274f99ad28b76aeb5c0d79ebb54508f5f8ee2e79402540eb309552498f3",
+    "src/nino_pi/setup.py": "5baca39d0226b0cc0a36696df9c1f0e8cbf3b99b1e6c5bf176e81dfb92239baa",
+    "src/nino_pi/package.xml": "1eb064af3d8003ed88b7f9944300b71535cd1de29456b87fbfbec6b07c1295f5",
+    "src/nino_rl/setup.py": "b452c59c16616c7236d6efa7a55a8cd73238fb135f3e6937db0b9ef5f163aa22",
+    "src/nino_pi/test/test_studio_lifecycle_ros.py": "5de68f244c3023c83f2cc507d1d5ffa0fbbcf14b3d01d2d83d759c423976233c",
+    "src/nino_pi/test/test_studio.py": "b39ce90b737ed60a9ee9b0df4e2a52ac68117eaaa0ce60e5bafae2fd8edf257a",
+    "src/nino_rl/test/test_td3_parameters.py": "b8515dbb0886ae69a72129bc1a9d3a5640b91d69c455154d9ce8e7d58f2ff236",
+    "src/nino_pi/scripts/mode_gui.sh": "a6b9a5eda62c6761d59b868ceb5969ef7f2436825abd968e9e59176b0127bf91",
+    "src/nino_pi/scripts/install_mode_gui.sh": "41a633fe84a64c22f2258e9d6f42f2ac292a6c1155693b610aa2daefbf9fdba6"
+  },
+  "tests": {
+    "gui_final_tests.xml": {
+      "executions": 60,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "sha256": "90b2e4d0571883518e4f8ed5eab657464a93bf65c2f8ef8726014726252defe3"
+    },
+    "td3_export_final_tests.xml": {
+      "executions": 46,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "sha256": "b2e956cd8c4040eab80655158edf4a5e832bf4bece317e7051f75462e790819e"
+    },
+    "observer_lifecycle_final_tests.xml": {
+      "executions": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "9254a3f1ccdda4fc11de94902e0778003c94101d51474cc655c282e87fea1450"
+    },
+    "final_profile_export_tests.xml": {
+      "executions": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "sha256": "cb92ae00d0c46b49b5ce62b3c6bdbfc9a01ec7760a12d11e38dc7a8175748af9"
+    },
+    "final_qt_tests.xml": {
+      "executions": 21,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "sha256": "203c2b25a6d301cb374415b0b87b98161a8f03e94934fdd9a118c9ebf5a99096"
+    }
+  },
+  "tests_note": "Overlapping interpreter/gate runs; do not sum as independent robot trials. System skip Parquet is covered in venv; venv skip Qt is covered in system Python.",
+  "actual_ros_storage": "Synthetic localhost sensor-only rosbag2 record/close/read for both sqlite3 and MCAP; test_raw_bag_and_audit_close_without_hardware cases passed in retained gui_storage_tests.xml; that earlier run also retained one obsolete GUI expectation failure, fixed in final_qt_tests.xml.",
+  "lifecycle": "normal close, stop-recorder, stdin EOF: all closed and retained raw hashes; observer did not publish motor commands",
+  "optimizer_test": {
+    "backend": "reduced_order_fixture_only",
+    "transitions": 32,
+    "gradient_updates": 16,
+    "learner_seed": 7,
+    "replay_and_actor_export_test_passed": true,
+    "learned_benefit": false
+  },
+  "build": {
+    "packages": [
+      "nino_control",
+      "nino_description",
+      "nino_pi",
+      "nino_rl"
+    ],
+    "status": "passed",
+    "final_repackage_log": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/data_studio_standardization_2026-11-04/final_build.log",
+    "installed_gui_smoke": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/data_studio_standardization_2026-11-04/installed_smoke.log",
+    "note": "Initial 2-package isolated build lacked dependency installs; retained logs, then built all 4 and repackaged successfully."
+  },
+  "desktop_entry": "/home/tuanmac/.local/share/applications/nino-control-modes.desktop",
+  "screenshots": {
+    "studio_900x740.png": "b8b26a45d894d25d647f604e662a686e4b6514aa8cab4a74851c45b1a8dee906",
+    "td3_parameters_900x740.png": "4a66120ff7d256a4045eae83b5507ff6ea5a0266bc8ec3c4aff8467991741e75"
+  },
+  "operator_gui": "Qt offscreen 900x740 screenshots inspected; main recorder and parameter validation actions visible",
+  "runtime": {
+    "python": "3.12.3",
+    "system": {
+      "numpy": "1.26.4",
+      "PyQt5": "5.15.10"
+    },
+    "pyarrow_in_repo_venv": "26.0.1"
+  },
+  "authority": {
+    "ssh_to_pi": false,
+    "hardware_sessions": 0,
+    "motor_commands": 0,
+    "firmware_flashes": 0,
+    "simulation_worlds_started": 0,
+    "scientific_training_released": false,
+    "hardware_residual_authority": 0
+  },
+  "limitations": [
+    "Pi observer bundle not yet deployed or hardware validated",
+    "History h8 is a proposed ABI, no ablation result",
+    "Parquet is raw message table, not causal features or TD3 replay",
+    "Expected real rates/coverage, body reference and actuator execution remain unknown",
+    "Older factory and fixture artifacts retain original fingerprints and are historical after this source change"
+  ]
+}

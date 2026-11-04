@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "boot_id": "49371bb8-0556-4e1d-9479-224d0b909d24",
+  "provenance": "Exact GIDs previously recorded with /stm32h7_node in clear_floor_repeatability_v2_20261102T102247471316Z/audit/graph.json; same GIDs observed with BARE_DDS alias during failed startup and read-only live graph. Not arbitrary anonymous endpoint acceptance.",
+  "endpoints": {
+    "/motor_enable": {
+      "direction": "subscribers",
+      "type": "std_msgs/msg/Bool",
+      "gid": "010f621e4d0596120000000000000604"
+    },
+    "/cmd_vel": {
+      "direction": "subscribers",
+      "type": "geometry_msgs/msg/Twist",
+      "gid": "010f621e4d0596120000000000000504"
+    },
+    "/motor_fb": {
+      "direction": "publishers",
+      "type": "sensor_msgs/msg/JointState",
+      "gid": "010f621e4d0596120000000000000103"
+    },
+    "/motor_status": {
+      "direction": "publishers",
+      "type": "std_msgs/msg/UInt8",
+      "gid": "010f621e4d0596120000000000000203"
+    }
+  }
+}

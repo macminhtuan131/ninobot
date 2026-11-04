@@ -1,4 +1,6 @@
 > Historical revision. For the current reward, CUDA setup, metrics and training contract,
+
+> **Lịch sử thuật toán.** Hướng hiện hành và contract checkpoint mới ở [NINO_RESEARCH_DIRECTION](../../docs/NINO_RESEARCH_DIRECTION_2026-11-03.md); không đổi tên/reuse checkpoint torque cũ thành velocity TD3.
 > use [RL_IMPROVEMENTS.md](RL_IMPROVEMENTS.md) and the [root README](../../README.md).
 
 # Reward and policy v2

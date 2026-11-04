@@ -1,4 +1,10 @@
+> **Hiện hành 04/11 — Studio v7:** mặc định là recorder chỉ đọc, MCAP/SQLite, telemetry, annotation, QC, export và profile TD3 có phiên bản. Xem [REAL_DATA_STUDIO.md](REAL_DATA_STUDIO.md). Commissioning/authority và các kết quả phía dưới giữ phạm vi lịch sử; Studio không tự chạy xe.
+
 # Nino trên Raspberry Pi 5 — navigation và teleop
+
+> **Cập nhật 04/11 — [History / Governor / TD3 / GUI v5](../../docs/NINO_RESIDUAL_IMPLEMENTATION_2026-11-04.md):** đã có environment chạy, optimizer smoke TD3/PPO, portable actor và kiểm ROS/Gazebo fixture. Xem tab **Xây project** để kiểm artifact hiện hành. Train nghiên cứu và learned residual trên robot vẫn chưa mở; dữ liệu thật chưa được thu thêm trong cập nhật này. Các mục có ngày trước bên dưới giữ bối cảnh lịch sử.
+
+> **GUI v4 hiện hành:** [Thu dữ liệu bằng nút bấm](GUIDED_COLLECTION.md), dùng firmware RC AUTO hiện có. Mở GUI → chuẩn bị → inventory → ZERO → record → explicit tiến → QC → observation → tải; không copy commands. [Hướng nghiên cứu](../../docs/NINO_RESEARCH_DIRECTION_2026-11-03.md). Navigation/authority hướng dẫn bên dưới là các nhánh riêng.
 
 **14/10/2026.** Bundle ROS 2 Jazzy cho Ubuntu 24.04 **64-bit/aarch64**.
 Chạy Nav2, keyboard/joystick teleop và SLAM trên thời gian thật. Không cần

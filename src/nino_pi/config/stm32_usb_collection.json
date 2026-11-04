@@ -3,7 +3,7 @@
   "duration_s": 60,
   "max_session_mb": 1024,
   "reserve_disk_mb": 1024,
-  "note": "EDIT names for your real drivers. Required means needed for the initial sensor/command dataset, not proof of readiness. Optional missing topics stay unavailable. No automatic actuation.",
+  "note": "Inventory/sign context only. Command-chain requirements belong to the run-specific diagnostic profile. No full Nav2 or fused odometry prerequisite.",
   "topics": [
     {
       "name": "/imu/data",
@@ -12,22 +12,22 @@
     },
     {
       "name": "/joint_states",
-      "required": true,
+      "required": false,
       "purpose": "Named wheel position/velocity and reported effort if actually supplied"
     },
     {
       "name": "/scan",
-      "required": true,
+      "required": false,
       "purpose": "Complete horizontal LiDAR ranges, geometry and per-beam timing"
     },
     {
       "name": "/odom",
-      "required": true,
+      "required": false,
       "purpose": "Estimator pose/twist/covariance; not independent slip ground truth"
     },
     {
       "name": "/tf",
-      "required": true,
+      "required": false,
       "purpose": "Dynamic frame tree and ownership"
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "name": "/cmd_vel",
-      "required": true,
+      "required": false,
       "purpose": "Final velocity command visible on ROS, not necessarily executed wheel target"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "name": "/scan_raw",
-      "required": false,
+      "required": true,
       "purpose": "LiDAR input before optional scan deskew"
     },
     {
@@ -156,6 +156,7 @@
       "purpose": "Observed torque command, not measured torque"
     }
   ],
-  "profile_id": "stm32_usb_full_v1",
-  "claim_scope": "Full sensor/command dataset with original STM32 channels. Software completeness does not validate motor freshness, mode, safety, slip or timing."
+  "profile_id": "stm32_usb_inventory_v2",
+  "claim_scope": "Original sensor/feedback/status/scan and declared mounting. Not command response, body motion, slip, calibrated actuator target or safety.",
+  "research_plan_id": "nino_bounded_velocity_research_v1"
 }

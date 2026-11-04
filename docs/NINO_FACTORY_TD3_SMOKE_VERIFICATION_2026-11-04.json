@@ -1,0 +1,281 @@
+{
+  "date": "2026-11-04",
+  "scope": "actual Gazebo factory map / Nino / velocity PI software integration smoke",
+  "artifacts": [
+    {
+      "path": "/home/tuanmac/nino_research/factory_td3_smoke_v1/20261104T020634384256Z_factory-td3",
+      "status": "completed",
+      "factory_fingerprint": "ad6eb01ad65609449f068f43dee98cd6327f2e42e8bc91834245dbe26e47338e",
+      "manifest_sha256": "3f338e926bdd6cfd91116e4cd3824c8f25aa160e44de9019a799b088941cd715",
+      "files_checked": 23,
+      "job": {
+        "action": "factory-td3",
+        "status": "completed",
+        "error": null,
+        "wall_s": 469.9327985810014,
+        "hardware_actions": 0
+      }
+    },
+    {
+      "path": "/home/tuanmac/nino_research/residual_build_v1/20261104T021640485244Z_factory-td3",
+      "status": "failed",
+      "factory_fingerprint": "6d663ff3c6cf545ef0408311b4d220e1298588a8ae11f5829ea42d533650e16e",
+      "manifest_sha256": "3ab396e3fe446173748260fa243dfae9781e12110d5d0bf52f477425476bf1f4",
+      "files_checked": 21,
+      "job": {
+        "action": "factory-td3",
+        "status": "failed",
+        "error": "Factory world control failed: Service call timed out\n",
+        "wall_s": 428.759404710996,
+        "hardware_actions": 0
+      }
+    },
+    {
+      "path": "/home/tuanmac/nino_research/residual_build_v1/20261104T022937969043Z_factory-td3",
+      "status": "completed",
+      "factory_fingerprint": "e691e85b0c19638d614d4faffe4af69410a7d319b88326be0cd641433c63ae6f",
+      "manifest_sha256": "831ddffe1d143ad4caaef3e1fccaeafc99ee0b4b06fd3e1cdc99261da524329b",
+      "files_checked": 53,
+      "job": {
+        "action": "factory-td3",
+        "status": "completed",
+        "error": null,
+        "wall_s": 322.1454209040021,
+        "hardware_actions": 0
+      }
+    }
+  ],
+  "final_result": {
+    "transitions": 128,
+    "optimizer_updates": 112,
+    "actor_parameter_l1_change": 29.56323715299368,
+    "portable_export": {
+      "max_inference_error": 1.043081283569336e-07,
+      "numpy_only": true,
+      "hardware_authorized": false
+    },
+    "replay_transitions_checked": 128,
+    "portable_actor_max_error": 1.1920928955078125e-07,
+    "truth_x_range_m": [
+      0.0003177832064832664,
+      0.3986624992406964
+    ],
+    "truth_y_range_m": [
+      -2.187123782158864e-05,
+      0.01207797859119467
+    ],
+    "terminals": 0,
+    "world": "factory_floor_mixed.sdf",
+    "factory_fingerprint": "e691e85b0c19638d614d4faffe4af69410a7d319b88326be0cd641433c63ae6f",
+    "calibrated_to_hardware": false,
+    "physical_benefit_verified": false,
+    "hardware_authorized": false,
+    "scope": "bounded integration training; not successful full-route traversal or comparative benefit"
+  },
+  "final_physics": {
+    "validation_backend": {
+      "requests": 126,
+      "completed": 126,
+      "missing_ack": 0,
+      "retries": 0,
+      "settling_passed": true,
+      "settling_sim_duration_s": 1.5
+    },
+    "training_backend": {
+      "requests": 266,
+      "completed": 266,
+      "missing_ack": 0,
+      "retries": 0,
+      "settling_passed": true,
+      "settling_sim_duration_s": 0.5
+    }
+  },
+  "analysis": {
+    "artifact": "/home/tuanmac/nino_research/residual_build_v1/20261104T022937969043Z_factory-td3",
+    "transitions": 128,
+    "sim_duration_s": 12.8,
+    "initial_pose": [
+      0.00047385322168042786,
+      -1.5723126860486168e-05,
+      0.008924591802948235
+    ],
+    "final_pose": [
+      0.3981593906994799,
+      0.010835288643503558,
+      -0.0010082340928701126
+    ],
+    "x_range_m": [
+      0.0003177832064832664,
+      0.3986624992406964
+    ],
+    "goal_x_m": 6.45,
+    "full_route_completed": false,
+    "source_callback_counts": {
+      "contact_left_wheel": 13960,
+      "contact_caster_right_wheel": 13218,
+      "contact_caster_left_wheel": 13145,
+      "contact_right_wheel": 13003,
+      "imu": 707,
+      "wheel": 7062,
+      "truth": 706,
+      "drive": 706,
+      "contact_caster_bracket_right": 2725,
+      "contact_caster_bracket_left": 2708
+    },
+    "max_boundary_lag_s": {
+      "imu": 0.0070000000000014495,
+      "wheel": 0.0010000000000012221,
+      "truth": 0.0070000000000014495,
+      "drive": 0.007000000000000117
+    },
+    "max_reported_pi_dt_s": 0.004,
+    "torque_residual_all_zero": true,
+    "observed_cable_manifolds_not_loaded_contact": {
+      "contact_caster_bracket_right / cable_bumps::cables::C1_collision": {
+        "first_sim_s": 11.403,
+        "last_sim_s": 14.127,
+        "messages": 2725
+      },
+      "contact_caster_bracket_left / cable_bumps::cables::C1_collision": {
+        "first_sim_s": 11.42,
+        "last_sim_s": 14.127,
+        "messages": 2708
+      },
+      "contact_caster_right_wheel / cable_bumps::cables::C1_collision": {
+        "first_sim_s": 11.792,
+        "last_sim_s": 14.127,
+        "messages": 2336
+      },
+      "contact_caster_left_wheel / cable_bumps::cables::C1_collision": {
+        "first_sim_s": 11.832,
+        "last_sim_s": 14.127,
+        "messages": 2296
+      }
+    },
+    "limitations": [
+      "one learner seed; no tuned baseline contrast",
+      "callback counts do not prove full acquisition coverage",
+      "contact records are manifolds, no loaded force threshold",
+      "12.8s smoke is not a full factory traversal",
+      "no hardware calibration or benefit claim"
+    ]
+  },
+  "tests": {
+    "gui_tests.xml": {
+      "tests": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "bc0b71a1a34e2ea456a18817b24a68a2d6d5da819b04e8a1feecd6267ed85cab"
+    },
+    "backend_tests.xml": {
+      "tests": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "d90ce3f076f5aa819da8d0a472cfc4d576838166cd0c50e489d2f405f51219c7"
+    }
+  },
+  "tests_passed": 49,
+  "build": {
+    "packages": [
+      "nino_control",
+      "nino_description",
+      "nino_pi",
+      "nino_rl"
+    ],
+    "passed": true,
+    "log": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/factory_td3_smoke_2026-11-04/package_build.log",
+    "final_pi_rl_repackage_log": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/factory_td3_smoke_2026-11-04/final_package_build.log"
+  },
+  "gui_qprocess": {
+    "status": "passed",
+    "artifact": "/home/tuanmac/nino_research/residual_build_v1/20261104T022937969043Z_factory-td3",
+    "qt_exceptions": [],
+    "messages": [
+      "Đang khởi động job local; không nối Pi",
+      "Prepare actual factory map + Nino velocity PI",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory preflight 8/48",
+      "Factory preflight 16/48",
+      "Factory preflight 24/48",
+      "Factory preflight 32/48",
+      "Factory preflight 40/48",
+      "Factory preflight 48/48",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory startup; received {}",
+      "Factory TD3 learning 8/128",
+      "Factory TD3 learning 16/128",
+      "Factory TD3 learning 24/128",
+      "Factory TD3 learning 32/128",
+      "Factory TD3 learning 40/128",
+      "Factory TD3 learning 48/128",
+      "Factory TD3 learning 56/128",
+      "Factory TD3 learning 64/128",
+      "Factory TD3 learning 72/128",
+      "Factory TD3 learning 80/128",
+      "Factory TD3 learning 88/128",
+      "Factory TD3 learning 96/128",
+      "Factory TD3 learning 104/128",
+      "Factory TD3 learning 112/128",
+      "Factory TD3 learning 120/128",
+      "Factory TD3 learning 128/128",
+      "completed",
+      "completed"
+    ]
+  },
+  "gui_visual": {
+    "status": "passed",
+    "qt_exceptions": [],
+    "ssh_connections": 0,
+    "jobs_started": 0,
+    "factory_label": "SMOKE ĐẠT · TASK CHƯA XÁC NHẬN"
+  },
+  "versions_file": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/factory_td3_smoke_2026-11-04/gazebo_ros_versions.txt",
+  "source_sha256": {
+    "src/nino_rl/nino_rl/factory_velocity_backend.py": "2269f724f9320276a17a2b1ff821282b84dba517800015f1a1fa8f2050f1772e",
+    "src/nino_rl/nino_rl/residual_factory_workflow.py": "cf3facdccf16422bf3a9854f520710acf603a02f8ae8f293bcdc65d56e0ffd5c",
+    "src/nino_rl/config/residual_factory_td3_smoke.yaml": "562f32dab88b6dbea9e4168d20c0fd883e4dac27c32c7d4af878e3ce7351428e",
+    "src/nino_rl/scripts/residual_factory_smoke.sh": "a7122d751ab84d25772a884a90def779e15307a726ee0194b22aea3fde53d1c1",
+    "src/nino_pi/nino_pi/research_jobs.py": "2fa8729cba0d81b92e934ef3ebf8548641e5f49d4d8b7a1d422a55600a84f390",
+    "src/nino_pi/nino_pi/research_panel.py": "45dfdffb2d8d92da76bb9c32eedde0984879bf2152df436cd53f246cdedf2bd2",
+    "src/nino_pi/nino_pi/research_plan.json": "1ae88e4a4d9f51dc1c065b9832000952013f0ec26f848522b7d02353d5b582c2",
+    "src/nino_pi/nino_pi/project_evidence.json": "0aaf2a9636587903c755643ef1c8eef2a90e455d1522d6832c301f7f61e511d9",
+    "src/nino_pi/GUIDED_COLLECTION.md": "e84b0305c30d993a58ba75e52122be7a467bcf9b7f386ca2b8fdd8ba60162c32"
+  },
+  "hardware_actions": 0,
+  "hardware_residual_authority": 0,
+  "new_real_sessions": 0,
+  "real_data_cutoff": "2026-11-02",
+  "physical_benefit_verified": false,
+  "image_sha256": {
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/factory_td3_smoke_2026-11-04/factory_tools_gui.png": "99ff2bb48366b78454f1f6cde1d28750b26dc0bb2d0e6742efff13df9fc9e7bf",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/factory_td3_smoke_2026-11-04/factory_result_gui.png": "aa02a830dae781aa578727c92746b49e406968ce8c0679eda58714928e2f469c",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/factory_td3_smoke_2026-11-04/final_analysis/factory_smoke_trace.png": "45aa7b6afa1fdfe895917f81bd99929e0e0de0fcf84bbee62cabe3386359dec2"
+  }
+}

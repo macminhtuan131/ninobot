@@ -1,4 +1,10 @@
+> **Hiện hành 04/11 — Studio v7:** mặc định là recorder chỉ đọc, MCAP/SQLite, telemetry, annotation, QC, export và profile TD3 có phiên bản. Xem [REAL_DATA_STUDIO.md](REAL_DATA_STUDIO.md). Commissioning/authority và các kết quả phía dưới giữ phạm vi lịch sử; Studio không tự chạy xe.
+
 # Thu thập dữ liệu robot thật Nino — Ubuntu24.04 / ROS2Jazzy / Pi5
+
+> **Cập nhật 04/11 — [History / Governor / TD3 / GUI v5](../../docs/NINO_RESIDUAL_IMPLEMENTATION_2026-11-04.md):** đã có environment chạy, optimizer smoke TD3/PPO, portable actor và kiểm ROS/Gazebo fixture. Xem tab **Xây project** để kiểm artifact hiện hành. Train nghiên cứu và learned residual trên robot vẫn chưa mở; dữ liệu thật chưa được thu thêm trong cập nhật này. Các mục có ngày trước bên dưới giữ bối cảnh lịch sử.
+
+> **Luồng thu hiện hành:** [GUI v4](GUIDED_COLLECTION.md), không cần ba terminal hoặc copy commands. Inventory profile `stm32_usb_collection.json`; diagnostic profile `real_collection_residual_diagnostic.json`. Null/optional không được điền giả; Q2 không là body/slip. [Định hướng mới](../../docs/NINO_RESEARCH_DIRECTION_2026-11-03.md). Các CLI bên dưới giữ cho chẩn đoán/compatibility.
 
 ## Hiện trạng dữ liệu — rà soát03/11/2026
 

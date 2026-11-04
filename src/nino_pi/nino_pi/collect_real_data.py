@@ -49,11 +49,15 @@ def load_config(path):
             raise ValueError(f"{key} must be finite in {lo}..{hi}")
     if config.get("storage_preset_profile", "none") not in ("none", "resilient"):
         raise ValueError("storage_preset_profile must be none or resilient")
+    if config.get('storage_id', 'sqlite3') not in ('sqlite3', 'mcap'):
+        raise ValueError('storage_id must be sqlite3 or mcap')
+    if config.get('storage_id') == 'mcap' and 'storage_preset_profile' in config:
+        raise ValueError('SQLite preset must not be passed to MCAP')
     return config
 
 
 def bag_command(directory, config, qos):
-    command = ["ros2", "bag", "record", "--storage", "sqlite3", "--output", str(directory / "bag"),
+    command = ["ros2", "bag", "record", "--storage", config.get('storage_id', 'sqlite3'), "--output", str(directory / "bag"),
             "--disable-keyboard-controls", "--node-name", "nino_real_data_recorder",
             "--max-cache-size", "16777216", "--qos-profile-overrides-path", str(qos)]
     # Explicit opt-in; historical configs keep their original command line.
@@ -84,6 +88,26 @@ def stop_child(child, grace=15):
 
 def inspect_bag(directory, config):
     """Read original SQLite messages without conversion, filtering or resampling."""
+    if config.get('storage_id') == 'mcap':
+        from nino_pi.bag_io import records, metadata
+        topics, errors = {}, []
+        try:
+            meta = metadata(directory)
+            for name, typ, stamp, payload in records(directory):
+                row = topics.setdefault(name, dict(type=typ, count=0, first_bag_time_ns=stamp, last_bag_time_ns=stamp))
+                if row['type'] != typ:
+                    raise ValueError('Topic type changed')
+                row['count'] += 1
+                row['first_bag_time_ns'] = min(row['first_bag_time_ns'], stamp)
+                row['last_bag_time_ns'] = max(row['last_bag_time_ns'], stamp)
+            if sum(r['count'] for r in topics.values()) != meta['message_count']:
+                errors.append('metadata_storage_count_mismatch')
+        except Exception as exc:
+            errors.append('mcap_read:'+str(exc))
+        missing = [r['name'] for r in config['topics'] if not topics.get(r['name'], {}).get('count')]
+        return dict(topics=topics, missing_topics=missing,
+            missing_required_topics=[r['name'] for r in config['topics'] if r['required'] and r['name'] in missing], errors=errors,
+            note='Full CDR stream read; counts are not source production/loss or window coverage.')
     topics, errors = {}, []
     files = sorted(directory.glob("*.db3"))
     if not files:

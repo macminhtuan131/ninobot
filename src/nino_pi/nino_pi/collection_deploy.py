@@ -79,6 +79,9 @@ print(json.dumps(dict(session=str(path),review=str(review) if review else None))
                 raise ValueError('Unexpected remote review path')
             subprocess.run(['scp','-r','-o','BatchMode=yes','-o','ConnectTimeout=5','-i',a.key,a.host+':'+str(review),str(out/'review')],check=True)
         print('Copied whole session to',out,'; raw unchanged on Pi. Video on phone/camera must be copied separately.')
+        print('@@NINO_EVENT@@'+json.dumps(dict(job='fetch',kind='progress',state='FETCHED',
+              message='Đã tải raw session và review; video cần copy riêng',
+              data=dict(local_directory=str(out.resolve()),remote_session=str(path))),ensure_ascii=False),flush=True)
     return 0
 
 

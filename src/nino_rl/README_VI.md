@@ -1,4 +1,12 @@
+> **04/11 — parameter catalog:** `config/td3_parameter_profiles.yaml` + `nino_rl.td3_config` kiểm schema/hash và tạo config/ABI draft; smoke dùng profile chung. h1/h5/h8 research còn là đề xuất. Không mở budget hoặc hardware authority. Xem [Studio / contract](../nino_pi/REAL_DATA_STUDIO.md).
+
 # Nino RL — hướng dẫn hiện tại
+
+> **TD3 factory, 04/11:** [smoke trên map factory mixed thật trong Gazebo](../../docs/NINO_FACTORY_TD3_SMOKE_2026-11-04.md). Nút **FACTORY · TD3 + Nino + wheel PI** dùng Nino URDF có caster và PI vận tốc xuất torque. Hai nút TD3/PPO 128 bước cũ là fixture giảm bậc. Không dùng checkpoint fixture thay cho model factory hoặc suy ra hiệu quả trên robot thật.
+
+> **Cập nhật 04/11 — [History / Governor / TD3 / GUI v5](../../docs/NINO_RESIDUAL_IMPLEMENTATION_2026-11-04.md):** đã có environment chạy, optimizer smoke TD3/PPO, portable actor và kiểm ROS/Gazebo fixture. Xem tab **Xây project** để kiểm artifact hiện hành. Train nghiên cứu và learned residual trên robot vẫn chưa mở; dữ liệu thật chưa được thu thêm trong cập nhật này. Các mục có ngày trước bên dưới giữ bối cảnh lịch sử.
+
+> **Hướng mới:** [motion contract → SysID → baseline → residual velocity](../../docs/NINO_RESEARCH_DIRECTION_2026-11-03.md). Các lệnh training cũ dưới đây là lịch sử, không dùng cho ABI20×5 mới. Backend và các smoke có giới hạn đã tách riêng; train nghiên cứu và triển khai residual trên robot chưa mở.
 
 Hướng dẫn đầy đủ **từ máy chưa cài gì đến train và đánh giá** nằm ở
 [README chính](../../README.md). Tài liệu [RL_IMPROVEMENTS.md](RL_IMPROVEMENTS.md)

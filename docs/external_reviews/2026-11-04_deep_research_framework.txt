@@ -1,0 +1,642 @@
+# Deep-Research Framework: Scope, Evidence, Synthesis, and Reproducible Deliverables
+
+## Executive summary
+
+No substantive research topic was specified in the current request, so the appropriate output is a **topic-agnostic deep-research operating model** rather than a conclusion about a particular domain. The uploaded material does, however, contain a highly specified Nino mobile-robot research brief; I use that as the **filled example** because it demonstrates how the framework applies to a real engineering investigation without treating its claims as universally applicable. fileciteturn0file0
+
+The recommended process has five defining properties. First, it begins with a frozen scope and decision question rather than an open-ended literature hunt. Second, it separates **primary evidence, secondary synthesis, source quality, and inference** so that a configuration file, paper abstract, simulation result, and physical measurement cannot silently become interchangeable. Third, it records searches, inclusion decisions, extraction fields, transformations, and analysis code so another researcher can reproduce the result. Fourth, it chooses synthesis methods according to evidence compatibility: evidence mapping for heterogeneous literatures, meta-analysis only when sufficiently comparable quantitative estimates exist, and thematic synthesis for mechanisms, implementation barriers, and qualitative evidence. Fifth, it makes the final report traceable from every important conclusion back to a source or dataset and explicitly marks unresolved questions.
+
+For systematic literature work, PRISMA 2020 is a strong reporting baseline because it specifies transparent reporting of identification, selection, appraisal, and synthesis, while the Cochrane Handbook supplies much more detailed conduct guidance on scope, searches, data collection, risk of bias, statistical synthesis, and interpretation. PRISMA is a reporting guideline rather than a quality-assessment tool, so those roles should not be conflated. citeturn176603search0turn176603search1turn176603search2
+
+For reproducibility, preregistering hypotheses, inclusion rules, and analysis plans before seeing outcome data is useful when confirmatory inference matters; OSF registrations provide a time-stamped research-plan record. For data stewardship, the FAIR principles emphasize making research objects findable, accessible, interoperable, and reusable, while DataCite provides structured metadata conventions for persistent identification and citation of datasets and related outputs. citeturn719909search1turn719909search22turn719909search2turn719909search5
+
+The central operational recommendation is therefore:
+
+> **Freeze the decision question, build an auditable evidence ledger, prefer primary evidence, test assumptions explicitly, and only synthesize evidence that is commensurable.**
+
+For the Nino example, the uploaded brief itself makes the decisive research distinction: TD3/history code and configuration may exist while end-to-end integration, validated environment coupling, trained checkpoints, physical execution, and demonstrated benefit remain separate maturity levels. That is exactly the kind of distinction a rigorous evidence ledger should preserve. fileciteturn0file0
+
+## Research scope, objectives, questions, and assumptions
+
+### Adaptable research-scope template
+
+A useful scope statement should be written before searching. It should fit on roughly one page and contain the following fields.
+
+| Scope field | Template |
+|---|---|
+| **Decision to support** | “By `[date/event]`, decide whether `[option A]`, `[option B]`, or `[status quo]` should be adopted for `[population/system/context]`.” |
+| **Primary objective** | Quantify or characterize `[effect / mechanism / feasibility / risk / cost / implementation gap]`. |
+| **Secondary objectives** | Identify moderators, failure modes, implementation constraints, and evidence gaps. |
+| **Population/system** | Precisely define the unit under study; exclude adjacent systems that behave differently. |
+| **Intervention/exposure** | Define what is actually changed, including version/configuration. |
+| **Comparator** | Current practice, classical baseline, alternative model, no intervention, or historical control. |
+| **Outcomes** | Predefine one primary outcome plus secondary outcomes and safety/failure outcomes. |
+| **Evidence window** | Publication/data dates, languages, jurisdictions, system versions. |
+| **Included evidence** | Primary measurements, trials, official datasets, source code, standards, peer-reviewed studies, selected preprints. |
+| **Excluded evidence** | Marketing claims, unverifiable summaries, duplicated datasets, incompatible populations, untraceable numbers. |
+| **Key assumptions** | Assumptions whose failure would change the decision. |
+| **Decision rule** | What magnitude/quality of evidence produces “go,” “no-go,” or “unknown.” |
+| **Unspecified items** | Explicit list of values not yet supplied by the user. |
+
+The scope should distinguish **eligibility for inclusion** from **weight in the conclusion**. A weak study can be included in an evidence map without being allowed to dominate the conclusion. Cochrane similarly treats study selection, risk-of-bias assessment, synthesis, and certainty as separate methodological tasks. citeturn176603search2turn176603search6
+
+### Prioritized research questions
+
+Prioritization should follow decision value rather than intellectual interest. A practical hierarchy is:
+
+| Priority | Question type | Example |
+|---|---|---|
+| P0 | **Decision blocker** | Is the intervention actually implemented in the system being evaluated? |
+| P1 | **Causal/value question** | Does it improve the predefined primary outcome versus the relevant baseline? |
+| P1 | **Safety/failure question** | What failure modes could invalidate or reverse the expected benefit? |
+| P2 | **Mechanism question** | Through what mechanism should the effect occur, and is that mechanism observable? |
+| P2 | **Generalization question** | Under which environments/populations does the result survive? |
+| P3 | **Optimization question** | Which hyperparameters/configurations maximize performance once value is established? |
+| P3 | **Novelty question** | What is genuinely new relative to the closest prior work? |
+
+The first question should usually be a **reality check**: does the purported intervention exist at the maturity level relevant to the claimed conclusion? This prevents “paper architecture,” code scaffolding, configuration, simulation, and deployed performance from collapsing into one label.
+
+### Assumptions-to-test register
+
+Every consequential assumption should become a falsifiable row rather than hidden prose:
+
+| Assumption | Why it matters | Minimal falsification test | Consequence if false |
+|---|---|---|---|
+| Input variable is measured rather than inferred | Invalid input can destroy identifiability | Trace source → field → unit → clock | Remove/redefine feature |
+| Intervention reaches the execution layer | Otherwise there is no treatment | Compare proposal, accepted value, applied value and response | Reclassify as offline-only |
+| Comparator is time/configuration matched | Otherwise effects can be confounded | Freeze config and paired protocol | Repeat comparison |
+| Outcome is independent of control input | Avoid circular evaluation | Independent sensor/reference | Downgrade outcome |
+| Evidence units are statistically independent | Prevent overstated certainty | Inspect grouping/session structure | Cluster/block analysis |
+| Missing measurements are missing rather than zero | Avoid systematic bias | Inspect logging/QC semantics | Recompute extraction |
+
+### Filled example scope: Nino integration audit
+
+The attached Nino brief defines a differential-drive robot with passive casters and asks whether residual velocity learning—particularly history-based TD3, with PPO as a comparator—should actually be integrated, while explicitly permitting the conclusion that a classical controller, mechanical change, route memory, or sensing improvement is preferable. It also requires maturity to be distinguished from idea → code/config → unit testing → environment integration → simulation evaluation → robot shadow → hardware action → verified benefit. fileciteturn0file0
+
+A compact filled scope would therefore be:
+
+| Field | Nino example |
+|---|---|
+| **Decision** | Decide whether a history-based residual velocity controller should advance beyond offline code into validated simulation and then bounded robot testing. |
+| **Primary objective** | Establish whether the residual policy produces measurable application-level benefit over a properly matched classical baseline. |
+| **Primary blocker** | Verify that the same observation/action ABI connects simulator, policy inference, deterministic projection, ROS command path, motor backend, telemetry and evaluation trace. |
+| **Comparators** | B0 nominal/reference path; B1 appropriately tuned classical shaping/governor; TD3 candidate; PPO same-ABI comparator. |
+| **Primary evidence hierarchy** | Robot measurements > validated simulator results > environment-integration tests > unit tests > code/config existence. |
+| **Core assumption to test** | The policy has useful control authority within the time horizon in which the robot can physically respond. |
+| **Critical missing evidence** | Confirmed end-to-end environment adapter, trained/evaluated checkpoint, robot shadow trace with real ROS inputs, and later bounded intervention evidence. |
+| **Stop condition** | Stop or deprioritize learning if classical/mechanical/sensing changes meet the target or if learned residuals show no stable advantage under matched evaluation. |
+| **Unspecified** | Quantitative factory acceptance thresholds for tracking, vibration, slip, throughput, payload and failure rate. |
+
+The conclusion at this stage would therefore be **“research candidate, not demonstrated deployed solution”**, not “TD3 has been applied.” That classification follows the evidence distinctions in the uploaded brief rather than an external performance claim. fileciteturn0file0
+
+## Source strategy and evidence acquisition
+
+### Source hierarchy
+
+Primary sources should be searched first whenever possible. The hierarchy should normally be:
+
+| Tier | Preferred source | Typical use |
+|---|---|---|
+| A | Original dataset, measurement, experiment log, source code, standard, regulator or official repository | Establish what actually happened or what a system specifies |
+| A | Original peer-reviewed research article | Effect, mechanism, experimental method |
+| B | Systematic review/meta-analysis with transparent methods | Broad synthesis and citation discovery |
+| B | Official technical documentation | Current API, specification, legal/standards behavior |
+| C | Narrative review, textbook, expert consensus | Context and terminology |
+| D | Conference slides, vendor blogs, secondary articles | Leads only unless uniquely informative |
+| E | Social media, unsourced summaries | Usually exclude from evidentiary claims |
+
+For medicine and life sciences, PubMed is maintained by NCBI/NLM and is a major search resource; for cross-disciplinary bibliographic discovery, Crossref exposes deposited scholarly metadata via an open REST API, while OpenAlex exposes a graph of scholarly works, authors, sources, institutions and related entities. Web of Science can provide a curated citation index where institutional access exists. citeturn412403search0turn719909search0turn412403search1turn412403search3
+
+The bibliographic index should never be mistaken for the underlying paper. Search databases are discovery layers; conclusions should ordinarily be based on the full primary source, official documentation, or original data.
+
+### Search strategy
+
+Use a layered strategy rather than one long query:
+
+```text
+Concept decomposition
+      ↓
+Canonical terminology + synonyms
+      ↓
+High-precision seed search
+      ↓
+Known-item / primary-paper retrieval
+      ↓
+Backward citation chasing
+      ↓
+Forward citation chasing
+      ↓
+Author / laboratory / repository search
+      ↓
+Contradiction / replication search
+      ↓
+Grey-literature and official-document search
+      ↓
+Update search immediately before finalization
+```
+
+A reusable query structure is:
+
+```text
+("core intervention" OR synonym OR implementation name)
+AND
+("target system" OR population)
+AND
+(outcome OR mechanism OR failure mode)
+NOT
+(out-of-scope population)
+```
+
+Then run separate queries deliberately seeking disconfirmation:
+
+```text
+"intervention" AND (failure OR negative OR replication OR limitation)
+"intervention" AND ("no improvement" OR baseline OR ablation)
+"intervention" AND (deployment OR real-world OR field trial)
+```
+
+This is preferable to relying exclusively on relevance-ranked search results because ranking systems optimize retrieval, not falsification.
+
+### Recommended databases and official sites
+
+The exact set depends on domain, but a robust cross-domain starting set is:
+
+- **Crossref** for DOI-level metadata, known-item retrieval, citation metadata and reproducible machine queries. Crossref documents filtering, searching and JSON retrieval through its REST API. citeturn719909search0turn719909search18
+- **OpenAlex** for broad citation-network exploration, authors, institutions, sources, topics, datasets and related works. citeturn412403search1turn412403search2
+- **PubMed/MEDLINE** for biomedical and health topics. MEDLINE is a primary component of PubMed and has explicit biomedical scope. citeturn412403search38
+- **Web of Science Core Collection** where access exists, especially for curated citation searching and forward/backward citation work. citeturn412403search3turn412403search14
+- **Official standards/regulator/project sites** for specifications, standards, APIs, legal requirements, government data and authoritative software behavior.
+- **Author repositories and original code/data repositories** to confirm implementation details that papers omit.
+- **Preprint servers** for recent work, but preprints should remain explicitly distinguished from peer-reviewed evidence; PMC, for example, explicitly distinguishes preprints from peer-reviewed author manuscripts and journal articles. citeturn412403search8
+
+### Search log
+
+A reproducible review should retain at least:
+
+```text
+search_id
+database/source
+query_string
+filters
+search_timestamp
+result_count
+export_file_hash
+screening_version
+reviewer
+notes
+```
+
+Do not overwrite previous exports. Search results are time-dependent, and Crossref itself notes that records can be reindexed while a search is being paged, which is another reason to retain timestamps and raw exports. citeturn719909search4
+
+## Data collection, reproducibility, bias, and quality grading
+
+### Workflow
+
+```mermaid
+flowchart TD
+    A[Decision question] --> B[Freeze scope and assumptions]
+    B --> C[Protocol and search plan]
+    C --> D[Primary-source search]
+    D --> E[Deduplicate and screen]
+    E --> F[Full-text / artifact verification]
+    F --> G[Structured extraction]
+    G --> H[Risk-of-bias and quality assessment]
+    H --> I{Evidence sufficiently comparable?}
+    I -->|Yes, quantitative| J[Meta-analysis / quantitative synthesis]
+    I -->|Heterogeneous| K[Evidence map]
+    I -->|Qualitative / mechanism| L[Thematic synthesis]
+    J --> M[Triangulate]
+    K --> M
+    L --> M
+    M --> N[Decision table + limitations]
+    N --> O[Reproducible report and archive]
+```
+
+PRISMA 2020 provides a reporting framework for transparently documenting why a review was undertaken, how studies were identified and selected, and what was found; it includes a 27-item checklist and flow-diagram templates. citeturn176603search0turn176603search1
+
+### Extraction schema
+
+Every extracted statement should maintain provenance:
+
+```text
+study_id
+source_type
+version/date
+population/system
+sample_size
+intervention
+comparator
+outcome_definition
+effect_estimate
+uncertainty
+measurement_method
+follow_up_or_duration
+confounders
+missingness
+risk_of_bias
+limitations
+extractor
+extraction_date
+page/table/figure
+verbatim_locator
+derived_transform
+analysis_file
+```
+
+For engineering/code audits, add:
+
+```text
+repository
+commit_or_snapshot
+file
+class_function
+configuration
+runtime_version
+interface/topic
+units
+clock
+test_level
+deployment_evidence
+hardware_evidence
+```
+
+### Reproducibility rules
+
+A result is reproducible only if another researcher can reconstruct both **inputs and transformations**. At minimum:
+
+1. preserve raw source exports;
+2. checksum immutable inputs;
+3. version the extraction schema;
+4. place derived tables under code control;
+5. record every exclusion and correction;
+6. freeze analysis scripts before final held-out evaluation;
+7. preserve the environment specification;
+8. retain source versions or retrieval dates.
+
+The FAIR principles were designed to improve the findability, accessibility, interoperability and reuse of research data, and DataCite's schema is designed to provide consistent metadata for identification, citation and retrieval. citeturn719909search2turn719909search5
+
+For confirmatory work, preregistration is especially useful when analysts could otherwise change hypotheses, exclusions or analyses after seeing results. OSF describes preregistrations as plans generally submitted before data collection or analysis, and registrations provide a time-stamped research record. citeturn719909search1turn719909search22
+
+### Bias assessment
+
+Bias should be assessed **by causal pathway**, not reduced immediately to one numerical score.
+
+For intervention studies, common domains include:
+
+- selection/confounding;
+- intervention assignment;
+- deviations from intended intervention;
+- missing outcomes;
+- outcome measurement;
+- selective reporting;
+- time-varying confounding;
+- publication/missing-evidence bias.
+
+ROBINS-I is specifically designed for non-randomized intervention studies and recommends defining the hypothetical “target trial” and relevant confounding domains before judging bias. citeturn176603search5turn176603search6
+
+For software/engineering evidence, an analogous structure is useful:
+
+| Bias domain | Engineering analogue |
+|---|---|
+| Selection bias | Only successful runs retained |
+| Measurement bias | Outcome derived from command rather than independent measurement |
+| Confounding | Controller change coincides with payload, firmware or environment change |
+| Attrition | Failed runs silently omitted |
+| Selective reporting | Only best seed/configuration reported |
+| Leakage | Test set used during tuning |
+| Implementation bias | Claimed algorithm differs from code actually executed |
+| Survivorship | Only completed sessions appear in dataset |
+
+### Quality grading
+
+Do not confuse **study quality** with **certainty of the whole evidence body**. GRADE is built around assessing certainty in a body of evidence rather than assigning a simplistic “paper quality score”; the GRADE Working Group continues to maintain and update its formal guidance. citeturn176603search7
+
+For general deep research, a practical internal scale is:
+
+| Grade | Meaning | Permitted use |
+|---|---|---|
+| Q4 | Direct, independently verifiable evidence with adequate controls and provenance | Supports decision-level conclusion |
+| Q3 | Strong evidence but one material limitation | Supports conclusion with qualification |
+| Q2 | Useful exploratory evidence or validated intermediate artifact | Supports hypothesis/planning |
+| Q1 | Weak/indirect/incomplete evidence | Context only |
+| Q0 | Claim, proposal, demo, or unverified configuration | No empirical conclusion |
+
+This is a **project-management grading scheme**, not a replacement for domain-specific tools such as GRADE, RoB 2 or ROBINS-I.
+
+## Evidence synthesis and decision analysis
+
+### Evidence mapping
+
+Use an evidence map when the literature is heterogeneous in population, implementation, outcome definition, study design or maturity.
+
+Example:
+
+| Evidence cluster | Quantity | Directness | Consistency | Main gap | Decision relevance |
+|---|---:|---|---|---|---|
+| Controlled simulation | High | Medium | Mixed | Model realism | Medium |
+| Physical bench testing | Medium | High for subsystem | Consistent | System-level effect | High |
+| Full-system field studies | Low | Very high | Unknown | Replication | Very high |
+| Mechanistic papers | Medium | Medium | Mostly consistent | Application transfer | Medium |
+| Negative/failed deployments | Low | High | Mixed | Under-reporting | High |
+
+Evidence mapping answers **“what evidence exists, where, and with what gaps?”** It does not force incompatible outcomes into a single effect estimate.
+
+### Meta-analysis
+
+Use meta-analysis only when studies estimate sufficiently compatible quantities: comparable populations, interventions, outcome definitions, time horizons and designs, with effect estimates and uncertainty that can be meaningfully combined. PRISMA defines meta-analysis as a statistical synthesis of effect estimates from multiple studies, while the Cochrane Handbook provides detailed guidance on models, heterogeneity and synthesis decisions. citeturn176603search0turn176603search2turn176603search4
+
+Do **not** meta-analyze merely because studies all have numbers. Different measurement constructs, control conditions or outcome windows can make numerical pooling misleading.
+
+A minimal analysis plan should predefine:
+
+```text
+effect measure
+unit of analysis
+fixed/random-effects rationale
+heterogeneity metrics
+cluster handling
+multi-arm handling
+missing SD strategy
+outlier/influence analysis
+subgroup hypotheses
+sensitivity analyses
+publication-bias assessment
+```
+
+### Thematic synthesis
+
+Use thematic synthesis for:
+
+- implementation barriers;
+- mechanism explanations;
+- operator experience;
+- design trade-offs;
+- failure modes;
+- governance and organizational constraints;
+- qualitative observations.
+
+The workflow is usually:
+
+```text
+line-level extraction
+→ descriptive codes
+→ grouped descriptive themes
+→ analytical themes
+→ contradiction search
+→ evidence-backed propositions
+```
+
+Thematic findings should still retain source-level traceability and should distinguish frequency from importance: a rare failure mode can matter more than a common convenience issue.
+
+### Triangulation
+
+The strongest conclusions often come from **triangulation across evidence types**:
+
+```mermaid
+flowchart LR
+    A[Mechanistic evidence] --> D[Decision claim]
+    B[Controlled quantitative evidence] --> D
+    C[Real-world / implementation evidence] --> D
+    E[Contradictory evidence] --> D
+```
+
+A decision claim should be downgraded when only one branch exists.
+
+### Example evidence map: Nino
+
+The uploaded Nino brief already provides a useful maturity distinction. Translated into an evidence map:
+
+| Claim | Code/config | Unit/fixture | Integrated environment | Simulation evaluation | Robot shadow | Hardware effect | Verified benefit |
+|---|---|---|---|---|---|---|---|
+| History feature core exists | Yes | Reported | Not yet demonstrated online | Not sufficient | No verified actor feed | No | No |
+| TD3 experiment interface exists | Yes | Partial/offline | Not confirmed | No new evaluated checkpoint | No | No | No |
+| Reactive governor exists | Yes | Yes | Historical sim path | Historical mixed result | No verified real benefit | No | No |
+| ROS/motor command path exists | Yes | Some real traces | Real data path observed | N/A | N/A | Some reported wheel response | Application benefit unknown |
+| Residual learned controller deployed | Preparation only | Partial | Missing decisive proof | Missing | Missing | Missing | Missing |
+
+That table demonstrates why “implemented” is too coarse a status label for an integration project. fileciteturn0file0
+
+## Deliverable templates and sample outputs
+
+### Report template
+
+A high-quality final report can use the following structure:
+
+**Executive summary.** State the decision, most consequential findings, confidence level, unresolved blockers and recommended action. Avoid methodological detail unless it changes the decision.
+
+**Methods.** Record scope, protocol, databases, exact search dates, search strings, eligibility rules, screening process, extraction schema, bias tools, transformations, synthesis model and deviations.
+
+**Results.** Present evidence flow, source characteristics, effect estimates, contradictions, evidence maps and robustness/sensitivity analyses.
+
+**Visualizations.** Use only figures that answer a question: effect plots, evidence maps, causal diagrams, timeline diagrams, architecture/data-flow diagrams or uncertainty plots.
+
+**Conclusions.** Separate:
+- directly supported conclusions;
+- likely but inferential conclusions;
+- unresolved questions;
+- propositions rejected by evidence.
+
+**Limitations.** Include search coverage, unavailable full texts, weak measurements, indirectness, model mismatch, confounding, small samples and publication bias.
+
+**Next steps.** Rank additional work by **expected decision value per cost**, not by convenience.
+
+### Sample one-page executive summary
+
+**Research question.** Should the Nino project advance its new history-based residual velocity TD3 architecture into full training and robot deployment, or should effort first remain focused on measurement integration and classical baselines?
+
+**Current evidence.** The project brief reports that a 20-feature × 5-frame observation-history core, residual action projection, TD3/PPO configuration and model-factory interfaces have been created, but the same brief explicitly states that the new environment adapter has not been validated end-to-end, training remains disabled, no new evaluated checkpoint exists, and no learned residual policy has yet controlled the physical robot. The brief also distinguishes offline tests from Gazebo integration, robot shadow operation and hardware benefit. fileciteturn0file0
+
+**Interpretation.** The principal gap is therefore not “which RL algorithm should be selected?” but **whether the proposed observation/action contract has a single validated path from simulator state and real ROS telemetry through policy inference, deterministic projection, command ownership, motor execution and evaluation logging**. TD3 versus PPO is downstream of that integration question. A policy trained against a simulator whose action semantics differ from the real CyberGear velocity-reference path would not establish transfer merely because both interfaces use the same contract identifier.
+
+**Recommended research sequence.** First validate the ABI and causal data path with zero authority and deterministic fixture policies. Next construct a velocity-reference simulation backend whose commanded quantity, bounds, rate limits and delays correspond to the real command hierarchy. Then compare a nominal baseline, a tuned classical/reference-shaping baseline and learned candidates under one evaluator. Only after a policy shows stable held-out simulation benefit should it proceed to timed Pi inference testing, robot shadow traces, and finally a bounded real-authority protocol.
+
+**Evidence rule.** A source file or YAML proves code/configuration exists; a unit test proves local behavior; a simulator smoke test proves integration; an evaluated checkpoint supports simulation performance; a zero-authority robot run proves deployability and timing; and only a controlled physical intervention can support a claim of robot-level benefit. These statuses must remain separate.
+
+**Decision.** Continue the residual-learning path only as a conditional research candidate. Do not yet characterize TD3/history as deployed or beneficial. Maintain PPO as a same-interface comparator rather than a sequential controller. Retain a classical baseline because the project’s stated objective is application value, not algorithmic novelty, and because a simpler approach may meet the eventual operational requirements with lower integration risk. fileciteturn0file0
+
+**Most valuable next artifact.** Produce one end-to-end integration trace showing: source sensor values and timestamps → feature/history tensor → policy proposal → projected accepted residual → final reference → backend-applied target → feedback → reward/evaluation record, all under one schema/version identifier. This artifact would convert the status from “offline interface prepared” to “integrated environment path demonstrated”; it would still not prove learned performance or hardware benefit.
+
+### Example source-comparison table
+
+| Source | Type | Directness | Key information | Main limitation | Quality |
+|---|---|---:|---|---|---|
+| Original experiment dataset | Primary | Very high | Raw outcomes and conditions | May require extensive QC | Q4 if provenance complete |
+| Original research paper | Primary | High | Method, effect, uncertainty | Publication/reporting limitations | Q3–Q4 |
+| Official software docs | Primary specification | High | Current API/behavior | Does not prove deployment | Q3 for specification |
+| Systematic review | Secondary | Medium–high | Aggregate evidence | Inherits primary-study limitations | Q3–Q4 |
+| Preprint | Primary, unreviewed | Variable | Recent method/result | No completed peer review | Q1–Q3 |
+| Blog/vendor summary | Secondary | Low | Useful leads | Selective/marketing framing | Q0–Q1 |
+
+A bibliographic index such as Crossref or OpenAlex is best treated as a discovery and metadata layer rather than as evidence of the scientific result itself. citeturn719909search0turn412403search1
+
+### Example data-extraction table
+
+| Study/run ID | Intervention | Comparator | Outcome | Estimate | Uncertainty | Measurement | Bias flags | Included synthesis |
+|---|---|---|---|---:|---|---|---|---|
+| S01 | Method A | Baseline | Tracking RMSE | 0.82 | 95% CI 0.74–0.90 | External reference | Minor missingness | Quantitative |
+| S02 | Method A | Baseline | Success rate | 91% | 18/20 | Observer adjudication | Unblinded | Sensitivity |
+| S03 | Method B | Baseline | Vibration proxy | −12% | SD unavailable | Onboard IMU | Proxy outcome | Evidence map only |
+| S04 | Method A | None | Operator usability | Theme: setup burden | N/A | Interview | Selection bias | Thematic |
+
+The values above are illustrative, not empirical research findings.
+
+### Visualization set
+
+A default research package should contain no more charts than needed. Typical choices are:
+
+- PRISMA-style evidence flow for literature selection;
+- forest plot for commensurable effects;
+- evidence heat map by population × intervention × outcome;
+- funnel or influence diagnostics where meta-analysis warrants them;
+- causal diagram for confounders;
+- architecture/data-flow diagram for engineering integration;
+- cumulative evidence timeline for fast-moving fields.
+
+## Timelines, resources, and project sizing
+
+The following are **planning estimates**, not universal standards. They assume one lead analyst with occasional subject-matter review, normal access to full texts, and no new laboratory experiment.
+
+| Project size | Typical scope | Human effort | Calendar | Sources deeply reviewed | Deliverable |
+|---|---|---:|---:|---:|---|
+| **Small** | Narrow decision, one domain, limited heterogeneity | 3–7 person-days | 3–10 days | ~10–30 | Decision memo + evidence table |
+| **Medium** | Multi-source technical review, several comparators, structured bias assessment | 15–35 person-days | 3–8 weeks | ~30–100 | Full report + extraction dataset + scripts |
+| **Large** | Systematic review or multidisciplinary program, quantitative synthesis, multiple reviewers | 60–180+ person-days | 2–9+ months | 100–500+ | Protocol, screened corpus, reproducible synthesis, publication-grade report |
+
+Where formal systematic-review standards apply, dual screening, duplicate extraction, adjudication and specialist statistical review substantially increase effort but also reduce preventable selection and transcription errors. Cochrane’s handbook treats study selection, data collection, bias assessment and statistical analysis as distinct review activities rather than a single “literature review” step. citeturn176603search2
+
+A useful stage-gated timeline is:
+
+```mermaid
+gantt
+    title Generic Deep-Research Timeline
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %d
+
+    section Scope
+    Decision question and protocol       :a1, 2026-11-03, 3d
+    Search strategy pilot                :a2, after a1, 2d
+
+    section Acquisition
+    Database and primary-source search   :b1, after a2, 5d
+    Screening and retrieval              :b2, after b1, 7d
+
+    section Evaluation
+    Data extraction                      :c1, after b2, 7d
+    Bias and quality assessment          :c2, after b2, 7d
+
+    section Synthesis
+    Evidence map / quantitative analysis :d1, after c1, 5d
+    Contradiction and sensitivity review :d2, after d1, 3d
+
+    section Reporting
+    Draft report                         :e1, after d2, 4d
+    Reproducibility audit                :e2, after e1, 2d
+    Final update search                  :e3, after e2, 1d
+```
+
+For a rapid small project, these phases can overlap. For a high-stakes review, they should be independently checked rather than compressed.
+
+## Citation, data management, and research tooling
+
+### Citation practice
+
+Every factual claim should be linked to the most direct source available. Prefer:
+
+```text
+claim → original paper / official specification / dataset
+```
+
+over:
+
+```text
+claim → review → blog → original paper
+```
+
+Use secondary reviews to discover and contextualize primary sources, not to obscure provenance.
+
+Recommended rules:
+
+- cite the source that actually supports the sentence;
+- include version/date for living documentation;
+- retain DOI, PMID, repository ID or persistent URL in the internal ledger;
+- record page/table/figure or code location during extraction;
+- cite datasets independently from papers;
+- distinguish preprint from peer-reviewed publication;
+- record corrections/retractions;
+- never cite a search-result snippet as though the full work had been reviewed.
+
+Crossref's API is suitable for DOI metadata resolution and reproducible bibliographic retrieval, while DataCite's metadata schema is specifically oriented toward consistent identification and citation of research outputs such as datasets. citeturn719909search0turn719909search5
+
+### Data-management structure
+
+A compact reproducible project layout is:
+
+```text
+research/
+├── protocol/
+│   ├── scope.md
+│   ├── inclusion_exclusion.yaml
+│   └── analysis_plan.md
+├── search/
+│   ├── search_log.csv
+│   └── raw_exports/
+├── screening/
+│   ├── decisions.csv
+│   └── exclusion_reasons.csv
+├── sources/
+│   └── source_manifest.csv
+├── extraction/
+│   ├── schema.json
+│   └── extracted_data.csv
+├── quality/
+│   └── risk_of_bias.csv
+├── analysis/
+│   ├── src/
+│   ├── environment.lock
+│   └── outputs/
+├── report/
+│   └── report.md
+└── provenance/
+    ├── checksums.sha256
+    └── CHANGELOG.md
+```
+
+Raw inputs should be immutable. Corrections should create new derived versions rather than silently editing raw data.
+
+### Recommended tools
+
+**Reference management:** Zotero is a practical general-purpose reference manager; for programmatic discovery, Crossref and OpenAlex APIs are useful complements. Crossref exposes structured scholarly metadata, while OpenAlex supports graph-style exploration of works, authors, institutions and citations. citeturn719909search0turn412403search1
+
+**Protocol/preregistration:** OSF Registrations are appropriate for frozen study plans and provide a time-stamped research record. OSF has also announced workflow changes around Projects, but Registrations remain the service for documenting prospective research plans. citeturn719909search22turn719909search34
+
+**Version control:** Git for text, extraction schemas and analysis code; release tags for report versions; cryptographic hashes for immutable evidence bundles.
+
+**Data and metadata:** CSV/Parquet for tabular extraction, JSON/YAML for schemas and protocols, DataCite-style metadata for citable datasets, and explicit licenses where sharing is permitted. DataCite emphasizes structured metadata as a basis for dataset identification, search and citation. citeturn719909search5
+
+**Analysis:** R or Python with a locked dependency environment; notebooks may be used for exploration, but final figures and tables should be generated from scripts or reproducible pipelines rather than manually edited.
+
+**Evidence review:** domain-appropriate risk-of-bias instruments rather than home-grown numeric scores when validated tools exist. ROBINS-I is the relevant example for non-randomized intervention evidence. citeturn176603search5
+
+**Archiving:** retain raw search exports, extraction data, code, environment specification, report source and machine-readable metadata together. FAIR is a useful design principle for making such research objects discoverable and reusable, though “FAIR” does not mean all data must be publicly open. citeturn719909search2
+
+### Final research quality checklist
+
+A deep-research task is ready to close when the following chain is auditable:
+
+```text
+decision question
+→ frozen scope
+→ reproducible search
+→ explicit source selection
+→ primary-source verification
+→ structured extraction
+→ bias assessment
+→ appropriate synthesis
+→ sensitivity / contradiction tests
+→ source-linked conclusions
+→ limitations
+→ decision rule
+→ archived data/code/provenance
+```
+
+The most important failure mode is not insufficient volume of literature; it is **claim inflation**—allowing a weaker form of evidence to stand in for a stronger one. The Nino attachment provides a concrete example: code/configuration, offline tests, simulator integration, trained-policy evaluation, robot shadow operation, physical control and demonstrated benefit are different evidentiary states and must remain different states in the final research ledger. fileciteturn0file0

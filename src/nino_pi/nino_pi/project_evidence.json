@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "review_date": "2026-11-03",
+  "review_date": "2026-11-04",
   "data_cutoff": "2026-11-02",
-  "scope": "Snapshot từ báo cáo local đã review; chưa kiểm kê Pi lại. Config ≠ số đo; GUI/demo/tests không thêm real data.",
-  "next_action": "Ưu tiên: xác minh backend/endpoint read-only → 1 diagnostic có video bánh/thân/mốc sàn → review → mới đề nghị độ lặp.",
+  "scope": "Snapshot real data đến 02/11; cập nhật phần mềm 04/11, chưa kiểm kê Pi lại. GUI software fixture không thêm real data.",
+  "next_action": "Studio v7 chỉ đọc: review dữ liệu có sẵn, kiểm observer sensor/storage, ghi/QC/import khi có câu hỏi cần trả lời. Profile TD3 có version/hash trong Xây project; chưa train nghiên cứu/deploy real.",
   "data": [
     {
       "id": "D01",
@@ -280,6 +280,102 @@
         "status"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
+    },
+    {
+      "id": "D24",
+      "name": "SysID command→reported wheel→body",
+      "status": "Chưa có model được kiểm held-out",
+      "result": "Có traces một phần, chưa có excitation/body reference đủ",
+      "missing": "Nhận dạng combined path nếu thiếu actuator target; không fit radius/slip/lag đồng thời",
+      "kind": "[Đ] Hướng mới / chưa kiểm thực",
+      "sources": [
+        "direction",
+        "report_td3",
+        "report_conclusion"
+      ]
+    },
+    {
+      "id": "D25",
+      "name": "Baseline B0/B1 công bằng và time/quality Pareto",
+      "status": "Chưa có benchmark real đủ",
+      "result": "Wheel PI/governor sim cũ vẫn là lịch sử riêng",
+      "missing": "Cùng shaping/limits/information, development tuning và fixed held-out",
+      "kind": "[Đ] Hướng mới / chưa kiểm thực",
+      "sources": [
+        "direction",
+        "report_td3",
+        "report_conclusion"
+      ]
+    },
+    {
+      "id": "D26",
+      "name": "Feature/history ABI 20×5 và checkpoint schema",
+      "status": "Đã có software integration; chưa real dataset",
+      "result": "20×5 / 10 Hz; shared History/ABI/Gym/ROS shadow fixture. Mở Xây project để kiểm manifest hiện hành.",
+      "missing": "Frame body/normalization/epoch/gap validity, không privileged actor",
+      "kind": "[N] Source/software fixture; [Đ] kiểm chứng robot còn thiếu",
+      "sources": [
+        "direction",
+        "report_td3",
+        "report_conclusion",
+        "implementation_nov4"
+      ]
+    },
+    {
+      "id": "D27",
+      "name": "Policy proposal / accepted / final / actuator readback",
+      "status": "Chưa có real residual traces",
+      "result": "Đã có trace fixture/observer alpha0: proposal, projected reference, final và feedback; actuator target thật thiếu vẫn null.",
+      "missing": "Không thay missing target bằng command; log reason/clock riêng",
+      "kind": "[N] Source/software fixture; [Đ] kiểm chứng robot còn thiếu",
+      "sources": [
+        "direction",
+        "report_td3",
+        "report_conclusion",
+        "implementation_nov4"
+      ]
+    },
+    {
+      "id": "D28",
+      "name": "Reward/evaluation labels và failures/censoring",
+      "status": "Chưa có bộ residual benchmark",
+      "result": "Có reward/evaluation và terminal-vs-truncated chạy được ở fixture; chưa Nino contact/body/slip benchmark.",
+      "missing": "Body/contact/slip cần independent truth; native metrics giữ riêng",
+      "kind": "[N] Source/software fixture; [Đ] kiểm chứng robot còn thiếu",
+      "sources": [
+        "direction",
+        "report_td3",
+        "report_conclusion",
+        "implementation_nov4"
+      ]
+    },
+    {
+      "id": "D29",
+      "name": "Grouped train/validation/test, action coverage",
+      "status": "Chưa có corpus theo ABI mới",
+      "result": "Có rollout/checkpoint smoke theo ABI mới. Chưa corpus Nino; seed IDs fixture xác định không là điều kiện vật lý độc lập.",
+      "missing": "Không random overlapping frames; không counterfactual từ một behavior",
+      "kind": "[N] Source/software fixture; [Đ] kiểm chứng robot còn thiếu",
+      "sources": [
+        "direction",
+        "report_td3",
+        "report_conclusion",
+        "implementation_nov4"
+      ]
+    },
+    {
+      "id": "D30",
+      "name": "Latency/compute và shadow zero authority",
+      "status": "Chưa đo deployment budget",
+      "result": "ROS synthetic shadow fixture đã có đường chạy; chưa inference/timing dưới tải Pi thật.",
+      "missing": "Đo dưới tải Pi thật; không suy deadline hoặc stop từ GUI/tests",
+      "kind": "[N] Source/software fixture; [Đ] kiểm chứng robot còn thiếu",
+      "sources": [
+        "direction",
+        "report_td3",
+        "report_conclusion",
+        "implementation_nov4"
+      ]
     }
   ],
   "parameters": [
@@ -521,6 +617,25 @@
         "status",
         "checklist"
       ]
+    },
+    {
+      "name": "Residual actor / action ABI",
+      "value": "20×5=100; normalized common/diff → wheel-linear m/s",
+      "kind": "[Đ] Config/core offline",
+      "limits": "10Hz/K5 span0,4s là proposal; không hardware timing. Không dùng checkpoint torque/300D cũ.",
+      "sources": [
+        "direction"
+      ]
+    },
+    {
+      "name": "Residual authority / training",
+      "value": "hardware0; YAML mặc định sim0/train false; jobs fixture simα1 và smoke128 bước",
+      "kind": "[N] Cấu hình/software; chưa là giới hạn motor",
+      "limits": "Train nghiên cứu chưa mở; 128 bước kiểm optimizer, không phải lợi ích Nino.",
+      "sources": [
+        "direction",
+        "implementation_nov4"
+      ]
     }
   ],
   "sessions": [
@@ -726,11 +841,13 @@
     {
       "id": "K04",
       "priority": "Offline",
-      "status": "Đã chuẩn bị; chưa live",
-      "action": "GUI nguồn/thu; hồ sơ, chất lượng và to-do. Firmware authority build, chưa flash.",
+      "status": "Đã kiểm offline",
+      "action": "GUI v5 bổ sung diagram, job local, artifact/hash, kết quả và to-do. Workflow thu thật giữ riêng, chưa xác nhận live Pi.",
       "gate": "Software/demo không xác nhận robot; không đổi data gate.",
       "sources": [
-        "review"
+        "guided",
+        "implementation",
+        "implementation_nov4"
       ]
     },
     {
@@ -745,7 +862,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "inventory",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T02",
@@ -759,13 +876,13 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "inventory",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T03",
       "priority": "P0",
       "status": "Chưa hoàn tất",
-      "action": "Chốt backend sẽ dùng. Firmware RC hiện có và firmware GUI authority có contract enable khác nhau; không trộn helper/protocol.",
+      "action": "Dùng firmware RC hiện có cho collector v4; RC AUTO. Advanced authority là nhánh riêng.",
       "condition": "",
       "sources": [
         "checklist",
@@ -773,13 +890,13 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "inventory",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T04",
-      "priority": "P0",
-      "status": "Chưa hoàn tất",
-      "action": "Xác nhận đúng MCU/board và rollback, triển khai firmware tương thích/bridge; kiểm boot DISARM, source/ACK, mất link và recorder. Chưa có bằng chứng đã flash/kiểm live. Không cần flash chỉ để tiếp tục đọc raw bằng công cụ đang có.",
+      "priority": "Tùy chọn",
+      "status": "Tạm gác / không chặn thu",
+      "action": "GUI authority không RC chỉ mở khi chủ động chọn firmware path riêng; không flash để dùng collector.",
       "condition": "nếu dùng GUI không cần RC",
       "sources": [
         "checklist",
@@ -787,7 +904,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "gui_authority",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T05",
@@ -801,7 +918,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "diagnostic",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T06",
@@ -815,7 +932,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "diagnostic",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T07",
@@ -829,7 +946,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "diagnostic",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T08",
@@ -843,7 +960,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "review",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T09",
@@ -857,7 +974,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "review",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T10",
@@ -871,7 +988,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "repeatability",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T11",
@@ -885,7 +1002,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "review",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T12",
@@ -899,7 +1016,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "body_reference",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T13",
@@ -913,7 +1030,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "inventory",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T14",
@@ -927,7 +1044,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "body_reference",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T15",
@@ -941,7 +1058,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "future",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T16",
@@ -955,7 +1072,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "future",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T17",
@@ -969,7 +1086,7 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "future",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
     },
     {
       "id": "T18",
@@ -983,7 +1100,74 @@
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "future",
-      "command_status": "Copy trong GUI; chưa chạy/deploy. Chỉ diagnostic có profile một lượt mới; các bước sau là draft."
+      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
+    },
+    {
+      "id": "T19",
+      "priority": "R1 · ngay",
+      "status": "Chờ hardware",
+      "action": "Qua GUI: inventory → ZERO → bag/video → explicit2s motion → QC/observation/fetch.",
+      "gate": "Chỉ một diagnostic, giữ profile; fail/unknown không retry",
+      "sources": [
+        "direction",
+        "guided"
+      ]
+    },
+    {
+      "id": "T20",
+      "priority": "R2–R3",
+      "status": "Chưa mở",
+      "action": "Body reference có calibration/sync và SysID combined backend.",
+      "gate": "E1 giải thích được; protocol độ lặp/maneuver riêng",
+      "sources": [
+        "direction",
+        "guided"
+      ]
+    },
+    {
+      "id": "T21",
+      "priority": "R4",
+      "status": "Chưa mở",
+      "action": "B0/B1 development tuning và Pareto tracking/time/quality.",
+      "gate": "Cùng input/limits; classical đủ thì dừng learning",
+      "sources": [
+        "direction",
+        "guided"
+      ]
+    },
+    {
+      "id": "T22",
+      "priority": "R5",
+      "status": "Software đã xây; kiểm artifact",
+      "action": "Chạy các nút validation/TD3/PPO/comparison/ROS/Gazebo fixture trong tab Xây project. Sau đó calibrated Nino backend và budget nghiên cứu riêng.",
+      "gate": "Smoke128 không mở hardware, scientific benchmark hoặc promotion policy.",
+      "sources": [
+        "direction",
+        "guided",
+        "implementation_nov4"
+      ]
+    },
+    {
+      "id": "T23",
+      "priority": "R6",
+      "status": "Chưa mở",
+      "action": "History/authority/DR ablation, OOD và shadow trên Pi.",
+      "gate": "H2 useful horizon; no body reference thì không slip claim",
+      "sources": [
+        "direction",
+        "guided"
+      ]
+    },
+    {
+      "id": "T24",
+      "priority": "R7",
+      "status": "Chưa mở",
+      "action": "Đánh giá residual hardware giới hạn theo protocol mới.",
+      "gate": "Không tự tăng alpha/tốc độ; reference/owner/stop phải đo",
+      "sources": [
+        "direction",
+        "guided"
+      ]
     }
   ],
   "corrections": [
@@ -1001,12 +1185,15 @@
     "[T] arXiv:2307.15931 v3 có rover case simulation-based (2026), không là bằng chứng bánh/caster thật. arXiv:1812.03201 là block assembly, không thử AMR qua cáp.",
     "[T] arXiv:2609.28969 là WHILL/AWSIM/ROS2 + Bayesian ID và DreamerV3; abstract xác nhận transfer tránh hộp, không chứng minh Nino contact authority. Các paper khác chưa kiểm full text trong lần này.",
     "[S] Không nhận claim corner LiDAR chính xác mm, delay Pi 15–45 ms hoặc frame stack 300 ms đủ cho mọi contact nếu chưa đo. 3 mẫu cách 100 ms chỉ span 200 ms; actuator lag vẫn còn.",
-    "[Đ] Ưu tiên motion contract + một diagnostic có video; sau đó mới bounded repeatability. Dự phòng dùng firmware RC hiện tại nếu GUI firmware chưa triển khai. Chưa cần train PPO/BC, flash hay tăng current để làm dashboard."
+    "[Đ] Ưu tiên motion contract + một diagnostic có video; sau đó mới bounded repeatability. Dự phòng dùng firmware RC hiện tại nếu GUI firmware chưa triển khai. Chưa cần train PPO/BC, flash hay tăng current để làm dashboard.",
+    "[Đ] Hai báo cáo mới được tổng hợp thành residual velocity common/diff m/s, 20×5 frame; đây là ABI đề xuất, không kết quả học hoặc giới hạn hardware.",
+    "[S] Replay SB3 giữ policy proposal khi projection thuộc environment. Accepted reference/final ROS/actuator target phải log riêng; không tráo action trong replay bằng một quy tắc chung.",
+    "[N] Module/API/YAML và GUI mới chỉ được chuẩn bị offline. Chưa có backend adapter sim mới được xác nhận, training budget hoặc real residual run."
   ],
   "sources": {
     "checklist": {
       "path": "/home/tuanmac/ninorobot/docs/NINO_REAL_DATA_CHECKLIST_2026-11-03.md",
-      "sha256": "246e31f4b92b59b188a6e02ddfd81b1fc95abfbce5452bc6771c6cb0cd9c5f42",
+      "sha256": "844cc5c633705526c24c2f5fc7c0f9d6f3a9b254778fee65987b116ad43e9d05",
       "scope": "Tổng hợp claim/data/to-do; không phải raw mới"
     },
     "status": {
@@ -1066,13 +1253,45 @@
     },
     "review": {
       "path": "/home/tuanmac/ninorobot/docs/NINO_REPORT_REASSESSMENT_AND_GUI_2026-11-03.md",
-      "sha256": "36ca389efb1c68e498a117de4b6a0d3fdb1e8ad5c42befaa8e0ed7cf7c6df1cd",
+      "sha256": "258a042b63fb4429089f0d23019114ebc78a81fa8e646a95e3615e68658c7de5",
       "scope": "Correction và kế hoạch mới"
     },
     "commands": {
       "path": "/home/tuanmac/ninorobot/docs/NINO_COLLECTION_COMMANDS_2026-11-03.md",
-      "sha256": "044ab7f8860a6ef2dfbc6bafd1e5899c4fc7d28d03dd5a0e07ccd541fd6cc016",
+      "sha256": "3d2907d5f40dbdd5971987737ced241cab85acb22bfcba42d6a8c5cf8d5a3892",
       "scope": "Lệnh copy-only chuẩn bị; không là data mới hoặc live validation"
+    },
+    "direction": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_RESEARCH_DIRECTION_2026-11-03.md",
+      "sha256": "eed7851994aa41dd709512a65171efeb75938508e344d9b7b5f457f09166e1c0",
+      "scope": "Định hướng/code/config đề xuất, không real data mới",
+      "revision_note": "04/11 software/status banner; historical real evidence unchanged"
+    },
+    "guided": {
+      "path": "/home/tuanmac/ninorobot/src/nino_pi/GUIDED_COLLECTION.md",
+      "sha256": "e84b0305c30d993a58ba75e52122be7a467bcf9b7f386ca2b8fdd8ba60162c32",
+      "scope": "GUI v6: sáu bước, mô tả gate/protocol và smoke TD3; không real data mới",
+      "revision_note": "04/11 GUI wizard and separate factory TD3 software smoke; historical real sessions unchanged"
+    },
+    "report_td3": {
+      "path": "/home/tuanmac/.codex/attachments/328d63f1-ce89-48f4-ba9d-3cf7914d9f89/Pasted text.txt",
+      "sha256": "c4cddcc3c42d3f9c02155ac637a5735b0026f43864bb18555dabf307a1f25215",
+      "scope": "Attachment English TD3 architecture; có giả định đã correction"
+    },
+    "report_conclusion": {
+      "path": "/home/tuanmac/.codex/attachments/59792353-d99d-47e7-977b-54dd792773bf/Pasted text.txt",
+      "sha256": "2d2b980eedacd41d6005b3a108a1d97b1b698dff7fb7e827f884bee034c04bc1",
+      "scope": "Attachment kết luận RL; không coi citation là đã đọc"
+    },
+    "implementation": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_IMPLEMENTATION_UPDATE_2026-11-03.md",
+      "sha256": "210e39c86a19f1ea8f5a97bbb56d37e67d6ccb32cd28b6893946352ec0691459",
+      "scope": "Bàn giao code/GUI/test offline; không hardware deployment hoặc real dataset mới",
+      "revision_note": "04/11 software/status banner; historical real evidence unchanged"
+    },
+    "implementation_nov4": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_RESIDUAL_IMPLEMENTATION_2026-11-04.md",
+      "sha256": "b7761fe0ec776a80599a7a0df841a2641f26c68cdce72f4afd640b103412db71"
     }
   },
   "quality_rules": [
@@ -1084,5 +1303,6 @@
     "Nhãn operator là quan sát, không body ground truth định lượng. Tích phân gyro không là heading reference tuyệt đối; v≈0 cần regularization khi tính slip.",
     "DEMO luôn Q0 cho dữ liệu thật. Dữ liệu mới không tự thêm vào snapshot lịch sử hoặc đánh dấu to-do hoàn tất.",
     "Q3 không chứng nhận an toàn hoặc cho phép motion tiếp. Không mở lại budgets hoặc tăng tốc/gain/current từ mức quality."
-  ]
+  ],
+  "research_plan_id": "nino_bounded_velocity_research_v1"
 }

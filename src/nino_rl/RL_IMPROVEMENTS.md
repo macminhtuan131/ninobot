@@ -1,5 +1,7 @@
 # RL engineering update: reward, policy and evaluation
 
+> **Tài liệu lịch sử.** Hướng và ABI hiện hành ở [NINO_RESEARCH_DIRECTION](../../docs/NINO_RESEARCH_DIRECTION_2026-11-03.md); không áp reward/action/checkpoint cũ vào residual velocity mới.
+
 Base: `add_rl` commit `d015b8239648c64974e5badd041aa87f3a5a0fdc`.
 Training contract revision: **24**. No trained model is bundled.
 The [root README](../../README.md) is the authoritative installation-to-training guide.

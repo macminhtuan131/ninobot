@@ -1,0 +1,15 @@
+{
+  "status": "prepared_not_released",
+  "operator_reports_rc_arm_stop_checked": null,
+  "max_forward_m_s": 0.05,
+  "requested_forward_duration_s": 2.0,
+  "reference_acceleration_m_s2": 0.1,
+  "reference_deceleration_m_s2": 0.1,
+  "post_zero_observation_s": 3.0,
+  "recording_duration_s": 60,
+  "scope": "New independent one-slot wheel/body diagnostic. User-invoked RC firmware path; same profile, no retry/replacement. Not a repeatability campaign.",
+  "operator_acceptance_evidence": null,
+  "control_config_sha256": "5bd90e4d10ec0f1c21745e444b94f11f06021e94c019720ca9bce4c0f3898489",
+  "backend": "Existing STM32 firmware, ROS motor_enable request. RC arbitration remains unchanged and unverified during this trial.",
+  "max_operator_invoked_attempts": 1
+}

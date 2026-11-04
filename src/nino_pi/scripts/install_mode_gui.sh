@@ -11,8 +11,8 @@ import sys
 launcher = str(Path(sys.argv[1]).resolve())
 # Desktop Entry Exec uses double quotes, not shell quoting.
 escaped = launcher.replace('\\', '\\\\').replace('"', '\\"').replace('`', '\\`').replace('$', '\\$').replace('%', '%%')
-entry = ('[Desktop Entry]\nType=Application\nName=Nino Control Modes\n'
-         'Comment=Điều khiển Nino, ARM/DISARM và thu dữ liệu\n'
+entry = ('[Desktop Entry]\nType=Application\nName=Nino Real Data Studio\n'
+         'Comment=Observer GUI v7: sensor, recorder, QC, Parquet, TD3 parameters\n'
          f'Exec=bash "{escaped}"\nIcon=input-gaming\nTerminal=false\nCategories=Utility;\n')
 target = Path.home()/'.local/share/applications/nino-control-modes.desktop'
 target.parent.mkdir(parents=True, exist_ok=True)

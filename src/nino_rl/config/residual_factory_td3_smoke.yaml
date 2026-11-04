@@ -1,0 +1,30 @@
+# New bounded integration job. Not a released research training budget.
+extends: residual_velocity_td3.yaml
+purpose: factory_gazebo_software_smoke
+simulation_authority: 1.0
+hardware_authority: 0.0
+imu_yaw_rad: 0.0  # URDF simulated IMU is body aligned, unlike real mounting.
+wheel_names: [left_wheel_joint, right_wheel_joint]
+nominal_geometry: {radius_l: 0.0625, radius_r: 0.0625, separation: 0.34273666}
+reference_limits:
+  separation_m: 0.34273666
+  wheel_acceleration_m_s2: 0.1
+backend:
+  kind: gazebo_nino_factory_velocity_pi
+  world: factory_floor_mixed.sdf
+  route: E1
+  physics_step_s: 0.001
+  control_interval_s: 0.1
+  cruise_m_s: 0.2
+  horizon_s: 20.0
+  max_episodes: 2
+  caster_wheel_damping: 0.001
+  pi_integrator_profile: conditional_v1
+  accept_torque: false
+  calibrated_to_hardware: false
+smoke:
+  validation_transitions: 48
+  learning_transitions: 128
+  learner_seed: 7
+  gazebo_noise_seed: null
+  wall_deadline_s: 900

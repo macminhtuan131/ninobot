@@ -1,5 +1,7 @@
 # Nino + firmware STM32H723 qua USB
 
+> **Hướng hiện hành:** [GUI v4](GUIDED_COLLECTION.md) dùng agent/firmware RC hiện có. Source velocity path qua CyberGear SPD_REF; không giả STM32 PWM/PI500Hz. [Định hướng SysID/residual](../../docs/NINO_RESEARCH_DIRECTION_2026-11-03.md). Không flash để thu raw.
+
 **27/10/2026.** Source tham khảo được ghim tại
 [`0d32593988cc817311d3dfdd8683df1f1b444a2c`](https://github.com/nguyenbinh-shark/Microros_H723_USB/tree/0d32593988cc817311d3dfdd8683df1f1b444a2c).
 Đây là integration thu dữ liệu và chuẩn bị build, chưa xác nhận bản đã nạp

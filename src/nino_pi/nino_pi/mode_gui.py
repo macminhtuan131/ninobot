@@ -9,6 +9,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets as Q
 from .mode_protocol import SOURCES, REASONS, State
 from .mode_data_panel import DataPanel
 from .project_panel import ProjectPanel
+from .guided_collection import GuidedCollection
+from .research_panel import ResearchPanel
+from .studio_panel import StudioPanel
 
 STYLE = """QWidget { background:#101827; color:#e7edf7; font-family:'DejaVu Sans'; font-size:13px; }
 QFrame#card { background:#192437; border:1px solid #2e3c52; border-radius:14px; }
@@ -20,6 +23,7 @@ QPushButton:hover { background:#3b5677; }
 QPushButton:disabled { background:#202c3e; color:#6e8099; border-color:#2d3c50; }
 QPushButton#primary { background:#196d70; border-color:#33acaa; }
 QPushButton#danger { background:#a73142; border-color:#ee697a; font-size:18px; }
+QPushButton#primary:disabled,QPushButton#danger:disabled { background:#202c3e; color:#6e8099; border-color:#2d3c50; }
 QPushButton#source[active="true"] { background:#215b65; border:2px solid #66d8c5; }
 QLineEdit,QSpinBox { background:#0f1929; border:1px solid #40516a; border-radius:5px; padding:6px; }
 QPlainTextEdit { background:#111c2e; border:1px solid #2e3c52; border-radius:7px; color:#b8c7dd; font-size:11px; }
@@ -29,6 +33,10 @@ QTabWidget::pane { border:1px solid #2e3c52; border-radius:8px; }
 QTabBar::tab { background:#202e43; padding:10px 25px; border:1px solid #34465e; }
 QTabBar::tab:selected { background:#215b65; color:#e7fff8; }
 QComboBox { background:#192437; padding:8px; border:1px solid #40516a; }
+QCheckBox { spacing:8px; }
+QCheckBox::indicator { width:17px; height:17px; }
+QCheckBox::indicator:unchecked { background:#121f32; border:1px solid #879db7; border-radius:3px; }
+QCheckBox::indicator:checked { background:#2ca68f; border:2px solid #b5fff0; border-radius:3px; }
 QProgressBar { border:1px solid #40516a; border-radius:4px; text-align:center; min-height:22px; }
 QProgressBar::chunk { background:#196d70; }
 """
@@ -63,7 +71,7 @@ class ModeWindow(Q.QMainWindow):
         self.halted = False
         self.output_buffer = b""
         self.closing_for_capture = False
-        self.setWindowTitle("Nino · Điều khiển, dữ liệu & tiến độ · v3.1" + (" · DEMO" if demo else ""))
+        self.setWindowTitle("Nino Real Data Studio · v7" + (" · DEMO" if demo else ""))
         self.resize(1180, 980)
         self.setMinimumSize(900, 740)
         self.setStyleSheet(STYLE)
@@ -71,11 +79,11 @@ class ModeWindow(Q.QMainWindow):
         self.setCentralWidget(central)
         root = Q.QVBoxLayout(central)
         root.setContentsMargins(24, 20, 24, 20)
-        root.setSpacing(14)
+        root.setSpacing(10)
         heading = Q.QHBoxLayout()
         titles = Q.QVBoxLayout()
-        titles.addWidget(label("NINO / QUYỀN ĐIỀU KHIỂN", "muted"))
-        titles.addWidget(label("Điều khiển, dữ liệu & tiến độ", "title"))
+        titles.addWidget(label("NINO / DỮ LIỆU ROBOT", "muted"))
+        titles.addWidget(label("Real Data Studio", "title"))
         heading.addLayout(titles, 1)
         self.badge = label("DEMO · KHÔNG NỐI ROBOT" if demo else "CHƯA KẾT NỐI")
         self.badge.setStyleSheet("color:#72ded0; font-weight:700")
@@ -83,10 +91,12 @@ class ModeWindow(Q.QMainWindow):
         root.addLayout(heading)
 
         connection, c = card()
+        c.setContentsMargins(12,8,12,8)
         row = Q.QHBoxLayout()
         self.host = Q.QLineEdit("d@192.168.0.109")
+        self.host.setMinimumWidth(180)
         self.host.setPlaceholderText("user@IP của Pi")
-        self.connect_button = Q.QPushButton("Mở demo" if demo else "Kết nối Pi")
+        self.connect_button = Q.QPushButton("Mở authority demo" if demo else "Kết nối firmware GUI · nâng cao")
         self.connect_button.setObjectName("primary")
         self.connect_button.clicked.connect(self.toggle_connection)
         self.settings_button = Q.QPushButton("Thiết lập SSH")
@@ -94,9 +104,16 @@ class ModeWindow(Q.QMainWindow):
         row.addWidget(label("Raspberry Pi"))
         row.addWidget(self.host, 1)
         row.addWidget(self.settings_button)
-        row.addWidget(self.connect_button)
+        self.collection_home = Q.QPushButton("Thu dữ liệu")
+        self.collection_home.clicked.connect(lambda: self.tabs.setCurrentIndex(0))
+        row.addWidget(self.collection_home)
+        self.abort_collection=Q.QPushButton('Dừng ghi · không dừng xe')
+        self.abort_collection.setObjectName('danger')
+        self.abort_collection.setStyleSheet('font-size:13px')
+        self.abort_collection.clicked.connect(self.stop_collection)
+        row.addWidget(self.abort_collection)
         c.addLayout(row)
-        self.connection_note = label("Kết nối chỉ đọc trạng thái. Lấy quyền và ARM là hai thao tác riêng.", "muted")
+        self.connection_note = label("Studio chỉ đọc: chuẩn bị observer → kiểm sensor → ghi → QC → tải/export. Commissioning có chuyển động nằm ở trang riêng.", "muted")
         c.addWidget(self.connection_note)
         root.addWidget(connection)
 
@@ -144,32 +161,59 @@ class ModeWindow(Q.QMainWindow):
         right.addWidget(label("STOP trên GUI không thay thế nút dừng khẩn cấp vật lý.", "muted"))
         columns.addWidget(status, 4)
         self.tabs = Q.QTabWidget()
+        self.guided = GuidedCollection(self.command_connection, demo=demo)
+        guided_scroll = Q.QScrollArea()
+        guided_scroll.setWidgetResizable(True)
+        guided_scroll.setWidget(self.guided)
+        self.guided_scroll=guided_scroll
+        self.acquisition_tabs=Q.QTabWidget()
+        self.studio=StudioPanel(self.command_connection,demo=demo,external_busy=lambda:bool(
+            self.guided.runner.active_jobs or self.process or (hasattr(self,'data_panel') and self.data_panel.capture.get('active')) or
+            (hasattr(self,'research') and self.research.runner.busy)))
+        self.acquisition_tabs.addTab(self.studio,'Studio · recorder chỉ đọc')
+        self.acquisition_tabs.addTab(guided_scroll,'Commissioning cũ · protocol / motion riêng')
+        self.tabs.addTab(self.acquisition_tabs, "Thu dữ liệu thật")
+        self.studio.runner.closed.connect(lambda:QtCore.QTimer.singleShot(0,self.close) if self.studio.closing else None)
+        self.guided.progress.connect(self.collection_progress)
+        self.guided.all_closed.connect(lambda: QtCore.QTimer.singleShot(0,self.close) if self.guided.closing else None)
         control_page = Q.QWidget()
         control_layout = Q.QVBoxLayout(control_page)
+        control_layout.addWidget(label("Backend nâng cao này cần firmware authority mới; không dùng để thu qua RC hiện có.","muted"))
+        control_layout.addWidget(self.connect_button)
         control_layout.addLayout(columns)
-        self.tabs.addTab(control_page, "Nguồn điều khiển / A–E–F")
         self.data_panel = DataPanel(self.send_message, demo=demo)
         data_scroll = Q.QScrollArea()
         data_scroll.setWidgetResizable(True)
         data_scroll.setWidget(self.data_panel)
-        self.tabs.addTab(data_scroll, "Thu dữ liệu / teleop")
         self.project_panel = ProjectPanel(demo=demo, connection=self.command_connection)
         project_scroll = Q.QScrollArea()
         project_scroll.setWidgetResizable(True)
         project_scroll.setWidget(self.project_panel)
-        self.tabs.addTab(project_scroll, "Tiến độ / kết quả / to-do")
-        self.tabs.currentChanged.connect(lambda index: self.connection_note.setVisible(index == 0))
+        self.tabs.addTab(project_scroll, "Dữ liệu / kết quả / to-do")
+        self.project_panel.collectionRequested.connect(self.open_collection_recipe)
+        advanced = Q.QTabWidget()
+        advanced.addTab(control_page, "Authority firmware mới")
+        advanced.addTab(data_scroll, "Teleop / collector authority")
+        self.tabs.addTab(advanced, "Authority nâng cao")
+        self.research = ResearchPanel(hardware_busy=lambda:bool(self.guided.runner.active_jobs or self.studio.runner.busy or self.process or self.data_panel.capture.get('active')))
+        self.research.collectionRequested.connect(self.open_collection_recipe)
+        self.research.all_closed.connect(lambda:QtCore.QTimer.singleShot(0,self.close) if self.research.closing else None)
+        research_scroll=Q.QScrollArea();research_scroll.setWidgetResizable(True);research_scroll.setWidget(self.research)
+        self.tabs.addTab(research_scroll,'Xây project / sơ đồ')
+        self.connection_note.hide()
         root.addWidget(self.tabs, 1)
 
         self.notice = label("Chưa nối robot. Giao diện không tự lấy quyền, bật motor hoặc phát cmd_vel.")
-        self.notice.setMinimumHeight(26)
+        self.notice.setMinimumHeight(18)
         root.addWidget(self.notice)
         self.log = Q.QPlainTextEdit()
         self.log.setReadOnly(True)
         self.log.setFixedHeight(55)
         self.log.document().setMaximumBlockCount(150)
         root.addWidget(self.log)
-        root.addWidget(label("Giới hạn firmware GUI v1: |v| ≤ 0,05 m/s · |ω| ≤ 0,10 rad/s. Mất nhịp GUI hoặc lệnh sẽ khóa lại; không tự ARM.", "muted"))
+        self.log.hide()
+        self.tabs.currentChanged.connect(lambda index:self.log.setVisible(index==2))
+        root.addWidget(label("Raw → QC → SysID/evaluation. Dừng ghi không dừng xe. RL chưa triển khai thật.", "muted"))
         self.key_path = str(Path.home() / ".ssh/nino_pi_flash_ed25519")
         self.env_path = "/home/d/pi5-stm32-slam-main/scripts/env.sh"
         self.remote_root = "/home/d/nino_runtime/mode_gui_v1"
@@ -187,7 +231,31 @@ class ModeWindow(Q.QMainWindow):
         return b
 
     def command_connection(self):
-        return dict(host=self.host.text().strip(), key=getattr(self, 'key_path', str(Path.home()/'.ssh/nino_pi_flash_ed25519')))
+        return dict(host=self.host.text().strip(), key=getattr(self, 'key_path', str(Path.home()/'.ssh/nino_pi_flash_ed25519')),
+                    domain=getattr(self,'domain',0),authority_bridge_active=self.process is not None)
+
+    def open_collection_recipe(self, name):
+        if name=='studio':
+            self.acquisition_tabs.setCurrentIndex(0);self.tabs.setCurrentIndex(0)
+            return
+        self.acquisition_tabs.setCurrentIndex(1)
+        self.guided.select_recipe(name)
+        self.tabs.setCurrentIndex(0)
+
+    def stop_collection(self):
+        if self.studio.runner.busy:
+            self.studio.runner.stop_recording()
+        else:
+            self.guided.cancel()
+
+    def collection_progress(self, event):
+        data=event.get('data') or {}
+        if self.tabs.currentIndex()==0:self.notice.setText(event.get('message',''))
+        if data.get('quality_report'):
+            self.project_panel.handle(dict(type='capture',active=False,directory=data.get('review_directory',''),
+                result=dict(status='DEMO_ONLY_NO_DATA' if self.demo else 'reviewed_raw_only',quality_report=data['quality_report'])))
+        if event.get('kind') in ('error','finished'):
+            self.log_message(event['job']+' · '+event.get('message',''))
 
     def log_message(self, text):
         self.log.appendPlainText(time.strftime("%H:%M:%S") + "  " + text)
@@ -346,9 +414,19 @@ class ModeWindow(Q.QMainWindow):
                 b.setProperty("active", active)
                 b.style().unpolish(b)
                 b.style().polish(b)
-        self.settings_button.setEnabled(self.process is None)
+        guided_busy=bool(self.guided.runner.active_jobs)
+        studio_busy=self.studio.runner.busy
+        research_busy=self.research.runner.busy
+        self.guided.external_busy=research_busy or studio_busy;self.guided.refresh();self.research.refresh();self.studio.refresh()
+        if guided_busy or research_busy or studio_busy:
+            for b in self.buttons.values():b.setEnabled(False)
+        self.abort_collection.setEnabled((guided_busy and not self.guided.stopping) or (studio_busy and self.studio.runner.action=='record'))
+        self.abort_collection.setText('Dừng ghi' if self.acquisition_tabs.currentIndex()==0 else 'Hủy commissioning')
+        self.abort_collection.setToolTip('Dừng ghi không dừng robot. Commissioning có cleanup riêng theo protocol.')
+        self.connect_button.setEnabled(not guided_busy and not research_busy and not studio_busy)
+        self.settings_button.setEnabled(self.process is None and not guided_busy and not research_busy and not studio_busy)
         self.data_panel.set_authority(self.state, fresh, ours)
-        self.host.setEnabled(self.process is None)
+        self.host.setEnabled(self.process is None and not guided_busy and not research_busy and not studio_busy)
         if fresh:
             self.badge.setText("DEMO · KHÔNG NỐI ROBOT" if self.demo else "STM32 · ĐANG CẬP NHẬT")
             self.mode_label.setText(SOURCES[s["source"]])
@@ -366,6 +444,8 @@ class ModeWindow(Q.QMainWindow):
             self.arm_label.setText("Trạng thái motor: CHƯA BIẾT")
             self.details.setText("Chờ firmware GUI v1. Firmware cũ không có topic authority nên các nút bị khóa.\n"
                                  "Nếu vừa mất kết nối: dùng nút dừng vật lý khi cần; không tự chạy lại.")
+        if self.tabs.currentIndex()==0:
+            self.badge.setText("DEMO · KHÔNG CÓ DATA THẬT" if self.demo else ("ĐANG XỬ LÝ PHIÊN THU" if guided_busy or studio_busy else "STUDIO · CHỈ ĐỌC"))
 
     def disconnect(self):
         if self.process:
@@ -395,6 +475,19 @@ class ModeWindow(Q.QMainWindow):
             QtCore.QTimer.singleShot(0, self.close)
 
     def closeEvent(self, event):
+        if self.studio.runner.busy:
+            self.studio.request_close()
+            event.ignore()
+            return
+        if self.research.runner.busy:
+            if not self.research.closing:self.research.request_close()
+            event.ignore()
+            return
+        if self.guided.runner.active_jobs:
+            if not self.guided.closing:self.guided.request_close()
+            event.ignore()
+            return
+        self.guided.runner.dispose()
         self.data_panel.release()
         if self.process and self.process.state() != QtCore.QProcess.NotRunning and self.data_panel.capture.get("active"):
             if not self.closing_for_capture:
@@ -429,17 +522,18 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--demo", action="store_true", help="UI demo, no SSH/ROS/motor")
     p.add_argument("--project", action="store_true", help="Mở hồ sơ tiến độ local; không tự kết nối Pi")
+    p.add_argument('--build',action='store_true',help='Mở sơ đồ tiến độ và jobs History/TD3/PPO local')
     from .collection_recipes import RECIPES
-    p.add_argument("--commands", choices=list(RECIPES), help="Mở hộp lệnh chỉ copy; không thực thi")
+    p.add_argument("--commands", choices=list(RECIPES), help="Tương thích shortcut cũ: mở phiên thu bằng nút, không copy lệnh")
     args = p.parse_args(argv)
     app = Q.QApplication(sys.argv[:1])
     app.setApplicationName("Nino Control Modes")
     window = ModeWindow(demo=args.demo)
     if args.project or args.commands:
-        window.tabs.setCurrentIndex(2)
+        window.tabs.setCurrentIndex(1)
     if args.commands:
-        window.project_panel.selected_recipe = args.commands
-        QtCore.QTimer.singleShot(0, window.project_panel.show_commands)
+        window.open_collection_recipe(args.commands)
+    if args.build:window.tabs.setCurrentIndex(3)
     window.show()
     return app.exec_()
 

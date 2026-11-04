@@ -1,0 +1,24 @@
+# New authorized bounded sim branch, separate from old factory smoke/raw budgets.
+extends: residual_factory_td3_smoke.yaml
+purpose: bounded_sim_branch_pilot_v1
+backend:
+  horizon_s: 10.0
+  command_until_s: 8.0
+  max_episodes: 3
+pilot:
+  id: nino_sim_branch_pilot_v1_2026_11_04
+  baseline_scenarios: [clear_box, box_c1_6mm, mixed_original_22mm]
+  source_warmup_s: 0.5
+  command_until_s: 8.0
+  horizon_s: 10.0
+  policy_steps_per_rollout: 100
+  training_transitions: 256
+  learner_seed: 7
+  evaluation_arms: [B0, B1_yaw, TD3_h5]
+  yaw_baseline_gain: 0.6
+  functional_forward_gate_m: 0.30
+  local_crossing_marker_x_m: 0.95
+  minimum_effect_accepted: null
+  wall_deadline_per_job_s: 1500
+  hardware_actions: 0
+  note: One-seed integration/research pilot. No CI, convergence, generalization or sim-to-real claim.

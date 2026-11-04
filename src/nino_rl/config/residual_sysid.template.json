@@ -1,0 +1,11 @@
+{
+  "units": {"time_s":"s","final_v_m_s":"m/s","final_yaw_rad_s":"rad/s","wheel_l_rad_s":"rad/s","wheel_r_rad_s":"rad/s"},
+  "time_basis": "common_receipt_clock",
+  "alignment_note": null,
+  "provenance": null,
+  "conditions_note": null,
+  "held_out_sessions": [],
+  "nominal_geometry": {"radius_l":0.060,"radius_r":0.060,"separation":0.345},
+  "body_reference": null,
+  "schema_note": "CSV columns: session_id,time_s,final_v_m_s,final_yaw_rad_s,wheel_l_rad_s,wheel_r_rad_s. Null metadata must be completed from evidence. Preserve failures and raw bags. Whole sessions held out before fitting."
+}

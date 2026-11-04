@@ -1,5 +1,7 @@
 # Điều khiển từ laptop và thu dữ liệu trên Pi
 
+> **Luồng hiện hành:** [GUI v4 thu bằng nút bấm](GUIDED_COLLECTION.md); không cần copy commands hoặc mở ba terminal. Phần CLI bên dưới giữ cho chẩn đoán/tương thích. Collector dùng firmware RC AUTO hiện có.
+
 ## 1. Kiến trúc và giới hạn
 
 ```text

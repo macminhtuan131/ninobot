@@ -1,4 +1,12 @@
+> **Hiện hành 04/11 — Studio v7:** mặc định là recorder chỉ đọc, MCAP/SQLite, telemetry, annotation, QC, export và profile TD3 có phiên bản. Xem [REAL_DATA_STUDIO.md](REAL_DATA_STUDIO.md). Commissioning/authority và các kết quả phía dưới giữ phạm vi lịch sử; Studio không tự chạy xe.
+
 # GUI chuyển quyền điều khiển Nino — 03/11/2026
+
+> **Hiện hành: GUI v6, 04/11.** Tab đầu là wizard sáu bước: chọn phiên → Pi → điều kiện/video → thu/thử → QC/quan sát → tải về. Nút tiến riêng chỉ mở sau khi recorder có mẫu mới và người vận hành xác nhận lại. Có kiểm replay/checkpoint TD3 bằng nút trong tab công cụ phần mềm. Xem [hướng dẫn hiện hành](GUIDED_COLLECTION.md) và [kết quả smoke TD3](../../docs/NINO_REAL_COLLECTION_WIZARD_AND_TD3_SMOKE_2026-11-04.md).
+
+> **Cập nhật 04/11 — [History / Governor / TD3 / GUI v5](../../docs/NINO_RESIDUAL_IMPLEMENTATION_2026-11-04.md):** đã có environment chạy, optimizer smoke TD3/PPO, portable actor và kiểm ROS/Gazebo fixture. Xem tab **Xây project** để kiểm artifact hiện hành. Train nghiên cứu và learned residual trên robot vẫn chưa mở; dữ liệu thật chưa được thu thêm trong cập nhật này. Các mục có ngày trước bên dưới giữ bối cảnh lịch sử.
+
+> **Lịch sử v4/v5:** Tab đầu dùng firmware RC AUTO hiện có; tab Advanced giữ nhánh software authority chưa live validated. Phần v3.1/copy commands và triển khai firmware bên dưới là lịch sử/tùy chọn, không là luồng thu hiện tại.
 
 **Mới v3.1: lệnh thu trong To-do.** Chọn T07 → **Lệnh thu / Copy** (hoặc
 double-click dòng). Chọn bước và copy lệnh cho đúng terminal. Bộ lệnh có

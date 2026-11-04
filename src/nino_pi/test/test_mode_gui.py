@@ -43,8 +43,8 @@ class GuiTests(unittest.TestCase):
         w = self.window
         panel = w.project_panel
         self.assertIsNone(w.process)
-        self.assertEqual(w.tabs.count(), 3)
-        self.assertEqual(panel.tables[0][2].rowCount(), 23)
+        self.assertEqual(w.tabs.count(), 4)
+        self.assertEqual(panel.tables[0][2].rowCount(), 30)
         panel.search.setText("gyro")
         table = panel.tables[1][2]
         self.assertTrue(any(not table.isRowHidden(i) for i in range(table.rowCount())))
@@ -66,6 +66,18 @@ class GuiTests(unittest.TestCase):
         table.selectRow(18)  # T15
         self.assertEqual(w.project_panel.selected_recipe,'future')
         self.assertIsNone(w.process)
+
+    def test_collection_primary_action_remains_visible_on_small_display(self):
+        w=self.window;w.resize(900,740);g=w.guided;scroll=w.guided_scroll
+        w.acquisition_tabs.setCurrentIndex(1)
+        for page in range(6):
+            g.wizard.navigation.setCurrentRow(page);self.app.processEvents()
+            primary=g.wizard.primary
+            top=primary.mapTo(scroll.viewport(),primary.rect().topLeft())
+            self.assertTrue(scroll.viewport().rect().contains(top),page)
+            self.assertTrue(scroll.viewport().rect().contains(top+primary.rect().bottomRight()),page)
+            self.assertEqual(scroll.verticalScrollBar().maximum(),0,page)
+        self.assertFalse(g.runner.active_jobs);self.assertIsNone(w.process)
 
     def test_demo_full_operator_flow(self):
         w = self.window

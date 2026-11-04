@@ -1,0 +1,173 @@
+{
+  "date": "2026-11-04",
+  "scope": "GUI and software integration; reduced-order fixture only",
+  "source_fingerprint": "eed70c3f51dd8ade8f111e3432fe8afc084d740cdb090cb24559658a3ae471e2",
+  "abi_sha256": "e5329fa80772a876fb8bb810c5b13312dcfc992d213db8fe52dd1909f7497f93",
+  "hardware_actions": 0,
+  "new_real_sessions": 0,
+  "real_data_cutoff": "2026-11-02",
+  "physical_benefit_verified": false,
+  "tests": {
+    "gui_tests.xml": {
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "sha256": "c056c952635c017a004071ad42caca86a46b05190c05b782dbed53527a471af7",
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/gui_tests.xml"
+    },
+    "residual_tests.xml": {
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "sha256": "2aa81edd8252c0b8a63511ed92247e6ac215f8824569c4538215f62dd6d3f072",
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/residual_tests.xml"
+    }
+  },
+  "tests_passed": 41,
+  "fresh_train": {
+    "path": "/home/tuanmac/nino_research/td3_smoke_20261104_v2_initial/20261104T013418821991Z_train-td3",
+    "manifest_sha256": "adfb07aec29ca98cc6bf1ea2990dbedc189843ac1554d86e675346d94b48aa78"
+  },
+  "fresh_checkpoint_audit": {
+    "path": "/home/tuanmac/nino_research/td3_smoke_20261104_v2_initial/20261104T014242429731Z_td3_audit",
+    "manifest_sha256": "8bcbcfb33b7867f28758b2ef03451af9dad3d64499177aac348e1bcf2687e04f",
+    "result": {
+      "status": "passed",
+      "artifact": "/home/tuanmac/nino_research/td3_smoke_20261104_v2_initial/20261104T013418821991Z_train-td3",
+      "source_fingerprint": "eed70c3f51dd8ade8f111e3432fe8afc084d740cdb090cb24559658a3ae471e2",
+      "abi_sha256": "e5329fa80772a876fb8bb810c5b13312dcfc992d213db8fe52dd1909f7497f93",
+      "transitions": 128,
+      "replay_transitions_checked": 128,
+      "timeout_terminals_checked": 2,
+      "optimizer_updates": 112,
+      "actor_optimizer_state_reloaded": true,
+      "critic_optimizer_state_reloaded": true,
+      "portable_actor_max_error": 8.940696716308594e-08,
+      "replay_observation_max_error": 1.4901161193847656e-08,
+      "replay_reward_max_error": 7.3882637507960425e-09,
+      "rollout_steps_per_arm": 60,
+      "rollout_arms": [
+        {
+          "arm": "alpha0",
+          "steps": 60,
+          "policy_contribution_max_m_s": 0.0
+        },
+        {
+          "arm": "TD3",
+          "steps": 60,
+          "policy_contribution_max_m_s": 0.020000000000000018
+        },
+        {
+          "arm": "TD3_governor",
+          "steps": 60,
+          "policy_contribution_max_m_s": 0.020000000000000018
+        }
+      ],
+      "target_effect_max_rad_s": 0.44918659329414323,
+      "wheel_effect_max_rad_s": 0.4491845560874898,
+      "fault_cases": [
+        {
+          "input": {
+            "permission": false
+          },
+          "terminal": true,
+          "reason": "Permission/freshness/stop/fault"
+        },
+        {
+          "input": {
+            "fault": true
+          },
+          "terminal": true,
+          "reason": "Permission/freshness/stop/fault"
+        },
+        {
+          "input": {
+            "emergency_stop": true
+          },
+          "terminal": true,
+          "reason": "Permission/freshness/stop/fault"
+        },
+        {
+          "input": {
+            "sensors_fresh": false
+          },
+          "terminal": true,
+          "reason": "Permission/freshness/stop/fault"
+        },
+        {
+          "input": {
+            "command_age_s": 0.21000000000000002
+          },
+          "terminal": true,
+          "reason": "Stale baseline"
+        }
+      ],
+      "evidence_level": "software_integration_reduced_order_only",
+      "hardware_actions": 0,
+      "hardware_authorized": false,
+      "calibrated_to_hardware": false,
+      "physical_benefit_verified": false
+    }
+  },
+  "gui_qprocess_audit": {
+    "status": "passed",
+    "artifact": "/home/tuanmac/nino_research/residual_build_v1/20261104T014640757157Z_td3_audit",
+    "qt_exceptions": []
+  },
+  "visual_check": {
+    "qt_exceptions": [],
+    "demo_only": true,
+    "dimensions": [
+      [
+        1280,
+        960
+      ],
+      [
+        900,
+        740
+      ]
+    ],
+    "flow": "all six pages with separate motion confirmation",
+    "primary_visible_without_outer_scroll": true
+  },
+  "screenshots": {
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/final/03_conditions_empty.png": "e7e3631f696b973217f886f093051879be7670e88f82c731a39984665c2a8979",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/final/01_select_compact.png": "fa2efc6717e7e34c15caf524b3c8dd8696dea35707b9e06e02b053ed387100f5",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/final/06_complete.png": "f018c24bac9337f13fb5b8618a1b59d669d944420f82aac638fae8d8dae4d764",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/final/04_confirmed.png": "cbf0e0be51b398232584a36b7bfcd1c405d210c8a0b26ca7258c58d5c1b703dc",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/final/07_td3_audit.png": "66de165c35a56723c2ff8ddd26a4236ad9eba02ede52e89be72b870f7c2ef456",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/final/04_recording.png": "61053ee777827f1a7fd22241d0bf3348bcfe120a03fa1f3b4f303bd2e573c342",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/final/03_conditions.png": "ec7f7c6cf729f06a6a2bdd31edf95221b5fd2906c531c3507b6e69ee371fea63",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/final/04_recording_compact.png": "fb050a12cb5ccccfd3d75a36d54fc372a4e8166ffd2dddb5f8b976011ec82a54",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/final/05_review.png": "c12ebb20c93d4b586997e45ec47a5fff4094d46bea26ee62c55ca30e83d9b7c4",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/final/01_select.png": "723a39bf43292ee2f50139106acd3184dde5b8e9e968ca6e252676048710933e"
+  },
+  "build": {
+    "passed_packages": [
+      "nino_control",
+      "nino_description",
+      "nino_pi",
+      "nino_rl"
+    ],
+    "initial_attempt": "pi/rl only failed for unbuilt local dependencies; retained log",
+    "final_pi_repackage_log": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/final_package_build.log",
+    "log_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/build_logs",
+    "hardware_deployment": false,
+    "successful_four_package_log": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/gui_wizard_td3_smoke_2026-11-04/build_logs/build_2026-11-04_08-50-01"
+  },
+  "sources_sha256": {
+    "src/nino_pi/nino_pi/collection_wizard.py": "35266abfa34011958516a773fc6889ec7b8d99ecfa5b88c7e2daa7ea2bb31819",
+    "src/nino_pi/nino_pi/guided_collection.py": "28e4d1ecb1f4b92fe5558ba593e0de506cbd39aeecb94b57f7fecffd1372116a",
+    "src/nino_pi/nino_pi/collection_deploy.py": "85538960e4272418c9c66a2d77510fca42cd1e6091af9c9cd16750e80d5ea33f",
+    "src/nino_pi/nino_pi/mode_gui.py": "2b54a1208b8d942a972b4a921384df935822a7944261d1576d4a086c672e395e",
+    "src/nino_pi/nino_pi/research_jobs.py": "21757edc8f041284df0c98a24e4635fa15b7b1c092879b433d2859b76531f46f",
+    "src/nino_pi/nino_pi/research_panel.py": "6ccf56f2cf44b0614fa0da125f11dd7790a57a29939e492f7bf33f1330408f8f",
+    "src/nino_pi/scripts/install_mode_gui.sh": "54e21c95ff3e9f6e9528c93e93f4c61e3edd65400e7b8a51e715441785d7cd8d",
+    "src/nino_pi/GUIDED_COLLECTION.md": "dc97ff8464749d3a88310332c00c5195de629c8466adaa9f8d6979c46a680de4",
+    "src/nino_pi/nino_pi/project_evidence.json": "25b5dc151f35afed1b6021fd2396d90c76e05fca21bf60213285457e9998c1c0",
+    "src/nino_rl/nino_rl/residual_td3_audit.py": "8e611498838a507b04d026c3522051776b32ac6da0747a8551fc95bea966c188",
+    "src/nino_rl/scripts/residual_td3_audit.sh": "47985abf040eac02c914937c8065510386585d8b0e60fd49153e20bc76a4b950",
+    "src/nino_rl/setup.py": "30759cea3207f013a932e9bb33a866dacc370ec5144250dbc86fc81998287305"
+  },
+  "runtime_bundle_sha256": "7adf9af0c2494a1ea30e17d99b7e35dbe5b02ab6698f041d55235686cb105517"
+}

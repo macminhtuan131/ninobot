@@ -1,4 +1,12 @@
-# Nino residual PPO package
+> **04/11 — parameter catalog:** `config/td3_parameter_profiles.yaml` + `nino_rl.td3_config` kiểm schema/hash và tạo config/ABI draft; smoke dùng profile chung. h1/h5/h8 research còn là đề xuất. Không mở budget hoặc hardware authority. Xem [Studio / contract](../nino_pi/REAL_DATA_STUDIO.md).
+
+# Nino residual learning package
+
+> **Factory TD3, 04/11:** [bounded smoke on the actual mixed factory world](../../docs/NINO_FACTORY_TD3_SMOKE_2026-11-04.md). GUI job **FACTORY · TD3 + Nino + wheel PI** uses the Nino URDF, swivel casters and existing torque-producing velocity PI. The older 128-step TD3/PPO jobs use the reduced-order fixture. Neither job is a hardware release or a claim of research benefit.
+
+> **Cập nhật 04/11 — [History / Governor / TD3 / GUI v5](../../docs/NINO_RESIDUAL_IMPLEMENTATION_2026-11-04.md):** đã có environment chạy, optimizer smoke TD3/PPO, portable actor và kiểm ROS/Gazebo fixture. Xem tab **Xây project** để kiểm artifact hiện hành. Train nghiên cứu và learned residual trên robot vẫn chưa mở; dữ liệu thật chưa được thu thêm trong cập nhật này. Các mục có ngày trước bên dưới giữ bối cảnh lịch sử.
+
+> **Current research route:** [bounded velocity residual, SysID and fair classical baselines](../../docs/NINO_RESEARCH_DIRECTION_2026-11-03.md). New TD3/PPO use a distinct20×5 contract. General training remains disabled; bounded fixture/factory smoke jobs have separate gates. Hardware residual deployment is unopened. Commands below describe legacy experiments.
 
 For the expanded rough terrain, use the [evaluation-gated route curriculum,
 terrain variants and Laya guide](../../docs/ROUGH_ROUTE_CURRICULUM.md).

@@ -1,0 +1,72 @@
+{
+  "protocol_id": "nino_residual_software_integration_2026_11_04_v1",
+  "report": {
+    "path": "docs/external_reviews/2026-11-04_deep_research_framework.txt",
+    "sha256": "aa59ce6fc6990965d77b5c5ec480ea3c78a68bd21797bfbb8679fdda922475f4"
+  },
+  "decision": "Does one causal history/proposal/projection/reference/feedback trace run consistently across software adapters?",
+  "scope": "Software fixture integration only; no physical benefit/calibration/hardware authority",
+  "jobs": {
+    "validate": "Gym checker + paired deterministic action trace",
+    "td3": {
+      "transitions": 128,
+      "training_seed": 7
+    },
+    "ppo": {
+      "transitions": 128,
+      "training_seed": 7
+    },
+    "compare": {
+      "arms": [
+        "B0",
+        "B1_yaw",
+        "Governor",
+        "TD3",
+        "PPO"
+      ],
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "independent_physics_conditions": 1
+    },
+    "ros": {
+      "domain": 119,
+      "synthetic_sensor_window_s": 3,
+      "hardware_command_publishers": 0
+    },
+    "gazebo": {
+      "control_steps_max": 50,
+      "horizon_s": 4,
+      "world": "standalone_flat_fixture"
+    }
+  },
+  "pass_rule": "Finite/causal frames; nonzero proposal reaches simulated target/feedback; optimizer changes parameters; export matches; artifacts hashes match. No superiority threshold.",
+  "physical_thresholds": null,
+  "scientific_training_budget": null,
+  "hardware_authority": 0,
+  "stop_rule": "Job error/cancel is retained; no automatic retry. Any implementation change invalidates source fingerprint and requires new validation.",
+  "assumptions": [
+    {
+      "id": "A1",
+      "claim": "raw inputs are measured and clocks understood",
+      "status": "software fixtures only; physical latency open"
+    },
+    {
+      "id": "A2",
+      "claim": "intervention reaches actuator and body",
+      "status": "fixture only; CyberGear/current/RC readback/body reference open"
+    },
+    {
+      "id": "A3",
+      "claim": "learning offers useful advantage",
+      "status": "unverified; matched tuned baselines and operating envelope needed"
+    },
+    {
+      "id": "A4",
+      "claim": "seed IDs are independent trials",
+      "status": "false for current deterministic fixture; no CI/generalization claim"
+    }
+  ]
+}

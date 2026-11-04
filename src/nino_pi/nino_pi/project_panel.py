@@ -4,10 +4,10 @@ from pathlib import Path
 from PyQt5 import QtCore, QtGui, QtWidgets as Q
 from .data_quality import LEVELS, assess_capture, load_catalog, quality_text
 from .collection_recipes import TASK_RECIPES
-from .command_panel import CommandsDialog
 
 
 class ProjectPanel(Q.QWidget):
+    collectionRequested = QtCore.pyqtSignal(str)
     def __init__(self, demo=False, parent=None, connection=None):
         super().__init__(parent)
         self.demo = demo
@@ -32,7 +32,7 @@ class ProjectPanel(Q.QWidget):
         export = Q.QPushButton("Xuất hồ sơ JSON")
         export.clicked.connect(self.export)
         bar.addWidget(export)
-        self.commands_button = Q.QPushButton("Lệnh thu / Copy")
+        self.commands_button = Q.QPushButton("Mở phiên thu")
         self.commands_button.clicked.connect(self.show_commands)
         bar.addWidget(self.commands_button)
         root.addLayout(bar)
@@ -49,6 +49,20 @@ class ProjectPanel(Q.QWidget):
         self.add_table("To-do", "tasks", ["ID", "Ưu tiên", "Trạng thái", "Công việc / đầu ra"],
                        ["id", "priority", "status", "action"])
         self.tables[3][2].itemDoubleClicked.connect(lambda item: self.show_commands())
+        direction = Q.QWidget()
+        direction_layout = Q.QVBoxLayout(direction)
+        self.direction_text = Q.QLabel()
+        self.direction_text.setWordWrap(True)
+        direction_layout.addWidget(self.direction_text)
+        self.stage_table = Q.QTableWidget(0, 3)
+        self.stage_table.setHorizontalHeaderLabels(['Giai đoạn', 'Việc / trạng thái', 'Gate / bước tiếp theo'])
+        self.stage_table.setEditTriggers(Q.QAbstractItemView.NoEditTriggers)
+        self.stage_table.setWordWrap(True)
+        self.stage_table.horizontalHeader().setSectionResizeMode(0, Q.QHeaderView.ResizeToContents)
+        self.stage_table.horizontalHeader().setSectionResizeMode(1, Q.QHeaderView.ResizeToContents)
+        self.stage_table.horizontalHeader().setSectionResizeMode(2, Q.QHeaderView.Stretch)
+        direction_layout.addWidget(self.stage_table)
+        self.pages.insertTab(0, direction, 'Hướng giải quyết / gate')
         rubric = Q.QWidget()
         layout = Q.QVBoxLayout(rubric)
         self.rubric = Q.QPlainTextEdit()
@@ -69,6 +83,7 @@ class ProjectPanel(Q.QWidget):
         self.open_source.clicked.connect(self.open_selected_source)
         root.addWidget(self.open_source)
         self.reload()
+        self.pages.setCurrentIndex(0)
 
     def add_table(self, title, key, columns, fields):
         table = Q.QTableWidget(0, len(columns))
@@ -92,6 +107,15 @@ class ProjectPanel(Q.QWidget):
             self.banner.setText("Hồ sơ local không đọc được: " + str(error))
             return
         c = self.catalog
+        plan = json.loads(Path(__file__).with_name('research_plan.json').read_text())
+        self.direction_text.setText(plan['question'] + '\n' + plan['primary_candidate'] + '\n'
+            + plan['physical_backend'] + '\n' + plan['actor_contract']
+            + '\nOptimizer smoke TD3/PPO và environment: xem tab Xây project để kiểm artifact. Train nghiên cứu / hardware residual chưa mở; authority thật = 0.')
+        self.stage_table.setRowCount(len(plan['stages']))
+        for row, stage in enumerate(plan['stages']):
+            for col, value in enumerate((stage['id'], stage['name'], stage['gate'])):
+                self.stage_table.setItem(row, col, Q.QTableWidgetItem(value))
+            self.stage_table.setRowHeight(row, 75)
         self.banner.setText(f"HỒ SƠ LOCAL · cập nhật {c['review_date']} · dữ liệu đến {c['data_cutoff']}\n"
                             + c["scope"] + "\n" + c["next_action"])
         for key, fields, table in self.tables:
@@ -143,8 +167,7 @@ class ProjectPanel(Q.QWidget):
         self.open_source.setEnabled(bool(paths))
 
     def show_commands(self):
-        dialog = CommandsDialog(self.selected_recipe, connection=self.connection, parent=self)
-        dialog.exec_()
+        self.collectionRequested.emit(self.selected_recipe)
 
     def open_selected_source(self):
         menu = Q.QMenu(self)

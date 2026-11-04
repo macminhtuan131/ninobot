@@ -1,4 +1,10 @@
+> **Hiện hành 04/11 — Studio v7:** mặc định là recorder chỉ đọc, MCAP/SQLite, telemetry, annotation, QC, export và profile TD3 có phiên bản. Xem [REAL_DATA_STUDIO.md](REAL_DATA_STUDIO.md). Commissioning/authority và các kết quả phía dưới giữ phạm vi lịch sử; Studio không tự chạy xe.
+
 # Command → wheel response trên sàn sạch — bản chuẩn bị
+
+> **Cập nhật 04/11 — [History / Governor / TD3 / GUI v5](../../docs/NINO_RESIDUAL_IMPLEMENTATION_2026-11-04.md):** đã có environment chạy, optimizer smoke TD3/PPO, portable actor và kiểm ROS/Gazebo fixture. Xem tab **Xây project** để kiểm artifact hiện hành. Train nghiên cứu và learned residual trên robot vẫn chưa mở; dữ liệu thật chưa được thu thêm trong cập nhật này. Các mục có ngày trước bên dưới giữ bối cảnh lịch sử.
+
+> **Cập nhật03/11:** [GUI v4](GUIDED_COLLECTION.md) chuẩn bị đúng một diagnostic0,05/0,10/2s/60s có video. [SysID/B0/B1/residual plan](../../docs/NINO_RESEARCH_DIRECTION_2026-11-03.md). Không tự cấp3repeats, chuyển gain/current, dùng checkpoint hoặc biến reported-wheel thành body GT. Các protocol đã đóng vẫn đóng.
 
 > Cập nhật 02/11/2026: các đợt V1/V2 đã đóng ở 1/3, không dùng các thiết kế
 > draft bên dưới để mở lại slot. Bản sửa khởi tạo helper nằm tại

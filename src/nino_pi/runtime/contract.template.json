@@ -1,0 +1,84 @@
+{
+  "protocol_id": "wheel_body_diagnostic_commands_20261103_v1",
+  "status": "prepared_not_released",
+  "user_authorization": null,
+  "maximum_attempts": 0,
+  "condition_count": 1,
+  "profile": {
+    "source_forward_m_s": 0.05,
+    "reference_accel_decel_m_s2": 0.1,
+    "source_forward_target_s": 2.0,
+    "baseline_zero_minimum_s": 2.0,
+    "post_zero_observation_s": 3.0,
+    "recording_duration_s": 60
+  },
+  "primary": {
+    "window_relative_source_s": [
+      1.25,
+      1.75
+    ],
+    "baseline_window_relative_source_s": [
+      -2,
+      0
+    ],
+    "formula": "mean(raw wheel velocity in primary) - mean(raw wheel velocity baseline), each wheel; report L-R",
+    "final_primary_reference_m_s": 0.05,
+    "reference_tolerance_m_s": 1e-06,
+    "gap_or_boundary_support_maximum_s": 0.1,
+    "gap_rule_scope": "Conservative metric support criterion fixed before new pilot data. Over limit => primary unknown and hold next slot; no interpolation/drop/replacement. Not a physical safety bound or reuse of sim98% gate.",
+    "final_command_gap_or_boundary_maximum_s": 0.2,
+    "command_gap_scope": "Same as existing final-command freshness guard; 100ms limit applies wheel/source support. No actuator timing claim."
+  },
+  "review_policy": "After the only capture review raw, initialization transitions and operator wheel/body outcome. Complete on reviewed pass; stop/unknown otherwise; no later slots.",
+  "stop_conditions": [
+    "operator intervention or failed stop",
+    "obvious yaw or jerk",
+    "RC lost or changed condition",
+    "bus-off/stale/fault/owner conflict",
+    "recorder or raw integrity failure",
+    "unknown primary support"
+  ],
+  "changes_excluded": [
+    "firmware",
+    "motor PI/current/torque limits",
+    "geometry",
+    "speed or acceleration",
+    "navigation/governor/learning/obstacles"
+  ],
+  "allocation_policy": "Require active zero command stack and5s fresh scans with <3 static-zone points, no recent monitor STOP, before session allocation. Bounded10s preallocation wait; failure consumes no slot. Once allocated, no retry.",
+  "proposed_budget_note": "One new verification only; historical V1/V2 remain stopped1/3; no reuse/replacements.",
+  "correction": "Force Pi gate off, zero, explicit firmware-disable with post-request ACK before2s baseline; reject re-enable during baseline; then require fresh disabled-to-enabled ACK before unchanged source profile. Sequence completion is not physical motion verification.",
+  "first_slot_policy": "The only slot is functional verification; no extra motion smoke.",
+  "scene_readiness": {
+    "window_s": 5,
+    "minimum_scans": 20,
+    "receipt_gap_max_s": 0.5,
+    "points_inside_unchanged_zone_max": 2,
+    "min_points_controller_unchanged": 3,
+    "scope": "Conservative staticXY readiness while stationary; not safety certification or exact online base-shift count."
+  },
+  "scene_supervision": {
+    "scope": "StaticXY scan readiness with declaredTF, unchanged polygon; additional conservative supervision, actual collision monitor unchanged.",
+    "scan_window_s": 5,
+    "scan_max_receipt_gap_s": 0.5,
+    "scan_max_age_s": 0.5,
+    "minimum_scans": 20,
+    "stop_latched_from_trial_start": true,
+    "checked_during": [
+      "readiness",
+      "baseline",
+      "before_enable",
+      "before_forward",
+      "forward",
+      "ramp_down",
+      "post_zero_observation"
+    ],
+    "abort": "zero/gate disable/motor disable, record failure, no auto resume/retry",
+    "limitations": "Not safety certification, exact online count or bounded physical stopping latency. Sparse monitor channel cannot prove absence of pre-existing STOP without current event; fresh scene and unchanged collision monitor remain required."
+  },
+  "analysis_support": "Missing forward/end anchors in aborted attempts report unknown/partial phases instead of raising StopIteration; normal-run metric unchanged.",
+  "motion_budget_released": false,
+  "root_cause_status": "Confirmed helper initialization defect, reproduced by mock. Not proven cause of operator-reported no-motion; bag reported motor rotation and final nonzero in latestv2; flashed binary/motor mode not independently read back.",
+  "provenance_candidate_sha256": "aa85e716c35af399fd4c5672e22c5b93a41d6f64d922d025e1351f14f92a8bb3",
+  "primary_claim": "Wheel report vs physical video; no body/slip claim without independent reference and clock validation."
+}

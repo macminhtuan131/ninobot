@@ -3,7 +3,7 @@ from pathlib import Path
 import re
 import shlex
 
-RUNTIME = 'collection_commands_20261103_v1'
+RUNTIME = 'collection_guided_20261103_v2'
 RECIPES = {
     'inventory': ('Kiểm kê cảm biến / backend', 'Chỉ đọc; không phát enable/vận tốc.'),
     'stationary': ('Đứng yên · thu 60 giây', 'Chỉ recorder; không ARM/tiến. Không cần lặp nếu chỉ muốn kiểm lại IMU sign.'),
@@ -19,6 +19,8 @@ TASK_RECIPES = {
     'T05': 'diagnostic', 'T06': 'diagnostic', 'T07': 'diagnostic', 'T08': 'review',
     'T09': 'review', 'T10': 'repeatability', 'T11': 'review', 'T12': 'body_reference',
     'T13': 'inventory', 'T14': 'body_reference',
+    'T19': 'diagnostic', 'T20': 'body_reference', 'T21': 'future',
+    'T22': 'future', 'T23': 'future', 'T24': 'future',
     'T15': 'future', 'T16': 'future', 'T17': 'future', 'T18': 'future',
 }
 

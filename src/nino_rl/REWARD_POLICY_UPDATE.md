@@ -1,4 +1,6 @@
 > Historical revision. For the current reward, CUDA setup, metrics and training contract,
+
+> **Reward/policy lịch sử.** [Hướng hiện hành](../../docs/NINO_RESEARCH_DIRECTION_2026-11-03.md) dùng contract mới, weights đề xuất và evaluation riêng; không so return khác reward hoặc tự chuyển checkpoint.
 > use [RL_IMPROVEMENTS.md](RL_IMPROVEMENTS.md) and the [root README](../../README.md).
 
 # Nino reward and history-policy update

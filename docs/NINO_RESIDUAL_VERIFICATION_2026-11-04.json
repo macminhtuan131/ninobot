@@ -1,0 +1,87 @@
+{
+  "date": "2026-11-04",
+  "evidence_type": "[N] source/software fixtures only",
+  "source_fingerprint": "eed70c3f51dd8ade8f111e3432fe8afc084d740cdb090cb24559658a3ae471e2",
+  "runtime": {
+    "python": "3.12.3",
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "torch": "2.13.0+cu126",
+    "stable-baselines3": "2.9.0",
+    "gymnasium": "1.3.0",
+    "PyQt5": "5.15.10"
+  },
+  "jobs": {
+    "validate": {
+      "path": "/home/tuanmac/nino_research/residual_build_v1/20261103T175908839175Z_validate",
+      "manifest_sha256": "1031c5de99ec7a71bd06e3bffa96eff1081765ec153b31fe07e2cef7ab0c7da9",
+      "files": 5,
+      "status": "completed"
+    },
+    "train-td3": {
+      "path": "/home/tuanmac/nino_research/residual_build_v1/20261103T175911609168Z_train-td3",
+      "manifest_sha256": "522d35d3cebf2853c5c2d38ba28ae064d1f6c1179056826f131366739f95a09f",
+      "files": 9,
+      "status": "completed"
+    },
+    "train-ppo": {
+      "path": "/home/tuanmac/nino_research/residual_build_v1/20261103T175916601255Z_train-ppo",
+      "manifest_sha256": "661b7c40940cef00c30c6f012b42296e29f7caca26b1334b428d63c0f4f52623",
+      "files": 8,
+      "status": "completed"
+    },
+    "compare": {
+      "path": "/home/tuanmac/nino_research/residual_build_v1/20261103T175921209503Z_compare",
+      "manifest_sha256": "81820af57198d8d2154f90c718cb19bbd00e89781fce7149f335a8f7a64eb19a",
+      "files": 2,
+      "status": "completed"
+    },
+    "ros-fixture": {
+      "path": "/home/tuanmac/nino_research/residual_build_v1/20261103T175922710424Z_ros-fixture",
+      "manifest_sha256": "7bf25c94bbb2b3a7009bf5a308fb4a589c17ea29dadcb029a5e14d936b2c180b",
+      "files": 3,
+      "status": "completed"
+    },
+    "gazebo-fixture": {
+      "path": "/home/tuanmac/nino_research/residual_build_v1/20261103T175928775983Z_gazebo-fixture",
+      "manifest_sha256": "8e478f623d0255342f2002fe806a0c89739ac3f3195f23ef68ca4365f6f186e5",
+      "files": 5,
+      "status": "completed"
+    }
+  },
+  "real_data_cutoff": "2026-11-02",
+  "new_real_sessions": 0,
+  "hardware_authority": 0,
+  "physical_benefit_verified": false,
+  "tests": {
+    "passed": 64,
+    "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/residual_integration_2026-11-04/focused_tests_after_demo_fix.xml",
+    "sha256": "ef96f97df337d312d3ddab488457c0786bbf063b0fdc3b3da6844401c4819323"
+  },
+  "build": {
+    "packages": [
+      "nino_control",
+      "nino_description",
+      "nino_pi",
+      "nino_rl"
+    ],
+    "passed": true,
+    "log_path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/residual_integration_2026-11-04/build_logs/latest_build"
+  },
+  "synthetic_sysid_only": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/residual_integration_2026-11-04/sysid_synthetic_qa",
+  "gui_previews": [
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/residual_integration_2026-11-04/gui_build_preview_final.png",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/residual_integration_2026-11-04/gui_results_preview_final.png"
+  ],
+  "gui_sources_sha256": {
+    "src/nino_pi/nino_pi/mode_gui.py": "0984e9c9f59feee36b3402a98dbb7bf070ec027df00fc6d2174b4ebf33aaf446",
+    "src/nino_pi/nino_pi/research_jobs.py": "959f2203482ed4fe213519573d018c26dabe5f4c09f4f854ccec16dd602013f0",
+    "src/nino_pi/nino_pi/research_panel.py": "a65a2c66a9eddbb7cb5d44bb05d94c16dd760129bc3c1820695d843f24384b10",
+    "src/nino_pi/nino_pi/collection_runner.py": "a761a1a913902e1b39f64f164d678b68933022cbfa594ac8fc8326fed24baef2",
+    "src/nino_pi/nino_pi/guided_collection.py": "332fec67603d9d7e6cee2490d58394d2f53f1df9f9f40df1d6eb4543a8c962ac",
+    "src/nino_pi/nino_pi/project_evidence.json": "e8a81e86cba5f98173fb0598c39d8106ecb7f761cd639f8a495fa768cb509d8a",
+    "src/nino_pi/nino_pi/research_plan.json": "dee2c710c1f305f0512c176e52df984d5bebcd1e06fd64687027f6045ef3157a",
+    "src/nino_pi/scripts/mode_gui.sh": "4b8bb54e7752cbd3cc585807c40daa1abbf32c8dcf785b32c46724734f5be3fd",
+    "src/nino_pi/scripts/install_mode_gui.sh": "407dad2e9653778ee1de66e642e8c07abb0b4e03de1e1c58138878a01fa88571"
+  }
+}

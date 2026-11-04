@@ -44,8 +44,8 @@ class QualityTests(unittest.TestCase):
 
     def test_catalog_preserves_missing_and_conflicting_evidence(self):
         c = load_catalog()
-        self.assertEqual(len(c["data"]), 23)
-        self.assertEqual(len(c["tasks"]), 22)
+        self.assertEqual(len(c["data"]), 30)
+        self.assertEqual(len(c["tasks"]), 28)
         self.assertTrue(all(s["level"] != "Q4" for s in c["sessions"]))
         v2 = next(s for s in c["sessions"] if s["id"] == "clear_floor_repeatability_v2_20261102T102247471316Z")
         self.assertEqual(v2["level"], "Q2")

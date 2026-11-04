@@ -1,5 +1,7 @@
 # Cách điền từng trường trong real_session.template.json
 
+> **Hiện hành:** [GUI v4](GUIDED_COLLECTION.md) ghi pose/caster/sàn/tải/video/outcome bằng form. [Data/SysID/residual contract](../../docs/NINO_RESEARCH_DIRECTION_2026-11-03.md). Generic session template giữ null có chủ ý; không phải runtime controller config.
+
 Biểu mẫu: `config/real_session.template.json`.
 
 Cho pilot command→wheel, dùng

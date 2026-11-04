@@ -41,6 +41,9 @@ def arguments() -> argparse.Namespace:
 
 def main() -> None:
     args = arguments()
+    if load_config(args.config).get('experiment_contract') == 'nino_residual_velocity_v1':
+        raise SystemExit('This is the new residual velocity experiment contract, not legacy torque PPO. '
+                         'Use prepare_residual first; training/backend validation and a budget are not released.')
     if args.timesteps <= 0:
         raise SystemExit("--timesteps phải lớn hơn 0")
     try:

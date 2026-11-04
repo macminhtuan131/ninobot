@@ -1,4 +1,10 @@
+> **04/11 — [Nino Real Data Studio v7](src/nino_pi/REAL_DATA_STUDIO.md):** recorder chỉ đọc + QC/export; [chuẩn hóa TD3 và định hướng](docs/NINO_TD3_DATA_STUDIO_STANDARDIZATION_2026-11-04.md). Các smoke trước giữ nguyên là bằng chứng lịch sử, không là deployment.
+
 # Nino: contact-informed speed adaptation over low floor obstacles
+
+> **Cập nhật 04/11 — [History / Governor / TD3 / GUI v5](docs/NINO_RESIDUAL_IMPLEMENTATION_2026-11-04.md):** đã có environment chạy, optimizer smoke TD3/PPO, portable actor và kiểm ROS/Gazebo fixture. Xem tab **Xây project** để kiểm artifact hiện hành. Train nghiên cứu và learned residual trên robot vẫn chưa mở; dữ liệu thật chưa được thu thêm trong cập nhật này. Các mục có ngày trước bên dưới giữ bối cảnh lịch sử.
+
+> **Hướng hiện hành03/11:** [motion contract → SysID → B0/B1 → bounded velocity residual TD3/PPO](docs/NINO_RESEARCH_DIRECTION_2026-11-03.md). [GUI v4 thu bằng nút bấm](src/nino_pi/GUIDED_COLLECTION.md). Các training/config bên dưới là workflow lịch sử; YAML residual mới chưa được phép train/deploy.
 
 ## Current research scope — 17 October 2026
 

@@ -1,0 +1,47 @@
+# Candidate contract: Microros_H723_USB 0d32593988cc817311d3dfdd8683df1f1b444a2c.
+# Verify live endpoints for the actually flashed firmware before recording.
+/motor_fb:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 1000
+/motor_status:
+  reliability: reliable
+  durability: volatile
+  history: keep_last
+  depth: 100
+/imu/data:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 1000
+/imu/debug:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 100
+/imu/bridge:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 1000
+/joint_states:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 1000
+/scan:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 100
+/scan_raw:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 100
+/tf_static:
+  reliability: reliable
+  durability: transient_local
+  history: keep_last
+  depth: 100

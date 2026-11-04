@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "plan_id": "nino_bounded_velocity_research_v1",
+  "date": "2026-11-04",
+  "question": "Phần bù vận tốc bánh có giới hạn dùng IMU/encoder/history có cải thiện tracking/chất lượng chuyển động so với baseline cổ điển công bằng trong envelope đã đo không?",
+  "primary_candidate": "TD3 + MLP với history; chưa phải recurrent H-TD3 và chưa chứng minh tốt hơn",
+  "learning_comparator": "PPO cùng observation/action/reward/limits; SAC chỉ khi có lý do từ dữ liệu",
+  "physical_backend": "CyberGear velocity mode qua STM32/CAN theo source; PI actuator và binary/rate thực cần xác minh, không giả định STM32 PWM PI 500 Hz",
+  "residual_interface": "common/diff wheel-linear velocity correction m/s → left/right → body reference; không effort/torque/PWM",
+  "actor_contract": "nino_residual_velocity_v1: 20 feature × 5 frame = 100; span đề xuất 0,4 s ở 10 Hz; không terrain/GT/pose/contact/caster privileged",
+  "status": "software_integration_available_physical_validation_pending",
+  "training_allowed": false,
+  "hardware_residual_authority": 0,
+  "stages": [
+    {
+      "id": "R0",
+      "name": "Kết nối, inventory, backend",
+      "action": "inventory",
+      "gate": "Driver/topic/owner/freshness thực; không cần full Nav2"
+    },
+    {
+      "id": "R1",
+      "name": "Một diagnostic wheel/body + video",
+      "action": "record-diagnostic",
+      "gate": "Profile 0,05 m/s, ramp 0,10 m/s², source 2 s, bag 60 s; review bất đồng feedback/thân"
+    },
+    {
+      "id": "R2",
+      "name": "Độ lặp và reference thân",
+      "action": null,
+      "gate": "Diagnostic giải thích được + protocol mới; chưa tự mở 3 lượt"
+    },
+    {
+      "id": "R3",
+      "name": "SysID có khả năng nhận dạng",
+      "action": null,
+      "gate": "Straight/turn/circle/S chỉ khi chốt profile; phân biệt radius/slip/load/lag confounding"
+    },
+    {
+      "id": "R4",
+      "name": "Baseline B0/B1 và envelope cơ khí",
+      "action": null,
+      "gate": "Cùng shaping/limits/information budget; không buộc baseline thắng RL để cho tuning"
+    },
+    {
+      "id": "R5",
+      "name": "Sim contract + PPO/TD3 fair comparison",
+      "action": null,
+      "gate": "Các job fixture giảm bậc và FACTORY TD3 có giới hạn nằm ở tab Công cụ phần mềm. Factory dùng Nino/caster/PI thật trong Gazebo; chưa có calibration hoặc fair-comparison benefit. Train nghiên cứu cần split/baseline/budget/outcome riêng."
+    },
+    {
+      "id": "R6",
+      "name": "Ablation/OOD và zero-residual shadow",
+      "action": null,
+      "gate": "Useful authority theo envelope; H2 riêng khi claim contact, history/DR/OOD và shadow phải review"
+    },
+    {
+      "id": "R7",
+      "name": "Residual trên robot trong envelope riêng",
+      "action": null,
+      "gate": "Authority/latency/body/stop được kiểm; không tự tăng alpha hoặc tốc độ"
+    }
+  ],
+  "data_layers": [
+    {
+      "name": "Inventory/sign",
+      "required": [
+        "raw IMU",
+        "motor_fb",
+        "motor_status",
+        "scan_raw",
+        "frame/timestamp metadata"
+      ],
+      "already_available": "Có trong phiên đã review; kiểm live không đồng nghĩa thu lại calibration"
+    },
+    {
+      "name": "Command → reported wheel",
+      "required": [
+        "source/selected/smoothed/final command",
+        "raw wheel feedback",
+        "status/enable",
+        "scene/STOP",
+        "event labels",
+        "video body/wheel/floor"
+      ],
+      "claim": "Không là target actuator, slip hoặc physical stop"
+    },
+    {
+      "name": "Body/SysID/contact",
+      "required": [
+        "calibrated independent reference + synchronization uncertainty",
+        "geometry/load/caster conditions",
+        "actuator telemetry nếu thật sự có",
+        "maneuver/profile/block/session IDs"
+      ],
+      "claim": "Endpoint tape chỉ displacement; body speed/stop cần reference theo thời gian"
+    },
+    {
+      "name": "Residual research",
+      "required": [
+        "schema/hash/normalization/history validity",
+        "baseline + policy proposal",
+        "accepted reference + final ROS + target readback tách biệt",
+        "intervention reason/clock",
+        "grouped train/validation/test + failures"
+      ],
+      "claim": "Chưa có real dataset residual; không phát fake topics để đủ schema"
+    }
+  ],
+  "optimizer_smoke_allowed": true,
+  "scientific_training_budget": null,
+  "report_sha256": "aa59ce6fc6990965d77b5c5ec480ea3c78a68bd21797bfbb8679fdda922475f4",
+  "software_track": [
+    "validate",
+    "train-td3",
+    "train-ppo",
+    "compare",
+    "ros-fixture",
+    "gazebo-fixture",
+    "sysid"
+  ],
+  "maturity_rule": "Verified artifact + source/hash required per step; code/tests/simulation/real shadow/benefit remain separate.",
+  "next_steps": [
+    {
+      "id": "01",
+      "name": "Chuẩn bị Studio và review dữ liệu hiện có",
+      "status": "VIỆC NGAY · OBSERVER",
+      "owner": "Assistant kiểm phần mềm; bạn nối robot và xác nhận metadata",
+      "work": "Mở Studio chỉ đọc. Chuẩn bị observer có hash, chọn kịch bản, kiểm sensor/storage/disk. Dùng dữ liệu đã có để xác định phần thiếu trước khi thu lại. GUI không chuyển RC, enable hoặc tự chạy trajectory; commissioning cũ nằm ở trang riêng.",
+      "data": "Inventory/sign đã có không cần lặp nếu không có câu hỏi mới. Cần kiểm source/receipt clock, raw feedback/status, các tầng command thực sự tồn tại, metadata/version, video/reference theo claim.",
+      "output": "Một phiên ghi chỉ đọc có raw MCAP/SQLite, metadata, annotation, checksum và QC. Bảng raw Q2 không đồng nghĩa wheel/body claim đạt.",
+      "gate": "Observer đóng bag đúng, re-read raw và hashes đạt. Nếu thiếu clock/coverage/reference thì WARN/unknown; không chấp nhận 95% từ ví dụ. Không tự mở slot motion.",
+      "action": "studio"
+    },
+    {
+      "id": "02",
+      "name": "Giải thích lệnh → bánh → thân xe",
+      "status": "SAU 01",
+      "owner": "Assistant phân tích; bạn cung cấp quan sát/video",
+      "work": "Đối chiếu dữ liệu đã có và phiên Studio phù hợp: yên, tiến, zero, sau dừng. Cần motion/video mới thì chốt protocol riêng trước. So source→selected→smoothed→final ROS với feedback bánh và reference thân; giữ bất đồng, không suy /cmd_vel là actuator readback.",
+      "data": "Gói bước 01; source/header time và bag/receipt time giữ riêng; video và uncertainty đồng bộ.",
+      "output": "Báo cáo một lượt: lệnh đi tới đâu, hai bánh phản ứng thế nào, thân có tiến/tự dừng không, phần nào còn unknown.",
+      "gate": "Chỉ mở bước 03 khi đường lệnh và chuyển động quan sát nhất quán hoặc nguyên nhân mâu thuẫn đã được giải thích. Nếu lỗi: tối đa một correction có căn cứ rồi quyết định protocol mới; không lặp vô hạn.",
+      "action": null
+    },
+    {
+      "id": "03",
+      "name": "Đo độ lặp trên sàn sạch",
+      "status": "ĐỀ XUẤT · CHƯA MỞ ĐỢT",
+      "owner": "Assistant chốt protocol; bạn chạy từng lượt sau review",
+      "work": "Chuẩn bị một đợt mới tối đa 3 lượt, cùng profile 0,05 m/s / 0,10 m/s² / source 2 s / bag 60 s. Giữ vùng trống, tải, hướng xuất phát; ghi hướng caster hoặc unknown. Review xong lượt trước mới mở lượt tiếp; không dùng lại slot pilot đã đóng.",
+      "data": "Các kênh bước 01 + video cho từng session riêng + điều kiện sàn/tải/caster + failures/STOP/interventions.",
+      "output": "Bảng từng bánh: thời điểm đáp ứng theo clock có thể đo, vận tốc/overshoot, chênh trái–phải và biến thiên giữa các lượt; outcome thân xe riêng.",
+      "gate": "Đây là pilot mô tả, không phải xác nhận tổng quát. Lượt lỗi/STOP/missing làm kết quả invalid hoặc unknown theo protocol; không tự thêm mẫu hoặc chỉnh gain/current.",
+      "action": null
+    },
+    {
+      "id": "04",
+      "name": "Nhận dạng đáp ứng và bổ sung reference thân",
+      "status": "SAU 02–03; HAI NHÁNH",
+      "owner": "Assistant fit/đánh giá model; bạn thu phép đo còn thiếu",
+      "work": "4a: dùng command cuối + wheel feedback để fit combined delay/lag/gain, giữ nguyên cả session làm holdout. Nếu profile 2 s chưa đủ excitation thì đề xuất protocol ID riêng trước khi thu. 4b: thiết lập reference thân độc lập (ví dụ video có hiệu chuẩn và đồng bộ) cho displacement/speed/stopping; ghi uncertainty.",
+      "data": "CSV command/wheel + raw bag/provenance, SI units, clocks, session split, geometry danh nghĩa; thêm reference thân theo thời gian khi cần body/slip claim.",
+      "output": "Model command→reported wheel có sai số holdout; reference thân có frame/unit/time/uncertainty. Công cụ SysID có thể tạo candidate, chưa tự cập nhật controller.",
+      "gate": "Có thể làm wheel ID khi thiếu body reference, nhưng chỉ kết luận về bánh. Thiếu excitation/clock/reference thì unknown; không suy encoder odom là body GT hoặc fit đồng thời radius/slip/lag từ dữ liệu không đủ.",
+      "action": null
+    },
+    {
+      "id": "05",
+      "name": "Làm mô hình Nino và baseline đáng tin",
+      "status": "SAU 04",
+      "owner": "Assistant sửa model/evaluator; bạn xác nhận yêu cầu ứng dụng",
+      "work": "Đưa geometry và đáp ứng đã đo vào backend velocity phù hợp motor. Đối chiếu dự báo với session chưa dùng fit. Tuning B0/B1/governor trong ngân sách riêng. Chốt scenario, metric chất lượng, thời gian/tracking và mức cải thiện đáng quan tâm trước final evaluation.",
+      "data": "Model/holdout bước 04; geometry/tải/caster cần cho claim; mục tiêu ứng dụng. Nếu claim qua gờ sau first contact, cần kiểm H2: actuator còn kịp tác động và cải thiện phase nào.",
+      "output": "Backend/model discrepancy report + baseline report + protocol benchmark có mục tiêu, split, metric và stop rule.",
+      "gate": "Không dùng fixture sàn phẳng hiện có làm model Nino đã hiệu chuẩn. Nếu actuator không có useful authority cho contact envelope, chuyển sang shaping/preview/navigation/cơ khí. Nếu baseline đáp ứng mục tiêu, quyết định riêng giá trị cần thêm từ learning.",
+      "action": null
+    },
+    {
+      "id": "06",
+      "name": "Train và so TD3/PPO/History/Governor",
+      "status": "CHƯA MỞ TRAIN NGHIÊN CỨU",
+      "owner": "Assistant triển khai/chạy theo protocol và ngân sách được chốt",
+      "work": "Train TD3 và PPO bằng tương tác với simulator đã kiểm, có nhiều training seed theo ngân sách mới. Real bags dùng để nhận dạng/kiểm model. So B0, B1, Governor và các policy qua cùng evaluator; ablation history một frame/nhiều frame, authority/projection và governor khi cần. Profile chuẩn hóa có h1/h5/h8 và hash; h8 chưa được train/so sánh. Action common/differential wheel-linear và normalization vật lý giữ nguyên ABI hiện hành; mask/train-stat normalization cần adapter và validation riêng.",
+      "data": "Rollouts observation→proposal→accepted reference→feedback→reward; config/checkpoint/hash; labels chỉ cho evaluator; split toàn session/layout/payload; failures/interventions và held-out tests.",
+      "output": "Checkpoint ứng viên + bảng chất lượng/thời gian/tracking/failure + ablation và giới hạn generalization. Smoke giảm bậc và smoke FACTORY 128 bước giữ riêng là bằng chứng tích hợp, chưa là checkpoint nghiên cứu được promote.",
+      "gate": "Chỉ promote khi có lợi ích đáng quan tâm so tuned baseline theo protocol, không dựa return đơn lẻ. Effect nhỏ/đổi chiều theo sampling thì unknown; không đổi objective, bỏ failures hoặc tự tăng mẫu.",
+      "action": null
+    },
+    {
+      "id": "07",
+      "name": "Chạy shadow trên Pi bằng dữ liệu thật",
+      "status": "SAU KHI CÓ ỨNG VIÊN PHÙ HỢP",
+      "owner": "Assistant chuẩn bị observer; bạn vận hành phiên được chốt",
+      "work": "Nạp actor/config đúng ABI vào observer chỉ đọc. Thu inputs thật và proposal với residual authority = 0; đo tuổi dữ liệu, inference time/memory/deadline dưới tải dự kiến. Kiểm frame, timestamp, history gap, source ownership và fallback.",
+      "data": "Raw sensors/commands/status + shadow trace + actor/ABI/hash + thông tin tải Pi và clocks. Real shadow không đồng nghĩa ROS fixture tổng hợp hiện có.",
+      "output": "Báo cáo shadow thật: input hợp lệ, inference chạy kịp hay không, proposal có hợp lý/OOD không, lỗi/fallback nào xuất hiện.",
+      "gate": "Shadow đạt chỉ xác minh ingestion/inference; không chứng minh policy cải thiện chuyển động. Hardware residual vẫn 0 cho tới bước 08; deadline thực cần đo trước khi chấp nhận.",
+      "action": null
+    },
+    {
+      "id": "08",
+      "name": "Thử residual có giới hạn trên robot",
+      "status": "CHƯA MỞ TRIỂN KHAI",
+      "owner": "Assistant chuẩn bị release/protocol; bạn giám sát thử thực",
+      "work": "Triển khai đường command ownership/projection/backend được review; chốt giới hạn, stop, RC/ROS semantics, fallback và ngân sách thử riêng. Bắt đầu trong envelope đã xác nhận, so từng lượt với baseline; chỉ mở tải/vật cản/route khác theo protocol tiếp.",
+      "data": "Toàn bộ command/proposal/accepted/final/telemetry thật, reference thân, stop/fault/interventions, điều kiện mỗi session và outcome ứng dụng.",
+      "output": "Bảng lợi ích và giới hạn trên robot thật: chất lượng, tracking, thời gian, thất bại và phạm vi được phép dùng.",
+      "gate": "Chỉ mở sau model/baseline/shadow và stopping/authority đủ bằng chứng. Không tự tăng tốc, alpha hoặc phạm vi vật cản. Không đạt mục tiêu thì dùng baseline hoặc đổi hướng theo kết quả.",
+      "action": null
+    }
+  ],
+  "next_steps_scope": "Research roadmap proposals. Read-only Studio implementation does not grant motor motion, new pilot slots, training budgets, numeric QC thresholds or deployment.",
+  "data_studio": {
+    "mode": "observer_only",
+    "recorder_motor_commands": 0,
+    "storage": [
+      "mcap",
+      "sqlite3"
+    ],
+    "duration_s": 60,
+    "quality": "FAIL/WARN with Q1/Q2 raw grading; no automatic Q3/Q4",
+    "export": "versioned long-form Parquet message table, not TD3 replay/features",
+    "session_index": "local SQLite derived index; raw checksums remain authoritative"
+  },
+  "td3_parameter_system": {
+    "catalog": "nino_rl/config/td3_parameter_profiles.yaml",
+    "current_history_frames": 5,
+    "research_ablation_frames": [
+      1,
+      5,
+      8
+    ],
+    "missing_data": "reject_and_refill_history",
+    "normalization": "fixed_physical_scales_v1",
+    "independent_actor_critic_lr_supported": false,
+    "scientific_training_released": false
+  }
+}

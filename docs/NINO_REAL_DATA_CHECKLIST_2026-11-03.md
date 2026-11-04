@@ -9,6 +9,11 @@ GUI v2, demo, firmware build và 40 software tests không tạo thêm dataset th
 [đánh giá lại báo cáo và thay đổi GUI](NINO_REPORT_REASSESSMENT_AND_GUI_2026-11-03.md).
 Đây là cập nhật offline, không thay trạng thái đo thật hoặc mở lại ledger.
 
+**GUI v4 / hướng hiện hành:** [thu bằng nút bấm](../src/nino_pi/GUIDED_COLLECTION.md),
+[motion contract → SysID → B0/B1 → residual TD3/PPO](NINO_RESEARCH_DIRECTION_2026-11-03.md).
+Dữ liệu thật không tăng từ việc chuẩn bị code. D24–D30/T19–T24 bên dưới là
+nhu cầu/đầu việc của hướng mới, không thay trạng thái D01–D23.
+
 ## 1. Tóm tắt
 
 - **Đã có:** raw IMU, encoder/feedback hai bánh, status, LiDAR, đối chiếu
@@ -73,6 +78,18 @@ chứng đủ trong gói hiện có, không khẳng định ngoài Pi/laptop kh�
 | D22 | Baseline/can thiệp governor, executed response, quality/arrival/stall/tracking/time | **Chưa có lợi ích governor được chứng minh trên robot thật** | Có baseline lặp và cửa sổ actuator tác động hữu ích; H2 trước predictor/H3. Không dùng arrival hoặc command giảm để suy giảm contact risk |
 | D23 | Payload, điều kiện sàn, nhiều route/obstacle/session và test bank độc lập | **Chưa có bộ generalization** | Sau feasibility/measurement và lợi ích baseline rõ; group toàn run/layout/session, giữ failures; chưa đầu tư RL/BC chỉ để tăng số bước |
 
+### D. Dữ liệu cho SysID và residual velocity
+
+| ID | Dữ liệu | Trạng thái / kết quả | Phần cần tiếp |
+|---|---|---|---|
+| D24 | SysID command→reported wheel→body | Chưa có model được kiểm held-out | Nhận dạng combined path nếu thiếu actuator target; không fit radius/slip/lag đồng thời |
+| D25 | Baseline B0/B1 công bằng và time/quality Pareto | Chưa có benchmark real đủ | Cùng shaping/limits/information, development tuning và fixed held-out |
+| D26 | Feature/history ABI 20×5 và checkpoint schema | Đã chuẩn bị offline; chưa có real dataset | Frame body/normalization/epoch/gap validity, không privileged actor |
+| D27 | Policy proposal / accepted / final / actuator readback | Chưa có real residual traces | Không thay missing target bằng command; log reason/clock riêng |
+| D28 | Reward/evaluation labels và failures/censoring | Chưa có bộ residual benchmark | Body/contact/slip cần independent truth; native metrics giữ riêng |
+| D29 | Grouped train/validation/test, action coverage | Chưa có corpus theo ABI mới | Không random overlapping frames; không counterfactual từ một behavior |
+| D30 | Latency/compute và shadow zero authority | Chưa đo deployment budget | Đo dưới tải Pi thật; không suy deadline hoặc stop từ GUI/tests |
+
 ## 3. Bộ dữ liệu tối thiểu của lượt kế tiếp
 
 **Mục tiêu duy nhất:** lệnh thực sự đi qua và reported feedback có khớp
@@ -125,6 +142,15 @@ lệnh chạy hoặc cấp thêm slot. Ghi duration/ramp thực đo, không mặ
 - [ ] **T16:** Đo envelope cơ khí/caster và thử một loại vật cản đã chốt với baseline cổ điển, body/contact reference phù hợp.
 - [ ] **T17:** Kiểm H2 quyền điều khiển hữu ích trước khi đầu tư predictor; chỉ so H3/governor khi phép đo và baseline đủ.
 - [ ] **T18:** Mở payload/layout/route/session held-out và learning khi có lợi thế cần thiết; chưa chạy PPO/BC/Optuna mở rộng trong checklist này.
+
+### Hướng mới — R1 đến R7
+
+- [ ] **T19 (R1 · ngay; Chờ hardware):** Qua GUI: inventory → ZERO → bag/video → explicit2s motion → QC/observation/fetch. Gate: Chỉ một diagnostic, giữ profile; fail/unknown không retry.
+- [ ] **T20 (R2–R3; Chưa mở):** Body reference có calibration/sync và SysID combined backend. Gate: E1 giải thích được; protocol độ lặp/maneuver riêng.
+- [ ] **T21 (R4; Chưa mở):** B0/B1 development tuning và Pareto tracking/time/quality. Gate: Cùng input/limits; classical đủ thì dừng learning.
+- [ ] **T22 (R5; API offline):** Implement/validate backend adapter mới và PPO/TD3 comparison cùng ABI. Gate: Training false; budget null; legacy checkpoint không tương thích.
+- [ ] **T23 (R6; Chưa mở):** History/authority/DR ablation, OOD và shadow trên Pi. Gate: H2 useful horizon; no body reference thì không slip claim.
+- [ ] **T24 (R7; Chưa mở):** Đánh giá residual hardware giới hạn theo protocol mới. Gate: Không tự tăng alpha/tốc độ; reference/owner/stop phải đo.
 
 ## 5. Điều không cần làm lại hoặc chưa nên làm
 

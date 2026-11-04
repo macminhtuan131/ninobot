@@ -1,0 +1,30 @@
+{
+  "source": "collection_commands_20261103_v1 prepared runtime; exact RC guards reused",
+  "before_hashes": {
+    "run_trial.py": "805cadf0b72aa4100e7822bc7461d580a8da2857aa968b83461755e591a4053c",
+    "pilot_state.py": "8932224c2c7db8037953728272298b2f9833a7492f350aa6bbaae9f45d72c8ac",
+    "collect_session.py": "61d75507c6e7f2de10394b3b02273fa85f036ad57f7102b904cad2d953a41031",
+    "collector_resilient.py": "632177d462aee5a2d35a08a99a9a3d5aff7dc3892639bfafef9b37bce956ff21",
+    "closure_sync.py": "037387383b2ff24f894f280489ab31f2d47f27a8e3287db1993a0c09d68feba5",
+    "preallocation.py": "a175e1ded4d7ce941170329f03875d22f6c6c14349e6ddf80718f299a25f51b3",
+    "stack_readiness.py": "84eafb56de66549595d669ecff6e31cfce93c176793aa88999db61ca127fffda",
+    "scene_guard.py": "cf4944858f64ac40058caf028e05f919fc3094fbd22fd4a6f38ff5ae10b3b4a8",
+    "trial_scene_guard.py": "0d3b23ec810c0bf0efb903cef6e063b4b33ace021a6aebfc9ee828590cdd91e6",
+    "endpoint_identity.py": "a6e77b1aaaf1b031d1e48b683131fd20d57fe3b9fed3f0700a62dfd6fd385c17",
+    "launch_checked_stack.py": "e1a03029cc7098a5a69bce76e00960a37e71d9543d7422fefb04eb5305ff0d44",
+    "analyze_commissioning.py": "a860028044c7264f4de3657bf2d0cc3ef60cf5ea3dcacd5fdc1c85aaf8db5b0c",
+    "export_trace.py": "6f1d998477848709bd26c4cc272915ea1c79564f38f25b380b4afd61bdc4a36f",
+    "primary_metrics.py": "247e4a343d63c6349594a36db0802c7e5d404eb01970afc76e9079440eae6306",
+    "session_cli.py": "908471129fbd6cec02bf2bd0cd7be8a7d58b809538f17a588acb4bd865ec46e3",
+    "tooling/nino_pi/__init__.py": "d8c5768f35c9e67ec21de383fcc259da33b36d8dabca756baa0a1434f1638831",
+    "tooling/nino_pi/collect_real_data.py": "632177d462aee5a2d35a08a99a9a3d5aff7dc3892639bfafef9b37bce956ff21",
+    "tooling/nino_pi/hardware_audit.py": "8e4388d75e14f2411a0333a8b61b93a26410cd6157e6704d57fd57e4ed701615",
+    "tooling/nino_pi/data_quality.py": "afbb8685f271f25233edb09c05ca6f82be94961671fe90be8bd11546941e80a2"
+  },
+  "not_raw_dataset": true,
+  "not_hardware_validated": true,
+  "gui_update": "2026-11-03: noninteractive metadata, heartbeat gateway, explicit operator-triggered trial. No new hardware data.",
+  "tracked_builder": "src/nino_pi/scripts/build_collection_runtime.py",
+  "base_git_commit": "b7709d66047cfe8efc72291f21a4448e8d7f9e79",
+  "base_bundle_sha256": "50fe2547bfbeca4b402a38fa910552fdff1c10b508939a5acd9d894df3a74385"
+}

@@ -18,7 +18,7 @@ from nino_pi.command_panel import CommandsDialog
 
 class RecipeTests(unittest.TestCase):
     def test_every_pending_task_has_recipe_and_commands_parse_as_shell(self):
-        self.assertEqual(set(TASK_RECIPES),{f'T{i:02}' for i in range(1,19)})
+        self.assertEqual(set(TASK_RECIPES),{f'T{i:02}' for i in range(1,25)})
         for key in RECIPES:
             recipe=render_recipe(key,key="/tmp/key with ' spaces and $(not_run)")
             for step in recipe['steps']:

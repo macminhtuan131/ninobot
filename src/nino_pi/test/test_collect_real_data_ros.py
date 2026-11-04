@@ -14,7 +14,8 @@ pytest.importorskip("rclpy")
 from nino_pi import collect_real_data as collect
 
 
-def test_raw_bag_and_audit_close_without_hardware(tmp_path):
+@pytest.mark.parametrize('storage',['sqlite3','mcap'])
+def test_raw_bag_and_audit_close_without_hardware(tmp_path,storage):
     env = dict(os.environ, ROS_DOMAIN_ID="227", ROS_AUTOMATIC_DISCOVERY_RANGE="LOCALHOST", ROS_LOCALHOST_ONLY="1")
     fixture = r'''
 import time,sys
@@ -50,7 +51,7 @@ finally:
         while not ready.exists() and source.poll() is None and time.monotonic() < deadline:
             time.sleep(.05)
         assert ready.exists()
-        config = dict(schema_version=1, duration_s=8, max_session_mb=32, reserve_disk_mb=16,
+        config = dict(schema_version=1, storage_id=storage, duration_s=8, max_session_mb=32, reserve_disk_mb=16,
                       topics=[dict(name=t, required=True, purpose="synthetic sensor") for t in ("/imu/data", "/joint_states")]
                       + [dict(name="/missing_torque", required=False, purpose="intentional missing torque")])
         config_path = tmp_path / "config.json"
@@ -73,10 +74,8 @@ finally:
         assert (output / "sha256.json").exists()
         from rclpy.serialization import deserialize_message
         from sensor_msgs.msg import JointState
-        db_path = next((output / "bag").glob("*.db3"))
-        with sqlite3.connect(db_path) as db:
-            raw = db.execute("SELECT m.data FROM messages m JOIN topics t ON t.id=m.topic_id WHERE t.name='/joint_states' LIMIT 1").fetchone()[0]
-        msg = deserialize_message(raw, JointState)
+        from nino_pi.bag_io import decoded
+        msg=next(m for n,t,s,m in decoded(output/'bag') if n=='/joint_states')
         assert list(msg.effort) == []  # No fabricated measured torque.
         assert msg.header.stamp.sec > 0
         assert list(msg.velocity) == [0., 0.]

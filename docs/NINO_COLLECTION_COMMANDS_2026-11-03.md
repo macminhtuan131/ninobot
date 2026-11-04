@@ -1,5 +1,7 @@
 # Lệnh thu dữ liệu từ to-do GUI — 03/11/2026
 
+> **Lịch sử CLI/copy commands.** Luồng hiện hành là [GUI v4 bằng nút bấm](../src/nino_pi/GUIDED_COLLECTION.md). Không cần copy các lệnh dưới đây để thu; không dùng chúng để mở lại lượt cũ.
+
 ## Cách dùng trong GUI
 
 1. Mở GUI, điền IP/key ở phần kết nối; không cần kết nối chỉ để xem lệnh.

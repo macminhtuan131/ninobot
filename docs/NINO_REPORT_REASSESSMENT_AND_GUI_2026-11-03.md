@@ -1,5 +1,7 @@
 # Đánh giá lại báo cáo mới và GUI tiến độ Nino — 03/11/2026
 
+> **Đã có bản tổng hợp mới cùng ngày:** [NINO_RESEARCH_DIRECTION](NINO_RESEARCH_DIRECTION_2026-11-03.md) và [GUI v4](../src/nino_pi/GUIDED_COLLECTION.md). Review dưới đây là snapshot trước hai báo cáo mới; số liệu thật giữ nguyên. D01–D30/T01–T24 và lộ trình mới nằm trong GUI/catalog hiện hành.
+
 ## 1. Kết luận và phạm vi
 
 **Ưu tiên motion contract và kiểm chứng wheel/body; chưa mở một chiến dịch

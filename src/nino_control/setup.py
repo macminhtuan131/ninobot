@@ -27,6 +27,7 @@ setup(
             "effort_drive = nino_control.effort_drive:main",
             "sensor_monitor = nino_control.sensor_monitor:main",
             "speed_governor = nino_control.speed_governor:main",
+            "residual_shadow = nino_control.residual_shadow:main",
         ],
     },
 )
