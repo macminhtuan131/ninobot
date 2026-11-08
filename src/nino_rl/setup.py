@@ -44,6 +44,7 @@ setup(
             "train = nino_rl.train:main",
             "prepare_residual = nino_rl.residual_experiment:prepare_main",
             "td3_parameters = nino_rl.td3_config:main",
+            "td3_experiment_matrix = nino_rl.td3_experiment_matrix:main",
             "residual_workflow = nino_rl.residual_workflow:main",
             "wait_for_sim = nino_rl.wait_for_sim:main",
             "sim_gain_effort_drive = nino_rl.gain_effort_drive:main",

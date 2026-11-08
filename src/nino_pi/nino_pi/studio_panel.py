@@ -1,4 +1,4 @@
-"""Single acquisition screen, with explicit next action and recorder-only controls."""
+"""Single acquisition screen, with explicit state machine, scenario guidance, QC summary, and recorder-only controls."""
 from datetime import datetime, timezone
 import json
 from pathlib import Path
@@ -6,25 +6,41 @@ from PyQt5 import QtCore as C, QtGui as G, QtWidgets as Q
 from .studio_contract import SCENARIOS, validate_metadata
 from .studio_runner import StudioRunner
 
+SCENARIO_HINTS = {
+    'stationary': 'Baseline tĩnh (sensor_inventory): kiểm noise floor IMU, LiDAR, clock drift; không yêu cầu protocol chuyển động.',
+    'straight': 'SysID chạy thẳng (real_sysid): BẮT BUỘC nhập protocol_id đã review + khuyến nghị gắn camera/body reference kiểm tra trượt bánh.',
+    'rotation': 'SysID quay tại chỗ (real_sysid): BẮT BUỘC nhập protocol_id đã review; đối chiếu gyro.z với hiệu vận tốc hai bánh.',
+    'curve': 'SysID quỹ đạo cong (real_sysid): BẮT BUỘC nhập protocol_id đã review; đo đáp ứng ghép kênh (v, ω).',
+    'stop_go': 'SysID tăng/giảm tốc & dừng (real_sysid): BẮT BUỘC nhập protocol_id đã review; đo trễ truyền động, deadzone và pre-stop tail.',
+    'heldout': 'Đánh giá độc lập (real_evaluation): ghim cứng vào tập TEST khi chia split (không bao giờ trộn vào train/val).',
+}
+
 
 class StudioPanel(Q.QWidget):
     def __init__(self,connection,parent=None,demo=False,external_busy=None):
         super().__init__(parent);self.connection=connection;self.external_busy=external_busy or (lambda:False)
         self.runner=StudioRunner(self,demo=demo);self.runner.job_event.connect(self.handle)
         self.installed=False;self.checked=False;self.ready=False;self.session=None;self.local=None;self.closing=False
-        self.connection_key=None;self.error=None
+        self.connection_key=None;self.error=None;self.last_qc_verdict=None
         layout=Q.QVBoxLayout(self)
         title=Q.QLabel('NINO REAL DATA STUDIO · GHI DỮ LIỆU, KHÔNG ĐIỀU KHIỂN MOTOR')
         title.setWordWrap(True);title.setStyleSheet('font-size:18px;font-weight:700');layout.addWidget(title)
         note=Q.QLabel('Kết nối → chọn kịch bản → kiểm tra → ghi 60 s → QC → tải / export.\n'
             'Các nút ở đây không đổi RC, ARM, enable, phát trajectory hoặc cmd_vel. Điều khiển xe theo protocol đã review bằng nguồn riêng.')
         note.setWordWrap(True);layout.addWidget(note)
+        self.status_banner=Q.QLabel()
+        self.status_banner.setWordWrap(True)
+        self.status_banner.setStyleSheet('padding:6px 8px;border:1px solid #355263;border-radius:4px;font-weight:600')
+        layout.addWidget(self.status_banner)
         scroll=Q.QScrollArea();self.scroll=scroll;scroll.setWidgetResizable(True);page=Q.QWidget();scroll.setWidget(page)
         content=Q.QVBoxLayout(page);layout.addWidget(scroll,1)
         form=Q.QFormLayout();self.scenario=Q.QComboBox()
         for key,(name,kind,motion) in SCENARIOS.items():self.scenario.addItem(name,key)
         self.storage=Q.QComboBox();self.storage.addItems(['mcap','sqlite3'])
-        form.addRow('Kịch bản quan sát',self.scenario);form.addRow('Raw storage (kiểm plugin trước ghi)',self.storage)
+        self.scenario_guide=Q.QLabel();self.scenario_guide.setWordWrap(True);self.scenario_guide.setStyleSheet('color:#9ec5fe')
+        form.addRow('Kịch bản quan sát',self.scenario)
+        form.addRow('Hướng dẫn kịch bản',self.scenario_guide)
+        form.addRow('Raw storage (kiểm plugin trước ghi)',self.storage)
         self.fields={}
         for key,name,default in [('robot_id','Robot','Nino-01'),('operator','Người vận hành',''),
             ('protocol_id','Protocol đã review (motion bắt buộc)','unknown'),
@@ -57,7 +73,7 @@ class StudioPanel(Q.QWidget):
         self.check=Q.QPushButton('Kiểm sensor');self.check.clicked.connect(lambda:self.start('discover'))
         self.fetch=Q.QPushButton('Tải phiên');self.fetch.clicked.connect(self.fetch_data)
         self.export=Q.QPushButton('Export Parquet');self.export.clicked.connect(self.export_data)
-        self.export.setToolTip('Tạo bản derived riêng; không chỉnh sửa raw hoặc tạo replay TD3.')
+        self.export.setToolTip('Tạo messages.parquet + causal_frames.parquet (10 Hz, mask thiếu dữ liệu rõ ràng); không sửa raw hoặc tạo TD3 replay giả.')
         self.open=Q.QPushButton('Mở thư mục');self.open.clicked.connect(self.open_data)
         self.history=Q.QPushButton('Lịch sử');self.history.clicked.connect(self.open_history)
         for b in (self.check,self.fetch,self.export,self.open,self.history):row.addWidget(b)
@@ -85,7 +101,7 @@ class StudioPanel(Q.QWidget):
             meta=self.metadata()
             if action=='record':
                 if not self.installed or not self.ready:raise ValueError('Check this robot/storage before recording')
-                validate_metadata(meta);self.session=None;self.local=None;self.recording_visible=False
+                validate_metadata(meta);self.session=None;self.local=None;self.last_qc_verdict=None;self.recording_visible=False
             self.runner.start(action,self.connection(),meta)
         except (ValueError,OSError,KeyError) as exc:
             self.error=str(exc);self.detail.appendPlainText(self.error);self.scroll.ensureWidgetVisible(self.detail,0,0)
@@ -151,7 +167,11 @@ class StudioPanel(Q.QWidget):
             if final.get('state')=='FETCHED' and event['returncode']==0:
                 self.local=final['local_directory'];self.show_quality(final['report'])
             if final.get('state')=='EXPORTED' and event['returncode']==0:
-                self.detail.appendPlainText(json.dumps(final,ensure_ascii=False,indent=2))
+                exp=final.get('export') or final
+                summary=(f"EXPORT HOÀN TẤT · raw rows={exp.get('rows','?')} · "
+                         f"causal 10Hz frames={exp.get('causal_frames_rows','?')} · "
+                         f"history={exp.get('causal_history_window_counts',{})}")
+                self.detail.appendPlainText(summary+'\n'+json.dumps(final,ensure_ascii=False,indent=2))
             if event['returncode']!=0:
                 self.error='Process lỗi / phiên chưa đạt. Giữ dữ liệu và log; review trước phiên tiếp.'
                 self.detail.appendPlainText(self.error)
@@ -160,11 +180,23 @@ class StudioPanel(Q.QWidget):
         self.refresh()
 
     def show_quality(self,report):
+        self.last_qc_verdict=f"{report.get('verdict','?')} ({report.get('level','?')})"
         lines=[report['verdict']+' · '+report['level']+' · chất lượng raw, không phải chất lượng chuyển động',report['scope']]
+        causal=report.get('causal_10hz_readiness')
+        if causal:
+            lines.append(f"Causal 10 Hz windows: ticks={causal.get('ticks_10hz',0)} | "
+                         f"h1={causal.get('valid_h1_windows',0)} | h5={causal.get('valid_h5_windows',0)} | h8={causal.get('valid_h8_windows',0)}")
+        chain=report.get('command_chain')
+        if chain:
+            lines.append(f"Command chain: upstream_nonzero={chain.get('upstream_nonzero')} | "
+                         f"final_cmd_vel_nonzero={chain.get('final_cmd_vel_nonzero')} | "
+                         f"collision_monitor_stops={chain.get('collision_monitor_stop_samples',0)}")
         for check in report['checks']:
             detail=check['detail']
             if not isinstance(detail,str):detail=json.dumps(detail,ensure_ascii=False)
             lines.append(check['verdict']+' | '+check['name']+' | '+detail)
+        for rec in report.get('recommendations',()):
+            lines.append('KHUYẾN NGHỊ: '+rec)
         lines+=report['limitations']
         lines.append('Chi tiết đầy đủ: qc_report.json; raw giữ nguyên. Feature/history và TD3 replay: chưa sẵn sàng.')
         self.detail.setPlainText('\n'.join(lines))
@@ -189,7 +221,20 @@ class StudioPanel(Q.QWidget):
         connection=self.connection()
         identity=tuple(connection.get(k) for k in ('host','key','domain'))
         if not busy and identity!=self.connection_key:
-            self.connection_key=identity;self.installed=False;self.checked=False;self.ready=False;self.session=None
+            self.connection_key=identity;self.installed=False;self.checked=False;self.ready=False;self.session=None;self.last_qc_verdict=None
+        scen_key=self.scenario.currentData()
+        self.scenario_guide.setText(SCENARIO_HINTS.get(scen_key,''))
+        stage=('ĐANG CHẠY: '+str(self.runner.action).upper() if busy else
+               'ĐÃ TẢI LOCAL ('+(self.last_qc_verdict or 'QC')+')' if self.local else
+               'ĐÃ GHI & QC ('+(self.last_qc_verdict or 'QC')+') · CHỜ TẢI' if self.session else
+               'SẴN SÀNG GHI 60 GIÂY' if self.installed and self.ready else
+               'ĐÃ CÀI OBSERVER · CẦN KIỂM SENSOR' if self.installed else
+               'CHƯA CÀI OBSERVER TRÊN PI')
+        host_label=connection.get('host') or 'chưa nhập host'
+        self.status_banner.setText(
+            f"Trạng thái: {stage}  |  Pi: {host_label} (DDS domain {connection.get('domain',0)})  |  "
+            f"Storage: {self.storage.currentText().upper()}  |  An toàn: 0 motor publishers (Stop chỉ đóng bag)"
+        )
         self.primary.setEnabled(not locked)
         self.reference_button.setEnabled(not locked)
         self.primary.setText('1 · Chuẩn bị observer trên Pi' if not self.installed else

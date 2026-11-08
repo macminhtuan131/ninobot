@@ -207,6 +207,10 @@ class DashboardReader:
             window=window_statistics(episodes),backlog_bytes=backlog,trace_rows=self.total,
             trace_path=str(self.trace),trace_age_s=max(0,time.time()-self.trace.stat().st_mtime) if self.trace.is_file() else None,
             warnings=list(dict.fromkeys(self.errors))[-10:],evaluation=evaluation,map_scope='TRAIN · native trace')
+        retention=read_json(self.directory/'storage_retention.json',{})
+        if retention:
+            snapshot['warnings'].append('Raw episode train đã dọn có chủ đích; thống kê từ trace giữ lại. '
+                'Không còn đủ raw để kiểm lại toàn bộ manifest gốc. Retention: '+str(retention.get('status','unknown')))
         # Training is followed by fresh frozen-policy evaluation launches. Keep
         # training tables, but move the map to the robot in the active eval arm.
         if (self.directory/'training_result.json').is_file():

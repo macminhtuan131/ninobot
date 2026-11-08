@@ -1,0 +1,135 @@
+schema_version: 1
+matrix_id: nino_td3_experiment_and_safety_matrix_v1
+frozen_policy_rate_hz: 10
+hardware_authority_default: 0
+
+tuning_stages:
+  - stage_id: observation_action_contract
+    order: 1
+    title: Observation & Action Contract (Sim/Real Parity)
+    required_checks:
+      - causal_timestamp_alignment_le_tk
+      - explicit_missing_sensor_masks_no_zero_fill
+      - frozen_normalization_stats_from_train
+      - bounded_residual_velocity_with_projection
+      - teleop_excluded_from_td3_replay
+  - stage_id: dynamics_model_sysid
+    order: 2
+    title: Calibrated Plant Dynamics & Body Reference SysID
+    required_checks:
+      - transport_and_actuator_delay_estimated
+      - deadzone_and_friction_identified
+      - independent_body_reference_calibrated
+      - heldout_sysid_validation_passed
+  - stage_id: reward_and_termination
+    order: 3
+    title: Multi-Objective Reward & Terminated/Truncated Split
+    required_checks:
+      - tracking_velocity_and_yaw_error_terms
+      - residual_magnitude_and_delta_action_penalties
+      - safety_and_projection_intervention_penalty
+      - terminated_vs_truncated_logged_separately
+  - stage_id: algorithm_hyperparameters
+    order: 4
+    title: TD3 Hyperparameter Optimization
+    required_checks:
+      - multi_seed_minimum_3
+      - deterministic_heldout_evaluation_minimum_20_episodes
+      - physical_metric_checkpoint_selection
+
+hyperparameter_bounds:
+  actor_lr: [0.0001, 0.0005]
+  critic_lr: [0.0001, 0.0005]
+  gamma: [0.95, 0.995]
+  tau: [0.001, 0.01]
+  target_policy_noise: [0.1, 0.3]
+  target_noise_clip: [0.3, 0.6]
+  exploration_noise: [0.05, 0.3]
+  batch_size: [128, 512]
+  buffer_size: [100000, 1000000]
+  learning_starts: [1000, 20000]
+  policy_delay: [2, 2]
+  min_seeds: 3
+  min_eval_episodes_per_seed: 20
+
+reward_contract:
+  components:
+    - tracking_linear_velocity_error
+    - tracking_angular_velocity_error
+    - residual_action_l2_penalty
+    - action_smoothness_delta_l2_penalty
+    - safety_or_projection_intervention_penalty
+  termination_semantics:
+    terminated: Task failure or safety envelope violation (bootstrapping disabled, gamma=0)
+    truncated: Episode horizon timeout reached (bootstrapping preserved, reason logged)
+    require_reason_field: true
+
+physical_metrics:
+  required:
+    - rms_v_m_s
+    - rms_omega_rad_s
+    - max_overshoot_m_s
+    - settling_time_s
+    - action_jerk_rms
+    - saturation_fraction
+    - safety_intervention_rate
+  checkpoint_selection:
+    forbid_training_reward_only: true
+    primary_objective: weighted_heldout_tracking_rms
+    max_safety_intervention_rate: 0.0
+    max_jerk_ratio_vs_classical: 1.15
+    max_overshoot_delta_m_s_vs_classical: 0.02
+
+experiments:
+  E1:
+    experiment_id: E1_classical_vs_residual_td3
+    question: Does bounded Residual TD3 improve physical tracking over a fairly tuned classical controller without degrading smoothness or safety?
+    baseline_arm: tuned_classical_controller
+    candidate_arms:
+      - nino_td3_research_h5_v1
+      - td3_prestop_tail_authority_gated
+    equal_information_required: true
+    min_seeds: 3
+    episodes_per_seed: 20
+  E2:
+    experiment_id: E2_history_length_ablation
+    question: Which causal observation history window best compensates Nino transport/actuator lag without overfitting?
+    baseline_arm: nino_td3_research_h5_v1
+    candidate_arms:
+      - nino_td3_research_h1_v1
+      - nino_td3_research_h8_v1
+    requires_abi_revalidation_for_non_h5: true
+    min_seeds: 3
+    episodes_per_seed: 20
+  E3:
+    experiment_id: E3_domain_randomization_ablation
+    question: Does SysID-bounded domain randomization improve robustness on perturbed/held-out dynamics over nominal sim training?
+    baseline_arm: td3_residual_no_dr
+    candidate_arms:
+      - td3_residual_sysid_bounded_dr
+    evaluate_on_perturbed_heldout: true
+    min_seeds: 3
+    episodes_per_seed: 20
+
+deployment_safety_gates:
+  - gate_id: offline_sim_and_replay_verified
+    title: Offline Replay & Calibrated Sim Verification
+    mandatory: true
+  - gate_id: beats_tuned_classical_on_heldout
+    title: Horizontal Win Over Tuned Classical Baseline (E1)
+    mandatory: true
+  - gate_id: pi_zero_authority_shadow_verified
+    title: Zero-Authority Shadow Evaluation on Raspberry Pi
+    mandatory: true
+  - gate_id: software_and_gui_fault_tests_passed
+    title: Disconnect, Missing-Topic & Recorder Fault Isolation Passed
+    mandatory: true
+  - gate_id: hardware_interlocks_active
+    title: Hardware E-Stop, RC Override, Command Gate & Collision Monitor Active
+    mandatory: true
+  - gate_id: operator_supervision_and_clear_zone
+    title: Human Operator Supervision & Reviewed Motion Protocol
+    mandatory: true
+  - gate_id: instant_classical_fallback_verified
+    title: Instant Zero-Residual Fallback to Classical Controller Verified
+    mandatory: true

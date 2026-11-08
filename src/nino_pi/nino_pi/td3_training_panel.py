@@ -60,6 +60,17 @@ class TrainingRunner(C.QObject):
             self.update.emit(dict(message='Đang dừng ở ranh giới transition; chờ lưu checkpoint và đóng Gazebo.'))
 
 
+class StorageCleanup(C.QThread):
+    result=C.pyqtSignal(dict)
+    failed=C.pyqtSignal(str)
+    def __init__(self,directory,parent=None):
+        super().__init__(parent);self.directory=directory
+    def run(self):
+        from .training_storage import prune_completed_job
+        try:self.result.emit(prune_completed_job(self.directory,apply=True))
+        except Exception as exc:self.failed.emit(str(exc))
+
+
 class TD3TrainingPanel(Q.QWidget):
     changed=C.pyqtSignal()
     all_closed=C.pyqtSignal()
@@ -67,6 +78,7 @@ class TD3TrainingPanel(Q.QWidget):
     def __init__(self,parent=None,blocked=None,root=None,observe_external=True):
         super().__init__(parent);self.blocked=blocked or (lambda:False);self.closing=False
         self.live_reader=None;self.live_snapshot=None;self.external_running=False
+        self.cleanup_worker=None;self.cleanup_requested=False
         self.follow_live=True;self.observe_external=observe_external;self.watch_all_roots=root is None
         self.watch_closed=False;self.live_catalog=None
         self.runner=TrainingRunner(self);self.runner.update.connect(self.handle);self.runner.closed.connect(self.job_closed)
@@ -136,6 +148,10 @@ class TD3TrainingPanel(Q.QWidget):
         self.checkpoint_note=Q.QLabel('Resume tạo episode sim mới; không khôi phục chính xác trạng thái Gazebo hoặc RNG.');self.checkpoint_note.setWordWrap(True);layout.addWidget(self.checkpoint_note)
         self.resume.toggled.connect(self.refresh)
         self.auto_evaluate=Q.QCheckBox();self.auto_evaluate.setChecked(True);layout.addWidget(self.auto_evaluate)
+        self.auto_cleanup=Q.QCheckBox('Tiết kiệm ổ đĩa · tự xóa raw episode train sau job common hoàn tất thành công')
+        self.auto_cleanup.setChecked(True)
+        self.auto_cleanup.setToolTip('Giữ mọi checkpoint + replay, evaluation, TensorBoard, trace và thống kê. Chỉ dọn sau khi worker đóng; phiên lỗi/cancel giữ raw. Không áp cho legacy hoặc job ngoài GUI.')
+        layout.addWidget(self.auto_cleanup)
         actions=Q.QHBoxLayout();self.smoke=Q.QPushButton('1 · Smoke test · 64 bước mới');self.train=Q.QPushButton('2 · Train TD3');self.train.setObjectName('primary')
         self.stop=Q.QPushButton('Dừng + giữ checkpoint');self.stop.setObjectName('danger')
         for button in (self.smoke,self.train,self.stop):actions.addWidget(button)
@@ -152,6 +168,8 @@ class TD3TrainingPanel(Q.QWidget):
         self.saved=Q.QComboBox();self.reload_button=Q.QPushButton('Đọc lại phiên / checkpoint');self.reload_button.clicked.connect(self.reload_sessions)
         self.use_checkpoint=Q.QPushButton('Dùng checkpoint đã chọn để train tiếp');self.use_checkpoint.clicked.connect(self.use_saved_checkpoint)
         saved_layout.addWidget(self.reload_button);saved_layout.addWidget(self.saved);saved_layout.addWidget(self.use_checkpoint)
+        self.cleanup_button=Q.QPushButton('Xóa raw episode train của phiên đang xem · giữ checkpoint / kết quả')
+        self.cleanup_button.clicked.connect(self.begin_cleanup);saved_layout.addWidget(self.cleanup_button)
         self.session_table=Q.QTableWidget(0,5);self.session_table.setHorizontalHeaderLabels(['Phiên','Trạng thái','Bước thêm','Global steps','Lỗi / kết quả'])
         self.session_table.horizontalHeader().setSectionResizeMode(Q.QHeaderView.Stretch);self.session_table.setEditTriggers(Q.QAbstractItemView.NoEditTriggers)
         self.session_table.cellClicked.connect(self.select_session);saved_layout.addWidget(self.session_table)
@@ -178,9 +196,9 @@ class TD3TrainingPanel(Q.QWidget):
                     f"critic {completed['critic_updates']:,} · actor {completed['actor_updates']:,} · cùng seed {completed['seed']}")
                 break
     @property
-    def busy(self):return self.runner.busy or self.external_running
+    def busy(self):return self.runner.busy or self.external_running or self.cleanup_worker is not None
     @property
-    def active(self):return self.runner.busy or self.tb is not None
+    def active(self):return self.runner.busy or self.tb is not None or self.cleanup_worker is not None
     def root(self):return Path(self.location.text()).expanduser().resolve()
     def pick_root(self):
         path=Q.QFileDialog.getExistingDirectory(self,'Thư mục lưu các job TD3',str(self.root()))
@@ -271,6 +289,7 @@ class TD3TrainingPanel(Q.QWidget):
         try:
             request=self.request(mode)
             if self.runner.start(self.root(),request):
+                self.cleanup_requested=self.auto_cleanup.isChecked() and request.get('engine')=='common103_v1'
                 self.live_reader=None;self.live_snapshot=None;self.live_metrics.clear()
                 self.dashboard.set_job(None)
                 self.log.clear();self.results.clear();self.last_result=None;self.current_directory=None;self.output.setCurrentIndex(0)
@@ -290,6 +309,7 @@ class TD3TrainingPanel(Q.QWidget):
             self.progress.setRange(0,100)
             if event['returncode']==0:
                 self.progress.setValue(100);self.status.setText('Đã hoàn tất · xem Kết quả / TensorBoard / checkpoint để học tiếp.')
+                if self.cleanup_requested:self.begin_cleanup()
             else:
                 self.status.setText(f"Job đã dừng/lỗi · exit {event['returncode']}. Giữ log/checkpoint hoàn chỉnh; không tự chạy lại.")
                 if self.current_directory:
@@ -299,6 +319,27 @@ class TD3TrainingPanel(Q.QWidget):
                 self.output.setCurrentIndex(0)
             self.reload_sessions()
         self.refresh()
+    def begin_cleanup(self):
+        if self.busy or self.blocked() or self.closing or not self.current_directory:return
+        # A process must have closed before we remove any files, even if its job
+        # metadata already says completed. Cleanup itself holds the engine lock.
+        self.cleanup_requested=False
+        worker=StorageCleanup(self.current_directory,self);self.cleanup_worker=worker
+        worker.result.connect(self.cleanup_result)
+        worker.failed.connect(self.cleanup_failed)
+        worker.finished.connect(self.cleanup_finished)
+        self.status.setText('Đang kiểm checkpoint và dọn raw episode train; giữ trace / evaluation / TensorBoard.')
+        self.refresh();self.changed.emit();worker.start()
+    def cleanup_result(self,result):
+        message=f"Đã dọn raw episode train · {result.get('removed_bytes',0)/1024**3:.2f} GiB · giữ checkpoint, replay và thống kê."
+        self.status.setText(message);self.log.appendPlainText(message+' Biên bản: '+str(Path(result['job'])/'storage_retention.json'))
+    def cleanup_failed(self,error):
+        message='Chưa hoàn tất dọn raw episode; xem biên bản nếu có: '+error
+        self.status.setText(message);self.log.appendPlainText(message)
+    def cleanup_finished(self):
+        worker=self.cleanup_worker;self.cleanup_worker=None
+        if worker:worker.deleteLater()
+        self.reload_sessions();self.changed.emit();self.refresh();self.maybe_closed()
     def display_result(self,result):
         self.last_result=result
         intro=f"THÊM {result['transitions']} bước · global {result['starting_global_steps']} → {result['global_steps']} · optimizer +{result['optimizer_updates_this_job']}\n"
@@ -424,7 +465,7 @@ class TD3TrainingPanel(Q.QWidget):
         super().closeEvent(event)
     def refresh(self):
         locked=self.busy or self.blocked() or self.closing
-        for w in (self.location,self.choose_root,self.timesteps,self.interval,self.wall,self.resume,self.browse_checkpoint,self.checkpoint_path,self.auto_evaluate):w.setEnabled(not locked)
+        for w in (self.location,self.choose_root,self.timesteps,self.interval,self.wall,self.resume,self.browse_checkpoint,self.checkpoint_path,self.auto_evaluate,self.auto_cleanup):w.setEnabled(not locked)
         for w in (self.engine,self.scenario,self.profile,self.seed):w.setEnabled(not locked and not self.resume.isChecked())
         budget_ready,budget_message=self.training_budget()
         self.budget_note.setText(budget_message)
@@ -434,6 +475,7 @@ class TD3TrainingPanel(Q.QWidget):
         self.stop.setEnabled(self.runner.busy and not self.runner.cancelling);self.use_checkpoint.setEnabled(not locked and self.saved.count()>0)
         self.stop.setToolTip('Chỉ dừng worker do cửa sổ này tạo; worker đang theo dõi không thuộc GUI.' if self.external_running else '')
         self.stop_tb.setEnabled(self.tb is not None);self.open_tb.setEnabled(not self.closing)
+        self.cleanup_button.setEnabled(not locked and self.current_directory is not None)
     def start_tensorboard(self):
         if self.closing:return
         if self.tb:

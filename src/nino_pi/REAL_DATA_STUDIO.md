@@ -1,5 +1,14 @@
 # Nino Real Data Studio v7 — 04/11/2026
 
+> **08/11 — nâng cấp Causal 10 Hz Export, QC mở rộng & Ma trận TD3 E1–E3:**
+> `export_session` xuất song song `messages.parquet` và `causal_frames.parquet`
+> (khung 10 Hz nhân quả, cờ `*_present` rõ ràng, không bao giờ điền `0.0` cho kênh
+> thiếu, giữ `td3_replay_eligible = False` với phiên teleop/observer). QC tự động
+> báo thêm độ trôi đồng hồ sender–receiver, khoảng trống `> 2x` chu kỳ trung vị,
+> nhất quán chuỗi lệnh (`upstream_nonzero` so với `/cmd_vel` và `CollisionMonitor`
+> STOP) và số cửa sổ `h1/h5/h8`. Panel tham số tích hợp thứ tự tune 4 bước, ma
+> trận `E1–E3` và 7 cổng an toàn triển khai. [Chi tiết chuẩn hóa 08/11](../../docs/NINO_TD3_DATA_STUDIO_STANDARDIZATION_2026-11-08.md).
+
 > **07/11 — bổ sung reference bánh/thân:** trong Studio có nút gắn video với
 > session local, ghi nhãn từng bánh/thân và lưu JSON derived có checksum.
 > Không cần nối Pi cho thao tác này; chưa tự xác nhận body speed/slip hoặc

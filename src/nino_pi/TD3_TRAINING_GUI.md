@@ -1,5 +1,26 @@
 # Train TD3 trong Nino Studio
 
+## Dung lượng và lưu dữ liệu — 08/11/2026
+
+- Mặc định bật **Tiết kiệm ổ đĩa**: sau khi job common hoàn tất thành công
+  và worker đã đóng, Studio xóa các thư mục `episodes/episode_N/` của train.
+  Việc dọn chạy nền, giữ mọi checkpoint hoàn chỉnh (model, optimizer trong
+  ZIP, replay và identity), TensorBoard, evaluation, hai trace cấp job,
+  reset metadata và thống kê episode. Không đổi observation/reward/engine.
+- Tab **Phiên đã chạy / checkpoints** có nút **Xóa raw episode train của
+  phiên đang xem** để dọn một phiên common đã hoàn tất. Không tự dọn legacy,
+  phiên lỗi/cancel, job chạy ngoài GUI hoặc dữ liệu robot thật.
+- `storage_retention.json` ghi danh sách file đã xóa và hash từ manifest
+  gốc. Manifest gốc giữ nguyên như hồ sơ lịch sử; sau dọn không còn đủ raw
+  để kiểm lại toàn bộ phép đo episode. GUI hiện rõ giới hạn này. Dashboard
+  và phân tích từ trace vẫn dùng được. Đây không phải loại bỏ episode xấu
+  khỏi số liệu: mọi transition/outcome trong trace vẫn giữ nguyên.
+- Chỉ dọn **sau** job; dung lượng cực đại trong khi train và kiểm tra disk
+  đầu job vẫn như cũ. Không dựa vào tùy chọn này để giảm ngân sách disk.
+- Công cụ CLI `python3 -m nino_pi.training_storage <job>` mặc định chỉ xem
+  kế hoạch; thêm `--apply` mới xóa. Nó dùng cùng khóa simulator, kiểm hash
+  checkpoint/trace và chỉ nhận job common mô phỏng đã hoàn tất.
+
 > **Cập nhật07/11 — mặc định common103D/1D:** chọn contract/trainer ngay
 > trong tab này. Common hiện chỉ chạy sàn sạch, Ki0,10, stop6/8s; evaluation
 > gồm6lượt B0/classical/TD3. Research replay32.768, warmup10.000, budget tối
