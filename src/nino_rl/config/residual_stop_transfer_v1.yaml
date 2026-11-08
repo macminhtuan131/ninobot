@@ -1,0 +1,32 @@
+schema_version: 1
+protocol_id: nino_classical_stop_schedule_transfer_v1_2026_11_05
+action: sim-stop-transfer
+scenario: clear_box
+parent_fingerprint: 02a7fc89d1614a44685ca15abc8a88ad4ca4caf925911369312d7f81263dba07
+training_transitions: 0
+optimizer_updates: 0
+hardware_actions: 0
+maximum_transitions: 840
+steps_per_rollout: 140
+horizon_s: 14.0
+warmup_s: 0.5
+planned_source_stop_s: 6.0
+withdraw_lead_s: 0.5
+common_compensation_m_s: 0.005
+nominal_steady_m_s: 0.2
+residual_scale_m_s: 0.04
+order:
+  - {arm: B0, repeat: 0}
+  - {arm: Classical_scheduled, repeat: 0}
+  - {arm: Classical_scheduled, repeat: 1}
+  - {arm: B0, repeat: 1}
+  - {arm: B0, repeat: 2}
+  - {arm: Classical_scheduled, repeat: 2}
+timestamp_diagnostic:
+  grid_s: 0.02
+  shifts_s: [0.0, 0.01]
+  maximum_support_age_s: 0.020000001
+  first_grid_s: 0.1
+  body_interpolation: false
+wall_deadline_s: 1800
+minimum_effect_accepted: null

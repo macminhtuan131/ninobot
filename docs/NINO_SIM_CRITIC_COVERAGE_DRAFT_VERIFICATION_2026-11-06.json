@@ -1,0 +1,40 @@
+{
+  "valid": true,
+  "executable": false,
+  "training_released": false,
+  "training_transitions_maximum": 6144,
+  "critic_updates_per_learner": 960,
+  "actor_updates_per_learner": 480,
+  "critic_updates_maximum": 5760,
+  "actor_updates_maximum": 2880,
+  "training_launches_maximum": 48,
+  "evaluation_launches_maximum": 16,
+  "evaluation_transitions_maximum": 2240,
+  "control_transitions_maximum": 8384,
+  "gazebo_launches_maximum": 64,
+  "frozen_learner_unchanged": true,
+  "eval_manifest_unchanged": true,
+  "controller_abi_unchanged": true,
+  "new_training_transitions": 0,
+  "new_evaluation_transitions": 0,
+  "new_hardware_actions": 0,
+  "config_sha256": "a783ad202b8491e4cd5ad89905814fe2469199d36b980af0a0311a1ee6262671",
+  "planner_tests": 14,
+  "gui_tests": 42,
+  "build_packages_passed": [
+    "nino_rl",
+    "nino_pi"
+  ],
+  "installed_source_parity": true,
+  "installed_default_config_valid": true,
+  "tests_passed": 56,
+  "visual_review_passed": true,
+  "real_data_cutoff": "2026-11-02",
+  "source_sha256": {
+    "src/nino_rl/nino_rl/coverage_study_plan.py": "c6b6d13f07d2ad25bae106cd664e4631ea757dbbf9677b9aaa2c839eb8307886",
+    "src/nino_rl/config/residual_coverage_study_v1.json": "a783ad202b8491e4cd5ad89905814fe2469199d36b980af0a0311a1ee6262671",
+    "src/nino_pi/nino_pi/next_steps_panel.py": "6be7c73487b0810d79015211544180b752c872dc19c3bd208e88e5db4effb6a1",
+    "src/nino_pi/nino_pi/research_plan.json": "a6e1d8c9232aeb56845ef240298a059dc0b6442f0cb11a325e695ee17277fb1c",
+    "src/nino_pi/nino_pi/project_evidence.json": "08bf4e8d4cf813e84c126460f6ca23934cc7583802204eee47b90513284c34cd"
+  }
+}

@@ -1,4 +1,29 @@
-> **04/11 — sim tiếp tục:** checkpoint V2 vẫn có steering bias trên clear floor (4 lượt, zero training). Reference follower đạt offline, chưa nối Gazebo. [Kết quả và bước V3](NINO_SIM_CLEAR_BIAS_RESULT_2026-11-04.md).
+> Cập nhật06/11: evaluation-only mới đã đóng, dùng ba checkpoint TD3 có sẵn; không train thêm. Xem [kết quả](../docs/NINO_SIM_RELIABLE_EVAL_ONLY_RESULT_2026-11-06.md) và [protocol](../docs/NINO_SIM_RELIABLE_EVAL_ONLY_PROTOCOL_2026-11-06.md). Chưa promote/hardware.
+
+> Cập nhật06/11: pilot TD3 RELIABLE với lifecycle từng episode đã đóng; xem [kết quả](../docs/NINO_SIM_RELIABLE_TD3_RESULT_2026-11-06.md) và [protocol](../docs/NINO_SIM_RELIABLE_TD3_PROTOCOL_2026-11-06.md). Chưa promote hoặc mở training/hardware mới.
+
+> **Cập nhật06/11 — candidate joint RELIABLE:** fixturepaired1000messages +1handshake/pause100ms đạtcompatibility, cảBE/RELIABLE1000/1000; candidateB0stop6/8 đạt2launches/280ticks. GUI hai nút cógate +QC/metric;khóa stageđãđóng. Chưa optimizerload/training hoặc rootcauseproof, partialTD3700ticks giữ. Tiếp learnerfresh103D/1D protocol riêng. [Kết quả](NINO_SIM_JOINT_RELIABILITY_RESULT_2026-11-06.md).
+
+> **Cập nhật06/11 — joint diagnostic đã đóng2/2:**200zero ticks/612checks đủsupport; hai observer trùng15.220source stamps, payloadfield không lệch. Chưa tái hiện50ms, nguyênnhânunknown; khôngtraining/hardware hoặc reopenpartialTD3. GUI có profile và bảngage/parity/error. Tiếp tốiđa mộtcandidateQoSjointRELIABLE riêng, chưa áp/chạy. [Kết quả](NINO_SIM_JOINT_BOUNDARY_RESULT_2026-11-06.md).
+
+> **Cập nhật06/11/2026 — TD3 common103D/1D đã train partial:**700ticks/636critic +318actor updates,5training episodes đạt task/stop. Episode6 thiếu joint support50ms tại half-tick zero; batch đóng, seed22/33 +10eval chưa chạy. GUI có profile riêng và partial/error review, khóa retry. Chưa có learned-benefit comparison hoặc hardware. Xem [kết quả](NINO_SIM_COMMON_TD3_RESULT_2026-11-06.md).
+
+> **05/11 — wrapper103D/1D đã đạt Gazebo:**4/4launches,560ticks,replay560rows,actor/optimizer0. [Kết quả](NINO_SIM_EQUAL_GAZEBO_RESULT_2026-11-05.md). Bước tiếp: fresh TD3 common-only pilot theo draft mới; chưa train hoặc resume V3.
+
+> **05/11 — contract cùng preview đã đạt offline:**103D/1D common-only, shared window và requested replay;840bước fixture tổng hợp,optimizer/Gazebo0. Không resume V3. [Kết quả](NINO_SIM_EQUAL_INFORMATION_RESULT_2026-11-05.md). Bước tiếp: kiểm wrapper mới trong Gazebo theo protocol riêng, chưa chạy.
+
+> **05/11 — stop-time transfer đã xong:** 6/6 lượt,840ticks,actor/optimizer0. Common cổ điển có RMSE v thấp hơn cả3 B0 trên native và hai GT-header grids; giữ candidate, chưa promote. [Kết quả](NINO_SIM_STOP_TRANSFER_RESULT_2026-11-05.md). Tiếp: contract TD3/cổ điển cùng thông tin, chưa mở train mới.
+
+> **05/11 — đối chứng common cổ điển đã xong:** 6/6 lượt,840 tick,optimizer0. Whole-task RMSE v thấp hơn B0/frozen common ở cả hai lượt; giữ candidate có planned stop, chưa promote. [Kết quả và bước tiếp](NINO_SIM_CLASSICAL_COMMON_RESULT_2026-11-05.md).
+
+> **05/11 — frozen-axis ablation đã xong:** 6/6 lượt, 840 evaluation ticks, không optimizer. Bỏ residual vi sai giảm lệch đường, nhưng common-only vẫn tệ hơn B0 về RMSE vận tốc toàn lượt do pha hạ tốc. Giữ B0; [kết quả, GUI và đối chứng cổ điển kế tiếp](NINO_SIM_AXIS_ABLATION_RESULT_2026-11-05.md).
+
+> **05/11 — TD3 V3 đã train và đánh giá:** guided baseline + zero-init + nominal reward; 512 train/496 updates, 8 eval. Tất cả marker/stop đạt, clear TD3 tracking tệ hơn B0; có một B0 gờ vượt gate được giữ. Chưa promote; [kết quả và hướng tiếp](NINO_SIM_GUIDED_TD3_V3_RESULT_2026-11-05.md).
+
+> **05/11 — screen guided clear/gờ 6 mm đã xong:** 4/4 marker + stop, 560 transition, residual zero. Gờ RMSE path 3,09–4,28 mm; chưa train TD3 mới. GUI hiển thị từng lượt; [kết quả và contract V3 kế tiếp](NINO_SIM_GUIDED_CONTACT_RESULT_2026-11-05.md).
+
+> **05/11 — V3 đã kiểm:** estimator wheel+IMU → follower → residual zero → PI đã chạy trong Gazebo. 8/8 marker + stop; RMSE path guided 13,09–13,84 mm, constant 93,06–93,65 mm. Không train thêm TD3. [Kết quả và bước tiếp](NINO_SIM_GUIDED_BASELINE_V3_RESULT_2026-11-05.md).
+
 
 > **04/11 — ưu tiên nhánh sim theo yêu cầu mới:** B0 → TD3 h5 pilot có giới hạn → đánh giá, không cần đợi thu real data. Xem [protocol nhánh sim](NINO_SIM_BRANCH_PROTOCOL_2026-11-04.md). Các gate robot thật và calibration phía dưới là nhánh song song.
 

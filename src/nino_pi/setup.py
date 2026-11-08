@@ -5,7 +5,7 @@ setup(
     name="nino_pi", version="0.1.0", packages=find_packages(exclude=["test"]),
     data_files=[
         ("share/ament_index/resource_index/packages", ["resource/nino_pi"]),
-        ("share/nino_pi", ["package.xml", "README.md", "REAL_DATA_COLLECTION.md", "REAL_DATA_STUDIO.md", "LAPTOP_CONTROL_AND_COLLECTION.md", "REAL_SESSION_FIELD_GUIDE.md", "STM32_USB_INTEGRATION.md", "WHEEL_RESPONSE_PROTOCOL.md", "CONTROL_MODES_GUI.md", "GUIDED_COLLECTION.md"]),
+        ("share/nino_pi", ["package.xml", "README.md", "REAL_DATA_COLLECTION.md", "REAL_DATA_STUDIO.md", "LAPTOP_CONTROL_AND_COLLECTION.md", "REAL_SESSION_FIELD_GUIDE.md", "STM32_USB_INTEGRATION.md", "WHEEL_RESPONSE_PROTOCOL.md", "CONTROL_MODES_GUI.md", "GUIDED_COLLECTION.md", "TD3_TRAINING_GUI.md"]),
         ("share/nino_pi/launch", glob("launch/*.launch.py")),
         ("share/nino_pi/config", glob("config/*.yaml")),
         ("share/nino_pi/config", glob("config/*.json")),
@@ -24,5 +24,6 @@ setup(
                                       "collect_real_data = nino_pi.collect_real_data:main",
                                       "laptop_control = nino_pi.laptop_control:main",
                                       "mode_gui = nino_pi.mode_gui:main",
+                                      "td3_training_gui = nino_pi.td3_training_panel:main",
                                       "mode_bridge = nino_pi.mode_bridge:main"]},
 )

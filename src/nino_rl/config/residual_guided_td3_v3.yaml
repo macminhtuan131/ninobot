@@ -1,0 +1,29 @@
+schema_version: 1
+protocol_id: nino_guided_td3_tracking_stop_v3_2026_11_05
+actions: [sim-v3-contract, sim-v3-train, sim-v3-evaluate]
+training_transitions: 512
+learner_seed: 7
+parameter_profile: nino_td3_smoke_h5_v1
+train_scenario: box_c1_6mm
+training_max_episodes: 4
+hardware_actions: 0
+evaluation_transitions_maximum: 1120
+evaluation_order:
+  - {arm: B0, scenario: clear_box, repeat: 0}
+  - {arm: TD3_h5, scenario: box_c1_6mm, repeat: 0}
+  - {arm: TD3_h5, scenario: clear_box, repeat: 0}
+  - {arm: B0, scenario: box_c1_6mm, repeat: 0}
+  - {arm: B0, scenario: box_c1_6mm, repeat: 1}
+  - {arm: TD3_h5, scenario: clear_box, repeat: 1}
+  - {arm: TD3_h5, scenario: box_c1_6mm, repeat: 1}
+  - {arm: B0, scenario: clear_box, repeat: 1}
+reward:
+  id: nominal_guided_tracking_v3
+  velocity_scale_m_s: 0.2
+  yaw_rate_scale_rad_s: 0.5
+  weights: {velocity: 1.0, yaw: 1.0, action: 0.01, action_change: 0.001}
+  penalties: {physical_failure: 10.0, missing_marker: 5.0, not_stopped: 10.0}
+initialization: zero_final_actor_linear_and_sync_target
+minimum_effect_accepted: null
+wall_deadline_per_job_s: 1800
+note: One-seed bounded integration pilot, not convergence/benefit validation. Frozen guided parent settings/limits/history; no V2 resume, tuning, hardware, automatic retry or budget extension.

@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-05",
+  "status": "guided_classical_contact_baseline_functional_candidate",
+  "protocol_id": "nino_guided_zero_residual_contact_v1_2026_11_05",
+  "contact_fingerprint": "5110c72607d75d8f86fd28334f322691502073da429cec586d09c1d8dbd929a6",
+  "parent_v3_fingerprint": "3dca65acfec2701be25ea9957969b995c13bd03aff9040408e10ffb375d1ec97",
+  "parent_baseline_directory": "/home/tuanmac/nino_research/sim_guided_baseline_v3/20261104T094119923673Z_sim-v3-baselines",
+  "parent_manifest_sha256": "40b3e3bb0aa73680c1b1b0996afb51ae649704f8cbd4b1be886eef8d5a0909ed",
+  "frozen_v2_task_fingerprint": "7025cd96dc133cd41d99c00068f56728e9014b4e8f908e2839fec26a95ce7dae",
+  "artifact": {
+    "directory": "/home/tuanmac/nino_research/sim_guided_contact_v1/20261105T020403516683Z_sim-guided-contact",
+    "manifest_sha256": "8f15e5f12bf5ebb40b7930e37956bde71fd5e5da7dc3534a3936cc1c3b68efe5",
+    "files_verified": 64,
+    "physics_requests": 1160,
+    "physics_completed": 1160,
+    "physics_retries": 0,
+    "parameter_calls": 8,
+    "parameter_completed": 8,
+    "job": {
+      "action": "sim-guided-contact",
+      "status": "completed",
+      "error": null,
+      "wall_s": 179.87989797499995,
+      "hardware_actions": 0
+    }
+  },
+  "completed_runs": 4,
+  "closed_unused_slots": 0,
+  "evaluation_transitions": 560,
+  "training_transitions": 0,
+  "optimizer_updates": 0,
+  "estimator_updates": 2800,
+  "causal_support_checks_pass": true,
+  "task_and_stop_successes": 4,
+  "maximum_boundary_source_lag_s": 0.019000000000001904,
+  "maximum_estimator_age_at_boundary_s": 0.010000000000001563,
+  "baseline_functional_candidate": true,
+  "benefit_verified": false,
+  "truth_used_for_guidance": false,
+  "hardware_calibration_verified": false,
+  "hardware_actions": 0,
+  "real_datasets_added": 0,
+  "tests": {
+    "sim_tests": {
+      "tests": 62,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "gui_tests": {
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "gui": {
+    "contact_rows": 4,
+    "columns": 9,
+    "progress": 100,
+    "completed_action_disabled": true,
+    "job_started_on_open": false,
+    "history": {
+      "3": {
+        "rows": 8,
+        "verified": true
+      },
+      "2": {
+        "rows": 4,
+        "verified": true
+      },
+      "0": {
+        "rows": 6,
+        "verified": true
+      },
+      "1": {
+        "rows": 3,
+        "verified": true
+      }
+    },
+    "hardware_actions": 0
+  },
+  "colcon_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "installed_source_matches": true,
+  "source_snapshot_files": 76,
+  "source_snapshot_sha256": "add0387c34a3a629d13b5a10fb1ef96fbf956ea80143f52ac1838a3303c1010a",
+  "owned_sim_processes_remaining": [],
+  "qa_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_guided_contact_2026-11-05",
+  "next_recommendation": "Implement TD3 V3 nominal velocity/yaw reward, zero-init actor/target and replay/checkpoint identity checks before a new bounded learning pilot."
+}

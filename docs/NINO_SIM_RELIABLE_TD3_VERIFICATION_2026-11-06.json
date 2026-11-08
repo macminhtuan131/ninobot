@@ -1,0 +1,63 @@
+{
+  "artifact": "/home/tuanmac/nino_research/sim_reliable_td3_v1/20261106T022633802858Z_sim-reliable-td3",
+  "manifest_sha256": "bb6293d9d5e62b1f63646e805e6b67dc9f712fc570ecbe2fa29b75de629ff053",
+  "artifact_files_verified": 648,
+  "prelaunch_pins_verified": 167,
+  "source_hashes": {
+    "src/nino_rl/nino_rl/residual_reliable_td3.py": "9bc1a493a78c8e215bab241fd12cf8f235d80a248dc5bca87e7b653352c8a384",
+    "src/nino_rl/nino_rl/reliable_episode.py": "c88e52b76934f2046de348356ed72641290eb9e52ac0505506f3dbfc8630c71e",
+    "src/nino_rl/nino_rl/residual_reliable_evaluation.py": "ff447455ed5bb8f183ac2240c55886a62fea80b207c9b234dbb13e40350c183f",
+    "src/nino_rl/config/residual_reliable_td3_v1.yaml": "336513d8b5d7018405f9df11a7772da16e7e950d0a60b30a72c288a5fdfae756",
+    "src/nino_rl/scripts/residual_reliable_td3.sh": "3eb64845a258f0cffda8959468209782085580def1945441b4ccd8d5e197ec14",
+    "src/nino_pi/nino_pi/research_jobs.py": "9ecde5713df73acd119e118b99939734d3603b284a96d473a3d379e99c88c7fa",
+    "src/nino_pi/nino_pi/research_panel.py": "d23bda7aab6ba760f2fb22d6f0198da342f18c73cde7ba167700ee9dc7349d4a",
+    "src/nino_pi/nino_pi/research_plan.json": "038cfae1dab4400373f3e28d35902106efb294d1dfa8709767cf42dd703f1d38",
+    "src/nino_pi/nino_pi/project_evidence.json": "a483ae51e856dfde7ae9f8d251a5a34d4ad672a687a8d8270d8dbedf34356658",
+    "docs/NINO_SIM_RELIABLE_TD3_PROTOCOL_2026-11-06.md": "064e1b113b64857517d23c6b2e156795659828d2fb1a51432fb83908687d005a",
+    "docs/NINO_SIM_RELIABLE_TD3_RESULT_2026-11-06.md": "e1d46fcb3ece371cef8216f7d7b685f78e52e6b3cb188e76c9821e066c570f44",
+    "docs/NINO_SIM_RELIABLE_EVAL_ONLY_NEXT_2026-11-06.md": "cff44f4defd3cc3fa9dc27490e4c3c54048051cbcfa9c67c3826a9b0b16815fe"
+  },
+  "tests": {
+    "preflight.xml": 21,
+    "gui_tests_final.xml": 35,
+    "evaluator_fix_tests.xml": 4
+  },
+  "total_tests": 60,
+  "build_packages": 2,
+  "install_parity": [
+    "/home/tuanmac/ninorobot/install/nino_rl/lib/python3.12/site-packages/nino_rl/residual_reliable_td3.py",
+    "/home/tuanmac/ninorobot/install/nino_rl/lib/python3.12/site-packages/nino_rl/reliable_episode.py",
+    "/home/tuanmac/ninorobot/install/nino_rl/lib/python3.12/site-packages/nino_rl/residual_reliable_evaluation.py",
+    "/home/tuanmac/ninorobot/install/nino_pi/lib/python3.12/site-packages/nino_pi/research_jobs.py",
+    "/home/tuanmac/ninorobot/install/nino_pi/lib/python3.12/site-packages/nino_pi/research_panel.py",
+    "/home/tuanmac/ninorobot/install/nino_pi/lib/python3.12/site-packages/nino_pi/research_plan.json",
+    "/home/tuanmac/ninorobot/install/nino_pi/lib/python3.12/site-packages/nino_pi/project_evidence.json",
+    "config/residual_reliable_td3_v1.yaml",
+    "scripts/residual_reliable_td3.sh"
+  ],
+  "gui": {
+    "profile": 14,
+    "profiles": 15,
+    "no_auto_job": true,
+    "consumed_retry_disabled": true,
+    "rows": 3,
+    "columns": 10,
+    "training_seed_counts_displayed": true,
+    "evaluation_metrics_unknown": true,
+    "QC_manifest_bound": true,
+    "train3072_eval0_visible": true,
+    "training_tab_retained": true,
+    "status": "TRAIN 3/3 ĐẠT · EVAL CHƯA HOÀN TẤT · 'GuidedBackend' object has no attribute 'namespace'. Giữ ba final checkpoints; không train lại. Bước tiếp: protocol eval-only riêng với lifecycle evaluator đã sửa và test offline; chưa release hoặc chạy thêm Gazebo."
+  },
+  "training_transitions": 3072,
+  "critic_updates": 2880,
+  "actor_updates": 1440,
+  "evaluation_valid_transitions": 0,
+  "evaluation_attempted_launches": 1,
+  "job_status": "failed_evaluator_wiring",
+  "evaluator_correction_tests_passed": true,
+  "additional_evaluation_released": false,
+  "owned_workers_remaining": [],
+  "hardware_actions": 0,
+  "old_partial700_reopened": false
+}

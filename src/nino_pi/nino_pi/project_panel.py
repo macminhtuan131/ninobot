@@ -61,6 +61,9 @@ class ProjectPanel(Q.QWidget):
         self.stage_table.horizontalHeader().setSectionResizeMode(0, Q.QHeaderView.ResizeToContents)
         self.stage_table.horizontalHeader().setSectionResizeMode(1, Q.QHeaderView.ResizeToContents)
         self.stage_table.horizontalHeader().setSectionResizeMode(2, Q.QHeaderView.Stretch)
+        self.stage_resize_timer=QtCore.QTimer(self);self.stage_resize_timer.setSingleShot(True)
+        self.stage_resize_timer.timeout.connect(self.resize_stage_rows)
+        self.stage_table.viewport().installEventFilter(self)
         direction_layout.addWidget(self.stage_table)
         self.pages.insertTab(0, direction, 'Hướng giải quyết / gate')
         rubric = Q.QWidget()
@@ -108,14 +111,22 @@ class ProjectPanel(Q.QWidget):
             return
         c = self.catalog
         plan = json.loads(Path(__file__).with_name('research_plan.json').read_text())
+        try:
+            from .studio_training_evidence import scientific_assessment
+            assessment=scientific_assessment(plan)
+            sim_status=assessment['summary'] if assessment else 'Chưa có đánh giá Studio đã xác minh; xem artifact trong tab Xây project.'
+        except (OSError,ValueError,KeyError,TypeError) as exc:
+            sim_status='Kết quả Sim CHƯA XÁC MINH: '+str(exc)
         self.direction_text.setText(plan['question'] + '\n' + plan['primary_candidate'] + '\n'
             + plan['physical_backend'] + '\n' + plan['actor_contract']
-            + '\nOptimizer smoke TD3/PPO và environment: xem tab Xây project để kiểm artifact. Train nghiên cứu / hardware residual chưa mở; authority thật = 0.')
-        self.stage_table.setRowCount(len(plan['stages']))
-        for row, stage in enumerate(plan['stages']):
+            + '\n'+sim_status+'\nHardware residual chưa mở; kết quả Sim không cấp quyền robot thật.')
+        stages=plan.get('sim_stages',plan['stages']) if plan.get('active_workstream')=='sim_offline_preparation' else plan['stages']
+        self.stage_table.setRowCount(len(stages))
+        for row, stage in enumerate(stages):
             for col, value in enumerate((stage['id'], stage['name'], stage['gate'])):
                 self.stage_table.setItem(row, col, Q.QTableWidgetItem(value))
             self.stage_table.setRowHeight(row, 75)
+        self.stage_resize_timer.start(0)
         self.banner.setText(f"HỒ SƠ LOCAL · cập nhật {c['review_date']} · dữ liệu đến {c['data_cutoff']}\n"
                             + c["scope"] + "\n" + c["next_action"])
         for key, fields, table in self.tables:
@@ -137,6 +148,8 @@ class ProjectPanel(Q.QWidget):
 
     def eventFilter(self, obj, event):
         if event.type() == QtCore.QEvent.Resize:
+            if getattr(self,'stage_table',None) is not None and obj is self.stage_table.viewport():
+                self.stage_resize_timer.start(0)
             weights = {"data": (.07, .24, .18), "parameters": (.25, .25, .21),
                        "sessions": (.32, .06, .25), "tasks": (.07, .10, .17)}
             for key, _, table in self.tables:
@@ -145,6 +158,11 @@ class ProjectPanel(Q.QWidget):
                         table.setColumnWidth(col, max(46, int(table.viewport().width()*fraction)))
                     break
         return super().eventFilter(obj, event)
+
+    def resize_stage_rows(self):
+        self.stage_table.resizeRowsToContents()
+        for row in range(self.stage_table.rowCount()):
+            self.stage_table.setRowHeight(row,max(75,self.stage_table.rowHeight(row)))
 
     def filter_rows(self):
         term = self.search.text().casefold().strip()

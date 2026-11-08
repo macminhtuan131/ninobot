@@ -1,0 +1,181 @@
+{
+  "date": "2026-11-05",
+  "status": "guided_td3_v3_pilot_complete_not_promoted",
+  "protocol_id": "nino_guided_td3_tracking_stop_v3_2026_11_05",
+  "task_fingerprint": "861290d674c5dd7a9aa0cd8690896b1f59ceaf3cd6a4e9bcd34e8e2f07c482d9",
+  "task_identity": {
+    "task_id": "nino_guided_td3_tracking_stop_v3_2026_11_05",
+    "task_fingerprint": "861290d674c5dd7a9aa0cd8690896b1f59ceaf3cd6a4e9bcd34e8e2f07c482d9",
+    "abi_sha256": "c6ad0de923b19b19b90335b07d16049757cddbe5f7ac9229446f3fccef898083",
+    "baseline_id": "nino_guided_zero_residual_v3_guided",
+    "guidance_sha256": "de2aabf3d4edbec54288c915eca2163cb94ba0a936f70759d6dbdf74a1117975",
+    "estimator": {
+      "maximum_gap_s": 0.04,
+      "gyro_bias_rad_s": 0.0,
+      "maximum_buffer": 4096
+    },
+    "initial_pose_m_rad": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "nominal_reference_rule": "separate_zero_residual_shaper_on_this_trajectory_follower_reference",
+    "reward": {
+      "id": "nominal_guided_tracking_v3",
+      "velocity_scale_m_s": 0.2,
+      "yaw_rate_scale_rad_s": 0.5,
+      "weights": {
+        "velocity": 1.0,
+        "yaw": 1.0,
+        "action": 0.01,
+        "action_change": 0.001
+      },
+      "penalties": {
+        "physical_failure": 10.0,
+        "missing_marker": 5.0,
+        "not_stopped": 10.0
+      }
+    },
+    "simulation_authority": 1.0,
+    "hardware_authorized": false
+  },
+  "frozen_v2_task_fingerprint": "7025cd96dc133cd41d99c00068f56728e9014b4e8f908e2839fec26a95ce7dae",
+  "frozen_v2_checkpoint_manifest_sha256": "634c4bd3de416d73da20aeb7bb5a3f7e5177346a1908a98b1c24aa229776179b",
+  "artifacts": [
+    {
+      "action": "sim-v3-contract",
+      "directory": "/home/tuanmac/nino_research/sim_guided_td3_v3/20261105T022312787033Z_sim-v3-contract",
+      "files_verified": 8,
+      "manifest_sha256": "9b4c94a30a26cfd17f962683863349e4a1ac8ec0e61cc7a2274234384d705c10",
+      "physics_requests": 0,
+      "physics_completed": 0,
+      "physics_retries": 0,
+      "parameter_calls": 0,
+      "parameter_completed": 0,
+      "job": {
+        "action": "sim-v3-contract",
+        "status": "completed",
+        "error": null,
+        "wall_s": 4.709692106999682,
+        "hardware_actions": 0
+      }
+    },
+    {
+      "action": "sim-v3-train",
+      "directory": "/home/tuanmac/nino_research/sim_guided_td3_v3/20261105T022329071579Z_sim-v3-train",
+      "files_verified": 53,
+      "manifest_sha256": "8cc9cbeafeea220074638185535d7a23d6a84156424b2e2a8f656414c6e71578",
+      "physics_requests": 1064,
+      "physics_completed": 1064,
+      "physics_retries": 0,
+      "parameter_calls": 8,
+      "parameter_completed": 8,
+      "job": {
+        "action": "sim-v3-train",
+        "status": "completed",
+        "error": null,
+        "wall_s": 191.64340663099983,
+        "hardware_actions": 0
+      }
+    },
+    {
+      "action": "sim-v3-evaluate",
+      "directory": "/home/tuanmac/nino_research/sim_guided_td3_v3/20261105T022715745474Z_sim-v3-evaluate",
+      "files_verified": 117,
+      "manifest_sha256": "5cffb1df07785e42a76614224ae5a296cfeac36a906f418d0966d7b2ab7938a4",
+      "physics_requests": 2320,
+      "physics_completed": 2320,
+      "physics_retries": 0,
+      "parameter_calls": 16,
+      "parameter_completed": 16,
+      "job": {
+        "action": "sim-v3-evaluate",
+        "status": "completed",
+        "error": null,
+        "wall_s": 359.4911485980001,
+        "hardware_actions": 0
+      }
+    }
+  ],
+  "files_verified": 178,
+  "physics_requests": 3384,
+  "physics_completed": 3384,
+  "physics_retries": 0,
+  "read_only_parameter_calls": 24,
+  "training_transitions": 512,
+  "critic_updates": 496,
+  "learner_seeds": [
+    7
+  ],
+  "evaluation_runs": 8,
+  "evaluation_transitions": 1120,
+  "task_and_stop_successes": 8,
+  "functional_proposal_passes": 7,
+  "retained_baseline_quality_failures": 1,
+  "zero_init_actor_target_verified": true,
+  "replay_rows_checked": 512,
+  "save_load_model_optimizer_target_replay_verified": true,
+  "portable_actor_max_error": 7.450580596923828e-08,
+  "estimator_updates": 8160,
+  "causal_support_checks_pass": true,
+  "maximum_boundary_source_lag_s": 0.019000000000001904,
+  "tests": {
+    "sim_tests": {
+      "tests": 69,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "gui_tests": {
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_fixture_resource_isolation_correction": "Initial 67 pass/2 shared-lock failures retained; test-only resource paths isolated, no runtime or experiment retry.",
+  "colcon_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "installed_source_matches": true,
+  "gui": {
+    "v3_learning_rows": 8,
+    "columns": 10,
+    "progress": 100,
+    "completed_stages_disabled": true,
+    "job_started_on_open": false,
+    "history": {
+      "4": {
+        "rows": 4,
+        "verified": true
+      },
+      "3": {
+        "rows": 8,
+        "verified": true
+      },
+      "2": {
+        "rows": 4,
+        "verified": true
+      },
+      "0": {
+        "rows": 6,
+        "verified": true
+      },
+      "1": {
+        "rows": 3,
+        "verified": true
+      }
+    },
+    "full_job_states_preserved": true,
+    "hardware_actions": 0
+  },
+  "source_snapshot_files": 83,
+  "source_snapshot_sha256": "de1109ee43cf9cca462f0cb0fdc461a4e5c5977b9b2dafab72460acbe52479ca",
+  "owned_sim_processes_remaining": [],
+  "hardware_actions": 0,
+  "real_datasets_added": 0,
+  "benefit_verified": false,
+  "qa_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_guided_td3_v3_2026-11-05",
+  "next_recommendation": "Keep guided B0 on clear floor. Propose a frozen-policy full/common-only/B0 clear-floor ablation, max 6 launches/840 ticks/zero optimizer; not run. Contact benefit remains unknown."
+}

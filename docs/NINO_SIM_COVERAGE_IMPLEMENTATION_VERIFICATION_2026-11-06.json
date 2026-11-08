@@ -1,0 +1,59 @@
+{
+  "gui_button_started_worker": true,
+  "preflight_artifact": "/home/tuanmac/nino_research/sim_coverage_study_v1/20261106T102458274967Z_sim-coverage-preflight",
+  "manifest_sha256": "43981a39f32afdce9da8803ade22e49dc42b6d476a240896fe52515ca5978e83",
+  "fingerprint": "1cd68b11dea8aee0302094294d89636276df23d6dfc2dc314af1c4a6433d89be",
+  "study_button_disabled": true,
+  "scientific_training_transitions": 0,
+  "new_gazebo_launches": 0,
+  "hardware_actions": 0,
+  "preflight": {
+    "passed": true,
+    "ready_for_physics": false,
+    "release_required": true,
+    "fingerprint": "1cd68b11dea8aee0302094294d89636276df23d6dfc2dc314af1c4a6433d89be",
+    "critic_reference_packets": 20,
+    "new_scientific_training_transitions": 0,
+    "new_physics_transitions": 0,
+    "hardware_actions": 0,
+    "software_fixture_optimizer_updates_are_not_scientific_training": true
+  },
+  "wall_s": 59.974387820999254,
+  "installed_source_parity": true,
+  "source_workspace_launcher_required": true,
+  "software_tests": [
+    {
+      "tests": 45,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    }
+  ],
+  "gui_tests": [
+    {
+      "tests": 46,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    }
+  ],
+  "total_tests_passed": 91,
+  "build_packages_passed": [
+    "nino_rl",
+    "nino_pi"
+  ],
+  "frozen_learner_fingerprint_unchanged": true,
+  "real_data_cutoff": "2026-11-02",
+  "source_sha256": {
+    "src/nino_rl/nino_rl/coverage_sampling.py": "43c98353ca3e8c9ca18f38175df50921e67f5981457f5296852b66c9fd9579af",
+    "src/nino_rl/nino_rl/coverage_td3.py": "263737e9af4f646eed05795cabcc0da870b43857c316ce31f9d6441d485ee7f6",
+    "src/nino_rl/nino_rl/coverage_study_plan.py": "2a9031c487e05abced148d5d1dd61ffa6ab4ad0a5e28708521ad8be60b332b2c",
+    "src/nino_rl/nino_rl/residual_coverage_study.py": "82e3a9db9f72f0713b5dc61e31a72090b78f62d89d6ad710a996b03e057fa99b",
+    "src/nino_rl/config/residual_coverage_study_v1.json": "a783ad202b8491e4cd5ad89905814fe2469199d36b980af0a0311a1ee6262671",
+    "src/nino_rl/config/residual_coverage_release_v1.json": "4c84e694f703ac0284f6ab92a9c54e58d49c5106af40002d4505fed9c4aed4e5",
+    "src/nino_pi/nino_pi/research_panel.py": "74ff3d78fae3bcca4064eb9ea209bb0b74127d682fec6911e93691d1fa3a6cda",
+    "src/nino_pi/nino_pi/research_jobs.py": "21c5db4fbcead0f7348c438df883d3995227bfbdb803c2954c95c2fe9b18460f",
+    "src/nino_pi/nino_pi/research_plan.json": "ec2fc7b595e95cb856feadabb498d70ce1c93f2e4837570e64f1d5ea0e3c984d",
+    "src/nino_pi/nino_pi/project_evidence.json": "27e82fd359d194b97cd7e12d6dd626622f80005a9b97280f12a2c41959f3b955"
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "date": "2026-11-05",
+  "status": "frozen_axis_ablation_complete_not_promoted",
+  "protocol_id": "nino_frozen_v3_axis_ablation_v1_2026_11_05",
+  "ablation_fingerprint": "1c7111598ad1460036ce6e9a132be4e2854beedbd5125051ea40e4611b408266",
+  "ablation_artifact": "/home/tuanmac/nino_research/sim_axis_ablation_v1/20261105T033454594138Z_sim-axis-ablation",
+  "manifest_sha256": "ba29ee55433801b4ea8ee1b488f0617963cbd95decef829ab74e889afa883a09",
+  "frozen_checkpoint": "/home/tuanmac/nino_research/sim_guided_td3_v3/20261105T022329071579Z_sim-v3-train",
+  "frozen_checkpoint_manifest_sha256": "8cc9cbeafeea220074638185535d7a23d6a84156424b2e2a8f656414c6e71578",
+  "frozen_learner_fingerprint": "861290d674c5dd7a9aa0cd8690896b1f59ceaf3cd6a4e9bcd34e8e2f07c482d9",
+  "artifact_files_verified": 91,
+  "frozen_checkpoint_files_verified": 53,
+  "physics_requests": 1740,
+  "physics_retries": 0,
+  "parameter_readbacks": 12,
+  "proposal_rows_checked": 840,
+  "causal_estimator_updates": 4200,
+  "causal_support_checks_pass": true,
+  "training_transitions": 0,
+  "optimizer_updates": 0,
+  "evaluation_transitions": 840,
+  "evaluation_runs": 6,
+  "actor_inference_calls": 560,
+  "task_and_stop_successes": 6,
+  "functional_proposal_passes": 6,
+  "ranges": {
+    "B0": {
+      "cross_track_rmse_m": [
+        0.00010125227648071865,
+        0.00011006966297658409
+      ],
+      "nominal_velocity_rmse_m_s": [
+        0.004960670445711071,
+        0.005293712947522108
+      ],
+      "maximum_cross_track_m": [
+        0.0001438381260422145,
+        0.00016723980639402625
+      ],
+      "nominal_yaw_rate_rmse_rad_s": [
+        0.000365021576508709,
+        0.000620895449868175
+      ],
+      "maximum_estimator_position_error_m": [
+        0.002679027466715591,
+        0.003426760539824815
+      ]
+    },
+    "TD3_full": {
+      "cross_track_rmse_m": [
+        0.012110596707040185,
+        0.012137959201959501
+      ],
+      "nominal_velocity_rmse_m_s": [
+        0.005805502170691428,
+        0.006026257514619445
+      ],
+      "maximum_cross_track_m": [
+        0.018445455251011628,
+        0.018514651368320534
+      ],
+      "nominal_yaw_rate_rmse_rad_s": [
+        0.023720633690312794,
+        0.024661553519616658
+      ],
+      "maximum_estimator_position_error_m": [
+        0.0027910210227814363,
+        0.0034516704281189587
+      ]
+    },
+    "TD3_common_only": {
+      "cross_track_rmse_m": [
+        3.0120987968470942e-05,
+        0.000518402874759507
+      ],
+      "nominal_velocity_rmse_m_s": [
+        0.006010349002063431,
+        0.006364307856157577
+      ],
+      "maximum_cross_track_m": [
+        4.346055181032965e-05,
+        0.0008074644555453273
+      ],
+      "nominal_yaw_rate_rmse_rad_s": [
+        8.020336860458142e-05,
+        0.0009679774314936751
+      ],
+      "maximum_estimator_position_error_m": [
+        0.0032860129879349253,
+        0.009330685048860221
+      ]
+    }
+  },
+  "phase_analysis_post_hoc": true,
+  "primary_whole_task_unchanged": true,
+  "training_dataset_compatible": false,
+  "outer_exec_returncode": 143,
+  "outer_exit_zero_verified": false,
+  "sealed_job_status": "completed",
+  "lifecycle_note": "Outer exec returned 143 after completed event. All six sealed traces/summary hashes pass; no retry or exit-zero claim.",
+  "tests": {
+    "sim_tests": {
+      "tests": 74,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "gui_tests": {
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "colcon_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "installed_source_matches": true,
+  "gui": {
+    "ablation_rows": 6,
+    "columns": 10,
+    "progress": 100,
+    "completed_batch_disabled": true,
+    "job_started_on_open": false,
+    "history": {
+      "5": {
+        "rows": 8,
+        "verified": true
+      },
+      "4": {
+        "rows": 4,
+        "verified": true
+      },
+      "3": {
+        "rows": 8,
+        "verified": true
+      },
+      "2": {
+        "rows": 4,
+        "verified": true
+      },
+      "0": {
+        "rows": 6,
+        "verified": true
+      },
+      "1": {
+        "rows": 3,
+        "verified": true
+      }
+    },
+    "full_job_states_preserved": true,
+    "raw_b0_unavailable_not_zero": true,
+    "masked_differential_displayed": true,
+    "phase_diagnostic_displayed": true,
+    "hardware_actions": 0
+  },
+  "source_snapshot_files": 90,
+  "source_snapshot_sha256": "7b7a3302c28eb98d8c49dac665a5afb85b284aa6d25f90f72637d2970b3721d5",
+  "owned_sim_processes_remaining": [],
+  "hardware_actions": 0,
+  "real_datasets_added": 0,
+  "benefit_verified": false,
+  "next_recommendation": "Keep guided B0. Proposed next bounded comparison: B0 / fixed common +0.005m/s with known-stop withdrawal / frozen common-only; max6 launches, zero optimizer, draft not executed.",
+  "qa_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_axis_ablation_2026-11-05"
+}

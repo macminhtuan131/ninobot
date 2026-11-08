@@ -1,0 +1,22 @@
+schema_version: 1
+protocol_id: nino_frozen_v3_axis_ablation_v1_2026_11_05
+action: sim-axis-ablation
+scenario: clear_box
+training_transitions: 0
+optimizer_updates: 0
+hardware_actions: 0
+maximum_transitions: 840
+steps_per_rollout: 140
+checkpoint_run: 20261105T022329071579Z_sim-v3-train
+checkpoint_manifest_sha256: 8cc9cbeafeea220074638185535d7a23d6a84156424b2e2a8f656414c6e71578
+checkpoint_task_fingerprint: 861290d674c5dd7a9aa0cd8690896b1f59ceaf3cd6a4e9bcd34e8e2f07c482d9
+order:
+  - {arm: B0, repeat: 0}
+  - {arm: TD3_full, repeat: 0}
+  - {arm: TD3_common_only, repeat: 0}
+  - {arm: TD3_common_only, repeat: 1}
+  - {arm: TD3_full, repeat: 1}
+  - {arm: B0, repeat: 1}
+wall_deadline_s: 1800
+minimum_effect_accepted: null
+note: Frozen deterministic actor; mask only normalized differential residual before projection. Keep baseline yaw. Raw actor and controller proposals separate; no replay/training. Path separation is descriptive, not an accepted system-benefit gate.

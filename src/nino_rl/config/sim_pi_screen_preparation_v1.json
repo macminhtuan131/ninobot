@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "id": "nino_sim_pi_screen_preparation_v1_2026_11_07",
+  "physics_released": false,
+  "training_released": false,
+  "hardware_authorized": false,
+  "arm": "B0",
+  "common_gain": 1.0,
+  "ki_conditions": [
+    0.1,
+    0.15
+  ],
+  "kp": 0.3,
+  "proposed_order": [
+    0.1,
+    0.15,
+    0.15,
+    0.1
+  ],
+  "proposed_max_launches": 4,
+  "proposed_max_evaluation_ticks": 560,
+  "allocated_physics_slots": 0,
+  "source_stop_s": 8.0,
+  "horizon_s": 14.0,
+  "native_dt_s": 0.1,
+  "minimum_relative_improvement": 0.05,
+  "minimum_improvement_is_proposed": true,
+  "additional_smokes": 0,
+  "retries": 0,
+  "source_dynamics_manifest_sha256": "da0c20ff6deb089e52353c9d984f1c4c4178b302f23ffc48bbc58c079b22a2ab"
+}

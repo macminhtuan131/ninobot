@@ -34,6 +34,8 @@ class StudioPanel(Q.QWidget):
             ('body_reference','Reference thân xe / video / sync','unknown')]:
             field=Q.QLineEdit(default);self.fields[key]=field;form.addRow(name,field)
         content.addLayout(form)
+        self.reference_button=Q.QPushButton('Reference bánh/thân · gắn video với session đã thu')
+        self.reference_button.clicked.connect(self.open_body_reference);content.addWidget(self.reference_button)
         self.confirm=Q.QCheckBox('Tôi xác nhận metadata và điều kiện quan sát; Studio chỉ ghi. Không reboot cho tới khi bag đóng.')
         content.addWidget(self.confirm)
         self.telemetry=Q.QTableWidget(0,6);self.telemetry.setHorizontalHeaderLabels(['Topic','Mẫu observer','Hz nhận','Tuổi nhận (s)','Bắt buộc','Pub'])
@@ -66,6 +68,11 @@ class StudioPanel(Q.QWidget):
     def metadata(self):
         return dict({key:field.text().strip() for key,field in self.fields.items()},
             scenario=self.scenario.currentData(),storage=self.storage.currentText(),conditions_confirmed=self.confirm.isChecked())
+
+    def open_body_reference(self):
+        from .body_reference_panel import BodyReferenceDialog
+        dialog=BodyReferenceDialog(self,session=self.local)
+        dialog.exec_()
 
     def invalidate(self,*args):
         self.checked=False;self.ready=False;self.refresh()
@@ -184,6 +191,7 @@ class StudioPanel(Q.QWidget):
         if not busy and identity!=self.connection_key:
             self.connection_key=identity;self.installed=False;self.checked=False;self.ready=False;self.session=None
         self.primary.setEnabled(not locked)
+        self.reference_button.setEnabled(not locked)
         self.primary.setText('1 · Chuẩn bị observer trên Pi' if not self.installed else
             '2 · Kiểm sensor / storage / disk' if not self.checked or not self.ready else '3 · Bắt đầu ghi 60 giây')
         if not busy:

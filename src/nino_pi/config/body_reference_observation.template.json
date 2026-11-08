@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "purpose": "Wheel/body diagnostic evidence form; not runtime configuration or a motion release",
+  "protocol": "NINO_BODY_REFERENCE_DIAGNOSTIC_DRAFT_2026-11-07",
+  "motion_released": false,
+  "session_id": null,
+  "bag_manifest_sha256": null,
+  "videos": [],
+  "video_entry_fields": ["path", "sha256", "camera_id", "width_px", "height_px", "frame_pts_available", "nominal_fps", "clock_domain", "continuous", "wheel_left_visible", "wheel_right_visible", "body_marker_visible", "fixed_landmark_visible"],
+  "setup_photo": null,
+  "surface_payload_pose_caster_note": null,
+  "observations": {
+    "wheel_left_rotation": null,
+    "wheel_right_rotation": null,
+    "body_translation": null,
+    "stopped_without_intervention": null,
+    "operator_intervention": null,
+    "observer_note": null
+  },
+  "observation_vocabulary": ["observed", "not_observed", "ambiguous", "not_visible"],
+  "not_observed_meaning": "No motion visibly resolved at this setup's resolution; not proof of physical zero",
+  "reference": {
+    "level": "unassessed",
+    "calibration_plane": null,
+    "scale_m_per_px": null,
+    "perspective_distortion_method": null,
+    "position_uncertainty_m": null,
+    "sync_cue": null,
+    "sync_independent_of_wheel_or_imu_response": null,
+    "clock_offset_s": null,
+    "clock_drift_bound": null,
+    "sync_uncertainty_s": null,
+    "body_displacement_m": null,
+    "body_speed_m_s": null,
+    "ros_to_body_latency_s": null,
+    "slip": null
+  },
+  "qc": {
+    "same_session_link_verified": null,
+    "raw_integrity_verified": null,
+    "command_window_valid": null,
+    "physical_motion_verdict": "unknown",
+    "quantitative_body_reference_valid": false,
+    "eligible_for_slip": false,
+    "eligible_for_td3_replay": false,
+    "reasons": []
+  }
+}

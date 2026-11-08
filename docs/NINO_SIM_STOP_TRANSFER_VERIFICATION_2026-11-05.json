@@ -1,0 +1,303 @@
+{
+  "date": "2026-11-05",
+  "protocol_id": "nino_classical_stop_schedule_transfer_v1_2026_11_05",
+  "status": "stop_transfer_descriptive_signal_not_promoted",
+  "artifact": "/home/tuanmac/nino_research/sim_stop_transfer_v1/20261105T075810956156Z_sim-stop-transfer",
+  "manifest_sha256": "3d1c4609a88327a6c63eaa18f350c6c07c62f0dece0440b03b10e3c63adede13",
+  "fingerprint": "43e0f6eb3912dffdd3255cac7e54d3622b0b130476ee531d2574251ef37e006d",
+  "parent_fingerprint": "02a7fc89d1614a44685ca15abc8a88ad4ca4caf925911369312d7f81263dba07",
+  "files_verified": 103,
+  "frozen_history_checkpoint_files_verified": 53,
+  "checkpoint_manifest_sha256": "8cc9cbeafeea220074638185535d7a23d6a84156424b2e2a8f656414c6e71578",
+  "physics_requests": 1740,
+  "physics_retries": 0,
+  "parameter_readbacks": 12,
+  "trace_rows": 840,
+  "causal_estimator_updates": 4200,
+  "evaluation_runs": 6,
+  "evaluation_transitions": 840,
+  "training_transitions": 0,
+  "optimizer_updates": 0,
+  "actor_inference_calls": 0,
+  "hardware_actions": 0,
+  "real_data_added": 0,
+  "task_stop_successes": 6,
+  "functional_proposal_passes": 6,
+  "nominal_adapter_scorer_parity": true,
+  "descriptive_transfer_signal": true,
+  "benefit_verified": false,
+  "minimum_effect_accepted": null,
+  "ranges": {
+    "B0": {
+      "nominal_velocity_rmse_m_s": [
+        0.00478238219789983,
+        0.005073957833373534
+      ],
+      "cross_track_rmse_m": [
+        8.91163203144193e-06,
+        2.4883858745888488e-05
+      ],
+      "maximum_cross_track_m": [
+        1.185627415130216e-05,
+        4.989971143387707e-05
+      ],
+      "maximum_estimator_position_error_m": [
+        0.0025716491917922267,
+        0.002962128606295934
+      ],
+      "steady_velocity_rmse_m_s": [
+        0.00641180924377719,
+        0.006882324841161476
+      ],
+      "deceleration_velocity_rmse_m_s": [
+        0.005377035352268355,
+        0.006156280849203297
+      ]
+    },
+    "Classical_scheduled": {
+      "nominal_velocity_rmse_m_s": [
+        0.003715821890020572,
+        0.0038734046732155666
+      ],
+      "cross_track_rmse_m": [
+        2.4327311081363274e-05,
+        0.0001566959044385472
+      ],
+      "maximum_cross_track_m": [
+        3.111183226509847e-05,
+        0.00019795678171071049
+      ],
+      "maximum_estimator_position_error_m": [
+        0.002937241122405888,
+        0.009368267096098627
+      ],
+      "steady_velocity_rmse_m_s": [
+        0.0025484071093679417,
+        0.002909470370197892
+      ],
+      "deceleration_velocity_rmse_m_s": [
+        0.005430922000365859,
+        0.005792545604552259
+      ]
+    }
+  },
+  "native_ratio_of_mean_rmse_classical_vs_B0": -0.2308888271565923,
+  "timestamp_diagnostic": {
+    "predeclared": true,
+    "grids_s": [
+      0.02,
+      0.02
+    ],
+    "shifts_s": [
+      0.0,
+      0.01
+    ],
+    "body_interpolated": false,
+    "primary_native_unchanged": true,
+    "runs": [
+      {
+        "condition": {
+          "arm": "B0",
+          "repeat": 0,
+          "scenario": "clear_box"
+        },
+        "diagnostic": {
+          "valid": true,
+          "header_grid": {
+            "0.0": {
+              "samples": 696,
+              "unique_truth_samples": 696,
+              "rmse_m_s": 0.006634248437156779,
+              "maximum_support_age_s": 0.016000000000005343
+            },
+            "0.01": {
+              "samples": 695,
+              "unique_truth_samples": 695,
+              "rmse_m_s": 0.006639019562143946,
+              "maximum_support_age_s": 0.00600000000000378
+            }
+          },
+          "post_hoc": false,
+          "primary_native_unchanged": true,
+          "body_interpolated": false,
+          "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+        }
+      },
+      {
+        "condition": {
+          "arm": "Classical_scheduled",
+          "repeat": 0,
+          "scenario": "clear_box"
+        },
+        "diagnostic": {
+          "valid": true,
+          "header_grid": {
+            "0.0": {
+              "samples": 696,
+              "unique_truth_samples": 696,
+              "rmse_m_s": 0.005686783774916078,
+              "maximum_support_age_s": 0.010000000000005116
+            },
+            "0.01": {
+              "samples": 695,
+              "unique_truth_samples": 695,
+              "rmse_m_s": 0.0056908720934610345,
+              "maximum_support_age_s": 3.552713678800501e-15
+            }
+          },
+          "post_hoc": false,
+          "primary_native_unchanged": true,
+          "body_interpolated": false,
+          "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+        }
+      },
+      {
+        "condition": {
+          "arm": "Classical_scheduled",
+          "repeat": 1,
+          "scenario": "clear_box"
+        },
+        "diagnostic": {
+          "valid": true,
+          "header_grid": {
+            "0.0": {
+              "samples": 696,
+              "unique_truth_samples": 696,
+              "rmse_m_s": 0.005670984413212949,
+              "maximum_support_age_s": 0.00600000000000378
+            },
+            "0.01": {
+              "samples": 695,
+              "unique_truth_samples": 695,
+              "rmse_m_s": 0.005675062791599289,
+              "maximum_support_age_s": 0.016000000000005343
+            }
+          },
+          "post_hoc": false,
+          "primary_native_unchanged": true,
+          "body_interpolated": false,
+          "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+        }
+      },
+      {
+        "condition": {
+          "arm": "B0",
+          "repeat": 1,
+          "scenario": "clear_box"
+        },
+        "diagnostic": {
+          "valid": true,
+          "header_grid": {
+            "0.0": {
+              "samples": 696,
+              "unique_truth_samples": 696,
+              "rmse_m_s": 0.006313330059773246,
+              "maximum_support_age_s": 0.002000000000005997
+            },
+            "0.01": {
+              "samples": 695,
+              "unique_truth_samples": 695,
+              "rmse_m_s": 0.006317869205938871,
+              "maximum_support_age_s": 0.012000000000004007
+            }
+          },
+          "post_hoc": false,
+          "primary_native_unchanged": true,
+          "body_interpolated": false,
+          "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+        }
+      },
+      {
+        "condition": {
+          "arm": "B0",
+          "repeat": 2,
+          "scenario": "clear_box"
+        },
+        "diagnostic": {
+          "valid": true,
+          "header_grid": {
+            "0.0": {
+              "samples": 696,
+              "unique_truth_samples": 696,
+              "rmse_m_s": 0.006954225021314403,
+              "maximum_support_age_s": 0.019000000000005457
+            },
+            "0.01": {
+              "samples": 695,
+              "unique_truth_samples": 695,
+              "rmse_m_s": 0.006959226262537109,
+              "maximum_support_age_s": 0.009000000000003894
+            }
+          },
+          "post_hoc": false,
+          "primary_native_unchanged": true,
+          "body_interpolated": false,
+          "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+        }
+      },
+      {
+        "condition": {
+          "arm": "Classical_scheduled",
+          "repeat": 2,
+          "scenario": "clear_box"
+        },
+        "diagnostic": {
+          "valid": true,
+          "header_grid": {
+            "0.0": {
+              "samples": 696,
+              "unique_truth_samples": 696,
+              "rmse_m_s": 0.005876775731474156,
+              "maximum_support_age_s": 0.015000000000004121
+            },
+            "0.01": {
+              "samples": 695,
+              "unique_truth_samples": 695,
+              "rmse_m_s": 0.005881002107951012,
+              "maximum_support_age_s": 0.005000000000002558
+            }
+          },
+          "post_hoc": false,
+          "primary_native_unchanged": true,
+          "body_interpolated": false,
+          "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+        }
+      }
+    ]
+  },
+  "tests": {
+    "contract_tests": {
+      "tests": 16,
+      "failures": 0,
+      "errors": 0
+    },
+    "gui_tests": {
+      "tests": 16,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "build_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "installed_source_matches": true,
+  "gui": {
+    "default_profile_index": 8,
+    "profiles": 9,
+    "rows": 6,
+    "columns": 10,
+    "closed_budget_button_disabled": true,
+    "no_auto_job": true,
+    "training_tab_retained": true,
+    "next": "ĐỢT TRANSFER ĐÃ ĐÓNG · 6/6 lượt, 840/840 ticks; optimizer/actor0. Có separation mô tả ở native và cả hai grids; chưa promote vì minimum worthwhile effect chưa chốt.\nBước tiếp: chốt contract so TD3/cổ điển cùng preview lịch dừng; chưa mở optimizer. Contact/H2 và robot thật chưa kết luận.",
+    "status": "KNOWN STOP TRANSFER · +0,005m/s sau nominal steady; withdraw=stop−0,5s=5,5s, source stop6s. Backend / guidance / scorer đồng bộ. Primary toàn14s native100ms; diagnostic GT-header20ms/+10ms giữ riêng, không nội suy body. Ba fresh launches/arm là pilot mô tả, không exact-state pairing hoặc generalization. B0 đối chứng; không actor/optimizer/hardware."
+  },
+  "source_snapshot_files": 95,
+  "source_snapshot_sha256": "685195d219f6c75d09634b68939a5510a52ab99fdb3c05ab0146f4764a33d6e4",
+  "source_change_note": "Scientific sources verified against prelaunch snapshot. GUI presentation, current roadmap and result documents updated after immutable batch closure; parent protocol modules/config/scripts unchanged.",
+  "owned_sim_processes_remaining": [],
+  "outer_exec_returncode": 0,
+  "qa_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_stop_transfer_2026-11-05",
+  "next_recommendation": "Offline equal-information TD3/classical contract with remaining gap and accepted evaluation objective; no new optimizer/physics budget released."
+}

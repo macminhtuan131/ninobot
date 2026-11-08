@@ -43,7 +43,7 @@ class GuiTests(unittest.TestCase):
         w = self.window
         panel = w.project_panel
         self.assertIsNone(w.process)
-        self.assertEqual(w.tabs.count(), 4)
+        self.assertEqual(w.tabs.count(), 5)
         self.assertEqual(panel.tables[0][2].rowCount(), 30)
         panel.search.setText("gyro")
         table = panel.tables[1][2]

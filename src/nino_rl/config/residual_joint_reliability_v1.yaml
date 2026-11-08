@@ -1,0 +1,42 @@
+schema_version: 1
+protocol_id: nino_joint_reliability_candidate_v1_2026_11_06
+parent_fingerprint: 5798d9939f1fdc5419315f8ea6d87f04616cda6a8dc879ee5d6787a20ce015a1
+parent_manifest_sha256: 8a9bb3fc9cfb2769fdd9859bf05145d899914099bcd422b3c55ed008ab603d8f
+fixture:
+  messages: 1000
+  handshake_messages: 1
+  source_rate_hz: 500
+  source_first_stamp_ns: 10000000000
+  handshake_stamp_ns: 9000000000
+  domain_id: 139
+  reader_depth: 100
+  discovery_quiet_s: 0.2
+  start_lead_s: 0.2
+  pause_after_messages: 500
+  pause_duration_s: 0.1
+  maximum_pause_duration_s: 0.2
+  maximum_pause_start_lag_s: 0.04
+  minimum_source_messages_during_pause: 40
+  maximum_source_messages_during_pause: 100
+  maximum_publish_call_s: 0.1
+  maximum_source_interval_s: 0.04
+  final_drain_quiet_s: 0.1
+  wall_deadline_s: 120
+qualification:
+  scenario: clear_box
+  source_stop_order_s: [6.0, 8.0]
+  launches_maximum: 2
+  steps_per_rollout: 140
+  maximum_transitions: 280
+  wall_deadline_s: 1200
+  selection_rule: compatible_reliable_reader_then_functional_B0_qualification_only
+maximum_support_age_ns: 40000000
+feedback_deadline_s: 5.0
+observer_ipc_grace_s: 1.0
+observer_start_deadline_s: 15.0
+training_transitions: 0
+optimizer_updates: 0
+actor_inference_calls: 0
+hardware_actions: 0
+training_released: false
+minimum_effect_accepted: null

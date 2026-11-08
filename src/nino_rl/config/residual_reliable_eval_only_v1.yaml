@@ -1,0 +1,60 @@
+schema_version: 1
+protocol_id: nino_reliable_eval_only_v1_2026_11_06
+action: sim-reliable-eval-only
+scenario: clear_box
+parent_artifact: 20261106T022633802858Z_sim-reliable-td3
+parent_manifest_sha256: bb6293d9d5e62b1f63646e805e6b67dc9f712fc570ecbe2fa29b75de629ff053
+parent_fingerprint: 659254596ac139709828d9f8fb64fba51c191fafbae857bb25996bbfe887ff46
+expected_parent_error: '''GuidedBackend'' object has no attribute ''namespace'''
+checkpoint_sha256:
+  11: d16d482355ec9ec5d92d3072611b2ef50c699257335eb4f869948699336bbf0e
+  22: ae4aa3e7984fd6cf60db8e58d784abf4a33b3670a2c660c8e1654dc5cd7e5931
+  33: e236885f743ce9fbf089459a32201bbcba00e54be7155afac5d026a70bd88af3
+replay_sha256:
+  11: 07dfee454f89d7340388a995c7cc34f2a20b42c8deb45aae9b2bfe592286edc1
+  22: 976d37681369bbfade7ce17d16cf321db2c26b2f3d3f8cefb10e9905cddd3c17
+  33: 22b5dedf04f8b039689a906a86430707f051108555a75b0f330339e1b2879942
+abi_sha256: b8c71ccb876cb6f2f5ab66d08d74d9b3d8cfdbfac22ccfc3b326da16b5a2e6e0
+evaluation_released_for_this_job_only: true
+training_transitions: 0
+optimizer_updates: 0
+hardware_actions: 0
+resume_allowed: false
+minimum_effect_accepted: null
+steps_per_episode: 140
+maximum_evaluation_transitions: 1400
+maximum_gazebo_launches: 10
+wall_deadline_s: 1800
+native_boundary_support_s: 0.04
+maximum_support_age_ns: 40000000
+feedback_deadline_s: 5.0
+observer_ipc_grace_s: 1.0
+observer_start_deadline_s: 15.0
+training_episodes_per_seed_maximum: 1
+evaluation_order:
+- arm: B0
+  source_stop_s: 6.0
+- arm: TD3
+  seed: 11
+  source_stop_s: 6.0
+- arm: Classical_scheduled
+  source_stop_s: 8.0
+- arm: TD3
+  seed: 22
+  source_stop_s: 8.0
+- arm: TD3
+  seed: 33
+  source_stop_s: 6.0
+- arm: Classical_scheduled
+  source_stop_s: 6.0
+- arm: TD3
+  seed: 11
+  source_stop_s: 8.0
+- arm: B0
+  source_stop_s: 8.0
+- arm: TD3
+  seed: 22
+  source_stop_s: 6.0
+- arm: TD3
+  seed: 33
+  source_stop_s: 8.0

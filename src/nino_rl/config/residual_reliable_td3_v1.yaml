@@ -1,0 +1,75 @@
+schema_version: 1
+protocol_id: nino_reliable_td3_pilot_v1_2026_11_06
+action: sim-reliable-td3
+qualification_fingerprint: f172f89ad897828aeda84776b66ed9584a8784d79bd5f0c8557c69beba6d0e6a
+abi_sha256: b8c71ccb876cb6f2f5ab66d08d74d9b3d8cfdbfac22ccfc3b326da16b5a2e6e0
+training_released_for_this_pilot_only: true
+scenario: clear_box
+learner_seeds:
+- 11
+- 22
+- 33
+training_transitions_per_seed: 1024
+training_transitions_maximum: 3072
+training_episodes_per_seed_maximum: 8
+steps_per_episode: 140
+training_stop_schedule_s:
+- 6.0
+- 8.0
+evaluation_transitions_maximum: 1400
+maximum_control_transitions: 4472
+maximum_gazebo_launches: 34
+wall_deadline_s: 5400
+native_boundary_support_s: 0.04
+hardware_actions: 0
+minimum_effect_accepted: null
+resume_allowed: false
+algorithm:
+  learning_rate: 0.0003
+  gamma: 0.99
+  tau: 0.005
+  batch_size: 32
+  buffer_size: 8192
+  learning_starts: 64
+  train_freq: 1
+  gradient_steps: 1
+  policy_delay: 2
+  target_policy_noise: 0.2
+  target_noise_clip: 0.5
+  exploration_sigma: 0.1
+  network_arch:
+  - 32
+  - 32
+evaluation_order:
+- arm: B0
+  source_stop_s: 6.0
+- arm: TD3
+  seed: 11
+  source_stop_s: 6.0
+- arm: Classical_scheduled
+  source_stop_s: 8.0
+- arm: TD3
+  seed: 22
+  source_stop_s: 8.0
+- arm: TD3
+  seed: 33
+  source_stop_s: 6.0
+- arm: Classical_scheduled
+  source_stop_s: 6.0
+- arm: TD3
+  seed: 11
+  source_stop_s: 8.0
+- arm: B0
+  source_stop_s: 8.0
+- arm: TD3
+  seed: 22
+  source_stop_s: 6.0
+- arm: TD3
+  seed: 33
+  source_stop_s: 8.0
+candidate_fingerprint: e2e0748afe1b560e1b00ee847029e5481d8654a84f7187d711750fe173bc10a8
+candidate_manifest_sha256: 629f0c636309b18bcbe391f3550424bfbb0fb28d6adff1967ce5de94479d056a
+observer_start_deadline_s: 15.0
+feedback_deadline_s: 5.0
+observer_ipc_grace_s: 1.0
+maximum_support_age_ns: 40000000

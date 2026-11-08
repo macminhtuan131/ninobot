@@ -1,0 +1,30 @@
+schema_version: 1
+protocol_id: nino_guided_zero_residual_contact_v1_2026_11_05
+action: sim-guided-contact
+training_transitions: 0
+hardware_actions: 0
+maximum_transitions: 560
+steps_per_rollout: 140
+horizon_s: 14.0
+command_until_s: 8.0
+warmup_s: 0.5
+path_length_m: 3.0
+initial_pose_m_rad: [0.0, 0.0, 0.0]
+order:
+  - {arm: guided, path_bearing_deg: 0.0, repeat: 0, scenario: clear_box}
+  - {arm: guided, path_bearing_deg: 0.0, repeat: 0, scenario: box_c1_6mm}
+  - {arm: guided, path_bearing_deg: 0.0, repeat: 1, scenario: box_c1_6mm}
+  - {arm: guided, path_bearing_deg: 0.0, repeat: 1, scenario: clear_box}
+estimator:
+  maximum_gap_s: 0.04
+  gyro_bias_rad_s: 0.0
+  maximum_buffer: 4096
+functional_proposals:
+  maximum_guided_cross_track_m: 0.04
+  maximum_estimator_position_error_m: 0.05
+  maximum_estimator_yaw_error_rad: 0.05
+  local_progress_marker_m: 0.95
+stop_on_functional_gate_failure: true
+wall_deadline_s: 1200
+minimum_effect_accepted: null
+note: Diagnostic screen, not an RL benefit test. A functional failure closes remaining slots; source/physics/guidance failure fails the job. No retry, added samples or threshold changes.

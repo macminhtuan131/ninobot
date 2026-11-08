@@ -1,3 +1,37 @@
+> **Cập nhật mới07/11:** Studio mặc định common103D/1D; smoke64 đạt48critic/24actor updates. Pilot20k chưa chạy do dung lượng. [Chi tiết](../../docs/NINO_COMMON_STUDIO_PILOT_2026-11-07.md). Các đoạn100D/2D dưới đây là legacy.
+
+> **07/11 — Training trong Studio:** mở tab **Train TD3 · Sim**; không cần GUI training riêng. Smoke, timesteps, checkpoint, TensorBoard và editor tham số dùng trong cùng ứng dụng. [Hướng dẫn](../../docs/NINO_STUDIO_TRAINING_INTEGRATION_2026-11-07.md).
+
+> **Mới nhất06/11 — Gain baseline Gazebo đã đóng9/9:** 1.260ticks;283hashes/3.834support checks đạt,0actor/train. Causal/fixed native: +23,0% tại1; +29,8% tại0,98; −15,3% tại1,02. SoB0 còn sampling-sensitive ở1/0,98; chưa promote/learner. Tiếp correction estimator cổ điển offline. [Kết quả](../../docs/NINO_SIM_GAIN_BASELINE_RESULT_2026-11-06.md). Các đoạn dưới giữ lịch sử.
+
+> **Mới nhất06/11 — Reset drive ACK qualification đạt2/2:** candidate gate giữcap5s,20zero ticks,0actor/optimizer;68hashes/72support checks/closure đạt. ACK muộn mới kiểm bằngfixture,không suy general reliability. Tiếp thiết kế eval-only A/B0/cổ điển,khôngtrain mới. [Kết quả](../../docs/NINO_SIM_DRIVE_READINESS_RESULT_2026-11-06.md). Các cập nhật dưới giữ lịch sử.
+
+> **Mới nhất06/11 — Coverage V2 đã đóng:** A seed11 hoàn tất, C seed11 partial; **1.864 replay /1.736 critic /868 actor updates,0eval**,15launches;49slot còn lại đóng. Lỗi initial drive readiness/permission, không phải thiếu joint của observer. Candidate correction chỉ kiểm offline; [kết quả](../../docs/NINO_SIM_COVERAGE_V2_RESULT_2026-11-06.md). Các cập nhật dưới giữ lịch sử.
+
+> **Cập nhật06/11 — Coverage V2:** runner mới đã nối metadata vào full train path; preflight qua GUI **80 tests đạt**, GUI **54 tests đạt**, build2package. Chưa release physics hoặc có scientific train/eval mới. V1 vẫn đóng; [kết quả V2](../../docs/NINO_SIM_COVERAGE_V2_IMPLEMENTATION_2026-11-06.md). Các cập nhật dưới giữ lịch sử.
+
+> **Sim06/11 — coverage V1 đã đóng:** [kết quả](../../docs/NINO_SIM_COVERAGE_RESULT_2026-11-06.md); thiếu metadata qualification_condition ở tick đầu.1launch/0replay/update/eval,không retry hoặc chạy bù. Correction riêng kiểm offline,chưa V2/hardware.
+
+> **Sim06/11 — coverage runner/preflight:** [implementation](../../docs/NINO_SIM_COVERAGE_IMPLEMENTATION_2026-11-06.md); sampler/replay/optimizer/evaluator và GUI đã kiểm91tests. Profile Critic/coverage có preflight offline đạt, study chưa release. Scientific training/Gazebo/hardware mới0; kết quả cũ vẫn ưu tiên classical/B0.
+
+> Cập nhật06/11: evaluation-only mới đã đóng, dùng ba checkpoint TD3 có sẵn; không train thêm. Xem [kết quả](../../docs/NINO_SIM_RELIABLE_EVAL_ONLY_RESULT_2026-11-06.md) và [protocol](../../docs/NINO_SIM_RELIABLE_EVAL_ONLY_PROTOCOL_2026-11-06.md). Chưa promote/hardware.
+
+> Cập nhật06/11: pilot TD3 RELIABLE với lifecycle từng episode đã đóng; xem [kết quả](../../docs/NINO_SIM_RELIABLE_TD3_RESULT_2026-11-06.md) và [protocol](../../docs/NINO_SIM_RELIABLE_TD3_PROTOCOL_2026-11-06.md). Chưa promote hoặc mở training/hardware mới.
+
+> **Cập nhật06/11 — candidate joint RELIABLE:** fixturepaired1000messages +1handshake/pause100ms đạtcompatibility, cảBE/RELIABLE1000/1000; candidateB0stop6/8 đạt2launches/280ticks. GUI hai nút cógate +QC/metric;khóa stageđãđóng. Chưa optimizerload/training hoặc rootcauseproof, partialTD3700ticks giữ. Tiếp learnerfresh103D/1D protocol riêng. [Kết quả](../../docs/NINO_SIM_JOINT_RELIABILITY_RESULT_2026-11-06.md).
+
+> **Cập nhật06/11 — joint diagnostic đã đóng2/2:**200zero ticks/612checks đủsupport; hai observer trùng15.220source stamps, payloadfield không lệch. Chưa tái hiện50ms, nguyênnhânunknown; khôngtraining/hardware hoặc reopenpartialTD3. GUI có profile và bảngage/parity/error. Tiếp tốiđa mộtcandidateQoSjointRELIABLE riêng, chưa áp/chạy. [Kết quả](../../docs/NINO_SIM_JOINT_BOUNDARY_RESULT_2026-11-06.md).
+
+> **Cập nhật06/11/2026 — TD3 common103D/1D đã train partial:**700ticks/636critic +318actor updates,5training episodes đạt task/stop. Episode6 thiếu joint support50ms tại half-tick zero; batch đóng, seed22/33 +10eval chưa chạy. GUI có profile riêng và partial/error review, khóa retry. Chưa có learned-benefit comparison hoặc hardware. Xem [kết quả](../../docs/NINO_SIM_COMMON_TD3_RESULT_2026-11-06.md).
+
+> **05/11 — wrapper103D/1D đã đạt Gazebo:**4/4launches,560ticks,replay560rows,actor/optimizer0. [Kết quả](../../docs/NINO_SIM_EQUAL_GAZEBO_RESULT_2026-11-05.md). Bước tiếp: fresh TD3 common-only pilot theo draft mới; chưa train hoặc resume V3.
+
+> **05/11 — contract cùng preview đã đạt offline:**103D/1D common-only, shared window và requested replay;840bước fixture tổng hợp,optimizer/Gazebo0. Không resume V3. [Kết quả](../../docs/NINO_SIM_EQUAL_INFORMATION_RESULT_2026-11-05.md). Bước tiếp: kiểm wrapper mới trong Gazebo theo protocol riêng, chưa chạy.
+
+> **05/11 — stop-time transfer đã xong:** 6/6 lượt,840ticks,actor/optimizer0. Common cổ điển có RMSE v thấp hơn cả3 B0 trên native và hai GT-header grids; giữ candidate, chưa promote. [Kết quả](../../docs/NINO_SIM_STOP_TRANSFER_RESULT_2026-11-05.md). Tiếp: contract TD3/cổ điển cùng thông tin, chưa mở train mới.
+
+> **GUI train TD3:** smoke64, nhập timesteps, train/resume checkpoint, log/lỗi/kết quả và TensorBoard local. [Hướng dẫn](TD3_TRAINING_GUI.md).
+
 > **Hiện hành 04/11 — Studio v7:** mặc định là recorder chỉ đọc, MCAP/SQLite, telemetry, annotation, QC, export và profile TD3 có phiên bản. Xem [REAL_DATA_STUDIO.md](REAL_DATA_STUDIO.md). Commissioning/authority và các kết quả phía dưới giữ phạm vi lịch sử; Studio không tự chạy xe.
 
 # Nino trên Raspberry Pi 5 — navigation và teleop

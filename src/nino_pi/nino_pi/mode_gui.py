@@ -1,4 +1,4 @@
-"""Desktop authority panel. SSH transports JSON; ROS runs on the Pi."""
+"""Unified Nino Studio: real acquisition, local Sim training and research."""
 import argparse
 import json
 from pathlib import Path
@@ -60,7 +60,7 @@ def card():
 
 
 class ModeWindow(Q.QMainWindow):
-    def __init__(self, demo=False):
+    def __init__(self, demo=False, training_root=None):
         super().__init__()
         self.demo = demo
         self.process = None
@@ -71,7 +71,7 @@ class ModeWindow(Q.QMainWindow):
         self.halted = False
         self.output_buffer = b""
         self.closing_for_capture = False
-        self.setWindowTitle("Nino Real Data Studio · v7" + (" · DEMO" if demo else ""))
+        self.setWindowTitle("Nino Studio · dữ liệu thật / training Sim" + (" · DEMO" if demo else ""))
         self.resize(1180, 980)
         self.setMinimumSize(900, 740)
         self.setStyleSheet(STYLE)
@@ -82,8 +82,8 @@ class ModeWindow(Q.QMainWindow):
         root.setSpacing(10)
         heading = Q.QHBoxLayout()
         titles = Q.QVBoxLayout()
-        titles.addWidget(label("NINO / DỮ LIỆU ROBOT", "muted"))
-        titles.addWidget(label("Real Data Studio", "title"))
+        titles.addWidget(label("NINO / DỮ LIỆU ROBOT + TRAINING SIM", "muted"))
+        titles.addWidget(label("Nino Studio", "title"))
         heading.addLayout(titles, 1)
         self.badge = label("DEMO · KHÔNG NỐI ROBOT" if demo else "CHƯA KẾT NỐI")
         self.badge.setStyleSheet("color:#72ded0; font-weight:700")
@@ -169,7 +169,7 @@ class ModeWindow(Q.QMainWindow):
         self.acquisition_tabs=Q.QTabWidget()
         self.studio=StudioPanel(self.command_connection,demo=demo,external_busy=lambda:bool(
             self.guided.runner.active_jobs or self.process or (hasattr(self,'data_panel') and self.data_panel.capture.get('active')) or
-            (hasattr(self,'research') and self.research.runner.busy)))
+            (hasattr(self,'research') and self.research.busy)))
         self.acquisition_tabs.addTab(self.studio,'Studio · recorder chỉ đọc')
         self.acquisition_tabs.addTab(guided_scroll,'Commissioning cũ · protocol / motion riêng')
         self.tabs.addTab(self.acquisition_tabs, "Thu dữ liệu thật")
@@ -195,11 +195,21 @@ class ModeWindow(Q.QMainWindow):
         advanced.addTab(control_page, "Authority firmware mới")
         advanced.addTab(data_scroll, "Teleop / collector authority")
         self.tabs.addTab(advanced, "Authority nâng cao")
-        self.research = ResearchPanel(hardware_busy=lambda:bool(self.guided.runner.active_jobs or self.studio.runner.busy or self.process or self.data_panel.capture.get('active')))
+        self.research = ResearchPanel(hardware_busy=lambda:bool(self.guided.runner.active_jobs or self.studio.runner.busy or self.process or self.data_panel.capture.get('active')),
+            embed_training=False,training_root=training_root,training_blocked=lambda:self.demo,observe_training=not demo)
         self.research.collectionRequested.connect(self.open_collection_recipe)
         self.research.all_closed.connect(lambda:QtCore.QTimer.singleShot(0,self.close) if self.research.closing else None)
         research_scroll=Q.QScrollArea();research_scroll.setWidgetResizable(True);research_scroll.setWidget(self.research)
+        self.research_scroll=research_scroll
         self.tabs.addTab(research_scroll,'Xây project / sơ đồ')
+        # One training widget and one runner. ResearchPanel still coordinates
+        # interlocks/closure after its widget is reparented into the Studio tab.
+        self.training=self.research.trainer
+        self.training.parametersRequested.connect(self.open_training_parameters)
+        self.training_scroll=Q.QScrollArea();self.training_scroll.setWidgetResizable(True)
+        self.training_scroll.setWidget(self.training)
+        self.training_tab=self.tabs.addTab(self.training_scroll,'Train TD3 · Sim')
+        if demo:self.training.status.setText('DEMO · chỉ xem giao diện; không chạy smoke/train hoặc nối robot.')
         self.connection_note.hide()
         root.addWidget(self.tabs, 1)
 
@@ -233,6 +243,11 @@ class ModeWindow(Q.QMainWindow):
     def command_connection(self):
         return dict(host=self.host.text().strip(), key=getattr(self, 'key_path', str(Path.home()/'.ssh/nino_pi_flash_ed25519')),
                     domain=getattr(self,'domain',0),authority_bridge_active=self.process is not None)
+
+    def open_training_parameters(self):
+        self.research.parameters.choose.setCurrentText(self.training.profile.currentData())
+        self.research.sections.setCurrentWidget(self.research.parameter_tab)
+        self.tabs.setCurrentWidget(self.research_scroll)
 
     def open_collection_recipe(self, name):
         if name=='studio':
@@ -416,7 +431,7 @@ class ModeWindow(Q.QMainWindow):
                 b.style().polish(b)
         guided_busy=bool(self.guided.runner.active_jobs)
         studio_busy=self.studio.runner.busy
-        research_busy=self.research.runner.busy
+        research_busy=self.research.busy
         self.guided.external_busy=research_busy or studio_busy;self.guided.refresh();self.research.refresh();self.studio.refresh()
         if guided_busy or research_busy or studio_busy:
             for b in self.buttons.values():b.setEnabled(False)
@@ -479,7 +494,7 @@ class ModeWindow(Q.QMainWindow):
             self.studio.request_close()
             event.ignore()
             return
-        if self.research.runner.busy:
+        if self.research.active:
             if not self.research.closing:self.research.request_close()
             event.ignore()
             return
@@ -487,6 +502,10 @@ class ModeWindow(Q.QMainWindow):
             if not self.guided.closing:self.guided.request_close()
             event.ignore()
             return
+        self.timer.stop()
+        self.studio.runner.timer.stop()
+        self.training.watch_closed=True;self.training.live_timer.stop()
+        self.training.dashboard.shutdown()
         self.guided.runner.dispose()
         self.data_panel.release()
         if self.process and self.process.state() != QtCore.QProcess.NotRunning and self.data_panel.capture.get("active"):
@@ -523,17 +542,20 @@ def main(argv=None):
     p.add_argument("--demo", action="store_true", help="UI demo, no SSH/ROS/motor")
     p.add_argument("--project", action="store_true", help="Mở hồ sơ tiến độ local; không tự kết nối Pi")
     p.add_argument('--build',action='store_true',help='Mở sơ đồ tiến độ và jobs History/TD3/PPO local')
+    p.add_argument('--train',action='store_true',help='Mở tab training Sim trong cùng Nino Studio; chưa chạy job')
+    p.add_argument('--training-output',type=Path,help='Thư mục các phiên training Sim')
     from .collection_recipes import RECIPES
     p.add_argument("--commands", choices=list(RECIPES), help="Tương thích shortcut cũ: mở phiên thu bằng nút, không copy lệnh")
     args = p.parse_args(argv)
     app = Q.QApplication(sys.argv[:1])
-    app.setApplicationName("Nino Control Modes")
-    window = ModeWindow(demo=args.demo)
+    app.setApplicationName("Nino Studio")
+    window = ModeWindow(demo=args.demo,training_root=args.training_output)
     if args.project or args.commands:
         window.tabs.setCurrentIndex(1)
     if args.commands:
         window.open_collection_recipe(args.commands)
     if args.build:window.tabs.setCurrentIndex(3)
+    if args.train:window.tabs.setCurrentIndex(window.training_tab)
     window.show()
     return app.exec_()
 

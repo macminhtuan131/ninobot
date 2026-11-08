@@ -1,0 +1,345 @@
+{
+  "date": "2026-11-05",
+  "feature": "native_td3_training_gui",
+  "jobs": [
+    {
+      "directory": "/home/tuanmac/nino_research/td3_studio_qa_20261105/20261105T040429728171Z_smoke",
+      "status": "failed",
+      "error": "Factory launch exited; inspect launch.log",
+      "files_verified": 49,
+      "steps": 64,
+      "start_global": 0,
+      "global_steps": 64,
+      "updates_this_job": 48,
+      "updates_total": 48,
+      "replay_size": 64,
+      "checkpoint": "/home/tuanmac/nino_research/td3_studio_qa_20261105/20261105T040429728171Z_smoke/checkpoints/step_000000000064_final",
+      "completed_job_physics_requests": 0,
+      "tensorboard_tags": [
+        "nino/body_speed_m_s",
+        "nino/cross_track_m",
+        "nino/global_steps",
+        "nino/job_steps",
+        "nino/reward",
+        "nino/velocity_error_m_s",
+        "train/actor_loss",
+        "train/critic_loss",
+        "train/learning_rate",
+        "nino/final_optimizer_updates"
+      ],
+      "evaluation": []
+    },
+    {
+      "directory": "/home/tuanmac/nino_research/td3_studio_qa_20261105/20261105T040604990497Z_train",
+      "status": "completed",
+      "error": null,
+      "files_verified": 65,
+      "steps": 32,
+      "start_global": 64,
+      "global_steps": 96,
+      "updates_this_job": 32,
+      "updates_total": 80,
+      "replay_size": 96,
+      "checkpoint": "/home/tuanmac/nino_research/td3_studio_qa_20261105/20261105T040604990497Z_train/checkpoints/step_000000000096_final",
+      "completed_job_physics_requests": 654,
+      "tensorboard_tags": [
+        "nino/body_speed_m_s",
+        "nino/cross_track_m",
+        "nino/global_steps",
+        "nino/job_steps",
+        "nino/reward",
+        "nino/velocity_error_m_s",
+        "train/actor_loss",
+        "train/critic_loss",
+        "train/learning_rate",
+        "nino/final_optimizer_updates"
+      ],
+      "evaluation": [
+        {
+          "steps": 140,
+          "return_value": -0.009066827566623288,
+          "final_x_m": 1.4607358139066438,
+          "forward_displacement_m": 1.4697620713150583,
+          "maximum_x_m": 1.4608882145445805,
+          "local_marker_x_m": 0.95,
+          "local_marker_reached": true,
+          "local_marker_time_s": 6.499999999999999,
+          "lateral_rmse_m": 4.8192646767778835e-05,
+          "yaw_rmse_rad": 3.8134539590994354e-05,
+          "body_to_executed_reference_rmse_m_s": 0.005089413050058668,
+          "wheel_target_rmse_rad_s": [
+            0.08141770966832054,
+            0.08128129207455648
+          ],
+          "maximum_abs_wheel_rad_s": 3.1795094827983728,
+          "maximum_abs_body_speed_m_s": 0.19868249003450628,
+          "final_body_speed_m_s": 0.0,
+          "final_wheel_rad_s": [
+            6.165929780973426e-06,
+            6.172061473655398e-06
+          ],
+          "physical_failure": false,
+          "time_limit_truncations": 0,
+          "reference_modifications": 40,
+          "accepted_residual_samples": 0,
+          "motion_source_steps": 75,
+          "contact_callback_counts": {
+            "contact_left_wheel": 19280,
+            "contact_caster_right_wheel": 19272,
+            "contact_caster_left_wheel": 19277,
+            "contact_right_wheel": 19280
+          },
+          "c1_manifold_callback_counts": {},
+          "max_observed_source_gap_s": {
+            "wheel": 0.005000000000000782,
+            "caster_audit": 0.005000000000000782,
+            "imu": 0.020000000000003126,
+            "truth": 0.020000000000003126,
+            "drive": 0.021000000000000796,
+            "guidance_reference": 0.10000000000000142,
+            "estimator_update": 0.020000000000003126
+          },
+          "caveats": [
+            "Contact counts are manifolds, not force/load/severity.",
+            "Body reference is simulation truth, not a deployable input.",
+            "Max gaps/counts are not a proof of full acquisition coverage.",
+            "A fresh launch is not an exact-state paired counterfactual."
+          ],
+          "cross_track_rmse_m": 4.8192646767778835e-05,
+          "maximum_cross_track_m": 6.364949715333305e-05,
+          "final_cross_track_m": 6.36468314223424e-05,
+          "final_path_heading_error_rad": 2.6733921339339162e-05,
+          "nominal_velocity_rmse_m_s": 0.005089413050058668,
+          "nominal_yaw_rate_rmse_rad_s": 0.00013911382066938765,
+          "maximum_estimator_position_error_m": 0.011225851581013049,
+          "maximum_estimator_yaw_error_rad": 0.0001258262954815237,
+          "task_success": true,
+          "stop_completed": true,
+          "continuous_quiet_s": 4.000000000000002,
+          "progress_marker_reached": true,
+          "final_path_progress_m": 1.4607358139066438,
+          "guidance_faults": 0,
+          "residual_proposals_nonzero": 0,
+          "condition": {
+            "arm": "guided",
+            "path_bearing_deg": 0.0,
+            "scenario": "clear_box",
+            "repeat": 0
+          },
+          "estimator_initialization": "declared_scenario_pose_at_task_epoch_not_truth_readback",
+          "initial_truth_pose": [
+            -0.00902625740841464,
+            7.869821949647846e-07,
+            -5.500601962547982e-07
+          ],
+          "final_estimated_pose": [
+            1.4701857460835446,
+            6.2263386969517e-05,
+            0.00011763515222584786
+          ],
+          "truth_used_for_guidance": false,
+          "benefit_verified": false,
+          "hardware_authorized": false,
+          "functional_proposal_pass": true,
+          "arm": "B0"
+        },
+        {
+          "steps": 140,
+          "return_value": -0.012958058048847336,
+          "final_x_m": 1.4888883492769374,
+          "forward_displacement_m": 1.4898084238501794,
+          "maximum_x_m": 1.489962607442379,
+          "local_marker_x_m": 0.95,
+          "local_marker_reached": true,
+          "local_marker_time_s": 6.4,
+          "lateral_rmse_m": 0.004077663391860293,
+          "yaw_rmse_rad": 0.012871891158474001,
+          "body_to_executed_reference_rmse_m_s": 0.005044084497829306,
+          "wheel_target_rmse_rad_s": [
+            0.09376370118111012,
+            0.0696062732427486
+          ],
+          "maximum_abs_wheel_rad_s": 3.2323922963236655,
+          "maximum_abs_body_speed_m_s": 0.20091030911469704,
+          "final_body_speed_m_s": -0.0003639528617885401,
+          "final_wheel_rad_s": [
+            -0.005263107825611655,
+            -0.0052061085293004525
+          ],
+          "physical_failure": false,
+          "time_limit_truncations": 0,
+          "reference_modifications": 62,
+          "accepted_residual_samples": 56,
+          "motion_source_steps": 75,
+          "contact_callback_counts": {
+            "contact_left_wheel": 16464,
+            "contact_caster_right_wheel": 16464,
+            "contact_caster_left_wheel": 16464,
+            "contact_right_wheel": 16464
+          },
+          "c1_manifold_callback_counts": {},
+          "max_observed_source_gap_s": {
+            "wheel": 0.0030000000000001137,
+            "caster_audit": 0.0030000000000001137,
+            "imu": 0.020000000000003126,
+            "truth": 0.020000000000003126,
+            "drive": 0.11599999999999988,
+            "guidance_reference": 0.10000000000000142,
+            "estimator_update": 0.020000000000003126
+          },
+          "caveats": [
+            "Contact counts are manifolds, not force/load/severity.",
+            "Body reference is simulation truth, not a deployable input.",
+            "Max gaps/counts are not a proof of full acquisition coverage.",
+            "A fresh launch is not an exact-state paired counterfactual."
+          ],
+          "cross_track_rmse_m": 0.004077663391860293,
+          "maximum_cross_track_m": 0.006532066461528889,
+          "final_cross_track_m": -0.00651148282185746,
+          "final_path_heading_error_rad": -0.019758478287701386,
+          "nominal_velocity_rmse_m_s": 0.004721460487794853,
+          "nominal_yaw_rate_rmse_rad_s": 0.00872019804962329,
+          "maximum_estimator_position_error_m": 0.0029422289621242478,
+          "maximum_estimator_yaw_error_rad": 0.0014082277515719,
+          "task_success": true,
+          "stop_completed": true,
+          "continuous_quiet_s": 4.000000000000002,
+          "progress_marker_reached": true,
+          "final_path_progress_m": 1.4888883492769374,
+          "guidance_faults": 0,
+          "residual_proposals_nonzero": 140,
+          "condition": {
+            "arm": "guided",
+            "path_bearing_deg": 0.0,
+            "scenario": "clear_box",
+            "repeat": 0
+          },
+          "estimator_initialization": "declared_scenario_pose_at_task_epoch_not_truth_readback",
+          "initial_truth_pose": [
+            -0.0009200745732420874,
+            7.641027552093091e-07,
+            -1.2050772844743063e-05
+          ],
+          "final_estimated_pose": [
+            1.4895623996996363,
+            -0.006014031124788518,
+            -0.018710597833169196
+          ],
+          "truth_used_for_guidance": false,
+          "benefit_verified": false,
+          "hardware_authorized": false,
+          "functional_proposal_pass": true,
+          "arm": "TD3"
+        }
+      ]
+    },
+    {
+      "directory": "/home/tuanmac/nino_research/td3_studio_qa_20261105/20261105T040955800568Z_smoke",
+      "status": "completed",
+      "error": null,
+      "files_verified": 42,
+      "steps": 64,
+      "start_global": 0,
+      "global_steps": 64,
+      "updates_this_job": 48,
+      "updates_total": 48,
+      "replay_size": 64,
+      "checkpoint": "/home/tuanmac/nino_research/td3_studio_qa_20261105/20261105T040955800568Z_smoke/checkpoints/step_000000000064_final",
+      "completed_job_physics_requests": 138,
+      "tensorboard_tags": [
+        "nino/body_speed_m_s",
+        "nino/cross_track_m",
+        "nino/global_steps",
+        "nino/job_steps",
+        "nino/reward",
+        "nino/velocity_error_m_s",
+        "train/actor_loss",
+        "train/critic_loss",
+        "train/learning_rate",
+        "nino/final_optimizer_updates"
+      ],
+      "evaluation": []
+    }
+  ],
+  "tests": {
+    "worker_tests": {
+      "tests": 14,
+      "failures": 0,
+      "errors": 0
+    },
+    "gui_tests": {
+      "tests": 19,
+      "failures": 0,
+      "errors": 0
+    },
+    "mode_gui_tests": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "actual_gui_smoke": {
+    "gui_started_actual_smoke": true,
+    "directory": "/home/tuanmac/nino_research/td3_studio_qa_20261105/20261105T040955800568Z_smoke",
+    "train_transitions": 64,
+    "optimizer_updates": 48,
+    "periodic_and_final_checkpoints": true,
+    "progress": 100,
+    "live_controls_locked": true,
+    "tensorboard_http_status": 200,
+    "tensorboard_url": "http://127.0.0.1:45385",
+    "browser_open_requested": true,
+    "tensorboard_closed": true,
+    "selected_checkpoint_loaded": true,
+    "resume_additional_steps": 1234,
+    "resume_profile_seed_locked": true,
+    "hardware_actions": 0
+  },
+  "final_gui": {
+    "evaluated_result_displayed": true,
+    "global_steps": "64 -> 96",
+    "resume_additional_steps": 5000,
+    "no_job_started_on_open": true,
+    "tensorboard_http_status": 200,
+    "tensorboard_url": "http://127.0.0.1:39295",
+    "browser_open_requested": true,
+    "tensorboard_closed": true,
+    "qt_callback_errors": [],
+    "native_qobject_event_preserved": true
+  },
+  "first_failure_retained": true,
+  "correction": "Close training env before starting evaluation env; shared private domain may have only one simulation backend at a time.",
+  "qt_dispatch_correction": "Rename signal event -> update to preserve QObject.event; actual QProcess test and final native GUI verify no callback errors.",
+  "timeout_checkpoint_rule": "Mid-optimizer errors do not publish new interrupted bundles; last complete periodic checkpoint retained. Final-source unit test passed.",
+  "old_replay_prefix_64_unchanged": true,
+  "model_optimizer_target_and_replay_loading_verified": true,
+  "actual_training_transitions_total": 160,
+  "successful_evaluation_launches": 2,
+  "evaluation_transitions": 280,
+  "final_source_worker_synthetic_tests": true,
+  "final_source_gui_render_verified": true,
+  "installed_source_matches": true,
+  "build_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "legacy_v3_checkpoint_unchanged": true,
+  "source_snapshot": {
+    "src/nino_rl/nino_rl/td3_training_studio.py": "cdb235ce2beef218dac538437a502ebc04265569d225a4384e6f417bbd737007",
+    "src/nino_rl/nino_rl/td3_studio_contract.py": "f8b99b4abd79d5c7910cdd54714d6c1212f925189c0a5fbf0432609e63a41b05",
+    "src/nino_rl/scripts/residual_training_studio.sh": "57b9e674d06ad1021a33e760857ec8551c39e032b51055c34f8e2cff0fc148da",
+    "src/nino_rl/test/test_td3_training_studio.py": "2b4ff18e25c564b6f0afd97ca20e38835c54fd57f356aa3430c07132ccf50057",
+    "src/nino_pi/nino_pi/td3_training_panel.py": "96e7c4ca84b00e412fd656e52c59f9c587e6fe8a5c0028d695d3a5f7fc580d4f",
+    "src/nino_pi/nino_pi/research_panel.py": "8f93f5ffd79db099faeed020fb2a38d059306f4a90a040f1d067744e78f2aa0e",
+    "src/nino_pi/nino_pi/mode_gui.py": "bd4333b9b70f3049ce9027259f05ab1194d10b25662aae779e7b051739c21ae7",
+    "src/nino_pi/nino_pi/research_plan.json": "f5104b92a0cc11702abc64c1cc13e13283678a57ba939c60a21654892a6980b4",
+    "src/nino_pi/scripts/td3_training_gui.sh": "be38cf555ebf18e652c4a81d81bd0d1d71f8490095bf906239ff68a266aeb6e0",
+    "src/nino_pi/setup.py": "723ac9bca7a0529a62bcbaf58c2b70c3d6c0ba376c3f19ee854a227c5e3e9a19",
+    "src/nino_pi/test/test_td3_training_panel.py": "6491271985ad9fdb73262d9872359851e56304c2513cade11b9f6ffb3e4c661a",
+    "src/nino_pi/TD3_TRAINING_GUI.md": "91c421382591cededcf6cd305b6277921217aa6753d7716e1de0e513cc6ef9be"
+  },
+  "owned_processes_remaining": [],
+  "hardware_actions": 0,
+  "real_data_added": 0,
+  "learned_benefit_verified": false
+}

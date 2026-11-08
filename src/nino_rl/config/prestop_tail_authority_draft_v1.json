@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "draft_id": "nino_prestop_tail_authority_draft_v1_2026_11_08",
+  "status": "prepared_not_released",
+  "active_workstream": "sim_offline_preparation",
+  "question": "Can a bounded common-reference correction in the final0.5s before source stop change wheel/body response and improve subsequent tracking at unchanged task/stop constraints?",
+  "scientific_scope": "Clear-box, known source stops6/8s; classical authority probe, not a TD3 comparison, obstacle experiment or hardware validation.",
+  "release": {
+    "physics_allowed": false,
+    "allocated_attempts": 0,
+    "training_allowed": false,
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "hardware_actions": 0,
+    "runtime_implemented": false
+  },
+  "intervention": {
+    "variable": "tail_requested_common_scalar",
+    "tail_scalar_levels": [
+      -1,
+      0,
+      1
+    ],
+    "tail_seconds": 0.5,
+    "common_bound_m_s": 0.005,
+    "differential": 0,
+    "control_interval_s": 0.1,
+    "source_stops_s": [
+      6.0,
+      8.0
+    ],
+    "horizon_s": 14.0,
+    "nominal_source_m_s": 0.2,
+    "before_tail": "Identical inherited classical scheduled request and projection",
+    "active_predicate": "Healthy source/permission/history, nominal steady; stop-0.5 <= decision_time < stop",
+    "at_or_after_source_stop": "Requested residual=0; retain inherited zero-source priority and baseline deceleration",
+    "information": "Current causal source/health/history and the same declared stop plan, no GT/contact input"
+  },
+  "unchanged": {
+    "baseline": "frozen Ki0.10",
+    "scenario": "clear_box",
+    "reference_limits": {
+      "separation_m": 0.34273666,
+      "wheel_speed_m_s": 0.4,
+      "forward_m_s": 0.4,
+      "yaw_rad_s": 0.5,
+      "wheel_acceleration_m_s2": 0.1,
+      "residual_wheel_m_s": 0.04,
+      "max_age_s": 0.2
+    },
+    "functional_proposals": {
+      "maximum_guided_cross_track_m": 0.04,
+      "maximum_estimator_position_error_m": 0.05,
+      "maximum_estimator_yaw_error_rad": 0.05,
+      "local_progress_marker_m": 0.95
+    },
+    "task": {
+      "id": "nino_sim_task_tracking_stop_v2_2026_11_04",
+      "source_warmup_s": 0.5,
+      "command_until_s": 6.0,
+      "horizon_s": 14.0,
+      "steps_per_rollout": 140,
+      "training_transitions": 512,
+      "learner_seed": 7,
+      "baseline_scenarios": [
+        "clear_box",
+        "box_c1_6mm"
+      ],
+      "baseline_repeats": 2,
+      "evaluation_arms": [
+        "B0",
+        "B_speed_control",
+        "TD3_h5"
+      ],
+      "evaluation_repeats": 2,
+      "evaluation_order": [
+        "B0",
+        "B_speed_control",
+        "TD3_h5",
+        "TD3_h5",
+        "B_speed_control",
+        "B0"
+      ],
+      "speed_control_delta_m_s": 0.02348807,
+      "local_marker_x_m": 0.95,
+      "stop_speed_norm_m_s": 0.01,
+      "stop_yaw_rad_s": 0.05,
+      "stop_wheel_rad_s": 0.15,
+      "stop_reference_wheel_m_s": 1e-06,
+      "stop_continuous_s": 2.0,
+      "reward_scales": {
+        "speed_m_s": 0.2,
+        "yaw_rad_s": 0.5,
+        "lateral_m": 0.05
+      },
+      "reward_weights": {
+        "tracking": 1.0,
+        "yaw": 0.2,
+        "lateral": 0.5,
+        "action": 0.01,
+        "action_change": 0.001,
+        "time": 0.02
+      },
+      "terminal_penalties": {
+        "missing_marker": 5.0,
+        "not_stopped": 10.0,
+        "physical_failure": 10.0
+      },
+      "minimum_effect_accepted": null,
+      "wall_deadline_per_job_s": 1800,
+      "hardware_actions": 0,
+      "note": "Fixed 14 s task, terminal deadline (not external truncation). Two fresh launches are descriptive repeats, not exact-state pairs or independent learner seeds. All thresholds are sim engineering proposals."
+    },
+    "history": "5 frames /10Hz",
+    "estimator": "inherited",
+    "yaw_follower": "inherited",
+    "gain": "1",
+    "reward": "unchanged, not primary metric",
+    "learning_rate": "unchanged",
+    "action_magnitude": "unchanged common +/-0.005m/s",
+    "parents_immutable": true
+  },
+  "compatibility": {
+    "new_semantic_contract": "prestop_tail_authority_probe_v1",
+    "actor_checkpoint_loading_allowed": false,
+    "resume_allowed": false,
+    "reason": "Tail eligibility/current-window semantics differ; do not reuse common103 checkpoint ABI merely because a vector dimension matches."
+  },
+  "proposed_attempts": [
+    {
+      "id": "P01",
+      "block": 0,
+      "requested_env_seed": 88110,
+      "stop_s": 6.0,
+      "tail_scalar": 0
+    },
+    {
+      "id": "P02",
+      "block": 0,
+      "requested_env_seed": 88110,
+      "stop_s": 6.0,
+      "tail_scalar": 1
+    },
+    {
+      "id": "P03",
+      "block": 0,
+      "requested_env_seed": 88110,
+      "stop_s": 6.0,
+      "tail_scalar": -1
+    },
+    {
+      "id": "P04",
+      "block": 0,
+      "requested_env_seed": 88110,
+      "stop_s": 8.0,
+      "tail_scalar": -1
+    },
+    {
+      "id": "P05",
+      "block": 0,
+      "requested_env_seed": 88110,
+      "stop_s": 8.0,
+      "tail_scalar": 0
+    },
+    {
+      "id": "P06",
+      "block": 0,
+      "requested_env_seed": 88110,
+      "stop_s": 8.0,
+      "tail_scalar": 1
+    },
+    {
+      "id": "P07",
+      "block": 1,
+      "requested_env_seed": 88111,
+      "stop_s": 8.0,
+      "tail_scalar": 1
+    },
+    {
+      "id": "P08",
+      "block": 1,
+      "requested_env_seed": 88111,
+      "stop_s": 8.0,
+      "tail_scalar": 0
+    },
+    {
+      "id": "P09",
+      "block": 1,
+      "requested_env_seed": 88111,
+      "stop_s": 8.0,
+      "tail_scalar": -1
+    },
+    {
+      "id": "P10",
+      "block": 1,
+      "requested_env_seed": 88111,
+      "stop_s": 6.0,
+      "tail_scalar": -1
+    },
+    {
+      "id": "P11",
+      "block": 1,
+      "requested_env_seed": 88111,
+      "stop_s": 6.0,
+      "tail_scalar": 1
+    },
+    {
+      "id": "P12",
+      "block": 1,
+      "requested_env_seed": 88111,
+      "stop_s": 6.0,
+      "tail_scalar": 0
+    }
+  ],
+  "proposed_budget": {
+    "max_attempts": 12,
+    "task_decision_ticks": 1680,
+    "task_sim_seconds": 168,
+    "reset_time_excluded_from_task_seconds": true,
+    "training_steps": 0,
+    "optimizer_updates": 0,
+    "retries": 0,
+    "integration_checks_included_in_12_slots": true,
+    "wall_deadline_s_per_attempt_proposed": 180,
+    "estimated_raw_bytes": 503316480,
+    "estimated_metadata_margin_bytes": 134217728,
+    "required_reserve_bytes_proposed": 1073741824,
+    "disk_estimate_is_bound": false
+  },
+  "measurement": {
+    "primary": "Integral of squared independent nominal body velocity tracking error",
+    "units": "m^2/s",
+    "window_start": "source_stop_s-0.5",
+    "window_end_exclusive": "source_stop_s+2.5",
+    "window_clock": "measurement task timestamps; do not assign body sample time from preceding decision index",
+    "native": "keep inherited native body/nominal outcome",
+    "sensitivity": [
+      "GT-header20ms",
+      "GT-header20ms shifted+10ms"
+    ],
+    "secondary": [
+      "full14s velocity RMS",
+      "wheel velocities by channel",
+      "signed velocity error",
+      "source-zero to inherited quiet-condition onset interval",
+      "physical path RMS/max",
+      "task/stop flags",
+      "requested -> windowed -> accepted -> driver executed reference",
+      "projection saturation and source/telemetry gaps"
+    ],
+    "input_checks": "Retain native replay, source-clock/GT window support and inherited cadence/timestamp gates; no metric merging or spike removal"
+  },
+  "proposed_decision_rules": {
+    "accepted": false,
+    "scope": "Research screening proposals, not application tolerances or significance claims",
+    "preintervention_body_rms_caliper_m_s": 0.001,
+    "useful_body_difference_m_s": 0.001,
+    "body_difference_persistence_s": 0.2,
+    "minimum_primary_relative_reduction": 0.05,
+    "maximum_full_route_rms_regression_fraction": 0.02,
+    "maximum_quiet_onset_regression_s": 0.1,
+    "estimand": "For each tail sign and stop separately: mean of2 within-block candidate/control ratios minus1; report both signs, absolute deltas and all blocks. Zero denominator -> unknown.",
+    "go": "Useful wheel/body contrast, >=5% primary reduction in both blocks/both stops and all3 grids; full-route RMS regression<=2%, quiet-onset regression<=0.1s and inherited task/stop/path gates pass. Advance only classical tuning/confirmation.",
+    "no_go": "Reference differs but no repeatable useful outcome, or outcome constraints fail: retain historical classical for this envelope.",
+    "unknown": "Measurement/approach mismatch, grid-sensitive or inconsistent effects: close screen, keep failures, no automatic sample-size increase.",
+    "learning": "No TD3 release from this screen; require a residual need beyond a strong classical candidate and a separate training protocol."
+  },
+  "prerequisites": [
+    "Isolated versioned adapter/runner not implemented by this draft",
+    "Neutral-arm parity and stateful projection/stop/health tests",
+    "Metadata/cadence/driver execution conformance with the inherited readiness contract",
+    "Disk and wall-cap review before any release",
+    "Separate explicit attempt allocation and decision-rule review"
+  ],
+  "causality_limits": [
+    "Fresh launches with paired requested seeds are not exact-state branches",
+    "Two blocks are a descriptive screen, not training seeds or a powered generalization test",
+    "Before-tail command equality is required; physical differences are retained and can make causal verdict unknown",
+    "Late14s error association is not proof that this bounded tail action can improve it"
+  ],
+  "frozen_inputs": {
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/common_training_studio.py": "a37ab2f1fb204b871f265accf1ec582700e340aec719ff96d65f314b86a4355e",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/common_studio_contract.py": "c9fa5dfd4db796acd0df8883b442a6e41ec5ffc4c4f5f01fd48acf2d63aadaa1",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/training_studio_api.py": "c523da6733dbf2d28abae4555b8b61e2a650ef6a17a1953533bf82bebc0fd094",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/td3_training_studio.py": "cdb235ce2beef218dac538437a502ebc04265569d225a4384e6f417bbd737007",
+    "/home/tuanmac/ninorobot/src/nino_rl/scripts/common_training_studio.sh": "9a35c10f080d082d4ffeaeca51e10fc81ea6d0bc4cb33d0215de785a93b51982",
+    "/home/tuanmac/ninorobot/src/nino_rl/nino_rl/equal_information_contract.py": "300b6c3de9a77eb3950908fc4e28a08b4b8ef2fd7eb98c742a15174bbb1f24e7",
+    "/home/tuanmac/ninorobot/src/nino_rl/config/residual_equal_information_v1.yaml": "87015dc12127d77fa57d5664d87680a9b519ead684bc9063ef478192935af9b6",
+    "/home/tuanmac/ninorobot/src/nino_control/nino_control/residual_velocity.py": "4126bfba0e273cd0232b14df08fc2254c55de1becefd79f54edcd448dfe735cb",
+    "/home/tuanmac/nino_research/td3_studio/20261107T080414816378Z_common_train/manifest.json": "9d0337d6c31a22a52c89faa0a8921d938c7a4cc99ca63b18cb57389947d392bd",
+    "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/td3_offline_phase_review_2026-11-07/decision.json": "4b5656908c22c1cdb3fe0489d8c485a94348c9ef9833cb76ac55f4a99400e74d"
+  }
+}

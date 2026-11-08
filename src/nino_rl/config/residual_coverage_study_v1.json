@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "protocol_id": "nino_critic_coverage_draft_v1_2026_11_06",
+  "status": "draft_not_released",
+  "training_released": false,
+  "hardware_actions": 0,
+  "resume_allowed": false,
+  "scenario": "clear_box",
+  "parent": {
+    "learner_fingerprint": "659254596ac139709828d9f8fb64fba51c191fafbae857bb25996bbfe887ff46",
+    "evaluation_manifest_sha256": "2e111a3de591c2b5c616d9264392dc4f9cae3dadd74ae5962500edd50b645144",
+    "controller_abi_sha256": "b8c71ccb876cb6f2f5ab66d08d74d9b3d8cfdbfac22ccfc3b326da16b5a2e6e0"
+  },
+  "frozen": {
+    "observation_size": 103,
+    "action_size": 1,
+    "history_frames": 5,
+    "common_bound_m_s": 0.005,
+    "control_interval_s": 0.1,
+    "steps_per_episode": 140,
+    "source_stops_s": [6.0, 8.0],
+    "algorithm_source": "residual_reliable_td3_v1.yaml",
+    "learning_starts": 64,
+    "gradient_steps": 1,
+    "policy_delay": 2,
+    "exploration_sigma": 0.1,
+    "reward_projection_controller_physics": "unchanged_parent_contract"
+  },
+  "arms": ["A_gaussian", "C_stratified_probes"],
+  "seeds": [11, 22, 33],
+  "collection": {
+    "shared_uniform_warmup_transitions": 64,
+    "probe_every_eligible_open_decisions": 4,
+    "probe_bin_edges": [-1.0, -0.5, 0.0, 0.5, 1.0],
+    "probe_observation_index": 101,
+    "rng_streams": ["initialization", "warmup", "gaussian", "probe_order", "probe_jitter", "replay"],
+    "replay_action": "actual_requested_scalar_before_shared_projection",
+    "closed_window": "unchanged_parent_gaussian_request_and_shared_zero_projection"
+  },
+  "training_order": [
+    {"arm": "A_gaussian", "seed": 11},
+    {"arm": "C_stratified_probes", "seed": 11},
+    {"arm": "C_stratified_probes", "seed": 22},
+    {"arm": "A_gaussian", "seed": 22},
+    {"arm": "A_gaussian", "seed": 33},
+    {"arm": "C_stratified_probes", "seed": 33}
+  ],
+  "evaluation_order": [
+    {"arm": "B0", "source_stop_s": 6.0},
+    {"arm": "A_gaussian", "seed": 11, "source_stop_s": 6.0},
+    {"arm": "C_stratified_probes", "seed": 11, "source_stop_s": 6.0},
+    {"arm": "Classical_scheduled", "source_stop_s": 8.0},
+    {"arm": "C_stratified_probes", "seed": 22, "source_stop_s": 8.0},
+    {"arm": "A_gaussian", "seed": 22, "source_stop_s": 8.0},
+    {"arm": "A_gaussian", "seed": 33, "source_stop_s": 6.0},
+    {"arm": "C_stratified_probes", "seed": 33, "source_stop_s": 6.0},
+    {"arm": "Classical_scheduled", "source_stop_s": 6.0},
+    {"arm": "C_stratified_probes", "seed": 11, "source_stop_s": 8.0},
+    {"arm": "A_gaussian", "seed": 11, "source_stop_s": 8.0},
+    {"arm": "B0", "source_stop_s": 8.0},
+    {"arm": "A_gaussian", "seed": 22, "source_stop_s": 6.0},
+    {"arm": "C_stratified_probes", "seed": 22, "source_stop_s": 6.0},
+    {"arm": "C_stratified_probes", "seed": 33, "source_stop_s": 8.0},
+    {"arm": "A_gaussian", "seed": 33, "source_stop_s": 8.0}
+  ],
+  "budget": {
+    "training_transitions_per_learner": 1024,
+    "training_transitions_maximum": 6144,
+    "critic_updates_per_learner": 960,
+    "actor_updates_per_learner": 480,
+    "critic_updates_maximum": 5760,
+    "actor_updates_maximum": 2880,
+    "training_launches_maximum": 48,
+    "evaluation_launches_maximum": 16,
+    "evaluation_transitions_maximum": 2240,
+    "control_transitions_maximum": 8384,
+    "gazebo_launches_maximum": 64,
+    "wall_deadline_s": 10800,
+    "retries": 0,
+    "extra_physics_smokes": 0
+  },
+  "decision": {
+    "primary": "whole_14s_native_velocity_rmse",
+    "sensitivity_grids": ["GT20ms", "GTshift10ms"],
+    "minimum_relative_benefit_proposed": 0.05,
+    "minimum_effect_accepted": null,
+    "minimum_open_bin_fraction_proposed": 0.05,
+    "minimum_open_bin_count_proposed": 10,
+    "maximum_support_age_s": 0.04,
+    "application_or_hardware_promotion": false
+  }
+}

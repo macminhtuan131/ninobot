@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "engine": "common103_v1",
+  "mode": "train",
+  "scenario": "clear_box",
+  "profile": "nino_td3_research_h5_v1",
+  "timesteps": 20000,
+  "seed": 11,
+  "checkpoint_every": 5000,
+  "wall_minutes": 180,
+  "evaluate": true,
+  "resume": null
+}

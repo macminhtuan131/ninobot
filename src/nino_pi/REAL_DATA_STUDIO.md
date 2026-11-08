@@ -1,5 +1,10 @@
 # Nino Real Data Studio v7 — 04/11/2026
 
+> **07/11 — bổ sung reference bánh/thân:** trong Studio có nút gắn video với
+> session local, ghi nhãn từng bánh/thân và lưu JSON derived có checksum.
+> Không cần nối Pi cho thao tác này; chưa tự xác nhận body speed/slip hoặc
+> cấp motion. [Cách dùng](../../docs/NINO_BODY_REFERENCE_STUDIO_2026-11-07.md).
+
 Mở launcher **Nino Real Data Studio**, hoặc `scripts/mode_gui.sh` như trước.
 Giữ PyQt5 đang có; chưa chuyển toolkit sang PySide6. Trang mặc định mới
 là **Studio · recorder chỉ đọc**. Trang commissioning cũ và authority nâng cao

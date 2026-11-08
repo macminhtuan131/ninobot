@@ -1,0 +1,225 @@
+{
+  "date": "2026-11-06",
+  "status": "joint_boundary_not_reproduced_unknown",
+  "artifact": "/home/tuanmac/nino_research/sim_joint_boundary_v1/20261106T013910423655Z_sim-joint-boundary",
+  "manifest_sha256": "8a9bb3fc9cfb2769fdd9859bf05145d899914099bcd422b3c55ed008ab603d8f",
+  "fingerprint": "5798d9939f1fdc5419315f8ea6d87f04616cda6a8dc879ee5d6787a20ce015a1",
+  "parent_fingerprint": "bba204f885daf0d93c74b870842e757c89684188d83d4545c3ece70e11f326da",
+  "parent_manifest_unchanged": true,
+  "artifact_files_verified": 60,
+  "prelaunch_source_files_verified_before_presentation_edits": 121,
+  "scientific_files_unchanged": 91,
+  "source_change_note": "Scientific runner/observer/config/script and frozen parent unchanged after job. GUI/metadata/docs updated to expose verified QC and unknown root cause.",
+  "zero_launches": 2,
+  "complete_zero_control_ticks": 200,
+  "feedback_checks": 612,
+  "shared_joint_source_stamps": 15220,
+  "canonical_payload_mismatches": 0,
+  "reserialized_cdr_hash_differences_not_parity_gate": 15220,
+  "maximum_supported_joint_endpoint_age_ms": 1.0,
+  "physics_requests": 420,
+  "physics_retries": 0,
+  "parameter_readbacks": 4,
+  "causal_estimator_updates": 1000,
+  "failure_reproduced": false,
+  "root_cause": "unknown",
+  "training_released": false,
+  "partial_td3_batch_reopened": false,
+  "training_transitions": 0,
+  "optimizer_updates": 0,
+  "actor_inference_calls": 0,
+  "hardware_actions": 0,
+  "real_data_added": 0,
+  "quality": [
+    {
+      "launch": 0,
+      "complete_ticks": 100,
+      "feedback_checks": 306,
+      "setup_feedback_checks": 6,
+      "control_feedback_checks": 300,
+      "primary_count": 7569,
+      "independent_count": 7569,
+      "shared_source_stamps": 7569,
+      "semantic_hash_mismatches": 0,
+      "primary_only_source_stamps": 0,
+      "independent_only_source_stamps": 0,
+      "reserialized_cdr_hash_differences_not_parity_gate": 7569,
+      "max_supported_endpoint_age_ms": {
+        "primary": 0.0,
+        "independent": 0.0
+      },
+      "maximum_inter_sample_gap_s": {
+        "primary": 0.003,
+        "independent": 0.003
+      },
+      "boundary_classifications": {
+        "both_joint_paths_supported": 306
+      },
+      "subscriber_qos": {
+        "depth": 100,
+        "reliability": 2
+      },
+      "publisher": {
+        "node_name": "joint_state_broadcaster",
+        "node_namespace": "/",
+        "topic_type": "sensor_msgs/msg/JointState",
+        "endpoint_gid": [
+          1,
+          15,
+          141,
+          252,
+          228,
+          83,
+          22,
+          69,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          96,
+          3
+        ],
+        "qos": {
+          "reliability": 1,
+          "history": 3,
+          "depth": 0,
+          "durability": 1
+        }
+      },
+      "observer_pid": 152474,
+      "observer_closure": true,
+      "endpoint_support_not_loss_free_claim": true
+    },
+    {
+      "launch": 1,
+      "complete_ticks": 100,
+      "feedback_checks": 306,
+      "setup_feedback_checks": 6,
+      "control_feedback_checks": 300,
+      "primary_count": 7651,
+      "independent_count": 7651,
+      "shared_source_stamps": 7651,
+      "semantic_hash_mismatches": 0,
+      "primary_only_source_stamps": 0,
+      "independent_only_source_stamps": 0,
+      "reserialized_cdr_hash_differences_not_parity_gate": 7651,
+      "max_supported_endpoint_age_ms": {
+        "primary": 1.0,
+        "independent": 1.0
+      },
+      "maximum_inter_sample_gap_s": {
+        "primary": 0.003,
+        "independent": 0.003
+      },
+      "boundary_classifications": {
+        "both_joint_paths_supported": 306
+      },
+      "subscriber_qos": {
+        "depth": 100,
+        "reliability": 2
+      },
+      "publisher": {
+        "node_name": "joint_state_broadcaster",
+        "node_namespace": "/",
+        "topic_type": "sensor_msgs/msg/JointState",
+        "endpoint_gid": [
+          1,
+          15,
+          141,
+          252,
+          120,
+          85,
+          120,
+          134,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          96,
+          3
+        ],
+        "qos": {
+          "reliability": 1,
+          "history": 3,
+          "depth": 0,
+          "durability": 1
+        }
+      },
+      "observer_pid": 152896,
+      "observer_closure": true,
+      "endpoint_support_not_loss_free_claim": true
+    }
+  ],
+  "software_fixture": {
+    "scope": "Synthetic ROS-only fixture, domain139, no Gazebo/physics/actor/motor",
+    "published_messages": 20,
+    "received_messages": 19,
+    "missing_source_stamps_ns": [
+      10000000000
+    ],
+    "same_field_hash_parity_test_pass": true,
+    "endpoint_supported_test_pass": true,
+    "stale_tail_timeout_test_pass": true,
+    "initial_failures_retained": [
+      "test shell overwrote ROS PYTHONPATH",
+      "fixture used global executor despite custom context",
+      "re-serialized CDR hash nonportable; now canonical field hash"
+    ],
+    "loss_free_claim": false
+  },
+  "tests": {
+    "contract_tests": {
+      "tests": 17,
+      "failures": 0,
+      "errors": 0
+    },
+    "gui_tests": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "build_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "installed_source_matches": true,
+  "gui_initial_worker": {
+    "default_profile": 12,
+    "profiles": 13,
+    "rows": 2,
+    "columns": 6,
+    "no_auto_job": true,
+    "button_click_started_worker": true,
+    "worker_exit_code": 0,
+    "artifact_verified": true,
+    "rerun_disabled": true,
+    "result_button_reads_diagnostic": true,
+    "training_tab_retained": true,
+    "status": "Diagnostic đã đóng: 2/2launches · not_reproduced_unknown. Root cause unknown; không mở lại TD3 batch hoặc thêm lượt."
+  },
+  "gui_final_display": {
+    "profile": 12,
+    "profiles": 13,
+    "rows": 2,
+    "columns": 8,
+    "no_auto_job": true,
+    "rerun_disabled": true,
+    "quality_review_matches_manifest": true,
+    "maximum_age_ms": 1.0,
+    "payload_mismatches": 0,
+    "unknown_visible": true,
+    "training_not_released": true,
+    "training_tab_retained": true,
+    "status": "Diagnostic đã đóng: 2/2launches · Chưa tái hiện lỗi; nguyên nhân CHƯA RÕ. Không mở lại TD3 batch hoặc thêm lượt."
+  },
+  "owned_processes_remaining": [],
+  "source_snapshot_files": 123,
+  "source_snapshot_sha256": "017b2e257a40040701930b179e2d66a898f57a539ac4b37163956f478098fbf6",
+  "qa_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_joint_boundary_2026-11-06",
+  "next_recommendation": "One isolated RELIABLE joint-reader candidate and ROS-only fault/counter fixture draft; no new physics or learner budget released."
+}

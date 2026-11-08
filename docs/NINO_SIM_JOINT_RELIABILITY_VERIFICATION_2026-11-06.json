@@ -1,0 +1,393 @@
+{
+  "date": "2026-11-06",
+  "status": "joint_reliability_candidate_B0_qualified_not_trained",
+  "fingerprint": "e2e0748afe1b560e1b00ee847029e5481d8654a84f7187d711750fe173bc10a8",
+  "artifacts": {
+    "sim-joint-reliability-fixture": {
+      "path": "/home/tuanmac/nino_research/sim_joint_reliability_v1/20261106T020552213960Z_sim-joint-reliability-fixture",
+      "manifest_sha256": "8e01152b9fd3c098c4c3f84c50596800ae24f6e63a9a294cc86806fdfbbc62ef",
+      "files": 35,
+      "job": {
+        "action": "sim-joint-reliability-fixture",
+        "status": "completed",
+        "error": null,
+        "wall_s": 5.305094983006711,
+        "hardware_actions": 0
+      }
+    },
+    "sim-joint-reliability-gazebo": {
+      "path": "/home/tuanmac/nino_research/sim_joint_reliability_v1/20261106T020606195914Z_sim-joint-reliability-gazebo",
+      "manifest_sha256": "629f0c636309b18bcbe391f3550424bfbb0fb28d6adff1967ce5de94479d056a",
+      "files": 64,
+      "job": {
+        "action": "sim-joint-reliability-gazebo",
+        "status": "completed",
+        "error": null,
+        "wall_s": 89.58424674801063,
+        "hardware_actions": 0
+      }
+    }
+  },
+  "artifact_files_verified": 99,
+  "prelaunch_source_files_verified_before_presentation_edits": 130,
+  "scientific_files_unchanged": 96,
+  "source_change_note": "Candidate/worker/runner/config/scripts and frozen parents unchanged after sealed stages. GUI/metadata/docs updated with audited counts and metrics.",
+  "fixture_publish_attempts": 1001,
+  "fixture_labeled_messages": 1000,
+  "best_effort_received": 1000,
+  "reliable_received": 1000,
+  "fixture_candidate_compatible": true,
+  "reliability_benefit_demonstrated": false,
+  "qualification_launches": 2,
+  "qualification_transitions": 280,
+  "diagnostic_replay_rows_checked": 280,
+  "qualification_pass": true,
+  "feedback_checks": 852,
+  "shared_joint_source_stamps": 18016,
+  "canonical_payload_mismatches": 0,
+  "maximum_joint_endpoint_age_ms": 1.0,
+  "physics_requests": 580,
+  "physics_retries": 0,
+  "parameter_readbacks": 4,
+  "causal_estimator_updates": 1400,
+  "training_transitions": 0,
+  "optimizer_updates": 0,
+  "actor_inference_calls": 0,
+  "hardware_actions": 0,
+  "real_data_added": 0,
+  "training_released": false,
+  "old_failure_root_cause": "unknown",
+  "partial_td3_batch_reopened": false,
+  "minimum_effect_accepted": null,
+  "fixture": {
+    "protocol_id": "nino_joint_reliability_candidate_v1_2026_11_06",
+    "source_order_valid": true,
+    "readers": {
+      "best_effort": {
+        "source_order_valid": true,
+        "unknown_stamps": [],
+        "received_total": 1001,
+        "labeled_received": 1000,
+        "labeled_unique": 1000,
+        "missing_source_stamps_ns": [],
+        "duplicates": 0,
+        "payload_mismatches": 0,
+        "pause": {
+          "actual_end_ns": 87821174717747,
+          "actual_start_ns": 87821074370803,
+          "last": {
+            "cdr_bytes": 132,
+            "cdr_sha256": "7131660800c2c7cabf79e452ce4bc860b8b00fca1d4ad5410a3a8ffed6ea42c6",
+            "frame_id": "software_fixture_only",
+            "payload_hash_schema": "joint_fields_json_v1",
+            "payload_sha256": "025dff1bceeee693dc2dfb66ab11e0b9244cb8561171ab36d54bafd87e9ef5a8",
+            "receipt_monotonic_ns": 87821074187594,
+            "sequence": 502,
+            "source_stamp_ns": 11000000000
+          },
+          "received_count": 502,
+          "request_id": 1,
+          "planned_start_ns": 87821073693547
+        },
+        "pause_valid": true,
+        "endpoint": {
+          "age_ns": 0,
+          "last": {
+            "cdr_bytes": 132,
+            "cdr_sha256": "69bbc6fc2a3317f1d9cedf64ec300e2347c33bb47d2be76342ab6f17921e9248",
+            "frame_id": "software_fixture_only",
+            "payload_hash_schema": "joint_fields_json_v1",
+            "payload_sha256": "72e03dcda0a5ed29d63015923a879f94c8329ed465b87ea624dfd8a149784eb7",
+            "receipt_monotonic_ns": 87822072191095,
+            "sequence": 1001,
+            "source_stamp_ns": 11998000000
+          },
+          "received_count": 1001,
+          "request_id": 2,
+          "request_monotonic_ns": 87822072093654,
+          "response_monotonic_ns": 87822073573758,
+          "supported": true,
+          "target_stamp_ns": 11998000000,
+          "timed_out": false
+        },
+        "endpoint_supported": true,
+        "messages_published_during_pause": 50
+      },
+      "reliable": {
+        "source_order_valid": true,
+        "unknown_stamps": [],
+        "received_total": 1001,
+        "labeled_received": 1000,
+        "labeled_unique": 1000,
+        "missing_source_stamps_ns": [],
+        "duplicates": 0,
+        "payload_mismatches": 0,
+        "pause": {
+          "actual_end_ns": 87821174722850,
+          "actual_start_ns": 87821074401985,
+          "last": {
+            "cdr_bytes": 132,
+            "cdr_sha256": "7131660800c2c7cabf79e452ce4bc860b8b00fca1d4ad5410a3a8ffed6ea42c6",
+            "frame_id": "software_fixture_only",
+            "payload_hash_schema": "joint_fields_json_v1",
+            "payload_sha256": "025dff1bceeee693dc2dfb66ab11e0b9244cb8561171ab36d54bafd87e9ef5a8",
+            "receipt_monotonic_ns": 87821074220410,
+            "sequence": 502,
+            "source_stamp_ns": 11000000000
+          },
+          "received_count": 502,
+          "request_id": 1,
+          "planned_start_ns": 87821073693547
+        },
+        "pause_valid": true,
+        "endpoint": {
+          "age_ns": 0,
+          "last": {
+            "cdr_bytes": 132,
+            "cdr_sha256": "69bbc6fc2a3317f1d9cedf64ec300e2347c33bb47d2be76342ab6f17921e9248",
+            "frame_id": "software_fixture_only",
+            "payload_hash_schema": "joint_fields_json_v1",
+            "payload_sha256": "72e03dcda0a5ed29d63015923a879f94c8329ed465b87ea624dfd8a149784eb7",
+            "receipt_monotonic_ns": 87822072193764,
+            "sequence": 1001,
+            "source_stamp_ns": 11998000000
+          },
+          "received_count": 1001,
+          "request_id": 2,
+          "request_monotonic_ns": 87822072297391,
+          "response_monotonic_ns": 87822073522012,
+          "supported": true,
+          "target_stamp_ns": 11998000000,
+          "timed_out": false
+        },
+        "endpoint_supported": true,
+        "messages_published_during_pause": 50
+      }
+    },
+    "published_messages": 1001,
+    "labeled_source_messages": 1000,
+    "maximum_publish_call_s": 0.000227163,
+    "maximum_source_interval_s": 0.002163689,
+    "fixture_valid": true,
+    "candidate_compatible": true,
+    "reliability_benefit_in_this_fixture": false,
+    "general_reliability_benefit_verified": false,
+    "error": null,
+    "cleanup_errors": [],
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "actor_inference_calls": 0,
+    "gazebo_launches": 0,
+    "hardware_actions": 0,
+    "training_released": false,
+    "root_cause_of_old_failure": "unknown",
+    "source_counter_scope": "attempted publication and per-reader reception; no middleware delivery ACK",
+    "conclusion": "Software compatibility/fault-recovery fixture only; no old-failure root-cause or training-readiness claim"
+  },
+  "qualification_quality": [
+    {
+      "source_stop_s": 6.0,
+      "verified_transitions": 140,
+      "qualification_pass": true,
+      "native_velocity_rmse_m_s": 0.004970134917908038,
+      "timestamp_diagnostic": {
+        "valid": true,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.0062560310814185355,
+            "maximum_support_age_s": 0.0010000000000047748
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.0062605302053955455,
+            "maximum_support_age_s": 0.011000000000002785
+          }
+        },
+        "post_hoc": false,
+        "primary_native_unchanged": true,
+        "body_interpolated": false,
+        "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+      },
+      "path_rmse_mm": 0.09912551337456856,
+      "maximum_native_support_s": 0.019000000000000128,
+      "maximum_primary_joint_age_ms": 1.0,
+      "maximum_independent_joint_age_ms": 1.0,
+      "feedback_checks": 426,
+      "classifications": {
+        "both_joint_paths_supported": 426
+      },
+      "primary_count": 9499,
+      "independent_count": 9499,
+      "shared_source_stamps": 9499,
+      "payload_mismatches": 0,
+      "primary_only_source_stamps": 0,
+      "independent_only_source_stamps": 0,
+      "candidate_subscription": {
+        "before": {
+          "reliability": 2,
+          "depth": 100,
+          "history": 1,
+          "durability": 2,
+          "lifespan_ns": 0,
+          "deadline_ns": 0,
+          "liveliness": 0,
+          "liveliness_lease_ns": 0,
+          "avoid_ros_namespace_conventions": false
+        },
+        "after": {
+          "reliability": 1,
+          "depth": 100,
+          "history": 1,
+          "durability": 2,
+          "lifespan_ns": 0,
+          "deadline_ns": 0,
+          "liveliness": 0,
+          "liveliness_lease_ns": 0,
+          "avoid_ros_namespace_conventions": false
+        },
+        "nonjoint_subscriptions_unchanged": true,
+        "replaced_before_owned_launch": true
+      },
+      "task_success": true,
+      "stop_completed": true,
+      "error": null
+    },
+    {
+      "source_stop_s": 8.0,
+      "verified_transitions": 140,
+      "qualification_pass": true,
+      "native_velocity_rmse_m_s": 0.005461391643143773,
+      "timestamp_diagnostic": {
+        "valid": true,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.007283607109992345,
+            "maximum_support_age_s": 0.017000000000003013
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.007288840674572184,
+            "maximum_support_age_s": 0.007000000000005002
+          }
+        },
+        "post_hoc": false,
+        "primary_native_unchanged": true,
+        "body_interpolated": false,
+        "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+      },
+      "path_rmse_mm": 0.07548706897359303,
+      "maximum_native_support_s": 0.017000000000003013,
+      "maximum_primary_joint_age_ms": 1.0,
+      "maximum_independent_joint_age_ms": 1.0,
+      "feedback_checks": 426,
+      "classifications": {
+        "both_joint_paths_supported": 426
+      },
+      "primary_count": 8517,
+      "independent_count": 8517,
+      "shared_source_stamps": 8517,
+      "payload_mismatches": 0,
+      "primary_only_source_stamps": 0,
+      "independent_only_source_stamps": 0,
+      "candidate_subscription": {
+        "before": {
+          "reliability": 2,
+          "depth": 100,
+          "history": 1,
+          "durability": 2,
+          "lifespan_ns": 0,
+          "deadline_ns": 0,
+          "liveliness": 0,
+          "liveliness_lease_ns": 0,
+          "avoid_ros_namespace_conventions": false
+        },
+        "after": {
+          "reliability": 1,
+          "depth": 100,
+          "history": 1,
+          "durability": 2,
+          "lifespan_ns": 0,
+          "deadline_ns": 0,
+          "liveliness": 0,
+          "liveliness_lease_ns": 0,
+          "avoid_ros_namespace_conventions": false
+        },
+        "nonjoint_subscriptions_unchanged": true,
+        "replaced_before_owned_launch": true
+      },
+      "task_success": true,
+      "stop_completed": true,
+      "error": null
+    }
+  ],
+  "tests": {
+    "contract_tests": {
+      "tests": 13,
+      "failures": 0,
+      "errors": 0
+    },
+    "gui_tests": {
+      "tests": 32,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "build_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "installed_source_matches": true,
+  "gui_worker": {
+    "profile": 13,
+    "profiles": 14,
+    "rows": 4,
+    "columns": 8,
+    "no_auto_job_on_open": true,
+    "stages": [
+      {
+        "action": "sim-joint-reliability-fixture",
+        "button_click": true,
+        "worker_exit_code": 0,
+        "path": "/home/tuanmac/nino_research/sim_joint_reliability_v1/20261106T020552213960Z_sim-joint-reliability-fixture"
+      },
+      {
+        "action": "sim-joint-reliability-gazebo",
+        "button_click": true,
+        "worker_exit_code": 0,
+        "path": "/home/tuanmac/nino_research/sim_joint_reliability_v1/20261106T020606195914Z_sim-joint-reliability-gazebo"
+      }
+    ],
+    "fixture_compatible": true,
+    "conditional_qualification_clicked": true,
+    "consumed_stage_rerun_disabled": true,
+    "training_tab_retained": true,
+    "status": "Hai stage đã đóng. Candidate B0 đạt qualification; chưa có optimizer load, chưa mở train hoặc chứng minh sửa failure cũ."
+  },
+  "gui_display": {
+    "profile": 13,
+    "profiles": 14,
+    "rows": 4,
+    "columns": 10,
+    "no_auto_job": true,
+    "consumed_stage_rerun_disabled": true,
+    "fixture_and_qualification_result_buttons": true,
+    "quality_review_matches_manifest": true,
+    "payload_mismatches_displayed": 0,
+    "native_rmse_displayed": true,
+    "task_stop_displayed": true,
+    "training_progress_zero": true,
+    "training_tab_retained": true,
+    "status": "Hai stage đã đóng. Candidate B0 đạt qualification; bước tiếp là learner protocol mới, chưa mở train hoặc resume partial."
+  },
+  "owned_processes_remaining": [],
+  "source_snapshot_files": 132,
+  "source_snapshot_sha256": "abb66a42e01b2bf5daba9af8c947a113065d03d78bf8ad1307e44a5f419a1f45",
+  "qa_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_joint_reliability_2026-11-06",
+  "next_recommendation": "Design new fresh scalar TD3 learner using qualified candidate; per-episode observer/log/epoch reset fixture and new identity/budget required. No resume old700 or more correction/queue changes."
+}

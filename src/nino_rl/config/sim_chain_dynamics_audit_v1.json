@@ -1,0 +1,22 @@
+{
+  "id": "nino_sim_chain_dynamics_audit_v1_2026_11_07",
+  "scope": "exploratory_offline_diagnostic_not_controller_optimization_or_physical_identification",
+  "source_cells": 9,
+  "source_rows_per_cell": 140,
+  "plateau_start_s": 3.0,
+  "fit_end_s": 5.4,
+  "plateau_end_s": 7.4,
+  "maximum_source_age_s": 0.04,
+  "constant_target_tolerance_m_s": 0.000001,
+  "relaxation_tau_grid_s": {"minimum": 0.1, "maximum": 10.0, "count": 81},
+  "profile_sse_relative_band": 0.05,
+  "purpose_notes": [
+    "Use the same predeclared plateau interval for all cells; fit only B0 and fixed classical, not changing causal requests",
+    "Fit early3.0..5.4, evaluate later5.4..7.4; this is a correlated within-run time block, not independent validation",
+    "Tau is error relaxation time, not command deadtime; the grid is a bounded diagnostic search, not a measured physical range",
+    "SSE profile band is not a confidence interval; a fixed reference cannot separate static affine gain from bias",
+    "Keep whole14s native primary and GT grids unchanged; additive decomposition components are not independent causal contributions",
+    "Read only stored simulation diagnostics; reconstructed PI integral is an algorithm-state proxy, not torque measured on hardware"
+  ],
+  "release": {"physics_authorized": false, "training_authorized": false, "hardware_authorized": false}
+}

@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-05",
+  "status": "equal_information_offline_qualified_not_trained",
+  "artifact": "/home/tuanmac/nino_research/sim_equal_information_v1/20261105T115115446610Z_sim-equal-contract",
+  "manifest_sha256": "ab479441235c37eae27ddc69debf4e279f33b995335f0e8e85ac7c5f0801c470",
+  "fingerprint": "67bb76d3983535e6114c54532e7a9bb52bdef90639cff50a6c3c17bcfaecf86b",
+  "abi_sha256": "b8c71ccb876cb6f2f5ab66d08d74d9b3d8cfdbfac22ccfc3b326da16b5a2e6e0",
+  "frozen_parent_fingerprint": "43e0f6eb3912dffdd3255cac7e54d3622b0b130476ee531d2574251ef37e006d",
+  "artifact_files_verified": 13,
+  "prelaunch_source_files_verified": 101,
+  "trace_rows_checked": 840,
+  "replay_rows_checked": 280,
+  "blocked_nonzero_requests_preserved": 131,
+  "inherited_history_float32_max_delta": 1.4774059420297192e-08,
+  "observation_size": 103,
+  "action_size": 1,
+  "training_transitions": 0,
+  "optimizer_updates": 0,
+  "gazebo_runs": 0,
+  "physics_steps": 0,
+  "hardware_actions": 0,
+  "real_data_added": 0,
+  "benefit_verified": false,
+  "old_checkpoint_compatible": false,
+  "training_released": false,
+  "minimum_worthwhile_effect": null,
+  "tests": {
+    "contract_tests": {
+      "tests": 24,
+      "failures": 0,
+      "errors": 0
+    },
+    "gui_tests": {
+      "tests": 19,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "build_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "installed_source_matches": true,
+  "gui_worker": {
+    "default_profile": 9,
+    "profile_count": 10,
+    "button_click_started_worker": true,
+    "worker_exit_code": 0,
+    "verified_artifact": true,
+    "closed_budget_button_disabled": true,
+    "no_auto_job_on_open": true,
+    "rows": 6,
+    "columns": 5,
+    "training_tab_retained": true,
+    "result_button_reads_qualification": true,
+    "next": "CONTRACT OFFLINE ĐÃ KIỂM · 103D observation / 1D action; 840 bước fixture tổng hợp. Train/optimizer/Gazebo/hardware0. Chưa có kết quả policy mới hoặc lợi ích vật lý.\nBước tiếp: review remaining gap, mục tiêu đáng quan tâm và protocol Gazebo mới trước train; không nạp checkpoint V3 vào ABI này.",
+    "status": "CÙNG THÔNG TIN · cả hai nhận history100D +2 feature kế hoạch +request scalar trước đó. Common request±0,005m/s qua shared steady/withdrawal gate rồi projection cũ; yaw follower giữ nguyên. Replay lưu request1D, mapped2D và accepted reference riêng; penalty theo thang vật lý0,04m/s. Fixture mở ở2,4s khi nhận source tại0,5s; không ép thành2,5s của Gazebo cũ.\nChưa mở: remaining_gap_hypothesis_not_demonstrated, minimum_worthwhile_effect_unaccepted, training_seed_timestep_budget_unallocated, independent_test_conditions_and_budget_unsealed, new_wrapper_not_yet_qualified_in_Gazebo\nTRAIN TD3 hiện có vẫn dùng contract V3/100D/2D; nút train đó không huấn luyện nhánh103D/1D này."
+  },
+  "gui_display": {
+    "current_profile": 9,
+    "profiles": 10,
+    "rows": 6,
+    "columns": 5,
+    "no_auto_job": true,
+    "rerun_disabled": true,
+    "friendly_next_steps": true,
+    "training_tab_retained": true,
+    "status": "CÙNG THÔNG TIN · cả hai nhận history100D +2 feature kế hoạch +request scalar trước đó. Common request±0,005m/s qua shared steady/withdrawal gate rồi projection cũ; yaw follower giữ nguyên. Replay lưu request1D, mapped2D và accepted reference riêng; penalty theo thang vật lý0,04m/s. Fixture mở ở2,4s khi nhận source tại0,5s; không ép thành2,5s của Gazebo cũ.\nViệc tiếp theo:\n1. Xác định tình huống TD3 cần cải thiện so với baseline cổ điển.\n2. Chốt tiêu chí cải thiện tạm thời cho nghiên cứu.\n3. Chọn số seed và timesteps trong protocol train mới.\n4. Tách development/validation/test và khóa ngân sách test.\n5. Kiểm wrapper103D/1D trong Gazebo trước khi train.\nTRAIN TD3 hiện có vẫn dùng contract V3/100D/2D; nút train đó không huấn luyện nhánh103D/1D này.",
+    "next": "CONTRACT OFFLINE ĐÃ KIỂM · 103D observation / 1D action; 840 bước fixture tổng hợp. Train/optimizer/Gazebo/hardware0. Chưa có kết quả policy mới hoặc lợi ích vật lý.\nBước tiếp: review remaining gap, mục tiêu đáng quan tâm và protocol Gazebo mới trước train; không nạp checkpoint V3 vào ABI này."
+  },
+  "source_snapshot_files": 103,
+  "source_snapshot_sha256": "f4d5fb07290549082e8a72113a7135a744442da740d79645ac502d391e1fb232",
+  "owned_processes_remaining": [],
+  "qa_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_equal_information_2026-11-05",
+  "retained_test_history": [
+    "initial_contract_failures.xml",
+    "interrupted_pre_optimization_tests.xml"
+  ],
+  "next_recommendation": "New Gazebo wrapper qualification protocol draft: max4fresh launches/560ticks,zero optimizer; not released/run. Separate benefit/objective/learning budgets; real data not prerequisite for Sim."
+}

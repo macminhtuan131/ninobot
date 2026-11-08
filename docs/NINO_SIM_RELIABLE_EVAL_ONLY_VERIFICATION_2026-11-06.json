@@ -1,0 +1,81 @@
+{
+  "artifact": "/home/tuanmac/nino_research/sim_reliable_eval_only_v1/20261106T031232193116Z_sim-reliable-eval-only",
+  "manifest_sha256": "2e111a3de591c2b5c616d9264392dc4f9cae3dadd74ae5962500edd50b645144",
+  "fingerprint": "66143dc17d9396944efa69d9668d859bf13973726dd4f49cfd6461d069abdd4f",
+  "artifact_files_verified": 323,
+  "prelaunch_source_pins_verified": 171,
+  "source_hashes": {
+    "src/nino_rl/nino_rl/residual_reliable_eval_only.py": "207e0b697e524e63a6f442c852414ff11ecfc5b67b063ce3e285d2bc0a97e985",
+    "src/nino_rl/nino_rl/residual_reliable_evaluation.py": "026d7b61960cb312615a6cedac49540aa74b6e3bd9221f4031da75aace4682d5",
+    "src/nino_rl/config/residual_reliable_eval_only_v1.yaml": "a1715d0b41718d284bbc70b6e18f75408aa8a64c8c599942cdf95c62f76e5da7",
+    "src/nino_rl/scripts/residual_reliable_eval_only.sh": "64b8bd1eca950e82e40015a1e19ccea73d7add8812000c84776f2e33c09abeea",
+    "src/nino_pi/nino_pi/research_jobs.py": "4c2cdc498f4fbfaa3d1a32ab9a63485e57959cea2f3607e10ca68cf3a05f98f9",
+    "src/nino_pi/nino_pi/research_panel.py": "4288ba3a09cb36984f25e2597eaf4e53b7ee6100a430f918ff185352a527072b",
+    "src/nino_pi/nino_pi/research_plan.json": "c3ce4b6fe61587fd4dcf8b5f73aa9926c3e0071f8000a6a598aa54af335e4d76",
+    "src/nino_pi/nino_pi/project_evidence.json": "a9b00120e0b127ce467aecd9fd83cf72f65ecf939809fb27d8ec66c4ed84d226",
+    "docs/NINO_SIM_RELIABLE_EVAL_ONLY_PROTOCOL_2026-11-06.md": "807bfc6de42ad8a75d87b4e46cb26dbfa6453d77e0e7282709dd38dd781d6af1",
+    "docs/NINO_SIM_RELIABLE_EVAL_ONLY_RESULT_2026-11-06.md": "c1b79f8887ae15631f0b820b6df647d6c9ef8d5029e0e8fc619568a1a7f6f358",
+    "docs/NINO_SIM_ASSESSMENT_AND_NEXT_2026-11-06.md": "aa7c41535d595b5879530a3ffe52930a890d6687be5f0954343543df7618160a"
+  },
+  "tests": {
+    "preflight.xml": 21,
+    "actor_snapshot_test.xml": 1,
+    "gui_tests_final.xml": 41
+  },
+  "total_tests": 63,
+  "build_packages": 2,
+  "install_parity": [
+    "/home/tuanmac/ninorobot/install/nino_rl/lib/python3.12/site-packages/nino_rl/residual_reliable_eval_only.py",
+    "/home/tuanmac/ninorobot/install/nino_rl/lib/python3.12/site-packages/nino_rl/residual_reliable_evaluation.py",
+    "/home/tuanmac/ninorobot/install/nino_pi/lib/python3.12/site-packages/nino_pi/research_jobs.py",
+    "/home/tuanmac/ninorobot/install/nino_pi/lib/python3.12/site-packages/nino_pi/research_panel.py",
+    "/home/tuanmac/ninorobot/install/nino_pi/lib/python3.12/site-packages/nino_pi/research_plan.json",
+    "/home/tuanmac/ninorobot/install/nino_pi/lib/python3.12/site-packages/nino_pi/project_evidence.json",
+    "config/residual_reliable_eval_only_v1.yaml",
+    "scripts/residual_reliable_eval_only.sh"
+  ],
+  "actual_GUI_job": {
+    "actual_GUI_button_invoked": true,
+    "profile": 15,
+    "profiles": 16,
+    "returncode": 0,
+    "state": {
+      "state": "verified",
+      "path": "/home/tuanmac/nino_research/sim_reliable_eval_only_v1/20261106T031232193116Z_sim-reliable-eval-only",
+      "label": "EVAL-ONLY ĐÃ ĐÓNG · XEM NATIVE / HEADER / TASK · CHƯA PROMOTE"
+    },
+    "rows": 10,
+    "columns": 10,
+    "consumed_retry_disabled": true,
+    "final_status": "Đã đủ 10 lượt. So TD3 từng seed/stop với cả B0 và cổ điển; kiểm ranking native/GT20ms/+10ms, tracking và dừng. Chưa mở train dài, promote hoặc hardware.",
+    "no_auto_job_on_open": true
+  },
+  "GUI_display": {
+    "profile": 15,
+    "profiles": 16,
+    "no_auto_job": true,
+    "consumed_retry_disabled": true,
+    "rows": 10,
+    "columns": 10,
+    "actual_metrics_displayed": true,
+    "actor_unchanged_displayed": true,
+    "QC_manifest_bound": true,
+    "completed_1400_optimizer0": true,
+    "recommendation_matches_review": true,
+    "training_tab_retained": true,
+    "status": "ĐÃ ĐÓNG 10/10 · 0/6 điều kiện TD3 thấp hơn cả B0 và cổ điển trên native + hai grids. Giữ baseline; chưa có ưu thế TD3 nhất quán. Review phase/critic/coverage đã có; chỉ thiết kế study có giới hạn, chưa train dài hoặc đổi gain/reward mặc định. Chưa promote/hardware."
+  },
+  "evaluation_runs": 10,
+  "evaluation_transitions": 1400,
+  "actor_inference_calls": 840,
+  "training_transitions": 0,
+  "optimizer_updates": 0,
+  "hardware_actions": 0,
+  "checkpoints_unchanged": true,
+  "old_training_job_status": "failed_preserved",
+  "native_and_both_GT_grids_classical_lower_than_all_six_TD3": true,
+  "phase_and_critic_audits_readonly": true,
+  "owned_workers_remaining": [],
+  "benefit_promoted": false,
+  "new_training_released": false
+}

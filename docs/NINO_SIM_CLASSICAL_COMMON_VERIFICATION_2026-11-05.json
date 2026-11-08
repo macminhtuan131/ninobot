@@ -1,0 +1,320 @@
+{
+  "date": "2026-11-05",
+  "protocol_id": "nino_classical_common_planned_stop_v1_2026_11_05",
+  "status": "classical_common_candidate_not_promoted",
+  "artifact": "/home/tuanmac/nino_research/sim_classical_common_v1/20261105T042614286503Z_sim-classical-common",
+  "manifest_sha256": "b59b743fdf4d1b1c727fdccfefad3750f4e27c15b574f040d899da3246656c2e",
+  "fingerprint": "02a7fc89d1614a44685ca15abc8a88ad4ca4caf925911369312d7f81263dba07",
+  "frozen_parent_fingerprint": "1c7111598ad1460036ce6e9a132be4e2854beedbd5125051ea40e4611b408266",
+  "checkpoint_manifest_sha256": "8cc9cbeafeea220074638185535d7a23d6a84156424b2e2a8f656414c6e71578",
+  "files_verified": 91,
+  "checkpoint_files_verified": 53,
+  "physics_requests": 1740,
+  "physics_retries": 0,
+  "parameter_readbacks": 12,
+  "proposal_rows_checked": 840,
+  "causal_estimator_updates": 4200,
+  "nominal_adapter_scorer_parity_all_ticks": true,
+  "evaluation_runs": 6,
+  "evaluation_transitions": 840,
+  "actor_inference_calls": 280,
+  "training_transitions": 0,
+  "optimizer_updates": 0,
+  "task_stop_successes": 6,
+  "functional_proposal_passes": 6,
+  "ranges": {
+    "B0": {
+      "nominal_velocity_rmse_m_s": [
+        0.004915902895411976,
+        0.00509240986446145
+      ],
+      "cross_track_rmse_m": [
+        2.1576080750798563e-05,
+        0.00014530093328600797
+      ],
+      "maximum_cross_track_m": [
+        3.017657496385496e-05,
+        0.00019065895173476372
+      ],
+      "maximum_estimator_position_error_m": [
+        0.0027284364674251805,
+        0.0029503038282019762
+      ],
+      "steady_velocity_rmse_m_s": [
+        0.005159395012727708,
+        0.005561394558841445
+      ],
+      "deceleration_velocity_rmse_m_s": [
+        0.0063342539121565246,
+        0.006599481989928596
+      ]
+    },
+    "Classical_scheduled": {
+      "nominal_velocity_rmse_m_s": [
+        0.004161505829111745,
+        0.004253277904511789
+      ],
+      "cross_track_rmse_m": [
+        5.237909249940904e-05,
+        0.00012198132863302918
+      ],
+      "maximum_cross_track_m": [
+        7.960104167261462e-05,
+        0.00015850080663279493
+      ],
+      "maximum_estimator_position_error_m": [
+        0.004246478485351136,
+        0.01224053146247577
+      ],
+      "steady_velocity_rmse_m_s": [
+        0.002188609478067256,
+        0.0024382159058662107
+      ],
+      "deceleration_velocity_rmse_m_s": [
+        0.006957783626227075,
+        0.0070880807889037705
+      ]
+    },
+    "TD3_common_only": {
+      "nominal_velocity_rmse_m_s": [
+        0.0058076349154690815,
+        0.00588407770531801
+      ],
+      "cross_track_rmse_m": [
+        0.00028215428487739826,
+        0.0006329060690126212
+      ],
+      "maximum_cross_track_m": [
+        0.00044031419046145696,
+        0.000971291026481051
+      ],
+      "maximum_estimator_position_error_m": [
+        0.0029028044318675085,
+        0.0036061431110186557
+      ],
+      "steady_velocity_rmse_m_s": [
+        0.002897655648181608,
+        0.002937637802941374
+      ],
+      "deceleration_velocity_rmse_m_s": [
+        0.012666309944200288,
+        0.012854512475811007
+      ]
+    }
+  },
+  "primary_native_unchanged": true,
+  "timestamp_diagnostic": {
+    "post_hoc": true,
+    "primary_native_unchanged": true,
+    "runs": [
+      {
+        "condition": {
+          "arm": "B0",
+          "repeat": 0,
+          "scenario": "clear_box"
+        },
+        "native_rmse_m_s": 0.004915902895411976,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006443192792911599,
+            "maximum_support_age_s": 0.005000000000004334
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.006447826517201938,
+            "maximum_support_age_s": 0.015000000000004121
+          }
+        }
+      },
+      {
+        "condition": {
+          "arm": "Classical_scheduled",
+          "repeat": 0,
+          "scenario": "clear_box"
+        },
+        "native_rmse_m_s": 0.004161505829111745,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006289138160238796,
+            "maximum_support_age_s": 0.015000000000004121
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.006293661093696639,
+            "maximum_support_age_s": 0.005000000000002558
+          }
+        }
+      },
+      {
+        "condition": {
+          "arm": "TD3_common_only",
+          "repeat": 0,
+          "scenario": "clear_box"
+        },
+        "native_rmse_m_s": 0.0058076349154690815,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.007364400212576592,
+            "maximum_support_age_s": 0.0010000000000047748
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.007369696437793744,
+            "maximum_support_age_s": 0.011000000000006338
+          }
+        }
+      },
+      {
+        "condition": {
+          "arm": "TD3_common_only",
+          "repeat": 1,
+          "scenario": "clear_box"
+        },
+        "native_rmse_m_s": 0.00588407770531801,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.007692064467545337,
+            "maximum_support_age_s": 0.00600000000000378
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.007697579490167396,
+            "maximum_support_age_s": 0.016000000000005343
+          }
+        }
+      },
+      {
+        "condition": {
+          "arm": "Classical_scheduled",
+          "repeat": 1,
+          "scenario": "clear_box"
+        },
+        "native_rmse_m_s": 0.004253277904511789,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006342112938797131,
+            "maximum_support_age_s": 0.015000000000004121
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.006346617014045981,
+            "maximum_support_age_s": 0.005000000000004334
+          }
+        }
+      },
+      {
+        "condition": {
+          "arm": "B0",
+          "repeat": 1,
+          "scenario": "clear_box"
+        },
+        "native_rmse_m_s": 0.00509240986446145,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006499180280810159,
+            "maximum_support_age_s": 0.002000000000005997
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.006503848435578465,
+            "maximum_support_age_s": 0.012000000000004007
+          }
+        }
+      }
+    ],
+    "classical_velocity_separation_by_shift": {
+      "0.0": true,
+      "0.01": true
+    },
+    "body_interpolated": false,
+    "body_rate_resolution_claim": "GT source50Hz only; shifts do not create finer body timing",
+    "method": "20ms grid and +10ms shift; latest raw GT at/before grid; nominal piecewise held native command at GT header time. Diagnostic reference/aggregation differs from native endpoint scorer.",
+    "caveat": "Not a new accepted metric/gate, continuous coverage proof, CI, equal-information comparison or exact-state causal claim."
+  },
+  "information_budget_note": "Classical rule has planned-stop preview; frozen h5 actor does not. Not equal-information algorithm ranking.",
+  "tests": {
+    "contract_tests": {
+      "tests": 14,
+      "failures": 0,
+      "errors": 0
+    },
+    "gui_tests": {
+      "tests": 20,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "build_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "installed_source_matches": true,
+  "gui": {
+    "rows": 6,
+    "columns": 10,
+    "progress": 100,
+    "completed_batch_disabled": true,
+    "phase_metrics_displayed": true,
+    "compensation_50ticks_last_decision7p4": true,
+    "history": {
+      "6": {
+        "rows": 6,
+        "verified": true
+      },
+      "5": {
+        "rows": 8,
+        "verified": true
+      },
+      "4": {
+        "rows": 4,
+        "verified": true
+      },
+      "3": {
+        "rows": 8,
+        "verified": true
+      },
+      "2": {
+        "rows": 4,
+        "verified": true
+      },
+      "0": {
+        "rows": 6,
+        "verified": true
+      },
+      "1": {
+        "rows": 3,
+        "verified": true
+      }
+    },
+    "standalone_training_console_retained": true,
+    "job_started_on_open": false,
+    "hardware_actions": 0
+  },
+  "source_snapshot_files": 100,
+  "source_snapshot_sha256": "5830f15d3ff3db42a4b3db98570b25a8ec9d319481508e13ba0bb1feb1108a89",
+  "outer_exec_returncode": 0,
+  "owned_sim_processes_remaining": [],
+  "hardware_actions": 0,
+  "real_data_added": 0,
+  "benefit_verified": false,
+  "next_recommendation": "Keep B0 comparator and classical candidate; propose source-stop6s/withdraw5.5s transfer, max6 new launches, zero optimizer; not executed.",
+  "qa_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_classical_common_2026-11-05"
+}

@@ -1,0 +1,24 @@
+schema_version: 1
+protocol_id: nino_classical_common_planned_stop_v1_2026_11_05
+action: sim-classical-common
+scenario: clear_box
+training_transitions: 0
+optimizer_updates: 0
+hardware_actions: 0
+maximum_transitions: 840
+steps_per_rollout: 140
+common_compensation_m_s: 0.005
+nominal_steady_m_s: 0.2
+residual_scale_m_s: 0.04
+withdraw_at_task_s: 7.5
+planned_source_stop_s: 8.0
+ablation_fingerprint: 1c7111598ad1460036ce6e9a132be4e2854beedbd5125051ea40e4611b408266
+order:
+  - {arm: B0, repeat: 0}
+  - {arm: Classical_scheduled, repeat: 0}
+  - {arm: TD3_common_only, repeat: 0}
+  - {arm: TD3_common_only, repeat: 1}
+  - {arm: Classical_scheduled, repeat: 1}
+  - {arm: B0, repeat: 1}
+wall_deadline_s: 1800
+minimum_effect_accepted: null

@@ -1,0 +1,47 @@
+schema_version: 1
+protocol_id: nino_equal_information_common_v1_2026_11_05
+action: sim-equal-contract
+parent_fingerprint: 43e0f6eb3912dffdd3255cac7e54d3622b0b130476ee531d2574251ef37e006d
+scope: offline_qualification_only
+scenario: clear_box
+development_source_stops_s: [6.0, 8.0]
+warmup_s: 0.5
+horizon_s: 14.0
+control_interval_s: 0.1
+withdraw_lead_s: 0.5
+nominal_steady_m_s: 0.2
+common_bound_m_s: 0.005
+inherited_residual_scale_m_s: 0.04
+observation:
+  history_frames: 5
+  inherited_history_size: 100
+  current_features: [source_stop_remaining_over_horizon, common_window_open, previous_requested_scalar]
+  size: 103
+  normalization: inherited_fixed_physical_scales_plus_current_plan_over_14s
+action:
+  size: 1
+  bounds: [-1.0, 1.0]
+  semantic: requested_common_before_shared_window_and_projection
+reward:
+  id: nominal_common_request_penalty_v1
+  velocity_scale_m_s: 0.2
+  yaw_rate_scale_rad_s: 0.5
+  request_cost_scale_m_s: 0.04
+  weights: {velocity: 1.0, yaw: 1.0, action: 0.01, action_change: 0.001}
+  penalties: {physical_failure: 10.0, missing_marker: 5.0, not_stopped: 10.0}
+offline_fixture_steps_per_run: 140
+offline_fixture_arms: [B0, Classical_scheduled, Proposal_probe]
+offline_fixture_maximum_transitions: 840
+training_transitions: 0
+optimizer_updates: 0
+physics_steps: 0
+hardware_actions: 0
+training_release:
+  allowed: false
+  remaining_gap_status: hypothesis_not_demonstrated
+  minimum_worthwhile_effect: null
+  proposed_independent_training_seeds: [11, 22, 33]
+  timesteps_per_seed: null
+  final_test_conditions: null
+  final_test_budget: null
+wall_deadline_s: 180

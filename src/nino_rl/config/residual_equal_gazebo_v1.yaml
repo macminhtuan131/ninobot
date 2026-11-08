@@ -1,0 +1,20 @@
+schema_version: 1
+protocol_id: nino_equal_information_gazebo_qualification_v1_2026_11_05
+action: sim-equal-gazebo
+parent_fingerprint: 67bb76d3983535e6114c54532e7a9bb52bdef90639cff50a6c3c17bcfaecf86b
+abi_sha256: b8c71ccb876cb6f2f5ab66d08d74d9b3d8cfdbfac22ccfc3b326da16b5a2e6e0
+scenario: clear_box
+steps_per_rollout: 140
+maximum_transitions: 560
+training_transitions: 0
+optimizer_updates: 0
+actor_inference_calls: 0
+hardware_actions: 0
+native_boundary_support_s: 0.04
+wall_deadline_s: 1200
+minimum_effect_accepted: null
+order:
+  - {arm: B0, source_stop_s: 6.0}
+  - {arm: Classical_scheduled, source_stop_s: 6.0}
+  - {arm: Proposal_probe, source_stop_s: 6.0}
+  - {arm: Proposal_probe, source_stop_s: 8.0}

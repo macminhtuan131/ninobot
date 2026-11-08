@@ -1,0 +1,29 @@
+{
+  "id": "nino_held_encoder_compensation_v1_2026_11_06",
+  "scope": "offline_candidate_not_identified_plant_or_deployable_controller",
+  "observation_size": 103,
+  "history_frames": 5,
+  "policy_dt_s": 0.1,
+  "maximum_history_gap_s": 0.15,
+  "maximum_source_age_s": 0.04,
+  "minimum_reference_m_s": 0.05,
+  "maximum_reference_spread_m_s": 0.002,
+  "maximum_each_wheel_spread_m_s": 0.002,
+  "minimum_gain_estimate": 0.5,
+  "maximum_gain_estimate": 1.5,
+  "maximum_hold_s": 0.6,
+  "common_bound_m_s": 0.005,
+  "decay": "none_within_hold_then_zero_request_through_existing_projection",
+  "parameter_evidence": {
+    "source_age_and_gap": "inherited 40ms source support and 150ms history gap; not relaxed",
+    "reference_spread": "inherited v1 0.002m/s proposal; not calibrated noise or safety threshold",
+    "wheel_spread": "same 0.002m/s absolute band as reference, applied to each wheel over five causal frames; proposed lag screen, not proof of equilibrium",
+    "maximum_hold": "five-frame 0.4s span plus one 0.1s command-observation handoff and one 0.1s decision margin = 0.6s; finite software lease, not physical latency or accepted safety budget",
+    "residual": "existing common +/-0.005m/s; no increase"
+  },
+  "release": {
+    "physics_authorized": false,
+    "training_authorized": false,
+    "hardware_authorized": false
+  }
+}

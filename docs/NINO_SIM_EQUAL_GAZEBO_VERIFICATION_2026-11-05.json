@@ -1,0 +1,757 @@
+{
+  "date": "2026-11-05",
+  "status": "equal_information_gazebo_qualified_not_trained",
+  "artifact": "/home/tuanmac/nino_research/sim_equal_gazebo_v1/20261105T120846465990Z_sim-equal-gazebo",
+  "manifest_sha256": "10c2270e45430c0342717f0d6ace678fbd01ffddc6144dc45f826799605d5b36",
+  "fingerprint": "f172f89ad897828aeda84776b66ed9584a8784d79bd5f0c8557c69beba6d0e6a",
+  "parent_fingerprint": "67bb76d3983535e6114c54532e7a9bb52bdef90639cff50a6c3c17bcfaecf86b",
+  "abi_sha256": "b8c71ccb876cb6f2f5ab66d08d74d9b3d8cfdbfac22ccfc3b326da16b5a2e6e0",
+  "artifact_files_verified": 73,
+  "prelaunch_source_files_verified": 108,
+  "evaluation_runs": 4,
+  "evaluation_transitions": 560,
+  "replay_rows_checked": 560,
+  "replay_files_loaded_and_audited": 4,
+  "blocked_nonzero_requests_preserved": 133,
+  "physics_requests": 1160,
+  "physics_retries": 0,
+  "parameter_readbacks": 8,
+  "causal_estimator_updates": 2800,
+  "qualification_pass": true,
+  "task_stop_successes": 4,
+  "integration_passes": 4,
+  "observation_size": 103,
+  "action_size": 1,
+  "training_transitions": 0,
+  "optimizer_updates": 0,
+  "actor_inference_calls": 0,
+  "hardware_actions": 0,
+  "real_data_added": 0,
+  "benefit_verified": false,
+  "training_released": false,
+  "minimum_effect_accepted": null,
+  "quality": {
+    "B0_stop6": {
+      "trace_rows": 140,
+      "causal_estimator_updates": 700,
+      "max_boundary_support_s": 0.009000000000000341,
+      "first_motion_source_decision_s": 0.5,
+      "common_window_ticks": 30,
+      "first_window_decision_s": 2.5,
+      "last_window_decision_s": 5.4,
+      "blocked_nonzero_requests": 0,
+      "diagnostic": {
+        "valid": true,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006456079486818923,
+            "maximum_support_age_s": 0.009000000000003894
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.006460722478779577,
+            "maximum_support_age_s": 0.019000000000005457
+          }
+        },
+        "post_hoc": false,
+        "primary_native_unchanged": true,
+        "body_interpolated": false,
+        "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+      },
+      "max_source_gaps_s": {
+        "imu": 0.020000000000003126,
+        "wheel": 0.0030000000000001137,
+        "caster_audit": 0.0030000000000001137,
+        "truth": 0.020000000000003126,
+        "drive": 0.10000000000000009,
+        "guidance_reference": 0.10000000000000142,
+        "estimator_update": 0.020000000000003126
+      }
+    },
+    "Classical_scheduled_stop6": {
+      "trace_rows": 140,
+      "causal_estimator_updates": 700,
+      "max_boundary_support_s": 0.017000000000003013,
+      "first_motion_source_decision_s": 0.5,
+      "common_window_ticks": 30,
+      "first_window_decision_s": 2.5,
+      "last_window_decision_s": 5.4,
+      "blocked_nonzero_requests": 0,
+      "diagnostic": {
+        "valid": true,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006036620178672901,
+            "maximum_support_age_s": 0.017000000000003013
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.006040961509819198,
+            "maximum_support_age_s": 0.007000000000005002
+          }
+        },
+        "post_hoc": false,
+        "primary_native_unchanged": true,
+        "body_interpolated": false,
+        "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+      },
+      "max_source_gaps_s": {
+        "imu": 0.020000000000003126,
+        "wheel": 0.0039999999999995595,
+        "caster_audit": 0.0039999999999995595,
+        "truth": 0.020000000000003126,
+        "drive": 0.020000000000003126,
+        "guidance_reference": 0.10000000000000142,
+        "estimator_update": 0.020000000000003126
+      }
+    },
+    "Proposal_probe_stop6": {
+      "trace_rows": 140,
+      "causal_estimator_updates": 700,
+      "max_boundary_support_s": 0.01600000000000179,
+      "first_motion_source_decision_s": 0.5,
+      "common_window_ticks": 30,
+      "first_window_decision_s": 2.5,
+      "last_window_decision_s": 5.4,
+      "blocked_nonzero_requests": 73,
+      "diagnostic": {
+        "valid": true,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006500430621244561,
+            "maximum_support_age_s": 0.012000000000004007
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.006505105509026976,
+            "maximum_support_age_s": 0.002000000000005997
+          }
+        },
+        "post_hoc": false,
+        "primary_native_unchanged": true,
+        "body_interpolated": false,
+        "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+      },
+      "max_source_gaps_s": {
+        "imu": 0.020000000000003126,
+        "wheel": 0.0030000000000001137,
+        "caster_audit": 0.0030000000000001137,
+        "truth": 0.020000000000003126,
+        "drive": 0.020000000000003126,
+        "guidance_reference": 0.10000000000000142,
+        "estimator_update": 0.020000000000003126
+      }
+    },
+    "Proposal_probe_stop8": {
+      "trace_rows": 140,
+      "causal_estimator_updates": 700,
+      "max_boundary_support_s": 0.017000000000001236,
+      "first_motion_source_decision_s": 0.5,
+      "common_window_ticks": 50,
+      "first_window_decision_s": 2.5,
+      "last_window_decision_s": 7.4,
+      "blocked_nonzero_requests": 60,
+      "diagnostic": {
+        "valid": true,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006799491511858216,
+            "maximum_support_age_s": 0.009000000000003894
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.0068043769154202466,
+            "maximum_support_age_s": 0.019000000000005457
+          }
+        },
+        "post_hoc": false,
+        "primary_native_unchanged": true,
+        "body_interpolated": false,
+        "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+      },
+      "max_source_gaps_s": {
+        "imu": 0.020000000000003126,
+        "wheel": 0.0039999999999995595,
+        "caster_audit": 0.0039999999999995595,
+        "truth": 0.020000000000003126,
+        "drive": 0.10699999999999998,
+        "guidance_reference": 0.10000000000000142,
+        "estimator_update": 0.020000000000003126
+      }
+    }
+  },
+  "runs": [
+    {
+      "steps": 140,
+      "return_value": -0.00834759403882308,
+      "final_x_m": 1.0726010765274911,
+      "forward_displacement_m": 1.073542985041662,
+      "maximum_x_m": 1.0726025217927133,
+      "local_marker_x_m": 0.95,
+      "local_marker_reached": true,
+      "local_marker_time_s": 6.5,
+      "lateral_rmse_m": 3.191988931349356e-05,
+      "yaw_rmse_rad": 5.081716208083189e-05,
+      "body_to_executed_reference_rmse_m_s": 0.004883521847861412,
+      "wheel_target_rmse_rad_s": [
+        0.07558808199389033,
+        0.0754118452497746
+      ],
+      "maximum_abs_wheel_rad_s": 3.1535721226311004,
+      "maximum_abs_body_speed_m_s": 0.19708038777918785,
+      "final_body_speed_m_s": 0.0,
+      "final_wheel_rad_s": [
+        5.892311280459045e-05,
+        5.854329145802515e-05
+      ],
+      "physical_failure": false,
+      "time_limit_truncations": 0,
+      "reference_modifications": 40,
+      "accepted_residual_samples": 0,
+      "motion_source_steps": 55,
+      "contact_callback_counts": {
+        "contact_left_wheel": 16289,
+        "contact_caster_right_wheel": 16289,
+        "contact_caster_left_wheel": 16288,
+        "contact_right_wheel": 16289
+      },
+      "c1_manifold_callback_counts": {},
+      "max_observed_source_gap_s": {
+        "imu": 0.020000000000003126,
+        "wheel": 0.0030000000000001137,
+        "caster_audit": 0.0030000000000001137,
+        "truth": 0.020000000000003126,
+        "drive": 0.10000000000000009,
+        "guidance_reference": 0.10000000000000142,
+        "estimator_update": 0.020000000000003126
+      },
+      "caveats": [
+        "Contact counts are manifolds, not force/load/severity.",
+        "Body reference is simulation truth, not a deployable input.",
+        "Max gaps/counts are not a proof of full acquisition coverage.",
+        "A fresh launch is not an exact-state paired counterfactual."
+      ],
+      "cross_track_rmse_m": 3.191988931349356e-05,
+      "maximum_cross_track_m": 4.183086666120442e-05,
+      "final_cross_track_m": -4.182985733597076e-05,
+      "final_path_heading_error_rad": -5.710771839018136e-05,
+      "nominal_velocity_rmse_m_s": 0.004883521847861412,
+      "nominal_yaw_rate_rmse_rad_s": 9.627576966446451e-05,
+      "maximum_estimator_position_error_m": 0.0028966300973382766,
+      "maximum_estimator_yaw_error_rad": 0.00042756791734266386,
+      "task_success": true,
+      "stop_completed": true,
+      "continuous_quiet_s": 5.999999999999995,
+      "progress_marker_reached": true,
+      "final_path_progress_m": 1.0726010765274911,
+      "guidance_faults": 0,
+      "residual_proposals_nonzero": 0,
+      "condition": {
+        "arm": "guided",
+        "path_bearing_deg": 0.0,
+        "scenario": "clear_box",
+        "repeat": 0
+      },
+      "estimator_initialization": "declared_scenario_pose_at_task_epoch_not_truth_readback",
+      "initial_truth_pose": [
+        -0.0009419085141709347,
+        7.643780254714702e-07,
+        -1.4424640567080107e-05
+      ],
+      "final_estimated_pose": [
+        1.0735342949304771,
+        7.762783084771744e-05,
+        0.00031504135040583137
+      ],
+      "truth_used_for_guidance": false,
+      "benefit_verified": false,
+      "hardware_authorized": false,
+      "functional_proposal_pass": true,
+      "qualification_condition": {
+        "arm": "B0",
+        "source_stop_s": 6.0
+      },
+      "common_window_ticks": 30,
+      "first_window_decision_s": 2.5,
+      "last_window_decision_s": 5.4,
+      "first_motion_source_decision_s": 0.5,
+      "blocked_nonzero_requests": 0,
+      "legacy_rule_and_nominal_parity": true,
+      "replay_rows_checked": 140,
+      "replay_scope": "Gazebo diagnostic replay for requested/mapped semantics, not a TD3 training dataset",
+      "maximum_native_boundary_support_age_s": 0.009000000000000341,
+      "timestamp_diagnostic": {
+        "valid": true,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006456079486818923,
+            "maximum_support_age_s": 0.009000000000003894
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.006460722478779577,
+            "maximum_support_age_s": 0.019000000000005457
+          }
+        },
+        "post_hoc": false,
+        "primary_native_unchanged": true,
+        "body_interpolated": false,
+        "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+      },
+      "measurement_pass": true,
+      "actor_inference_calls": 0,
+      "optimizer_updates": 0,
+      "training_transitions": 0,
+      "observation_size": 103,
+      "action_size": 1,
+      "integration_pass": true
+    },
+    {
+      "steps": 140,
+      "return_value": -0.0061784158806803425,
+      "final_x_m": 1.086208071963822,
+      "forward_displacement_m": 1.087677084132118,
+      "maximum_x_m": 1.086820880489968,
+      "local_marker_x_m": 0.95,
+      "local_marker_reached": true,
+      "local_marker_time_s": 6.5,
+      "lateral_rmse_m": 3.650566269696909e-05,
+      "yaw_rmse_rad": 7.91756493357519e-05,
+      "body_to_executed_reference_rmse_m_s": 0.004960831685541624,
+      "wheel_target_rmse_rad_s": [
+        0.0757668495918403,
+        0.07582607515356134
+      ],
+      "maximum_abs_wheel_rad_s": 3.223929850197682,
+      "maximum_abs_body_speed_m_s": 0.20141120322562966,
+      "final_body_speed_m_s": 0.0,
+      "final_wheel_rad_s": [
+        -1.1639978934960514e-05,
+        -1.1718737357035115e-05
+      ],
+      "physical_failure": false,
+      "time_limit_truncations": 0,
+      "reference_modifications": 40,
+      "accepted_residual_samples": 30,
+      "motion_source_steps": 55,
+      "contact_callback_counts": {
+        "contact_left_wheel": 19257,
+        "contact_caster_right_wheel": 19257,
+        "contact_caster_left_wheel": 19255,
+        "contact_right_wheel": 19257
+      },
+      "c1_manifold_callback_counts": {},
+      "max_observed_source_gap_s": {
+        "imu": 0.020000000000003126,
+        "wheel": 0.0039999999999995595,
+        "caster_audit": 0.0039999999999995595,
+        "truth": 0.020000000000003126,
+        "drive": 0.020000000000003126,
+        "guidance_reference": 0.10000000000000142,
+        "estimator_update": 0.020000000000003126
+      },
+      "caveats": [
+        "Contact counts are manifolds, not force/load/severity.",
+        "Body reference is simulation truth, not a deployable input.",
+        "Max gaps/counts are not a proof of full acquisition coverage.",
+        "A fresh launch is not an exact-state paired counterfactual."
+      ],
+      "cross_track_rmse_m": 3.650566269696909e-05,
+      "maximum_cross_track_m": 4.9356242722014084e-05,
+      "final_cross_track_m": -4.824524783872295e-05,
+      "final_path_heading_error_rad": -9.662228262596884e-05,
+      "nominal_velocity_rmse_m_s": 0.003926118635668866,
+      "nominal_yaw_rate_rmse_rad_s": 0.0001947177998832494,
+      "maximum_estimator_position_error_m": 0.003453260639825072,
+      "maximum_estimator_yaw_error_rad": 0.00012679046973396169,
+      "task_success": true,
+      "stop_completed": true,
+      "continuous_quiet_s": 5.999999999999995,
+      "progress_marker_reached": true,
+      "final_path_progress_m": 1.086208071963822,
+      "guidance_faults": 0,
+      "residual_proposals_nonzero": 30,
+      "condition": {
+        "arm": "guided",
+        "path_bearing_deg": 0.0,
+        "scenario": "clear_box",
+        "repeat": 0
+      },
+      "estimator_initialization": "declared_scenario_pose_at_task_epoch_not_truth_readback",
+      "initial_truth_pose": [
+        -0.0014690121682958452,
+        1.4811953917502202e-07,
+        -1.0241899103600693e-05
+      ],
+      "final_estimated_pose": [
+        1.0876940968879698,
+        -0.00012957408310977666,
+        -0.00013703996777492122
+      ],
+      "truth_used_for_guidance": false,
+      "benefit_verified": false,
+      "hardware_authorized": false,
+      "functional_proposal_pass": true,
+      "qualification_condition": {
+        "arm": "Classical_scheduled",
+        "source_stop_s": 6.0
+      },
+      "common_window_ticks": 30,
+      "first_window_decision_s": 2.5,
+      "last_window_decision_s": 5.4,
+      "first_motion_source_decision_s": 0.5,
+      "blocked_nonzero_requests": 0,
+      "legacy_rule_and_nominal_parity": true,
+      "replay_rows_checked": 140,
+      "replay_scope": "Gazebo diagnostic replay for requested/mapped semantics, not a TD3 training dataset",
+      "maximum_native_boundary_support_age_s": 0.017000000000003013,
+      "timestamp_diagnostic": {
+        "valid": true,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006036620178672901,
+            "maximum_support_age_s": 0.017000000000003013
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.006040961509819198,
+            "maximum_support_age_s": 0.007000000000005002
+          }
+        },
+        "post_hoc": false,
+        "primary_native_unchanged": true,
+        "body_interpolated": false,
+        "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+      },
+      "measurement_pass": true,
+      "actor_inference_calls": 0,
+      "optimizer_updates": 0,
+      "training_transitions": 0,
+      "observation_size": 103,
+      "action_size": 1,
+      "integration_pass": true
+    },
+    {
+      "steps": 140,
+      "return_value": -0.05332035149786264,
+      "final_x_m": 1.0697051543231881,
+      "forward_displacement_m": 1.0711492135511373,
+      "maximum_x_m": 1.0716812948242802,
+      "local_marker_x_m": 0.95,
+      "local_marker_reached": true,
+      "local_marker_time_s": 6.5,
+      "lateral_rmse_m": 0.00022879096630104397,
+      "yaw_rmse_rad": 0.0007774742666208957,
+      "body_to_executed_reference_rmse_m_s": 0.004726104602660024,
+      "wheel_target_rmse_rad_s": [
+        0.07330857691724016,
+        0.07306134777888226
+      ],
+      "maximum_abs_wheel_rad_s": 3.213192412878042,
+      "maximum_abs_body_speed_m_s": 0.20066924624747434,
+      "final_body_speed_m_s": -0.0003110515926447796,
+      "final_wheel_rad_s": [
+        -0.0056807367300991144,
+        -0.005679698131026526
+      ],
+      "physical_failure": false,
+      "time_limit_truncations": 0,
+      "reference_modifications": 50,
+      "accepted_residual_samples": 20,
+      "motion_source_steps": 55,
+      "contact_callback_counts": {
+        "contact_left_wheel": 19292,
+        "contact_caster_right_wheel": 19292,
+        "contact_caster_left_wheel": 19292,
+        "contact_right_wheel": 19292
+      },
+      "c1_manifold_callback_counts": {},
+      "max_observed_source_gap_s": {
+        "imu": 0.020000000000003126,
+        "wheel": 0.0030000000000001137,
+        "caster_audit": 0.0030000000000001137,
+        "truth": 0.020000000000003126,
+        "drive": 0.020000000000003126,
+        "guidance_reference": 0.10000000000000142,
+        "estimator_update": 0.020000000000003126
+      },
+      "caveats": [
+        "Contact counts are manifolds, not force/load/severity.",
+        "Body reference is simulation truth, not a deployable input.",
+        "Max gaps/counts are not a proof of full acquisition coverage.",
+        "A fresh launch is not an exact-state paired counterfactual."
+      ],
+      "cross_track_rmse_m": 0.00022879096630104397,
+      "maximum_cross_track_m": 0.0003125114634745252,
+      "final_cross_track_m": 0.00030945648594024535,
+      "final_path_heading_error_rad": 0.0010616216069974094,
+      "nominal_velocity_rmse_m_s": 0.004903407800059555,
+      "nominal_yaw_rate_rmse_rad_s": 0.0005094408537261148,
+      "maximum_estimator_position_error_m": 0.0032265631130987496,
+      "maximum_estimator_yaw_error_rad": 0.0009803197246056605,
+      "task_success": true,
+      "stop_completed": true,
+      "continuous_quiet_s": 5.999999999999995,
+      "progress_marker_reached": true,
+      "final_path_progress_m": 1.0697051543231881,
+      "guidance_faults": 0,
+      "residual_proposals_nonzero": 93,
+      "condition": {
+        "arm": "guided",
+        "path_bearing_deg": 0.0,
+        "scenario": "clear_box",
+        "repeat": 0
+      },
+      "estimator_initialization": "declared_scenario_pose_at_task_epoch_not_truth_readback",
+      "initial_truth_pose": [
+        -0.001444059227949238,
+        1.6824547283536058e-06,
+        -1.1943316110447535e-05
+      ],
+      "final_estimated_pose": [
+        1.0709317418749107,
+        0.0004789658965657723,
+        0.0019685068433497044
+      ],
+      "truth_used_for_guidance": false,
+      "benefit_verified": false,
+      "hardware_authorized": false,
+      "functional_proposal_pass": true,
+      "qualification_condition": {
+        "arm": "Proposal_probe",
+        "source_stop_s": 6.0
+      },
+      "common_window_ticks": 30,
+      "first_window_decision_s": 2.5,
+      "last_window_decision_s": 5.4,
+      "first_motion_source_decision_s": 0.5,
+      "blocked_nonzero_requests": 73,
+      "legacy_rule_and_nominal_parity": true,
+      "replay_rows_checked": 140,
+      "replay_scope": "Gazebo diagnostic replay for requested/mapped semantics, not a TD3 training dataset",
+      "maximum_native_boundary_support_age_s": 0.01600000000000179,
+      "timestamp_diagnostic": {
+        "valid": true,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006500430621244561,
+            "maximum_support_age_s": 0.012000000000004007
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.006505105509026976,
+            "maximum_support_age_s": 0.002000000000005997
+          }
+        },
+        "post_hoc": false,
+        "primary_native_unchanged": true,
+        "body_interpolated": false,
+        "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+      },
+      "measurement_pass": true,
+      "actor_inference_calls": 0,
+      "optimizer_updates": 0,
+      "training_transitions": 0,
+      "observation_size": 103,
+      "action_size": 1,
+      "integration_pass": true
+    },
+    {
+      "steps": 140,
+      "return_value": -0.05495753449893429,
+      "final_x_m": 1.4664264814584411,
+      "forward_displacement_m": 1.4688449894005873,
+      "maximum_x_m": 1.467802452361223,
+      "local_marker_x_m": 0.95,
+      "local_marker_reached": true,
+      "local_marker_time_s": 6.5,
+      "lateral_rmse_m": 0.00044990172518173324,
+      "yaw_rmse_rad": 0.000883909678710442,
+      "body_to_executed_reference_rmse_m_s": 0.005062189534815362,
+      "wheel_target_rmse_rad_s": [
+        0.08006413316572641,
+        0.0798654050023821
+      ],
+      "maximum_abs_wheel_rad_s": 3.2220323931038917,
+      "maximum_abs_body_speed_m_s": 0.2012663273502524,
+      "final_body_speed_m_s": -0.000207643121181174,
+      "final_wheel_rad_s": [
+        -0.004492294831713392,
+        -0.004500573851201151
+      ],
+      "physical_failure": false,
+      "time_limit_truncations": 0,
+      "reference_modifications": 56,
+      "accepted_residual_samples": 33,
+      "motion_source_steps": 75,
+      "contact_callback_counts": {
+        "contact_left_wheel": 17369,
+        "contact_caster_right_wheel": 17369,
+        "contact_caster_left_wheel": 17369,
+        "contact_right_wheel": 17369
+      },
+      "c1_manifold_callback_counts": {},
+      "max_observed_source_gap_s": {
+        "imu": 0.020000000000003126,
+        "wheel": 0.0039999999999995595,
+        "caster_audit": 0.0039999999999995595,
+        "truth": 0.020000000000003126,
+        "drive": 0.10699999999999998,
+        "guidance_reference": 0.10000000000000142,
+        "estimator_update": 0.020000000000003126
+      },
+      "caveats": [
+        "Contact counts are manifolds, not force/load/severity.",
+        "Body reference is simulation truth, not a deployable input.",
+        "Max gaps/counts are not a proof of full acquisition coverage.",
+        "A fresh launch is not an exact-state paired counterfactual."
+      ],
+      "cross_track_rmse_m": 0.00044990172518173324,
+      "maximum_cross_track_m": 0.0006922674210062973,
+      "final_cross_track_m": 0.0006881576174217781,
+      "final_path_heading_error_rad": 0.0012445003164032187,
+      "nominal_velocity_rmse_m_s": 0.0053527505882625045,
+      "nominal_yaw_rate_rmse_rad_s": 0.0008316388497985998,
+      "maximum_estimator_position_error_m": 0.004271243538188559,
+      "maximum_estimator_yaw_error_rad": 0.0004421913555900936,
+      "task_success": true,
+      "stop_completed": true,
+      "continuous_quiet_s": 4.000000000000002,
+      "progress_marker_reached": true,
+      "final_path_progress_m": 1.4664264814584411,
+      "guidance_faults": 0,
+      "residual_proposals_nonzero": 93,
+      "condition": {
+        "arm": "guided",
+        "path_bearing_deg": 0.0,
+        "scenario": "clear_box",
+        "repeat": 0
+      },
+      "estimator_initialization": "declared_scenario_pose_at_task_epoch_not_truth_readback",
+      "initial_truth_pose": [
+        -0.0024185079421462532,
+        8.817275887688226e-07,
+        -1.7241546157983422e-05
+      ],
+      "final_estimated_pose": [
+        1.4684024816843255,
+        0.0005879524468283958,
+        0.001321432449116422
+      ],
+      "truth_used_for_guidance": false,
+      "benefit_verified": false,
+      "hardware_authorized": false,
+      "functional_proposal_pass": true,
+      "qualification_condition": {
+        "arm": "Proposal_probe",
+        "source_stop_s": 8.0
+      },
+      "common_window_ticks": 50,
+      "first_window_decision_s": 2.5,
+      "last_window_decision_s": 7.4,
+      "first_motion_source_decision_s": 0.5,
+      "blocked_nonzero_requests": 60,
+      "legacy_rule_and_nominal_parity": true,
+      "replay_rows_checked": 140,
+      "replay_scope": "Gazebo diagnostic replay for requested/mapped semantics, not a TD3 training dataset",
+      "maximum_native_boundary_support_age_s": 0.017000000000001236,
+      "timestamp_diagnostic": {
+        "valid": true,
+        "header_grid": {
+          "0.0": {
+            "samples": 696,
+            "unique_truth_samples": 696,
+            "rmse_m_s": 0.006799491511858216,
+            "maximum_support_age_s": 0.009000000000003894
+          },
+          "0.01": {
+            "samples": 695,
+            "unique_truth_samples": 695,
+            "rmse_m_s": 0.0068043769154202466,
+            "maximum_support_age_s": 0.019000000000005457
+          }
+        },
+        "post_hoc": false,
+        "primary_native_unchanged": true,
+        "body_interpolated": false,
+        "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+      },
+      "measurement_pass": true,
+      "actor_inference_calls": 0,
+      "optimizer_updates": 0,
+      "training_transitions": 0,
+      "observation_size": 103,
+      "action_size": 1,
+      "integration_pass": true
+    }
+  ],
+  "tests": {
+    "contract_tests": {
+      "tests": 12,
+      "failures": 0,
+      "errors": 0
+    },
+    "gui_tests": {
+      "tests": 21,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "build_packages": [
+    "nino_pi",
+    "nino_rl"
+  ],
+  "installed_source_matches": true,
+  "gui_worker": {
+    "default_profile": 10,
+    "profiles": 11,
+    "rows": 4,
+    "columns": 10,
+    "no_auto_job": true,
+    "button_click_started_worker": true,
+    "worker_exit_code": 0,
+    "artifact_verified": true,
+    "rerun_disabled": true,
+    "result_button_reads_qualification": true,
+    "training_tab_retained": true,
+    "status": "QUALIFICATION GAZEBO ĐÃ ĐÓNG · 4/4 lượt, 560/560ticks; replay 560rows. Wrapper103D/1D đạt tích hợp trong clear development6/8s.\nKhông actor/optimizer hoặc policy mới được train. RMSE chỉ diagnostic, không xếp hạng lợi ích. Bước tiếp: chốt bounded learner pilot với objective/profile/budget/split mới."
+  },
+  "gui_display": {
+    "profiles": 11,
+    "current_profile": 10,
+    "rows": 4,
+    "columns": 10,
+    "no_auto_job": true,
+    "rerun_disabled": true,
+    "training_tab_retained": true,
+    "status": "QUALIFICATION GAZEBO ĐÃ ĐÓNG · 4/4 lượt, 560/560ticks; replay 560rows. Wrapper103D/1D đạt tích hợp trong clear development6/8s.\nKhông actor/optimizer hoặc policy mới được train. RMSE chỉ diagnostic, không xếp hạng lợi ích. Bước tiếp: chốt fresh TD3 common-only pilot; draft3seeds×1024train +10eval launches, chưa mở budget/chạy."
+  },
+  "source_snapshot_files": 110,
+  "source_snapshot_sha256": "aabb3da14e0bd8c4aa3b1194c64438d03926bdbefb2bb1b6ce008157164111cd",
+  "source_change_note": "Scientific modules/config/scripts unchanged after sealed batch. Additional post-run yaw/ramp explanatory unit test and documentation corrections retained in final snapshot.",
+  "correction": "Earlier offline report incorrectly attributed window delay to late source. New and old traces show source0.5s; small follower yaw and wheel ramp keep nominal v below steady at2.4s. Fixed interpretation without changing controller/raw.",
+  "owned_processes_remaining": [],
+  "qa_root": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_equal_gazebo_2026-11-05",
+  "next_recommendation": "New draft fresh scalar TD3 pilot:3seeds x1024train +10evaluation launches; not released/run. Keep development vs unseen claims and benefit gates separate from integration."
+}

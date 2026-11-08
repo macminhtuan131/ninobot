@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "nino_sim_static_gain_screen_v1_2026_11_06",
+  "status": "offline_design_only",
+  "question": "Can bounded causal encoder-based common compensation handle an unknown fixed reference-to-drive gain before considering a learner?",
+  "scope": "simulation_hypothesis_not_hardware_calibration",
+  "single_factor": "fixed_common_reference_to_drive_gain_per_run",
+  "gain_location": "common wheel-linear reference after shared projection, before simulated drive backend; differential/yaw request unchanged",
+  "gains_development": [0.98, 1.0, 1.02],
+  "gain_evidence": "Analytic +/-2% stress proposal within ideal +/-0.005 m/s authority at 0.2 m/s; not measured on Nino",
+  "source_stop_s": 8.0,
+  "horizon_s": 14.0,
+  "policy_dt_s": 0.1,
+  "common_bound_m_s": 0.005,
+  "observation_size": 103,
+  "history_frames": 5,
+  "action_size": 1,
+  "nominal_steady_m_s": 0.2,
+  "baselines": ["B0", "Classical_scheduled", "Causal_gain_candidate"],
+  "primary": "whole_14s_native_nominal_body_velocity_rmse_m_s",
+  "sensitivity_grids": ["GT20ms", "GTshift10ms"],
+  "secondary": ["wheel_reference_rmse", "path_rmse", "stop", "interventions", "gain_estimate_validity"],
+  "maximum_path_rmse_m": 0.04,
+  "continuous_stop_s": 2.0,
+  "proposed_relative_effect": 0.05,
+  "application_effect_accepted": null,
+  "candidate": {
+    "minimum_reference_m_s": 0.05,
+    "maximum_reference_spread_m_s": 0.002,
+    "minimum_gain_estimate": 0.5,
+    "maximum_gain_estimate": 1.5,
+    "invalid_input_fallback_scalar": 0.0,
+    "geometry_evidence": "nominal_sim_geometry_not_calibrated_real",
+    "assumptions": "Steady aligned previous executed reference and encoder speed; same nominal wheel geometry; not body/slip estimation"
+  },
+  "controller_forbidden_inputs": ["injected_gain", "GT", "contact", "caster_state", "test_identity"],
+  "required_new_backend_evidence": [
+    "distinct nominal/requested/projected/ROS/effective-drive/target/encoder channels",
+    "gain-one parity against frozen backend without modifying it",
+    "gain applied once, preserves zero and differential request, no privileged controller inputs",
+    "fresh drive-ACK reset, limits and requested-versus-executed provenance",
+    "new context identity even if observation/action shapes match 103D/1D"
+  ],
+  "proposed_qualification": {
+    "maximum_launches": 9,
+    "steps_per_launch": 140,
+    "maximum_eval_ticks": 1260,
+    "independent_repeats_per_cell": 1,
+    "interpretation": "descriptive baseline/authority screen, not confirmatory or generalization",
+    "retries": 0,
+    "extra_smokes": 0,
+    "maximum_evidence_based_corrections_before_redecision": 1
+  },
+  "release": {
+    "physics_authorized": false,
+    "training_authorized": false,
+    "hardware_authorized": false,
+    "gazebo_launches_now": 0,
+    "optimizer_updates_now": 0,
+    "actor_loads_now": 0
+  },
+  "holdout": {
+    "status": "not_allocated_until_baseline_screen_has_remaining_gap",
+    "gain_conditions": null,
+    "learner_seeds": null,
+    "training_steps": null,
+    "test_budget": null
+  },
+  "decisions": {
+    "clear_known_stop": "use_classical_do_not_expand_A_checkpoint_by_default",
+    "static_gain": "classical_baseline_screen_first_no_assumed_need_for_TD3",
+    "history_delay_contact": "deferred_separate_question_not_part_of_this_benchmark"
+  }
+}

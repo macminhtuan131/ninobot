@@ -20,7 +20,7 @@ setup(
         (os.path.join("share", package_name, "config"), glob("config/*.yaml")),
         (os.path.join("share", package_name, "config"), glob("config/*.json")),
         (os.path.join("share", package_name, "launch"), glob("launch/*.launch.py")),
-        (os.path.join("share", package_name, "scripts"), glob("scripts/residual_*.sh")),
+        (os.path.join("share", package_name, "scripts"), glob("scripts/residual_*.sh") + glob("scripts/common_training_studio.sh")),
         (os.path.join("share", package_name, "models", "completed_train"),
          glob("models/completed_train/*")),
     ],
@@ -46,6 +46,8 @@ setup(
             "td3_parameters = nino_rl.td3_config:main",
             "residual_workflow = nino_rl.residual_workflow:main",
             "wait_for_sim = nino_rl.wait_for_sim:main",
+            "sim_gain_effort_drive = nino_rl.gain_effort_drive:main",
+            "sim_pi_screen_effort_drive = nino_rl.pi_screen_effort_drive:main",
         ],
     },
 )

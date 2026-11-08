@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "plan_id": "nino_bounded_velocity_research_v1",
-  "date": "2026-11-04",
+  "date": "2026-11-07",
   "question": "Phần bù vận tốc bánh có giới hạn dùng IMU/encoder/history có cải thiện tracking/chất lượng chuyển động so với baseline cổ điển công bằng trong envelope đã đo không?",
-  "primary_candidate": "TD3 + MLP với history; chưa phải recurrent H-TD3 và chưa chứng minh tốt hơn",
+  "primary_candidate": "Giữ Classical_scheduled cho clear-box/stop6–8s/Ki0,10 đã thử. Chuẩn bị Sim tail authority probe trước source-stop; chưa runner/release/batch hoặc training mới. Không cần Pi cho chuẩn bị Sim.",
   "learning_comparator": "PPO cùng observation/action/reward/limits; SAC chỉ khi có lý do từ dữ liệu",
   "physical_backend": "CyberGear velocity mode qua STM32/CAN theo source; PI actuator và binary/rate thực cần xác minh, không giả định STM32 PWM PI 500 Hz",
   "residual_interface": "common/diff wheel-linear velocity correction m/s → left/right → body reference; không effort/torque/PWM",
-  "actor_contract": "nino_residual_velocity_v1: 20 feature × 5 frame = 100; span đề xuất 0,4 s ở 10 Hz; không terrain/GT/pose/contact/caster privileged",
-  "status": "v3_guided_zero_residual_baseline_running",
+  "actor_contract": "Sim eval hiện hành: 103D/1D = history5 ×20 features +3plan/window features; common ±0,005m/s, 10Hz, cùng preview/projection. Generic 100D/2D là ABI khác; không convert/resume chéo.",
+  "status": "sim_offline_prestop_authority_draft_prepared_no_batch",
   "training_allowed": false,
   "hardware_residual_authority": 0,
   "stages": [
@@ -108,7 +108,21 @@
     }
   ],
   "optimizer_smoke_allowed": true,
-  "scientific_training_budget": null,
+  "scientific_training_budget": {
+    "status": "closed_on_measurement_failure",
+    "planned_train": 3072,
+    "executed_train": 700,
+    "planned_eval": 1400,
+    "executed_eval": 0,
+    "seeds_started": [
+      11
+    ],
+    "seeds_closed_without_start": [
+      22,
+      33
+    ],
+    "remaining_slots_released": false
+  },
   "report_sha256": "aa59ce6fc6990965d77b5c5ec480ea3c78a68bd21797bfbb8679fdda922475f4",
   "software_track": [
     "validate",
@@ -123,44 +137,44 @@
   "next_steps": [
     {
       "id": "01",
-      "name": "Sim V3: estimator + follower → baseline zero residual",
-      "status": "8 LƯỢT BASELINE GAZEBO ĐANG CHẠY",
-      "owner": "Assistant triển khai/chạy trên laptop",
-      "work": "Không đợi real dataset. Nối causal wheel+IMU odometry vào follower và ResidualPipeline trong Gazebo. Robot yaw 0, tuyến ±5° tạo heading error; B0 constant/guided × 2 bearings × 2 lượt. Residual zero, không actor/optimizer. GT chỉ reset/evaluation.",
-      "data": "Raw sensor/GT/caster/drive + từng estimator update với gyro stamp/wheel support stamp, pose source/clock/epoch, guidance reference/accepted/final/target. Estimate không là body GT.",
-      "output": "Artifact V3 với path cross-track, heading, estimator drift, reference v/yaw tracking và quiet stop. Candidate baseline chỉ được xác nhận sau đủ tám lượt theo gate đề xuất.",
-      "gate": "Không lấp estimator drift bằng GT alignment. Thiếu causal support/source fault hoặc physical failure đóng batch, không retry. Qua baseline gate mới thiết kế/release TD3 V3 riêng, không resume V2 theo ABI đơn thuần.",
+      "name": "Sim: 30k đã review · giữ classical cho envelope hiện tại",
+      "status": "BASELINE TRƯỚC LEARNER · ĐÃ CHỐT CLASSICAL / 30K ĐÃ REVIEW",
+      "owner": "Assistant đã hoàn tất review offline; không cần robot hoặc data thật mới cho kết luận Sim này.",
+      "work": "Không đợi real dataset: một learner seed11 đã train tổng30.000steps,20.000critic/10.000actor updates,6/6eval đạt task/stop. Phân tích20k/25k/30k đã đóng; giữ Classical_scheduled với Ki0,10 cho clear-box, lịch dừng biết trước6/8s. Giữ các checkpoint; không tự mở đợt train/ablation.",
+      "data": "Cùng1.680eval packet và30.000train rows đã đối chiếu;26input/checkpoint hashes khớp. Mapping/reward khớp; shadow trên trace cũ không phải outcome mới. Một seed/seen conditions, fresh launch không là exact-state pair.",
+      "output": "Counters thực:30.000global =20.000parent+10.000continuation, critic20.000/actor10.000. Actor cải thiện phase mở mô tả nhưng classical vẫn tốt hơn; critic terminal ranking chỉ khớp1/12packet. Có báo cáo/CSV/biểu đồ và quyết định đã đóng.",
+      "gate": "Quyết định chỉ áp dụng envelope Sim đã thử, không là deploy governor/TD3 hoặc xác nhận hardware. Kết thúc vòng audit này. Muốn mở TD3 tiếp cần câu hỏi về ứng dụng/quyền tác động và protocol riêng; thắng baseline là gate promote, không cấm mọi tuning/nghiên cứu Sim.",
       "action": null
     },
     {
       "id": "02",
-      "name": "Giải thích lệnh → bánh → thân xe",
-      "status": "SAU 01",
+      "name": "Wheel/body: đã đối chiếu 4 bag; thiếu reference thân",
+      "status": "OFFLINE ĐÃ XONG · BODY VẪN UNKNOWN",
       "owner": "Assistant phân tích; bạn cung cấp quan sát/video",
-      "work": "Đối chiếu dữ liệu đã có và phiên Studio phù hợp: yên, tiến, zero, sau dừng. Cần motion/video mới thì chốt protocol riêng trước. So source→selected→smoothed→final ROS với feedback bánh và reference thân; giữ bất đồng, không suy /cmd_vel là actuator readback.",
-      "data": "Gói bước 01; source/header time và bag/receipt time giữ riêng; video và uncertainty đồng bộ.",
-      "output": "Báo cáo một lượt: lệnh đi tới đâu, hai bánh phản ứng thế nào, thân có tiến/tự dừng không, phần nào còn unknown.",
-      "gate": "Chỉ mở bước 03 khi đường lệnh và chuyển động quan sát nhất quán hoặc nguyên nhân mâu thuẫn đã được giải thích. Nếu lỗi: tối đa một correction có căn cứ rồi quyết định protocol mới; không lặp vô hạn.",
+      "work": "Đã đọc 95.459 messages của bốn phiên và kiểm 100 raw file hashes. Giữ riêng clear-zone có operator báo tiến, V2 có final tiến/reported wheel tăng nhưng operator báo không tiến, lượt STOP và startup discovery fail. Không gộp thành repeats; chưa kết luận telemetry sai hoặc slip.",
+      "data": "Raw CDR/SQLite/metadata, command chain, inherited frozen primary và operator records. 118 input paths khớp hash trước/sau; không có video trong cây client artifacts đã tìm. Không xác minh dữ liệu mới trên Pi.",
+      "output": "docs/NINO_WHEEL_BODY_GAP_REVIEW_2026-11-07.md và artifact wheel_body_gap_review_2026-11-07/analysis.json. Draft reference phân mức quan sát đồng phiên và calibration/sync định lượng; có form body_reference_observation.template.json.",
+      "gate": "Phần review offline hoàn tất. Chuyển sang chuẩn bị một diagnostic có video ở bước03; chỉ motion sau live readiness/review/release riêng. Body speed/slip và ba repeats vẫn chưa đạt; không lặp inventory/IMU sign.",
       "action": null
     },
     {
       "id": "03",
-      "name": "Đo độ lặp trên sàn sạch",
-      "status": "ĐỀ XUẤT · CHƯA MỞ ĐỢT",
-      "owner": "Assistant chốt protocol; bạn chạy từng lượt sau review",
-      "work": "Chuẩn bị một đợt mới tối đa 3 lượt, cùng profile 0,05 m/s / 0,10 m/s² / source 2 s / bag 60 s. Giữ vùng trống, tải, hướng xuất phát; ghi hướng caster hoặc unknown. Review xong lượt trước mới mở lượt tiếp; không dùng lại slot pilot đã đóng.",
-      "data": "Các kênh bước 01 + video cho từng session riêng + điều kiện sàn/tải/caster + failures/STOP/interventions.",
-      "output": "Bảng từng bánh: thời điểm đáp ứng theo clock có thể đo, vận tốc/overshoot, chênh trái–phải và biến thiên giữa các lượt; outcome thân xe riêng.",
-      "gate": "Đây là pilot mô tả, không phải xác nhận tổng quát. Lượt lỗi/STOP/missing làm kết quả invalid hoặc unknown theo protocol; không tự thêm mẫu hoặc chỉnh gain/current.",
+      "name": "Chuẩn bị một diagnostic bánh/thân có video",
+      "status": "DRAFT ĐÃ CÓ · 0 SLOT MOTION ĐƯỢC CẤP",
+      "owner": "Assistant chuẩn bị protocol; bạn chuẩn bị camera/mốc và thao tác sau review riêng",
+      "work": "Dùng docs/NINO_BODY_REFERENCE_DIAGNOSTIC_DRAFT_2026-11-07.md. Giữ 0,05 m/s, ramp 0,10 m/s², source 2 s, bag 60 s; đề xuất tối đa một lượt để phân biệt bánh quay và thân tiến. Trước mắt chỉ chuẩn bị góc nhìn/video metadata, kiểm live boot/GID/owner/STOP/ACK; chưa mở ba repeats hoặc chạy helper cũ. Studio đã có nút Reference bánh/thân để đăng ký video cũ/session và lưu hồ sơ local riêng. Chưa có readiness live: lần SSH .109 mới nhất timeout, cần xác nhận IP trước thao tác Pi.",
+      "data": "Bag command chain/raw wheel/status/IMU/scan/TF + video thấy từng bánh được claim và marker thân/mốc cố định, đúng session. PTS/scale/sync chưa có giữ null. Nếu có video cũ đúng V2, đọc trước khi cần motion mới.",
+      "output": "Physical verdict riêng từng bánh/thân: observed / not_observed / ambiguous / not_visible; raw integrity/window verdict riêng. Video mức A không là latency/slip reference định lượng.",
+      "gate": "Nếu STOP/discovery/ACK/missing: giữ failure hoặc unknown; không bù slot/tuning. Chỉ sau diagnostic nhất quán mới đề nghị campaign độ lặp tối đa3 lượt với ngân sách riêng. Tối đa một correction có căn cứ rồi phải quyết định.",
       "action": null
     },
     {
       "id": "04",
       "name": "Nhận dạng đáp ứng và bổ sung reference thân",
-      "status": "SAU 02–03; HAI NHÁNH",
+      "status": "SAU DIAGNOSTIC NHẤT QUÁN; CHƯA THU ĐỘ LẶP",
       "owner": "Assistant fit/đánh giá model; bạn thu phép đo còn thiếu",
       "work": "4a: dùng command cuối + wheel feedback để fit combined delay/lag/gain, giữ nguyên cả session làm holdout. Nếu profile 2 s chưa đủ excitation thì đề xuất protocol ID riêng trước khi thu. 4b: thiết lập reference thân độc lập (ví dụ video có hiệu chuẩn và đồng bộ) cho displacement/speed/stopping; ghi uncertainty.",
-      "data": "CSV command/wheel + raw bag/provenance, SI units, clocks, session split, geometry danh nghĩa; thêm reference thân theo thời gian khi cần body/slip claim.",
+      "data": "Raw bag/command/wheel/metadata và reference độc lập của các bước02–03; giữ SI units/clocks/session split. Kết quả Sim bước01 không thay dataset thật.",
       "output": "Model command→reported wheel có sai số holdout; reference thân có frame/unit/time/uncertainty. Công cụ SysID có thể tạo candidate, chưa tự cập nhật controller.",
       "gate": "Có thể làm wheel ID khi thiếu body reference, nhưng chỉ kết luận về bánh. Thiếu excitation/clock/reference thì unknown; không suy encoder odom là body GT hoặc fit đồng thời radius/slip/lag từ dữ liệu không đủ.",
       "action": null
@@ -178,12 +192,12 @@
     },
     {
       "id": "06",
-      "name": "Train và so TD3/PPO/History/Governor",
-      "status": "V2 ĐÃ TRAIN; CLEAR BIAS ĐÃ KIỂM; V3/HISTORY/MULTI-SEED CHƯA TRAIN",
+      "name": "TD3 / History / Governor: bảo toàn và điều kiện mở lại",
+      "status": "RESEARCH GIỮ LẠI · CHƯA BUDGET MỚI",
       "owner": "Assistant triển khai/chạy theo protocol và ngân sách được chốt",
-      "work": "Train TD3 và PPO bằng tương tác với simulator đã kiểm, có nhiều training seed theo ngân sách mới. Real bags dùng để nhận dạng/kiểm model. So B0, B1, Governor và các policy qua cùng evaluator; ablation history một frame/nhiều frame, authority/projection và governor khi cần. Profile chuẩn hóa có h1/h5/h8 và hash; h8 chưa được train/so sánh. Action common/differential wheel-linear và normalization vật lý giữ nguyên ABI hiện hành; mask/train-stat normalization cần adapter và validation riêng.",
+      "work": "Giữ checkpoint20k/25k/30k, history5 và ABI103D/1D cùng simulator hiện hành. Không đổi LR/history/reward/action scale đồng thời. Chỉ mở câu hỏi mới có cơ chế và quyền tác động phù hợp ứng dụng; raw bags dùng SysID/kiểm model, không tự thành replay TD3.",
       "data": "Rollouts observation→proposal→accepted reference→feedback→reward; config/checkpoint/hash; labels chỉ cho evaluator; split toàn session/layout/payload; failures/interventions và held-out tests.",
-      "output": "Checkpoint ứng viên + bảng chất lượng/thời gian/tracking/failure + ablation và giới hạn generalization. Smoke giảm bậc và smoke FACTORY 128 bước giữ riêng là bằng chứng tích hợp, chưa là checkpoint nghiên cứu được promote.",
+      "output": "Báo cáo phase đã hoàn tất; checkpoint25k chỉ có packet probe, không có outcome rollout mới. Không kết luận TD3 hội tụ/không thể học hoặc gộp ba checkpoint thành ba seeds. PPO/h8/obstacle/generalization là nghiên cứu có điều kiện, chưa triển khai.",
       "gate": "Chỉ promote khi có lợi ích đáng quan tâm so tuned baseline theo protocol, không dựa return đơn lẻ. Effect nhỏ/đổi chiều theo sampling thì unknown; không đổi objective, bỏ failures hoặc tự tăng mẫu.",
       "action": null
     },
@@ -210,7 +224,7 @@
       "action": null
     }
   ],
-  "next_steps_scope": "Bounded simulation pilot completed under user authorization; real data is not required to continue sim study. Any expanded sim budget/objective gets a separate protocol; no hardware release.",
+  "next_steps_scope": "Classical is preferred only for clear-box known-stop Sim. No new experiment or hardware authority; checkpoints retained. Sim research remains available through explicit per-job requests.",
   "data_studio": {
     "mode": "observer_only",
     "recorder_motor_commands": 0,
@@ -237,23 +251,339 @@
     "scientific_training_released": false
   },
   "sim_branch": {
-    "protocol_id": "nino_guided_zero_residual_baseline_v3_2026_11_04",
+    "date": "2026-11-06",
+    "protocol_id": "nino_reliable_eval_only_v1_2026_11_06",
+    "status": "reliable_eval_only_closed_not_promoted",
     "jobs": [
-      "sim-v3-baselines"
+      "sim-reliable-eval-only"
     ],
+    "result_root": "/home/tuanmac/nino_research/sim_reliable_eval_only_v1",
+    "artifact": "/home/tuanmac/nino_research/sim_reliable_eval_only_v1/20261106T031232193116Z_sim-reliable-eval-only",
+    "manifest_sha256": "2e111a3de591c2b5c616d9264392dc4f9cae3dadd74ae5962500edd50b645144",
+    "fingerprint": "66143dc17d9396944efa69d9668d859bf13973726dd4f49cfd6461d069abdd4f",
+    "parent_training_artifact": "/home/tuanmac/nino_research/sim_reliable_td3_v1/20261106T022633802858Z_sim-reliable-td3",
+    "parent_training_transitions": 3072,
     "real_data_prerequisite": false,
     "training_transitions": 0,
-    "maximum_evaluation_transitions": 1120,
-    "evaluation_runs": 8,
+    "optimizer_updates": 0,
+    "evaluation_transitions": 1400,
+    "evaluation_launches": 10,
+    "completed_runs": 10,
+    "actor_inference_calls": 840,
+    "feedback_checks": 4260,
+    "payload_mismatches": 0,
+    "maximum_primary_joint_age_ms": 1.0,
+    "maximum_independent_joint_age_ms": 1.0,
+    "one_sided_stamps_by_phase": {
+      "independent_before_task": 69
+    },
+    "physics_requests": 2900,
+    "physics_retries": 0,
+    "causal_estimator_updates": 7000,
+    "training_released": false,
     "hardware_authority": 0,
-    "status": "running",
-    "result_root": "/home/tuanmac/nino_research/sim_guided_baseline_v3",
-    "gazebo_guidance_connected": true,
-    "truth_used_for_guidance": false,
-    "estimator_initialization": "declared_scenario_pose_not_truth_readback",
-    "benefit_verified": false
+    "benefit_verified": false,
+    "minimum_effect_accepted": null,
+    "descriptive_all_grid_wins": 0,
+    "comparisons": [
+      {
+        "seed": 11,
+        "stop_s": 6.0,
+        "metrics_order": [
+          "native100ms",
+          "GT20ms",
+          "GTshift10ms"
+        ],
+        "TD3": [
+          0.006572593919784836,
+          0.007863555088704899,
+          0.007869210289068148
+        ],
+        "B0": [
+          0.004789749841096242,
+          0.006090468916801124,
+          0.006094848974121522
+        ],
+        "classical": [
+          0.003969133169759964,
+          0.005955695486805963,
+          0.0059599786196765855
+        ],
+        "delta_vs_B0": [
+          0.0017828440786885934,
+          0.0017730861719037752,
+          0.0017743613149466255
+        ],
+        "delta_vs_classical": [
+          0.0026034607500248722,
+          0.0019078596018989357,
+          0.001909231669391562
+        ],
+        "relative_change_vs_B0_percent": [
+          37.22207083534344,
+          29.112473869007882,
+          29.11247386900793
+        ],
+        "relative_change_vs_classical_percent": [
+          65.59267826688513,
+          32.03420332899054,
+          32.034203328990564
+        ],
+        "beats_both_all_grids": false,
+        "native_beats_both": false
+      },
+      {
+        "seed": 33,
+        "stop_s": 6.0,
+        "metrics_order": [
+          "native100ms",
+          "GT20ms",
+          "GTshift10ms"
+        ],
+        "TD3": [
+          0.006423147072775475,
+          0.007705118452052699,
+          0.007710659710195788
+        ],
+        "B0": [
+          0.004789749841096242,
+          0.006090468916801124,
+          0.006094848974121522
+        ],
+        "classical": [
+          0.003969133169759964,
+          0.005955695486805963,
+          0.0059599786196765855
+        ],
+        "delta_vs_B0": [
+          0.0016333972316792322,
+          0.001614649535251575,
+          0.0016158107360742663
+        ],
+        "delta_vs_classical": [
+          0.002454013903015511,
+          0.0017494229652467354,
+          0.0017506810905192028
+        ],
+        "relative_change_vs_B0_percent": [
+          34.10193195612472,
+          26.51108736139207,
+          26.511087361392093
+        ],
+        "relative_change_vs_classical_percent": [
+          61.82745194119852,
+          29.373949173901615,
+          29.373949173901615
+        ],
+        "beats_both_all_grids": false,
+        "native_beats_both": false
+      },
+      {
+        "seed": 22,
+        "stop_s": 6.0,
+        "metrics_order": [
+          "native100ms",
+          "GT20ms",
+          "GTshift10ms"
+        ],
+        "TD3": [
+          0.004156768099542369,
+          0.006198031763425535,
+          0.006202489176273101
+        ],
+        "B0": [
+          0.004789749841096242,
+          0.006090468916801124,
+          0.006094848974121522
+        ],
+        "classical": [
+          0.003969133169759964,
+          0.005955695486805963,
+          0.0059599786196765855
+        ],
+        "delta_vs_B0": [
+          -0.0006329817415538733,
+          0.00010756284662441148,
+          0.00010764020215157932
+        ],
+        "delta_vs_classical": [
+          0.00018763492978240547,
+          0.00024233627661957198,
+          0.00024251055659651587
+        ],
+        "relative_change_vs_B0_percent": [
+          -13.215340311154977,
+          1.7660848137273755,
+          1.7660848137273755
+        ],
+        "relative_change_vs_classical_percent": [
+          4.727352843990196,
+          4.068983667086989,
+          4.068983667086967
+        ],
+        "beats_both_all_grids": false,
+        "native_beats_both": false
+      },
+      {
+        "seed": 22,
+        "stop_s": 8.0,
+        "metrics_order": [
+          "native100ms",
+          "GT20ms",
+          "GTshift10ms"
+        ],
+        "TD3": [
+          0.004157319875611195,
+          0.005972351508023404,
+          0.005976645271836392
+        ],
+        "B0": [
+          0.005159428767446212,
+          0.007043391599987886,
+          0.007048452036388529
+        ],
+        "classical": [
+          0.003960984670905337,
+          0.005950628328004697,
+          0.005954907816747699
+        ],
+        "delta_vs_B0": [
+          -0.0010021088918350171,
+          -0.0010710400919644826,
+          -0.0010718067645521367
+        ],
+        "delta_vs_classical": [
+          0.0001963352047058579,
+          2.172318001870694e-05,
+          2.1737455088693264e-05
+        ],
+        "relative_change_vs_B0_percent": [
+          -19.422865146581636,
+          -15.206311856440369,
+          -15.206271661051218
+        ],
+        "relative_change_vs_classical_percent": [
+          4.956727203414868,
+          0.36505691199824053,
+          0.3650342836132303
+        ],
+        "beats_both_all_grids": false,
+        "native_beats_both": false
+      },
+      {
+        "seed": 11,
+        "stop_s": 8.0,
+        "metrics_order": [
+          "native100ms",
+          "GT20ms",
+          "GTshift10ms"
+        ],
+        "TD3": [
+          0.007349294719016571,
+          0.008503797183717148,
+          0.008509912824337688
+        ],
+        "B0": [
+          0.005159428767446212,
+          0.007043391599987886,
+          0.007048452036388529
+        ],
+        "classical": [
+          0.003960984670905337,
+          0.005950628328004697,
+          0.005954907816747699
+        ],
+        "delta_vs_B0": [
+          0.002189865951570359,
+          0.0014604055837292617,
+          0.0014614607879491594
+        ],
+        "delta_vs_classical": [
+          0.003388310048111234,
+          0.002553168855712451,
+          0.0025550050075899894
+        ],
+        "relative_change_vs_B0_percent": [
+          42.4439613429199,
+          20.734408459296418,
+          20.734492912829406
+        ],
+        "relative_change_vs_classical_percent": [
+          85.54211464132703,
+          42.90587001874731,
+          42.90587001874728
+        ],
+        "beats_both_all_grids": false,
+        "native_beats_both": false
+      },
+      {
+        "seed": 33,
+        "stop_s": 8.0,
+        "metrics_order": [
+          "native100ms",
+          "GT20ms",
+          "GTshift10ms"
+        ],
+        "TD3": [
+          0.0071772824522419515,
+          0.008445849136022194,
+          0.008451922241369631
+        ],
+        "B0": [
+          0.005159428767446212,
+          0.007043391599987886,
+          0.007048452036388529
+        ],
+        "classical": [
+          0.003960984670905337,
+          0.005950628328004697,
+          0.005954907816747699
+        ],
+        "delta_vs_B0": [
+          0.0020178536847957392,
+          0.0014024575360343074,
+          0.0014034702049811028
+        ],
+        "delta_vs_classical": [
+          0.0032162977813366142,
+          0.002495220808017497,
+          0.0024970144246219328
+        ],
+        "relative_change_vs_B0_percent": [
+          39.11002120094249,
+          19.911679141008133,
+          19.911750803375128
+        ],
+        "relative_change_vs_classical_percent": [
+          81.19945035287111,
+          41.932056086826194,
+          41.93204162790365
+        ],
+        "beats_both_all_grids": false,
+        "native_beats_both": false
+      }
+    ],
+    "old_training_job_reopened": false,
+    "result_report": "docs/NINO_SIM_RELIABLE_EVAL_ONLY_RESULT_2026-11-06.md",
+    "protocol": "docs/NINO_SIM_RELIABLE_EVAL_ONLY_PROTOCOL_2026-11-06.md",
+    "phase_audit_completed": true,
+    "critic_audit_completed": true,
+    "critic_audit_training_updates": 0,
+    "critic_audit_physics_steps": 0,
+    "critic_grid_argmax_counts": {
+      "11": {
+        "-1.0": 20
+      },
+      "22": {
+        "0.5": 5,
+        "1.0": 15
+      },
+      "33": {
+        "-1.0": 20
+      }
+    }
   },
-  "training_scope": "V3 classical guided-baseline screen only: 8 launches/1120 transitions, zero actor/optimizer. Real data is not required; TD3 V3 gets a separate task/budget.",
+  "training_scope": "LearnerV1 và eval-only là hai budget đã đóng riêng; dùng lại final checkpoints để inference, không resume optimizer/replay. Chưa mở training dài hoặc hardware.",
   "sim_branch_v1_history": {
     "protocol_id": "nino_sim_branch_pilot_v1_2026_11_04",
     "jobs": [
@@ -318,5 +648,2304 @@
     "guidance_scope": "offline_adapter_prepared_only",
     "gazebo_guidance_connected": false,
     "benefit_verified": false
-  }
+  },
+  "sim_guided_baseline_v3_history": {
+    "protocol_id": "nino_guided_zero_residual_baseline_v3_2026_11_04",
+    "jobs": [
+      "sim-v3-baselines"
+    ],
+    "real_data_prerequisite": false,
+    "training_transitions": 0,
+    "maximum_evaluation_transitions": 1120,
+    "evaluation_runs": 8,
+    "hardware_authority": 0,
+    "status": "completed_functional_candidate_not_learning_benefit",
+    "result_root": "/home/tuanmac/nino_research/sim_guided_baseline_v3",
+    "gazebo_guidance_connected": true,
+    "truth_used_for_guidance": false,
+    "estimator_initialization": "declared_scenario_pose_not_truth_readback",
+    "benefit_verified": false,
+    "baseline_functional_candidate": true,
+    "evaluation_transitions": 1120,
+    "task_successes": 8,
+    "stop_completed": 8,
+    "actor_loaded": false,
+    "optimizer_updates": 0,
+    "result_directory": "/home/tuanmac/nino_research/sim_guided_baseline_v3/20261104T094119923673Z_sim-v3-baselines",
+    "result_report": "docs/NINO_SIM_GUIDED_BASELINE_V3_RESULT_2026-11-05.md",
+    "cross_track_rmse_m": {
+      "constant": [
+        0.09305772695855251,
+        0.09365226185333861
+      ],
+      "guided": [
+        0.013087947332929053,
+        0.013841247395494824
+      ]
+    },
+    "next_action": "Guided classical baseline clear/6mm screen, then new TD3 V3 task/zero-init/learning budget; no V2 checkpoint resume."
+  },
+  "sim_guided_contact_history": {
+    "protocol_id": "nino_guided_zero_residual_contact_v1_2026_11_05",
+    "jobs": [
+      "sim-guided-contact"
+    ],
+    "real_data_prerequisite": false,
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "evaluation_transitions": 560,
+    "evaluation_runs": 4,
+    "hardware_authority": 0,
+    "status": "completed_functional_candidate_not_learning_benefit",
+    "result_root": "/home/tuanmac/nino_research/sim_guided_contact_v1",
+    "result_directory": "/home/tuanmac/nino_research/sim_guided_contact_v1/20261105T020403516683Z_sim-guided-contact",
+    "result_report": "docs/NINO_SIM_GUIDED_CONTACT_RESULT_2026-11-05.md",
+    "gazebo_guidance_connected": true,
+    "truth_used_for_guidance": false,
+    "baseline_functional_candidate": true,
+    "task_successes": 4,
+    "stop_completed": 4,
+    "actor_loaded": false,
+    "benefit_verified": false,
+    "cross_track_rmse_m": {
+      "clear_box": [
+        8.678049382988546e-05,
+        0.00033227067437509804
+      ],
+      "box_c1_6mm": [
+        0.003091480163439151,
+        0.004283239350191718
+      ]
+    },
+    "next_action": "Implement TD3 V3 nominal reward/zero-init/replay/checkpoint contract, then a separate bounded learning pilot; no V2 resume."
+  },
+  "sim_guided_td3_v3_history": {
+    "protocol_id": "nino_guided_td3_tracking_stop_v3_2026_11_05",
+    "jobs": [
+      "sim-v3-contract",
+      "sim-v3-train",
+      "sim-v3-evaluate"
+    ],
+    "real_data_prerequisite": false,
+    "training_transitions": 512,
+    "optimizer_updates": 496,
+    "learner_seeds": [
+      7
+    ],
+    "evaluation_transitions_maximum": 1120,
+    "evaluation_runs_planned": 8,
+    "hardware_authority": 0,
+    "status": "completed_not_promoted",
+    "result_root": "/home/tuanmac/nino_research/sim_guided_td3_v3",
+    "checkpoint": "/home/tuanmac/nino_research/sim_guided_td3_v3/20261105T022329071579Z_sim-v3-train",
+    "zero_actor_initialization_verified": true,
+    "nominal_velocity_yaw_reward": true,
+    "replay_rows_checked": 512,
+    "save_load_model_optimizer_target_replay_verified": true,
+    "gazebo_guidance_connected": true,
+    "truth_used_for_guidance": false,
+    "benefit_verified": false,
+    "evaluation_runs": 8,
+    "evaluation_transitions": 1120,
+    "task_and_stop_successes": 8,
+    "quality_failures": [
+      {
+        "arm": "B0",
+        "scenario": "box_c1_6mm",
+        "repeat": 1
+      }
+    ],
+    "clear_floor_td3_tracking_worse": true,
+    "contact_effect": "unknown_baseline_variability",
+    "result_report": "docs/NINO_SIM_GUIDED_TD3_V3_RESULT_2026-11-05.md",
+    "next_action": "Keep B0 on clear floor; freeze V3 actor. Propose 6 clear-floor launches B0/full actor/common-only actor, no optimizer, before new training."
+  },
+  "training_studio": {
+    "status": "common103_30k_reviewed_classical_preferred",
+    "documentation": "src/nino_pi/TD3_TRAINING_GUI.md",
+    "request_scope": "User clicks smoke64 or starts a new job with an explicit additional-timestep/wall-time budget; historical experimental slots remain sealed",
+    "resume": "model/targets/optimizers/replay with strict task/profile/scenario/seed/hash/runtime checks; new simulator episode",
+    "maps": [
+      "clear_box"
+    ],
+    "history": 5,
+    "hardware_authority": 0,
+    "research_benefit_verified": false,
+    "studio_tab": "Train TD3 · Sim",
+    "launcher": "src/nino_pi/scripts/mode_gui.sh --train",
+    "compatibility_launcher": "src/nino_pi/scripts/td3_training_gui.sh opens the same Studio",
+    "shared_training_runner": true,
+    "parameter_editor_inside_Studio": true,
+    "default_profile": "nino_td3_research_h5_v1",
+    "default_additional_timesteps_proposal": 20000,
+    "smoke_steps": 64,
+    "train_budget_requires_steps_after_warmup": true,
+    "trainer_observation_dimensions": 103,
+    "trainer_action_dimensions": 1,
+    "common103D_1D_checkpoint_compatible": true,
+    "current_pilot_protocol_unchanged": true,
+    "training_started_by_UI_change": false,
+    "integration_document": "docs/NINO_COMMON_STUDIO_PILOT_2026-11-07.md",
+    "default_engine": "common103_v1",
+    "engines": [
+      "common103_v1",
+      "legacy100_v1"
+    ],
+    "parameter_editor_scope": "common effective profile viewer; legacy draft editor; no silent profile conversion",
+    "effective_research_replay_capacity": 32768,
+    "default_checkpoint_interval": 5000,
+    "legacy_engine": {
+      "observation_dimensions": 100,
+      "action_dimensions": 2,
+      "maps": [
+        "clear_box",
+        "box_c1_6mm"
+      ]
+    },
+    "latest_smoke": {
+      "path": "/home/tuanmac/nino_research/common_studio_smoke_20261107_v1/20261107T040758557366Z_common_smoke",
+      "manifest_sha256": "1d07d6e3bc0b3d5cb9d2c5097182aa43408750891119ad450aa9679050fcc1b8",
+      "transitions": 64,
+      "critic_updates": 48,
+      "actor_updates": 24,
+      "gazebo_launches": 1,
+      "evaluation_ticks": 0,
+      "full_terminals": 0,
+      "benefit_verified": false,
+      "hardware_actions": 0
+    },
+    "next_pilot": {
+      "status": "completed",
+      "fresh": true,
+      "seed": 11,
+      "timesteps": 20000,
+      "warmup": 10000,
+      "training_launches_maximum": 144,
+      "evaluation_launches": 6,
+      "evaluation_ticks": 840,
+      "wall_minutes": 180,
+      "minimum_free_GiB_estimate": 6.99,
+      "baseline": "frozen_Ki0.10",
+      "hardware_actions": 0,
+      "artifact": "/home/tuanmac/nino_research/td3_studio/20261107T054154365880Z_common_train",
+      "request_file": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/common_studio_pilot_2026-11-07/request.json",
+      "live_status_file": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/common_studio_pilot_2026-11-07/status.json",
+      "sealed_review_file_when_available": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/common_studio_pilot_2026-11-07/review.json",
+      "disk_block_resolved": "pip download cache purged; 9.99 GiB free at preflight; experimental data retained",
+      "training_started": true,
+      "completed": true,
+      "benefit_verified": false,
+      "actual_transitions": 20000,
+      "actual_critic_updates": 10000,
+      "actual_actor_updates": 5000,
+      "actual_training_launches": 143,
+      "actual_evaluation_launches": 6,
+      "actual_evaluation_ticks": 840
+    },
+    "integration_smoke_executed_explicitly": true,
+    "old_A_C_checkpoint_compatible": false,
+    "pilot_progress_observed": {
+      "status": "completed",
+      "trace_rows": 20000,
+      "replay_rows_checked": 20000,
+      "full_terminals": 142,
+      "episodes_launched": 143,
+      "critic_updates": 10000,
+      "actor_updates": 5000
+    },
+    "recommended_continuation": {
+      "released": true,
+      "additional_steps": 10000,
+      "total_global_steps": 30000,
+      "expected_additional_critic_updates": 10000,
+      "expected_additional_actor_updates": 5000,
+      "no_new_warmup": true,
+      "request_file": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/common_studio_continuation_2026-11-07/request.json",
+      "disk": {
+        "training_transitions": 10000,
+        "training_launches_max": 73,
+        "evaluation_launches": 6,
+        "evaluation_transitions": 840,
+        "optimizer_updates_max": 10000,
+        "hardware_actions": 0,
+        "retries": 0,
+        "estimated_output_bytes": 3385327616,
+        "required_free_bytes": 4459069440,
+        "disk_estimate_is_bound": false,
+        "reserve_bytes": 1073741824,
+        "stop_schedule_s": [
+          6.0,
+          8.0
+        ],
+        "steps_per_episode": 140,
+        "free_bytes_at_start": 5018976256
+      },
+      "status": "completed_budget_closed",
+      "consumed": true
+    },
+    "assessment_report": "docs/NINO_TD3_OFFLINE_PHASE_REVIEW_2026-11-07.md",
+    "active_continuation": {
+      "status": "completed_reviewed",
+      "artifact": "/home/tuanmac/nino_research/td3_studio/20261107T080414816378Z_common_train",
+      "request_file": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/common_studio_continuation_2026-11-07/request.json",
+      "status_file": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/common_studio_continuation_2026-11-07/status.json",
+      "qc_file": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/common_studio_continuation_2026-11-07/review.json",
+      "starting_global_steps": 20000,
+      "target_global_steps": 30000,
+      "additional_steps": 10000,
+      "starting_critic_updates": 10000,
+      "starting_actor_updates": 5000,
+      "expected_final_critic_updates": 20000,
+      "expected_final_actor_updates": 10000,
+      "evaluation_launches": 6,
+      "evaluation_ticks": 840,
+      "warmup_already_completed": true,
+      "training_launches_max": 73,
+      "wall_minutes": 180,
+      "retries": 0,
+      "hardware_actions": 0,
+      "parent_checkpoint": "/home/tuanmac/nino_research/td3_studio/20261107T054154365880Z_common_train/checkpoints/step_000000020000_final",
+      "authority": "User accepted proposed10k continuation: Continue do as recommended",
+      "source_frozen": true,
+      "point_in_time_status": true,
+      "report": "docs/NINO_COMMON_STUDIO_CONTINUATION_2026-11-07.md",
+      "completed": true,
+      "budget_closed": true,
+      "actual_global_steps": 30000,
+      "actual_additional_steps": 10000,
+      "actual_critic_updates_total": 20000,
+      "actual_actor_updates_total": 10000,
+      "offline_assessment": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/td3_offline_phase_review_2026-11-07/decision.json",
+      "automatic_next_job": false
+    }
+  },
+  "sim_axis_ablation_history": {
+    "date": "2026-11-05",
+    "protocol_id": "nino_frozen_v3_axis_ablation_v1_2026_11_05",
+    "jobs": [
+      "sim-axis-ablation"
+    ],
+    "real_data_prerequisite": false,
+    "status": "completed_not_promoted",
+    "result_root": "/home/tuanmac/nino_research/sim_axis_ablation_v1",
+    "artifact": "/home/tuanmac/nino_research/sim_axis_ablation_v1/20261105T033454594138Z_sim-axis-ablation",
+    "checkpoint": "/home/tuanmac/nino_research/sim_guided_td3_v3/20261105T022329071579Z_sim-v3-train",
+    "checkpoint_manifest_sha256": "8cc9cbeafeea220074638185535d7a23d6a84156424b2e2a8f656414c6e71578",
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "evaluation_runs_planned": 6,
+    "evaluation_runs": 6,
+    "evaluation_transitions_maximum": 840,
+    "evaluation_transitions": 840,
+    "task_and_stop_successes": 6,
+    "functional_proposal_passes": 6,
+    "actor_inference_calls": 560,
+    "hardware_authority": 0,
+    "truth_used_for_guidance": false,
+    "benefit_verified": false,
+    "ranges": {
+      "B0": {
+        "cross_track_rmse_m": [
+          0.00010125227648071865,
+          0.00011006966297658409
+        ],
+        "nominal_velocity_rmse_m_s": [
+          0.004960670445711071,
+          0.005293712947522108
+        ],
+        "maximum_cross_track_m": [
+          0.0001438381260422145,
+          0.00016723980639402625
+        ],
+        "nominal_yaw_rate_rmse_rad_s": [
+          0.000365021576508709,
+          0.000620895449868175
+        ],
+        "maximum_estimator_position_error_m": [
+          0.002679027466715591,
+          0.003426760539824815
+        ]
+      },
+      "TD3_full": {
+        "cross_track_rmse_m": [
+          0.012110596707040185,
+          0.012137959201959501
+        ],
+        "nominal_velocity_rmse_m_s": [
+          0.005805502170691428,
+          0.006026257514619445
+        ],
+        "maximum_cross_track_m": [
+          0.018445455251011628,
+          0.018514651368320534
+        ],
+        "nominal_yaw_rate_rmse_rad_s": [
+          0.023720633690312794,
+          0.024661553519616658
+        ],
+        "maximum_estimator_position_error_m": [
+          0.0027910210227814363,
+          0.0034516704281189587
+        ]
+      },
+      "TD3_common_only": {
+        "cross_track_rmse_m": [
+          3.0120987968470942e-05,
+          0.000518402874759507
+        ],
+        "nominal_velocity_rmse_m_s": [
+          0.006010349002063431,
+          0.006364307856157577
+        ],
+        "maximum_cross_track_m": [
+          4.346055181032965e-05,
+          0.0008074644555453273
+        ],
+        "nominal_yaw_rate_rmse_rad_s": [
+          8.020336860458142e-05,
+          0.0009679774314936751
+        ],
+        "maximum_estimator_position_error_m": [
+          0.0032860129879349253,
+          0.009330685048860221
+        ]
+      }
+    },
+    "files_verified": 91,
+    "checkpoint_files_verified": 53,
+    "physics_requests": 1740,
+    "physics_retries": 0,
+    "causal_estimator_updates": 4200,
+    "phase_analysis": "Post-hoc diagnostic; steady improves, deceleration worsens; primary 14s metric unchanged.",
+    "contact_effect": "unknown_prior_baseline_variability",
+    "minimum_effect_accepted": null,
+    "outer_exec_returncode": 143,
+    "sealed_job_status": "completed",
+    "result_report": "docs/NINO_SIM_AXIS_ABLATION_RESULT_2026-11-05.md",
+    "next_protocol_draft": "docs/NINO_SIM_CLASSICAL_COMMON_NEXT_PROTOCOL_2026-11-05.md",
+    "next_action": "Giữ guided B0 clear. Ablation full/common-only/B0 đã đóng 6/6; bỏ diff giảm lệch đường nhưng RMSE v toàn lượt vẫn tệ hơn B0. Diagnostic: steady tốt hơn, deceleration tệ hơn. Tiếp: đối chứng common cổ điển +0,005 m/s có rút trước planned stop theo protocol mới, tối đa6 lượt; chưa chạy, không optimizer."
+  },
+  "sim_classical_common_history": {
+    "date": "2026-11-05",
+    "protocol_id": "nino_classical_common_planned_stop_v1_2026_11_05",
+    "jobs": [
+      "sim-classical-common"
+    ],
+    "status": "classical_common_candidate_not_promoted",
+    "real_data_prerequisite": false,
+    "result_root": "/home/tuanmac/nino_research/sim_classical_common_v1",
+    "artifact": "/home/tuanmac/nino_research/sim_classical_common_v1/20261105T042614286503Z_sim-classical-common",
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "evaluation_runs_planned": 6,
+    "evaluation_runs": 6,
+    "evaluation_transitions_maximum": 840,
+    "evaluation_transitions": 840,
+    "task_and_stop_successes": 6,
+    "functional_proposal_passes": 6,
+    "hardware_authority": 0,
+    "truth_used_for_guidance": false,
+    "actor_inference_calls": 280,
+    "benefit_verified": false,
+    "minimum_effect_accepted": null,
+    "candidate": {
+      "common_compensation_m_s": 0.005,
+      "nominal_steady_m_s": 0.2,
+      "withdraw_at_task_s": 7.5,
+      "source_stop_s": 8.0,
+      "active_decision_ticks": 50,
+      "first_active_decision_s": 2.5,
+      "last_active_decision_s": 7.4
+    },
+    "ranges": {
+      "B0": {
+        "nominal_velocity_rmse_m_s": [
+          0.004915902895411976,
+          0.00509240986446145
+        ],
+        "cross_track_rmse_m": [
+          2.1576080750798563e-05,
+          0.00014530093328600797
+        ],
+        "maximum_cross_track_m": [
+          3.017657496385496e-05,
+          0.00019065895173476372
+        ],
+        "maximum_estimator_position_error_m": [
+          0.0027284364674251805,
+          0.0029503038282019762
+        ],
+        "steady_velocity_rmse_m_s": [
+          0.005159395012727708,
+          0.005561394558841445
+        ],
+        "deceleration_velocity_rmse_m_s": [
+          0.0063342539121565246,
+          0.006599481989928596
+        ]
+      },
+      "Classical_scheduled": {
+        "nominal_velocity_rmse_m_s": [
+          0.004161505829111745,
+          0.004253277904511789
+        ],
+        "cross_track_rmse_m": [
+          5.237909249940904e-05,
+          0.00012198132863302918
+        ],
+        "maximum_cross_track_m": [
+          7.960104167261462e-05,
+          0.00015850080663279493
+        ],
+        "maximum_estimator_position_error_m": [
+          0.004246478485351136,
+          0.01224053146247577
+        ],
+        "steady_velocity_rmse_m_s": [
+          0.002188609478067256,
+          0.0024382159058662107
+        ],
+        "deceleration_velocity_rmse_m_s": [
+          0.006957783626227075,
+          0.0070880807889037705
+        ]
+      },
+      "TD3_common_only": {
+        "nominal_velocity_rmse_m_s": [
+          0.0058076349154690815,
+          0.00588407770531801
+        ],
+        "cross_track_rmse_m": [
+          0.00028215428487739826,
+          0.0006329060690126212
+        ],
+        "maximum_cross_track_m": [
+          0.00044031419046145696,
+          0.000971291026481051
+        ],
+        "maximum_estimator_position_error_m": [
+          0.0029028044318675085,
+          0.0036061431110186557
+        ],
+        "steady_velocity_rmse_m_s": [
+          0.002897655648181608,
+          0.002937637802941374
+        ],
+        "deceleration_velocity_rmse_m_s": [
+          0.012666309944200288,
+          0.012854512475811007
+        ]
+      }
+    },
+    "files_verified": 91,
+    "checkpoint_files_verified": 53,
+    "physics_requests": 1740,
+    "physics_retries": 0,
+    "parameter_readbacks": 12,
+    "causal_estimator_updates": 4200,
+    "descriptive_velocity_separation": true,
+    "descriptive_mean_rmse_change_vs_b0": -0.1592205464080687,
+    "source_caveat": "Max native-boundary source age15ms, some raw drive publication gaps291ms; no full transient/coverage claim.",
+    "contact_effect": "unknown_not_tested_here",
+    "outer_exec_returncode": 0,
+    "result_report": "docs/NINO_SIM_CLASSICAL_COMMON_RESULT_2026-11-05.md",
+    "next_protocol_draft": "docs/NINO_SIM_STOP_SCHEDULE_TRANSFER_NEXT_2026-11-05.md",
+    "next_action": "Common cổ điển có RMSE v toàn14s thấp hơn B0/frozen common ở cả2 lượt; giữ candidate nghiên cứu, chưa promote. Đã đóng6/6, không optimizer. Tiếp: protocol mới B0/classical ở source stop6s, withdrawal5,5s, tối đa6 lượt; chưa chạy. Không tăng train hoặc suy contact/real benefit.",
+    "information_budget_note": "Classical rule has planned-stop timing preview; frozen h5 actor does not. Comparison of system configurations, not equal-information algorithm ranking.",
+    "post_hoc_gt_header_diagnostic": {
+      "primary_unchanged": true,
+      "grid_s": 0.02,
+      "shift_s": 0.01,
+      "classical_velocity_separation_both": true,
+      "descriptive_mean_rmse_delta_vs_b0_approx": -0.024,
+      "note": "GT-header alignment/aggregation differs from native endpoint scoring; smaller effect, no promotion."
+    }
+  },
+  "sim_stop_transfer_history": {
+    "date": "2026-11-05",
+    "protocol_id": "nino_classical_stop_schedule_transfer_v1_2026_11_05",
+    "jobs": [
+      "sim-stop-transfer"
+    ],
+    "status": "stop_transfer_descriptive_signal_not_promoted",
+    "real_data_prerequisite": false,
+    "result_root": "/home/tuanmac/nino_research/sim_stop_transfer_v1",
+    "artifact": "/home/tuanmac/nino_research/sim_stop_transfer_v1/20261105T075810956156Z_sim-stop-transfer",
+    "manifest_sha256": "3d1c4609a88327a6c63eaa18f350c6c07c62f0dece0440b03b10e3c63adede13",
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "actor_inference_calls": 0,
+    "evaluation_runs_planned": 6,
+    "evaluation_runs": 6,
+    "evaluation_transitions_maximum": 840,
+    "evaluation_transitions": 840,
+    "task_and_stop_successes": 6,
+    "functional_proposal_passes": 6,
+    "hardware_authority": 0,
+    "truth_used_for_guidance": false,
+    "benefit_verified": false,
+    "minimum_effect_accepted": null,
+    "descriptive_transfer_signal": true,
+    "ranges": {
+      "B0": {
+        "nominal_velocity_rmse_m_s": [
+          0.00478238219789983,
+          0.005073957833373534
+        ],
+        "cross_track_rmse_m": [
+          8.91163203144193e-06,
+          2.4883858745888488e-05
+        ],
+        "maximum_cross_track_m": [
+          1.185627415130216e-05,
+          4.989971143387707e-05
+        ],
+        "maximum_estimator_position_error_m": [
+          0.0025716491917922267,
+          0.002962128606295934
+        ],
+        "steady_velocity_rmse_m_s": [
+          0.00641180924377719,
+          0.006882324841161476
+        ],
+        "deceleration_velocity_rmse_m_s": [
+          0.005377035352268355,
+          0.006156280849203297
+        ]
+      },
+      "Classical_scheduled": {
+        "nominal_velocity_rmse_m_s": [
+          0.003715821890020572,
+          0.0038734046732155666
+        ],
+        "cross_track_rmse_m": [
+          2.4327311081363274e-05,
+          0.0001566959044385472
+        ],
+        "maximum_cross_track_m": [
+          3.111183226509847e-05,
+          0.00019795678171071049
+        ],
+        "maximum_estimator_position_error_m": [
+          0.002937241122405888,
+          0.009368267096098627
+        ],
+        "steady_velocity_rmse_m_s": [
+          0.0025484071093679417,
+          0.002909470370197892
+        ],
+        "deceleration_velocity_rmse_m_s": [
+          0.005430922000365859,
+          0.005792545604552259
+        ]
+      }
+    },
+    "candidate": {
+      "common_compensation_m_s": 0.005,
+      "withdraw_lead_s": 0.5,
+      "source_stop_s": 6.0,
+      "withdraw_at_task_s": 5.5,
+      "active_decision_ticks": 30,
+      "first_active_decision_s": 2.5,
+      "last_active_decision_s": 5.4
+    },
+    "timestamp_diagnostic": {
+      "predeclared": true,
+      "grid_s": 0.02,
+      "shifts_s": [
+        0.0,
+        0.01
+      ],
+      "body_interpolated": false,
+      "both_separation": true,
+      "ratio_of_means_vs_b0": -0.13402099946349633
+    },
+    "native_ratio_of_means_vs_b0": -0.2308888271565923,
+    "result_report": "docs/NINO_SIM_STOP_TRANSFER_RESULT_2026-11-05.md",
+    "next_design": "docs/NINO_SIM_EQUAL_INFORMATION_NEXT_2026-11-05.md",
+    "next_training_released": false
+  },
+  "equal_information_contract": {
+    "observation": "100D inherited causal history +2current plan features +previous requested scalar",
+    "action": "scalar common request±0.005m/s before shared window and inherited projection; yaw follower retained",
+    "new_abi_requires_fresh_model": true,
+    "legacy_training_tab_contract": "guided V3/100D/2D; not a103D/1D trainer",
+    "training_release": false,
+    "new_wrapper_in_Gazebo": true
+  },
+  "sim_equal_information_offline_history": {
+    "date": "2026-11-05",
+    "protocol_id": "nino_equal_information_common_v1_2026_11_05",
+    "jobs": [
+      "sim-equal-contract"
+    ],
+    "status": "equal_information_offline_qualified_not_trained",
+    "evidence_level": "offline_synthetic_software_qualification_only",
+    "real_data_prerequisite": false,
+    "result_root": "/home/tuanmac/nino_research/sim_equal_information_v1",
+    "artifact": "/home/tuanmac/nino_research/sim_equal_information_v1/20261105T115115446610Z_sim-equal-contract",
+    "manifest_sha256": "ab479441235c37eae27ddc69debf4e279f33b995335f0e8e85ac7c5f0801c470",
+    "observation_size": 103,
+    "action_size": 1,
+    "abi_sha256": "b8c71ccb876cb6f2f5ab66d08d74d9b3d8cfdbfac22ccfc3b326da16b5a2e6e0",
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "evaluation_runs": 0,
+    "evaluation_transitions": 0,
+    "gazebo_runs": 0,
+    "physics_steps": 0,
+    "synthetic_fixture_transitions": 840,
+    "replay_rows_checked": 280,
+    "hardware_authority": 0,
+    "benefit_verified": false,
+    "minimum_effect_accepted": null,
+    "old_checkpoint_compatible": false,
+    "new_wrapper_in_Gazebo": false,
+    "training_released": false,
+    "release_blockers": [
+      "remaining_gap_hypothesis_not_demonstrated",
+      "minimum_worthwhile_effect_unaccepted",
+      "training_seed_timestep_budget_unallocated",
+      "independent_test_conditions_and_budget_unsealed",
+      "new_wrapper_not_yet_qualified_in_Gazebo"
+    ],
+    "result_report": "docs/NINO_SIM_EQUAL_INFORMATION_RESULT_2026-11-05.md",
+    "next_design": "docs/NINO_SIM_EQUAL_INFORMATION_GAZEBO_NEXT_2026-11-05.md",
+    "latest_physical_result": "docs/NINO_SIM_STOP_TRANSFER_RESULT_2026-11-05.md"
+  },
+  "sim_equal_gazebo_history": {
+    "date": "2026-11-05",
+    "protocol_id": "nino_equal_information_gazebo_qualification_v1_2026_11_05",
+    "jobs": [
+      "sim-equal-gazebo"
+    ],
+    "status": "equal_information_gazebo_qualified_not_trained",
+    "real_data_prerequisite": false,
+    "result_root": "/home/tuanmac/nino_research/sim_equal_gazebo_v1",
+    "artifact": "/home/tuanmac/nino_research/sim_equal_gazebo_v1/20261105T120846465990Z_sim-equal-gazebo",
+    "manifest_sha256": "10c2270e45430c0342717f0d6ace678fbd01ffddc6144dc45f826799605d5b36",
+    "fingerprint": "f172f89ad897828aeda84776b66ed9584a8784d79bd5f0c8557c69beba6d0e6a",
+    "abi_sha256": "b8c71ccb876cb6f2f5ab66d08d74d9b3d8cfdbfac22ccfc3b326da16b5a2e6e0",
+    "observation_size": 103,
+    "action_size": 1,
+    "evaluation_runs": 4,
+    "evaluation_runs_planned": 4,
+    "evaluation_transitions": 560,
+    "maximum_transitions": 560,
+    "replay_rows_checked": 560,
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "actor_inference_calls": 0,
+    "hardware_authority": 0,
+    "new_wrapper_in_Gazebo": true,
+    "qualification_pass": true,
+    "benefit_verified": false,
+    "minimum_effect_accepted": null,
+    "training_released": false,
+    "task_and_stop_successes": 4,
+    "integration_passes": 4,
+    "physics_requests": 1160,
+    "physics_retries": 0,
+    "causal_estimator_updates": 2800,
+    "blocked_nonzero_requests_preserved": 133,
+    "result_report": "docs/NINO_SIM_EQUAL_GAZEBO_RESULT_2026-11-05.md",
+    "next_design": "docs/NINO_SIM_COMMON_TD3_PILOT_NEXT_2026-11-05.md",
+    "next_training_proposal": {
+      "status": "draft_not_released",
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "transitions_per_seed": 1024,
+      "total_training_transitions": 3072,
+      "evaluation_launches_maximum": 10
+    }
+  },
+  "sim_common_td3_history": {
+    "date": "2026-11-06",
+    "execution_protocol_date": "2026-11-05",
+    "protocol_id": "nino_common_td3_pilot_v1_2026_11_05",
+    "jobs": [
+      "sim-common-td3"
+    ],
+    "status": "common_td3_partial_measurement_failure_closed",
+    "real_data_prerequisite": false,
+    "result_root": "/home/tuanmac/nino_research/sim_common_td3_v1",
+    "artifact": "/home/tuanmac/nino_research/sim_common_td3_v1/20261105T123511017013Z_sim-common-td3",
+    "manifest_sha256": "09f7c044e93b5b22990d9a497b77b31cc790ca6441c5ff6e5264004b841b8663",
+    "fingerprint": "bba204f885daf0d93c74b870842e757c89684188d83d4545c3ece70e11f326da",
+    "abi_sha256": "b8c71ccb876cb6f2f5ab66d08d74d9b3d8cfdbfac22ccfc3b326da16b5a2e6e0",
+    "observation_size": 103,
+    "action_size": 1,
+    "training_transitions": 700,
+    "training_transitions_planned": 3072,
+    "learner_seeds_started": [
+      11
+    ],
+    "learner_seeds_completed": [],
+    "unstarted_seeds_closed": [
+      22,
+      33
+    ],
+    "optimizer_updates": 636,
+    "actor_optimizer_updates": 318,
+    "replay_rows_checked": 700,
+    "evaluation_runs": 0,
+    "evaluation_runs_planned": 10,
+    "evaluation_transitions": 0,
+    "gazebo_launches": 6,
+    "full_training_episodes": 5,
+    "task_and_stop_successes": 5,
+    "incomplete_zero_tick_physics_steps": 50,
+    "physics_requests": 1461,
+    "physics_retries": 0,
+    "causal_estimator_updates": 3500,
+    "hardware_authority": 0,
+    "new_wrapper_in_Gazebo": true,
+    "training_released": false,
+    "budget_consumed": true,
+    "resume_allowed": false,
+    "benefit_verified": false,
+    "minimum_effect_accepted": null,
+    "failure": {
+      "episode": 5,
+      "task_time_s": 0.05,
+      "simulation_time_s": 2.701,
+      "wheel_last_stamp_s": 2.651,
+      "wheel_age_s": 0.05,
+      "imu_last_stamp_s": 2.7,
+      "truth_last_stamp_s": 2.7,
+      "drive_last_stamp_s": 2.688,
+      "settle_pass": true,
+      "reset_completed": true,
+      "first_half_tick": true,
+      "forward_source_started": false,
+      "root_cause": "unknown",
+      "observation": "No newer joint callback after2.651s in retained ROS observer; this does not distinguish source publication, DDS and consumer loss"
+    },
+    "partial_checkpoint_finite": true,
+    "result_report": "docs/NINO_SIM_COMMON_TD3_RESULT_2026-11-06.md",
+    "next_design": "docs/NINO_SIM_JOINT_BOUNDARY_DIAGNOSTIC_NEXT_2026-11-06.md"
+  },
+  "sim_diagnostic_budget": {
+    "status": "closed",
+    "zero_launches_planned": 2,
+    "zero_launches_completed": 2,
+    "zero_ticks_planned": 200,
+    "zero_ticks_completed": 200,
+    "training_released": false
+  },
+  "sim_joint_boundary_history": {
+    "date": "2026-11-06",
+    "protocol_id": "nino_joint_boundary_zero_diagnostic_v1_2026_11_06",
+    "jobs": [
+      "sim-joint-boundary"
+    ],
+    "status": "joint_boundary_not_reproduced_unknown",
+    "real_data_prerequisite": false,
+    "result_root": "/home/tuanmac/nino_research/sim_joint_boundary_v1",
+    "artifact": "/home/tuanmac/nino_research/sim_joint_boundary_v1/20261106T013910423655Z_sim-joint-boundary",
+    "manifest_sha256": "8a9bb3fc9cfb2769fdd9859bf05145d899914099bcd422b3c55ed008ab603d8f",
+    "fingerprint": "5798d9939f1fdc5419315f8ea6d87f04616cda6a8dc879ee5d6787a20ce015a1",
+    "launches": 2,
+    "complete_zero_control_ticks": 200,
+    "feedback_checks": 612,
+    "control_feedback_checks": 600,
+    "setup_feedback_checks": 12,
+    "shared_joint_source_stamps": 15220,
+    "payload_field_mismatches": 0,
+    "maximum_joint_endpoint_age_ms": 1.0,
+    "physics_requests": 420,
+    "physics_retries": 0,
+    "causal_estimator_updates": 1000,
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "actor_inference_calls": 0,
+    "hardware_authority": 0,
+    "root_cause": "unknown",
+    "failure_reproduced": false,
+    "training_released": false,
+    "budget_consumed": true,
+    "partial_td3_batch_reopened": false,
+    "publisher_reliability": "RELIABLE",
+    "readers_reliability": "BEST_EFFORT",
+    "quality": [
+      {
+        "launch": 0,
+        "complete_ticks": 100,
+        "feedback_checks": 306,
+        "setup_feedback_checks": 6,
+        "control_feedback_checks": 300,
+        "primary_count": 7569,
+        "independent_count": 7569,
+        "shared_source_stamps": 7569,
+        "semantic_hash_mismatches": 0,
+        "primary_only_source_stamps": 0,
+        "independent_only_source_stamps": 0,
+        "reserialized_cdr_hash_differences_not_parity_gate": 7569,
+        "max_supported_endpoint_age_ms": {
+          "primary": 0.0,
+          "independent": 0.0
+        },
+        "maximum_inter_sample_gap_s": {
+          "primary": 0.003,
+          "independent": 0.003
+        },
+        "boundary_classifications": {
+          "both_joint_paths_supported": 306
+        },
+        "subscriber_qos": {
+          "depth": 100,
+          "reliability": 2
+        },
+        "publisher": {
+          "node_name": "joint_state_broadcaster",
+          "node_namespace": "/",
+          "topic_type": "sensor_msgs/msg/JointState",
+          "endpoint_gid": [
+            1,
+            15,
+            141,
+            252,
+            228,
+            83,
+            22,
+            69,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            96,
+            3
+          ],
+          "qos": {
+            "reliability": 1,
+            "history": 3,
+            "depth": 0,
+            "durability": 1
+          }
+        },
+        "observer_pid": 152474,
+        "observer_closure": true,
+        "endpoint_support_not_loss_free_claim": true
+      },
+      {
+        "launch": 1,
+        "complete_ticks": 100,
+        "feedback_checks": 306,
+        "setup_feedback_checks": 6,
+        "control_feedback_checks": 300,
+        "primary_count": 7651,
+        "independent_count": 7651,
+        "shared_source_stamps": 7651,
+        "semantic_hash_mismatches": 0,
+        "primary_only_source_stamps": 0,
+        "independent_only_source_stamps": 0,
+        "reserialized_cdr_hash_differences_not_parity_gate": 7651,
+        "max_supported_endpoint_age_ms": {
+          "primary": 1.0,
+          "independent": 1.0
+        },
+        "maximum_inter_sample_gap_s": {
+          "primary": 0.003,
+          "independent": 0.003
+        },
+        "boundary_classifications": {
+          "both_joint_paths_supported": 306
+        },
+        "subscriber_qos": {
+          "depth": 100,
+          "reliability": 2
+        },
+        "publisher": {
+          "node_name": "joint_state_broadcaster",
+          "node_namespace": "/",
+          "topic_type": "sensor_msgs/msg/JointState",
+          "endpoint_gid": [
+            1,
+            15,
+            141,
+            252,
+            120,
+            85,
+            120,
+            134,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            96,
+            3
+          ],
+          "qos": {
+            "reliability": 1,
+            "history": 3,
+            "depth": 0,
+            "durability": 1
+          }
+        },
+        "observer_pid": 152896,
+        "observer_closure": true,
+        "endpoint_support_not_loss_free_claim": true
+      }
+    ],
+    "result_report": "docs/NINO_SIM_JOINT_BOUNDARY_RESULT_2026-11-06.md",
+    "next_design": "docs/NINO_SIM_JOINT_RELIABILITY_CANDIDATE_NEXT_2026-11-06.md"
+  },
+  "sim_reliability_budget": {
+    "status": "closed",
+    "fixture_publish_attempts": 1001,
+    "qualification_launches": 2,
+    "qualification_transitions": 280,
+    "training_released": false
+  },
+  "sim_joint_reliability_history": {
+    "date": "2026-11-06",
+    "protocol_id": "nino_joint_reliability_candidate_v1_2026_11_06",
+    "status": "joint_reliability_candidate_B0_qualified_not_trained",
+    "jobs": [
+      "sim-joint-reliability-fixture",
+      "sim-joint-reliability-gazebo"
+    ],
+    "result_root": "/home/tuanmac/nino_research/sim_joint_reliability_v1",
+    "artifacts": {
+      "sim-joint-reliability-fixture": {
+        "path": "/home/tuanmac/nino_research/sim_joint_reliability_v1/20261106T020552213960Z_sim-joint-reliability-fixture",
+        "manifest_sha256": "8e01152b9fd3c098c4c3f84c50596800ae24f6e63a9a294cc86806fdfbbc62ef",
+        "files": 35,
+        "job": {
+          "action": "sim-joint-reliability-fixture",
+          "status": "completed",
+          "error": null,
+          "wall_s": 5.305094983006711,
+          "hardware_actions": 0
+        }
+      },
+      "sim-joint-reliability-gazebo": {
+        "path": "/home/tuanmac/nino_research/sim_joint_reliability_v1/20261106T020606195914Z_sim-joint-reliability-gazebo",
+        "manifest_sha256": "629f0c636309b18bcbe391f3550424bfbb0fb28d6adff1967ce5de94479d056a",
+        "files": 64,
+        "job": {
+          "action": "sim-joint-reliability-gazebo",
+          "status": "completed",
+          "error": null,
+          "wall_s": 89.58424674801063,
+          "hardware_actions": 0
+        }
+      }
+    },
+    "fingerprint": "e2e0748afe1b560e1b00ee847029e5481d8654a84f7187d711750fe173bc10a8",
+    "real_data_prerequisite": false,
+    "fixture_published_messages": 1001,
+    "fixture_labeled_messages": 1000,
+    "fixture_best_effort_received": 1000,
+    "fixture_reliable_received": 1000,
+    "fixture_candidate_compatible": true,
+    "fixture_reliability_benefit": false,
+    "qualification_pass": true,
+    "qualification_launches": 2,
+    "evaluation_transitions": 280,
+    "replay_rows_checked": 280,
+    "feedback_checks": 852,
+    "maximum_joint_endpoint_age_ms": 1.0,
+    "shared_joint_source_stamps": 18016,
+    "payload_mismatches": 0,
+    "physics_requests": 580,
+    "physics_retries": 0,
+    "parameter_readbacks": 4,
+    "causal_estimator_updates": 1400,
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "actor_inference_calls": 0,
+    "hardware_authority": 0,
+    "training_released": false,
+    "old_failure_root_cause": "unknown",
+    "partial_td3_batch_reopened": false,
+    "minimum_effect_accepted": null,
+    "result_report": "docs/NINO_SIM_JOINT_RELIABILITY_RESULT_2026-11-06.md",
+    "next_design": "docs/NINO_SIM_RELIABLE_TD3_NEXT_2026-11-06.md",
+    "qualification_quality": [
+      {
+        "source_stop_s": 6.0,
+        "verified_transitions": 140,
+        "qualification_pass": true,
+        "native_velocity_rmse_m_s": 0.004970134917908038,
+        "timestamp_diagnostic": {
+          "valid": true,
+          "header_grid": {
+            "0.0": {
+              "samples": 696,
+              "unique_truth_samples": 696,
+              "rmse_m_s": 0.0062560310814185355,
+              "maximum_support_age_s": 0.0010000000000047748
+            },
+            "0.01": {
+              "samples": 695,
+              "unique_truth_samples": 695,
+              "rmse_m_s": 0.0062605302053955455,
+              "maximum_support_age_s": 0.011000000000002785
+            }
+          },
+          "post_hoc": false,
+          "primary_native_unchanged": true,
+          "body_interpolated": false,
+          "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+        },
+        "path_rmse_mm": 0.09912551337456856,
+        "maximum_native_support_s": 0.019000000000000128,
+        "maximum_primary_joint_age_ms": 1.0,
+        "maximum_independent_joint_age_ms": 1.0,
+        "feedback_checks": 426,
+        "classifications": {
+          "both_joint_paths_supported": 426
+        },
+        "primary_count": 9499,
+        "independent_count": 9499,
+        "shared_source_stamps": 9499,
+        "payload_mismatches": 0,
+        "primary_only_source_stamps": 0,
+        "independent_only_source_stamps": 0,
+        "candidate_subscription": {
+          "before": {
+            "reliability": 2,
+            "depth": 100,
+            "history": 1,
+            "durability": 2,
+            "lifespan_ns": 0,
+            "deadline_ns": 0,
+            "liveliness": 0,
+            "liveliness_lease_ns": 0,
+            "avoid_ros_namespace_conventions": false
+          },
+          "after": {
+            "reliability": 1,
+            "depth": 100,
+            "history": 1,
+            "durability": 2,
+            "lifespan_ns": 0,
+            "deadline_ns": 0,
+            "liveliness": 0,
+            "liveliness_lease_ns": 0,
+            "avoid_ros_namespace_conventions": false
+          },
+          "nonjoint_subscriptions_unchanged": true,
+          "replaced_before_owned_launch": true
+        },
+        "task_success": true,
+        "stop_completed": true,
+        "error": null
+      },
+      {
+        "source_stop_s": 8.0,
+        "verified_transitions": 140,
+        "qualification_pass": true,
+        "native_velocity_rmse_m_s": 0.005461391643143773,
+        "timestamp_diagnostic": {
+          "valid": true,
+          "header_grid": {
+            "0.0": {
+              "samples": 696,
+              "unique_truth_samples": 696,
+              "rmse_m_s": 0.007283607109992345,
+              "maximum_support_age_s": 0.017000000000003013
+            },
+            "0.01": {
+              "samples": 695,
+              "unique_truth_samples": 695,
+              "rmse_m_s": 0.007288840674572184,
+              "maximum_support_age_s": 0.007000000000005002
+            }
+          },
+          "post_hoc": false,
+          "primary_native_unchanged": true,
+          "body_interpolated": false,
+          "method": "20ms grids / +10ms; latest GT at/before grid; nominal held over native interval at GT header"
+        },
+        "path_rmse_mm": 0.07548706897359303,
+        "maximum_native_support_s": 0.017000000000003013,
+        "maximum_primary_joint_age_ms": 1.0,
+        "maximum_independent_joint_age_ms": 1.0,
+        "feedback_checks": 426,
+        "classifications": {
+          "both_joint_paths_supported": 426
+        },
+        "primary_count": 8517,
+        "independent_count": 8517,
+        "shared_source_stamps": 8517,
+        "payload_mismatches": 0,
+        "primary_only_source_stamps": 0,
+        "independent_only_source_stamps": 0,
+        "candidate_subscription": {
+          "before": {
+            "reliability": 2,
+            "depth": 100,
+            "history": 1,
+            "durability": 2,
+            "lifespan_ns": 0,
+            "deadline_ns": 0,
+            "liveliness": 0,
+            "liveliness_lease_ns": 0,
+            "avoid_ros_namespace_conventions": false
+          },
+          "after": {
+            "reliability": 1,
+            "depth": 100,
+            "history": 1,
+            "durability": 2,
+            "lifespan_ns": 0,
+            "deadline_ns": 0,
+            "liveliness": 0,
+            "liveliness_lease_ns": 0,
+            "avoid_ros_namespace_conventions": false
+          },
+          "nonjoint_subscriptions_unchanged": true,
+          "replaced_before_owned_launch": true
+        },
+        "task_success": true,
+        "stop_completed": true,
+        "error": null
+      }
+    ]
+  },
+  "sim_reliable_td3_budget": {
+    "status": "closed_on_failure",
+    "planned_train": 3072,
+    "executed_train": 3072,
+    "planned_eval": 1400,
+    "executed_eval": 0,
+    "launches": 25,
+    "remaining_slots_released": false,
+    "resume_allowed": false,
+    "evaluation_attempted_launches": 1,
+    "valid_eval_transitions": 0
+  },
+  "sim_reliable_td3_history": {
+    "date": "2026-11-06",
+    "protocol_id": "nino_reliable_td3_pilot_v1_2026_11_06",
+    "status": "reliable_td3_closed_on_failure",
+    "jobs": [
+      "sim-reliable-td3"
+    ],
+    "result_root": "/home/tuanmac/nino_research/sim_reliable_td3_v1",
+    "artifact": "/home/tuanmac/nino_research/sim_reliable_td3_v1/20261106T022633802858Z_sim-reliable-td3",
+    "manifest_sha256": "bb6293d9d5e62b1f63646e805e6b67dc9f712fc570ecbe2fa29b75de629ff053",
+    "fingerprint": "659254596ac139709828d9f8fb64fba51c191fafbae857bb25996bbfe887ff46",
+    "real_data_prerequisite": false,
+    "training_transitions": 3072,
+    "optimizer_updates": 2880,
+    "actor_updates": 1440,
+    "evaluation_transitions": 0,
+    "launches": 25,
+    "learner_seeds_completed": [
+      11,
+      22,
+      33
+    ],
+    "feedback_checks": 9360,
+    "payload_mismatches": 0,
+    "physics_requests": 6396,
+    "physics_retries": 0,
+    "causal_estimator_updates": 15360,
+    "hardware_authority": 0,
+    "training_released": false,
+    "benefit_verified": false,
+    "old_failure_root_cause": "unknown",
+    "partial_td3_batch_reopened": false,
+    "minimum_effect_accepted": null,
+    "result_report": "docs/NINO_SIM_RELIABLE_TD3_RESULT_2026-11-06.md",
+    "protocol": "docs/NINO_SIM_RELIABLE_TD3_PROTOCOL_2026-11-06.md",
+    "comparisons": [],
+    "all_six_conditions_better_than_both_all_grids": false,
+    "evaluation_launches": 1,
+    "evaluation_valid_transitions": 0,
+    "maximum_joint_endpoint_age_ms": 3.0,
+    "independent_only_stamp_phase_counts": {
+      "before_task": 33
+    },
+    "evaluator_correction": "src/nino_rl/nino_rl/residual_reliable_evaluation.py",
+    "evaluator_correction_tests": 4,
+    "evaluation_correction_released": false,
+    "next_design": "docs/NINO_SIM_RELIABLE_EVAL_ONLY_NEXT_2026-11-06.md"
+  },
+  "sim_reliable_eval_only_budget": {
+    "status": "closed",
+    "training": 0,
+    "optimizer_updates": 0,
+    "planned_eval": 1400,
+    "executed_eval": 1400,
+    "launches": 10,
+    "remaining_slots_released": false
+  },
+  "sim_critic_coverage_draft": {
+    "protocol_id": "nino_critic_coverage_draft_v1_2026_11_06",
+    "status": "study_closed_on_metadata_wiring_failure",
+    "protocol": "docs/NINO_SIM_CRITIC_COVERAGE_PROTOCOL_DRAFT_2026-11-06.md",
+    "config": "src/nino_rl/config/residual_coverage_study_v1.json",
+    "training_released": false,
+    "hardware_actions": 0,
+    "real_data_prerequisite": false,
+    "proposed_training_transitions": 6144,
+    "proposed_evaluation_transitions": 2240,
+    "proposed_critic_updates": 5760,
+    "proposed_actor_updates": 2880,
+    "proposed_maximum_launches": 64,
+    "minimum_relative_benefit_proposed": 0.05,
+    "minimum_effect_accepted": null,
+    "runner_implemented": true,
+    "next_action": "Review adapter metadata có regression và thiết kế protocol V2 riêng; V1 đã đóng, không chạy bù hoặc resume.",
+    "software_preflight_action": "sim-coverage-preflight",
+    "study_action": "sim-coverage-study",
+    "result_root": "/home/tuanmac/nino_research/sim_coverage_study_v1",
+    "implementation_report": "docs/NINO_SIM_COVERAGE_IMPLEMENTATION_2026-11-06.md",
+    "software_preflight_passed": true,
+    "software_tests_passed": 45,
+    "gui_tests_passed": 46,
+    "preflight_artifact": "/home/tuanmac/nino_research/sim_coverage_study_v1/20261106T102458274967Z_sim-coverage-preflight",
+    "preflight_manifest_sha256": "43981a39f32afdce9da8803ade22e49dc42b6d476a240896fe52515ca5978e83",
+    "implementation_fingerprint": "1cd68b11dea8aee0302094294d89636276df23d6dfc2dc314af1c4a6433d89be",
+    "new_scientific_training_transitions": 0,
+    "new_gazebo_launches": 1,
+    "study_consumed": true,
+    "completed_learners": 0,
+    "completed_evaluation_runs": 0,
+    "correction_prepared_not_released": true
+  },
+  "sim_coverage_result": {
+    "artifact": "/home/tuanmac/nino_research/sim_coverage_study_v1/20261106T103952320046Z_sim-coverage-study",
+    "artifact_manifest_sha256": "3f73d59ddfc5d3381ae202561113e864e75379e4618adba1c42e8ff965df7fab",
+    "fingerprint": "1cd68b11dea8aee0302094294d89636276df23d6dfc2dc314af1c4a6433d89be",
+    "status": "failed",
+    "error": "qualification_condition missing from training trace",
+    "files_verified": 44,
+    "launched_learners": 1,
+    "completed_learners": 0,
+    "gazebo_launches": 1,
+    "control_attempts": 1,
+    "raw_trace_rows": 1,
+    "valid_td3_transitions": 0,
+    "replay_rows": 0,
+    "critic_updates": 0,
+    "actor_updates": 0,
+    "evaluation_runs": 0,
+    "actor_unchanged_from_initial": true,
+    "sampler_decisions": 1,
+    "feedback_checks": 9,
+    "maximum_primary_joint_age_ms": 0.0,
+    "maximum_independent_joint_age_ms": 0.0,
+    "primary_received": 2470,
+    "independent_received": 2470,
+    "common_stamps": 2467,
+    "payload_mismatches": 0,
+    "physics_requests": 12,
+    "physics_retries": 0,
+    "parameter_readbacks": 2,
+    "observer_closure_ack": true,
+    "lifecycle_closed": true,
+    "remaining_gazebo_slots_closed": 63,
+    "remaining_training_learners_closed": 5,
+    "all_evaluation_slots_closed": 16,
+    "release_active": false,
+    "hardware_actions": 0,
+    "benefit_verified": false,
+    "real_data_cutoff": "2026-11-02",
+    "protocol_id": "nino_critic_coverage_draft_v1_2026_11_06",
+    "report": "docs/NINO_SIM_COVERAGE_RESULT_2026-11-06.md",
+    "correction_module": "src/nino_rl/nino_rl/coverage_qualification_adapter.py",
+    "correction_prepared_not_released": true,
+    "correction_regression_tests_passed": 6,
+    "gui_tests_passed": 48,
+    "build_packages_passed": [
+      "nino_rl",
+      "nino_pi"
+    ],
+    "verification": "docs/NINO_SIM_COVERAGE_VERIFICATION_2026-11-06.json",
+    "correction_candidate_sha256": "6997d055adf70b7ca08d2069c3c4171574a61c884d618ddcdca18ace86bcdaa7"
+  },
+  "sim_coverage_v2": {
+    "status": "study_closed_on_initial_drive_readiness_failure",
+    "protocol_id": "nino_critic_coverage_v2_2026_11_06",
+    "runner": "src/nino_rl/nino_rl/residual_coverage_study_v2.py",
+    "config": "src/nino_rl/config/residual_coverage_study_v2.json",
+    "report": "docs/NINO_SIM_COVERAGE_V2_IMPLEMENTATION_2026-11-06.md",
+    "protocol": "docs/NINO_SIM_COVERAGE_V2_PROTOCOL_2026-11-06.md",
+    "result_root": "/home/tuanmac/nino_research/sim_coverage_study_v2",
+    "preflight_artifact": "/home/tuanmac/nino_research/sim_coverage_study_v2/20261106T110945763777Z_sim-coverage-v2-preflight",
+    "preflight_manifest_sha256": "0c8f324a5c60e5c23489279975941212cb4e2a4ce13cd206771e76b01a7b4280",
+    "implementation_fingerprint": "57dc776c83cf8ef3de6830423f27577b80299b089a628a3c9404d54d9f7894fe",
+    "software_tests_passed": 80,
+    "gui_tests_passed": 55,
+    "full_train_path_synthetic_arms": 2,
+    "synthetic_transitions_per_arm": 1024,
+    "synthetic_critic_updates_per_arm": 960,
+    "synthetic_actor_updates_per_arm": 480,
+    "synthetic_resets_per_arm": 8,
+    "critic_reference_packets": 20,
+    "new_scientific_training_transitions": 1864,
+    "new_physics_transitions": 1865,
+    "hardware_actions": 0,
+    "training_released": false,
+    "benefit_verified": false,
+    "resume_allowed": false,
+    "proposed_training_transitions": 6144,
+    "proposed_evaluation_transitions": 2240,
+    "proposed_maximum_launches": 64,
+    "retries": 0,
+    "extra_physics_smokes": 0,
+    "minimum_effect_accepted": null,
+    "measurement_evidence": "software_only_synthetic_support_and_terminal_summary_not_gazebo",
+    "v1_preserved": true,
+    "v1_unused_slots_reopened": false,
+    "next_action": "Version reset readiness conjunction within existing 5 sim seconds; require drive ACK and quiet before task epoch. Keep failed V2 closed; no full matrix retry.",
+    "study_status": "failed",
+    "study_artifact": "/home/tuanmac/nino_research/sim_coverage_study_v2/20261106T111842753138Z_sim-coverage-v2-study",
+    "study_manifest_sha256": "0ba2d7fd3b9d98dff78e8dc27c8f1384a8f6b0d4efff113ad668b3b12c7ca7ca",
+    "result_report": "docs/NINO_SIM_COVERAGE_V2_RESULT_2026-11-06.md",
+    "valid_td3_transitions": 1864,
+    "replay_rows": 1864,
+    "control_attempts": 1865,
+    "raw_trace_rows": 1865,
+    "critic_updates": 1736,
+    "actor_updates": 868,
+    "evaluation_transitions": 0,
+    "evaluation_runs": 0,
+    "new_physics_control_intervals": 1865,
+    "launched_learners": 2,
+    "completed_learners": 1,
+    "gazebo_launches": 15,
+    "remaining_gazebo_slots_closed": 49,
+    "remaining_training_learners_closed": 4,
+    "remaining_evaluation_slots_closed": 16,
+    "quality": "partial_training_valid_study_comparison_unavailable",
+    "files_verified": 390,
+    "feedback_checks": 5685,
+    "payload_mismatches": 0,
+    "maximum_primary_joint_age_ms": 1.0,
+    "maximum_independent_joint_age_ms": 1.0,
+    "physics_requests": 3880,
+    "physics_retries": 0,
+    "lifecycle_closed": true,
+    "observer_closure_ack": true,
+    "failure_diagnosis": {
+      "primary": "initial_drive_wheel_feedback_not_acknowledged_before_decision",
+      "secondary": "successful_transition_validator_iterates_null_inhibited_proposal",
+      "first_tick_episode": 6,
+      "learner_arm": "C_stratified_probes",
+      "seed": 11,
+      "timestep": 841,
+      "decision_input_stamp_s": 2.563,
+      "drive_stamp_s": 2.554,
+      "drive_have_wheel_state": 0.0,
+      "drive_cmd_fresh": 0.0,
+      "source_permission": false,
+      "first_later_drive_ack_stamp_s": 2.634,
+      "next_input_stamp_s": 2.663,
+      "final_reference": [
+        0.0,
+        0.0
+      ],
+      "probe_at_failure": false,
+      "first_rows_ready": 14,
+      "first_rows_total": 15,
+      "setup_settling_passed": true,
+      "underlying_driver_discovery_or_callback_cause": "unknown",
+      "correction_scope": "offline_candidate_only_no_runner_or_physics_release",
+      "correction_module": "src/nino_rl/nino_rl/coverage_reset_readiness.py",
+      "raw_fixture": "src/nino_rl/test/fixtures/coverage_v2_initial_permission_failure.json",
+      "next_action": "Version reset readiness conjunction within existing 5 sim seconds; require drive ACK and quiet before task epoch. Keep failed V2 closed; no full matrix retry."
+    },
+    "learners": [
+      {
+        "arm": "A_gaussian",
+        "seed": 11,
+        "raw_rows": 1024,
+        "control_attempts": 1024,
+        "replay_rows": 1024,
+        "valid_td3_transitions": 1024,
+        "critic_updates": 960,
+        "actor_updates": 480,
+        "sampler_decisions": 1024,
+        "completed": true
+      },
+      {
+        "arm": "C_stratified_probes",
+        "seed": 11,
+        "raw_rows": 841,
+        "control_attempts": 841,
+        "replay_rows": 840,
+        "valid_td3_transitions": 840,
+        "critic_updates": 776,
+        "actor_updates": 388,
+        "sampler_decisions": 841,
+        "completed": false
+      }
+    ],
+    "release_active": false,
+    "reset_readiness_candidate_released": false,
+    "display_status": "ĐÃ ĐÓNG · DRIVE CHƯA SẴN SÀNG KHI RESET",
+    "readiness_regression_tests_passed": 14,
+    "retained_metadata_regressions_passed": 6,
+    "readiness_candidate_sha256": "dd24c3ed51db4cf81dde8de2b14d5b3751942906e63b3e1988ae49cb75f0bd9d",
+    "final_regression_tests_passed": 75,
+    "build_packages": [
+      "nino_rl",
+      "nino_pi"
+    ]
+  },
+  "sim_drive_readiness": {
+    "status": "qualified_zero_only_not_motion_or_learning",
+    "artifact": "/home/tuanmac/nino_research/sim_drive_readiness_v1/20261106T125008475990Z_sim-drive-readiness",
+    "artifact_manifest_sha256": "0c569728eb935dd2d6f6bd3ac1b1a0ca92fbfda313fff553e894473e57564aeb",
+    "fingerprint": "f98acf799df1a2833530056828e06f77a0d65a481358dd39f24dc42bba39de2a",
+    "files_verified": 68,
+    "gazebo_launches": 2,
+    "zero_control_ticks": 20,
+    "optimizer_updates": 0,
+    "actor_loads": 0,
+    "hardware_actions": 0,
+    "feedback_checks": 72,
+    "maximum_joint_age_ms": 1.0,
+    "physics_requests": 60,
+    "physics_retries": 0,
+    "primary_records": 6209,
+    "independent_records": 6209,
+    "common_stamps": 6208,
+    "payload_mismatches": 0,
+    "lifecycle_closed": true,
+    "observer_closure_ack": true,
+    "initially_blocked_setup_rows": 0,
+    "delayed_ack_reproduced_in_gazebo": false,
+    "delayed_ack_software_fixture": true,
+    "software_tests_passed": 82,
+    "release_active": false,
+    "benefit_verified": false,
+    "real_data_cutoff": "2026-11-02",
+    "completed_A_checkpoint": "/home/tuanmac/nino_research/sim_coverage_study_v2/20261106T111842753138Z_sim-coverage-v2-study/A_gaussian_seed_11/model.zip",
+    "completed_A_checkpoint_sha256": "40f676c7464a94440d57cda34c6eb277ba67d6fb7a87760f8bc363af253a6166",
+    "next_action": "Thiết kế eval-only A seed11/B0/cổ điển cùng reset gate tại stop6/8; không resume C hoặc train mới.",
+    "result_report": "docs/NINO_SIM_DRIVE_READINESS_RESULT_2026-11-06.md",
+    "next_protocol": "docs/NINO_SIM_READY_EVAL_ONLY_NEXT_2026-11-06.md"
+  },
+  "sim_ready_eval_only": {
+    "status": "eval_only_completed_not_promoted",
+    "artifact": "/home/tuanmac/nino_research/sim_ready_eval_only_v1/20261106T131105761794Z_sim-ready-eval-only",
+    "artifact_manifest_sha256": "02832bf0e9d2bccf2e9361c56b61c9d634522b7321622764ce3842ea141ed9d9",
+    "fingerprint": "d75036f1a15431c16fc92eb82e34319652b17e05483a81ea86455c26f08eec3d",
+    "files_verified": 199,
+    "gazebo_launches": 6,
+    "evaluation_transitions": 840,
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "probes": 0,
+    "hardware_actions": 0,
+    "feedback_checks": 2561,
+    "maximum_joint_age_ms": 1.0,
+    "physics_requests": 1750,
+    "physics_retries": 0,
+    "primary_records": 54931,
+    "independent_records": 54931,
+    "common_stamps": 54930,
+    "payload_mismatches": 0,
+    "lifecycle_closed": true,
+    "observer_closure_ack": true,
+    "actor_optimizer_sampler_unchanged": true,
+    "checkpoint_unchanged": true,
+    "metrics": [
+      {
+        "condition": {
+          "arm": "B0",
+          "source_stop_s": 6.0
+        },
+        "native_vrmse_m_s": 0.004770722392015977,
+        "GT20ms_vrmse_m_s": 0.006356080087804763,
+        "GTshift10ms_vrmse_m_s": 0.0063606511636115585,
+        "path_rmse_mm": 0.01442024756111952,
+        "task_pass": true,
+        "settling_rounds": 5,
+        "open_window_ticks": 30,
+        "open_request_min": 0.0,
+        "open_request_max": 0.0,
+        "open_request_mean": 0.0,
+        "open_common_mean_m_s": 0.0,
+        "open_request_fraction_le_minus_095": 0.0,
+        "open_body_nominal_error_mean_m_s": -0.006581587105533275
+      },
+      {
+        "condition": {
+          "arm": "A_gaussian",
+          "source_stop_s": 6.0,
+          "seed": 11
+        },
+        "native_vrmse_m_s": 0.0067007909192947895,
+        "GT20ms_vrmse_m_s": 0.008157831535608688,
+        "GTshift10ms_vrmse_m_s": 0.008163698369546148,
+        "path_rmse_mm": 0.12366569253583942,
+        "task_pass": true,
+        "settling_rounds": 5,
+        "open_window_ticks": 30,
+        "open_request_min": -0.9909899234771729,
+        "open_request_max": -0.9861539006233215,
+        "open_request_mean": -0.9905265827973684,
+        "open_common_mean_m_s": -0.004952632913986843,
+        "open_request_fraction_le_minus_095": 1.0,
+        "open_body_nominal_error_mean_m_s": -0.011789057337950397
+      },
+      {
+        "condition": {
+          "arm": "Classical_scheduled",
+          "source_stop_s": 6.0
+        },
+        "native_vrmse_m_s": 0.003907096003830191,
+        "GT20ms_vrmse_m_s": 0.006024775732342821,
+        "GTshift10ms_vrmse_m_s": 0.0060290402574088514,
+        "path_rmse_mm": 0.6959323240274206,
+        "task_pass": true,
+        "settling_rounds": 10,
+        "open_window_ticks": 30,
+        "open_request_min": 1.0,
+        "open_request_max": 1.0,
+        "open_request_mean": 1.0,
+        "open_common_mean_m_s": 0.005000000000000001,
+        "open_request_fraction_le_minus_095": 0.0,
+        "open_body_nominal_error_mean_m_s": -0.002264152830248329
+      },
+      {
+        "condition": {
+          "arm": "Classical_scheduled",
+          "source_stop_s": 8.0
+        },
+        "native_vrmse_m_s": 0.003942947127901959,
+        "GT20ms_vrmse_m_s": 0.005691865455229616,
+        "GTshift10ms_vrmse_m_s": 0.005695946538682233,
+        "path_rmse_mm": 0.652237116053235,
+        "task_pass": true,
+        "settling_rounds": 5,
+        "open_window_ticks": 50,
+        "open_request_min": 1.0,
+        "open_request_max": 1.0,
+        "open_request_mean": 1.0,
+        "open_common_mean_m_s": 0.005,
+        "open_request_fraction_le_minus_095": 0.0,
+        "open_body_nominal_error_mean_m_s": -0.00047329436866215655
+      },
+      {
+        "condition": {
+          "arm": "A_gaussian",
+          "source_stop_s": 8.0,
+          "seed": 11
+        },
+        "native_vrmse_m_s": 0.007445375776714995,
+        "GT20ms_vrmse_m_s": 0.0089138477534625,
+        "GTshift10ms_vrmse_m_s": 0.008920258288453947,
+        "path_rmse_mm": 0.013599264072345024,
+        "task_pass": true,
+        "settling_rounds": 5,
+        "open_window_ticks": 50,
+        "open_request_min": -0.9911980032920837,
+        "open_request_max": -0.9864616394042969,
+        "open_request_mean": -0.990875118970871,
+        "open_common_mean_m_s": -0.0049543755948543555,
+        "open_request_fraction_le_minus_095": 1.0,
+        "open_body_nominal_error_mean_m_s": -0.010210308742550476
+      },
+      {
+        "condition": {
+          "arm": "B0",
+          "source_stop_s": 8.0
+        },
+        "native_vrmse_m_s": 0.005149150935369968,
+        "GT20ms_vrmse_m_s": 0.006898209243102707,
+        "GTshift10ms_vrmse_m_s": 0.006903159011048283,
+        "path_rmse_mm": 0.026447068335424647,
+        "task_pass": true,
+        "settling_rounds": 5,
+        "open_window_ticks": 50,
+        "open_request_min": 0.0,
+        "open_request_max": 0.0,
+        "open_request_mean": 0.0,
+        "open_common_mean_m_s": 0.0,
+        "open_request_fraction_le_minus_095": 0.0,
+        "open_body_nominal_error_mean_m_s": -0.005134943310085842
+      }
+    ],
+    "comparison": {
+      "decision": "no_go_expand_this_checkpoint_clear_known_stop",
+      "pairs": [
+        {
+          "stop_s": 6.0,
+          "A": [
+            0.0067007909192947895,
+            0.008157831535608688,
+            0.008163698369546148
+          ],
+          "B0": [
+            0.004770722392015977,
+            0.006356080087804763,
+            0.0063606511636115585
+          ],
+          "classical": [
+            0.003907096003830191,
+            0.006024775732342821,
+            0.0060290402574088514
+          ],
+          "relative_A_vs_B0": [
+            0.4045652563035047,
+            0.2834689656067892,
+            0.2834689656067893
+          ],
+          "relative_A_vs_classical": [
+            0.7150310390955055,
+            0.35404733686848744,
+            0.3540626734933638
+          ]
+        },
+        {
+          "stop_s": 8.0,
+          "A": [
+            0.007445375776714995,
+            0.0089138477534625,
+            0.008920258288453947
+          ],
+          "B0": [
+            0.005149150935369968,
+            0.006898209243102707,
+            0.006903159011048283
+          ],
+          "classical": [
+            0.003942947127901959,
+            0.005691865455229616,
+            0.005695946538682233
+          ],
+          "relative_A_vs_B0": [
+            0.44594242238503007,
+            0.2921973572163187,
+            0.29219945161010513
+          ],
+          "relative_A_vs_classical": [
+            0.8882768485604011,
+            0.5660678952403145,
+            0.5660712803174701
+          ]
+        }
+      ],
+      "benefit_verified": false,
+      "one_training_seed_only": true,
+      "paired_conditions_not_exact_state_branching": true,
+      "minimum_effect_proposed": 0.05,
+      "application_minimum_effect_accepted": null
+    },
+    "software_tests_passed": 78,
+    "release_active": false,
+    "benefit_verified": false,
+    "real_data_cutoff": "2026-11-02",
+    "next_action": "Giữ cổ điển cho clear known-stop. Chốt benchmark decision record và một câu hỏi có useful authority trước budget mới; không train dài, resume C hoặc mở hardware mặc định."
+  },
+  "sim_benchmark_decision": {
+    "artifact": "/home/tuanmac/nino_research/sim_benchmark_decision_v1/decision_2026_11_06_verified",
+    "manifest_sha256": "1ee7eefb5b60fbb7cfbeb05e0819f951fbbeffc82f6e371795c0c266c2e47c03",
+    "fingerprint": "33ab074a9ed5be57ddc14e3e361975c5d1f99d189acad35ea8714938c5e248a5",
+    "status": "offline_decision_and_candidate_algebra_only",
+    "source_manifest_sha256": "02832bf0e9d2bccf2e9361c56b61c9d634522b7321622764ce3842ea141ed9d9",
+    "existing_trace_rows": 840,
+    "software_tests_passed": 17,
+    "new_physics_steps": 0,
+    "new_gazebo_launches": 0,
+    "new_training_transitions": 0,
+    "new_optimizer_updates": 0,
+    "hardware_actions": 0,
+    "question": "Unknown fixed common reference-to-drive gain; classical baseline first",
+    "development_gains": [
+      0.98,
+      1.0,
+      1.02
+    ],
+    "qualification_released": false,
+    "proposed_qualification_launches": 9,
+    "benefit_verified": false,
+    "real_data_cutoff": "2026-11-02"
+  },
+  "sim_gain_context_preflight": {
+    "artifact": "/home/tuanmac/nino_research/sim_gain_context_preflight_v1/offline_2026_11_06",
+    "manifest_sha256": "e130108934e4d12da74d802f621156a39da41ed51606607c0d472fda485f2ec4",
+    "fingerprint": "deccb94680a263042ab4fd688bca7669e79f562602a713f23c4d4dc4243f469f",
+    "abi_sha256": "99e8488b9d2945d967273b2388d107183b14688bbedab5ecdde76b29d5c55219",
+    "status": "offline_gain_context_parity_passed_not_Gazebo_qualified",
+    "software_tests_passed": 41,
+    "synthetic_driver_callbacks": 4800,
+    "synthetic_wrapper_transitions": 840,
+    "new_gazebo_launches": 0,
+    "new_physics_steps": 0,
+    "new_training_transitions": 0,
+    "new_optimizer_updates": 0,
+    "actor_loads": 0,
+    "hardware_actions": 0,
+    "physics_released": false,
+    "benefit_verified": false,
+    "real_data_cutoff": "2026-11-02"
+  },
+  "sim_gain_baseline_qualification": {
+    "artifact": "/home/tuanmac/nino_research/sim_gain_baselines_v1/20261106T142659151112Z_sim-gain-baselines",
+    "artifact_manifest_sha256": "3865c03c6881502ac81544c9908a339bd62eb10afe529274da589c153d9e6ebd",
+    "fingerprint": "96d525607c57a943b7c681fdd9632086f74607a48913d2753842b317d4add805",
+    "completed_cells": 9,
+    "valid_ticks": 1260,
+    "files_verified": 283,
+    "feedback_checks": 3834,
+    "maximum_joint_age_ms": 2.0,
+    "physics_requests": 2610,
+    "primary_records": 70038,
+    "independent_records": 70038,
+    "common_stamps": 70034,
+    "payload_mismatches": 0,
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "actor_loads": 0,
+    "hardware_actions": 0,
+    "causal_vs_B0_grid_sensitive_gains": [
+      1.0,
+      0.98
+    ],
+    "result_root": "/home/tuanmac/nino_research/sim_gain_baselines_v1",
+    "status": "completed",
+    "qualification_pass": true,
+    "comparison_decision": "unknown_small_or_gain_dependent_effect",
+    "software_tests_passed": 17,
+    "gui_tests_prelaunch": 53,
+    "gui_tests_result_panel": 54,
+    "release_active": false,
+    "training_released": false,
+    "benefit_verified": false,
+    "real_data_cutoff": "2026-11-02",
+    "next_recommendation": "Thiết kế một correction cổ điển offline: tách cập nhật gain khỏi lệnh bù được giữ; kiểm độ ổn định encoder và ảnh hưởng lag. Trace replay chỉ kiểm hành vi, chưa là outcome mới. Chưa mở Gazebo v2, learner hoặc tăng residual."
+  },
+  "sim_held_gain_offline": {
+    "artifact": "/home/tuanmac/nino_research/sim_held_gain_offline_v1/qualification_2026_11_07",
+    "manifest_sha256": "414a468cc0dbf885a7aa70be5999ecf9a44a04ca44fa82bdfa37894fad6e6623",
+    "fingerprint": "38b5ccf4d2dc90d6217570d1b99e6da7386694da2d823c36019d8b4da39e6452",
+    "status": "offline_behavior_passed_identification_unknown",
+    "software_tests_passed": 44,
+    "synthetic_decisions": 143,
+    "shadow_decisions": 1260,
+    "new_gazebo_launches": 0,
+    "new_training_transitions": 0,
+    "new_optimizer_updates": 0,
+    "hardware_actions": 0,
+    "physics_released": false,
+    "training_released": false,
+    "physical_benefit_verified": false,
+    "gain_identification": "unknown_static_gain_versus_dynamics_bias",
+    "correction_count": 1,
+    "correction_budget_closed": true,
+    "real_data_cutoff": "2026-11-02"
+  },
+  "sim_chain_dynamics_audit": {
+    "artifact": "/home/tuanmac/nino_research/sim_chain_dynamics_audit_v2/analysis_2026_11_07",
+    "manifest_sha256": "da0c20ff6deb089e52353c9d984f1c4c4178b302f23ffc48bbc58c079b22a2ab",
+    "fingerprint": "dc152cfab982d0022008623d6c3adf1f3a13b1c868894a16f8c17e996ae4e379",
+    "status": "completed_offline_diagnostic_with_unknown_queries",
+    "native_rows_checked": 1260,
+    "software_tests_passed": 34,
+    "complete_raw_query_cells": 8,
+    "unknown_raw_query_cells": 1,
+    "raw_conflicting_stamps": 4,
+    "raw_query_eligible_samples": 1981,
+    "raw_query_supported_samples": 1980,
+    "classical_plateau_cells": 6,
+    "target_encoder_rms_range_mm_s": [
+      5.000981321383832,
+      5.534293288229872
+    ],
+    "encoder_body_rms_range_mm_s": [
+      0.03959372787361608,
+      0.39981494421274455
+    ],
+    "zero_asymptote_tau_range_s": [
+      2.8183829312644546,
+      3.3496543915782775
+    ],
+    "exponential_beats_static_in_later_time_blocks": 6,
+    "affine_gain_bias_rank_one_cells": 6,
+    "source_age_max_s": {
+      "wheel": 0.001,
+      "drive": 0.02
+    },
+    "pi_integral_delta_range_rad": [
+      0.32675131882699804,
+      0.35958530172552755
+    ],
+    "max_pi_integral_reconstruction_error_rad": 0.001317697192336098,
+    "new_gazebo_launches": 0,
+    "new_training_transitions": 0,
+    "hardware_actions": 0,
+    "controller_parameters_changed": false,
+    "primary_metric_changed": false,
+    "training_released": false,
+    "physical_identification_verified": false,
+    "physics_released": false,
+    "real_data_cutoff": "2026-11-02",
+    "next_recommendation": "Ưu tiên một screen PI cổ điển trong Sim theo protocol mới; chưa thay gain/current, chưa release physics hoặc learner."
+  },
+  "sim_pi_screen_preflight": {
+    "artifact": "/home/tuanmac/nino_research/sim_pi_screen_preflight_v1/offline_2026_11_07",
+    "manifest_sha256": "ac8d24eb535e418189d3aea4b93f1163b9a1d710bbddf51b4adce6a09c865766",
+    "fingerprint": "026014c6034e8294a9f187e0a4a8d23d9825bfe0d9225c1208fab92f5f600e22",
+    "abi_sha256": "48f2c9883a36a6afa3d8caf6c6f302fd9ebf46392703d0d10f0f307475fde1f4",
+    "status": "offline_pi_screen_parity_passed_not_Gazebo_qualified",
+    "software_tests_passed": 49,
+    "synthetic_kernel_callbacks": 3600,
+    "synthetic_wrapper_transitions": 560,
+    "physics_released": false,
+    "new_gazebo_launches": 0,
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "hardware_actions": 0,
+    "allocated_physics_slots": 0,
+    "proposed_launches": 4,
+    "proposed_ticks": 560,
+    "next_recommendation": "Chuẩn bị runner/ledger/protocol/release riêng cho screen PI; chưa chạy physics hoặc train."
+  },
+  "sim_pi_screen_runner_preflight": {
+    "artifact": "/home/tuanmac/nino_research/sim_pi_screen_runner_preflight_v1/offline_2026_11_07",
+    "manifest_sha256": "01b7ecf4ff30a48bf746f30730254445b782e4cd1b756bff28ef41d9787ab36f",
+    "fingerprint": "86db564afa9e1a7980b16351db4cf466869c9b6c08c4f9bae27843cde326014f",
+    "protocol_sha256": "7a150aef70ecbb70d06a09476c7b082d82c577d4a49a60dee13bc775c04fb6a6",
+    "status": "offline_PI_runner_qualified_not_physics_released",
+    "software_tests_passed": 44,
+    "synthetic_cells": 4,
+    "synthetic_decisions": 560,
+    "summary_timing_closure_are_synthetic": true,
+    "Ki_plant_response_modeled": false,
+    "physics_released": false,
+    "allocated_physics_slots": 0,
+    "new_Gazebo_launches": 0,
+    "training_transitions": 0,
+    "actor_loads": 0,
+    "optimizer_updates": 0,
+    "hardware_actions": 0,
+    "next_recommendation": "Review/release riêng cho screen tối đa4launches/560ticks; chưa chạy physics hoặc trainTD3."
+  },
+  "sim_pi_screen": {
+    "result_root": "/home/tuanmac/nino_research/sim_pi_screen_v1",
+    "artifact": "/home/tuanmac/nino_research/sim_pi_screen_v1/20261106T233559049444Z_sim-pi-screen",
+    "manifest_sha256": "6762f5d2903c8bef3bb4208736f14d1e3e13985146243d395fa8ef2afe4da644",
+    "fingerprint": "86db564afa9e1a7980b16351db4cf466869c9b6c08c4f9bae27843cde326014f",
+    "status": "completed",
+    "completed_cells": 4,
+    "attempted_cells": 4,
+    "valid_ticks": 560,
+    "audit": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_pi_screen_2026-11-07/verification.json",
+    "audit_sha256": "b9a7024f5c4e924dd31bd0be2c0ce048dbcd0684dcb8514f8d1dd445cd998326",
+    "ambiguity_audit": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_pi_screen_2026-11-07/source_ambiguity.json",
+    "ambiguity_audit_sha256": "d45b167462c41f83edc69a4eca726348401acfc27865d42eece82121cb055920",
+    "decision": "descriptive_PI_candidate_separate_validation_required",
+    "relative_candidate_vs_baseline": [
+      [
+        -0.2172502059596161,
+        -0.13438556013865655,
+        -0.13438556013865666
+      ],
+      [
+        -0.19461834088074514,
+        -0.10193055993199059,
+        -0.10193055993199057
+      ]
+    ],
+    "metrics": [
+      {
+        "condition": {
+          "cell": 0,
+          "block": 0,
+          "arm": "B0",
+          "source_stop_s": 8.0,
+          "gain": 1.0,
+          "ki": 0.1,
+          "reset_seed": 701
+        },
+        "native_vrmse_m_s": 0.0051818421606479245,
+        "GT20ms_vrmse_m_s": 0.00708944798796596,
+        "GTshift10ms_vrmse_m_s": 0.0070945464769298595,
+        "path_rmse_mm": 0.024805794083823437,
+        "max_cross_track_mm": 0.04869795811579368,
+        "quiet_s": 4.000000000000002,
+        "task_pass": true,
+        "settling_rounds": 5,
+        "torque_max_nm": 0.08780235295980296,
+        "target_ramp_flags": 0
+      },
+      {
+        "condition": {
+          "cell": 1,
+          "block": 0,
+          "arm": "B0",
+          "source_stop_s": 8.0,
+          "gain": 1.0,
+          "ki": 0.15,
+          "reset_seed": 701
+        },
+        "native_vrmse_m_s": 0.004056085883996941,
+        "GT20ms_vrmse_m_s": 0.006136728549029283,
+        "GTshift10ms_vrmse_m_s": 0.006141141874697907,
+        "path_rmse_mm": 0.09330287117731555,
+        "max_cross_track_mm": 0.15076805393076273,
+        "quiet_s": 4.000000000000002,
+        "task_pass": true,
+        "settling_rounds": 5,
+        "torque_max_nm": 0.09835252245912193,
+        "target_ramp_flags": 0
+      },
+      {
+        "condition": {
+          "cell": 2,
+          "block": 1,
+          "arm": "B0",
+          "source_stop_s": 8.0,
+          "gain": 1.0,
+          "ki": 0.15,
+          "reset_seed": 701
+        },
+        "native_vrmse_m_s": 0.004147775485810193,
+        "GT20ms_vrmse_m_s": 0.006249914068896806,
+        "GTshift10ms_vrmse_m_s": 0.006254408793727241,
+        "path_rmse_mm": 0.45542141128228353,
+        "max_cross_track_mm": 0.6413198273172034,
+        "quiet_s": 4.000000000000002,
+        "task_pass": true,
+        "settling_rounds": 5,
+        "torque_max_nm": 0.10299529583371235,
+        "target_ramp_flags": 0
+      },
+      {
+        "condition": {
+          "cell": 3,
+          "block": 1,
+          "arm": "B0",
+          "source_stop_s": 8.0,
+          "gain": 1.0,
+          "ki": 0.1,
+          "reset_seed": 701
+        },
+        "native_vrmse_m_s": 0.0051500744260132465,
+        "GT20ms_vrmse_m_s": 0.006959277078199554,
+        "GTshift10ms_vrmse_m_s": 0.006964281952689098,
+        "path_rmse_mm": 0.03039167764262662,
+        "max_cross_track_mm": 0.04954994716084497,
+        "quiet_s": 4.000000000000002,
+        "task_pass": true,
+        "settling_rounds": 5,
+        "torque_max_nm": 0.10265196294196026,
+        "target_ramp_flags": 0
+      }
+    ],
+    "files_verified": 133,
+    "boundary_checks": 1704,
+    "maximum_joint_age_ms": 2.0,
+    "physics_requests": 1160,
+    "physics_steps": 58000,
+    "physics_retries": 0,
+    "joint_conflicting_stamps": 3,
+    "GT_header_conflicting_stamps": 0,
+    "native_current_next_wheel_support_conflicts": 0,
+    "raw_loss_free_claim": false,
+    "release_active": false,
+    "budget_closed": true,
+    "training_transitions": 0,
+    "actor_loads": 0,
+    "optimizer_updates": 0,
+    "hardware_actions": 0,
+    "benefit_verified": false,
+    "promoted": false,
+    "next_recommendation": "Candidate Ki0,15 chỉ đạt screening; tiếp protocol validation riêng stop6s, chưa release/chạy hoặc mởTD3."
+  },
+  "sim_pi_stop_validation_preflight": {
+    "artifact": "/home/tuanmac/nino_research/sim_pi_stop_validation_preflight_v1/offline_2026_11_07",
+    "manifest_sha256": "d30937e2d7e4ac01922e9e66c71521f1c50cf09ae8d25744fca901e8a7f52e91",
+    "fingerprint": "2d9f70ec52e81a102ee5f6b3e7cb56ec3d2e3a2912e3045cd55284e8de90b14c",
+    "context_identity": {
+      "id": "nino_sim_pi_stop_validation_context_v1_2026_11_07",
+      "fingerprint": "da5c5a22f0a61dbab3ce66d97391bf8f0dc8bc07ed7872237153c35f9c6b89dc",
+      "parent_abi_sha256": "b8c71ccb876cb6f2f5ab66d08d74d9b3d8cfdbfac22ccfc3b326da16b5a2e6e0",
+      "observation": {
+        "history_frames": 5,
+        "inherited_history_size": 100,
+        "current_features": [
+          "source_stop_remaining_over_horizon",
+          "common_window_open",
+          "previous_requested_scalar"
+        ],
+        "size": 103,
+        "normalization": "inherited_fixed_physical_scales_plus_current_plan_over_14s"
+      },
+      "action": {
+        "size": 1,
+        "bounds": [
+          -1.0,
+          1.0
+        ],
+        "semantic": "requested_common_before_shared_window_and_projection"
+      },
+      "last_final_semantic": "driver execution reference before common target map; not effective target or measured body",
+      "source_stop_s": 6.0,
+      "plant_map": "gain one; frozen velocity PI kernel; readonly Ki condition 0.10 or 0.15",
+      "conditions_not_controller_inputs": true,
+      "hardware_authorized": false,
+      "training_released": false,
+      "actor_loading_allowed": false,
+      "allowed_arm": "B0",
+      "allowed_residual": 0.0,
+      "abi_sha256": "56dc039dedae4542dccc711b242d4a9cfa22ab80184dc238ad1998e105aae3bd"
+    },
+    "result_root": "/home/tuanmac/nino_research/sim_pi_stop_validation_v1",
+    "software_tests_passed": 68,
+    "synthetic_cells": 4,
+    "synthetic_decisions": 560,
+    "synthetic_wrapper_transitions": 560,
+    "new_Gazebo_launches": 0,
+    "new_physics_steps": 0,
+    "training_transitions": 0,
+    "actor_loads": 0,
+    "hardware_actions": 0,
+    "physics_released": false,
+    "allocated_physics_slots": 0,
+    "benefit_verified": false,
+    "candidate_promoted": false,
+    "next_recommendation": "Review/release riêng validation stop6s tối đa4lượt/560ticks; chưa cấp slot hoặc mở TD3/hardware."
+  },
+  "td3_training_evidence": {
+    "seed": 11,
+    "training_transitions": 1024,
+    "critic_updates": 960,
+    "actor_updates": 480,
+    "training_result": "/home/tuanmac/nino_research/sim_coverage_study_v2/20261106T111842753138Z_sim-coverage-v2-study/A_gaussian_seed_11/training_result.json",
+    "training_result_sha256": "0cd38365f72054368642f4e902b8b7f457c2e92ed22e23f2ca62754b47d94f1e",
+    "study_manifest": "/home/tuanmac/nino_research/sim_coverage_study_v2/20261106T111842753138Z_sim-coverage-v2-study/manifest.json",
+    "study_manifest_sha256": "0ba2d7fd3b9d98dff78e8dc27c8f1384a8f6b0d4efff113ad668b3b12c7ca7ca",
+    "interpretation": "one short pilot checkpoint; not convergence or an algorithm comparison",
+    "C_partial_replay_transitions_reported": 840,
+    "new_training_budget_released": false,
+    "PI_validation_required_for_TD3_with_frozen_baseline": false
+  },
+  "training_allowed_scope": "Historical workflows remain closed; Studio has explicit per-job Sim requests, maximum20k common transitions; hardware authority0.",
+  "studio_training_completed": {
+    "artifact": "/home/tuanmac/nino_research/td3_studio/20261107T080414816378Z_common_train",
+    "manifest_sha256": "9d0337d6c31a22a52c89faa0a8921d938c7a4cc99ca63b18cb57389947d392bd",
+    "training_result_sha256": "f98dcff24aa2f7e9441b209135e15ebe881af2aa876d47314ec61da461903e1f",
+    "seed": 11,
+    "counter_scope": "cumulative_single_learner",
+    "training_transitions": 30000,
+    "job_transitions": 10000,
+    "starting_global_steps": 20000,
+    "critic_updates": 20000,
+    "actor_updates": 10000,
+    "report": "docs/NINO_COMMON_TD3_30K_ASSESSMENT_2026-11-07.md",
+    "independent_replay_rows_checked": 10000,
+    "preserved_parent_replay_rows_checked": 20000,
+    "evaluation_runs": 6,
+    "evaluation_ticks": 840,
+    "benefit_verified": false
+  },
+  "studio_training_completed_history": [
+    {
+      "artifact": "/home/tuanmac/nino_research/td3_studio/20261107T054154365880Z_common_train",
+      "manifest_sha256": "1c0dba102f39adaaa419a682738713e701bbd8e9070113828821dbfe6e2db37f",
+      "training_result_sha256": "352ed288cac4b65f3727fe55d9ff1585f31dc0a562bf98a0ce4d00e04cb951d8",
+      "seed": 11,
+      "training_transitions": 20000,
+      "critic_updates": 10000,
+      "actor_updates": 5000,
+      "report": "docs/NINO_COMMON_TD3_20K_ASSESSMENT_2026-11-07.md",
+      "independent_replay_rows_checked": 20000,
+      "evaluation_runs": 6,
+      "evaluation_ticks": 840,
+      "benefit_verified": false
+    }
+  ],
+  "latest_sim_assessment": {
+    "artifact": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/td3_offline_phase_review_2026-11-07",
+    "manifest_sha256": "6f099b84a9e4ef5735ad555d25b3e0afbb30f2e8fb0f4e2cfc891d27c95949e4",
+    "report": "docs/NINO_TD3_OFFLINE_PHASE_REVIEW_2026-11-07.md",
+    "handoff": "docs/NINO_CLASSICAL_BASELINE_HANDOFF_2026-11-07.md",
+    "status": "reviewed_keep_classical",
+    "scope": "clear_box_known_stop_6_8s",
+    "controller": "Classical_scheduled / frozen Ki0.10",
+    "hardware_deployed": false,
+    "training_released": false
+  },
+  "wheel_body_gap_review": {
+    "artifact": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/wheel_body_gap_review_2026-11-07",
+    "analysis_sha256": "80d58359e5b05a8cca047a1fd1d41ae5e8ac059d9a594ef6e9218123d5f72222",
+    "report": "/home/tuanmac/ninorobot/docs/NINO_WHEEL_BODY_GAP_REVIEW_2026-11-07.md",
+    "report_sha256": "2ee3faafbf2aa71d4e9d527c012ec5fb1a2eb26b983758e4ce44c1e311fbd7a1",
+    "protocol": "/home/tuanmac/ninorobot/docs/NINO_BODY_REFERENCE_DIAGNOSTIC_DRAFT_2026-11-07.md",
+    "protocol_sha256": "e86a9afebc3203a5bde93c3ba2bad48bb84399122205f19acf65de43ffa06324",
+    "reviewed_sessions": 4,
+    "reviewed_messages": 95459,
+    "verified_raw_files": 100,
+    "body_motion_conflict_resolved": false,
+    "body_reference_collected": false,
+    "motion_slots_released": 0,
+    "status": "offline_review_complete_diagnostic_draft_only"
+  },
+  "body_reference_studio": {
+    "status": "software_ready_real_reference_not_collected",
+    "report": "/home/tuanmac/ninorobot/docs/NINO_BODY_REFERENCE_STUDIO_2026-11-07.md",
+    "report_sha256": "e14af8f3e92092932834f45da807a39e31a59f81de31aa27048da76216ab9c61",
+    "new_motion_slots_released": 0,
+    "body_reference_collected": false,
+    "pi_connection": "ssh_batchmode_timeout_192.168.0.109",
+    "network_failure_cause": null,
+    "raw_or_training_modified": false
+  },
+  "active_workstream": "sim_offline_preparation",
+  "sim_prestop_authority_draft": {
+    "status": "prepared_not_released",
+    "config": "/home/tuanmac/ninorobot/src/nino_rl/config/prestop_tail_authority_draft_v1.json",
+    "config_sha256": "2545a3befdc0a2e852793937647da190d611bcaf7592117eb5461107d2d0925a",
+    "report": "/home/tuanmac/ninorobot/docs/NINO_SIM_PRESTOP_AUTHORITY_DRAFT_2026-11-08.md",
+    "report_sha256": "ddc3c1fa4f155bd90553de78e85bcce2c702bf4b2190dfc1ae5a407f3193759b",
+    "artifact": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_prestop_authority_draft_2026-11-08",
+    "proposed_attempts": 12,
+    "allocated_attempts": 0,
+    "physics_allowed": false,
+    "training_allowed": false,
+    "runtime_implemented": false,
+    "reference_fixture_only": true,
+    "requires_pi": false,
+    "hardware_actions": 0
+  },
+  "sim_next_steps": [
+    {
+      "id": "01",
+      "name": "Sim 30k: giữ classical cho envelope đã thử",
+      "status": "BASELINE TRƯỚC LEARNER · ĐÃ REVIEW",
+      "owner": "Assistant chuẩn bị offline; runtime chỉ sau protocol/release riêng",
+      "work": "Không đợi real dataset cho chuẩn bị Sim. Giữ cùng seed11 đã train30.000 global steps,20.000critic/10.000actor updates và kết luận classical scheduled cho clear-box/stop6/8s/Ki0,10. Không resume hoặc đổi LR/history/reward/action scale.",
+      "data": "Review20k/25k/30k đã đóng; shadow trên trace cũ không phải outcome mới. 25k không có rollout mới; ba checkpoint không là ba training seeds.",
+      "output": "Báo cáo30k và offline phase review, checkpoint/raw giữ nguyên.",
+      "gate": "Kết luận chỉ ở envelope đã xem, không phải giới hạn cuối TD3 hoặc deployment gate.",
+      "action": null
+    },
+    {
+      "id": "02",
+      "name": "Draft mới: quyền tác động trong0,5s trước stop",
+      "status": "DRAFT + REFERENCE FIXTURE ĐÃ CÓ · 0 SLOT",
+      "owner": "Assistant chuẩn bị offline; runtime chỉ sau protocol/release riêng",
+      "work": "Một yếu tố: tail common scalar −1/0/+1, tương ứng−0,005/0/+0,005m/s trong[stop−0,5;stop). Mọi arm cùng classical trước tail; requested residual=0 từ source stop. Đây là classical authority probe, chưa TD3.",
+      "data": "Config prestop_tail_authority_draft_v1.json; pins frozen source, đề xuất2block×stop6/8×3arm=12attempts. Không cần Pi hoặc data thật.",
+      "output": "Protocol08/11, matrix,metric/estimand/stop rules và preview reference synthetic. Chưa có wheel/body outcomes mới.",
+      "gate": "12lượt chỉ là đề xuất;0allocated, runtime chưa xây, không chạy batch từ GUI. Các ngưỡng nghiên cứu còn cần review.",
+      "action": null
+    },
+    {
+      "id": "03",
+      "name": "Xây adapter/runner tách phiên bản",
+      "status": "CHƯA TRIỂN KHAI RUNTIME",
+      "owner": "Assistant chuẩn bị offline; runtime chỉ sau protocol/release riêng",
+      "work": "Sau draft review: tạo adapter/runner riêng với trace và ledger; giữ parent frozen. New tail/window semantics cần contract mới; không convert/resume checkpoint common103 cũ.",
+      "data": "Causal source/history/health/plan; inherited projector/follower/PI/readiness. Không GT/contact vào scheduler.",
+      "output": "Runtime version riêng, dry-run ledger và source/install identity; chưa release physics.",
+      "gate": "Không sửa frozen engine để mở tail. Nếu contract/parity không rõ: dừng và sửa tối đa một correction có căn cứ trước quyết định.",
+      "action": null
+    },
+    {
+      "id": "04",
+      "name": "Qualification offline và neutral-arm parity",
+      "status": "REFERENCE MATH ĐẠT; FULL RUNTIME CHƯA KIỂM",
+      "owner": "Assistant chuẩn bị offline; runtime chỉ sau protocol/release riêng",
+      "work": "Giữ synthetic neutral reference khớp lịch cũ, prefix các arm giống trước tail, stop/health guards không bypass. Sau khi có runner: kiểm lifecycle/metadata/cadence với fixture riêng.",
+      "data": "Reference preview840rows,9planning tests ban đầu; fixture không có motor hoặc body response.",
+      "output": "Parities và rejection cases đúng; dữ liệu lỗi được giữ. Không nhầm software pass thành kết quả Gazebo.",
+      "gate": "Measurement/readiness gate độc lập quality gate. Chưa có outcome thì không chấm useful authority.",
+      "action": null
+    },
+    {
+      "id": "05",
+      "name": "Review release và dung lượng trước batch",
+      "status": "CHƯA RELEASE · 0/12 ĐÃ CẤP",
+      "owner": "Assistant chuẩn bị offline; runtime chỉ sau protocol/release riêng",
+      "work": "Chỉ sau runtime qualification: review ngưỡng đề xuất và ngân sách. P01 integration trong12slots, không thêm smoke/retry. Estimate1,59GiB gồm1GiBreserve; đo lại disk khi preflight.",
+      "data": "Thứ tự12cells cố định, wallcap180s/attempt là proposal; reset/settling ngoài168taskseconds. No automatic extension.",
+      "output": "Một release record riêng có pins và allocation rõ; không biến draft.allowed=false thành runner authorization.",
+      "gate": "Hiện chưa cấp slot. Không tự xóa raw/checkpoint/hạ logging/reserve để vừa đĩa.",
+      "action": null
+    },
+    {
+      "id": "06",
+      "name": "Đọc wheel/body và quyết định screen",
+      "status": "CHƯA CÓ PHYSICAL OUTCOME MỚI",
+      "owner": "Assistant chuẩn bị offline; runtime chỉ sau protocol/release riêng",
+      "work": "Trong simulator tương lai: reference→driver→wheel/body→outcome. Primary ISE trên[stop−0,5;stop+2,5), native/GT20ms/+10ms riêng. So cả2tail signs và từngblock/stop.",
+      "data": "Body GT chỉ scorer, wheel telemetry từngbánh, accepted/executed refs, pre-tail approach, task/path/stop,gaps vàfailures.",
+      "output": "Go sang classical confirmation nếu vượt các gate đề xuất; no-go giữ classical; sampling/block-sensitive làunknown. Reward/Laya không chọncontroller.",
+      "gate": "Không loại run vi phạm caliper hoặc tự tăng mẫu. Paired seed không là snapshot/restore;2block là screening mô tả.",
+      "action": null
+    },
+    {
+      "id": "07",
+      "name": "Chỉ mở learning khi còn nhu cầu thích nghi",
+      "status": "CHƯA CẤP TRAIN TD3 MỚI",
+      "owner": "Assistant chuẩn bị offline; runtime chỉ sau protocol/release riêng",
+      "work": "Nếu classical tail candidate giải quyết được nhu cầu thì dùng classical. Chỉ lập training protocol mới khi có useful authority và phần còn thiếu có cơ chế cần adaptation/history.",
+      "data": "Screen outcome và baseline mạnh; chưa có replay/checkpoint của contract tail mới. Pi không là điều kiện cho protocol Sim.",
+      "output": "Một câu hỏi learning cụ thể, ABI/action/reward/history giữ yếu tố có kiểm soát, seed/heldout/budget riêng.",
+      "gate": "Không suy 12screen đủ để train/promote. Không tự đổi đồng thờihyperparameters hoặc resume30k sang tailcontract.",
+      "action": null
+    },
+    {
+      "id": "08",
+      "name": "Nhánh robot thật và deployment giữ riêng",
+      "status": "CHƯA MỞ TRIỂN KHAI",
+      "owner": "Assistant chuẩn bị offline; runtime chỉ sau protocol/release riêng",
+      "work": "Reference bánh/thân và Pi readiness thuộc nhánh hardware riêng trong menu. Có thể chuyển trang để xem, không chặn chuẩn bịSim hiện tại.",
+      "data": "Hardware raw đến02/11, thiếu body reference độc lập; không dùng Sim thay số đo thật.",
+      "output": "Danh sách hardware được bảo toàn, không thu/enable/SSH từ kế hoạch Sim này.",
+      "gate": "Kết quả Sim không cấp quyền motor, flash hoặc release governor/TD3 trên robot thật.",
+      "action": null
+    }
+  ],
+  "sim_stages": [
+    {
+      "id": "S1",
+      "name": "Sim 30k: giữ classical cho envelope đã thử",
+      "gate": "BASELINE TRƯỚC LEARNER · ĐÃ REVIEW\nKết luận chỉ ở envelope đã xem, không phải giới hạn cuối TD3 hoặc deployment gate."
+    },
+    {
+      "id": "S2",
+      "name": "Draft mới: quyền tác động trong0,5s trước stop",
+      "gate": "DRAFT + REFERENCE FIXTURE ĐÃ CÓ · 0 SLOT\n12lượt chỉ là đề xuất;0allocated, runtime chưa xây, không chạy batch từ GUI. Các ngưỡng nghiên cứu còn cần review."
+    },
+    {
+      "id": "S3",
+      "name": "Xây adapter/runner tách phiên bản",
+      "gate": "CHƯA TRIỂN KHAI RUNTIME\nKhông sửa frozen engine để mở tail. Nếu contract/parity không rõ: dừng và sửa tối đa một correction có căn cứ trước quyết định."
+    },
+    {
+      "id": "S4",
+      "name": "Qualification offline và neutral-arm parity",
+      "gate": "REFERENCE MATH ĐẠT; FULL RUNTIME CHƯA KIỂM\nMeasurement/readiness gate độc lập quality gate. Chưa có outcome thì không chấm useful authority."
+    },
+    {
+      "id": "S5",
+      "name": "Review release và dung lượng trước batch",
+      "gate": "CHƯA RELEASE · 0/12 ĐÃ CẤP\nHiện chưa cấp slot. Không tự xóa raw/checkpoint/hạ logging/reserve để vừa đĩa."
+    },
+    {
+      "id": "S6",
+      "name": "Đọc wheel/body và quyết định screen",
+      "gate": "CHƯA CÓ PHYSICAL OUTCOME MỚI\nKhông loại run vi phạm caliper hoặc tự tăng mẫu. Paired seed không là snapshot/restore;2block là screening mô tả."
+    },
+    {
+      "id": "S7",
+      "name": "Chỉ mở learning khi còn nhu cầu thích nghi",
+      "gate": "CHƯA CẤP TRAIN TD3 MỚI\nKhông suy 12screen đủ để train/promote. Không tự đổi đồng thờihyperparameters hoặc resume30k sang tailcontract."
+    },
+    {
+      "id": "S8",
+      "name": "Nhánh robot thật và deployment giữ riêng",
+      "gate": "CHƯA MỞ TRIỂN KHAI\nKết quả Sim không cấp quyền motor, flash hoặc release governor/TD3 trên robot thật."
+    }
+  ]
 }

@@ -1,0 +1,82 @@
+{
+  "protocol_id": "nino_pi_stop_validation_v1_2026_11_07",
+  "evaluation_order": [
+    {
+      "cell": 0,
+      "block": 0,
+      "arm": "B0",
+      "source_stop_s": 6.0,
+      "gain": 1.0,
+      "ki": 0.1,
+      "reset_seed": 701
+    },
+    {
+      "cell": 1,
+      "block": 0,
+      "arm": "B0",
+      "source_stop_s": 6.0,
+      "gain": 1.0,
+      "ki": 0.15,
+      "reset_seed": 701
+    },
+    {
+      "cell": 2,
+      "block": 1,
+      "arm": "B0",
+      "source_stop_s": 6.0,
+      "gain": 1.0,
+      "ki": 0.15,
+      "reset_seed": 701
+    },
+    {
+      "cell": 3,
+      "block": 1,
+      "arm": "B0",
+      "source_stop_s": 6.0,
+      "gain": 1.0,
+      "ki": 0.1,
+      "reset_seed": 701
+    }
+  ],
+  "maximum_launches": 4,
+  "steps_per_launch": 140,
+  "maximum_eval_ticks": 560,
+  "wall_deadline_s": 1800,
+  "training_transitions": 0,
+  "optimizer_updates": 0,
+  "actor_loads": 0,
+  "probes": 0,
+  "retries": 0,
+  "extra_smokes": 0,
+  "hardware_actions": 0,
+  "kp": 0.3,
+  "gain": 1.0,
+  "nominal_linear_m_s": 0.2,
+  "native_interval_s": 0.1,
+  "physics_step_s": 0.001,
+  "pi_rate_hz": 500.0,
+  "source_stop_s": 6.0,
+  "horizon_s": 14.0,
+  "residual": "B0_zero_only",
+  "primary": "whole_14s_native_nominal_body_velocity_rmse",
+  "grids": [
+    "GT20ms",
+    "GTshift10ms"
+  ],
+  "minimum_relative_effect_proposed": 0.05,
+  "application_minimum_effect_accepted": null,
+  "proposed_pass": "native improvement >=5% in both blocks and both GT grids improve in both blocks; all task/measurement/closure gates pass",
+  "scope": "stop6 already exists in project; held from Ki selection; not an unseen bank or factory generalization",
+  "stop_policy": "first measurement/task/closure failure or cancellation closes all remaining slots; no retry",
+  "setup_ticks": "same inherited reset ACK and physical quiet gate; bounded <=5 sim seconds per fresh launch, outside 560 evaluation ticks",
+  "constraints": {
+    "marker_required": true,
+    "max_physical_path_rmse_m": 0.04,
+    "quiet_stop_s": 2.0,
+    "quiet_stop_before_horizon_s": 14.0
+  },
+  "uncertainty_policy": "unknown if small, grid-sensitive, nonfinite/zero denominator or block dependent; no extra sample/candidate/metric change",
+  "outcome_policy": "pass allows separate typed Sim baseline review only; no automatic promotion, training or hardware",
+  "selection_manifest_sha256": "6762f5d2903c8bef3bb4208736f14d1e3e13985146243d395fa8ef2afe4da644",
+  "changed_factor": "source stop schedule 8s to 6s; same two Ki, ordering, metrics and gates"
+}
