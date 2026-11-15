@@ -4,6 +4,35 @@ import sqlite3
 import yaml
 
 
+def sqlite_readonly(path):
+    """Read a finalized DB without creating SHM files or ignoring pending writes."""
+    path = Path(path)
+    if path.is_symlink():
+        raise ValueError('Linked SQLite storage is not accepted')
+    for suffix in ('-wal', '-journal'):
+        pending = path.with_name(path.name + suffix)
+        if pending.exists() and (pending.is_symlink() or pending.stat().st_size):
+            raise ValueError('Unfinalized SQLite sidecar: ' + pending.name)
+    return sqlite3.connect(path.resolve().as_uri()+'?mode=ro&immutable=1', uri=True)
+
+
+def metadata_topic_mismatches(meta, counts):
+    """None means old metadata has no topic counts; it does not mean verified."""
+    entries = meta.get('topics_with_message_count')
+    if entries is None:
+        return None
+    expected = {}
+    for entry in entries:
+        name = entry['topic_metadata']['name']
+        count = entry['message_count']
+        if not isinstance(name, str) or name in expected or type(count) is not int or count < 0:
+            raise ValueError('Invalid/duplicate metadata topic counts')
+        expected[name] = count
+    return {name: dict(metadata=expected.get(name, 0), recorded=counts.get(name, 0))
+            for name in expected.keys() | counts.keys()
+            if expected.get(name, 0) != counts.get(name, 0)}
+
+
 def metadata(directory):
     root = Path(directory)
     value = yaml.safe_load((root/'metadata.yaml').read_text())['rosbag2_bagfile_information']
@@ -24,7 +53,7 @@ def records(directory):
     meta = metadata(root)
     if meta['storage_identifier'] == 'sqlite3':
         for name in meta['relative_file_paths']:
-            with sqlite3.connect((root/name).resolve().as_uri()+'?mode=ro', uri=True) as db:
+            with sqlite_readonly(root/name) as db:
                 if db.execute('PRAGMA integrity_check').fetchone()[0] != 'ok':
                     raise ValueError('SQLite integrity failed')
                 for topic, typ, stamp, payload in db.execute(

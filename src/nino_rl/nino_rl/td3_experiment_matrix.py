@@ -256,13 +256,17 @@ def compare_experiment_arms(
     baseline_runs: Sequence[Mapping[str, Any]],
     candidate_runs: Sequence[Mapping[str, Any]],
     *,
+    min_seeds: int = 3,
+    min_episodes: int = 20,
     max_jerk_ratio: float = 1.15,
     max_overshoot_delta_m_s: float = 0.02,
     min_relative_rms_gain: float = 0.03,
 ) -> dict[str, Any]:
     """Horizontal physical comparison between baseline (e.g. Classical) and candidate TD3 arm."""
-    base = summarize_experiment_arm(baseline_runs)
-    cand = summarize_experiment_arm(candidate_runs)
+    base = summarize_experiment_arm(baseline_runs, min_seeds=min_seeds, min_episodes=min_episodes)
+    cand = summarize_experiment_arm(candidate_runs, min_seeds=min_seeds, min_episodes=min_episodes)
+    if base['seeds'] != cand['seeds']:
+        raise ValueError('Baseline and candidate must use the same learner seed blocks')
     b_v = base['metrics']['rms_v_m_s']['mean']
     c_v = cand['metrics']['rms_v_m_s']['mean']
     b_w = base['metrics']['rms_omega_rad_s']['mean']

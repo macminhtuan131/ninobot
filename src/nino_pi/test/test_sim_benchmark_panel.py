@@ -71,9 +71,9 @@ def test_roadmap_names_actual_next_step_without_releasing_learning():
     from nino_pi.next_steps_panel import NextStepsPanel
     app=Q.QApplication.instance() or Q.QApplication([])
     panel=NextStepsPanel()
-    assert '30,000' in panel.current.text() and 'CLASSICAL' in panel.current.text()
-    assert 'BASELINE TRƯỚC LEARNER' in panel.steps[0]['status']
-    assert not panel.open_collection.isEnabled()
+    assert '30k' in panel.current.text() and 'classical' in panel.current.text()
+    assert 'ĐÃ KIỂM OFFLINE' in panel.steps[0]['status']
+    assert 'INTEGRATION ĐẠT' in panel.steps[1]['status']
     plan=json.loads(Path(__import__('nino_pi').__file__).with_name('research_plan.json').read_text())
     assert plan['training_allowed'] is False
     assert plan['sim_benchmark_decision']['new_gazebo_launches']==0

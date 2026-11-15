@@ -4,4 +4,7 @@ log/
 *.pyc
 __pycache__/
 .venv/
-rl_runs/
+.venv-studio-export/
+rl_runs/*
+!rl_runs/COLCON_IGNORE
+.pytest_cache/

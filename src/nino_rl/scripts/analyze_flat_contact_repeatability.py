@@ -10,8 +10,8 @@ import struct
 ROOT=Path(__file__).resolve().parents[3]
 sys.path.insert(0,str(Path(__file__).parent))
 from run_flat_contact_repeatability import OUTPUT as SOURCE
-from train_rough_curriculum import complete_evaluation
-from analyze_rough_reactive_authority import window_metrics
+from experiment_processes import complete_evaluation
+from experiment_assets import window_metrics
 OUTPUT=ROOT/'docs/flat_contact_repeatability_2026-10-12'
 
 def rows(path):
@@ -150,7 +150,7 @@ def main():
     count=struct.unpack_from('<I',binary,80)[0]
     if len(binary)!=84+count*50:raise ValueError('Unexpected caster mesh format')
     vertices=np.array([xyz for i in range(count) for xyz in np.array(struct.unpack_from('<9f',binary,84+50*i+12)).reshape(3,3)])
-    from prepare_rough_foundations import digest
+    from experiment_assets import digest
     geometry=dict(mesh=str(mesh),mesh_sha256=digest(mesh),local_min_m=vertices.min(0).tolist(),local_max_m=vertices.max(0).tolist(),
         nominal_swivel_z_m=.041,nominal_lowest_fork_z_m=float(.041+vertices[:,2].min()),
         caster_radius_m=.016,second_cable_radius_m=.010,second_cable_top_m=.020,

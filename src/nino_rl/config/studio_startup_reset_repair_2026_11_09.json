@@ -1,0 +1,36 @@
+{
+  "kind": "studio_startup_reset_only_migration_v1",
+  "parent_sources": {
+    "controller": "24ebd89a49f40ef11596d437c6441b5fd10e3a1cc0ce70c5df86013c2d5a072b",
+    "drive_ready": "f98acf799df1a2833530056828e06f77a0d65a481358dd39f24dc42bba39de2a",
+    "files": {
+      "src/nino_rl/nino_rl/common_training_studio_v2.py": "0d49bbcfbd9192446523a3ba3bdd8c5b3a4c171c69ba74c9e9cd929e9ee89b77",
+      "src/nino_rl/nino_rl/common_studio_v2_contract.py": "3cfa2f9c5610608f35c75e667420dd790546bb23d602c07ef2213195e24017b6",
+      "src/nino_rl/nino_rl/equal_information_v2.py": "64aa95b4a92d8c1141f29cc4bf1bf81e89906a0ef631340ca9f79a4b53345afa",
+      "src/nino_rl/nino_rl/studio_v2_metrics.py": "38bdfef96c1b67925394a7dcb2e0bb7fdbee7f320391f7448d96199ae5923bc0",
+      "src/nino_rl/nino_rl/td3_experiment_matrix.py": "690e00becc191d614548fc4329e6a19c2844f442d3b749215ca04cc8f25db478",
+      "src/nino_rl/nino_rl/training_studio_api_v2.py": "5d5cec70663ee7562725f72856889c5dde2264fb5f304ce050d781fa280331f5",
+      "src/nino_rl/nino_rl/td3_training_studio.py": "cdb235ce2beef218dac538437a502ebc04265569d225a4384e6f417bbd737007",
+      "src/nino_rl/scripts/common_training_studio_v2.sh": "5aeffce483a14fa96035db8fbc458400dd6f120813337962d6d430f92a96102c"
+    }
+  },
+  "target_sources": {
+    "controller": "24ebd89a49f40ef11596d437c6441b5fd10e3a1cc0ce70c5df86013c2d5a072b",
+    "drive_ready": "f98acf799df1a2833530056828e06f77a0d65a481358dd39f24dc42bba39de2a",
+    "files": {
+      "src/nino_rl/nino_rl/common_training_studio_v2.py": "40a5ddd9faf37adfe36c15a11fc679e816c161d56e96f2692221229faa858c96",
+      "src/nino_rl/nino_rl/common_studio_v2_contract.py": "67873a92cfb323f84505a3b8ff2795428cab5c21404e0086de09cd15b56c7ddf",
+      "src/nino_rl/nino_rl/equal_information_v2.py": "64aa95b4a92d8c1141f29cc4bf1bf81e89906a0ef631340ca9f79a4b53345afa",
+      "src/nino_rl/nino_rl/studio_v2_metrics.py": "38bdfef96c1b67925394a7dcb2e0bb7fdbee7f320391f7448d96199ae5923bc0",
+      "src/nino_rl/nino_rl/td3_experiment_matrix.py": "690e00becc191d614548fc4329e6a19c2844f442d3b749215ca04cc8f25db478",
+      "src/nino_rl/nino_rl/training_studio_api_v2.py": "5d5cec70663ee7562725f72856889c5dde2264fb5f304ce050d781fa280331f5",
+      "src/nino_rl/nino_rl/td3_training_studio.py": "cdb235ce2beef218dac538437a502ebc04265569d225a4384e6f417bbd737007",
+      "src/nino_rl/nino_rl/studio_startup_repair.py": "686f037fb8e788bc57e4fa8002083b4613ae67a3c4899bc717543fbc6822c0d2",
+      "src/nino_rl/nino_rl/studio_deferred_reset.py": "8ac4e5b58cd5491dae7b3fc8188b63b86faa984aa7217bff0588c8b58058cb9e",
+      "src/nino_rl/nino_rl/studio_resume_migration.py": "8ef2f95849c1ec8df7f02ea8ef74da4f2ace0deb1ecbd99b5d5ca149bfdf6417",
+      "src/nino_rl/scripts/common_training_studio_v2.sh": "5aeffce483a14fa96035db8fbc458400dd6f120813337962d6d430f92a96102c"
+    }
+  },
+  "scope": "startup transport and terminal transition storage order only; no controller/action/reward/profile change",
+  "automatic_migration": false
+}

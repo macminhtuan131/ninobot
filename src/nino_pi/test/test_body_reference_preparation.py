@@ -12,7 +12,7 @@ from nino_pi.project_panel import ProjectPanel
 def test_reviewed_gap_and_draft_are_visible_without_promoting_body_claims():
     app=Q.QApplication.instance() or Q.QApplication([])
     panel=ProjectPanel();events=[];panel.collectionRequested.connect(events.append)
-    assert '30,000' in panel.direction_text.text()
+    assert '30k' in panel.direction_text.text()
     assert '95.459' in panel.banner.text() and '0 slot' in panel.banner.text()
     rows={r['id']:r for r in panel.catalog['data']}
     assert 'Chưa đủ' in rows['D14']['status'] and 'Chưa đủ' in rows['D18']['status']

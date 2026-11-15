@@ -117,10 +117,10 @@ def generate_launch_description():
             "world": LaunchConfiguration("world_name"),
             "name": "nino",
             "topic": "/robot_description",
-            "x": 0.0,
-            "y": 0.0,
+            "x": ParameterValue(LaunchConfiguration("spawn_x"), value_type=float),
+            "y": ParameterValue(LaunchConfiguration("spawn_y"), value_type=float),
             "z": 0.0,
-            "Y": 0.0,
+            "Y": ParameterValue(LaunchConfiguration("spawn_yaw"), value_type=float),
         }],
     )
     controller_spawner = Node(
@@ -177,6 +177,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        *(DeclareLaunchArgument(k, default_value="0.0") for k in ("spawn_x", "spawn_y", "spawn_yaw")),
         DeclareLaunchArgument("contact_lab",default_value="false"),
         DeclareLaunchArgument("terrain_preview",default_value="true"),
         DeclareLaunchArgument("caster_wheel_damping",default_value="0.01"),

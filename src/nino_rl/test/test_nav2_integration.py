@@ -58,6 +58,7 @@ def test_sensor_wait_accepts_complete_snapshot_at_deadline():
     ros = SimpleNamespace(
         _lock=Lock(),
         _received={"odom", "imu", "joint", "scan"},
+        sensors_ready=lambda **kwargs: True,
     )
 
     # A zero timeout exercises the final atomic snapshot directly. Previously
@@ -282,6 +283,7 @@ def test_lockstep_epoch_uses_timestamp_boundary_not_imu_queue_silence():
     ros = SimpleNamespace(
         _lock=Lock(),
         _sim_clock_stamp=10.0,
+        _state=RobotState(imu_stamp_s=9.99),
         physics_step_seconds=0.002,
         _imu_epoch_min_stamp=-float("inf"),
         imu_window=ImuWindow(),
@@ -330,6 +332,36 @@ def test_imu_callback_discards_packets_at_or_before_epoch_boundary():
     assert ros._state.accel_z == 9.80665
     assert ros.imu_window.samples[-1][0] == 10.01
     assert received == ["imu"]
+    RosRobotInterface._imu_callback(ros, message(10.005, 99.))
+    RosRobotInterface._imu_callback(ros, message(10.01, 99.))
+    assert ros._state.accel_z == 9.80665
+    assert received == ["imu"]
+
+
+@pytest.mark.parametrize('stamp,ranges,expected', [
+    (1., [float('inf')]*5, True), (1., [], False),
+    (1., [float('nan')], False), (.5, [1.]*5, False), (1.1, [1.]*5, False),
+])
+def test_sensor_readiness_requires_valid_source_timing_and_payload(stamp, ranges, expected):
+    from time import monotonic
+    ros = SimpleNamespace(_lock=Lock(), _received={'odom','imu','joint','scan'},
+        _received_at=dict.fromkeys(('odom','imu','joint','scan'), monotonic()),
+        _sim_clock_stamp=1., _state=RobotState(odom_stamp_s=1., imu_stamp_s=1.,
+            joint_stamp_s=1., lidar_stamp_s=stamp, lidar_ranges=ranges))
+    assert RosRobotInterface.sensors_ready(ros) is expected
+
+
+def test_duplicate_lidar_packet_cannot_renew_receipt_freshness():
+    received = []
+    ros = SimpleNamespace(_lock=Lock(), _state=RobotState(lidar_stamp_s=1., lidar_ranges=[1.]),
+                          _mark_received=received.append)
+    message = SimpleNamespace(header=SimpleNamespace(stamp=SimpleNamespace(sec=1,nanosec=0)),
+                              ranges=[9.], range_min=.1, range_max=10.)
+    RosRobotInterface._scan_callback(ros, message)
+    assert ros._state.lidar_ranges == [1.] and not received
+    message.header.stamp.nanosec = 20_000_000
+    RosRobotInterface._scan_callback(ros, message)
+    assert ros._state.lidar_ranges == (9.,) and received == ['scan']
 
 
 def test_linorobot2_source_and_legacy_maps_are_merged():
@@ -361,7 +393,8 @@ def test_training_uses_direct_straight_baseline_plus_rl_residual_torque():
     training = (launch_dir / "training_sim.launch.py").read_text()
     baseline = (launch_dir / "baseline_nav.launch.py").read_text()
     assert '"accept_cmd_vel": "true"' in training
-    assert '"accept_torque": "true"' in training
+    assert '"accept_torque": LaunchConfiguration("accept_torque")' in training
+    assert 'DeclareLaunchArgument("accept_torque",default_value="true")' in training
     assert '"accept_cmd_vel": "true"' in baseline
     assert '"accept_torque": "false"' in baseline
     assert "navigation.launch.py" not in training

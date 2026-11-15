@@ -183,15 +183,15 @@ def test_four_halls_remain_connected_and_supported_after_reset(tmp_path):
     assert np.allclose([np.ptp(vertices[:, 0]), np.ptp(vertices[:, 1])], [10., 7.])
 
 
-def test_rough_ground_template_and_cables_really_rest_on_mesh(tmp_path):
+def test_factory_ground_template_and_cables_really_rest_on_mesh(tmp_path):
     from generate_factory_floor_lab import depression_surface
     metadata = generate("mixed", root=tmp_path)
     xml = ET.parse(tmp_path / "worlds/factory_floor_mixed.sdf")
     ground = xml.find("world/model[@name='factory_contact_floor']/link[@name='terrain']")
-    original = ET.parse(ROOT / "src/nino_description/worlds/combined_rough_section.sdf")
-    rough_visual = original.find("world/model[@name='rough_approach_ground']/link/visual")
-    assert ET.tostring(ground.find("visual/material")) == ET.tostring(rough_visual.find("material"))
-    assert xml.find("world/model[@name='rough_approach_ground']") is None
+    original = ET.parse(ROOT / "src/nino_description/worlds/factory_floor_template.sdf")
+    template_visual = original.find("world/model[@name='factory_ground_template']/link/visual")
+    assert ET.tostring(ground.find("visual/material")) == ET.tostring(template_visual.find("material"))
+    assert xml.find("world/model[@name='factory_ground_template']") is None
     assert xml.find("world/model[@name='rough_goal_markers']") is None
     # Sample the bottom contact line of every full-width and short cable.
     for cable in metadata["cables"] + [r for r in metadata["display_items"] if r["kind"] == "cable"]:
@@ -225,16 +225,16 @@ def test_continuous_grid_refines_depressions_without_seams():
     assert all(np.all(edge == 0) for edge in (z[0], z[-1], z[:, 0], z[:, -1]))
 
 
-def test_runtime_flat_bottom_matches_rough_carving():
+def test_runtime_flat_bottom_matches_shared_carving():
     from nino_rl.carved_floor import negative_items, carve_on_grid
-    from generate_rough_section import feature_relief
+    from terrain_mesh import feature_relief
     config = dict(pothole_shape="flat_bottom_bowl",pothole_depth_m=.018)
     items = negative_items([("pothole",2.9,.17,.3)],config)
     x,y = np.linspace(2.5,3.3,161),np.linspace(-.2,.5,141)
     runtime = carve_on_grid(items,x,y)
-    rough = feature_relief(*np.meshgrid(x,y),dict(kind="flat_bottom_bowl",x_m=2.9,y_m=.17,
+    expected = feature_relief(*np.meshgrid(x,y),dict(kind="flat_bottom_bowl",x_m=2.9,y_m=.17,
         radius_x_m=.3,radius_y_m=.252,height_m=-.018,angle_deg=0.))
-    assert np.allclose(runtime,rough,atol=1e-14)
+    assert np.allclose(runtime,expected,atol=1e-14)
     assert runtime.min() == -.018 and runtime.max() == 0
     with pytest.raises(ValueError,match="Pothole shape"):
         negative_items([("pothole",2.9,.17,.3)],dict(pothole_shape="mound"))

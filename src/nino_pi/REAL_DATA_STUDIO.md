@@ -1,5 +1,15 @@
 # Nino Real Data Studio v7 — 04/11/2026
 
+> **09/11 — chuẩn bị offline, phần cứng để sau theo yêu cầu người dùng:**
+> Chọn **Velocity SysID · firmware velocity backend** để dùng profile riêng
+> cho final ROS request → reported wheel, tách PI/SAC torque. Controller khai
+> báo là `firmware_velocity_reference`; phải nhập protocol đã review. Observer
+> không chạy trajectory hoặc enable motor. `/scan` là scan source required;
+> source/selected/smoothed và sự kiện enable/guard được ghi nếu có. Torque/MIT
+> request xuất hiện trong phiên này làm QC FAIL dù giá trị zero. Chưa release
+> motion hoặc deploy bundle mới. Camera không bắt buộc cho wheel response;
+> thước/mốc chỉ cho displacement đầu–cuối. [Kết quả offline và việc còn lại](../../docs/NINO_REAL_VELOCITY_PREFLIGHT_2026-11-09.md).
+
 > **08/11 — nâng cấp Causal 10 Hz Export, QC mở rộng & Ma trận TD3 E1–E3:**
 > `export_session` xuất song song `messages.parquet` và `causal_frames.parquet`
 > (khung 10 Hz nhân quả, cờ `*_present` rõ ràng, không bao giờ điền `0.0` cho kênh
@@ -72,11 +82,14 @@ Không đổi các pilot/bundle cũ, không mở lại slot. Studio dùng namesp
 |---|---|
 | SHA256 + file ngoài index | mismatch/unhashed/missing → FAIL |
 | Lifecycle + metadata + giải mã toàn bag | lỗi/thiếu/count mismatch → FAIL |
+| Per-topic metadata | tổng đúng nhưng sai count từng topic → FAIL; metadata cũ không có counts → WARN/chưa xác minh |
+| SQLite chưa đóng | WAL/journal không rỗng → FAIL; đọc immutable không sửa raw/reindex hoặc tạo SHM |
 | Kênh required + giá trị động hữu hạn | thiếu/nonfinite IMU/wheel/Twist → FAIL; scan inf không tự là lỗi |
 | Clock dynamic có header | timestamp lùi/zero → FAIL; duplicate được báo |
 | Rate/gap/coverage | rate/gap thực được báo; expected Hz/loss/coverage chưa biết → WARN |
 | Source clock/command semantics | Twist/status không header; thiếu execution/readback → WARN |
 | Safety | giữ histogram status raw và CollisionMonitor action/polygon; không suy effective enable từ status bit |
+| Velocity-only contract | có `/cmd_torque` hoặc `/cmd_mit` request → FAIL, không tự đổi mode để chữa |
 | Feature/history/TD3 replay | chưa có mapping causal đầy đủ → chưa sẵn sàng |
 
 Mỗi check có PASS/WARN/FAIL. Tổng phiên hiện tối đa **WARN/Q2** khi integrity
@@ -88,9 +101,15 @@ Observer counts/Hz không phải raw counts, source production hoặc packet los
 
 MCAP dùng plugin `rosbag2_storage_mcap`; kiểm plugin trước ghi, không tự
 đổi storage khi thiếu. Có thể chọn SQLite rõ ràng, bag lịch sử giữ nguyên.
-Parquet cần `pyarrow` trong interpreter local; checkout này đã cài trong
-`.venv`. GUI dùng interpreter đó cho export, không chạy learner trên Pi.
-Nếu thiếu dependency, job báo lỗi giữ raw, không tạo dữ liệu giả.
+Parquet cần `pyarrow` tương thích NumPy trong interpreter local. Đã phát
+hiện PyArrow26 trong môi trường train không import được với NumPy1.26 của
+ROS tại checkout này. Interpreter export riêng là
+`.venv-studio-export/bin/python`, được GUI ưu tiên trước `.venv` cũ và Python
+hệ thống. Bộ cài `scripts/install_studio_export_dependencies.sh` dùng pins
+trong `config/studio_export_requirements.txt` (NumPy1.26.4/PyArrow19.0.1),
+chỉ tạo môi trường laptop riêng; không sửa `.venv` train hoặc cài trên Pi.
+Không đổi storage nếu plugin thiếu. Thiếu dependency làm job báo lỗi giữ raw,
+không tạo dữ liệu giả. Kiểm export dùng bag tổng hợp, không tính là data real.
 
 Export `messages.parquet` là bảng dài: topic/type, bag receipt ns,
 source header ns hoặc null, frame, JSON fields gốc. Invalid float được gắn

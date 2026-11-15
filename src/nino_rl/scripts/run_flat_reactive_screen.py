@@ -16,9 +16,9 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path[:0] = [str(ROOT/'src/nino_rl'), str(Path(__file__).parent)]
 from nino_rl.flat_reactive_research import lookup_scenario
 from prepare_flat_reactive_research import OUTPUT, prepare
-from prepare_rough_foundations import digest, immutable
-from train_rough_curriculum import Processes, assert_isolated, complete_evaluation
-from run_disturbance_reference_comparisons import verify
+from experiment_assets import digest, immutable
+from experiment_processes import Processes, assert_isolated, complete_evaluation
+from experiment_assets import verify
 from recover_flat_contact_report import safe_window
 from run_flat_bullet_contact_candidate_v3 import LIBRARY, RESET_LIBRARY
 

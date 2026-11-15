@@ -1,0 +1,7 @@
+graphify token reduction benchmark
+Corpus: 571,700 words → ~762,266 tokens (naive)
+Graph: 11,434 nodes, 27,856 edges
+Avg query cost: ~1,626 tokens
+Reduction: 468.8x fewer tokens per query
+
+Heuristic CLI estimate, not measured host-model token usage or billed cost.

@@ -28,7 +28,7 @@ def test_same_or_invalid_seed_rejected(seed):
 
 
 def test_optional_trace_change_does_not_change_reward_or_control():
-    original = Path(__file__).parents[3] / "rl_runs/flat_value_scaled_pilot_v1/python/nino_rl/ros_env.py"
+    original = Path(__file__).parent / "fixtures/legacy_flat/ros_env.txt"
     code = original.read_text()
     modified = repeat.trace_snapshot(code)
     extras = ('                "slip_left": slip_left, "slip_right": slip_right,\n'

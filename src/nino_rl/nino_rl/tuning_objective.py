@@ -106,10 +106,9 @@ def score_episodes(rows, contract):
             raise ValueError('Inconsistent physical arrival/termination record')
         geometry = contract['arrival_geometry']
         if row['success']:
-            if geometry['task'] != 'rocky_tracking':
-                endpoint = float(row['truth_endpoint_error_m'])
-                if not isfinite(endpoint) or not 0 <= endpoint <= geometry['circle_radius_m'] + 1e-6:
-                    raise ValueError('Claimed arrival is outside the physical goal circle')
+            endpoint = float(row['truth_endpoint_error_m'])
+            if not isfinite(endpoint) or not 0 <= endpoint <= geometry['circle_radius_m'] + 1e-6:
+                raise ValueError('Claimed arrival is outside the physical goal circle')
             if geometry['ordered_route_gates'] and row['route_gates_passed'] != row['route_gates_total']:
                 raise ValueError('Claimed physical arrival has incomplete ordered route gates')
         values = {key: float(row[key]) for key in ('time_seconds', 'truth_path_rmse_m',

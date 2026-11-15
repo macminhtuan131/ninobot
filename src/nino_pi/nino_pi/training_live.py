@@ -6,7 +6,9 @@ import re
 import time
 
 PREFIX='@@NINO_RESEARCH@@'
-MODULES={'nino_rl.training_studio_api','nino_rl.common_training_studio','nino_rl.td3_training_studio'}
+MODULES={'nino_rl.training_studio_api','nino_rl.common_training_studio','nino_rl.td3_training_studio',
+         'nino_rl.training_studio_api_v2','nino_rl.common_training_studio_v2',
+         'nino_rl.training_studio_api_v3','nino_rl.goal_training_studio'}
 
 
 def read_json(path,default=None):
@@ -15,7 +17,9 @@ def read_json(path,default=None):
 
 
 def normalized(request):
-    value=dict(request);value.pop('engine',None);value['schema_version']=1
+    value=dict(request)
+    for key in ('engine','multi_seeds','auto_prune_raw'):value.pop(key,None)
+    value['schema_version']=1
     return value
 
 
@@ -68,10 +72,26 @@ def discover(roots=None,proc=Path('/proc')):
             if directory is None:continue
             job=read_json(directory/'job.json',{})
             if job.get('status')!='running' or normalized(job.get('request',{}))!=normalized(request):continue
+            campaign_directory=None
+            if job.get('mode')=='multi_seed':
+                campaign_directory=str(directory)
+                children=[]
+                for path in directory.glob('*/job.json'):
+                    child=read_json(path,{})
+                    child_request=child.get('request',{})
+                    expected=dict(normalized(request),seed=child_request.get('seed'))
+                    if (child.get('status')=='running' and child_request.get('seed') in job.get('seeds',[])
+                            and normalized(child_request)==expected):
+                        children.append((path.parent,child_request))
+                if len(children)>1:continue  # Ambiguous ownership is never guessed.
+                if children:
+                    directory,child_request=children[0]
+                    request=dict(child_request,schema_version=2,engine=request.get('engine','common103_v2'))
             result.append(dict(pid=int(process.name),start_time=process_identity(process),
                 proc=str(process),root=str(root),directory=str(directory),
                 engine=request.get('engine','common103_v1' if argv[argv.index('-m')+1]=='nino_rl.common_training_studio' else 'legacy100_v1'),
-                request_path=str(request_path),request=request,log_path=str(log) if log else None))
+                request_path=str(request_path),request=request,log_path=str(log) if log else None,
+                campaign_directory=campaign_directory))
         except (OSError,ValueError,IndexError,KeyError,TypeError):continue
     return sorted(result,key=lambda r:r['directory'],reverse=True)
 
@@ -88,6 +108,7 @@ class LiveJob:
     def __init__(self,worker):
         self.worker=worker;self.directory=Path(worker['directory']);self.offset=0
         self.inode=None;self.buffer=b'';self.event={};self.start=0;self.start_updates=None
+        self.log_directory=None
         self.documents={}
         request=worker['request']
         if request.get('resume'):
@@ -124,7 +145,9 @@ class LiveJob:
             if line.startswith(PREFIX):
                 try:event=json.loads(line[len(PREFIX):])
                 except ValueError:shown.append(line);continue
-                if event.get('action') in ('td3-common-studio','td3-studio'):
+                if event.get('directory'):self.log_directory=str(Path(event['directory']).resolve())
+                relevant=(not self.worker.get('campaign_directory') or self.log_directory==str(self.directory))
+                if relevant and event.get('action') in ('td3-common-studio','td3-studio','td3-common-studio-v2','td3-unknown-goal100'):
                     for key in ('phase','progress','global_steps','checkpoint','message','error'):
                         if event.get(key) is not None:self.event[key]=event[key]
                     match=re.search(r'critic (\d+)',event.get('message',''))
@@ -144,6 +167,11 @@ class LiveJob:
         for p in sorted((self.directory/'checkpoints').glob('*/checkpoint.json')):
             if not p.parent.name.startswith('.') and (p.parent/'manifest.json').is_file():checkpoints.append(str(p.parent))
         worker_alive=alive(self.worker);status=job.get('status','running')
+        between_seeds=False
+        if self.worker.get('campaign_directory'):
+            campaign=read_json(Path(self.worker['campaign_directory'])/'job.json',{})
+            if campaign.get('status')=='running' and status!='running':
+                status='running';between_seeds=True
         if status=='running' and not worker_alive:status='worker_missing'
         evaluation=self.document('evaluation_progress.json',list,[])
         stat_path=Path(self.worker['log_path']) if self.worker.get('log_path') else self.directory/'coverage.json'
@@ -152,7 +180,7 @@ class LiveJob:
         return dict(worker=self.worker,status=status,worker_alive=worker_alive,
             directory=str(self.directory),starting_global_steps=self.start,global_steps=current,
             additional_steps=done,total_steps=total,progress=done/total,
-            phase='evaluate' if result and status=='running' else self.event.get('phase','prepare'),
+            phase='between_seeds' if between_seeds else 'evaluate' if result and status=='running' else self.event.get('phase','prepare'),
             critic_updates=result.get('optimizer_updates_total') if result else self.event.get('critic_updates_reported',self.start_updates),
             critic_count_is_logged=not bool(result),actor_updates=result.get('actor_updates_total') if result else None,
             result=result,final_result=final,error=job.get('error'),coverage=coverage,

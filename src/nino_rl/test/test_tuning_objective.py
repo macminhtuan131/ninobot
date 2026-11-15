@@ -19,9 +19,12 @@ SETTINGS = PACKAGE / 'config/optuna_objective.yaml'
 
 
 def make_case(course='flat', episodes=20):
-    name = 'combined_flat_pi_tracking.yaml' if course == 'flat' else 'rough_e1_n1_s1_fixed.yaml'
+    name = 'combined_flat_pi_tracking.yaml' if course == 'flat' else 'factory_floor_routes_pi_check.yaml'
     base = load_config(PACKAGE / 'config' / name)
-    contract = make_objective_contract(base, SETTINGS, course=course, episodes=episodes, seed=61000)
+    if course != 'flat':
+        base['routes']['definitions'] = [r for r in base['routes']['definitions'] if r['id'] != 'W1']
+        base['goal_tolerance_m'] = .2
+    contract = make_objective_contract(base, SETTINGS, course='flat', episodes=episodes, seed=61000)
     rows = [dict(seed=item['seed'], route_id=None if item['route_id']=='straight' else item['route_id'],
                  reward_pose_source='ground_truth', success=True, termination='success',
                  truth_endpoint_error_m=.15, route_gates_passed=9, route_gates_total=9,
@@ -43,7 +46,7 @@ def test_arrival_gate_dominates_comfort_and_requires_every_route():
     assert score_episodes(rows, contract)['arrival_feasible']
     rows[1].update(success=False, termination='timeout')
     assert not score_episodes(rows, contract)['arrival_feasible']
-    _, contract, rows = make_case('rough', episodes=60)
+    _, contract, rows = make_case('routes', episodes=60)
     # Overall 58/60 successes still cannot hide 18/20 on one route.
     for row in [r for r in rows if r['route_id']=='N1'][:2]:
         row.update(success=False, termination='wrong_direction')
@@ -86,9 +89,9 @@ def test_invalid_partial_estimated_only_and_nonfinite_results_are_rejected():
     rows[0]['rms_wheel_slip'] = float('nan')
     with pytest.raises(ValueError, match='finite'):
         score_episodes(rows, contract)
-    base = load_config(PACKAGE / 'config/rough_e1_n1_s1_fixed.yaml')
+    base = load_config(PACKAGE / 'config/factory_floor_routes_pi_check.yaml')
     with pytest.raises(ValueError, match='cover every active route'):
-        make_objective_contract(base, SETTINGS, course='rough', episodes=2, seed=0)
+        make_objective_contract(base, SETTINGS, course='flat', episodes=2, seed=0)
 
 
 def test_estimated_arrival_and_skipped_physical_gates_cannot_count_as_success():
@@ -96,7 +99,7 @@ def test_estimated_arrival_and_skipped_physical_gates_cannot_count_as_success():
     rows[0]['truth_endpoint_error_m']=.35
     with pytest.raises(ValueError, match='physical goal circle'):
         score_episodes(rows,contract)
-    _, contract, rows = make_case('rough',episodes=12)
+    _, contract, rows = make_case('routes',episodes=12)
     rows[0]['route_gates_passed']=0
     with pytest.raises(ValueError, match='ordered route gates'):
         score_episodes(rows,contract)
@@ -152,7 +155,7 @@ def test_trial_record_checks_frozen_task_and_saves_breakdown(tmp_path):
 
 
 def test_all_tuners_use_shared_objective_and_resolve_inherited_profiles():
-    for name in ('tune_split_optuna.py','tune_split_optuna_rough_resume.py','tune_combined_optuna.py','tune_rocky_optuna.py'):
+    for name in ('tune_split_optuna.py',):
         path=PACKAGE/'scripts'/name
         spec=importlib.util.spec_from_file_location(name[:-3],path)
         module=importlib.util.module_from_spec(spec)

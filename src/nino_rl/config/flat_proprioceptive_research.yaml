@@ -2,7 +2,7 @@
 # Not a legacy train.py config. No old checkpoint or coordinate schedule transfer.
 revision: flat_proprioceptive_v1
 primary_course: combined_flat_section
-rough_scope: deferred_out_of_distribution
+retired_course: removed
 phase: A_single_obstacle_mechanism
 source_bundle: rl_runs/flat_command_clock_check_v2
 control:

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "amendment_id": "unknown_step_valid_task_failure_smoke_gate_v1_2026_11_10",
+  "parent_protocol": "nino_unknown_step_short_integration_v1_2026_11_10",
+  "reason": "B0 late layout has valid data and clears obstacle but violates unchanged 0.04m path bound. A valid task failure is not a broken environment or a requirement that classical must already solve every layout before learning.",
+  "original_baseline_stage_status": "failed_unchanged",
+  "new_gate": "all three B0 traces/QC valid and complete; clear-floor and at least one rigid-obstacle physical goal/stop succeed; retain other physical task failures in denominator; no rollover/drive/owner fault",
+  "purpose": "software_optimizer_smoke_only_not_controller_promotion",
+  "path_threshold_changed": false,
+  "task_reward_action_history_or_PI_changed": false,
+  "validation_or_test_consumed": false,
+  "additional_baseline_runs": 0,
+  "gate_corrections_consumed": 1,
+  "smoke_transitions": 384,
+  "long_training_allowed": false,
+  "hardware_actions": 0
+}

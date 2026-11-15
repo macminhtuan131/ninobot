@@ -1,3 +1,43 @@
+> **14/11 — dọn dữ liệu sau đánh giá:** giải phóng **3,37 GiB**; xóa 36 file raw của 12 lượt thành công đã đánh giá và nén lossless 206 stream lịch sử. Giữ checkpoint/replay 10k–15k–20k, training trace, dữ liệu lỗi và qualification hiện tại. Evaluation còn 753 file khớp manifest và 36 file đã xóa có receipt; không còn là full raw archive. [Báo cáo retention và kết quả từng episode](docs/NINO_SIM_EPISODE_RETENTION_2026-11-14.md).
+
+> **14/11 — đã đánh giá frozen B0/10k/15k/20k:**24slot,23QCvalid,3.648decisions;789file vàaction deterministic khớp trước retention. B0=5/6,10k=5/6,15k=4/6;20k=4pass/1fail/1unknown. Gap54ms cũ có ngay trong diagnosticsPI; jobtrain giữfailed. GiữB0, chưa train dài thêm; ưu tiên goal-stop/odometry và startup wheel freshness. [Kết quả và hướng tiếp](docs/NINO_GOAL100_GAP_AND_FROZEN_CHECKPOINT_EVALUATION_2026-11-14.md). Các cập nhật dưới là lịch sử.
+
+> **12/11 — review Goal100 research20k và dọn dữ liệu:** đã train đủ20.000transitions/10.000critic/5.000actor;113/126episode train đạt,1đoạn censored. Job **failed raw QC** vì gap drive54ms tại episode57; chưa evaluation B0/TD3. Đã dọn3,779GiB raw lặp và checkpoint thừa, giữ10k/15k/20k, full trace/replay và raw failures/QC. [Báo cáo, biểu đồ và cách đọc chất lượng train](docs/NINO_TRAINING_REVIEW_AND_RETENTION_2026-11-12.md). Các cập nhật dưới là lịch sử.
+
+> **10/11 — Goal100 đã chạy Gazebo và smoke TD3:**7launch/970ticks,384train/368critic/184actor; deterministic dev evaluation tới goal và dừng2s. B0 giữ2/3success và một path failure; chưa learned benefit. Studio có engineGoal100 và nút **chỉ điền** research20k. **Đã dừng trước train dài.** [Kết quả, gate correction và bước tiếp](docs/NINO_UNKNOWN_STEP_GAZEBO_AND_TD3_SMOKE_2026-11-10.md). Các cập nhật dưới là lịch sử.
+
+> **10/11 — Sim TD3 / task gờ không biết:** checkpoint common103_v2 seed11 đã tới **50k**; job failed evaluation, chưa promote. Task goal mới có physical scorer, estimator goal-stop, sensor-only100D/common1D và Gym interface đã kiểm software; **chưa Gazebo integration hoặc train task mới trong lượt chuẩn bị đó**. [Bằng chứng chuẩn bị](docs/NINO_UNKNOWN_STEP_SOFTWARE_PREPARATION_2026-11-10.md).
+
+> **09/11 — sửa lỗi train common103_v2:** startup Gazebo episode200 timeout,27.999 training transitions/28.000 environment transitions; checkpoint20k được giữ. Thêm startup diagnostics/re-registration có giới hạn và lưu terminal replay trước reset;121tests +2startup zero-only đạt. [Bản resume20k và giới hạn](docs/NINO_TD3_STARTUP_REPAIR_2026-11-09.md). Chưa chạy lại campaign trong lượt sửa lỗi đó; engine cũ chưa phải task unknown-step goal.
+
+> **09/11 — mục tiêu đã chọn: gờ KHÔNG BIẾT TRƯỚC, vượt được và bám quỹ đạo.** Thay hướng preview giảm rung đã biết; IMU/encoder/history/reference vào controller, GT/contact/metadata gờ chỉ scoring. Rung/slip phụ. Task spec và Studio cập nhật; chưa runtime/task outcome hoặc budget mới. [Hướng và các bước tiếp](docs/NINO_UNKNOWN_STEP_TASK_DIRECTION_2026-11-09.md). Các cập nhật dưới là lịch sử.
+
+> **09/11 — chuẩn bị hướng motion quality trên tuyến đã biết:** classical preview 0,20→0,18 m/s so B0 và chạy chậm đều ≈0,1877 m/s khớp thời gian tham chiếu. Metric gia tốc tại IMU và draft đã kiểm fixture; chưa body time-match/runtime/physics. **0/6 lượt được cấp; mục tiêu/ngưỡng chưa accepted.** E2 vẫn đóng6/6, giữ classical. [Draft và bước offline tiếp](docs/NINO_KNOWN_ROUTE_MOTION_QUALITY_DRAFT_2026-11-09.md). Các cập nhật dưới là lịch sử.
+
+> **09/11 — audit stop8 đã đóng:**560 native rows đúng công thức/source; GT tại native clocks tái lập native. Common− GT−5.6%/native+0.92% là sampling sensitivity, chưa thấy lỗi công thức giải thích bất đồng. **Giữ classical, đóng nhánh promote hiện tại;6/6 allocation vẫn đóng,6slot block1 chưa cấp.** Studio đã cập nhật. [Audit và hướng tiếp](docs/NINO_FIXED6MM_SAMPLING_AUDIT_2026-11-09.md). Các cập nhật dưới là lịch sử.
+
+> **09/11 — stop8 đã đóng, E2 dùng6/6 allocation:** authority hai chiều đạt nhưng quality sampling-sensitive:common+ GT ISE+21.8%;common− GT−5.6%/native+0.92%. Giữ classical,6slot block1 chưa cấp, chưa train. [Kết quả và audit offline tiếp](docs/NINO_FIXED6MM_STOP8_RESULT_2026-11-09.md). Các cập nhật dưới là lịch sử.
+
+> **09/11 — E2 reader v2 kiểm lại offline đạt:** giữ group timestamp mơ hồ và unknown strict v1;0 query authority cần group này. Cell đầu có signed wheel/body persistence0.760s âm/0.620s dương, primary không đổi.0Sim/train mới;3/3 allocation vẫn đóng,9slot chưa cấp. [Kết quả và cell stop8 tiếp theo](docs/NINO_FIXED6MM_TIMESTAMP_REANALYSIS_2026-11-09.md). Các cập nhật dưới là lịch sử.
+
+> **09/11 — E2-03 đã chạy, cell3/3 đóng UNKNOWN:** task/replay đạt, nhưng reader strict gặp4 wheel payload cùng source stamp; chưa xác minh authority dương. GT primary giảm55.18% chỉ mô tả. Studio cập nhật issue/next offline correction;9slot còn lại chưa cấp. [Kết quả và điểm dừng](docs/NINO_FIXED6MM_POSITIVE_RESULT_2026-11-09.md). Các cập nhật dưới là lịch sử.
+
+> **09/11 — E2-01/02 đã đóng2/2:** cặp common−0.005 sau manifold qua caliper; ISE tracking GT giảm44.02%/43.79% mô tả, chuỗi hai bánh/body trước drive contact đạt. Chỉ một cell dùng oracle, chưa chứng minh TD3/governor sensor-only;10slot còn lại chưa cấp. Studio cập nhật tiến độ và kiểm evidence. [Kết quả và điều kiện tiếp theo](docs/NINO_FIXED6MM_FIRST_PAIR_RESULT_2026-11-09.md). Các cập nhật dưới là lịch sử.
+
+> **08/11 — E2-01 neutral Gazebo đã đóng:** 140/140 task ticks, task/stop/closure và native replay đạt;39/39 file khớp hash. Prefix1/1 đã hết,11 slot còn lại chưa cấp. Chưa có nonzero residual contrast hoặc benefit. [Kết quả và bước tiếp](docs/NINO_FIXED6MM_NEUTRAL_RESULT_2026-11-08.md). Các cập nhật dưới là lịch sử.
+
+> **08/11 — E2 runtime đã kiểm offline:** adapter oracle, cutoff receipt, PI readback, QC từng slot và runner có ledger/review đã có. Neutral parity stop6/8 đạt trên fixture; release mẫu vẫn false/0, chưa chạy Gazebo mới. [Kết quả và neutral slot kế tiếp](docs/NINO_FIXED6MM_AUTHORITY_RUNTIME_2026-11-08.md). Các cập nhật dưới là lịch sử.
+
+> **08/11 — E2 đã chuẩn bị offline:** gờ6mm, Ki0.10, ba profile common sau first C1 manifold oracle. Đã audit sáu raw E1 và kiểm reference preview; 12 lượt đề xuất, 0 allocated, chưa runtime/physics mới. [Protocol và bước tiếp](docs/NINO_FIXED6MM_AUTHORITY_PREPARATION_2026-11-08.md).
+
+> **08/11 — E1 v2 đã đóng:** 280 train steps, 264 critic/132 actor updates, 2 full episodes và 6/6 development evaluations đạt integration. Đã sửa một lỗi map/trace epoch, dọn raw train sau audit; chưa xác nhận TD3 hơn classical hoặc mở campaign dài. [Kết quả và bước tiếp](docs/NINO_COMMON103_V2_INTEGRATION_RESULT_2026-11-08.md). Các cập nhật dưới đây là lịch sử.
+
+> **08/11 — review PI/prestop/v2:** v2 mới có smoke64, 0 episode hoàn chỉnh; prestop vẫn unknown. Đã sửa metric, campaign disk/retention, observer/map v2 và outline Studio; chưa chạy thêm Gazebo/train. [Kết quả và ba bước tiếp theo](docs/NINO_PROJECT_REASSESSMENT_2026-11-08.md). Các cập nhật dưới đây là lịch sử.
+
+> **08/11 — đã dọn run lịch sử:** xóa khoảng 9,44 GiB trong `rl_runs`; giữ dữ liệu Sim hiện tại ở `~/nino_research`, checkpoint 20k/25k/30k và bag thật. [Phạm vi và kiểm chứng](docs/NINO_LEGACY_RUNS_CLEANUP_2026-11-08.md).
+
+> **08/11 — đã bỏ rough/rocky course:** giữ factory/flat; đã tách helper dùng chung và kiểm tương thích checkpoint TD3 20k/25k/30k. [Phạm vi xóa và kiểm chứng](docs/NINO_COURSE_RETIREMENT_2026-11-08.md).
+
 > **08/11 — nâng cấp Chuẩn hóa TD3, Causal 10 Hz Pipeline & Studio QC:** bổ sung ma trận thực nghiệm `E1–E3`, khóa thứ tự tune 4 bước, cấm chọn checkpoint theo training reward đơn thuần, 7 cổng an toàn triển khai (`td3_experiment_matrix.py`), căn chỉnh nhân quả 10 Hz kèm mask thiếu dữ liệu (`causal_alignment.py` + `causal_frames.parquet`), chia tập theo nguyên phiên và mở rộng QC tự động (clock drift, gap `>2x`, command chain, `h1/h5/h8`); giữ nguyên toàn bộ hash lịch sử và `hardware_authority = 0`. [Chi tiết chuẩn hóa 08/11](docs/NINO_TD3_DATA_STUDIO_STANDARDIZATION_2026-11-08.md).
 
 > **08/11 — chọn nhánh Sim offline:** đã chuẩn bị draft probe common correction trong0,5s trước source stop, neutral-reference parity và matrix12lượt đề xuất; **0allocated, chưa runner/batch/train mới**. Studio có outline Sim riêng với hardware. [Protocol và điểm dừng](docs/NINO_SIM_PRESTOP_AUTHORITY_DRAFT_2026-11-08.md).
@@ -232,7 +272,7 @@ obstacle; wider feasibility and useful predictive information are unproven.
   and `groove`. The mixed map is prepared for later integration, not validated.
 - Static map PI config: `src/nino_rl/config/factory_floor_pi_check.yaml`.
 - Runtime adaptive 1→6 mechanics: `src/nino_rl/config/factory_floor_curriculum.yaml`.
-  The viewing world now copies the rough map's dedicated brown ground model:
+  The viewing world now uses an independent factory terrain template:
   four shallow bowls, one groove, six cables, a short cable and a local bump.
   Edit the terrain catalogue in `src/nino_description/config/factory_floor_lab.yaml`.
   Runtime resets replace the catalogue with the selected stage's sampled items.
@@ -263,419 +303,15 @@ reactive PI on three single-obstacle development layouts, twice each, with a
 new simulator for each episode. Later quality claims require time-matched PI,
 held-out scenarios and independent training seeds.
 
-## Historical experiments and commands
+## Supported simulation scope
 
-The sections below document earlier contracts. Use the current scope above for
-new work; historical checkpoint/config pairs retain their original meanings.
+Factory/flat only. The abandoned terrain course and its commands/assets were removed on 08/11/2026.
 
-**Earlier rocky-terrain experiment:** [diagnosis, map, and training commands](docs/ROCKY_TRACKING.md).
-It keeps the original 4 m hall width and 6 m goal distance, uses broad rolling
-terrain across the hall, and trains trajectory stabilization with physical
-simulation scoring and PI yaw-reference control. Select `rocky_tracking.yaml`
-and `rocky_training.launch.py` together. The cable workflow below remains
-available with its original map and configuration.
-
-This branch controls the **caster-supported differential-drive Nino AMR** in
-ROS 2 Jazzy / Gazebo Harmonic. The model has two powered wheels, two passive
-casters, IMU, wheel encoders and **2D** LiDAR. It is not an unsupported two-wheel
-inverted pendulum. Nav2 is disabled for this experiment. The cable workflow
-uses a direct `/cmd_vel` reference, wheel-speed PI, and bounded differential
-PPO torque. The Rocky Hall profile instead gives PPO a yaw reference that the
-PI loop tracks, along with forward speed scaling and bounded common torque.
-
-The updated workflow uses NVIDIA CUDA by default and refuses an automatic CPU
-fallback. Gazebo physics and ROS still consume CPU; this is one Gazebo world,
-not GPU-parallel Isaac Lab simulation. Keep only one train/evaluate/policy
-process connected to that world at a time.
-
-Nino simulation processes automatically use ROS domain 77 with localhost-only
-discovery, preventing another machine or simulator from injecting a conflicting
-`/clock`. To use manual `ros2 topic` or `ros2 service` diagnostics, first run
-`export ROS_DOMAIN_ID=${NINO_ROS_DOMAIN_ID:-77}` and
-`export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST` in that shell.
-
-- [Reward, policy and engineering decisions](src/nino_rl/RL_IMPROVEMENTS.md)
-- [Timeout diagnosis and revision 27 validation](docs/RL_TRAINING_DIAGNOSIS_20260922.md)
-- [Goal-first reward, policy and terrain curriculum (revision 30)](docs/RL_GOAL_FIRST_REVISION_28.md)
-- [Vietnamese quick guide](src/nino_rl/README_VI.md)
-- [Bài viết nghiên cứu tổng quan bằng tiếng Việt](docs/BAO_CAO_NGHIEN_CUU_RL_NINO.md)
-- [Báo cáo tiến độ 04/10/2026: số liệu, roadmap, so sánh PID/Nav2/RL và 32 công trình](docs/BAO_CAO_TIEN_DO_VA_DOI_CHIEU_RL_NINO_2026-10-04.md)
-- [Simulation and hardware reference](docs/HARDWARE_REFERENCE.md)
-- [Raspberry Pi deployment guide](docs/RASPBERRY_PI_DEPLOYMENT.md)
-- [Pi 5 navigation, mapping, keyboard/joystick and driver check](src/nino_pi/README.md)
-
-The cable workflow uses training contract revision 30; Rocky Hall uses revision
-31, and the combined rough-to-flat course uses revision 32. Because the cable contract's goal-distance reward,
-restored full-size terrain, per-action exploration, physics-completion timing,
-sensor-invisible goal marker, reward balance,
-traversable-challenge flags, terrain geometry, downward preview, and rolling
-hazard curriculum changed, older checkpoints cannot be resumed; start a new
-run. New checkpoints retain rolling curriculum state, so
-resume no longer resets hazard difficulty. Old models may still be used for
-inference with their matching config. Old 54-input/2-action models are
-incompatible. The `Completed_train` branch includes [trained weights and recorded training
-results](src/nino_rl/models/completed_train/README.md). The final checkpoint has
-1,001,634 cumulative steps; held-out performance gains and hardware transfer
-have not been established.
-
-## Combined course: rough ground, then the old flat cable hall
-
-The separate `combined_hall.sdf` starts with real shallow depressions and mounds
-from x=0.8 to 6.72 m. The surface meets a level floor at x=6.72 m; the old
-hall's six cables run from x=7.2 to 12.0 m, and the goal is at x=13 m.
-There are no cables beyond the goal in this world. The rough
-ground's visual and collision use the same mesh. Nine pothole bowls are dug
-into that mesh from y=-1 m to y=1 m: the three 7 cm route bowls are at
-y=+0.30, 0.00, and -0.10 m. Six
-additional bowls are 2.5–7.5 cm deep
-across the rough section. They are physical depressions, with no separate
-pothole objects. Selected potholes, mounds, and cables are also counted by
-the challenge reward when the wheels cross them.
-The bowl near x=4.72 m is centered at y=-0.40 m.
-The uphill exit from the middle bowl near x=3.55 m is widened and locally
-smoothed to reduce the sudden pitch change; its hollow remains in the mesh.
-Two smaller 2.2 cm-deep bowls span 30 cm along the route for the 12.5 cm drive
-wheels, and two 6 mm-deep bowls span 12 cm for the 3.2 cm casters. They sit along
-the corresponding wheel tracks. The ground mesh samples every 2 cm along the
-route so these small holes have actual contact geometry. During combined-course
-training, the old adaptive spawner also adds pothole, bump, short-cable, and
-groove surrogates on the flat section. It starts with one item and adds one
-after five consecutive successful episodes, up to six. Each episode randomizes
-their positions within x=7.1–12.2 m and y=-0.5–0.5 m. At each episode reset,
-the six course cables keep their centers and radii but receive independent
-angles uniformly sampled from −30° to +30°. The fixed-angle cables in the
-world file are only the layout shown before training starts. Runtime potholes
-are raised-rim surrogates, while the rough
-section's potholes are actual depressions in its ground mesh.
-See the [annotated combined-world preview](docs/combined_world_preview.png)
-for the potholes, smoothed uphill exit, wheel holes, seam, and cables.
-
-**The old wheel-torque policy can initialize this course**, since both use the
-same 300-value observation, three-action policy and wheel-torque action meaning.
-Use `--init-model` for a new run. It copies the actor and its exploration
-scales; the critic and optimizer start fresh because the goal and reward have
-changed. The new run starts at step zero with a 13 m goal and new reward/task
-contract. `--resume` is only for continuing a checkpoint on its original
-course with the matching saved config. Rocky Hall's yaw-reference policy has a
-different third action and cannot initialize this wheel-torque course. Choose
-an old checkpoint by evaluation on held-out episodes; the latest checkpoint is
-not necessarily the best. The old 1.5M-step run improved from 41% success in
-its first 500 recorded resumed episodes to 78% in its last 500, so its final
-checkpoint is a stronger starting candidate than the earlier 1.0M-step one.
-These rates were measured on the old hall, not the combined course.
-On three paired combined-course evaluation seeds, both old checkpoints scored
-0/3 successes, although the 1.5M-step model had lower physical path error
-(0.269 m versus 0.531 m). The main observed failure was stopping at the
-wheel-odometry goal while the physical robot was still short. A trial with a
-slow goal-search command also scored 0/3 and increased off-path failures, so
-it was not adopted. Better localization or further task-specific training is
-needed before claiming a success improvement on the combined course.
-The first 2,048-step actor-only warm-start smoke run had 0/7 episode successes
-and stopped its first PPO update after one of five epochs at a 0.0001 learning
-rate because it reached the KL limit. At 0.00003, the first update completed
-all five epochs, while its pre-update rollout had 0/6 successes. The combined
-profile now uses 0.00003 for gentler adaptation. These short rollouts do not
-establish a performance gain; evaluate the trained policy on held-out episodes.
-
-Finish and stop the currently running old trainer and its Gazebo world before
-launching this one. Generate and build the course from the project directory:
-
-```bash
-cd ~/ninorobot
-source /opt/ros/jazzy/setup.bash
-source .venv/bin/activate
-python src/nino_description/scripts/generate_combined_world.py
-python -m colcon build --symlink-install --packages-select nino_description nino_rl
-source install/setup.bash
-```
-
-In **each new terminal**, run this setup before a combined-course ROS command:
-
-```bash
-cd ~/ninorobot
-source /opt/ros/jazzy/setup.bash
-source .venv/bin/activate
-source install/setup.bash
-export ROS_DOMAIN_ID=${NINO_ROS_DOMAIN_ID:-77}
-export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
-```
-
-Start Gazebo in terminal A and keep it running while training or evaluating.
-Use `headless:=true` if you do not need the Gazebo window:
-
-```bash
-ros2 launch nino_rl combined_training.launch.py headless:=false
-```
-
-In terminal B, check the pipeline with a short warm-start run:
-
-```bash
-ros2 run nino_rl train --device cuda \
-  --config src/nino_rl/config/combined_course.yaml \
-  --init-model artifacts/old_1_5m/nino_ppo_final.zip \
-  --timesteps 4096 --check-env --output rl_runs/combined_course_smoke
-```
-
-After the smoke run ends, train longer in terminal B with a separate output
-directory:
-
-```bash
-ros2 run nino_rl train --device cuda \
-  --config src/nino_rl/config/combined_course.yaml \
-  --init-model artifacts/old_1_5m/nino_ppo_final.zip \
-  --timesteps 500000 --checkpoint-every 25000 \
-  --output rl_runs/combined_course
-```
-
-Do not run two trainers against the same Gazebo world. In terminal C, view
-learning curves at `http://localhost:6007`:
-
-```bash
-cd ~/ninorobot
-.venv/bin/tensorboard --logdir rl_runs/combined_course --port 6007
-```
-
-To continue a combined-course checkpoint later, use its saved `ppo.yaml` and
-`--resume` with the checkpoint instead of `--init-model`.
-
-After training, keep the combined world running and evaluate with new seeds:
-
-```bash
-ros2 run nino_rl evaluate --device cuda --episodes 20 --seed 10000 \
-  --config rl_runs/combined_course/<run-id>/ppo.yaml \
-  --model rl_runs/combined_course/<run-id>/nino_ppo_final.zip \
-  --output rl_runs/combined_evaluation
-```
-
-### Tune the combined course with Optuna
-
-#### Tune its two sections separately
-
-`combined_rough_section.sdf` now preserves the original rough ground from
-x=0.8 to 5.7 m inside y=-2..2 m and adds terrain to **x=10 m, y=-4..4 m**.
-The rough patch is **8 m wide**, surrounded by connected flat goal halls.
-The full enclosure spans **x=-2..12 m, y=-7.2..7.2 m**. North and south halls
-are 2 m wide, reached through 1.2 m smooth side ramps; west and east halls
-connect around the corners. Its dedicated
-`rough_diverse_ground.stl` is shared by visual and collision. The extension
-uses the same rolling-terrain generator as the first 1–6 m, with continuous
-hills, valleys and asymmetric relief between **32 added sculpted features**:
-round and flat-bottom depressions, angled
-troughs, rounded and banked mounds, low plateaus, a mound–bowl pair, and staggered drive-wheel
-and caster bowls. There is a flat landing at x=10..12 m.
-
-See [the goal-hall overview](docs/rough_goal_halls_preview.png) for eight optional
-goal stations (west, east, three north, three south). The green floor markers
-have no collision. The rough config now uses **eight user-drawn routes**:
-six L routes, straight E1, and the long clockwise loop to W1. Training selects
-each route once per shuffled eight-episode cycle. Evaluation cycles through
-all eight in a fixed order. See [the configured route preview](docs/rough_routes_preview.png)
-and [route details and commands](docs/ROUGH_DRAWN_ROUTES.md).
-
-**Route curriculum:** [start, resume, terrain variants and Laya commands](docs/ROUGH_ROUTE_CURRICULUM.md).
-Use `rough_route_curriculum.yaml` with `scripts/train_rough_curriculum.py` to
-start with E1, retain earlier goals while adding N1/S1, N2/S2, N3/S3 and W1,
-then introduce bounded R1–R3 terrain variants. Every active route must pass a
-complete physical evaluation before advancing. The runner manages Gazebo in
-domain 78 and records matching path-PI comparisons. Laya reports per-route
-issues and stage progress; numerical evaluation controls advancement. Maps
-change between training blocks. The direct `combined_rough_section.yaml`
-workflow still selects all routes at once.
-
-**Optional IMU-assisted rough E1 pilot:**
-[profile, PI validation, training and monitoring](docs/rough_imu_assisted_2026-10-08/README.md).
-The profile aligns encoder increments with IMU heading/pitch, retains raw wheel
-odometry for diagnostics, and requires a new training contract. Physical
-arrival continues to use the original 0.20 m goal radius.
-
-**Current rough localization correction (2026-10-09):**
-[sensor profile, strict PI qualification and new-contract pilot commands](docs/ROUGH_LOCALIZATION_ROBUSTNESS_2026-10-09.md).
-The rough-only snapshot adds multi-layer localization LiDAR coverage and retains
-encoder history for IMU alignment. Normal E1/N1/S1 and slow E1 must pass before
-training. This sensor profile requires equivalent hardware coverage for real
-deployment; the old 2D profile and its saved models remain diagnostic records.
-
-**Current S1 controller correction:**
-[stop-and-align turns, bounded stall recovery, PI evidence and next pilot commands](docs/ROUGH_S1_RECOVERY_2026-10-09.md).
-The v16 rough contract qualifies normal E1/N1/S1 plus slow E1 before PPO startup;
-old rough checkpoints are actor-transfer sources rather than optimizer resumes.
-
-**Corrected specialist training setup:**
-[reduced-speed flat PI checks, fixed E1/N1/S1 replay, matching PI references and commands](docs/corrected_training_setup_2026-10-08/README.md).
-The optional flat controller profile retains bounded integral correction at
-reduced speed. Both new profiles verify live controller settings and require
-actor initialization into a new training contract. Physical arrival scoring
-keeps the original 0.20 m goal radius; rough turn-route failures remain failures.
-
-**Fixed Optuna evaluation objective:**
-[physical-arrival gate, timing, tracking, vibration and slip scoring](docs/optuna_objective_2026-10-08/README.md).
-Each route must achieve at least 95% physical arrival in the evaluation sample.
-The quality weights, scales, targets and seeds stay fixed across trials,
-including trials that change the training reward weights. Use a new study
-directory for this objective; legacy scores cannot be mixed with it.
-
-**Comparable Optuna trials:**
-[prepared flat/rough inputs, checkpoint audits, aligned budgets and preparation commands](docs/comparable_optuna_trials_2026-10-08/README.md).
-All tuners accept `--world` and `--prepare-only`. Trial plans freeze the actual
-world/assets, controller/estimator profile, starting actor, initialization,
-training seed and evaluation scenarios. Changed reward/controller contracts
-use actor initialization with a fresh critic/optimizer; incompatible checkpoint
-resume is rejected. PPO rollout rounding is aligned across trials.
-
-**Saved results and starting candidates:**
-[queued flat/rough configurations, PI references and guarded historical import](docs/saved_optuna_results_2026-10-08/README.md).
-The current configurations are queued in `flat_comparable_optuna_v2` and
-`rough_comparable_optuna_v2`; each has one waiting candidate and no scored trials
-at preparation. `--prepare-study` queues without training. PI reports are
-reference metadata; only completed PPO observations with matching contracts
-and verified artifacts can be imported using `--history-study`. Earlier
-incompatible studies remain diagnostic records.
-
-**Corrected flat two-cable pilot:**
-[localization, path feedback, PI validation and training](docs/FLAT_FEEDBACK_PILOT_2026-10-08.md).
-The optional profile combines encoder/IMU odometry with known-wall LiDAR
-position corrections. PI follows the path; PPO adjusts speed and bounded yaw
-residuals. Use a new contract and explicit speed/features initialization.
-
-**E1 arrival diagnostic:** [PI test with a 0.05 m estimated stop margin](docs/ROUGH_E1_STOP_MARGIN_CHECK.md).
-Use this check when both PI and PPO stop near the estimated goal and time out
-outside the physical 0.20 m success circle. It evaluates the original bank
-terrain on E1 with matching seeds before starting further training.
-
-See [the annotated rough preview](docs/rough_diverse_preview.png) and
-[feature coordinates and heights](docs/ROUGH_TERRAIN_FEATURES.md) when drawing
-new trajectories. Added depressions range from 6 mm to 12 cm deep and
-mounds from 3.5 to 14 cm high. These values are added carving/rise relative to
-the underlying rolling terrain, not absolute ground elevations. The route
-coordinates are stored directly in `combined_rough_section.yaml`. An odometry
-path follower supplies the turning reference; PPO retains its speed scale and
-wheel torque residual actions. Ordered spatial gates and simulator pose check
-route completion, preventing a shortcut to the nearby west goal. Progress
-reward and goal braking use along-route distance. Episode time limits scale
-with route length. Feature annotations are not mandatory reward checkpoints;
-the rough config clears the obsolete five-region challenge list.
-
-`combined_flat_section.sdf` has a flat floor and the same six
-course cables, shifted into a local route from x=0 to 6.45 m. Its local cable
-positions x=0.65..5.45 m correspond to x=7.2..12 m in the combined world. This
-local origin keeps the robot's reset wheel odometry aligned with its goal and
-reward. The flat config
-also keeps the per-episode cable angles and adaptive items. Each section has a
-different world name, task, config, and Optuna database. The split generator
-reads `combined_hall.sdf`, then builds the extended rough mesh and isolated
-flat world. The combined course keeps its original geometry and goal; its
-transition does not automatically move to the extended rough course's endpoint.
-Use a new rough run/study for this geometry revision. Old rough checkpoints can
-be considered for compatible actor initialization, rather than continuing the
-old benchmark with `--resume`.
-
-To regenerate **only rough** and its annotated preview:
-
-```bash
-cd ~/ninorobot
-source .venv/bin/activate
-python src/nino_description/scripts/generate_split_worlds.py --section rough
-python src/nino_description/scripts/preview_rough_section.py
-```
-
-Prepare from the repository root:
-
-```bash
-cd ~/ninorobot
-source /opt/ros/jazzy/setup.bash
-source .venv/bin/activate
-python src/nino_description/scripts/generate_split_worlds.py
-python src/nino_description/scripts/preview_rough_section.py
-python -m colcon build --symlink-install --packages-select nino_description nino_rl
-source install/setup.bash
-python -m pip install optuna
-export ROS_DOMAIN_ID=78
-export NINO_ROS_DOMAIN_ID=78
-export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
-export GZ_PARTITION=nino_rough_78
-```
-
-In terminal A, launch the **rough** section. In terminal B, repeat the setup
-above (including both domain variables), run a short check, then tune it:
-
-```bash
-ros2 launch nino_rl combined_rough_section_training.launch.py headless:=true
-```
-
-```bash
-ros2 run nino_rl train --device cuda \
-  --config src/nino_rl/config/combined_rough_section.yaml \
-  --init-model artifacts/old_1_5m/nino_ppo_final.zip \
-  --timesteps 2048 --check-env --output rl_runs/rough_section_smoke
-
-python src/nino_rl/scripts/tune_split_optuna.py --section rough \
-  --trials 12 --timesteps 50000 --eval-episodes 12 \
-  --output rl_runs/rough_diverse_optuna_v5
-```
-
-For a sequential run, stop rough Gazebo before starting the **flat cable**
-section. For a concurrent run, leave it running. Use domain 79 in both flat
-terminals (`ROS_DOMAIN_ID=79` and
-`NINO_ROS_DOMAIN_ID=79`) and set `GZ_PARTITION=nino_flat_79`, then launch and tune:
-
-```bash
-ros2 launch nino_rl combined_flat_section_training.launch.py headless:=true
-```
-
-```bash
-ros2 run nino_rl train --device cuda \
-  --config src/nino_rl/config/combined_flat_section.yaml \
-  --init-model artifacts/old_1_5m/nino_ppo_final.zip \
-  --timesteps 2048 --check-env --output rl_runs/flat_section_smoke
-
-python src/nino_rl/scripts/tune_split_optuna.py --section flat \
-  --trials 12 --timesteps 50000 --eval-episodes 12 \
-  --output rl_runs/combined_flat_optuna_v2
-```
-
-To run **both sections at the same time**, keep four terminals open. Use the
-setup block below in each terminal, replacing `SECTION` and `DOMAIN` as shown:
-
-| Terminals | SECTION | DOMAIN | Command after setup |
-| --- | --- | ---: | --- |
-| A (rough simulator), B (rough tuner) | `rough` | 78 | Commands below |
-| C (flat simulator), D (flat tuner) | `flat` | 79 | Commands below |
-
-```bash
-cd ~/ninorobot
-source /opt/ros/jazzy/setup.bash
-source .venv/bin/activate
-source install/setup.bash
-export ROS_DOMAIN_ID=78                 # use 79 in flat terminals
-export NINO_ROS_DOMAIN_ID=$ROS_DOMAIN_ID
-export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
-export GZ_PARTITION=nino_rough_78       # use nino_flat_79 in flat terminals
-```
-
-Start the simulators in A and C, then the tuners in B and D. The rough and flat
-commands are the launch/tune pairs above. Each trainer requires its own running
-simulator; keep both launch terminals open. The separate ROS domains, Gazebo
-partitions, world names, and output directories prevent the two trials from
-controlling each other's robot or writing into the same Optuna database. Both
-jobs still share the computer's CPU and GPU, so each can run more slowly than
-it would alone.
-
-Each study saves `study.db`, trial logs and models, and `best_trial.yaml`.
-Rerun an identical command to add trials; changing the base config, world,
-terrain mesh, initial model, evaluation settings, or tuner requires a new output
-directory. By default, trials start from the old 1.5M-step actor. Add
-`--from-scratch` to omit that actor. The narrow search adjusts five section
-specific reward weights and four PPO settings; it keeps the wheel-torque action
-and network shape fixed. Tuning evaluates the normal course, with the flat
-section at one adaptive item to match its initial training difficulty. After
-selection, test the best model with new seeds and `--randomized`, and test the
-flat specialist with up to six adaptive items before relying on it.
-
-#### Train the flat course with a success-gated curriculum
+## Legacy flat course with a success-gated curriculum
 
 Use `combined_flat_curriculum.yaml` for a new PPO run, after stopping the old
-flat Optuna tuner. It does not change the original flat study or the rough
-course. Stage 0 removes all cables and adaptive items to check physical goal
+flat Optuna tuner. It does not change the original flat study.
+Stage 0 removes all cables and adaptive items to check physical goal
 arrival. Stages 1–6 add the six cables one at a time, stages 7–9 widen their
 angle range to ±10°, ±20°, and ±30°, and stages 10–15 add one adaptive item
 at a time. The start and goal remain fixed. A stage advances after at least
@@ -765,235 +401,6 @@ the estimated stop margin and raises minimum approach speed. Start a new
 contract with `--init-speed-model` to reuse only the old actor's features and
 speed output; the yaw head, critic and optimizer start fresh. See the
 [20k pilot, Laya and matching PI comparison commands](docs/FLAT_SPEED_YAW_PILOT_2026-10-07.md).
-
-The two `nino_ppo_final.zip` files **cannot be merged by averaging weights**.
-They can be used in a switched controller that runs the rough policy before
-x≈6.55 m and the flat policy after that point, but that controller is not yet
-implemented. To obtain one checkpoint, initialize a new combined-course run
-from one specialist actor, then fine-tune and evaluate on the entire combined
-world; the other specialist's skill is not automatically retained.
-
-### Tune the full combined course with Optuna
-
-With the combined Gazebo world running in terminal A, set up terminal B as
-shown above, install Optuna in the project virtual environment, and run trials
-sequentially against that one simulator:
-
-```bash
-cd ~/ninorobot
-python -m pip install optuna
-python src/nino_rl/scripts/tune_combined_optuna.py \
-  --config src/nino_rl/config/combined_course.yaml \
-  --trials 12 --timesteps 50000 --eval-episodes 12 \
-  --output rl_runs/combined_optuna
-```
-
-The default uses `artifacts/old_1_5m/nino_ppo_final.zip` as an actor
-initialization. Each trial starts a fresh run and tunes selected active reward weights,
-challenge bonuses, learning rate, and PPO update settings. The policy network
-shape stays fixed so the old actor can transfer. To tune actor/critic widths,
-history features, activation, and initial action scales too, add
-`--from-scratch`; those trials do not use the old checkpoint. Task geometry,
-sensors, and terminal success criteria stay fixed so trials
-share a comparable task. The [fixed evaluation objective](docs/optuna_objective_2026-10-08/README.md)
-requires at least 95% physical arrival on every evaluated route, then ranks
-completion time, lateness, physical path error, vibration and slip. It does not
-maximize the training reward being tuned. The study persists in `study.db`;
-rerun the same command to add trials with unchanged inputs. Legacy-score
-studies require a new output directory. A qualified `best_trial.yaml` is
-exported only after a trial meets the arrival requirement. Read it and the
-best trial's evaluation report before training a
-longer run. Validate the selected policy on **new** seeds, since the trial
-evaluation seeds were used to select it. Twelve trials are an initial search
-in a large parameter space, so retest the selected configuration. To train
-longer with the best warm-start configuration:
-
-```bash
-ros2 run nino_rl train --device cuda \
-  --config rl_runs/combined_optuna/best_trial.yaml \
-  --init-model artifacts/old_1_5m/nino_ppo_final.zip \
-  --timesteps 500000 --checkpoint-every 25000 \
-  --output rl_runs/combined_tuned_500k
-```
-
-For a `--from-scratch` study, omit `--init-model` in this command. Use
-`--init-model`, rather than `--resume`, when transferring the old actor to a
-new combined-course run. Regenerating the terrain changes the physical task;
-start a new combined run after this pothole edit.
-
-### Inspect training with Laya
-
-Laya is an optional classifier for training statistics. It reads the trainer's
-`episodes.jsonl`, compares the latest and previous episode windows, and names
-one issue to inspect. The numeric metrics come directly from the log; Laya's
-label is a suggestion, not a measured cause or a change to PPO or rewards.
-The monitor uses CPU so the training GPU remains available. The first
-classification downloads Laya's model checkpoint from Hugging Face.
-
-```bash
-cd ~/ninorobot
-source .venv/bin/activate
-python -m pip install 'laya==0.3.22'
-python src/nino_rl/scripts/laya_training_monitor.py \
-  rl_runs/combined_optuna_2day_v1 --window 100 --watch
-```
-
-For the two split-course studies, run one monitor per course in separate
-terminals. Each follows only that study's newest training trial and appends
-structured reports to a separate JSONL file:
-
-```bash
-python src/nino_rl/scripts/laya_training_monitor.py \
-  rl_runs/combined_rough_optuna_fresh --course rough \
-  --window 100 --watch --interval 300 \
-  --output rl_runs/laya_monitors/rough.jsonl
-```
-
-```bash
-python src/nino_rl/scripts/laya_training_monitor.py \
-  rl_runs/combined_flat_optuna_fresh --course flat \
-  --window 100 --watch --interval 300 \
-  --output rl_runs/laya_monitors/flat.jsonl
-```
-
-Each report includes success and termination counts, ground-truth and wheel
-odometry endpoint errors, odometry drift, and Laya's suggested issue. Read the
-counts and errors first: the installed Laya checkpoint can disagree with the
-dominant measured failure and its confidence is not calibrated for this task.
-These monitors read logs and do not change Optuna trials, PPO weights, rewards,
-or robot commands.
-
-The monitor accepts a timestamped run directory, its parent `train` directory,
-or the Optuna study directory; for a study it follows the newest trial. It can
-start before the first episode is written. Use `--preview` to see the statistics without loading Laya;
-omit `--watch` for a one-time report. With `--watch`, it checks every five
-minutes and waits for 20 episodes before asking Laya. Stop it with Ctrl+C.
-Compare `laya_advisory` with `most_common_failure_group`; the packaged
-checkpoint has issued a temperature-calibration warning in this environment,
-so do not treat its confidence number as a reliable probability.
-
-## Rocky Hall: run, drive, train, and evaluate
-
-Complete the installation in sections 1–5 below first. From the repository
-root, regenerate the current terrain and build its ROS packages:
-
-```bash
-cd ~/ninorobot
-source /opt/ros/jazzy/setup.bash
-source .venv/bin/activate
-python src/nino_description/scripts/generate_rocky_world.py
-python -m colcon build --symlink-install --packages-select nino_description nino_rl
-source install/setup.bash
-```
-
-In **each new terminal**, run this setup before any Rocky Hall command:
-
-```bash
-cd ~/ninorobot
-source /opt/ros/jazzy/setup.bash
-source .venv/bin/activate
-source install/setup.bash
-export ROS_DOMAIN_ID=${NINO_ROS_DOMAIN_ID:-77}
-export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
-```
-
-Start the world in terminal A. Use `headless:=true` for training without the
-Gazebo window; keep this launch running while training or evaluating.
-
-```bash
-ros2 launch nino_rl rocky_training.launch.py headless:=false
-```
-
-To drive manually, run this in terminal B, with that terminal focused. Stop
-teleop before starting a trainer or evaluator so only one process commands
-`/cmd_vel`.
-
-```bash
-ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/cmd_vel
-```
-
-To check the training pipeline, run a short **fresh** job in terminal B. Stop
-manual teleop first. This profile uses a 6 m straight route and CUDA by
-default; old cable-course checkpoints have different action meanings. Start a
-new run after changing the terrain mesh so its results describe this surface.
-
-```bash
-ros2 run nino_rl train --device cuda \
-  --config src/nino_rl/config/rocky_tracking.yaml \
-  --timesteps 4096 --check-env --output rl_runs/rocky_tracking
-```
-
-For a longer fresh run, use the same command with more steps and checkpoints:
-
-```bash
-ros2 run nino_rl train --device cuda \
-  --config src/nino_rl/config/rocky_tracking.yaml \
-  --timesteps 200000 --checkpoint-every 25000 \
-  --output rl_runs/rocky_tracking
-```
-
-View training metrics in another prepared terminal with
-`.venv/bin/tensorboard --logdir rl_runs/rocky_tracking --port 6007`.
-
-Training prints its timestamped run directory under `rl_runs/rocky_tracking/`.
-After stopping the trainer, evaluate the baseline and saved PPO model **one at
-a time** while terminal A is still running. Replace `<run-id>` with the
-directory printed by training:
-
-```bash
-ros2 run nino_rl evaluate_baseline --episodes 20 --seed 10000 \
-  --config src/nino_rl/config/rocky_tracking.yaml \
-  --output rl_runs/rocky_baseline
-ros2 run nino_rl evaluate --device cuda --episodes 20 --seed 10000 \
-  --config rl_runs/rocky_tracking/<run-id>/ppo.yaml \
-  --model rl_runs/rocky_tracking/<run-id>/nino_ppo_final.zip \
-  --output rl_runs/rocky_evaluation
-```
-
-The terrain mesh is fixed when generated; changing the training seed does not
-create a new map. See the [terrain preview, training metrics, and experiment
-details](docs/ROCKY_TRACKING.md).
-
-### Tune Rocky Hall PPO with Optuna
-
-Install the optional tuner in the same virtual environment, then start the
-headless Rocky Hall world in terminal A using the setup above:
-
-```bash
-python -m pip install optuna
-ros2 launch nino_rl rocky_training.launch.py headless:=true
-```
-
-In a second prepared terminal, run sequential trials against that world:
-
-```bash
-python src/nino_rl/scripts/tune_rocky_optuna.py \
-  --device cuda --trials 12 --timesteps 50000 --eval-episodes 10 \
-  --output rl_runs/rocky_optuna
-```
-
-The script tunes PPO learning rate, batch size, training epochs, entropy
-coefficient, and clip range. Every trial saves its config, training log, model,
-and evaluation report under `rl_runs/rocky_optuna/trial_*/`. Optuna stores the
-study in `rl_runs/rocky_optuna/study.db`. Run the same command again to add
-trials; use a new `--output` directory if you change the base config, training
-budget, evaluation seeds or episode count, or device. The 4096-step smoke test
-above is too short to rank policies reliably. Keep one tuning process on the
-world; parallel trials need separate Gazebo and ROS instances.
-
-The [fixed evaluation objective](docs/optuna_objective_2026-10-08/README.md)
-requires at least 95% physical arrival on every evaluated route and scores
-completion time, lateness, physical path error, vibration and slip using
-frozen weights and scales. Training reward weights do not change that score.
-Legacy-score studies require a new output directory; no qualified best model
-is exported until a trial passes the arrival requirement.
-After tuning, run `ros2 run nino_rl evaluate` again
-with the printed best model and its sibling `ppo.yaml`, using new seeds and
-more episodes. Compare that report with a baseline report made with the same
-seeds and episode count; the tuning evaluations are already used for model
-selection and are not a final test. If your intended training budget is much
-longer than 50000 steps, retrain the promising settings at that budget before
-choosing a final model.
 
 ## 1. Prepare Ubuntu and the NVIDIA GPU
 

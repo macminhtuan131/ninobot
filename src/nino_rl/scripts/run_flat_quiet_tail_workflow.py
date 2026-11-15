@@ -14,8 +14,8 @@ import yaml
 
 ROOT=Path(__file__).resolve().parents[3]
 sys.path[:0]=[str(Path(__file__).parent),str(ROOT/'src/nino_rl')]
-from prepare_rough_foundations import digest,immutable
-from run_disturbance_reference_comparisons import read,verify,replace,analyze_flat,metrics
+from experiment_assets import digest,immutable
+from experiment_assets import read,verify,replace,analyze_flat,metrics
 from audit_flat_schedule import SOURCE,OUTPUT as AUDIT
 
 OUTPUT=ROOT/'rl_runs/flat_quiet_tail_correction_v2'
@@ -71,7 +71,7 @@ def environment(output):
 
 
 def evaluate_screen(config,plan):
-    from train_rough_curriculum import Processes,assert_isolated,complete_evaluation
+    from experiment_processes import Processes,assert_isolated,complete_evaluation
     from nino_rl.tuning_trials import assert_trial_inputs
     study=read(ROOT/'rl_runs/flat_focused_optuna_v1/trial_plan.json')['trials']
     processes=Processes(environment(OUTPUT),pi_integrator_profile='conditional_v1')
@@ -203,7 +203,7 @@ def prepare_learning():
 
 
 def learning_run(root,plan):
-    from train_rough_curriculum import Processes,assert_isolated,complete_evaluation,checkpoint_steps,newest_checkpoint
+    from experiment_processes import Processes,assert_isolated,complete_evaluation,checkpoint_steps,newest_checkpoint
     from nino_rl.tuning_trials import assert_trial_inputs
     study=read(ROOT/'rl_runs/flat_focused_optuna_v1/trial_plan.json')['trials']
     env=environment(root);processes=Processes(env,pi_integrator_profile='conditional_v1')
@@ -297,10 +297,10 @@ def tune(pilot,trials=6):
         result=learning_run(directory,plan)
         gates=result['existing_flat_gates']
         if not gates['physical_arrival']:
-            from train_rough_curriculum import complete_evaluation
+            from experiment_processes import complete_evaluation
             rate=complete_evaluation(directory/'schedule',5)[1]['success_rate'];score=-1000-100*(1-rate)
         else:
-            from train_rough_curriculum import complete_evaluation
+            from experiment_processes import complete_evaluation
             candidate=metrics(complete_evaluation(directory/'schedule',5)[1]);pi=metrics(complete_evaluation(directory/'full',5)[1])
             score=-(.30*candidate['time_seconds']/18.5+.20*candidate['truth_path_rmse_m']/pi['truth_path_rmse_m']+
                 .25*candidate['rms_vertical_acceleration_m_s2']/pi['rms_vertical_acceleration_m_s2']+
@@ -319,18 +319,11 @@ def tune(pilot,trials=6):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--run',action='store_true')
-    p.add_argument('--wait-for-rough',action='store_true');p.add_argument('--tune-if-pass',action='store_true')
+    p.add_argument('--tune-if-pass',action='store_true')
     args=p.parse_args();os.chdir(ROOT);config,plan=prepare()
     if not args.run:print('Prepared one quiet-tail correction; no simulator launched.');return
     lock=(OUTPUT/'worker.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     try:
-        if args.wait_for_rough:
-            status(OUTPUT,'queued: waiting for rough workflow to release simulator')
-            rough=(ROOT/'rl_runs/rough_holding_reference_candidate_v1/runner.lock').open('a')
-            while True:
-                try:fcntl.flock(rough,fcntl.LOCK_EX|fcntl.LOCK_NB);break
-                except BlockingIOError:time.sleep(5)
-            rough.close()
         result=evaluate_screen(config,plan)
         if not result['authority_passed']:return
         root,learning=prepare_learning();result=learning_run(root,learning)

@@ -38,7 +38,7 @@ class HeightWorldTest(unittest.TestCase):
                 self.assertEqual(sidecar["cables"][0]["radius_m"],height/2)
 
     def test_22mm_world_identical_to_previous_frozen_reference(self):
-        previous=ROOT/"rl_runs/governor_frozen_repeats_2026-10-16/attempt_01/confirmation/repeat/scenario.sdf"
+        previous=Path(__file__).parent/"fixtures/legacy_flat/height_22mm.sdf"
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/"world.sdf"
             make_height_world(path,.022)

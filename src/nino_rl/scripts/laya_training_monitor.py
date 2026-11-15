@@ -97,8 +97,8 @@ def statistics(rows: list[dict]) -> dict:
 def report(rows: list[dict], window: int, active_stage=None) -> dict:
     if not rows:
         raise ValueError("No complete episodes found")
-    stage = active_stage if active_stage is not None else rows[-1].get("rough_curriculum_stage")
-    stage_rows = [row for row in rows if row.get("rough_curriculum_stage") == stage] if stage is not None else rows
+    stage = active_stage if active_stage is not None else rows[-1].get("flat_curriculum_stage")
+    stage_rows = [row for row in rows if row.get("flat_curriculum_stage") == stage] if stage is not None else rows
     current = statistics(stage_rows[-window:])
     previous = statistics(stage_rows[-2 * window:-window]) if len(stage_rows) > window else None
     current["per_route"] = {route: statistics([row for row in stage_rows[-window:]
@@ -116,7 +116,7 @@ def report(rows: list[dict], window: int, active_stage=None) -> dict:
         max(failure_groups, key=failure_groups.get) if any(failure_groups.values())
         else "no_clear_issue"
     )
-    return {"total_episodes": len(rows), "stage_episodes": len(stage_rows), "rough_stage": stage,
+    return {"total_episodes": len(rows), "stage_episodes": len(stage_rows), "active_stage": stage,
             "terrain_variant_id": rows[-1].get("terrain_variant_id"), "window": window,
             "latest_training_step": rows[-1].get("training_step"),
             "current": current, "previous": previous}
@@ -195,7 +195,7 @@ def main() -> None:
     parser.add_argument("--interval", type=float, default=300, help="Watch interval in seconds")
     parser.add_argument("--preview", action="store_true", help="Show metrics without loading Laya")
     parser.add_argument("--threads", type=int, default=2, help="CPU threads for Laya; keep simulation capacity free")
-    parser.add_argument("--course", choices=("rough", "flat"),
+    parser.add_argument("--course", choices=("flat", "factory"),
                         help="Label reports from this course")
     parser.add_argument("--output", type=Path,
                         help="Append each new JSON report to this file")

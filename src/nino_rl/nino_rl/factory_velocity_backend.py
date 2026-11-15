@@ -219,6 +219,11 @@ class FactoryVelocityBackend:
               'accept_torque:=false','contact_lab:=true','terrain_preview:=false',
               'caster_wheel_damping:=0.001','pi_integrator_profile:=conditional_v1',
               'max_wheel_torque:=4.0','controller_startup_timeout:=300']
+        initial = self.config['backend'].get('initial_pose_xy_yaw')
+        if initial is not None:
+            if len(initial) != 3 or not all(math.isfinite(v) for v in initial):
+                raise ValueError('Explicit finite requested spawn XY/yaw required')
+            args.extend(k+':='+str(v) for k, v in zip(('spawn_x', 'spawn_y', 'spawn_yaw'), initial))
         (self.episode_dir/'launch_argv.json').write_text(json.dumps(args,indent=2)+'\n')
         self.launch=subprocess.Popen(args,env=self.environment,stdout=self.log,stderr=subprocess.STDOUT,start_new_session=True)
         end=time.monotonic()+330.;last_report=0

@@ -13,8 +13,8 @@ import yaml
 ROOT = Path(__file__).resolve().parents[3]
 sys.path[:0] = [str(ROOT/'src/nino_rl'), str(Path(__file__).parent)]
 from nino_rl.flat_reactive_research import FIELDS, scenario_bank
-from prepare_rough_foundations import digest, immutable
-from run_disturbance_reference_comparisons import replace, verify
+from experiment_assets import digest, immutable
+from experiment_assets import replace, verify
 
 SPEC = ROOT/'src/nino_rl/config/flat_proprioceptive_research.yaml'
 OUTPUT = ROOT/'rl_runs/flat_proprioceptive_v1'
@@ -210,7 +210,7 @@ def prepare(output, spec_path=SPEC):
         assets={str(p):digest(p) for p in inputs}, source_assets=original['assets'],
         config=str(output/'config.yaml'), world=str(output/'world.sdf'),
         python_overlay=str(output/'python'), bank=str(output/'scenarios.json'), profiles=profiles,
-        active_actor_fields=FIELDS, primary='flat_only', rough='deferred_and_preserved',
+        active_actor_fields=FIELDS, primary='flat_only', retired_course='removed',
         training_started=False, optuna_held=True, simulator_started=False,
         limitation='No new learned policy. Rigid circular obstacles; no soft-cable or caster-observability claim.')
     immutable(saved, json.dumps(plan, indent=2)+'\n')
@@ -224,7 +224,7 @@ def main():
     args = parser.parse_args()
     plan = prepare(args.output, args.spec)
     print(f"Prepared {plan['revision']}: {args.output.resolve()}")
-    print('18 sensor/command values × 5 frames; rough deferred; no simulation/PPO/Optuna started.')
+    print('18 sensor/command values × 5 frames; factory/flat scope; no simulation/PPO/Optuna started.')
 
 
 if __name__ == '__main__':

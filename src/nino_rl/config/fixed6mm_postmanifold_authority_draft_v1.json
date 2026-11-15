@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "protocol_id": "nino_fixed6mm_postmanifold_authority_draft_v1_2026_11_08",
+  "status": "prepared_not_released",
+  "question": "Can a +/-0.005m/s common reference AFTER first received C1 manifold change wheel/body response before remaining contact and improve nominal tracking?",
+  "scientific_scope": "Oracle post-manifold tracking/authority in fixed6mm only; no loaded-contact, slip, impact-risk, TD3, DR or hardware claim",
+  "release": {
+    "physics_allowed": false,
+    "allocated_attempts": 0,
+    "training_allowed": false,
+    "training_transitions": 0,
+    "optimizer_updates": 0,
+    "hardware_actions": 0,
+    "runtime_implemented": false
+  },
+  "intervention": {
+    "levels": [
+      -1,
+      0,
+      1
+    ],
+    "common_bound_m_s": 0.005,
+    "control_interval_s": 0.1,
+    "source_stops_s": [
+      6.0,
+      8.0
+    ],
+    "horizon_s": 14.0,
+    "source_warmup_s": 0.5,
+    "withdraw_lead_s": 0.5,
+    "nominal_steady_m_s": 0.2,
+    "trigger": "first_received_causal_C1_manifold"
+  },
+  "fixed": {
+    "scenario": "box_c1_6mm",
+    "pi_ki": 0.1,
+    "pi_kp": 0.3,
+    "sim_common_gain": 1.0,
+    "bump_x_m": 0.65,
+    "bump_radius_m": 0.003,
+    "floor_mu": 1.0,
+    "history": "5frames/10Hz inherited, never retuned here",
+    "yaw_follower": "inherited wheel/IMU",
+    "before_trigger": "B0 zero residual in ALL arms; no precontact scheduled compensation",
+    "after_withdrawal": "zero residual; preserve source-zero priority, shaping and actuator limits",
+    "reward": "unchanged diagnostic only; no actor/optimizer loaded"
+  },
+  "proposed_attempts": [
+    {
+      "id": "E2-01",
+      "block": 0,
+      "stop_s": 6.0,
+      "level": 0,
+      "reset": "fresh_owned_launch_not_snapshot"
+    },
+    {
+      "id": "E2-02",
+      "block": 0,
+      "stop_s": 6.0,
+      "level": -1,
+      "reset": "fresh_owned_launch_not_snapshot"
+    },
+    {
+      "id": "E2-03",
+      "block": 0,
+      "stop_s": 6.0,
+      "level": 1,
+      "reset": "fresh_owned_launch_not_snapshot"
+    },
+    {
+      "id": "E2-04",
+      "block": 0,
+      "stop_s": 8.0,
+      "level": 1,
+      "reset": "fresh_owned_launch_not_snapshot"
+    },
+    {
+      "id": "E2-05",
+      "block": 0,
+      "stop_s": 8.0,
+      "level": 0,
+      "reset": "fresh_owned_launch_not_snapshot"
+    },
+    {
+      "id": "E2-06",
+      "block": 0,
+      "stop_s": 8.0,
+      "level": -1,
+      "reset": "fresh_owned_launch_not_snapshot"
+    },
+    {
+      "id": "E2-07",
+      "block": 1,
+      "stop_s": 8.0,
+      "level": -1,
+      "reset": "fresh_owned_launch_not_snapshot"
+    },
+    {
+      "id": "E2-08",
+      "block": 1,
+      "stop_s": 8.0,
+      "level": 0,
+      "reset": "fresh_owned_launch_not_snapshot"
+    },
+    {
+      "id": "E2-09",
+      "block": 1,
+      "stop_s": 8.0,
+      "level": 1,
+      "reset": "fresh_owned_launch_not_snapshot"
+    },
+    {
+      "id": "E2-10",
+      "block": 1,
+      "stop_s": 6.0,
+      "level": 1,
+      "reset": "fresh_owned_launch_not_snapshot"
+    },
+    {
+      "id": "E2-11",
+      "block": 1,
+      "stop_s": 6.0,
+      "level": -1,
+      "reset": "fresh_owned_launch_not_snapshot"
+    },
+    {
+      "id": "E2-12",
+      "block": 1,
+      "stop_s": 6.0,
+      "level": 0,
+      "reset": "fresh_owned_launch_not_snapshot"
+    }
+  ],
+  "proposed_budget": {
+    "max_attempts": 12,
+    "task_ticks_max": 1680,
+    "task_seconds_max": 168,
+    "retries": 0,
+    "integration_slots_included": true,
+    "extra_smokes": 0,
+    "optimizer_updates": 0,
+    "hardware_actions": 0,
+    "wall_seconds_per_attempt": 300,
+    "wall_seconds_batch": 3600,
+    "estimated_raw_bytes": 503316480,
+    "estimated_metadata_margin_bytes": 134217728,
+    "free_space_reserve_bytes": 1073741824,
+    "disk_estimate_is_bound": false
+  },
+  "measurement": {
+    "primary": "GT-header integral squared body velocity error against independent nominal shaped reference",
+    "units": "m^2/s",
+    "window": "own first C1 source manifold tc through tc+3s, exclusive endpoint",
+    "grids": [
+      "GT-header20ms causal as-of",
+      "GT-header20ms shifted+10ms causal as-of"
+    ],
+    "native": "keep 100ms task/nominal replay separate; same direction required, never merge metrics",
+    "integration": "sum(error^2 * actual supported dt); no future interpolation or invented samples",
+    "support": "each window boundary and causal nominal needed; no unsupported extrapolation; >=98% supported duration, max GT gap<=40ms",
+    "secondary": [
+      "requested/windowed/accepted/driver reference",
+      "post-ramp L/R target then L/R actual wheel",
+      "body delta/response interval relative to first DRIVE-wheel C1 manifold; report intervening caster contacts separately",
+      "full14s native vRMSE",
+      "cross-track RMSE/max",
+      "marker/continuous stop and quiet onset",
+      "sampled body-Z acceleration RMS; NOT force/impulse/damage",
+      "saturation and all failures"
+    ],
+    "contact": "C1 manifold per component; loaded force explicitly unavailable in inherited backend",
+    "clocks": "contact/GT/driver source sim time + callback monotonic + decision sim/monotonic; never infer receipt causality from header alone"
+  },
+  "decision_rules": {
+    "accepted": false,
+    "scope": "proposed research screen, not factory requirements or safety tolerances",
+    "preintervention_body_rms_caliper_m_s": 0.001,
+    "preintervention_window": "last0.5s before own first C1; also report full approach and caster audit",
+    "useful_body_difference_m_s": 0.001,
+    "body_difference_persistence_s": 0.2,
+    "wheel_difference": "both wheels same sign as accepted common; source-timed observed intervals",
+    "useful_timing": "body contrast observed wholly before first DRIVE-wheel C1 manifold; intervening caster contact is reported but not the timing deadline; overlap/missing => unknown; first contact already drive => no remaining horizon for this claim",
+    "minimum_primary_relative_reduction": 0.05,
+    "maximum_full_route_rms_regression_fraction": 0.02,
+    "maximum_quiet_onset_regression_s": 0.1,
+    "path_max_m": 0.04,
+    "local_progress_marker_m": 0.95,
+    "continuous_stop_s": 2.0,
+    "estimand": "each sign/stop separately: equal mean of two within-block candidate/B0 ratios minus1; retain absolute differences and BOTH block signs; zero B0 denominator => unknown",
+    "go": ">=5% primary reduction BOTH blocks/BOTH stops/BOTH GT grids and native same direction, useful wheel/body contrast plus all task/path/stop constraints; nomination for classical confirmation only",
+    "no_go": "valid comparable data but no useful authority, no consistent primary gain or constraint failure: keep classical in this envelope; not a claim that every speed/action is impossible",
+    "unknown": "approach caliper, missing trigger/phase/coverage, causality clock or grid/block inconsistency; close at fixed budget, no automatic repeat or sample expansion",
+    "correction": "at most ONE software/measurement correction with cause recorded; stop current release, preserve consumed/failed slots, separate version/release required; never refill slots",
+    "learning": "no training release from this protocol; need value beyond fixed classical schedule and independent validation/test bank"
+  },
+  "runtime_prerequisites": [
+    "Isolated E2 adapter/runner + identity, no common103 checkpoint loading or parent ABI mutation",
+    "Oracle is outside deployable observation packet; explicit zero-arm trigger and no-trigger handling",
+    "Decision monotonic cutoff and causal event eligibility emitted; old E1 trace lacks this proof",
+    "Use inherited reliable independent joint/GT and command/limit/cadence/readback checks; no B0-only PI wrapper for nonzero actions",
+    "Offline parity, failure injection and source/install pins; choose and freeze full contract before release",
+    "First neutral slot is included integration; cannot add smoke/retry; review each slot",
+    "Disk preflight/owned processes/timeout/closure ledger and explicit allocation remain necessary"
+  ],
+  "limitations": [
+    "Manifold is not loaded contact; first impact may precede any effect",
+    "All arms use first C1 oracle, so this is not sensor-only governor evidence",
+    "B0 precontact differs from E1 classical scheduled precontact: do not pool E1 as this control",
+    "Fresh-launch requested seeds are not exact-state causal branches; two blocks only descriptive",
+    "Ki0.15 from clean floor is deferred, not stacked with intervention",
+    "Tracking gain does not establish lower slip/vibration/contact risk",
+    "The fixed common sign oracle is not a tuned optimum or a learned predictor"
+  ],
+  "frozen_inputs": {
+    "src/nino_control/nino_control/residual_velocity.py": "4126bfba0e273cd0232b14df08fc2254c55de1becefd79f54edcd448dfe735cb",
+    "src/nino_control/nino_control/effort_drive.py": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+    "src/nino_rl/nino_rl/equal_information_contract.py": "300b6c3de9a77eb3950908fc4e28a08b4b8ef2fd7eb98c742a15174bbb1f24e7",
+    "src/nino_rl/nino_rl/equal_information_v2.py": "64aa95b4a92d8c1141f29cc4bf1bf81e89906a0ef631340ca9f79a4b53345afa",
+    "src/nino_rl/nino_rl/factory_velocity_backend.py": "d6ee8c4b0506b07bbedc8d824d0819f4c3e12bff365a023d7f5a598e5098f0b3",
+    "src/nino_rl/nino_rl/pi_screen_backend.py": "940365c7aa92ee770699299d2b367754d122b4dbdd972b26eee6490779c13319",
+    "src/nino_rl/nino_rl/pi_screen_contract.py": "64b728167768462c3cc248470609b85a00a6ffbd18a26da0435570d80591fe9f",
+    "src/nino_rl/nino_rl/residual_sim_pilot.py": "41b613bdc3e8f393eafe6a021086138b64f919fffc0a035842243b80b4c87641"
+  },
+  "spec_sha256": "f703b84470da6c7f2d005b478e3e9890c5b3a31207025291aab6ea5154d50e5e"
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "protocol_id": "nino_common_v2_corrected_integration_draft_v1_2026_11_08",
+  "status": "draft_not_released",
+  "released": false,
+  "allocated_attempts": 0,
+  "request": {
+    "schema_version": 2,
+    "engine": "common103_v2",
+    "mode": "train",
+    "scenario": "box_c1_6mm_dr",
+    "profile": "nino_td3_smoke_h5_v1",
+    "timesteps": 280,
+    "seed": 11,
+    "checkpoint_every": 0,
+    "wall_minutes": 30,
+    "evaluate": true,
+    "resume": null
+  },
+  "proposed_budget": {
+    "training_transitions": 280,
+    "training_launches_max": 3,
+    "evaluation_launches": 6,
+    "evaluation_transitions": 840,
+    "optimizer_updates_max": 280,
+    "hardware_actions": 0,
+    "retries": 0,
+    "estimated_output_bytes": 405946368,
+    "estimated_training_raw_bytes": 125829120,
+    "estimated_retained_bytes": 280117248,
+    "required_free_bytes": 1479688192,
+    "disk_estimate_is_bound": false,
+    "reserve_bytes": 1073741824,
+    "stop_schedule_s": [
+      6.0,
+      8.0
+    ],
+    "steps_per_episode": 140
+  },
+  "proposed_wall_minutes_max": 30,
+  "engine_sources": {
+    "controller": "24ebd89a49f40ef11596d437c6441b5fd10e3a1cc0ce70c5df86013c2d5a072b",
+    "drive_ready": "f98acf799df1a2833530056828e06f77a0d65a481358dd39f24dc42bba39de2a",
+    "files": {
+      "src/nino_rl/nino_rl/common_training_studio_v2.py": "0d49bbcfbd9192446523a3ba3bdd8c5b3a4c171c69ba74c9e9cd929e9ee89b77",
+      "src/nino_rl/nino_rl/common_studio_v2_contract.py": "3cfa2f9c5610608f35c75e667420dd790546bb23d602c07ef2213195e24017b6",
+      "src/nino_rl/nino_rl/equal_information_v2.py": "64aa95b4a92d8c1141f29cc4bf1bf81e89906a0ef631340ca9f79a4b53345afa",
+      "src/nino_rl/nino_rl/studio_v2_metrics.py": "38bdfef96c1b67925394a7dcb2e0bb7fdbee7f320391f7448d96199ae5923bc0",
+      "src/nino_rl/nino_rl/td3_experiment_matrix.py": "690e00becc191d614548fc4329e6a19c2844f442d3b749215ca04cc8f25db478",
+      "src/nino_rl/nino_rl/training_studio_api_v2.py": "5d5cec70663ee7562725f72856889c5dde2264fb5f304ce050d781fa280331f5",
+      "src/nino_rl/nino_rl/td3_training_studio.py": "cdb235ce2beef218dac538437a502ebc04265569d225a4384e6f417bbd737007",
+      "src/nino_rl/scripts/common_training_studio_v2.sh": "5aeffce483a14fa96035db8fbc458400dd6f120813337962d6d430f92a96102c"
+    }
+  },
+  "new_training_jobs": 0,
+  "new_physics_steps": 0,
+  "scope": "Integration with real optimizer updates under smoke profile; no controller benefit or DR generalization claim",
+  "gui_steps": [
+    "Mở tab Train TD3 · Sim",
+    "Chọn common103_v2 và box_c1_6mm_dr",
+    "Chọn nino_td3_smoke_h5_v1, 280 timesteps, seed11, checkpoint interval0, wall30 phút",
+    "Tắt đa seed/resume; bật evaluation",
+    "Chỉ khi protocol được review: dùng Train, không dùng nút Smoke64; đây là job integration"
+  ],
+  "stop_rule": "Any readiness/measurement/task/closure failure closes proposal run; retain artifacts, no automatic retry",
+  "go_rule": "Two complete training episodes, exact counters/replay, valid 6 development evaluations, source/install/world/GUI/retention checks; integration only",
+  "limitation": "This wrapper intentionally is not an executable Studio request; no release was granted by preparing it"
+}

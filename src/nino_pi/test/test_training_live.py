@@ -138,3 +138,43 @@ def test_button_finds_new_worker_after_completed_job(fixture,monkeypatch):
     workers.clear();p.find_live()
     assert p.live_reader is None and 'Chưa tìm thấy' in p.live_note.text()
     p.close();q.processEvents()
+
+
+def test_v2_worker_events_are_discovered_and_counted(fixture):
+    f=fixture
+    argv=(f['process']/'cmdline').read_bytes()
+    (f['process']/'cmdline').write_bytes(argv.replace(b'nino_rl.training_studio_api',b'nino_rl.training_studio_api_v2'))
+    request=dict(f['request'],engine='common103_v2')
+    write(Path(f['request_path']) if 'request_path' in f else f['proc'].parent/'request.json',request)
+    workers=live.discover(proc=f['proc'])
+    assert len(workers)==1 and workers[0]['engine']=='common103_v2'
+    with f['log'].open('a') as stream:
+        stream.write(live.PREFIX+json.dumps(dict(action='td3-common-studio-v2',global_steps=23000,
+            phase='train',message='v2 critic 12999'))+'\n')
+    snapshot=live.LiveJob(workers[0]).poll()
+    assert snapshot['additional_steps']==3000 and snapshot['critic_updates']==12999
+
+
+def test_campaign_discovery_tracks_active_child_and_does_not_unlock_between_seeds(fixture):
+    f=fixture
+    argv=(f['process']/'cmdline').read_bytes()
+    (f['process']/'cmdline').write_bytes(argv.replace(b'nino_rl.training_studio_api',b'nino_rl.training_studio_api_v2'))
+    request=dict(f['request'],engine='common103_v2',resume=None,seed=11,
+                 multi_seeds=[11,22,33],auto_prune_raw=True)
+    write(f['proc'].parent/'request.json',request)
+    write(f['directory']/'job.json',dict(status='running',mode='multi_seed',seeds=[11,22,33],request=live.normalized(request)))
+    child=f['directory']/'seed22'
+    child_request=dict(live.normalized(request),seed=22)
+    write(child/'job.json',dict(status='running',request=child_request))
+    workers=live.discover(proc=f['proc'])
+    assert len(workers)==1 and workers[0]['directory']==str(child)
+    assert workers[0]['request']['seed']==22
+    assert workers[0]['campaign_directory']==str(f['directory'])
+    write(child/'coverage.json',dict(total=120))
+    reader=live.LiveJob(workers[0])
+    with f['log'].open('a') as stream:
+        stream.write(live.PREFIX+json.dumps(dict(action='td3-common-studio-v2',directory=str(f['directory']/'seed11'),global_steps=50000))+'\n')
+    assert reader.poll()['additional_steps']==120  # Other seed's log cannot overwrite counters.
+    write(child/'job.json',dict(status='completed',request=child_request))
+    snapshot=reader.poll()
+    assert snapshot['status']=='running' and snapshot['phase']=='between_seeds'

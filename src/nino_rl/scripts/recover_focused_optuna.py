@@ -108,14 +108,14 @@ def retry_startup(directory, section, number):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--apply', action='store_true', help='Back up, queue retries and mark abandoned trials FAIL')
-    parser.add_argument('--section', choices=('flat', 'rough', 'both'), default='both')
+    parser.add_argument('--section', choices=('flat',), default='flat')
     parser.add_argument('--target-trials', type=int, default=12)
     args = parser.parse_args()
     if args.target_trials < 1:
         parser.error('--target-trials must be positive')
     if args.apply and (workers := active_workers()):
         parser.error(f'Tuning/training/evaluation workers are still active (PIDs {workers}); stop them before recovery')
-    sections = ('flat', 'rough') if args.section == 'both' else (args.section,)
+    sections = (args.section,)
     for section in sections:
         result = recover(ROOT / 'rl_runs' / f'{section}_focused_optuna_v1', section,
                          apply=args.apply, target=args.target_trials)

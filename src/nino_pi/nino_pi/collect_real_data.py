@@ -88,6 +88,7 @@ def stop_child(child, grace=15):
 
 def inspect_bag(directory, config):
     """Read original SQLite messages without conversion, filtering or resampling."""
+    from nino_pi.bag_io import sqlite_readonly, metadata_topic_mismatches
     if config.get('storage_id') == 'mcap':
         from nino_pi.bag_io import records, metadata
         topics, errors = {}, []
@@ -102,6 +103,9 @@ def inspect_bag(directory, config):
                 row['last_bag_time_ns'] = max(row['last_bag_time_ns'], stamp)
             if sum(r['count'] for r in topics.values()) != meta['message_count']:
                 errors.append('metadata_storage_count_mismatch')
+            mismatches = metadata_topic_mismatches(meta, {n: r['count'] for n, r in topics.items()})
+            if mismatches:
+                errors.append('metadata_topic_count_mismatch:' + json.dumps(mismatches, sort_keys=True))
         except Exception as exc:
             errors.append('mcap_read:'+str(exc))
         missing = [r['name'] for r in config['topics'] if not topics.get(r['name'], {}).get('count')]
@@ -129,7 +133,7 @@ def inspect_bag(directory, config):
             metadata = None
     for path in files:
         try:
-            with sqlite3.connect(path.as_uri() + "?mode=ro", uri=True) as db:
+            with sqlite_readonly(path) as db:
                 if db.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
                     errors.append(path.name + ":sqlite_integrity_failed")
                 rows = db.execute("SELECT t.name,t.type,COUNT(m.id),MIN(m.timestamp),MAX(m.timestamp) "
@@ -142,13 +146,19 @@ def inspect_bag(directory, config):
                     if count:
                         item["first_bag_time_ns"] = min(v for v in (item["first_bag_time_ns"], first) if v is not None)
                         item["last_bag_time_ns"] = max(v for v in (item["last_bag_time_ns"], last) if v is not None)
-        except sqlite3.Error as exc:
+        except (sqlite3.Error, ValueError, OSError) as exc:
             errors.append(path.name + ":" + str(exc))
     if metadata is not None:
         if metadata["message_count"] != sum(row["count"] for row in topics.values()):
             errors.append("metadata_storage_count_mismatch")
         if set(metadata.get("relative_file_paths", [])) != {p.name for p in files}:
             errors.append("metadata_storage_files_mismatch")
+        try:
+            mismatches = metadata_topic_mismatches(metadata, {n: r['count'] for n, r in topics.items()})
+            if mismatches:
+                errors.append('metadata_topic_count_mismatch:' + json.dumps(mismatches, sort_keys=True))
+        except (ValueError, TypeError, KeyError) as exc:
+            errors.append('metadata_topic_counts_invalid:' + str(exc))
     missing = [row["name"] for row in config["topics"] if not topics.get(row["name"], {}).get("count")]
     required = [row["name"] for row in config["topics"] if row["required"] and row["name"] in missing]
     return dict(topics=topics, missing_topics=missing, missing_required_topics=required, errors=errors,

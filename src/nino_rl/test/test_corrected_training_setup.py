@@ -12,12 +12,15 @@ CONFIGS = Path(__file__).parents[1] / 'config'
 
 
 def test_fixed_routes_replay_e1_without_changing_physical_scoring():
-    config = load_config(CONFIGS / 'rough_e1_n1_s1_fixed.yaml')
-    source = load_config(CONFIGS / 'rough_e1_imu_assisted.yaml')
+    config = load_config(CONFIGS / 'factory_floor_routes_pi_check.yaml')
+    config['navigation']['path_feedback']['enabled'] = False
+    from copy import deepcopy
+    source = deepcopy(config)
+    source['routes']['enabled'] = False
     routes = RouteSet(config)
     rng = np.random.default_rng(42)
     for cycle in range(5):
-        assert sorted(routes.select(rng, cycle * 3 + i)['id'] for i in range(3)) == ['E1', 'N1', 'S1']
+        assert sorted(routes.select(rng, cycle * 4 + i)['id'] for i in range(4)) == ['E1', 'N1', 'S1', 'W1']
     for name in ('goal_tolerance_m', 'goal_heading_tolerance_deg', 'goal_require_stopped',
                  'reward_pose_source', 'reward_v2', 'odometry_assistance'):
         assert config[name] == source[name]

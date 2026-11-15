@@ -44,13 +44,14 @@ def hull(points):
     return half(points)[:-1]+half(reversed(points))[:-1]
 
 
-def world_geometry(directory,scenario):
+def world_geometry(directory,scenario,world_override=None):
     """Top-down collision footprints with composed model/link/shape SDF poses.
 
     Unsupported includes/meshes/relative frames are reported, never invented.
     """
     directory=Path(directory);catalog=read_json(directory/'worlds.json',{})
-    entry=catalog.get(scenario,{})
+    current=world_override or read_json(directory/'current_world.json',{})
+    entry=current if world_override is not None or current.get('scenario')==scenario else catalog.get(scenario,{})
     path=Path(entry.get('path',directory/(str(scenario)+'.sdf')))
     if not path.is_file():return dict(shapes=[],warnings=['Chưa có world SDF cho scenario này'],path=str(path))
     digest=hashlib.sha256(path.read_bytes()).hexdigest()
@@ -118,7 +119,7 @@ class Episode:
             status='completed' if done else 'right_censored' if status!='running' else 'running',
             reward=self.reward if self.reward_count else None,elapsed_s=task.get('elapsed_s'),source_stop_s=condition.get('source_stop_s'),
             task_success=task.get('task_success') if done else None,stop_completed=task.get('stop_completed') if done else None,
-            termination=self.last.get('termination_reason') if done else None,metrics=metrics,
+            termination=task.get('termination_reason',self.last.get('termination_reason')) if done else None,metrics=metrics,
             metric_samples=dict(self.counts),truth_pose=pose(self.last.get('truth_pose_m_rad')),
             estimate_pose=pose(self.last.get('estimator_audit',{}).get('pose')))
 
@@ -180,8 +181,22 @@ class DashboardReader:
         job=read_json(self.directory/'job.json',{});status=job.get('status','unknown')
         episodes=list(self.episodes)
         if self.current:episodes.append(self.current.summary(status if not backlog else 'running'))
-        if self.geometry is None or (not self.geometry.get('sha256') and (self.directory/(str(self.request.get('scenario','clear_box'))+'.sdf')).is_file()):
-            try:self.geometry=world_geometry(self.directory,self.request.get('scenario','clear_box'))
+        # A reset (including SB3's final auto-reset) can publish the NEXT world
+        # before any transition is recorded there. Match geometry to the last
+        # consumed trace row, also when this reader is behind the writer.
+        trace_world=self.current.last.get('episode_world') if self.current else None
+        if not trace_world and self.current:
+            # Goal100 records the hidden layout in reset metadata for audit/UI
+            # only. Match the last consumed episode, never a later reset.
+            reset_row=read_json(self.directory/f'episode_{self.current.index}_reset.json',{})
+            layout=reset_row.get('private_layout',{})
+            if layout.get('world') and layout.get('world_sha256'):
+                trace_world=dict(path=layout['world'],sha256=layout['world_sha256'],
+                                 scenario=layout.get('id'),episode=self.current.index)
+        current_world=trace_world or read_json(self.directory/'current_world.json',{})
+        world_changed=(current_world.get('sha256') and current_world.get('sha256')!=(self.geometry or {}).get('sha256'))
+        if self.geometry is None or world_changed or (not self.geometry.get('sha256') and (self.directory/(str(self.request.get('scenario','clear_box'))+'.sdf')).is_file()):
+            try:self.geometry=world_geometry(self.directory,self.request.get('scenario','clear_box'),trace_world)
             except (OSError,ValueError,ET.ParseError) as exc:self.geometry=dict(shapes=[],warnings=[str(exc)])
         if not self.config:
             p=self.directory/'episode_0_reset.json';self.config=read_json(p,{})
@@ -206,7 +221,9 @@ class DashboardReader:
             estimate_path=list(self.current.estimate) if self.current else [],current=current,
             window=window_statistics(episodes),backlog_bytes=backlog,trace_rows=self.total,
             trace_path=str(self.trace),trace_age_s=max(0,time.time()-self.trace.stat().st_mtime) if self.trace.is_file() else None,
-            warnings=list(dict.fromkeys(self.errors))[-10:],evaluation=evaluation,map_scope='TRAIN · native trace')
+            warnings=list(dict.fromkeys(self.errors))[-10:],evaluation=evaluation,
+            map_episode=self.current.index if self.current else None,
+            map_scope='TRAIN · last recorded transition / episode '+str(self.current.index+1) if self.current else 'TRAIN · awaiting first transition')
         retention=read_json(self.directory/'storage_retention.json',{})
         if retention:
             snapshot['warnings'].append('Raw episode train đã dọn có chủ đích; thống kê từ trace giữ lại. '
@@ -222,7 +239,7 @@ class DashboardReader:
                     self.evaluation_reader=DashboardReader(latest.parent)
                 active=self.evaluation_reader.poll(interrupted)
                 if active:
-                    for key in ('current','truth_path','estimate_path','trace_age_s'):
+                    for key in ('current','truth_path','estimate_path','trace_age_s','world','map_episode'):
                         snapshot[key]=active[key]
                     if active['path']:snapshot['path']=active['path']
                     snapshot['map_scope']='EVAL '+latest.parent.name+' · frozen policy, không update'

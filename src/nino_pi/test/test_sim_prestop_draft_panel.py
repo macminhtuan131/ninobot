@@ -9,21 +9,23 @@ from nino_pi.next_steps_panel import NextStepsPanel
 def test_default_sim_outline_and_branch_switch_preserve_hardware_and_authority():
     app=Q.QApplication.instance() or Q.QApplication([]);p=NextStepsPanel();events=[]
     p.collectionRequested.connect(events.append)
-    assert p.branch.currentData()=='sim_offline_preparation' and len(p.steps)==8
+    assert p.branch.currentData()=='sim_offline_preparation' and len(p.steps)==4
     assert p.draft['release']['allocated_attempts']==0 and not p.draft['release']['physics_allowed']
     p.list.setCurrentRow(1)
-    assert '0 SLOT' in p.detail.toPlainText() and not p.open_collection.isEnabled()
+    assert '280' in p.detail.toPlainText() and 'INTEGRATION ĐẠT' in p.detail.toPlainText()
+    assert 'prestop vẫn unknown' in p.current.text()
     p.branch.setCurrentIndex(p.branch.findData('hardware'));app.processEvents()
     p.list.setCurrentRow(1)
     assert 'OFFLINE ĐÃ XONG' in p.detail.toPlainText() and p.draft is None
     p.branch.setCurrentIndex(p.branch.findData('sim_offline_preparation'));app.processEvents()
-    assert p.draft and events==[] and not p.open_collection.isEnabled()
+    assert p.draft and events==[] and p.open_collection.isEnabled()  # Navigation only.
     p.close();app.processEvents()
 
 
 def test_draft_document_opens_without_starting_any_job(tmp_path,monkeypatch):
     from nino_pi import research_jobs
-    doc=tmp_path/'docs/NINO_SIM_PRESTOP_AUTHORITY_DRAFT_2026-11-08.md'
+    from nino_pi.sim_review import load
+    doc=tmp_path/load()['document']
     doc.parent.mkdir();doc.write_text('draft only')
     monkeypatch.setattr(research_jobs,'repository',lambda:tmp_path)
     opened=[];monkeypatch.setattr(G.QDesktopServices,'openUrl',lambda u:opened.append(u.toLocalFile()))
@@ -46,9 +48,9 @@ def test_changed_draft_does_not_leave_old_verified_outline(monkeypatch):
 def test_project_direction_uses_sim_stages_without_claiming_hardware_evidence():
     from nino_pi.project_panel import ProjectPanel
     app=Q.QApplication.instance() or Q.QApplication([]);p=ProjectPanel()
-    assert p.stage_table.item(0,0).text()=='S1'
-    assert 'SIM OFFLINE' in p.banner.text()
-    assert 'chưa runner/release/batch' in p.direction_text.text()
+    assert p.stage_table.item(0,0).text()=='SIM-R1'
+    assert 'REVIEW SIM' in p.banner.text()
+    assert '2 episode train hoàn chỉnh' in p.direction_text.text()
     rows={r['id']:r for r in p.catalog['data']}
     assert 'Chưa đủ' in rows['D14']['status'] and 'Chưa đủ' in rows['D18']['status']
     p.close();app.processEvents()

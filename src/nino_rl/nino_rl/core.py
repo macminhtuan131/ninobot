@@ -119,12 +119,14 @@ class PathTracker:
 
 def lidar_sectors(ranges: Sequence[float], range_max: float, count: int = 5) -> np.ndarray:
     values = np.asarray(ranges, dtype=np.float64)
-    safe_max = float(range_max) if np.isfinite(range_max) and range_max > 0.0 else 10.0
+    if not np.isfinite(range_max) or range_max <= 0.0 or count < 1:
+        raise ValueError("Invalid LiDAR sector contract")
+    safe_max = float(range_max)
     if values.size == 0:
-        return np.ones(count, dtype=np.float32)
-    values = np.nan_to_num(values, nan=safe_max, posinf=safe_max, neginf=0.0)
+        return np.zeros(count, dtype=np.float32)
+    values = np.nan_to_num(values, nan=0.0, posinf=safe_max, neginf=0.0)
     values = np.clip(values, 0.0, safe_max)
-    sectors = [float(np.min(chunk)) if len(chunk) else safe_max for chunk in np.array_split(values, count)]
+    sectors = [float(np.min(chunk)) if len(chunk) else 0.0 for chunk in np.array_split(values, count)]
     return np.asarray(sectors, dtype=np.float32) / safe_max
 
 
@@ -191,6 +193,7 @@ class RobotState:
     lidar_stamp_s: float = -float("inf")
     lidar_ranges: Sequence[float] = ()
     lidar_range_max: float = 10.0
+    lidar_range_min: float = 0.0
 
 
 @dataclass

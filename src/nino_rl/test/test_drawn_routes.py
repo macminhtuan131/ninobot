@@ -15,7 +15,10 @@ from nino_rl.task_geometry import goal_overshot, task_succeeded
 from nino_rl.trajectory_metrics import path_metrics
 from nino_rl.training_contract import training_contract
 
-CONFIG = load_config(Path(__file__).parents[1] / "config/combined_rough_section.yaml")
+CONFIG = load_config(Path(__file__).parents[1] / "config/factory_floor_routes_pi_check.yaml")
+# This fixture exercises route selection/contract arithmetic, independently of
+# the separate speed/yaw path-feedback adapter inherited by the PI profile.
+CONFIG['navigation']['path_feedback']['enabled'] = False
 ROUTES = CONFIG["routes"]["definitions"]
 
 
@@ -23,18 +26,18 @@ def tracking(state, path):
     return make_observation(state, path, CONFIG["path"]["lookahead_m"], BASELINE_ACTION)[1]
 
 
-def test_eight_goals_match_halls_and_balanced_cycles():
+def test_four_goals_match_halls_and_balanced_cycles():
     metadata = load_metadata()
-    poses = {station["id"]: station["pose"] for station in metadata["goal_stations"]}
+    poses = {station["id"]: station["goal_pose"] for station in metadata["goal_halls"]}
     routes = RouteSet(CONFIG)
     rng = np.random.default_rng(42)
     for cycle in range(3):
-        selected = [routes.select(rng, cycle * 8 + i)["id"] for i in range(8)]
+        selected = [routes.select(rng, cycle * len(ROUTES) + i)["id"] for i in range(len(ROUTES))]
         assert set(selected) == set(poses)
     for route in ROUTES:
         np.testing.assert_allclose(route["waypoints"][-1], poses[route["id"]][:2])
         assert wrap_angle(np.deg2rad(route["goal_heading_deg"]) - poses[route["id"]][2]) == pytest.approx(0.)
-    assert routes.select(rng, 100, "S2")["id"] == "S2"
+    assert routes.select(rng, 100, "S1")["id"] == "S1"
     with pytest.raises(ValueError, match="Unknown route"):
         routes.select(rng, 0, "missing")
 
@@ -42,14 +45,14 @@ def test_eight_goals_match_halls_and_balanced_cycles():
 def load_metadata():
     import json
     return json.loads((Path(__file__).parents[2] /
-                      "nino_description/worlds/combined_rough_section.json").read_text())
+                      "nino_description/worlds/factory_floor_mixed.json").read_text())
 
 
 def test_return_leg_and_endpoint_cannot_skip_west_loop():
     route = next(item for item in ROUTES if item["id"] == "W1")
     path = OrderedPathTracker(route["waypoints"], CONFIG["routes"])
     # Even teleporting to the final gate with correct heading cannot succeed.
-    state = RobotState(x=-.75, yaw=np.pi)
+    state = RobotState(x=-1.0, yaw=np.pi)
     for _ in range(50):
         path.advance(state.x, state.y)
     assert path.cursor == 0.
@@ -109,7 +112,7 @@ def test_budget_is_length_based_and_does_not_mutate_resume_contract():
 
 def test_ordered_trajectory_metrics_do_not_claim_end_progress_near_start():
     route = next(item for item in ROUTES if item["id"] == "W1")
-    metrics = path_metrics([0., .1, .2], [[0., 0.], [-.35, 0.], [-.75, 0.]],
+    metrics = path_metrics([0., .1, .2], [[0., 0.], [-.35, 0.], [-1.0, 0.]],
                            route["waypoints"], route_settings=CONFIG["routes"])
     assert metrics["max_progress_fraction"] < .02
     assert metrics["path_max_m"] >= .75

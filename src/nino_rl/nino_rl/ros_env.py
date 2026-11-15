@@ -62,8 +62,10 @@ class NinoGazeboEnv(gym.Env):
             from nino_control.governor_core import ReactiveGovernor
             self.governor = ReactiveGovernor(config["governor"].get("parameters",{}))
             self.governor_run_id=uuid4().hex
-        if config.get("rough_curriculum", {}).get("enabled", False) and not config.get("rough_runtime", {}).get("bank_digest"):
-            raise ValueError("Use scripts/train_rough_curriculum.py to select and verify the rough curriculum terrain bank")
+        if (config.get("rough_curriculum", {}).get("enabled", False)
+                or config.get("task") == "rocky_tracking"
+                or config.get("world_name") in ("combined_rough_section", "rocky_hall", "combined_hall")):
+            raise ValueError("This course has been retired; use a factory-floor or flat configuration")
         self.route_set = RouteSet(config)  # Validate routes before opening ROS.
         if config.get("action_mode") == "speed_yaw_reference" and self.route_set.enabled:
             raise ValueError("speed_yaw_reference currently requires a straight course without drawn routes")
@@ -712,44 +714,39 @@ class NinoGazeboEnv(gym.Env):
             self.flat_curriculum.sample_stage(self.np_random)
             if self.flat_curriculum is not None else None
         )
-        if self.config.get("task") == "rocky_tracking":
-            # The rocky world owns its static terrain. Never spawn legacy
-            # cables or adaptive hazards over this caster-sized rock bed.
-            episode_cables, episode_features = [], []
+        if self.flat_curriculum is not None:
+            episode_cables = self.flat_curriculum.sample_cables(
+                self.np_random, self.episode_flat_stage
+            )
+            self.terrain_feature_count = int(
+                self.flat_curriculum.stages[self.episode_flat_stage]["adaptive_features"]
+            )
+            self.ros.configure_training_cables(episode_cables)
+        elif self.config.get("course_cable_randomization", {}).get("enabled", False):
+            episode_cables = self._random_course_cables()
+            self.ros.configure_training_cables(episode_cables)
+        elif self.config.get("terrain_curriculum", {}).get("enabled", True):
+            episode_cables = self._curriculum_cables(stage)
+            self.ros.configure_training_cables(episode_cables)
         else:
-            if self.flat_curriculum is not None:
-                episode_cables = self.flat_curriculum.sample_cables(
-                    self.np_random, self.episode_flat_stage
-                )
-                self.terrain_feature_count = int(
-                    self.flat_curriculum.stages[self.episode_flat_stage]["adaptive_features"]
-                )
-                self.ros.configure_training_cables(episode_cables)
-            elif self.config.get("course_cable_randomization", {}).get("enabled", False):
-                episode_cables = self._random_course_cables()
-                self.ros.configure_training_cables(episode_cables)
-            elif self.config.get("terrain_curriculum", {}).get("enabled", True):
-                episode_cables = self._curriculum_cables(stage)
-                self.ros.configure_training_cables(episode_cables)
-            else:
-                # Keep a world's original static cable_bumps model.
-                # configure_training_cables([]) would delete that model.
-                episode_cables = []
-            episode_features = self._adaptive_terrain_features(episode_cables)
-            adaptive_config = self.config.get("adaptive_terrain", {})
-            if adaptive_config.get("geometry_profile") in ("carved_floor_v2", "continuous_floor_mesh_v1"):
-                if self.config.get("world_name") != "factory_floor_lab":
-                    raise ValueError("True carved-floor replacement requires factory_floor_lab")
-                floor_timeout = float(adaptive_config.get(
-                    "floor_initialization_wall_timeout_seconds", self.simulation_step_timeout))
-                if not np.isfinite(floor_timeout) or floor_timeout <= 0:
-                    raise ValueError("Floor initialization wall timeout must be positive and finite")
-                reset_step_timeout = max(reset_step_timeout, floor_timeout)
-                self.ros.configure_adaptive_terrain(
-                    episode_features, carved_floor_config=adaptive_config)
-                self.world_is_paused = True
-            else:
-                self.ros.configure_adaptive_terrain(episode_features)
+            # Keep a world's original static cable_bumps model.
+            # configure_training_cables([]) would delete that model.
+            episode_cables = []
+        episode_features = self._adaptive_terrain_features(episode_cables)
+        adaptive_config = self.config.get("adaptive_terrain", {})
+        if adaptive_config.get("geometry_profile") in ("carved_floor_v2", "continuous_floor_mesh_v1"):
+            if self.config.get("world_name") != "factory_floor_lab":
+                raise ValueError("True carved-floor replacement requires factory_floor_lab")
+            floor_timeout = float(adaptive_config.get(
+                "floor_initialization_wall_timeout_seconds", self.simulation_step_timeout))
+            if not np.isfinite(floor_timeout) or floor_timeout <= 0:
+                raise ValueError("Floor initialization wall timeout must be positive and finite")
+            reset_step_timeout = max(reset_step_timeout, floor_timeout)
+            self.ros.configure_adaptive_terrain(
+                episode_features, carved_floor_config=adaptive_config)
+            self.world_is_paused = True
+        else:
+            self.ros.configure_adaptive_terrain(episode_features)
         self.episode_terrain_layout = episode_features
         self.episode_terrain_height_scale = 1.0
         self.challenge_tracker = self._make_challenge_tracker(
@@ -958,6 +955,14 @@ class NinoGazeboEnv(gym.Env):
     def step(self, action):
         if not self.world_is_paused:
             raise RuntimeError("Lockstep invariant violated: Gazebo must be paused")
+        from nino_rl.sensor_integrity import require_scan, require_imu_support
+        try:
+            require_scan(self.ros.snapshot(), self.lockstep_sim_time,
+                         self.config["policy_v2"].get("lidar_max_lag_seconds", 0.25),
+                         self.ros.sensor_stream_ready("scan", self.nav_stale_seconds))
+        except RuntimeError:
+            self.ros.publish_control(0.0, 0.0, 0.0)
+            raise
         action = np.clip(np.asarray(action, dtype=np.float32), -1.0, 1.0)
         if self.config.get("evaluation_speed_only", False):
             # Record the executed action in history/reward as well as masking
@@ -984,8 +989,6 @@ class NinoGazeboEnv(gym.Env):
             linear,angular,scale=self._governor_command(linear,angular)
             action[0]=raw_action[0]=2*scale-1
         self.ros.publish_motion_command(linear,angular)
-        # The horizontal safety LiDAR remains age-bounded instead of being a
-        # hard barrier: one dropped 10 Hz packet must not abort an episode.
         # The 20 Hz downward scan is policy input, however, so require a view
         # produced after this action whenever terrain preview is enabled.
         sensor_names = ["odom", "ground_truth", "joint", "torque"]
@@ -1110,18 +1113,25 @@ class NinoGazeboEnv(gym.Env):
                 timeout=self.config["policy_v2"].get("sensor_wait_timeout_seconds",2.0))
         self.max_clock_error = max(self.max_clock_error, abs(clock_error))
         self.max_motion_sensor_lag = max(self.max_motion_sensor_lag, *motion_lags.values())
-        if self.config["policy_v2"].get("imu_strict_coverage", False):
-            imu = self.ros.wait_for_impact(started_sim, ended_sim,
-                self.config["reward_v2"]["impact_acceleration_sigma_m_s2"],
-                self.config["policy_v2"].get("imu_wait_timeout_seconds", 0.5),
-                self.config["policy_v2"].get("imu_min_coverage", 0.8),
-                self.config["policy_v2"].get("imu_max_latest_lag_seconds", 0.05))
-        else:
-            imu = self.ros.estimate_impact(
-                started_sim,
-                ended_sim,
-                self.config["reward_v2"]["impact_acceleration_sigma_m_s2"],
-            )
+        try:
+            if self.config["policy_v2"].get("imu_strict_coverage", True):
+                imu = self.ros.wait_for_impact(started_sim, ended_sim,
+                    self.config["reward_v2"]["impact_acceleration_sigma_m_s2"],
+                    self.config["policy_v2"].get("imu_wait_timeout_seconds", 0.5),
+                    self.config["policy_v2"].get("imu_min_coverage", 0.8),
+                    self.config["policy_v2"].get("imu_max_latest_lag_seconds", 0.05))
+            else:
+                imu = self.ros.estimate_impact(
+                    started_sim,
+                    ended_sim,
+                    self.config["reward_v2"]["impact_acceleration_sigma_m_s2"],
+                )
+            if self.config["policy_v2"].get("imu_strict_coverage", True):
+                require_imu_support(imu, started_sim, ended_sim,
+                                    self.config["policy_v2"].get("imu_min_coverage", 0.8))
+        except (RuntimeError, TimeoutError):
+            self.ros.publish_control(0.0, 0.0, 0.0)
+            raise
         self.ros.wait_for_sensor_updates(
             sensor_markers,
             self.config["policy_v2"].get("sensor_wait_timeout_seconds", 2.0),
@@ -1189,12 +1199,11 @@ class NinoGazeboEnv(gym.Env):
             reached_waypoints += 1
         reference = self._reference(tracking, elapsed)
         actor_state = self._noisy_state(truth)
-        if not lidar_current:
-            # Empty sectors encode maximum/unknown clearance.  A delayed GPU
-            # render must neither inject a scan from the previous pose into
-            # the policy nor create a false collision termination.
-            actor_state = deepcopy(actor_state)
-            actor_state.lidar_ranges = ()
+        try:
+            require_scan(truth, ended_sim, lidar_max_lag, lidar_current)
+        except RuntimeError:
+            self.ros.publish_control(0.0, 0.0, 0.0)
+            raise
         observation = self.history.append(self._actor_observation(
             actor_state, action, reference))
 
@@ -1350,6 +1359,10 @@ class NinoGazeboEnv(gym.Env):
             "residual_torque_nm": torque.tolist(),
             "speed_scale": scale,
             "lidar_lag_seconds": lidar_lag,
+            "imu_measurement": dict(imu),
+            "imu_reward_support_valid": imu["duration"] >= (ended_sim-started_sim)*self.config["policy_v2"].get("imu_min_coverage", .8)-1e-9,
+            "residual_authority_scale": self._randomization["traction"],
+            "traction_scale_semantics": "residual_torque_multiplier_not_contact_friction",
             "lidar_fresh": lidar_fresh,
             "lidar_current": lidar_current,
             "lidar_min_m": float(min_lidar) if np.isfinite(min_lidar) else None,
@@ -1410,10 +1423,6 @@ class NinoGazeboEnv(gym.Env):
                     "governor_run_id":self.governor_run_id,
                     "governor_events":self.governor.events,"governor_final_phase":self.governor.phase,
                     "governor_fault":self.governor.fault} if self.governor is not None else {}),
-                **({"rough_curriculum_stage": int(self.config["rough_runtime"]["stage_index"]),
-                    "terrain_variant_id": self.config["rough_runtime"]["terrain_variant_id"],
-                    "terrain_randomization_level": self.config["rough_runtime"]["terrain_level"]}
-                   if self.config.get("rough_curriculum", {}).get("enabled", False) else {}),
                 "route_id": self.episode_route["id"] if self.episode_route else None,
                 "route_length_m": self.path.total_length,
                 "route_gates_passed": self.scoring_path.next_gate if self.route_set.enabled else 0,
@@ -1470,9 +1479,13 @@ class NinoGazeboEnv(gym.Env):
                 "curriculum_phase": self.episode_curriculum_stage + 1,
                 "terrain_height_scale": self.episode_terrain_height_scale,
                 "terrain_layout": self.episode_terrain_layout,
-                "peak_vertical_acceleration_m_s2": self.peak_vertical_acceleration,
-                "rms_vertical_acceleration_m_s2": float(np.sqrt(
-                    self.vertical_square_integral / max(self.imu_coverage_seconds, 1e-9))),
+                "peak_vertical_acceleration_m_s2": (self.peak_vertical_acceleration
+                    if self.imu_coverage_seconds > 0. else None),
+                "rms_vertical_acceleration_m_s2": (float(np.sqrt(
+                    self.vertical_square_integral / self.imu_coverage_seconds))
+                    if self.imu_coverage_seconds > 0.0 else None),
+                "imu_measured_coverage_seconds": self.imu_coverage_seconds,
+                "imu_measured_coverage_fraction": self.imu_coverage_seconds / max(elapsed, 1e-9),
                 "mean_abs_lateral_error_m": self.abs_lateral_sum / count,
                 "rms_path_deviation_m": float(
                     np.sqrt(self.lateral_square_sum / count)

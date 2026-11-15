@@ -69,7 +69,7 @@ def verify(root, name, hashes):
 def _plan(root, drop_checkpoint_steps):
     manifest_path = safe_file(root, 'manifest.json')
     manifest = read(manifest_path)
-    if (manifest.get('kind') != 'nino_common_studio_job_v1'
+    if (manifest.get('kind') not in ('nino_common_studio_job_v1', 'nino_common_studio_job_v2')
             or manifest.get('status') != 'completed'
             or manifest.get('hardware_actions') != 0):
         raise ValueError('Only completed common103 simulation jobs are eligible')
@@ -90,7 +90,7 @@ def _plan(root, drop_checkpoint_steps):
         relative = str(path.relative_to(root))
         cp_manifest = read(verify(root, relative + '/manifest.json', hashes))
         required = {'model.zip', 'replay_buffer.pkl', 'checkpoint.json', 'resume_identity.json'}
-        if (cp_manifest.get('kind') != 'nino_common_studio_checkpoint_v1'
+        if (cp_manifest.get('kind') not in ('nino_common_studio_checkpoint_v1', 'nino_common_studio_checkpoint_v2')
                 or cp_manifest.get('status') != 'resumable'
                 or not required.issubset(cp_manifest.get('files', {}))):
             raise ValueError('Incomplete checkpoint: ' + relative)

@@ -3,7 +3,7 @@ from copy import deepcopy
 
 
 def training_contract(config):
-    revision = {"rocky_tracking": 31, "combined_course": 32}.get(config.get("task"), 30)
+    revision = {"combined_course": 32}.get(config.get("task"), 30)
     contract = {"revision": revision,
             "phase_schedule": {key: deepcopy(config.get("curriculum", {}).get(key))
                                for key in ("enabled", "phase_steps", "phase_order")},
@@ -12,12 +12,6 @@ def training_contract(config):
     if config.get("task") == "combined_course":
         contract["dynamic_cables_enabled"] = bool(
             config.get("terrain_curriculum", {}).get("enabled", True))
-    if config.get("rough_curriculum", {}).get("enabled", False):
-        contract["revision"] = 33
-        # These are selections inside the same declared curriculum. Terrain
-        # bank contents, route definitions, reward and PPO remain immutable.
-        runtime = contract.pop("rough_runtime", {})
-        contract["rough_bank_digest"] = runtime.get("bank_digest")
     if config.get("action_mode") == "speed_yaw_reference":
         contract["revision"] = 34
         contract["action_interface"] = {
@@ -38,6 +32,7 @@ def training_contract(config):
         contract['action_interface']['yaw_baseline'] = 'estimated_pose_pure_pursuit'
     if config.get('drive_controller', {}).get('parameters'):
         contract['revision'] = 37
+    contract["sensor_contract"] = "nino_sensor_support_v2"
     return contract
 
 

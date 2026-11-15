@@ -145,7 +145,7 @@ def main():
                 title="Physical floor depression and six cable cross-sections")
     profile.grid(alpha=.25)
     profile.legend(loc="upper right", fontsize=8)
-    fig.text(.5, .025, "Dedicated terrain ground copied from rough; level background, sculpted shallow bowls and groove.\n"
+    fig.text(.5, .025, "Independent factory terrain ground; level background, sculpted shallow bowls and groove.\n"
              "Shown catalogue is for viewing. Runtime resets replace it with the selected stage's sampled items.",
              ha="center", fontsize=9)
     fig.tight_layout(rect=(0, .065, 1, 1))

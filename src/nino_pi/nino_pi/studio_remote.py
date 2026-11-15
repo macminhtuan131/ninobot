@@ -10,7 +10,7 @@ import signal
 import subprocess
 import sys
 import time
-from .studio_contract import collection_config, validate_metadata
+from .studio_contract import SCENARIOS, collection_config, validate_metadata
 from .studio_quality import inspect_session, digest
 
 PREFIX = '@@NINO_STUDIO@@'
@@ -37,7 +37,8 @@ def discovery(config, duration=4.):
             observer.poll()
         rows=observer.snapshot()
         # Commands may be absent while idle. They remain required at post-session QC for motion claims.
-        required_sensors={'/imu/data','/motor_fb','/motor_status','/scan_raw','/tf_static'}
+        required_sensors=set(config.get('preflight_required_topics',
+            ['/imu/data','/motor_fb','/motor_status','/scan_raw','/tf_static']))
         missing=[r['name'] for r in rows if r['name'] in required_sensors and r['required'] and not r['count']]
         storage_ok=config['storage_id'] in rosbag2_py.get_registered_writers()
         disk=shutil.disk_usage(Path.home())
@@ -64,7 +65,7 @@ def record(meta, duration=60.):
     root=Path.home()/'nino_datasets/real'/session_id
     root.mkdir(parents=True, exist_ok=False)
     meta.update(schema_version=1, session_id=session_id, started_utc=datetime.now(timezone.utc).isoformat(),
-        dataset_kind='real_evaluation' if meta['scenario']=='heldout' else 'real_sysid',
+        dataset_kind=SCENARIOS[meta['scenario']][1],
         motor_commands_sent=0, td3_replay_eligible=False, acquisition_source_sha256=digest(__file__),
         observer_bundle_identity=Path(__file__).resolve().parents[1].name,
         provenance_note='Observer source/config identified by bundle content hash; user firmware/controller identity remains unverified metadata.')

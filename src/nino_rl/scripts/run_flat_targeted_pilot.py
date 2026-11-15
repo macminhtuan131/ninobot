@@ -74,7 +74,7 @@ def main():
     from nino_rl.tuning_trials import assert_trial_inputs, digest
     from nino_rl.tuning_objective import make_objective_contract, read_episode_rows, score_episodes
     from nino_rl.evaluation import compare_summaries, benchmark_id, prepare_evaluation_config
-    from train_rough_curriculum import Processes, assert_isolated, complete_evaluation, checkpoint_steps
+    from experiment_processes import Processes, assert_isolated, complete_evaluation, checkpoint_steps
     import yaml
 
     if not args.comparison.is_file():

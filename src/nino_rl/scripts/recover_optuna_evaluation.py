@@ -61,7 +61,7 @@ def append_observation(study, source, model, summary_path, comparable, objective
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--section', choices=('flat', 'rough'), required=True)
+    parser.add_argument('--section', choices=('flat',), required=True)
     parser.add_argument('--trial', type=int, required=True)
     action = parser.add_mutually_exclusive_group()
     action.add_argument('--evaluate', action='store_true', help='Run fresh evaluation and append its validated score')

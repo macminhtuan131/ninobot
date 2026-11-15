@@ -1,0 +1,16 @@
+{
+  "schema_version": 2,
+  "engine": "common103_v2",
+  "mode": "train",
+  "scenario": "box_c1_6mm_dr",
+  "profile": "nino_td3_research_h5_v1",
+  "timesteps": 50000,
+  "seed": 11,
+  "checkpoint_every": 10000,
+  "wall_minutes": 480,
+  "evaluate": true,
+  "resume": null,
+  "multi_seeds": [11, 22, 33],
+  "auto_prune_raw": true
+}
+

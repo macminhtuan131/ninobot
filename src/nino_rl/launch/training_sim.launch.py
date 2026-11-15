@@ -22,6 +22,7 @@ def generate_launch_description():
             )
         ),
         launch_arguments={
+            **{k: LaunchConfiguration(k) for k in ("spawn_x", "spawn_y", "spawn_yaw")},
             "world": LaunchConfiguration("world"),
             "world_name": LaunchConfiguration("world_name"),
             "headless": LaunchConfiguration("headless"),
@@ -57,6 +58,7 @@ def generate_launch_description():
     )
     return LaunchDescription(
         [
+            *(DeclareLaunchArgument(k, default_value="0.0") for k in ("spawn_x", "spawn_y", "spawn_yaw")),
             SetEnvironmentVariable(
                 "ROS_DOMAIN_ID", os.environ.get("NINO_ROS_DOMAIN_ID", "77")
             ),

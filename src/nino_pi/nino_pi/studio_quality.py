@@ -7,7 +7,7 @@ import json
 import math
 import statistics
 from pathlib import Path
-from .bag_io import decoded, metadata, source_header
+from .bag_io import decoded, metadata, source_header, metadata_topic_mismatches
 
 # Empirical Pi audit reference rates (for diagnostic comparison only; expected_hz remains None).
 REFERENCE_NOMINAL_HZ = {
@@ -16,7 +16,7 @@ REFERENCE_NOMINAL_HZ = {
     '/joint_states': 47.13,
     '/odom/unfiltered': 47.13,
     '/scan_raw': 6.95,
-    '/motor_status': 9.96,
+    '/motor_status': None,  # Firmware versions changed this from ~5 Hz to ~47 Hz.
 }
 
 
@@ -235,6 +235,9 @@ def inspect_session(session):
         count = sum(s['count'] for s in stats.values())
         check('decode_and_metadata', 'PASS' if count > 0 and count == meta['message_count'] else 'FAIL',
               dict(decoded=count, metadata=meta['message_count'], storage=meta['storage_identifier']))
+        mismatches = metadata_topic_mismatches(meta, {n: s['count'] for n, s in stats.items()})
+        check('metadata_topic_counts', 'WARN' if mismatches is None else 'FAIL' if mismatches else 'PASS',
+              'Per-topic counts absent in old metadata' if mismatches is None else mismatches)
         missing = [r['name'] for r in config['topics'] if r['required'] and not stats.get(r['name'], {}).get('count')]
         check('required_topics', 'FAIL' if missing else 'PASS', missing)
         # Static TF repeats/duplicates are normal; source checks below concern required dynamic header topics.
@@ -272,6 +275,11 @@ def inspect_session(session):
               dict(annotations=annotations_info['count'], invalid_annotations=annotations_info['invalid_entries'],
                    collision_monitor_stops=cm_stops))
         check('command_semantics', 'WARN', '/cmd_vel is observed ROS command, not motor target/ACK. RC/status bits require binary/schema verification.')
+        if config.get('backend_contract') == 'firmware_velocity_reference':
+            competing = {n: stats[n]['count'] for n in ('/cmd_torque', '/cmd_mit')
+                         if stats.get(n, {}).get('count', 0)}
+            check('velocity_backend_mode_conflicts', 'FAIL' if competing else 'PASS',
+                  competing or 'No torque/MIT messages recorded; this does not prove exclusivity outside the capture')
         check('feature_history', 'WARN',
               f'Causal 10 Hz windows observed (h1={h1_ok}, h5={h5_ok}, h8={h8_ok} of {causal_ticks} ticks); '
               '20-feature RL adapter still needs validated baseline/executed command. Teleop is not TD3 replay.')
@@ -281,7 +289,7 @@ def inspect_session(session):
         if high_drift:
             result['recommendations'].append('Inspect CPU load or serial/transport buffering on topics with >100 ms header-receipt drift.')
         if not annotations_info['count']:
-            result['recommendations'].append('Attach video/body reference or event annotations when evaluating wheel-vs-body slip.')
+            result['recommendations'].append('Use independent body reference only for the body claim: endpoint ruler/markers for displacement; validated time-series reference for slip/timing. Camera is optional.')
 
         fail = any(c['verdict'] == 'FAIL' for c in result['checks'])
         result.update(verdict='FAIL' if fail else 'WARN', level='Q1' if fail else 'Q2')

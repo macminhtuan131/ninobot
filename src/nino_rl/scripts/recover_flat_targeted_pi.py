@@ -47,13 +47,13 @@ def main():
     os.chdir(ROOT)
     sys.path[:0] = [str(SOURCE / "python"), str(ROOT / "src/nino_rl"), str(Path(__file__).parent)]
     from encoder_history_transport import patch_interface
-    from run_course_targeted_corrections import read, write
+    from experiment_assets import read, write
     from run_flat_seed_repeat import verify, promotion_gates
     from nino_rl.tuning_trials import digest, assert_trial_inputs
     from nino_rl.tuning_objective import read_episode_rows, score_episodes
     from nino_rl.evaluation import summarize, compare_summaries
     from nino_rl.trajectory_metrics import write_csv
-    from train_rough_curriculum import Processes, assert_isolated
+    from experiment_processes import Processes, assert_isolated
     plan = read(SOURCE / "targeted_plan.json")
     verify(plan)
     output = args.output.resolve()

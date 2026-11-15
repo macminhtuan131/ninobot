@@ -63,7 +63,7 @@ def main():
     from nino_rl.evaluation import compare_summaries
     from nino_rl.tuning_trials import assert_trial_inputs, digest
     from nino_rl.tuning_objective import read_episode_rows, score_episodes
-    from train_rough_curriculum import Processes, assert_isolated, complete_evaluation
+    from experiment_processes import Processes, assert_isolated, complete_evaluation
 
     previous = json.loads((ROOT / 'rl_runs/flat_optuna_holdout_v1/comparison.json').read_text())
     holdout = json.loads((ROOT / 'rl_runs/flat_optuna_holdout_v1/validation_plan.json').read_text())

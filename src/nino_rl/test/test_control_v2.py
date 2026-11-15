@@ -45,29 +45,33 @@ class TestV2(unittest.TestCase):
     def test_imu_gap_reset_and_clipping(self):
         window = ImuWindow()
         window.add(0, 1e6)
+        self.assertEqual(window.measure(0, 1)["duration"], 0.)
+        window.add(.02, 0.)
         result = window.measure(0, 1)
-        self.assertAlmostEqual(result["duration"], .1)
-        self.assertAlmostEqual(result["impact_integral"], 8.1)
+        self.assertAlmostEqual(result["duration"], .02)
+        self.assertAlmostEqual(result["impact_integral"], 1.62)
         self.assertEqual(result["peak"], 1e6)
-        window.add(-1, 0)
-        self.assertEqual(len(window.samples), 1)
+        self.assertFalse(window.add(-1, 0))
+        self.assertEqual(len(window.samples), 2)
+        window.reset()
+        self.assertTrue(window.add(-1, 0))
 
-    def test_partial_imu_energy_is_normalized_for_trajectory_training(self):
+    def test_partial_imu_estimate_preserves_actual_support(self):
         window = ImuWindow()
         window.add(0.0, 2.0)
         window.add(0.02, 4.0)
         result = window.estimate(0.0, 0.1)
-        self.assertEqual(result["duration"], 0.1)
-        self.assertAlmostEqual(result["coverage_fraction"], 1.0)
-        self.assertFalse(result["estimated"])
-
+        self.assertAlmostEqual(result["duration"], 0.02)
+        self.assertAlmostEqual(result["coverage_fraction"], 0.2)
+        self.assertTrue(result["estimated"])
+        self.assertAlmostEqual(result["square_integral"], .08)
+        self.assertAlmostEqual(result["diagnostic_estimate"]["duration"], .1)
         partial = ImuWindow()
         partial.add(0.0, 2.0)
         result = partial.estimate(0.0, 0.2)
-        self.assertEqual(result["duration"], 0.2)
-        self.assertAlmostEqual(result["coverage_fraction"], 0.5)
-        self.assertTrue(result["estimated"])
-        self.assertAlmostEqual(result["square_integral"], 0.8)
+        self.assertEqual(result["duration"], 0.)
+        self.assertEqual(result["coverage_fraction"], 0.)
+        self.assertAlmostEqual(result["diagnostic_estimate"]["square_integral"], .8)
 
     def test_action_mapping_baseline_brake_and_yaw(self):
         scale, torque = decode_action(BASELINE_ACTION)
@@ -233,7 +237,9 @@ class TestActuator(unittest.TestCase):
             accept_torque=True, accept_cmd_vel=True, v2_active=False,
             speed_scale=1., filtered_speed_scale=1., last_control_ns=self.now-100_000_000,
             last_torque_ns=0, last_cmd_ns=self.now, torque_timeout=.25, command_timeout=.5,
-            control_rate=10., have_wheel_state=True, requested_linear=.5, requested_angular=0.,
+            control_rate=10., have_wheel_state=True, wheel_state_stamp_ns=None,
+            control_timing=__import__('nino_control.control_timing',fromlist=['ControlTimingWindow']).ControlTimingWindow(),
+            requested_linear=.5, requested_angular=0.,
             error_integral=[0., 0.], target_velocity=[0., 0.], wheel_velocity=[0., 0.],
             wheel_radius=.0625, wheel_separation=.34273666, max_wheel_acceleration=100.,
             max_wheel_speed=12., kp=.3, ki=.1, integral_limit=4., max_velocity_torque=2.,
@@ -346,6 +352,7 @@ class TestEnvironmentContract(unittest.TestCase):
             estimated_pose_source="wheel_odometry",
             publish_control=lambda *args: commands.append(args),
             publish_straight_command=lambda speed: None,
+            publish_motion_command=lambda linear, angular: None,
             advance_world=advance_world,
             latest_clock_stamp=lambda: clock[0],
             wait_for_motion_state=lambda *args, **kwargs: {"odom": .02},
@@ -363,6 +370,7 @@ class TestEnvironmentContract(unittest.TestCase):
                 square_integral=0., impact_integral=0., peak=0.),
             get_logger=lambda: SimpleNamespace(warn=lambda _: None))
         env = SimpleNamespace(config=deepcopy(CONFIG), action_scale=.5, control_dt=.1,
+            governor=None, governor_cadence=None, governor_trace={},
             route_set=SimpleNamespace(enabled=False), episode_route=None,
             scoring_path=path, goal_pose=(30., 0., 0.),
             episode_target_seconds=float(CONFIG["target_finish_seconds"]),
@@ -435,20 +443,22 @@ class TestEnvironmentContract(unittest.TestCase):
             env.episode_deadline_seconds = .05
         if route_id is not None:
             from nino_rl.routes import RouteSet, OrderedPathTracker, route_command
-            rough = yaml.safe_load((ROOT / "src/nino_rl/config/combined_rough_section.yaml").read_text())
-            env.config = rough
-            env.route_set = RouteSet(rough)
+            from nino_rl.core import load_config
+            route_config = load_config(ROOT / "src/nino_rl/config/factory_floor_routes_pi_check.yaml")
+            env.config = route_config
+            env.route_set = RouteSet(route_config)
             env.episode_route = env.route_set.select(np.random.default_rng(42), 0, route_id)
             points = env.episode_route["waypoints"]
-            env.path = OrderedPathTracker(points, rough["routes"])
-            env.scoring_path = OrderedPathTracker(points, rough["routes"])
+            env.path = OrderedPathTracker(points, route_config["routes"])
+            env.scoring_path = OrderedPathTracker(points, route_config["routes"])
             # Approach the first corner on N1, with independently advanced
             # estimated and simulator-pose cursors.
-            for x in np.arange(0., 2.3, .03):
+            approach_x = float(points[1][0]) - .2
+            for x in np.arange(0., approach_x, .03):
                 env.path.advance(x, 0.)
                 env.scoring_path.advance(x, 0.)
-            state.x = state.ground_x = 2.3
-            env.previous_robot_state.x = env.previous_robot_state.ground_x = 2.28
+            state.x = state.ground_x = approach_x
+            env.previous_robot_state.x = env.previous_robot_state.ground_x = approach_x - .02
             env.previous_tracking = make_observation(
                 env.previous_robot_state, env.path, env.lookahead, BASELINE_ACTION)[1]
             env.goal_pose = (*points[-1], np.deg2rad(env.episode_route["goal_heading_deg"]))
@@ -466,7 +476,7 @@ class TestEnvironmentContract(unittest.TestCase):
         self.assertGreater(motion[2], 0.)
         metrics = info["episode_metrics"]
         self.assertEqual(metrics["route_id"], "N1")
-        self.assertEqual((metrics["goal_x_m"], metrics["goal_y_m"]), (2.5, 6.2))
+        self.assertEqual((metrics["goal_x_m"], metrics["goal_y_m"]), (3.2, 2.75))
         self.assertGreaterEqual(metrics["route_gates_passed"], 1)
         self.assertLess(metrics["route_gates_passed"], metrics["route_gates_total"])
         self.assertFalse(metrics["success"])
@@ -531,27 +541,12 @@ class TestEnvironmentContract(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "torque feedback is invalid"):
             self.run_step(torque_fresh=False)
 
-    def test_lidar_timestamp_lag_does_not_abort_live_transport(self):
+    def test_missing_or_stale_lidar_rejects_transition(self):
         self.run_step()
-        (_, _, terminated, _, info), _ = self.run_step(lidar_stale=True)
-        self.assertFalse(terminated)
-        self.assertGreater(info["lidar_lag_seconds"], 0.25)
-        self.assertFalse(info["lidar_fresh"])
-
-    def test_stale_lidar_cannot_cause_a_false_collision(self):
-        (_, _, terminated, _, info), _ = self.run_step(
-            collision=True, lidar_stale=True
-        )
-        self.assertFalse(terminated)
-        self.assertFalse(info["lidar_fresh"])
-
-    def test_previous_epoch_lidar_cannot_cause_a_false_collision(self):
-        (_, _, terminated, _, info), _ = self.run_step(
-            collision=True, lidar_sim_lag=True
-        )
-        self.assertFalse(terminated)
-        self.assertTrue(info["lidar_fresh"])
-        self.assertFalse(info["lidar_current"])
+        for kwargs in ({"lidar_stale": True}, {"collision": True, "lidar_stale": True},
+                       {"collision": True, "lidar_sim_lag": True}):
+            with self.subTest(kwargs=kwargs), self.assertRaisesRegex(RuntimeError, "Required LiDAR"):
+                self.run_step(**kwargs)
 
     def test_stale_navigation_terminates_episode_instead_of_training_run(self):
         (_, reward, terminated, truncated, info), commands = self.run_step(

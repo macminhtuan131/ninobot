@@ -9,9 +9,9 @@ from datetime import datetime, timezone
 
 ROOT=Path(__file__).resolve().parents[3]
 sys.path[:0]=[str(Path(__file__).parent),str(ROOT/'src/nino_rl')]
-from prepare_rough_foundations import digest, immutable
-from run_disturbance_reference_comparisons import verify, read
-from train_rough_curriculum import Processes, assert_isolated, complete_evaluation
+from experiment_assets import digest, immutable
+from experiment_assets import verify, read
+from experiment_processes import Processes, assert_isolated, complete_evaluation
 
 OUTPUT=ROOT/'rl_runs/flat_contact_repeatability_v1'
 SOURCE=ROOT/'rl_runs/disturbance_reference_comparisons_v1/flat'

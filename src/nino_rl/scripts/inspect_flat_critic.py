@@ -169,7 +169,7 @@ def main():
     import torch
     from stable_baselines3 import PPO
     from nino_rl.ros_env import NinoGazeboEnv
-    from train_rough_curriculum import Processes, assert_isolated
+    from experiment_processes import Processes, assert_isolated
     plan = json.loads((ROOT / 'rl_runs/flat_focused_optuna_v1/trial_plan.json').read_text())['trials']
     assert_trial_inputs(plan)
     os.environ.update(ROS_DOMAIN_ID='79', NINO_ROS_DOMAIN_ID='79', GZ_PARTITION='nino_flat_79',

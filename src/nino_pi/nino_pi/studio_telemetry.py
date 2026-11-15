@@ -26,7 +26,8 @@ class TelemetryObserver:
                 if name in self.subscriptions or name not in self.graph:continue
                 try:
                     if len(self.graph[name])!=1:raise ValueError('Multiple types')
-                    qos=QoSProfile(depth=100,reliability=ReliabilityPolicy.BEST_EFFORT,
+                    qos=QoSProfile(depth=100,
+                        reliability=ReliabilityPolicy.RELIABLE if name=='/tf_static' else ReliabilityPolicy.BEST_EFFORT,
                         durability=DurabilityPolicy.TRANSIENT_LOCAL if name=='/tf_static' else DurabilityPolicy.VOLATILE)
                     self.subscriptions[name]=self.node.create_subscription(get_message(self.graph[name][0]),name,
                         lambda msg,n=name:self.receive(n,msg),qos)

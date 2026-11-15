@@ -52,7 +52,7 @@ policy_v2:
   # Trajectory learning must not abort because Gazebo defers an IMU publisher
   # during a fast lockstep burst. Partial energy is normalized to the action
   # window; set true only when validating sensor transport itself.
-  imu_strict_coverage: false
+  imu_strict_coverage: true
   # Gazebo can expose the final 50 Hz samples after the multi-step response.
   # This matches ImuWindow's strict 100 ms zero-order-hold ceiling; larger
   # gaps still fail instead of being scored as a smooth ride.
@@ -209,6 +209,7 @@ domain_randomization:
   # Historical names: these affect the residual channel, NOT contact friction
   # or the PI motor dynamics. Delay uses simulation time.
 
+  # Legacy key. Multiplies residual torque; does not change wheel-ground friction.
   traction_scale: [0.30, 1.00]
   motor_delay_ms: [10.0, 40.0]
   torque_noise_std_nm: [0.00, 0.12]

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Separate studies. Usage: bash ... flat|rough sim|prepare|tune|recover-eval [args]
+# Separate studies. Usage: bash ... flat sim|prepare|tune|recover-eval [args]
 set -e
 course="${1:-}"
 operation="${2:-}"
-if [[ "$course" != flat && "$course" != rough ]] ||
+if [[ "$course" != flat ]] ||
    [[ "$operation" != sim && "$operation" != prepare && "$operation" != tune && "$operation" != recover-eval && "$operation" != check && "$operation" != continue ]]; then
-  echo "Usage: bash $0 flat|rough sim|prepare|tune|recover-eval|check|continue [extra arguments]" >&2
+  echo "Usage: bash $0 flat sim|prepare|tune|recover-eval|check|continue [extra arguments]" >&2
   exit 2
 fi
 shift 2
@@ -27,21 +27,6 @@ if [[ "$course" == flat ]]; then
     exec ros2 launch nino_rl combined_flat_section_training.launch.py \
       headless:=true pi_integrator_profile:=conditional_v1 "$@"
   fi
-else
-  export ROS_DOMAIN_ID=78 NINO_ROS_DOMAIN_ID=78 GZ_PARTITION=nino_rough_78
-  profile=src/nino_rl/config/rough_e1_n1_s1_fixed.yaml
-  world=rl_runs/rough_terrain_bank_v1/worlds/original.sdf
-  model=rl_runs/rough_e1_imu_assisted_pilot/20261008-013943-771247/nino_ppo_final.zip
-  evaluation=(--eval-episodes 12 --eval-seed 10000
-    --pi-reference rl_runs/rough_e1_n1_s1_route_pi/20261008-104043-455255/summary.json)
-  if [[ "$operation" == sim ]]; then
-    exec ros2 launch nino_rl training_sim.launch.py \
-      world:="$project_dir/$world" world_name:=combined_rough_section \
-      headless:=true pi_integrator_profile:=legacy "$@"
-  fi
-fi
-if [[ "$operation" == check ]]; then
-  exec python src/nino_rl/scripts/wait_for_drive_profile.py --config "$profile" "$@"
 fi
 if [[ "$operation" == continue ]]; then
   if [[ "$course" != flat ]]; then

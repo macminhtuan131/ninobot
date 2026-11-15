@@ -1,3 +1,7 @@
+> **08/11 — đã dọn run lịch sử:** `rl_runs` chỉ còn marker/khóa ngân sách; dữ liệu Sim hiện tại ở `~/nino_research` được giữ nguyên. [Phạm vi và kiểm chứng](../../docs/NINO_LEGACY_RUNS_CLEANUP_2026-11-08.md).
+
+> **08/11 — đã bỏ rough/rocky course:** giữ factory/flat; đã tách helper dùng chung và kiểm tương thích checkpoint TD3 20k/25k/30k. [Phạm vi xóa và kiểm chứng](../../docs/NINO_COURSE_RETIREMENT_2026-11-08.md).
+
 > **Mới nhất06/11 — Gain baseline Gazebo đã đóng9/9:** 1.260ticks;283hashes/3.834support checks đạt,0actor/train. Causal/fixed native: +23,0% tại1; +29,8% tại0,98; −15,3% tại1,02. SoB0 còn sampling-sensitive ở1/0,98; chưa promote/learner. Tiếp correction estimator cổ điển offline. [Kết quả](../../docs/NINO_SIM_GAIN_BASELINE_RESULT_2026-11-06.md). Các đoạn dưới giữ lịch sử.
 
 > **Tiếp theo 06/11 — Backend/context gain đạt parity offline:** 41 software tests; 4.800 callbacks kernel và 840 transitions wrapper fixture, 0 Gazebo/train mới. Cùng gain=1 giữ observation/reward/reference/terminal, context ABI mới chặn checkpoint cũ. Tiếp runner/release baseline qualification riêng. [Kết quả](../../docs/NINO_SIM_GAIN_CONTEXT_OFFLINE_RESULT_2026-11-06.md). Các đoạn dưới giữ lịch sử.
@@ -57,12 +61,7 @@
 
 > **Current research route:** [bounded velocity residual, SysID and fair classical baselines](../../docs/NINO_RESEARCH_DIRECTION_2026-11-03.md). New TD3/PPO use a distinct20×5 contract. General training remains disabled; bounded fixture/factory smoke jobs have separate gates. Hardware residual deployment is unopened. Commands below describe legacy experiments.
 
-For the expanded rough terrain, use the [evaluation-gated route curriculum,
-terrain variants and Laya guide](../../docs/ROUGH_ROUTE_CURRICULUM.md).
-The supervisor script starts E1 first, retains earlier routes while adding
-goal groups, then introduces R1–R3 terrain variation between blocks.
-
-All four Optuna scripts use the
+The legacy flat Optuna tools use the
 [fixed physical-arrival and motion-quality objective](../../docs/optuna_objective_2026-10-08/README.md).
 Every evaluated route must achieve at least 95% physical arrival in the sample;
 qualified trials are ranked by time, lateness, physical path error, vibration
@@ -71,7 +70,7 @@ new study directory for this objective, and inspect the metric breakdown
 before choosing a policy.
 
 Use the [comparable trial preparation guide](../../docs/comparable_optuna_trials_2026-10-08/README.md)
-to audit the flat/rough starting actors and freeze world/profile, initialization,
+to audit the flat starting actors and freeze world/profile, initialization,
 training budget and scenarios. `--prepare-only` creates a plan without training;
 each trial uses a fresh critic/optimizer and an aligned environment-step budget.
 

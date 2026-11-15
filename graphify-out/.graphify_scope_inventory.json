@@ -1,0 +1,36 @@
+{
+  "scan_root": "/home/tuanmac/ninorobot",
+  "total_files": 4803,
+  "total_words": 4310589,
+  "categories": {
+    "code": 4381,
+    "document": 335,
+    "paper": 2,
+    "image": 85,
+    "video": 0
+  },
+  "source_packages": {
+    "code": {
+      "src/linorobot2": 46,
+      "src/nino_control": 23,
+      "src/nino_description": 24,
+      "src/nino_pi": 165,
+      "src/nino_rl": 528
+    },
+    "document": {
+      "src/linorobot2": 21,
+      "src/nino_description": 1,
+      "src/nino_pi": 11,
+      "src/nino_rl": 11
+    },
+    "paper": {},
+    "image": {
+      "src/linorobot2": 16
+    },
+    "video": {}
+  },
+  "skipped_sensitive": [
+    "/home/tuanmac/ninorobot/src/linorobot2/docker/.env"
+  ],
+  "status": "awaiting_scope_selection_before_extraction"
+}

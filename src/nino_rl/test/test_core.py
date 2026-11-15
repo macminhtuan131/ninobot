@@ -109,7 +109,7 @@ def test_wheel_slip_uses_wheel_and_ground_velocity():
 
 
 def test_lidar_empty_and_non_finite_are_safe():
-    assert np.allclose(lidar_sectors([], 10.0), np.ones(5))
+    assert np.allclose(lidar_sectors([], 10.0), np.zeros(5))
     sectors = lidar_sectors([float("inf"), float("nan"), -1.0, 5.0, 2.0], 10.0)
     assert np.all((0.0 <= sectors) & (sectors <= 1.0))
 

@@ -93,7 +93,7 @@ class ModeWindow(Q.QMainWindow):
         connection, c = card()
         c.setContentsMargins(12,8,12,8)
         row = Q.QHBoxLayout()
-        self.host = Q.QLineEdit("d@192.168.0.109")
+        self.host = Q.QLineEdit("d@192.168.0.112")
         self.host.setMinimumWidth(180)
         self.host.setPlaceholderText("user@IP của Pi")
         self.connect_button = Q.QPushButton("Mở authority demo" if demo else "Kết nối firmware GUI · nâng cao")

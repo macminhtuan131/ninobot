@@ -64,20 +64,31 @@ def test_operational_outline_is_default_and_does_not_execute_jobs_or_motion():
     app=Q.QApplication.instance() or Q.QApplication([])
     with tempfile.TemporaryDirectory() as folder:
         p=ResearchPanel(root=folder);events=[];p.collectionRequested.connect(events.append)
-        assert p.sections.currentIndex()==3 and p.roadmap.list.count()==8
+        assert p.sections.currentIndex()==3 and p.roadmap.list.count()==4
         assert set(p.sim_buttons)=={'sim-baselines','sim-train','sim-evaluate','sim-v2-baselines','sim-v2-train','sim-v2-evaluate','sim-bias-clear','sim-guidance-contract','sim-v3-baselines','sim-guided-contact','sim-v3-contract','sim-v3-train','sim-v3-evaluate','sim-axis-ablation','sim-classical-common','sim-stop-transfer','sim-equal-contract','sim-equal-gazebo','sim-common-td3','sim-joint-boundary','sim-joint-reliability-fixture','sim-joint-reliability-gazebo','sim-reliable-td3','sim-reliable-eval-only','sim-coverage-preflight','sim-coverage-study','sim-coverage-v2-preflight','sim-coverage-v2-study','sim-drive-readiness','sim-ready-eval-only','sim-gain-baselines'}
         assert p.active_sim_actions()[0]=='sim-v2-baselines'
         assert p.sim_buttons['sim-v2-baselines'].isEnabled() and not p.sim_buttons['sim-v2-train'].isEnabled()
-        assert 'Không đợi real dataset' in p.roadmap.detail.toPlainText()
+        assert 'Correction' in p.roadmap.detail.toPlainText()
         assert not p.runner.busy
-        assert not p.roadmap.open_collection.isEnabled()
+        assert p.roadmap.open_collection.isEnabled()  # Only page navigation.
         assert events==[]
-        p.roadmap.list.setCurrentRow(5)
-        assert not p.roadmap.open_collection.isEnabled()
-        assert 'simulator' in p.roadmap.detail.toPlainText()
+        p.roadmap.list.setCurrentRow(1)
+        assert 'INTEGRATION ĐẠT' in p.roadmap.detail.toPlainText()
+        assert '280' in p.roadmap.detail.toPlainText()
         assert not p.runner.busy
-        p.roadmap.list.setCurrentRow(7)
-        assert 'CHƯA MỞ TRIỂN KHAI' in p.roadmap.detail.toPlainText()
+        p.roadmap.list.setCurrentRow(2)
+        assert '6/12 CONSUMED' in p.roadmap.detail.toPlainText()
+        assert 'AUDIT ĐÃ ĐÓNG' in p.roadmap.detail.toPlainText()
+        assert 'Giữ classical' in p.roadmap.current.text()
+        assert 'first received C1 manifold oracle' in p.roadmap.detail.toPlainText()
+        assert 'fixed6mm_postmanifold_authority_draft_v1.json' in p.roadmap.detail.toPlainText()
+        assert not p.runner.busy
+        p.roadmap.list.setCurrentRow(3)
+        assert 'Chưa triển khai hardware' in p.roadmap.detail.toPlainText()
+        assert 'MỤC TIÊU ĐÃ CHỌN' in p.roadmap.detail.toPlainText()
+        assert 'GỜ KHÔNG BIẾT' in p.roadmap.detail.toPlainText()
+        assert 'Không preview' in p.roadmap.detail.toPlainText()
+        assert not p.runner.busy
         p.close();app.processEvents()
 
 

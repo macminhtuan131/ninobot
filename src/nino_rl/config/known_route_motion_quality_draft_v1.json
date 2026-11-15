@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "protocol_id": "nino_known_route_motion_quality_draft_v1_2026_11_09",
+  "status": "proposed_not_released",
+  "objective": {
+    "recommended": "lower_sampled_vertical_IMU_point_acceleration_at_known_rigid_step",
+    "selection": "provisional_pending_operator_preference",
+    "accepted": false,
+    "not_claims": [
+      "slip",
+      "force",
+      "cargo_damage",
+      "soft_cable_safety",
+      "TD3_benefit",
+      "factory_acceptance"
+    ]
+  },
+  "release": {
+    "physics_allowed": false,
+    "allocated_attempts": 0,
+    "training_allowed": false,
+    "optimizer_updates": 0,
+    "hardware_actions": 0,
+    "runtime_implemented": false
+  },
+  "question": "Does a classical known-route slowdown improve sampled IMU-point vertical motion quality beyond a constant slower reference, within declared time/path constraints?",
+  "inherited_status": {
+    "E2_allocation": "closed_6_of_6",
+    "block1_allocated": 0,
+    "stop8": "unknown_stop8_support_or_sampling",
+    "promote_common_sign_branch": "closed",
+    "old_estimands_unchanged": true
+  },
+  "fixed": {
+    "scenario": "box_c1_6mm",
+    "bump_x_m": 0.65,
+    "bump_radius_m": 0.003,
+    "floor_mu": 1.0,
+    "pi_ki": 0.1,
+    "pi_kp": 0.3,
+    "sim_common_gain": 1.0,
+    "control_interval_s": 0.1,
+    "physics_interval_s": 0.001,
+    "imu_configured_hz": 50.0,
+    "history": "unchanged_5frames_not_used_for_learned_action",
+    "domain_randomization": false,
+    "yaw_follower": "inherited_wheel_IMU_no_GT",
+    "learning": false
+  },
+  "reference": {
+    "cruise_m_s": 0.2,
+    "preview_m_s": 0.18,
+    "acceleration_m_s2": 0.1,
+    "warmup_s": 0.5,
+    "preview_progress_zone_m": [
+      0.35,
+      1.0
+    ],
+    "source_stop_s": 10.0,
+    "horizon_s": 16.0,
+    "constant_pace_m_s": "derived_by_reference_plan_before_release_never_tuned_from_outcomes",
+    "progress_input": "verified_causal_estimated_route_progress_with_known_map",
+    "forbidden_controller_inputs": [
+      "GT_pose",
+      "contact_force",
+      "caster_state",
+      "future_sensor_values"
+    ],
+    "no_progress_source": "not_ready_no_GT_fallback",
+    "loss_behavior": "inherit_owner_freshness_latch_stop_no_auto_recovery"
+  },
+  "measurement": {
+    "primary": "source_event_ZOH_RMS_of_fz_minus_gravity_projection_at_IMU_point",
+    "metric_id": "nino_imu_point_vertical_rms_v1",
+    "units": "m/s^2",
+    "progress_window_m": [
+      0.2,
+      1.3
+    ],
+    "window_clock": "first_GT_source_crossings_of_fixed_spatial_boundaries_no_interpolation",
+    "crossing_uncertainty": "retain_bracketing_source_stamps_and_positions; missing_crossing_or_reversal_is_unknown",
+    "attitude": "causal_GT_roll_pitch_for_SIM_SCORING_only",
+    "gravity_m_s2": null,
+    "gravity_source": "explicit_world_gravity_and_expanded_IMU_mount_readback_required_no_default",
+    "convention": "verify_specific_force_+g_at_rest_and_body_aligned_IMU_before_scoring",
+    "mount_scope": "IMU_point_rotation_and_lever_arm_retained_not_CoM_acceleration",
+    "source_maximum_age_s": 0.04,
+    "max_source_gap_s": 0.04,
+    "minimum_supported_fraction": 0.98,
+    "integration": "union_of_IMU_attitude_source_and_expiry_events; exact_window_widths; ambiguity_unsupported; no_future_interpolation",
+    "sensitivity": [
+      "same_IMU_observable_causal20ms",
+      "same_IMU_observable_causal20ms_shift10ms",
+      "same_IMU_observable_native100ms_actual_clipped_widths"
+    ],
+    "secondary": [
+      "crossing_duration_source_bracket_uncertainty",
+      "cross_track_RMSE_and_max",
+      "command_to_wheel_body_chain",
+      "RMS_gyro_roll_pitch",
+      "sampled_peak_not_force",
+      "saturation_interventions",
+      "all_failures"
+    ],
+    "old_native_velocity_ISE": "unchanged_historical_metric_not_relabelled_as_new_vibration_primary",
+    "no_filter_tuning": true,
+    "no_removed_spikes": true
+  },
+  "arms": [
+    {
+      "id": "B0",
+      "controller": "nominal_classical",
+      "reference": "cruise_0.2"
+    },
+    {
+      "id": "P",
+      "controller": "known_route_classical_preview",
+      "reference": "0.2_to_0.18_in_fixed_progress_zone"
+    },
+    {
+      "id": "S",
+      "controller": "constant_slower_classical",
+      "reference": "analytic_command_time_match_not_measured_body_match"
+    }
+  ],
+  "proposed_attempts": [
+    {
+      "id": "MQ-01",
+      "block": 0,
+      "arm": "B0",
+      "reset": "fresh_launch_not_exact_state"
+    },
+    {
+      "id": "MQ-02",
+      "block": 0,
+      "arm": "P",
+      "reset": "fresh_launch_not_exact_state"
+    },
+    {
+      "id": "MQ-03",
+      "block": 0,
+      "arm": "S",
+      "reset": "fresh_launch_not_exact_state"
+    },
+    {
+      "id": "MQ-04",
+      "block": 1,
+      "arm": "S",
+      "reset": "fresh_launch_not_exact_state"
+    },
+    {
+      "id": "MQ-05",
+      "block": 1,
+      "arm": "P",
+      "reset": "fresh_launch_not_exact_state"
+    },
+    {
+      "id": "MQ-06",
+      "block": 1,
+      "arm": "B0",
+      "reset": "fresh_launch_not_exact_state"
+    }
+  ],
+  "proposed_budget": {
+    "max_attempts": 6,
+    "task_ticks_per_attempt": 160,
+    "task_ticks_max": 960,
+    "repeats_per_arm": 2,
+    "interpretation": "descriptive_feasibility_not_powered_confirmation",
+    "retries": 0,
+    "extra_smokes": 0,
+    "first_neutral_integration_included": true,
+    "review_before_next": true,
+    "wall_and_disk_budget": null,
+    "correction_budget": 1,
+    "correction_rule": "cause_required_stop_release_preserve_consumed_slots_no_refill_new_version_before_any_future_release"
+  },
+  "decision_rules": {
+    "accepted": false,
+    "scope": "proposed_research_tradeoffs_not_factory_or_safety_limits",
+    "minimum_RMS_reduction_fraction": 0.1,
+    "maximum_segment_time_cost_fraction_vs_B0": 0.1,
+    "maximum_observed_time_mismatch_fraction_P_vs_S": 0.02,
+    "path_max_m": 0.04,
+    "continuous_stop_s": 2.0,
+    "estimand": "each_block_P/B0_and_P/S_RMS_ratios_minus_one; equal_mean_ratios_and_all_block_signs; zero_denominator_unknown",
+    "pass_rule": "candidate_lower_RMS_10percent_vs_B0_and_S_in_each_block_all_sensitivity_directions_agree_time_path_task_valid; nominate_classical_confirmation_only",
+    "stop_rule": "valid_data_no_advantage_over_constant_slow_or_time_path_failure_keep_simpler_classical_no_TD3",
+    "unknown_rule": "coverage_crossing_pose_or_time_match_uncertainty_grid_block_disagreement; close_at_bound_no_sample_expansion",
+    "learning_gate": "separate_action_information_advantage_and_validation_protocol_required_even_if_classical_preview_passes"
+  },
+  "required_data": [
+    {
+      "channel": "imu",
+      "fields": "source_stamp,receipt_monotonic,gyro_xyz,specific_force_xyz,frame",
+      "required": true
+    },
+    {
+      "channel": "truth",
+      "fields": "source_stamp,pose_xyz,roll,pitch,yaw,body_velocity",
+      "required": true,
+      "scope": "scoring_only"
+    },
+    {
+      "channel": "wheel_drive",
+      "fields": "both_actual_wheels,targets,requested_executed_references,PI_limits,faults",
+      "required": true
+    },
+    {
+      "channel": "decision",
+      "fields": "tick_source_and_monotonic,estimated_route_progress,baseline_preview_requested_projected_final,owner,freshness",
+      "required": true
+    },
+    {
+      "channel": "contact",
+      "fields": "C1_manifold_component_source_receipt",
+      "required": true,
+      "scope": "audit_labels_not_controller"
+    },
+    {
+      "channel": "provenance",
+      "fields": "expanded_URDF_world_gravity_firmware_or_sim_identity_parameters_reset_pose_caster_labels_hashes",
+      "required": true
+    }
+  ],
+  "prerequisites": [
+    "objective_tradeoff_review_required_provisional_only",
+    "verify_world_gravity_IMU_frame_and_static_plus_g_convention",
+    "source_coverage_and_bracketed_spatial_window_fixture",
+    "separate_preview_backend_with_estimated_progress_no_GT_fallback",
+    "freeze_analytic_constant_pace_and_command_tracking_semantics",
+    "synthetic_and_failure_injection_source_install_parity",
+    "separate_owned_runner_ledger_disk_wall_budget_then_explicit_release",
+    "one_baseline_integration_in_budget_review_each_slot"
+  ],
+  "next_step": "Qualify spatial-window extraction and isolated classical preview adapter offline; no E2 block1, physics, training or hardware release",
+  "frozen_inputs": {
+    "src/nino_rl/nino_rl/motion_quality_metrics.py": "7a7c08c5ca338a9e2b3f95c49670ce83f38f16b9926f1a3016017690ca72a7bd",
+    "src/nino_rl/nino_rl/causal_source_support.py": "289fe0081c179ecf2211983ab17d491d9be2477559e487c2a88f822b99158265",
+    "src/nino_control/nino_control/residual_velocity.py": "4126bfba0e273cd0232b14df08fc2254c55de1becefd79f54edcd448dfe735cb",
+    "src/nino_control/nino_control/effort_drive.py": "145138195253e806068a155a66f6c36930eca059686b343b7f0758e8c130b376",
+    "src/nino_rl/nino_rl/obstacle_authority_metrics.py": "cf9779a014233be5d3b27dad576af2abbdb7e298fabe2a40cefd7555eec3298a",
+    "src/nino_description/urdf/nino.urdf.xacro": "232a886e6aa8a60c5f4a8eda413edff679067e66156a87b2ddfa2f5674c49bb2"
+  },
+  "spec_sha256": "f36279a522adf1b7fba18f6cd9dc58ba617ad3792a33b7c44fba692156fc3352"
+}

@@ -13,9 +13,9 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path[:0] = [str(Path(__file__).parent), str(ROOT / 'src/nino_rl')]
-from prepare_rough_foundations import digest, immutable
-from run_disturbance_reference_comparisons import read, verify
-from train_rough_curriculum import Processes, assert_isolated, complete_evaluation
+from experiment_assets import digest, immutable
+from experiment_assets import read, verify
+from experiment_processes import Processes, assert_isolated, complete_evaluation
 from run_flat_bullet_contact_candidate_v3 import LIBRARY, RESET_LIBRARY
 import analyze_flat_contact_convergence as contact_analysis
 from recover_flat_contact_report import safe_window

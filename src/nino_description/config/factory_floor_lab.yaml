@@ -8,7 +8,7 @@ floor:
   mesh_spacing_m: 0.005
   flat_mesh_spacing_m: 0.04
   representation: continuous_mesh
-  # The dedicated brown ground model is copied from combined_rough_section.
+  # The dedicated brown ground model is provided by the independent factory floor template.
   # Aprons are visual only; all physical support remains the continuous mesh.
   terrain_view_bounds_xy_m: [0.20, 6.20, -1.80, 1.80]
   physics_step_seconds: 0.001

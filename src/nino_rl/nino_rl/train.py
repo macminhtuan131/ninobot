@@ -60,6 +60,8 @@ def main() -> None:
         ) from error
 
     config = load_config(args.config)
+    if not config.get("policy_v2", {}).get("imu_strict_coverage", True):
+        raise ValueError("PPO training requires measured IMU support; diagnostic estimates cannot train rewards")
     if config.get("governor",{}).get("enabled",False):
         raise SystemExit("Reactive governor is a PI foundation experiment. Use evaluate_baseline; PPO/Optuna remain held.")
     if args.route is not None:
@@ -150,9 +152,6 @@ def main() -> None:
                         for name in ("success", "truth_path_rmse_m", "time_seconds",
                                      "route_gates_passed", "route_gates_total"):
                             self.logger.record_mean(f"routes/{route_id}/{name}", float(metrics[name]))
-                    if "rough_curriculum_stage" in metrics:
-                        self.logger.record_mean("curriculum/rough_stage", metrics["rough_curriculum_stage"])
-                        self.logger.record_mean("curriculum/terrain_level", metrics["terrain_randomization_level"])
                     for name, value in metrics["reward_totals"].items():
                         self.logger.record_mean(f"episode_reward/{name}", float(value))
                     for name in (

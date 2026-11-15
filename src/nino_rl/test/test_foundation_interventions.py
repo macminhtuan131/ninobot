@@ -7,7 +7,7 @@ import numpy as np
 import pytest
 
 sys.path.insert(0,str(Path(__file__).parents[1]/'scripts'))
-from prepare_rough_foundations import scaled_mesh, immutable
+from experiment_assets import scaled_mesh, immutable
 from run_crossing_authority import target_scale, scripted_scale
 
 

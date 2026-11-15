@@ -8,7 +8,7 @@ from PyQt5 import QtCore as C,QtGui as G,QtWidgets as Q
 class NextStepsPanel(Q.QWidget):
     collectionRequested=C.pyqtSignal(str)
     def __init__(self,parent=None,workstream=None):
-        super().__init__(parent);self.steps=[];self.workstream=workstream;self.draft=None
+        super().__init__(parent);self.steps=[];self.workstream=workstream;self.draft=None;self.review_document=None
         layout=Q.QVBoxLayout(self)
         title=Q.QLabel('VIỆC CẦN LÀM · chọn từng bước để xem thao tác và dữ liệu')
         title.setWordWrap(True);title.setStyleSheet('font-size:20px;font-weight:700');layout.addWidget(title)
@@ -39,7 +39,7 @@ class NextStepsPanel(Q.QWidget):
     def change_branch(self,index):
         self.workstream=self.branch.currentData();self.reload()
     def reload(self):
-        row=max(0,self.list.currentRow());self.list.clear();self.draft=None
+        row=max(0,self.list.currentRow());self.list.clear();self.draft=None;self.review_document=None
         try:
             plan=json.loads(Path(__file__).with_name('research_plan.json').read_text())
             v2=plan.get('sim_coverage_v2')
@@ -144,6 +144,22 @@ class NextStepsPanel(Q.QWidget):
                 self.open_protocol.setText('Xem quyết định benchmark Sim đã đóng')
             if continuation and self.steps and not assessment:
                 self.steps[0]=dict(self.steps[0],status='BASELINE TRƯỚC LEARNER · '+continuation)
+            if active=='sim_offline_preparation':
+                from .sim_review import load
+                review=load()
+                self.current.setText(review['summary']);self.steps=list(review['steps'])
+                self.review_document=review['document']
+                self.open_protocol.setText('Xem review và protocol cần chuẩn bị')
+                self.note.setText('Review '+review['review_date']+': xem số slot đã đóng ở bước SIM-R3. Các bước tiếp là đề xuất; chọn dòng không chạy simulation/train.')
+                if review.get('obstacle_authority_sampling_audit'):
+                    self.open_protocol.setText('Xem kết luận audit · nhánh promote đã đóng')
+                    self.note.setText('Giữ classical; E2 đã dùng6/6 allocation. Block1/train chưa release. Chọn bước chỉ đọc hướng dẫn, không chạy batch hoặc cấp slot.')
+                if review.get('motion_quality_preparation'):
+                    self.open_protocol.setText('Xem draft giảm rung · chưa release')
+                    self.note.setText('MQ là protocol mới được đề xuất: mục tiêu/ngưỡng chưa chấp nhận, 0/6 lượt được cấp. E2 vẫn đóng6/6; không có nút chạy MQ hoặc tự mở train.')
+                if review.get('unknown_step_task_selection'):
+                    self.open_protocol.setText('Xem bài toán gờ không biết · vượt và bám đường')
+                    self.note.setText('Mục tiêu đã chọn: gờ không biết trước, vượt được và bám quỹ đạo. Draft preview giảm rung đã được thay hướng; chưa có lượt Sim/train mới. GT/contact chỉ dùng chấm kết quả, không vào controller.')
             for step in self.steps:
                 item=Q.QListWidgetItem(step['id']+' · '+step['name']+'\n'+step['status'])
                 height=self.list.fontMetrics().boundingRect(C.QRect(0,0,250,1000),C.Qt.TextWordWrap,item.text()).height()+20
@@ -164,13 +180,13 @@ class NextStepsPanel(Q.QWidget):
         self.open_collection.setEnabled(s.get('action') in ('diagnostic','studio'))
     def document(self):
         from .research_jobs import repository
-        try:path=repository()/('docs/NINO_SIM_PRESTOP_AUTHORITY_DRAFT_2026-11-08.md' if self.draft else 'docs/NINO_CLASSICAL_BASELINE_HANDOFF_2026-11-07.md')
+        try:path=repository()/(self.review_document or ('docs/NINO_SIM_PRESTOP_AUTHORITY_DRAFT_2026-11-08.md' if self.draft else 'docs/NINO_CLASSICAL_BASELINE_HANDOFF_2026-11-07.md'))
         except (OSError,ValueError) as exc:self.note.setText(str(exc));return
         if path.is_file():G.QDesktopServices.openUrl(C.QUrl.fromLocalFile(str(path)))
         else:self.note.setText('Không có outline tại '+str(path))
     def protocol_document(self):
         from .research_jobs import repository
-        try:path=repository()/('docs/NINO_SIM_PRESTOP_AUTHORITY_DRAFT_2026-11-08.md' if self.draft else 'docs/NINO_TD3_OFFLINE_PHASE_REVIEW_2026-11-07.md')
+        try:path=repository()/(self.review_document or ('docs/NINO_SIM_PRESTOP_AUTHORITY_DRAFT_2026-11-08.md' if self.draft else 'docs/NINO_TD3_OFFLINE_PHASE_REVIEW_2026-11-07.md'))
         except (OSError,ValueError) as exc:self.note.setText(str(exc));return
         if path.is_file():G.QDesktopServices.openUrl(C.QUrl.fromLocalFile(str(path)))
         else:self.note.setText('Không có protocol tại '+str(path))

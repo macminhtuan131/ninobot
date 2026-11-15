@@ -7,10 +7,10 @@ import numpy as np
 import yaml
 ROOT=Path(__file__).resolve().parents[3]
 sys.path[:0]=[str(Path(__file__).parent),str(ROOT/'src/nino_rl')]
-from prepare_rough_foundations import digest,immutable
-from train_rough_curriculum import Processes,assert_isolated,complete_evaluation,checkpoint_steps,newest_checkpoint
-from run_disturbance_reference_comparisons import read,verify,replace
-from analyze_rough_reactive_authority import window_metrics
+from experiment_assets import digest,immutable
+from experiment_processes import Processes,assert_isolated,complete_evaluation,checkpoint_steps,newest_checkpoint
+from experiment_assets import read,verify,replace
+from experiment_assets import window_metrics
 from run_flat_quiet_tail_workflow import ACTOR
 SOURCE=ROOT/'rl_runs/flat_bullet_contact_candidate_v3'
 OUTPUT=ROOT/'rl_runs/flat_bullet_known_course_pilot_v1'
@@ -143,12 +143,6 @@ def main():
     result=read(SOURCE/'analysis.json')
     if not result['screening_gates_passed']:
         status('held: contact candidate failed; no flat PPO started',analysis=str(SOURCE/'analysis.json'));return
-    # The contact engine is costlier; sequence learning after the rough workflow.
-    rough=ROOT/'rl_runs/rough_rate_action_pilot_v2/status.json'
-    while read(rough)['stage'] not in ('complete','interrupted'):
-        status('contact screen passed; waiting for rough workflow to release compute')
-        if time.monotonic()>deadline:raise TimeoutError('Rough workflow deadline')
-        time.sleep(30)
     run(prepare())
 
 if __name__=='__main__':

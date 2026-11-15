@@ -111,11 +111,18 @@ class SimBenchmarkPanel(Q.QWidget):
         if job.parent.sha(out/'manifest.json')!=snapshot['manifest_sha256']:
             raise ValueError('Stop6 validation offline manifest changed')
         report=verified_report(out);release=job.release_record()
+        result_root=Path(snapshot['result_root'])
+        if result_root.exists():
+            if (release['released'] is not False or release['allocated_physics_slots']!=4
+                    or release['fingerprint']!=job.fingerprint()
+                    or release['protocol_sha256']!=report['protocol_sha256']):
+                raise ValueError('Stop6 validation runtime release not properly closed')
+            job.validated_latest(result_root,check_runtime=False)
+            return report
         if release['released'] is not False or release['allocated_physics_slots']!=0:
             raise ValueError('Stop6 validation release changed; needs a reviewed runtime stage')
         if (release['fingerprint']!=job.fingerprint()
-                or release['protocol_sha256']!=report['protocol_sha256']
-                or Path(snapshot['result_root']).exists()):
+                or release['protocol_sha256']!=report['protocol_sha256']):
             raise ValueError('Stop6 validation preparation/source/root changed')
         return report
 

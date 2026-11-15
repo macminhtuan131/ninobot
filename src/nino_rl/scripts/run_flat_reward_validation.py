@@ -54,7 +54,7 @@ def compare(output):
     from nino_rl.evaluation import compare_summaries
     from nino_rl.tuning_objective import read_episode_rows
     from nino_rl.tuning_trials import digest
-    from train_rough_curriculum import checkpoint_steps
+    from experiment_processes import checkpoint_steps
     import numpy as np
     folders = [ROOT / 'rl_runs' / name for name in COURSES]
     plans = [read(folder / 'pilot_plan.json') for folder in folders]
@@ -155,7 +155,7 @@ def main():
     with (output / 'worker.lock').open('w') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         sys.path.insert(0, str(Path(__file__).parent))
-        from train_rough_curriculum import Processes
+        from experiment_processes import Processes
         processes = Processes(os.environ.copy())
         adopted = process_identity(args.wait_for_pid) if args.wait_for_pid else None
         if args.wait_for_pid and adopted and ('run_flat_reward_pilot.py' not in adopted[0]

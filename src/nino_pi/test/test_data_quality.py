@@ -45,7 +45,8 @@ class QualityTests(unittest.TestCase):
     def test_catalog_preserves_missing_and_conflicting_evidence(self):
         c = load_catalog()
         self.assertEqual(len(c["data"]), 30)
-        self.assertEqual(len(c["tasks"]), 28)
+        self.assertGreaterEqual(len(c["tasks"]), 28)
+        self.assertEqual(len({t["id"] for t in c["tasks"]}), len(c["tasks"]))
         self.assertTrue(all(s["level"] != "Q4" for s in c["sessions"]))
         v2 = next(s for s in c["sessions"] if s["id"] == "clear_floor_repeatability_v2_20261102T102247471316Z")
         self.assertEqual(v2["level"], "Q2")
@@ -53,3 +54,17 @@ class QualityTests(unittest.TestCase):
         zero = next(s for s in c["sessions"] if s["id"].startswith("zero_feedback"))
         self.assertEqual(zero["level"], "Q1")
         self.assertTrue(all(s["sources"] for s in c["parameters"] + c["tasks"] + c["sessions"] + c["data"]))
+
+    def test_new_real_review_keeps_corrupt_and_aborted_sessions_and_no_motion_release(self):
+        c = load_catalog()
+        review = c["real_review_2026_11_09"]
+        self.assertFalse(review["motion_ready"])
+        self.assertFalse(review["stop_guard_active"])
+        self.assertEqual(review["hardware_authority"], 0)
+        sessions = [s for s in c["sessions"] if s["id"].startswith("sac80k_20261108_")]
+        self.assertEqual(len(sessions), 8)
+        self.assertEqual(sum(s["level"] == "Q1" for s in sessions), 2)
+        self.assertEqual(sum("ABORTED" in s["outcome"] for s in sessions), 3)
+        self.assertTrue(all("không TD3" in s["claim"] for s in sessions))
+        measurement = next(d for d in c["data"] if d["id"] == "D14")
+        self.assertIn("camera không bắt buộc", measurement["name"])

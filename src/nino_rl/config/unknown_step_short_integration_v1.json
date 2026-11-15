@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "protocol_id": "nino_unknown_step_short_integration_v1_2026_11_10",
+  "scope": "simulation_engineering_contract_not_factory_acceptance_or_long_training",
+  "authorization": "User: continue next steps until long training is needed",
+  "control_interval_s": 0.1,
+  "route_m": [[0.0, 0.0], [2.0, 0.0]],
+  "cruise_m_s": 0.2,
+  "horizon_s": 25.0,
+  "source_warmup_s": 0.5,
+  "goal_tolerance_m": 0.05,
+  "goal_heading_tolerance_rad": 0.2617993877991494,
+  "maximum_cross_track_m": 0.04,
+  "continuous_stop_s": 2.0,
+  "stall_window_s": 4.0,
+  "stall_progress_m": 0.01,
+  "clearance_m": 0.01,
+  "maximum_source_age_s": 0.04,
+  "reward": {
+    "progress": 1.0, "cross_track": 0.1, "heading": 0.1, "time": 0.02,
+    "accepted_action": 0.01, "accepted_action_change": 0.001,
+    "success": 5.0, "failure": 10.0, "cross_scale_m": 0.05, "heading_scale_rad": 0.5
+  },
+  "bank": {
+    "development": [
+      {"id": "dev_clear", "bump_x_m": null},
+      {"id": "dev_early", "bump_x_m": 0.65},
+      {"id": "dev_late", "bump_x_m": 1.05}
+    ],
+    "validation_reserved_not_run": [{"id": "val_mid", "bump_x_m": 1.25}],
+    "test_reserved_not_run": [{"id": "test_late", "bump_x_m": 1.50}],
+    "bump_radius_m": 0.003,
+    "floor_mu": 1.0,
+    "angle_rad": 0.0,
+    "training_layout_order": ["dev_early", "dev_late", "dev_clear"],
+    "metadata_actor_input": false
+  },
+  "budget": {
+    "baseline_launches": 3,
+    "smoke_training_transitions": 384,
+    "smoke_training_launches_max": 3,
+    "smoke_evaluation_launches": 1,
+    "maximum_launches": 8,
+    "implementation_corrections_max": 1,
+    "automatic_retries": 0,
+    "maximum_transitions": 1634,
+    "wall_deadline_s": 2400,
+    "reserve_bytes": 1073741824,
+    "required_free_bytes": 2147483648,
+    "hardware_actions": 0,
+    "long_training_allowed": false
+  },
+  "smoke_profile": "nino_td3_smoke_h5_v1",
+  "seed": 11,
+  "checkpoint_promotion": false,
+  "failure_rule": "retain every attempted launch; no training after B0 measurement/task failure; at most one concrete implementation correction without lowering gates",
+  "retention": "retain short-run raw, traces, worlds, model/replay and metadata; no old run deletion"
+}

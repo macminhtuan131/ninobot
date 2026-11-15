@@ -127,7 +127,7 @@ def run(args, output, overlay, study, plan):
     from nino_rl.tuning_trials import assert_trial_inputs
     from nino_rl.tuning_objective import read_episode_rows, score_episodes
     from nino_rl.evaluation import compare_summaries
-    from train_rough_curriculum import Processes, assert_isolated, complete_evaluation, checkpoint_steps
+    from experiment_processes import Processes, assert_isolated, complete_evaluation, checkpoint_steps
     os.environ.update(ROS_DOMAIN_ID='79', NINO_ROS_DOMAIN_ID='79', GZ_PARTITION='nino_flat_79',
                       ROS_AUTOMATIC_DISCOVERY_RANGE='LOCALHOST')
     env = os.environ.copy()

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build flat contact experiments using the rough world's true mesh carving.
+"""Build flat contact experiments using independent continuous mesh carving.
 
 The mixed map is an integration/drawing fixture. Single-obstacle worlds are
 the initial mechanism experiments. One continuous terrain mesh includes both
@@ -18,7 +18,7 @@ import xml.etree.ElementTree as ET
 import numpy as np
 import yaml
 
-from generate_rough_section import feature_relief, write_mesh
+from terrain_mesh import feature_relief, write_mesh
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -172,7 +172,7 @@ def add_display_items(ground, items):
 
 
 def make_world(spec, negatives, cables, thresholds, mesh_dir, contact_lab=False):
-    root = deepcopy(ET.parse(ROOT / "worlds/combined_rough_section.sdf").getroot())
+    root = deepcopy(ET.parse(ROOT / "worlds/factory_floor_template.sdf").getroot())
     world = root.find("world")
     world.set("name", WORLD_NAME)
     if contact_lab:
@@ -184,10 +184,10 @@ def make_world(spec, negatives, cables, thresholds, mesh_dir, contact_lab=False)
     physics.find("max_step_size").text = str(spec["floor"]["physics_step_seconds"])
     dart = ET.SubElement(physics, "dart")
     ET.SubElement(dart, "collision_detector").text = "bullet"
-    ground_template = deepcopy(world.find("model[@name='rough_approach_ground']"))
+    ground_template = deepcopy(world.find("model[@name='factory_ground_template']"))
     if ground_template is None:
-        raise ValueError("Rough world must contain its dedicated terrain ground")
-    for name in ("rough_approach_ground", "rough_goal_markers", "cable_bumps", "spawn_clear_zone"):
+        raise ValueError("Factory template must contain its terrain ground model")
+    for name in ("factory_ground_template",):
         node = world.find(f"model[@name='{name}']")
         if node is not None:
             world.remove(node)
@@ -342,7 +342,7 @@ def generate(variant, seed=None, root=ROOT, *, contact_lab=False):
         floor_tiles_xy_m=[], terrain_mesh=terrain_mesh,
         world_sha256=hashlib.sha256((world_dir / filename).read_bytes()).hexdigest(),
         terrain_background="exactly level z=0 outside carved patches",
-        terrain_template="combined_rough_section.sdf: rough_approach_ground",
+        terrain_template="factory_floor_template.sdf: factory_ground_template",
         obstacles_physically_validated=False, generator_starts_simulator=False,
         randomization="seeded offline geometry generation" if seed is not None else "fixed layout",
         per_episode_randomization=False, training_allowed=False, optuna_allowed=False,

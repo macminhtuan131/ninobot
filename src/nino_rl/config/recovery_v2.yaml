@@ -1,0 +1,58 @@
+schema_version: 2
+contract_id: nino_recovery_history100_accepted_common_v2
+scope: proposed_simulation_research_not_factory_acceptance
+route_m: [[0.0, 0.0], [4.0, 0.0]]
+interval_s: 0.1
+horizon_s: 40.0
+cruise_m_s: 0.2
+maximum_cross_track_m: 0.20
+source_age_s: 0.04
+continuous_stop_s: 2.0
+start_budget:
+  physical_goal_m: 0.05
+  estimated_stop_m: 0.03
+  odometry_uncertainty_m: 0.005
+  stopping_uncertainty_m: 0.005
+  maximum_initial_error_m: 0.008
+  maximum_initial_heading_rad: 0.03
+recovery_bands:
+  cross_track_m: 0.04
+  heading_rad: 0.10
+  yaw_rate_rad_s: 0.10
+  tilt_rad: 0.12
+  speed_error_m_s: 0.05
+  exit_multiplier: 1.5
+  hold_s: 0.5
+  maximum_recovery_s: 5.0
+recovery_reward:
+  clearance_bonus: 0.0
+  recovery_bonus: 0.2
+  stability_weight: 0.01
+curriculum:
+  window: 10
+  minimum_episodes: 10
+  success_fraction: 0.8
+  earlier_stage_probability: 0.2
+  maximum_stage: 2
+families:
+  clean:
+    initial_xy_proposal_m: 0.005
+    initial_yaw_proposal_rad: 0.02
+  short_obstacle:
+    radius_m: [0.002, 0.003]
+    angle_rad: [-0.35, 0.35]
+  pothole:
+    depth_m: [0.003, 0.006]
+    radius_m: [0.06, 0.09]
+    lateral_m: [-0.18, 0.18]
+    contact_qualified: false
+  mixed:
+    contact_qualified: false
+budget:
+  maximum_launches: 1
+  software_smoke_transitions: 32
+  gazebo_transitions: 400
+  minimum_free_bytes: 2147483648
+  wall_deadline_s: 600
+  automatic_retries: 0
+  hardware_actions: 0

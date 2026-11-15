@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "protocol_id": "nino_unknown_step_traversal_tracking_task_v1_2026_11_09",
+  "status": "task_selected_runtime_not_implemented",
+  "objective": {
+    "user_selected": true,
+    "selection_source": "User: obstacle is unknown; traverse it and follow the trajectory",
+    "priority": [
+      "physical_traversal_and_arrival",
+      "path_tracking",
+      "completion_time"
+    ],
+    "secondary_diagnostics": [
+      "sampled_IMU_acceleration",
+      "wheel_body_discrepancy_when_reference_valid",
+      "saturation",
+      "stall",
+      "interventions"
+    ],
+    "not_required": [
+      "10percent_vibration_reduction",
+      "fixed_speed_tracking_during_contact",
+      "known_obstacle_preview"
+    ]
+  },
+  "release": {
+    "physics_allowed": false,
+    "allocated_attempts": 0,
+    "training_allowed": false,
+    "optimizer_updates": 0,
+    "hardware_actions": 0,
+    "runtime_implemented": false
+  },
+  "supersedes": {
+    "known_route_motion_quality_active": false,
+    "known_route_draft": "known_route_motion_quality_draft_v1.json",
+    "old_six_MQ_attempts_allocated": 0,
+    "reason": "User chose unknown obstacle traversal/tracking instead of known-route vibration objective",
+    "E2_status": "closed_6_of_6_unknown_stop8_sampling_unchanged"
+  },
+  "controller_information": {
+    "obstacle_preview": false,
+    "privileged_contact_trigger": false,
+    "allowed": [
+      "raw_IMU",
+      "both_wheel_encoders",
+      "causal_command_history",
+      "freshness_and_owner_status",
+      "nominal_path_follower_reference_from_verified_estimator"
+    ],
+    "feature_names": [
+      "baseline_v_m_s",
+      "baseline_yaw_rad_s",
+      "wheel_l_rad_s",
+      "wheel_r_rad_s",
+      "gyro_x_rad_s",
+      "gyro_y_rad_s",
+      "gyro_z_rad_s",
+      "accel_x_m_s2",
+      "accel_y_m_s2",
+      "accel_z_m_s2",
+      "last_final_v_m_s",
+      "last_final_yaw_rad_s",
+      "previous_proposal_common",
+      "previous_proposal_diff",
+      "previous_accepted_common",
+      "previous_accepted_diff",
+      "imu_age_s",
+      "wheel_age_s",
+      "nominal_yaw_consistency_rad_s",
+      "nominal_wheel_asymmetry"
+    ],
+    "history_frames": 5,
+    "history_order": "oldest_to_newest",
+    "prohibited": [
+      "GT_pose_or_velocity",
+      "obstacle_position_height_angle_distance",
+      "privileged_contact_or_caster_state",
+      "scenario_id_or_layout_seed",
+      "scheduled_obstacle_braking_position_or_time",
+      "time_to_contact",
+      "future_samples"
+    ],
+    "path_and_goal": "may_be_known; not_an_obstacle_map",
+    "first_contact": "sensor_derived_disturbance_proxy_only_not_contact_oracle",
+    "low_obstacles": "horizontal_2D_LiDAR_not_assumed_to_provide_preview"
+  },
+  "task": {
+    "route": "start_to_goal_known_reference_path",
+    "route_origin": "fixed_world_route_frame; initial_pose_recorded",
+    "stop_policy": "goal_or_failure_not_fixed_stop6_or_stop8_reward_window",
+    "success": "physical_body_reaches_goal_and_all_robot_parts_clear_intended_rigid_step_then_continuous_stop; estimator_arrival_alone_insufficient",
+    "path_metric": "physical_GT_cross_track_RMSE_max_and_heading_error_against_same_reference_path",
+    "time_metric": "physical_goal_completion_time_and_timeout_not_reward_return",
+    "intended_contact": "traversable_step_contacts_are_not_automatically_collision_failures",
+    "failure": [
+      "stall_or_timeout",
+      "failure_to_clear_step",
+      "body_rollover_or_invalid_geometry",
+      "path_violation_under_future_thresholds",
+      "drive_fault_or_owner_intervention"
+    ],
+    "missing_data": "UNKNOWN_kept_as_missing_not_a_success",
+    "no_obstacle_control": "goal_and_tracking_still_required_no_contact_required"
+  },
+  "scenario_design": {
+    "initial_scope": "single_rigid_step_of_bounded_mechanical_envelope; unknown_position_to_controller",
+    "development_anchor": "6mm_rigid_step_from_existing_lab_not_new_evidence",
+    "position": "varied_and_hidden; one_fixed_location_or_time_not_generalization",
+    "height_and_angle": "add_bounded_variants_only_after_feasibility; metadata_not_actor_features",
+    "negative_control": "clear_floor_to_check_false_reactions",
+    "splits": "whole_runs/layouts/seeds; distinct_frozen_development_validation_test_positions; no_random_frame_split",
+    "shortcut_checks": [
+      "perturb_hidden_obstacle_metadata_with_identical_sensor_history_controller_packet_must_not_change",
+      "vary_position_and_start_delay_to_break_fixed_time_lookup",
+      "audit_all_observation_wrappers_for_oracle_or_stop_time_features"
+    ],
+    "bank_manifest": null,
+    "not_claims": [
+      "arbitrary_step_height",
+      "soft_cable_traversal",
+      "all_factory_objects",
+      "sim_to_real_success"
+    ]
+  },
+  "controllers": {
+    "B0": "classical_path_follower_and_velocity_backend_same_limits",
+    "B1": "sensor_only_reactive_governor_same_path_follower; qualify_input_and_state_contract_first",
+    "TD3": "bounded_residual_candidate_after_task_and_environment_qualification; not_required_to_beat_baseline_before_training",
+    "history": "reuse_causal_sensor_history_no_oracle_or_obstacle_schedule_extensions",
+    "action": "bounded_velocity_reference_residual_through_projection_owner_limits; never_direct_current_CAN",
+    "checkpoint": "old_common103_oracle_planned_stop_ABI_not_automatically_compatible",
+    "reward": "new_task_reward_must_align_with_goal_progress_path_and_failure_not_only_nominal_velocity_ISE; no_weights_selected_yet"
+  },
+  "numeric_acceptance": {
+    "accepted": false,
+    "goal_position_tolerance_m": null,
+    "path_max_m": null,
+    "heading_tolerance_rad": null,
+    "maximum_task_seconds": null,
+    "stall_definition": null,
+    "continuous_stop_s": null,
+    "residual_bounds": null,
+    "rule": "choose_in_concrete_prospective_protocol_before_launch; user_goal_does_not_accept_factory_tolerances"
+  },
+  "evaluation": {
+    "order": [
+      "valid_data",
+      "physical_success_and_failure_counts",
+      "path_RMSE_max_heading",
+      "completion_time",
+      "diagnostics"
+    ],
+    "no_single_scalar_success_tradeoff": true,
+    "all_attempts_and_failures_retained": true,
+    "source_clock": "causal_source_samples_receipt_clock_separate",
+    "old_ISE_results": "historical_only_no_relabeling_as_new_task_success",
+    "seed_claim": "evaluation_seeds_not_independent_training_seeds",
+    "learning_gate": "fix_task_reset_step_observation_action_reward_termination_then_bounded_training_pilot; physical_superiority_decided_by_independent_evaluation"
+  },
+  "next_steps": [
+    "implement_isolated_unknown_step_task_success_tracking_and_goal_stop_with_synthetic_fixtures",
+    "connect_sensor_only_controller_boundary_and_remove_oracle_or_schedule_inputs_in_new_adapter",
+    "freeze_hidden_layout_bank_and_one_baseline_integration_protocol_with_limits_budget_retention",
+    "then_smoke_environment_and_training_under_separate_release; compare_classical_reactive_TD3_on_identical_task"
+  ],
+  "proposed_attempts": [],
+  "proposed_budget": null,
+  "frozen_inputs": {
+    "src/nino_control/nino_control/residual_velocity.py": "4126bfba0e273cd0232b14df08fc2254c55de1becefd79f54edcd448dfe735cb",
+    "src/nino_rl/nino_rl/causal_source_support.py": "289fe0081c179ecf2211983ab17d491d9be2477559e487c2a88f822b99158265"
+  },
+  "spec_sha256": "fddea9036743198e1b6b4c6cc3b1922c22cfe8d013241057776a5fc2cb17430f"
+}

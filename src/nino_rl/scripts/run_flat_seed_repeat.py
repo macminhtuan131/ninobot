@@ -109,7 +109,7 @@ def prepare(output, seed):
                           else original.read_bytes())
         if path.read_bytes() != expected_bytes:
             raise ValueError(f"Repeat differs beyond trace logging: {path.name}")
-    workflow_paths = [Path(__file__), Path(__file__).with_name("train_rough_curriculum.py"),
+    workflow_paths = [Path(__file__), Path(__file__).with_name("experiment_processes.py"),
                       Path(__file__).with_name("wait_for_drive_profile.py")]
     original_paths = [ORIGINAL / name for name in ("pilot_plan.json", "pilot.yaml", "evaluation.yaml", "comparison.json")]
     plan = dict(revision="flat_scale_seed_repeat_v1", original_run=str(ORIGINAL),
@@ -155,7 +155,7 @@ def run(output, plan, save):
     from nino_rl.tuning_trials import assert_trial_inputs, digest
     from nino_rl.tuning_objective import read_episode_rows, score_episodes
     from nino_rl.evaluation import compare_summaries
-    from train_rough_curriculum import Processes, assert_isolated, complete_evaluation, checkpoint_steps
+    from experiment_processes import Processes, assert_isolated, complete_evaluation, checkpoint_steps
     os.environ.update(ROS_DOMAIN_ID="79", NINO_ROS_DOMAIN_ID="79", GZ_PARTITION="nino_flat_79",
                       ROS_AUTOMATIC_DISCOVERY_RANGE="LOCALHOST")
     env = os.environ.copy()
@@ -256,7 +256,6 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--training-seed", type=int, default=43)
     parser.add_argument("--output", type=Path, default=ROOT / "rl_runs/flat_value_scaled_seed43_v1")
-    parser.add_argument("--wait-for-rough-pid", type=int)
     parser.add_argument("--run", action="store_true")
     args = parser.parse_args()
     os.chdir(ROOT)
@@ -280,13 +279,6 @@ def main():
             return
         signal.signal(signal.SIGTERM, lambda *_: (_ for _ in ()).throw(KeyboardInterrupt()))
         try:
-            identity = process_identity(args.wait_for_rough_pid) if args.wait_for_rough_pid else None
-            if identity and "run_rough_trial8_validation.py" not in identity[0]:
-                raise ValueError("Refusing to wait for an unrelated process")
-            if identity:
-                save("waiting_for_rough", waited_pid=args.wait_for_rough_pid)
-                while process_identity(args.wait_for_rough_pid) == identity:
-                    time.sleep(2)
             verify(plan)
             run(output, plan, save)
         except KeyboardInterrupt:

@@ -4,8 +4,8 @@ import argparse,json
 from pathlib import Path
 import numpy as np
 import analyze_flat_contact_convergence as original
-from train_rough_curriculum import complete_evaluation
-from prepare_rough_foundations import digest
+from experiment_processes import complete_evaluation
+from experiment_assets import digest
 
 REAL_WINDOW=original.window_metrics
 def safe_window(rows,ranges):

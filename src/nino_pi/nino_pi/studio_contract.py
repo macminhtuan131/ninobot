@@ -10,6 +10,7 @@ SCENARIOS = {
     'curve': ('Đường cong / coupled response', 'real_sysid', True),
     'stop_go': ('Tăng giảm tốc / transient', 'real_sysid', True),
     'heldout': ('Điều kiện giữ riêng / evaluation', 'real_evaluation', True),
+    'velocity_sysid': ('Velocity SysID · firmware velocity backend', 'real_sysid', True),
 }
 
 
@@ -24,7 +25,8 @@ def config_root():
 def collection_config(scenario, storage='mcap'):
     if scenario not in SCENARIOS or storage not in ('mcap', 'sqlite3'):
         raise ValueError('Unknown scenario/storage')
-    source = 'real_collection_residual_diagnostic.json' if SCENARIOS[scenario][2] else 'stm32_usb_collection.json'
+    source = ('real_collection_velocity_sysid.json' if scenario == 'velocity_sysid' else
+              'real_collection_residual_diagnostic.json' if SCENARIOS[scenario][2] else 'stm32_usb_collection.json')
     config = json.loads((config_root()/source).read_text())
     config.pop('storage_preset_profile', None)
     config.update(profile_id='studio_observer_'+scenario+'_v1', duration_s=60, storage_id=storage)
@@ -54,4 +56,6 @@ def validate_metadata(value):
         raise ValueError('Confirm observation conditions before recording')
     if SCENARIOS[value['scenario']][2] and value['protocol_id'].strip().lower() in ('unknown', 'chưa biết', 'none'):
         raise ValueError('Motion observation needs an existing reviewed protocol ID; choosing a scenario does not authorize motion')
+    if value['scenario'] == 'velocity_sysid' and value['controller_identity'].strip() != 'firmware_velocity_reference':
+        raise ValueError('Velocity SysID needs declared controller_identity=firmware_velocity_reference; torque/SAC is a separate dataset')
     return deepcopy(value)

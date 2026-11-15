@@ -23,7 +23,7 @@ def bundle():
         for name in MODULES:
             info=zipfile.ZipInfo('nino_pi/'+name, date_time=(2026,11,4,0,0,0))
             z.writestr(info,(root/name).read_bytes())
-        for name in ('stm32_usb_collection.json','real_collection_residual_diagnostic.json','stm32_usb_collection_qos.yaml'):
+        for name in ('stm32_usb_collection.json','real_collection_residual_diagnostic.json','real_collection_velocity_sysid.json','stm32_usb_collection_qos.yaml'):
             info=zipfile.ZipInfo('config/'+name,date_time=(2026,11,4,0,0,0))
             z.writestr(info,(config_root()/name).read_bytes())
     data=output.getvalue();sha=hashlib.sha256(data).hexdigest()
@@ -35,7 +35,12 @@ def remote_command(action, payload):
         raise ValueError('Invalid observer action/payload')
     _,_,namespace=bundle()
     # Known driver env contains middleware profile. Sourcing does not launch drivers.
-    script='source "$HOME/pi5-stm32-slam-main/scripts/env.sh" || exit 1\n'
+    script='nino_observer_env=""\n'
+    script+='for nino_candidate in "$HOME/nino-real-test/scripts/env.sh" "$HOME/pi5-stm32-slam/scripts/env.sh" "$HOME/pi5-stm32-slam-main/scripts/env.sh"; do\n'
+    script+='  if [[ -r "$nino_candidate" ]]; then nino_observer_env="$nino_candidate"; break; fi\n'
+    script+='done\n'
+    script+='[[ -n "$nino_observer_env" ]] || { echo "Driver environment not found; no observer started" >&2; exit 1; }\n'
+    script+='source "$nino_observer_env" || exit 1\n'
     script+='export ROS_DOMAIN_ID=0\n'
     script+='export PYTHONPATH="$HOME/nino_runtime/'+namespace+':${PYTHONPATH:-}"\n'
     script+='exec /usr/bin/python3 -u -m nino_pi.studio_remote '+action+' --metadata-base64 '+payload

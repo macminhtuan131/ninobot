@@ -8,9 +8,9 @@ import xml.etree.ElementTree as ET
 import yaml
 ROOT=Path(__file__).resolve().parents[3]
 sys.path[:0]=[str(Path(__file__).parent),str(ROOT/'src/nino_rl')]
-from prepare_rough_foundations import digest,immutable
-from train_rough_curriculum import Processes,assert_isolated,complete_evaluation
-from run_disturbance_reference_comparisons import verify,read
+from experiment_assets import digest,immutable
+from experiment_processes import Processes,assert_isolated,complete_evaluation
+from experiment_assets import verify,read
 SOURCE=ROOT/'rl_runs/disturbance_reference_comparisons_v1/flat'
 OUTPUT=ROOT/'rl_runs/flat_bullet_contact_candidate_v1'
 LIBRARY=ROOT/'build/flat_contact_probe/libnino_flat_contact_probe.so'

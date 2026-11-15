@@ -52,6 +52,50 @@ def test_collision_geometry_composed_transforms_and_horizontal_cylinder(tmp_path
     assert world_geometry(root,'clear_box')['shapes']==[]
 
 
+def test_DR_map_uses_hashed_current_episode_world_and_refreshes(tmp_path):
+    import hashlib
+    root=fixture(tmp_path)
+    save(root/'request.json',dict(scenario='box_c1_6mm_dr',resume=None))
+    current=root/'dr_worlds/episode_0000.sdf'
+    current.parent.mkdir()
+    current.write_bytes((root/'clear_box.sdf').read_bytes())
+    save(root/'current_world.json',dict(scenario='box_c1_6mm_dr',path=str(current),
+        sha256=hashlib.sha256(current.read_bytes()).hexdigest()))
+    reader=DashboardReader(root)
+    first=reader.poll()
+    assert first['world']['path']==str(current) and len(first['world']['shapes'])==2
+    second=current.with_name('episode_0001.sdf')
+    second.write_text(current.read_text().replace('name="hall"','name="new_hall"'))
+    save(root/'current_world.json',dict(scenario='box_c1_6mm_dr',path=str(second),
+        sha256=hashlib.sha256(second.read_bytes()).hexdigest()))
+    assert reader.poll()['world']['path']==str(second)
+    save(root/'current_world.json',dict(scenario='box_c1_6mm_dr',path=str(second),sha256='wrong'))
+    assert reader.poll()['world']['shapes']==[]
+
+
+def test_next_world_reset_never_changes_the_map_of_the_last_recorded_path(tmp_path):
+    import hashlib
+    root=fixture(tmp_path)
+    save(root/'request.json',dict(scenario='box_c1_6mm_dr',resume=None))
+    identities=[]
+    for index in range(3):
+        world=root/f'dr_worlds/episode_{index:04d}.sdf'
+        world.parent.mkdir(exist_ok=True)
+        world.write_text((root/'clear_box.sdf').read_text().replace('name="hall"',f'name="hall{index}"'))
+        identities.append(dict(scenario='box_c1_6mm_dr',episode=index,path=str(world),
+                               sha256=hashlib.sha256(world.read_bytes()).hexdigest()))
+    # Writer is already at auto-reset episode 2, reader is consuming episode 0.
+    save(root/'current_world.json',identities[2])
+    trace=root/'environment_trace.jsonl'
+    append(trace,[dict(row(0,0),episode_world=identities[0])])
+    reader=DashboardReader(root);snapshot=reader.poll()
+    assert snapshot['world']['path']==identities[0]['path'] and snapshot['map_episode']==0
+    append(trace,[dict(row(1,0,True),episode_world=identities[1])])
+    snapshot=reader.poll()
+    assert snapshot['world']['path']==identities[1]['path'] and snapshot['map_episode']==1
+    assert 'last recorded transition' in snapshot['map_scope']
+
+
 def test_incremental_episode_RMS_return_resume_and_reset_path(tmp_path):
     root=fixture(tmp_path);trace=root/'environment_trace.jsonl'
     append(trace,[row(0,0,error=.003),row(0,1,True,error=.004),row(1,0)])

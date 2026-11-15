@@ -1,0 +1,316 @@
+{
+  "input_code_files": 786,
+  "source_files_with_nodes": 714,
+  "files_without_source_nodes": [
+    {
+      "path": "src/linorobot2/mkdocs.yml",
+      "bytes": 1090
+    },
+    {
+      "path": "src/nino_description/config/bridge.yaml",
+      "bytes": 964
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_cable.json",
+      "bytes": 4954
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_cable_box_capsule_contact_lab.json",
+      "bytes": 6274
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_cable_box_contact_lab.json",
+      "bytes": 5589
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_cable_contact_lab.json",
+      "bytes": 5001
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_clear.json",
+      "bytes": 4814
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_clear_box_contact_lab.json",
+      "bytes": 5449
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_clear_contact_lab.json",
+      "bytes": 4861
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_groove.json",
+      "bytes": 5491
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_groove_contact_lab.json",
+      "bytes": 5538
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_mixed.json",
+      "bytes": 9157
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_mixed_contact_lab.json",
+      "bytes": 9204
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_pothole.json",
+      "bytes": 5461
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_pothole_contact_lab.json",
+      "bytes": 5508
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_threshold.json",
+      "bytes": 4962
+    },
+    {
+      "path": "src/nino_description/worlds/factory_floor_threshold_contact_lab.json",
+      "bytes": 5009
+    },
+    {
+      "path": "src/nino_pi/config/body_reference_observation.template.json",
+      "bytes": 1791
+    },
+    {
+      "path": "src/nino_pi/config/laptop_control.example.json",
+      "bytes": 616
+    },
+    {
+      "path": "src/nino_pi/config/motor_telemetry.example.json",
+      "bytes": 1170
+    },
+    {
+      "path": "src/nino_pi/config/real_collection.json",
+      "bytes": 2975
+    },
+    {
+      "path": "src/nino_pi/config/real_collection_residual_diagnostic.json",
+      "bytes": 5388
+    },
+    {
+      "path": "src/nino_pi/config/real_collection_velocity_sysid.json",
+      "bytes": 3849
+    },
+    {
+      "path": "src/nino_pi/config/real_session.template.json",
+      "bytes": 6042
+    },
+    {
+      "path": "src/nino_pi/config/stm32_usb_collection.json",
+      "bytes": 5058
+    },
+    {
+      "path": "src/nino_pi/config/stm32_usb_imu_collection.json",
+      "bytes": 1787
+    },
+    {
+      "path": "src/nino_pi/config/stm32_usb_session.template.json",
+      "bytes": 4906
+    },
+    {
+      "path": "src/nino_pi/config/stm32_usb_wheel_response_collection.json",
+      "bytes": 4425
+    },
+    {
+      "path": "src/nino_pi/config/wheel_response_session.template.json",
+      "bytes": 8956
+    },
+    {
+      "path": "src/nino_pi/nino_pi/project_evidence.json",
+      "bytes": 176214
+    },
+    {
+      "path": "src/nino_pi/nino_pi/research_plan.json",
+      "bytes": 121025
+    },
+    {
+      "path": "src/nino_pi/nino_pi/sim_review_status.json",
+      "bytes": 18725
+    },
+    {
+      "path": "src/nino_pi/runtime/SOURCE_PROVENANCE.json",
+      "bytes": 2372
+    },
+    {
+      "path": "src/nino_pi/runtime/collection.json",
+      "bytes": 5388
+    },
+    {
+      "path": "src/nino_pi/runtime/contract.template.json",
+      "bytes": 4397
+    },
+    {
+      "path": "src/nino_pi/runtime/endpoint_reference.json",
+      "bytes": 967
+    },
+    {
+      "path": "src/nino_pi/runtime/motion_profile.template.json",
+      "bytes": 760
+    },
+    {
+      "path": "src/nino_pi/runtime/session.template.json",
+      "bytes": 5594
+    },
+    {
+      "path": "src/nino_pi/runtime/stationary.json",
+      "bytes": 4486
+    },
+    {
+      "path": "src/nino_rl/config/common103_v2_integration_review_draft_v1.json",
+      "bytes": 3213
+    },
+    {
+      "path": "src/nino_rl/config/common103_v2_multiseed_50k_box_c1_6mm_dr.json",
+      "bytes": 328
+    },
+    {
+      "path": "src/nino_rl/config/common_studio_pilot_2026_11_07.json",
+      "bytes": 265
+    },
+    {
+      "path": "src/nino_rl/config/drive_readiness_release_v1.json",
+      "bytes": 530
+    },
+    {
+      "path": "src/nino_rl/config/fixed6mm_postmanifold_authority_draft_v1.json",
+      "bytes": 9723
+    },
+    {
+      "path": "src/nino_rl/config/fixed6mm_postmanifold_runtime_release_v1.json",
+      "bytes": 633
+    },
+    {
+      "path": "src/nino_rl/config/gain_baseline_release_v1.json",
+      "bytes": 586
+    },
+    {
+      "path": "src/nino_rl/config/goal_checkpoint_evaluation_2026_11_14_v1.json",
+      "bytes": 1703
+    },
+    {
+      "path": "src/nino_rl/config/known_route_motion_quality_draft_v1.json",
+      "bytes": 9097
+    },
+    {
+      "path": "src/nino_rl/config/pi_screen_release_v1.json",
+      "bytes": 1144
+    },
+    {
+      "path": "src/nino_rl/config/pi_stop_validation_release_v1.json",
+      "bytes": 1200
+    },
+    {
+      "path": "src/nino_rl/config/prestop_tail_authority_draft_v1.json",
+      "bytes": 11070
+    },
+    {
+      "path": "src/nino_rl/config/prestop_tail_authority_release_v1.json",
+      "bytes": 1102
+    },
+    {
+      "path": "src/nino_rl/config/ready_eval_only_release_v1.json",
+      "bytes": 574
+    },
+    {
+      "path": "src/nino_rl/config/residual_coverage_release_v1.json",
+      "bytes": 413
+    },
+    {
+      "path": "src/nino_rl/config/residual_coverage_release_v2.json",
+      "bytes": 407
+    },
+    {
+      "path": "src/nino_rl/config/residual_coverage_study_v1.json",
+      "bytes": 3739
+    },
+    {
+      "path": "src/nino_rl/config/residual_coverage_study_v2.json",
+      "bytes": 4688
+    },
+    {
+      "path": "src/nino_rl/config/residual_joint_boundary_v1.yaml",
+      "bytes": 808
+    },
+    {
+      "path": "src/nino_rl/config/residual_sysid.template.json",
+      "bytes": 597
+    },
+    {
+      "path": "src/nino_rl/config/sim_chain_dynamics_audit_v1.json",
+      "bytes": 1362
+    },
+    {
+      "path": "src/nino_rl/config/sim_gain_benchmark_v1.json",
+      "bytes": 3329
+    },
+    {
+      "path": "src/nino_rl/config/sim_held_gain_candidate_v1.json",
+      "bytes": 1340
+    },
+    {
+      "path": "src/nino_rl/config/sim_pi_screen_preparation_v1.json",
+      "bytes": 730
+    },
+    {
+      "path": "src/nino_rl/config/sim_pi_screen_protocol_v1.json",
+      "bytes": 2296
+    },
+    {
+      "path": "src/nino_rl/config/sim_pi_stop_validation_protocol_v1.json",
+      "bytes": 2513
+    },
+    {
+      "path": "src/nino_rl/config/studio_startup_reset_repair_2026_11_09.json",
+      "bytes": 2978
+    },
+    {
+      "path": "src/nino_rl/config/unknown_step_short_gate_amendment_v1.json",
+      "bytes": 1037
+    },
+    {
+      "path": "src/nino_rl/config/unknown_step_short_integration_v1.json",
+      "bytes": 2192
+    },
+    {
+      "path": "src/nino_rl/config/unknown_step_traversal_tracking_task_v1.json",
+      "bytes": 7384
+    },
+    {
+      "path": "src/nino_rl/models/completed_train/results.json",
+      "bytes": 1815
+    },
+    {
+      "path": "src/nino_rl/models/completed_train/run_metadata.json",
+      "bytes": 554
+    },
+    {
+      "path": "src/nino_rl/test/fixtures/coverage_first_tick_failure_v1.json",
+      "bytes": 19354
+    },
+    {
+      "path": "src/nino_rl/test/fixtures/coverage_v2_initial_permission_failure.json",
+      "bytes": 45378
+    }
+  ],
+  "graphify_parser_warning": {
+    "path": "src/nino_rl/nino_rl/ros_env.py",
+    "reported_error_line": 1,
+    "extracted_symbols": 47,
+    "python_ast_parse": "valid"
+  },
+  "explicit_no_symbol_warnings": [
+    "src/linorobot2/linorobot2_bringup/config/zed_common.yaml",
+    "src/linorobot2/linorobot2_gazebo/setup.py",
+    "src/nino_control/setup.py",
+    "src/nino_pi/setup.py",
+    "src/nino_rl/setup.py"
+  ],
+  "limitation": "No node output is not a claim that a file is unused; empty init files, unsupported syntax and extractor limitations may be involved.",
+  "input_code_files_with_nodes": 713,
+  "additional_source_values": [
+    ""
+  ]
+}

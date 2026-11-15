@@ -20,7 +20,7 @@ def main():
     if args.seed < 0 or args.episodes < 1:
         parser.error('Use nonnegative seed and positive episodes')
     os.chdir(ROOT)
-    # Avoid importing the isolated rough snapshot into this flat process.
+    # Avoid importing an isolated historical snapshot into this flat process.
     overlay = str(ROOT / 'src/nino_rl')
     sys.path.insert(0, overlay)
     os.environ['PYTHONPATH'] = overlay + os.pathsep + os.environ.get('PYTHONPATH', '')
@@ -31,7 +31,7 @@ def main():
     from nino_rl.evaluation import compare_summaries
     from nino_rl.tuning_trials import assert_trial_inputs, verify_training_result, digest
     from nino_rl.tuning_objective import make_objective_contract, read_episode_rows, score_episodes
-    from train_rough_curriculum import Processes, assert_isolated, complete_evaluation
+    from experiment_processes import Processes, assert_isolated, complete_evaluation
 
     study_dir = ROOT / 'rl_runs/flat_focused_optuna_v1'
     plan = json.loads((study_dir / 'trial_plan.json').read_text())

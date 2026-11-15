@@ -19,9 +19,12 @@ def command(action, connection, metadata=None, session=None, output=None):
     if action in ('deploy','fetch','export'):
         python='/usr/bin/python3'
         if action=='export':
-            # RL venv is only an optional local export dependency; never used to drive hardware.
-            candidate=Path(os.environ.get('NINO_REPO',Path(__file__).resolve().parents[3]))/'.venv/bin/python'
-            if candidate.exists():python=str(candidate)
+            # Prefer an isolated export environment; do not repair dependencies in a training job's venv.
+            repository=Path(os.environ.get('NINO_REPO',Path(__file__).resolve().parents[3]))
+            for relative in ('.venv-studio-export/bin/python', '.venv/bin/python'):
+                candidate=repository/relative
+                if candidate.is_file() and os.access(candidate,os.X_OK):
+                    python=str(candidate);break
         args=[python,'-u','-m','nino_pi.studio_transport',action,'--host',host,'--key',key]
         if session:args+=['--session',session]
         if output:args+=['--output',str(output)]

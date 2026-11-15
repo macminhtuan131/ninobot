@@ -121,6 +121,7 @@ class ChallengeTracker:
         self.wheel_width = wheel_width
         self.chosen: set[str] = set()
         self.cleared: set[str] = set()
+        self.entry_frames = {}
 
     @property
     def total(self) -> int:
@@ -154,15 +155,22 @@ class ChallengeTracker:
                 region.touches(float(point[0]), float(point[1]), margin)
                 for point in points
             ):
+                anchor = np.asarray(region._closest_point(*previous), dtype=float)
+                direction = anchor - previous
+                if np.linalg.norm(direction) < 1e-9:
+                    direction = current - previous
+                if np.linalg.norm(direction) < 1e-9:
+                    continue
+                self.entry_frames[region.name] = (anchor, direction / np.linalg.norm(direction))
                 self.chosen.add(region.name)
                 newly_chosen += 1
-            if (
-                region.name in self.chosen
-                and region.name not in self.cleared
-                and current[0] > previous[0]
-                and current[0]
-                >= region.clearance_x(float(current[1]), self.clearance_margin)
-            ):
+            if region.name not in self.chosen or region.name in self.cleared:
+                continue
+            anchor, direction = self.entry_frames[region.name]
+            if (np.dot(current - anchor, direction) >= region.radius + self.clearance_margin
+                    and np.dot(current - previous, direction) > 0
+                    and all(not region.touches(*point, self.clearance_margin)
+                            for point in (after if self.wheel_separation is not None else (current,)))):
                 self.cleared.add(region.name)
                 newly_cleared += 1
         return newly_chosen, newly_cleared
@@ -264,31 +272,32 @@ class ObservationHistory:
 
 
 class ImuWindow:
-    """Zero-order hold integrals over *all* timestamped IMU samples in a step.
-
-    Duplicate/non-monotonic samples are discarded; a backwards clock clears
-    history. No sample is extrapolated across a gap >0.1s. Missing coverage is
-    an infrastructure error, never interpreted as a smooth ride.
-    """
-    def __init__(self):
+    """Bracketed zero-order-hold support, with estimates kept separate."""
+    def __init__(self, max_gap_s=0.04):
+        if not np.isfinite(max_gap_s) or max_gap_s <= 0:
+            raise ValueError('Explicit positive IMU support gap required')
+        self.max_gap_s = float(max_gap_s)
         self.samples = deque(maxlen=2000)
 
+    def reset(self):
+        self.samples.clear()
+
     def add(self, stamp, az):
-        if not np.isfinite(stamp) or not np.isfinite(az):
-            return
-        if self.samples and stamp < self.samples[-1][0]:
-            self.samples.clear()
-        if not self.samples or stamp > self.samples[-1][0]:
-            self.samples.append((float(stamp), float(az)))
+        if (not np.isfinite(stamp) or not np.isfinite(az)
+                or self.samples and stamp <= self.samples[-1][0]):
+            return False
+        self.samples.append((float(stamp), float(az)))
+        return True
 
     def measure(self, start, end, sigma=2.0):
-        if end <= start or sigma <= 0:
+        if not all(np.isfinite(v) for v in (start, end, sigma)) or end <= start or sigma <= 0:
             raise ValueError("Invalid IMU window")
         duration = square = fourth = peak = 0.0
         values = list(self.samples)
-        for i, (stamp, az) in enumerate(values):
-            next_stamp = values[i + 1][0] if i + 1 < len(values) else end
-            lo, hi = max(start, stamp), min(end, next_stamp, stamp + 0.1)
+        for (stamp, az), (next_stamp, _) in zip(values, values[1:]):
+            if next_stamp - stamp > self.max_gap_s + 1e-9:
+                continue
+            lo, hi = max(start, stamp), min(end, next_stamp)
             if hi <= lo:
                 continue
             width = hi - lo
@@ -296,45 +305,33 @@ class ImuWindow:
             square += az * az * width
             fourth += min((abs(az) / sigma) ** 4, 81.0) * width
             peak = max(peak, abs(az))
-        return {"latest_stamp": values[-1][0] if values else -float("inf"),
+        causal = [stamp for stamp, _ in values if stamp <= end]
+        return {"latest_stamp": causal[-1] if causal else -float("inf"),
                 "duration": duration, "square_integral": square,
-                "impact_integral": fourth, "peak": peak}
+                "impact_integral": fourth, "peak": peak,
+                "coverage_fraction": duration / (end - start),
+                "support_model": "bracketed_zero_order_hold", "maximum_gap_s": self.max_gap_s}
 
     def estimate(self, start, end, sigma=2.0, max_sample_age=0.2):
-        """Return a full-window estimate without hiding stale/missing data.
-
-        Gazebo can defer IMU publication while executing a large multi_step
-        request. If part of the action is covered, preserve its measured mean
-        energy and normalize it over the requested duration. With no overlap,
-        only a recent held sample is used; otherwise the estimate is zero.
-        The original coverage is reported for evaluation diagnostics.
-        """
         result = self.measure(start, end, sigma)
         window = end - start
         coverage = result["duration"]
-        result["coverage_fraction"] = coverage / window
         result["estimated"] = coverage + 1e-9 < window
+        estimate = None
         if coverage > 1e-9:
-            scale = window / coverage
-            result["square_integral"] *= scale
-            result["impact_integral"] *= scale
-            result["duration"] = window
-            return result
-        if self.samples and self.samples[-1][0] >= start - max_sample_age:
-            az = self.samples[-1][1]
-            result.update(
-                duration=window,
-                square_integral=az * az * window,
-                impact_integral=min((abs(az) / sigma) ** 4, 81.0) * window,
-                peak=abs(az),
-            )
-            return result
-        result.update(
-            duration=window,
-            square_integral=0.0,
-            impact_integral=0.0,
-            peak=0.0,
-        )
+            estimate = {"duration": window,
+                        "square_integral": result["square_integral"] * window / coverage,
+                        "impact_integral": result["impact_integral"] * window / coverage,
+                        "peak": result["peak"]}
+        else:
+            causal = [(stamp, az) for stamp, az in self.samples
+                      if start - max_sample_age <= stamp <= start]
+            if causal:
+                az = causal[-1][1]
+                estimate = {"duration": window, "square_integral": az * az * window,
+                            "impact_integral": min((abs(az) / sigma) ** 4, 81.) * window,
+                            "peak": abs(az)}
+        result["diagnostic_estimate"] = estimate
         return result
 
 

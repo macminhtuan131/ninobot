@@ -1,0 +1,266 @@
+{
+  "node_count": 11298,
+  "unverified_node_count": 0,
+  "raw_edge_count": 29618,
+  "non_object_edges": 0,
+  "missing_endpoint_edges": 0,
+  "dangling_endpoint_edges": 5201,
+  "external_reference_edges": 0,
+  "self_loop_edges": 40,
+  "valid_candidate_edges": 24417,
+  "exact_duplicate_edges": 0,
+  "directed_unique_endpoint_pairs": 22684,
+  "directed_same_endpoint_collapsed_edges": 1733,
+  "undirected_unique_endpoint_pairs": 22682,
+  "undirected_same_endpoint_collapsed_edges": 1735,
+  "same_endpoint_group_count": 1026,
+  "relation_variant_groups": 764,
+  "source_file_variant_groups": 0,
+  "source_location_variant_groups": 250,
+  "context_variant_groups": 25,
+  "post_build_graph_type": "Graph",
+  "post_build_node_count": 11434,
+  "post_build_edge_count": 27856,
+  "post_build_error": "",
+  "producer_suppression": {
+    "path": "/home/tuanmac/.local/share/uv/tools/graphifyy/lib/python3.12/site-packages/graphify/extract.py",
+    "total_sites": 12,
+    "sites": [
+      {
+        "line": 1901,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 2596,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 2598,
+        "name": "seen_doc_refs",
+        "tuple_arity": 0,
+        "sample": "seen_doc_refs: set[str] = set()"
+      },
+      {
+        "line": 3265,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 3412,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids = {n.get(\"id\") for n in nodes}"
+      },
+      {
+        "line": 5144,
+        "name": "seen_keys",
+        "tuple_arity": 0,
+        "sample": "seen_keys: set[tuple] = set()"
+      },
+      {
+        "line": 5330,
+        "name": "seen_keys",
+        "tuple_arity": 0,
+        "sample": "seen_keys: set[tuple] = set()"
+      },
+      {
+        "line": 9828,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 9936,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 10015,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 10540,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 10541,
+        "name": "seen_edges",
+        "tuple_arity": 4,
+        "sample": "seen_edges: set[tuple[str, str, str, str | None]] = set()"
+      }
+    ],
+    "error": ""
+  },
+  "examples": [
+    {
+      "source": "src_nino_rl_config_combined_flat_curriculum_flat_curriculum_stages",
+      "target": "src_nino_rl_config_combined_flat_curriculum_stages_name",
+      "edge_count": 16,
+      "relations": [
+        "contains"
+      ],
+      "source_files": [
+        "src/nino_rl/config/combined_flat_curriculum.yaml"
+      ],
+      "source_locations": [
+        "L179",
+        "L180",
+        "L181",
+        "L182",
+        "L183",
+        "L184",
+        "L185",
+        "L186",
+        "L187",
+        "L188",
+        "L189",
+        "L190",
+        "L191",
+        "L192",
+        "L193",
+        "L194"
+      ],
+      "contexts": [
+        ""
+      ]
+    },
+    {
+      "source": "src_nino_rl_config_combined_flat_curriculum_flat_curriculum_stages",
+      "target": "src_nino_rl_config_combined_flat_curriculum_stages_cable_indices",
+      "edge_count": 16,
+      "relations": [
+        "contains"
+      ],
+      "source_files": [
+        "src/nino_rl/config/combined_flat_curriculum.yaml"
+      ],
+      "source_locations": [
+        "L179",
+        "L180",
+        "L181",
+        "L182",
+        "L183",
+        "L184",
+        "L185",
+        "L186",
+        "L187",
+        "L188",
+        "L189",
+        "L190",
+        "L191",
+        "L192",
+        "L193",
+        "L194"
+      ],
+      "contexts": [
+        ""
+      ]
+    },
+    {
+      "source": "src_nino_rl_config_combined_flat_curriculum_flat_curriculum_stages",
+      "target": "src_nino_rl_config_combined_flat_curriculum_stages_angle_range_deg",
+      "edge_count": 16,
+      "relations": [
+        "contains"
+      ],
+      "source_files": [
+        "src/nino_rl/config/combined_flat_curriculum.yaml"
+      ],
+      "source_locations": [
+        "L179",
+        "L180",
+        "L181",
+        "L182",
+        "L183",
+        "L184",
+        "L185",
+        "L186",
+        "L187",
+        "L188",
+        "L189",
+        "L190",
+        "L191",
+        "L192",
+        "L193",
+        "L194"
+      ],
+      "contexts": [
+        ""
+      ]
+    },
+    {
+      "source": "src_nino_rl_config_combined_flat_curriculum_flat_curriculum_stages",
+      "target": "src_nino_rl_config_combined_flat_curriculum_stages_adaptive_features",
+      "edge_count": 16,
+      "relations": [
+        "contains"
+      ],
+      "source_files": [
+        "src/nino_rl/config/combined_flat_curriculum.yaml"
+      ],
+      "source_locations": [
+        "L179",
+        "L180",
+        "L181",
+        "L182",
+        "L183",
+        "L184",
+        "L185",
+        "L186",
+        "L187",
+        "L188",
+        "L189",
+        "L190",
+        "L191",
+        "L192",
+        "L193",
+        "L194"
+      ],
+      "contexts": [
+        ""
+      ]
+    },
+    {
+      "source": "src_nino_rl_config_combined_flat_curriculum_arrival_guard_flat_curriculum_stages",
+      "target": "src_nino_rl_config_combined_flat_curriculum_arrival_guard_stages_name",
+      "edge_count": 16,
+      "relations": [
+        "contains"
+      ],
+      "source_files": [
+        "src/nino_rl/config/combined_flat_curriculum_arrival_guard.yaml"
+      ],
+      "source_locations": [
+        "L181",
+        "L187",
+        "L194",
+        "L202",
+        "L211",
+        "L221",
+        "L232",
+        "L244",
+        "L256",
+        "L268",
+        "L280",
+        "L292",
+        "L304",
+        "L316",
+        "L328",
+        "L340"
+      ],
+      "contexts": [
+        ""
+      ]
+    }
+  ]
+}

@@ -109,12 +109,6 @@ class RouteSet:
             value = float(self.settings[key])
             if not np.isfinite(value) or value <= 0:
                 raise ValueError(f"routes.{key} must be positive and finite")
-        from nino_rl.rough_curriculum import curriculum_stage
-        stage = curriculum_stage(config)
-        if stage is not None:
-            self.routes = [item for item in self.routes if item["id"] in stage["route_ids"]]
-            if fixed is not None and fixed not in stage["route_ids"]:
-                raise ValueError("Fixed route is not active in the current rough curriculum stage")
 
     def select(self, rng, episode_index, requested=None):
         fixed = requested or self.settings.get("fixed_route")

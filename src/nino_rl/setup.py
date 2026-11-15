@@ -20,7 +20,13 @@ setup(
         (os.path.join("share", package_name, "config"), glob("config/*.yaml")),
         (os.path.join("share", package_name, "config"), glob("config/*.json")),
         (os.path.join("share", package_name, "launch"), glob("launch/*.launch.py")),
-        (os.path.join("share", package_name, "scripts"), glob("scripts/residual_*.sh") + glob("scripts/common_training_studio.sh")),
+        (
+            os.path.join("share", package_name, "scripts"),
+            glob("scripts/residual_*.sh")
+            + glob("scripts/common_training_studio*.sh")
+            + glob("scripts/prestop_authority_runner.sh")
+            + glob("scripts/obstacle_authority_runner.sh"),
+        ),
         (os.path.join("share", package_name, "models", "completed_train"),
          glob("models/completed_train/*")),
     ],

@@ -264,6 +264,14 @@ class RosRobotInterface(Node):
                 quaternion.z / norm,
                 quaternion.w / norm,
             )
+        payload = (norm, message.angular_velocity.x, message.angular_velocity.y,
+                   message.angular_velocity.z, message.linear_acceleration.x,
+                   message.linear_acceleration.y, message.linear_acceleration.z)
+        if not all(isfinite(v) for v in payload) or norm < 1e-12:
+            with self._lock:
+                self._received.discard("imu")
+                self._received_at.pop("imu", None)
+            return
         roll, pitch, imu_yaw = quaternion_to_euler(
             *orientation
         )
@@ -271,7 +279,8 @@ class RosRobotInterface(Node):
             # After an episode reset, DDS may continue delivering queued IMU
             # samples generated before the paused epoch boundary. Ignore the
             # whole sample, including actor state, based on simulation time.
-            if stamp <= self._imu_epoch_min_stamp:
+            if (not isfinite(stamp) or stamp <= self._imu_epoch_min_stamp
+                    or stamp <= self._state.imu_stamp_s):
                 return
             self._state.imu_stamp_s = stamp
             self._state.roll = roll
@@ -352,11 +361,13 @@ class RosRobotInterface(Node):
 
     def _scan_callback(self, message: LaserScan) -> None:
         with self._lock:
-            self._state.lidar_stamp_s = (
-                message.header.stamp.sec + message.header.stamp.nanosec * 1e-9
-            )
+            stamp = message.header.stamp.sec + message.header.stamp.nanosec * 1e-9
+            if not isfinite(stamp) or stamp <= self._state.lidar_stamp_s:
+                return
+            self._state.lidar_stamp_s = stamp
             self._state.lidar_ranges = tuple(float(value) for value in message.ranges)
             self._state.lidar_range_max = float(message.range_max)
+            self._state.lidar_range_min = float(message.range_min)
             self._mark_received("scan")
             estimator = getattr(self, '_assisted_odometry', None)
             if estimator and hasattr(estimator, 'add_scan'):
@@ -577,12 +588,28 @@ class RosRobotInterface(Node):
             f"map->odom available: {self.tf_buffer.can_transform('map', 'odom', Time())}"
         )
 
-    def sensors_ready(self) -> bool:
+    def sensors_ready(self, stale_after=0.25, *, require_assisted=True) -> bool:
+        from nino_rl.sensor_integrity import require_scan
         with self._lock:
-            if not {"odom", "imu", "joint", "scan"}.issubset(self._received):
+            required = {"odom", "imu", "joint", "scan"}
+            if not required.issubset(self._received):
+                return False
+            now = monotonic()
+            if any(now - self._received_at.get(name, -float("inf")) > stale_after
+                   for name in required):
+                return False
+            source_now = self._sim_clock_stamp
+            if source_now is None:
+                source_now = self.get_clock().now().nanoseconds * 1e-9
+            try:
+                require_scan(self._state, source_now, stale_after, True)
+            except RuntimeError:
+                return False
+            if any(not 0 <= source_now - stamp <= stale_after for stamp in
+                   (self._state.imu_stamp_s, self._state.joint_stamp_s, self._state.odom_stamp_s)):
                 return False
             estimator = getattr(self, '_assisted_odometry', None)
-            if estimator:
+            if require_assisted and estimator:
                 if self._assisted_error or not estimator.ready:
                     return False
                 if hasattr(estimator, 'last_fix') and estimator.stamp - estimator.last_fix > estimator.max_scan_age:
@@ -590,28 +617,18 @@ class RosRobotInterface(Node):
             return True
 
     def wait_for_sensors(self, timeout: float, *, require_assisted: bool = True) -> None:
-        required = {"odom", "imu", "joint", "scan"}
-        if require_assisted and getattr(self, "_assisted_odometry", None):
-            required.add("assisted_odom")
         deadline = monotonic() + timeout
         while monotonic() < deadline:
             with self._lock:
-                if getattr(self, "_assisted_error", None):
-                    raise RuntimeError("Assisted odometry fault: " + self._assisted_error)
-                missing = sorted(required - self._received)
-            if not missing:
+                error = getattr(self, "_assisted_error", None)
+            if error and require_assisted:
+                raise RuntimeError("Assisted odometry fault: " + error)
+            if self.sensors_ready(require_assisted=require_assisted):
                 return
             sleep(0.05)
-        # A callback can land between the final loop condition and timeout
-        # reporting. Take one last atomic snapshot so a successful boundary
-        # arrival cannot produce the contradictory "missing: <empty>" error.
-        with self._lock:
-            missing = sorted(required - self._received)
-        if not missing:
+        if self.sensors_ready(require_assisted=require_assisted):
             return
-        raise TimeoutError(
-            "Không nhận đủ dữ liệu ROS trong thời gian chờ; thiếu: " + ", ".join(missing)
-        )
+        raise TimeoutError("Required sensor missing, stale, invalid or estimator not ready")
 
     def publish_torque(self, left_nm: float, right_nm: float) -> None:
         message = Float64MultiArray()
@@ -736,6 +753,7 @@ class RosRobotInterface(Node):
         with self._lock:
             self.imu_window.samples.clear()
             self._imu_epoch_min_stamp = paused_clock
+            self._state.imu_stamp_s = -float("inf")
             self._received.discard("imu")
             self._received_at.pop("imu", None)
 

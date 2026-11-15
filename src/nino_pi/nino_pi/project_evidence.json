@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "review_date": "2026-11-08",
-  "data_cutoff": "2026-11-02",
-  "scope": "Real cutoff02/11 giữ nguyên. Sim07/11:30k global,20kcritic/10kactor,6eval và offline phase review đã đóng; classical ưu tiên trong clear-box/known-stop, chưa hardware deployment.",
-  "next_action": "Nhánh đang chọn: SIM OFFLINE. Draft tail authority đã chuẩn bị; tiếp xây adapter/runner riêng và parity offline, chưa chạy batch. 12 lượt đề xuất / 0 allocated, 0 slot mới. Real review 95.459 messages vẫn giữ; Pi/reference không là điều kiện cho việc chuẩn bị Sim.",
+  "review_date": "2026-11-14",
+  "data_cutoff": "2026-11-08",
+  "scope": "Real datasets08/11 đã review;09/11 Agent/sensor đã nối lại hai boot. Live probes có sample/TF, guard diagnostic5/5; Studio preflight thiếu tf_static, SSH cuối mất kết nối. Kiến trúc đã review, chưa motion/TD3 real mới. Cập nhật10/11 nhánh Sim:50k checkpoint đã audit; task100D goal mới software-only, chưa physics/train mới.",
+  "next_action": "Đã đóng24slot frozen B0/10k/15k/20k:23QCvalid. B0=5/6,10k=5/6,15k=4/6;20k=4pass/1fail/1unknown. GiữB0, chưa train dài thêm. Tiếp đặc tả goal-stop có dự phòng sai số odometry, giữ physicalgate50mm; review startup wheelage117ms củaslot16 từ dữ liệu đã có.",
   "data": [
     {
       "id": "D01",
@@ -33,11 +33,13 @@
       "id": "D03",
       "name": "Vị trí/hướng lắp IMU và LiDAR, TF so thân",
       "status": "Một phần",
-      "result": "Một phần. Số đo người dùng gần đúng đã áp và từng kiểm TF live",
-      "missing": "Fine roll/pitch, LiDAR yaw, độ cứng gá và uncertainty chưa định lượng. Kiểm lại nếu tháo/lắp hoặc định lượng body/contact cần độ chính xác đó",
+      "result": "TF Pi đang khai báo identity/xyz0, khác mounting27/10. Source đã đọc; chưa đủ chứng minh binary/mounting hiện tại. Bộ đối chiếu ba tư thế đã chuẩn bị, chưa thu.",
+      "missing": "Chỉ đối chiếu thêm khi claim dùng IMU body XYZ cần frame. Wheel-only vẫn giữ raw IMU; phần cứng để sau.",
       "sources": [
         "checklist",
-        "status"
+        "status",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
     },
@@ -45,11 +47,14 @@
       "id": "D04",
       "name": "Raw feedback hai bánh: tên, góc rad, vận tốc rad/s, reported effort nếu có",
       "status": "Đã có cho claim hẹp",
-      "result": "Đã có raw; calibration một phần. Inventory 2.707 mẫu và nhiều motion traces; status freshness hai bánh đã quan sát",
-      "missing": "Mapping trái/phải, sign/scale dưới chuyển động vật lý và effective rolling geometry chưa được xác minh độc lập đầy đủ",
+      "result": "Có raw lịch sử; probe09/11 boot4294 nhận IMU/wheel khoảng46–47Hz với receipt gap tới345ms. SSH cuối unreachable nên chưa xác minh liveness hiện tại.",
+      "missing": "Native wheel names/backend/binary phải khớp adapter; chưa wheel/body velocity ID hoặc rolling calibration mới.",
       "sources": [
         "checklist",
-        "status"
+        "status",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov",
+        "architecture_review_09nov"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
     },
@@ -57,11 +62,14 @@
       "id": "D05",
       "name": "LiDAR: ranges, góc, range limits, scan/time_increment, header/frame",
       "status": "Đã có cho claim hẹp",
-      "result": "Đã có. Inventory 394 scan, 720 beams/scan; có scan trong motion sessions",
-      "missing": "Chưa kiểm chuẩn khoảng cách/per-beam timing hoặc body-speed estimator. Có raw scan không chứng minh phát hiện mọi dây thấp/hõm",
+      "result": "Probe09/11 boot4294 có scan raw/deskew khoảng6,45Hz và laserTF. Studio4s chưa nhận tf_static; paired QoS probe chưa chạy do mất SSH.",
+      "missing": "Giải thích observer readiness khi mạng ổn định; chưa preview gờ thấp/body-reference estimator được validate.",
       "sources": [
         "checklist",
-        "status"
+        "status",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov",
+        "architecture_review_09nov"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
     },
@@ -81,23 +89,26 @@
       "id": "D07",
       "name": "Timestamp, clock, rates, gap, QoS, coverage từng cửa sổ",
       "status": "Một phần",
-      "result": "Một phần. Inventory IMU/feedback ~47,13 Hz, LiDAR ~6,95 Hz; có audit và review riêng từng lượt",
-      "missing": "Đánh giá lại trên lượt mới có motion/GUI. Rate quan sát không là deadline, transport latency hoặc coverage bảo đảm",
+      "result": "Đã giải mã phần đọc được của7DB; thấy stale/skew/TF faults lịch sử. Live sensor-only không source reversal trong cửa sổ.",
+      "missing": "Không lấy cửa sổ sensor-only làm deadline dưới tải Nav2; không nới deadline để che fault.",
       "sources": [
         "checklist",
-        "status"
+        "status",
+        "real_08nov_review"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
     },
     {
       "id": "D08",
       "name": "File raw, SQLite/metadata, manifest/hash, dữ liệu cuối phiên",
-      "status": "Đã có cho claim hẹp",
-      "result": "Đã có cho các capture được review. Stationary v2: 20.749 messages, 22 file hash, đủ cửa sổ 55–60 s",
-      "missing": "Kiểm mỗi phiên mới; phiên interrupted/incomplete vẫn giữ nguyên. Mang cả WAL/SHM nếu có, không chỉ `.db3`",
+      "status": "Một phần",
+      "result": "Offline09/11:6 bag integrity/total/per-topic counts đạt313.555messages,2bag lỗi giữFAIL;431file gói review giữ hash trước/sau.",
+      "missing": "Không sửa raw/reindex. Hash review không thay historical provenance; software checker không giải thích nguyên nhân DB hỏng.",
       "sources": [
         "checklist",
-        "status"
+        "status",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
     },
@@ -116,12 +127,14 @@
     {
       "id": "D10",
       "name": "Source → selected → smoothed → final command, ownership và trạng thái Collision Monitor",
-      "status": "Đã có cho claim hẹp",
-      "result": "Đã có trong các phiên. Có cả input bị STOP và một clear-zone profile đi qua final",
-      "missing": "Xác nhận endpoint/owner/config/live readiness ở phiên mới. Không dùng source có lệnh tiến làm bằng chứng STM32 nhận hoặc thực thi lệnh đó",
+      "status": "Một phần",
+      "result": "Guard5/5 isolated integration đạt, không nối firmware. Profile Velocity SysID ghi final ROS và các tầng có thật; torque/MIT message làmQC FAIL. Bag08/11 vẫn thiếu actual actuator channels.",
+      "missing": "Chưa full velocity-chain qualification, chưa active guard; request không là actuator readback. Phần cứng để sau.",
       "sources": [
         "checklist",
-        "status"
+        "status",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
     },
@@ -129,11 +142,12 @@
       "id": "D11",
       "name": "Zero → enable → disable, freshness/mode/fault theo firmware",
       "status": "Một phần",
-      "result": "Một phần trên firmware cũ. Probe `043000235565Z` giữ raw zero, Bool true/false và status đổi tương ứng; operator báo không giật",
-      "missing": "Manifest gốc vẫn incomplete do lỗi audit khi đó; không promote. ACK theo status không là readback motor hoặc stopping time. GUI authority mới chưa có kiểm thực",
+      "result": "Hồ sơ MCU watchdog400:detect401/402ms,CAN TX403/404ms ở test zero-torque; live không publisher motor.",
+      "missing": "Không là mechanical stopping hoặc velocity-mode stop test; RC/effective permission vẫn kiểm theo contract.",
       "sources": [
         "checklist",
-        "status"
+        "status",
+        "real_08nov_review"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
     },
@@ -141,11 +155,13 @@
       "id": "D12",
       "name": "Tiến–dừng và đáp ứng riêng bánh trái/phải",
       "status": "Một phần",
-      "result": "Một phần. Hai phiên từng được operator xác nhận tiến/tự dừng; clear-zone có primary hợp lệ",
-      "missing": "Chưa có bộ system ID/độ lặp; một lượt V2 final/feedback tăng nhưng operator báo thân không tiến. Giữ outcome unknown và cần đối chứng vật lý",
+      "result": "Có traces cũ và test từng bánh08/11; chưa có velocity diagnostic mới. Recording profile60s đã chuẩn bị, chưa motion release.",
+      "missing": "Sau khi mở lại hardware: một diagnostic giữ profile và quan sát/mốc; chưa mở repeats hoặc trộn torque/velocity.",
       "sources": [
         "checklist",
-        "status"
+        "status",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
     },
@@ -165,16 +181,17 @@
     },
     {
       "id": "D14",
-      "name": "Video/reference độc lập thấy bánh và thân so mốc sàn",
+      "name": "Quan sát bánh/thân và reference chuyển vị độc lập; camera không bắt buộc",
       "status": "Chưa đủ / chưa xác nhận",
-      "result": "Review4 bag đã xong; V2 còn mâu thuẫn feedback/thân. Đã xây màn hình gắn video/session và lưu nhãn/hash riêng; chưa thu reference thật mới.",
-      "missing": "Chuẩn bị camera cố định thấy bánh và marker thân/mốc đúng session. Mức A phân loại chuyển động; mức B cần calibration/PTS/sync và uncertainty trước speed/slip. Không tự chạy lại pilot cũ.",
+      "result": "Người vận hành không có camera; có operator confirmation bánh riêng, chưa reference thân định lượng được review.",
+      "missing": "Đo endpoint bằng thước/mốc/uncertainty; visibility bánh thiếu ghi unknown. Camera không prerequisite cho wheel ID/history.",
       "sources": [
         "checklist",
         "status",
         "wheel_body_gap",
         "body_reference_draft",
-        "body_reference_studio"
+        "body_reference_studio",
+        "real_08nov_review"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
     },
@@ -206,11 +223,12 @@
       "id": "D17",
       "name": "Command → wheel → body onset/ramp/settling và stopping thân xe",
       "status": "Một phần",
-      "result": "Một phần ở đường ROS→reported wheel. Có waveform và mốc input/receipt; chưa có body reference",
-      "missing": "Kết hợp video/reference, clock và uncertainty. Nếu thiếu target/readback thì chỉ nhận dạng đường tổng hợp; không gọi wheel mean gần zero là body stopping",
+      "result": "Có reported-wheel traces và MCU watchdog events; chưa body timing/reference đồng bộ.",
+      "missing": "Endpoint chỉ displacement tổng; command→body onset/stop vẫn unknown nếu không reference theo thời gian.",
       "sources": [
         "checklist",
-        "status"
+        "status",
+        "real_08nov_review"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
     },
@@ -243,12 +261,13 @@
     {
       "id": "D20",
       "name": "Navigation thật: goal/path, localization/TF, tracking, arrival, thời gian/throughput",
-      "status": "Chưa đủ / chưa xác nhận",
-      "result": "Chưa có bộ đánh giá đã kiểm chứng. GUI Nav2 hiện chỉ observer",
-      "missing": "Motion backend đủ tin cậy; commissioning estimator/TF và Nav2 riêng. Full navigation không là điều kiện để tiếp tục wheel-response",
+      "status": "Một phần",
+      "result": "08/11:bag hợp lệ có1Nav2 SUCCEEDED,3ABORTED,2không goal; thêm1logger-only success ở bag malformed.",
+      "missing": "Chưa comparative benchmark, physical arrival hay pose GT;8operator outcomes còn null.",
       "sources": [
         "checklist",
-        "status"
+        "status",
+        "real_08nov_review"
       ],
       "kind": "[N] Tổng hợp báo cáo đã review"
     },
@@ -291,16 +310,17 @@
     {
       "id": "D24",
       "name": "SysID command→reported wheel→body",
-      "status": "Chưa có model được kiểm held-out",
-      "result": "Có traces một phần, chưa có excitation/body reference đủ",
-      "missing": "Nhận dạng combined path nếu thiếu actuator target; không fit radius/slip/lag đồng thời",
+      "status": "Chưa đủ / chưa xác nhận",
+      "result": "Tool SysID có;8phiên mới torque không thay >=3velocity sessions/whole-session holdout.",
+      "missing": "Fit combined final ROS→reported wheel theo protocol; không cần camera, không fit radius/slip/lag đồng thời.",
       "kind": "[Đ] Hướng mới / chưa kiểm thực",
       "sources": [
         "direction",
         "report_td3",
         "report_conclusion",
         "wheel_body_gap",
-        "body_reference_draft"
+        "body_reference_draft",
+        "real_08nov_review"
       ]
     },
     {
@@ -375,33 +395,35 @@
     {
       "id": "D30",
       "name": "Latency/compute và shadow zero authority",
-      "status": "Chưa đo deployment budget",
-      "result": "ROS synthetic shadow fixture đã có đường chạy; chưa inference/timing dưới tải Pi thật.",
-      "missing": "Đo dưới tải Pi thật; không suy deadline hoặc stop từ GUI/tests",
+      "status": "Chưa đủ / chưa xác nhận",
+      "result": "Đã kiểm software/QC và guard diagnostic; chưa đo TD3 shadow/inference budget trên Pi dưới tải dự kiến.",
+      "missing": "Phần cứng để sau. Không dùng test offline hoặc SAC23D trace làm ABI/timing evidence của common103 TD3.",
       "kind": "[N] Source/software fixture; [Đ] kiểm chứng robot còn thiếu",
       "sources": [
         "direction",
         "report_td3",
         "report_conclusion",
-        "implementation_nov4"
+        "implementation_nov4",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov"
       ]
     }
   ],
   "parameters": [
     {
       "name": "IMU / motor feedback rate",
-      "value": "≈47,13 Hz",
+      "value": "27/10≈47,13Hz; live09/11≈46,96Hz",
       "kind": "[N] Đo trong inventory 27/10",
-      "limits": "Không là 500 Hz telemetry, deadline hoặc actuator bandwidth.",
+      "limits": "Observed windows only; không deadline hoặc latency guarantee.",
       "sources": [
         "sensor"
       ]
     },
     {
       "name": "LiDAR rate",
-      "value": "≈6,95 Hz; 720 beams/scan",
+      "value": "Live09/11 raw6,81Hz; deskew6,86Hz",
       "kind": "[N] Đo trong inventory 27/10",
-      "limits": "Không kết luận lỗi từ danh định; không preview mọi dây thấp/hõm.",
+      "limits": "Cửa sổ12s, không preview gờ/body GT.",
       "sources": [
         "sensor"
       ]
@@ -455,7 +477,7 @@
       "name": "IMU translation so base_link",
       "value": "[−0,050; −0,020; +0,014] m",
       "kind": "[N] Người vận hành đo gần đúng; TF đã áp",
-      "limits": "Uncertainty chưa định lượng.",
+      "limits": "27/10 historical mounting; Pi hiện khai báo identity/xyz0, chưa xác minh tương thích. Không tự áp lên adapter mới.",
       "sources": [
         "mount"
       ]
@@ -464,7 +486,7 @@
       "name": "IMU yaw mounting",
       "value": "+π/2 rad (+90°)",
       "kind": "[N] TF đã áp / coarse axes",
-      "limits": "Quay Z đơn độc không xác minh mounting yaw.",
+      "limits": "27/10 historical mounting; Pi hiện khai báo identity/xyz0, chưa xác minh tương thích. Không tự áp lên adapter mới.",
       "sources": [
         "mount"
       ]
@@ -552,9 +574,9 @@
     },
     {
       "name": "Inventory local bag",
-      "value": "15 phiên; 10 captured_not_calibrated, 3 incomplete, 2 started",
+      "value": "15bag lịch sử +8session mới08/11 được review riêng",
       "kind": "[N] Audit local 03/11",
-      "limits": "13 manifest hash khớp; không là 10 motion passes; chưa kiểm lại Pi.",
+      "limits": "8phiên mới:6integrity OK,2corrupt/incomplete; không cộng như motion successes.",
       "sources": [
         "status"
       ]
@@ -572,7 +594,7 @@
       "name": "Profile lượt chẩn đoán kế tiếp",
       "value": "+0,05 m/s; ramp 0,10 m/s²; source 2 s; bag 60 s",
       "kind": "[Đ] Kế hoạch, giữ profile cũ",
-      "limits": "Chưa release / chưa chạy; không mở lại pilot đóng.",
+      "limits": "Proposal velocity backend; STOP chưa active, chưa motion release; không cần camera.",
       "sources": [
         "checklist"
       ]
@@ -812,6 +834,102 @@
         "status"
       ],
       "grading": "[S] Phân loại claim từ review đã lưu; không chạy lại raw trong lần GUI này"
+    },
+    {
+      "id": "sac80k_20261108_173542_AhDsVS",
+      "level": "Q2",
+      "claim": "SQL/CDR/config review; PI/SAC torque23D, không TD3",
+      "outcome": "UNKNOWN; controller_rows=0; operator outcome null",
+      "limits": "Pose estimate, thiếu actuator topics, chưa benchmark; raw checksum baseline tại review. Bag integrity/counts đạt; launch exit120.",
+      "sources": [
+        "real_08nov_review",
+        "real_08nov_analysis"
+      ],
+      "grading": "Manual review theo claim; không tự cấp hardware/motion readiness"
+    },
+    {
+      "id": "sac80k_20261108_173632_gBfF8K",
+      "level": "Q2",
+      "claim": "SQL/CDR/config review; PI/SAC torque23D, không TD3",
+      "outcome": "SUCCEEDED; controller_rows=92; operator outcome null",
+      "limits": "Pose estimate, thiếu actuator topics, chưa benchmark; raw checksum baseline tại review. Bag integrity/counts đạt; launch exit120.",
+      "sources": [
+        "real_08nov_review",
+        "real_08nov_analysis"
+      ],
+      "grading": "Manual review theo claim; không tự cấp hardware/motion readiness"
+    },
+    {
+      "id": "sac80k_20261108_174117_jv3smq",
+      "level": "Q1",
+      "claim": "SQL/CDR/config review; PI/SAC torque23D, không TD3",
+      "outcome": "UNKNOWN; controller_rows=0; operator outcome null",
+      "limits": "Pose estimate, thiếu actuator topics, chưa benchmark; raw checksum baseline tại review. Corrupt/incomplete: không promote dù logger có success.",
+      "sources": [
+        "real_08nov_review",
+        "real_08nov_analysis"
+      ],
+      "grading": "Manual review theo claim; không tự cấp hardware/motion readiness"
+    },
+    {
+      "id": "sac80k_20261108_181957_1cGGCo",
+      "level": "Q2",
+      "claim": "SQL/CDR/config review; PI/SAC torque23D, không TD3",
+      "outcome": "UNKNOWN; controller_rows=0; operator outcome null",
+      "limits": "Pose estimate, thiếu actuator topics, chưa benchmark; raw checksum baseline tại review. Bag integrity/counts đạt; launch exit120.",
+      "sources": [
+        "real_08nov_review",
+        "real_08nov_analysis"
+      ],
+      "grading": "Manual review theo claim; không tự cấp hardware/motion readiness"
+    },
+    {
+      "id": "sac80k_20261108_182154_y5D4AL",
+      "level": "Q2",
+      "claim": "SQL/CDR/config review; PI/SAC torque23D, không TD3",
+      "outcome": "ABORTED; controller_rows=437; operator outcome null",
+      "limits": "Pose estimate, thiếu actuator topics, chưa benchmark; raw checksum baseline tại review. Bag integrity/counts đạt; launch exit120.",
+      "sources": [
+        "real_08nov_review",
+        "real_08nov_analysis"
+      ],
+      "grading": "Manual review theo claim; không tự cấp hardware/motion readiness"
+    },
+    {
+      "id": "sac80k_20261108_182803_ijNbeF",
+      "level": "Q2",
+      "claim": "SQL/CDR/config review; PI/SAC torque23D, không TD3",
+      "outcome": "ABORTED; controller_rows=210; operator outcome null",
+      "limits": "Pose estimate, thiếu actuator topics, chưa benchmark; raw checksum baseline tại review. Bag integrity/counts đạt; launch exit120.",
+      "sources": [
+        "real_08nov_review",
+        "real_08nov_analysis"
+      ],
+      "grading": "Manual review theo claim; không tự cấp hardware/motion readiness"
+    },
+    {
+      "id": "sac80k_20261108_183048_4gjBAo",
+      "level": "Q2",
+      "claim": "SQL/CDR/config review; PI/SAC torque23D, không TD3",
+      "outcome": "ABORTED; controller_rows=384; operator outcome null",
+      "limits": "Pose estimate, thiếu actuator topics, chưa benchmark; raw checksum baseline tại review. Bag integrity/counts đạt; launch exit120.",
+      "sources": [
+        "real_08nov_review",
+        "real_08nov_analysis"
+      ],
+      "grading": "Manual review theo claim; không tự cấp hardware/motion readiness"
+    },
+    {
+      "id": "sac80k_20261108_183305_qtdgqR",
+      "level": "Q1",
+      "claim": "SQL/CDR/config review; PI/SAC torque23D, không TD3",
+      "outcome": "SUCCEEDED; controller_rows=117; operator outcome null",
+      "limits": "Pose estimate, thiếu actuator topics, chưa benchmark; raw checksum baseline tại review. Corrupt/incomplete: không promote dù logger có success.",
+      "sources": [
+        "real_08nov_review",
+        "real_08nov_analysis"
+      ],
+      "grading": "Manual review theo claim; không tự cấp hardware/motion readiness"
     }
   ],
   "tasks": [
@@ -872,44 +990,51 @@
     {
       "id": "T01",
       "priority": "P0",
-      "status": "Chưa hoàn tất",
-      "action": "Kết nối lại Pi, kiểm kê file mới/chưa copy; lưu raw probe endpoint còn trên Pi nếu có, không đếm bản copy trùng thành session mới.",
-      "condition": "Kiểm SSH mới nhất tới .109 timeout; cần operator xác nhận Pi đang bật/IP. Chưa kết luận nguyên nhân mạng/nguồn.",
+      "status": "Review offline đã xong",
+      "action": "Tám phiên08/11:6bag hợp lệ,2lỗi;431file gói review giữ hash, không sửa raw. Chỉ thu bổ sung theo claim còn thiếu.",
+      "condition": "Không cần USB để xem kết quả này.",
       "sources": [
         "checklist",
-        "commands"
+        "commands",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov"
       ],
-      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "gate": "Hardware deferred; authority0, motion_ready=false. Software/profile không tự mở motion.",
       "command_recipe": "inventory",
-      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
+      "command_status": "Chuẩn bị observer/profile trong Studio đã xong offline; chưa deploy/thu mới, không chạy motion trong bước này."
     },
     {
       "id": "T02",
       "priority": "P0",
-      "status": "Chưa hoàn tất",
-      "action": "Xác nhận read-only phiên live: domain/agent, raw sensor/feedback, boot/GID/endpoint, command owner, Collision Monitor và cấu hình profile.",
-      "condition": "",
+      "status": "Agent/sensor đã lên · readiness chưa đủ",
+      "action": "Đã nhận IMU/wheel46–47Hz,LiDAR6,45Hz,status4,7Hz và sensor/odomTF. Studio chưa nhận tf_static trong4s; SSH cuối unreachable. Chờ mạng ổn định để chẩn đoán đúng observer.",
+      "condition": "Phần cứng đã mở lại theo yêu cầu; cần Pi reachable và readiness thực trước thao tác/capture. Chưa tự gửi lệnh motor.",
       "sources": [
         "checklist",
-        "commands"
+        "commands",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov",
+        "architecture_review_09nov"
       ],
-      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "gate": "Motion chưa mở; guard integration không là physical stop. Không sửa gain/current/firmware để thu raw.",
       "command_recipe": "inventory",
-      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
+      "command_status": "Observer đã deploy; chưa thu manual/motion và chưa bỏ qua preflight."
     },
     {
       "id": "T03",
       "priority": "P0",
-      "status": "Chưa hoàn tất",
-      "action": "Dùng firmware RC hiện có cho collector v4; RC AUTO. Advanced authority là nhánh riêng.",
-      "condition": "",
+      "status": "Backend/profile đã tách",
+      "action": "Velocity SysID cho bước ID tiếp theo; PI/SAC torque giữ dataset riêng. GUI có profile và QC xung đột mode; không đổi firmware/gain/current.",
+      "condition": "Khai báo GUI không chứng minh backend actuator đang thực thi; còn kiểm hardware khi có kết nối.",
       "sources": [
         "checklist",
-        "commands"
+        "commands",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov"
       ],
-      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "gate": "Hardware deferred; authority0, motion_ready=false. Software/profile không tự mở motion.",
       "command_recipe": "inventory",
-      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
+      "command_status": "Chuẩn bị observer/profile trong Studio đã xong offline; chưa deploy/thu mới, không chạy motion trong bước này."
     },
     {
       "id": "T04",
@@ -928,58 +1053,69 @@
     {
       "id": "T05",
       "priority": "P0",
-      "status": "Draft đã chuẩn bị; chưa release",
-      "action": "Đã có draft diagnostic bánh/thân và form reference. Review live boot/GID/owner/STOP/ACK rồi mới cấp riêng tối đa một lượt; chưa mở ba repeats.",
-      "condition": "",
+      "status": "Guard diagnostic5/5 · chưa motion",
+      "action": "Guard installed đã qua5case tách firmware và được đóng. Chưa active motor guard/qualify velocity chain hoặc physical stop; giữ authority0.",
+      "condition": "Phần cứng đã mở lại theo yêu cầu; cần Pi reachable và readiness thực trước thao tác/capture. Chưa tự gửi lệnh motor.",
       "sources": [
         "wheel_body_gap",
-        "body_reference_draft"
+        "body_reference_draft",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov",
+        "architecture_review_09nov"
       ],
-      "gate": "0 motion slot mới. Protocol draft không là data đã thu hoặc helper đã triển khai.",
+      "gate": "Motion chưa mở; guard integration không là physical stop. Không sửa gain/current/firmware để thu raw.",
       "command_recipe": "diagnostic",
-      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
+      "command_status": "Observer đã deploy; chưa thu manual/motion và chưa bỏ qua preflight."
     },
     {
       "id": "T06",
       "priority": "P0",
-      "status": "Chưa hoàn tất",
-      "action": "Trong Studio bấm Reference bánh/thân: gắn video cũ đúng session nếu có. Nếu chưa có, chuẩn bị camera cố định thấy bánh và marker thân/mốc; chưa chạy xe. Lưu nhãn/hash riêng, không tự đạt Q3/Q4.",
-      "condition": "",
+      "status": "Kế hoạch mốc/thước đã rõ · chưa đo",
+      "action": "Không camera: đo một điểm cố định trên thân trước/sau, ghi uncertainty/pose/caster. Endpoint chỉ cho tổng chuyển vị.",
+      "condition": "Thao tác và số đo vật lý để sau, không cần làm lúc này.",
       "sources": [
         "body_reference_studio",
-        "body_reference_draft"
+        "body_reference_draft",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov"
       ],
-      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "gate": "Hardware deferred; authority0, motion_ready=false. Software/profile không tự mở motion.",
       "command_recipe": "diagnostic",
-      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
+      "command_status": "Chuẩn bị observer/profile trong Studio đã xong offline; chưa deploy/thu mới, không chạy motion trong bước này."
     },
     {
       "id": "T07",
       "priority": "P1",
-      "status": "Chưa hoàn tất",
-      "action": "Người vận hành thực hiện lượt mới khi readiness/stop/control contract đạt; thu bag 60 s và video theo D10–D14. Assistant không tự chạy từ checklist này.",
-      "condition": "",
+      "status": "Chưa bắt đầu thu thủ công",
+      "action": "Bộ IMU frame readonly đã lên Pi và import check đạt; chưa capture. Wheel-only có thể giữ raw IMU context; history body XYZ cần frame phù hợp. Chưa thu velocity diagnostic mới.",
+      "condition": "Phần cứng đã mở lại theo yêu cầu; cần Pi reachable và readiness thực trước thao tác/capture. Chưa tự gửi lệnh motor.",
       "sources": [
         "checklist",
-        "commands"
+        "commands",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov",
+        "architecture_review_09nov"
       ],
-      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "gate": "Motion chưa mở; guard integration không là physical stop. Không sửa gain/current/firmware để thu raw.",
       "command_recipe": "diagnostic",
-      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
+      "command_status": "Observer đã deploy; chưa thu manual/motion và chưa bỏ qua preflight."
     },
     {
       "id": "T08",
       "priority": "P1",
-      "status": "Chưa hoàn tất",
-      "action": "Kiểm integrity/closure/hash và samples/gap/coverage từng cửa sổ; đối chiếu source→final→hai bánh→video, giữ spike/failure.",
-      "condition": "",
+      "status": "Observer mới đã deploy · preflight còn lỗi",
+      "action": "Bundle mới có profile velocity/QC,MCAP/disk đạt; tf_static có publisher nhưng observer chưa nhận sample. Không bỏ required hoặc gọi sensor graph đủ ready.",
+      "condition": "Phần cứng đã mở lại theo yêu cầu; cần Pi reachable và readiness thực trước thao tác/capture. Chưa tự gửi lệnh motor.",
       "sources": [
         "checklist",
-        "commands"
+        "commands",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov",
+        "architecture_review_09nov"
       ],
-      "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
+      "gate": "Motion chưa mở; guard integration không là physical stop. Không sửa gain/current/firmware để thu raw.",
       "command_recipe": "review",
-      "command_status": "Thao tác qua tab Thu dữ liệu thật; không cần copy command. Chỉ diagnostic có profile hiện tại; các protocol motion sau chưa mở."
+      "command_status": "Observer đã deploy; chưa thu manual/motion và chưa bỏ qua preflight."
     },
     {
       "id": "T09",
@@ -1027,11 +1163,12 @@
       "id": "T12",
       "priority": "P2",
       "status": "Sau gate trước",
-      "action": "Hiệu chuẩn body reference/đồng bộ và rolling geometry ở mức đủ cho displacement/speed/slip; nêu uncertainty. Video định tính ở T07 không tự hoàn tất bước này.",
+      "action": "Endpoint thước cho displacement tổng; reference trajectory có thể khảo sát LiDAR-only và đối chứng riêng. Chưa có reference theo thời gian thì không slip/body timing claim.",
       "condition": "",
       "sources": [
         "checklist",
-        "commands"
+        "commands",
+        "real_08nov_review"
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "body_reference",
@@ -1068,12 +1205,13 @@
     {
       "id": "T15",
       "priority": "P3",
-      "status": "Sau gate trước",
-      "action": "Commissioning navigation nếu mục tiêu ưu tiên là tự tới đích; đánh giá estimator/TF/path/time riêng.",
+      "status": "Có real mới; chưa benchmark đạt",
+      "action": "Đã có Nav2/AMCL thật trong8phiên với failure/timing/TF faults; không gọi là đủ3nhóm/độ lặp. Qualify riêng sau velocity backend.",
       "condition": "",
       "sources": [
         "checklist",
-        "commands"
+        "commands",
+        "real_08nov_review"
       ],
       "gate": "Không cấp slot; review trước motion/phiên tiếp; chưa tự nâng tốc/gain/current.",
       "command_recipe": "future",
@@ -1124,13 +1262,17 @@
     {
       "id": "T19",
       "priority": "R1 · ngay",
-      "status": "Chờ hardware",
-      "action": "Qua GUI: inventory → ZERO → bag/video → explicit2s motion → QC/observation/fetch.",
-      "gate": "Chỉ một diagnostic, giữ profile; fail/unknown không retry",
+      "status": "Review kiến trúc xong · observer chưa ready",
+      "action": "Đã nối Agent/sensor, guard diagnostic5/5 và deploy observer. Tiếp: mạng ổn định → chẩn đoán tf_static observer → review frame/backend trước manual velocity data; chưa enable/motion.",
+      "gate": "Không dùng source/config hoặc guard diagnostic làm physical motion permission.",
       "sources": [
         "direction",
-        "guided"
-      ]
+        "guided",
+        "real_08nov_review",
+        "real_velocity_preflight_09nov",
+        "architecture_review_09nov"
+      ],
+      "condition": "common103_v2 seed11 đã có checkpoint50k; job evaluation failed. Task unknown-step100D software đã kiểm, chưa Gazebo; hai nhánh giữ contract riêng."
     },
     {
       "id": "T20",
@@ -1157,13 +1299,15 @@
     {
       "id": "T22",
       "priority": "R5",
-      "status": "Software đã xây; kiểm artifact",
-      "action": "Chạy các nút validation/TD3/PPO/comparison/ROS/Gazebo fixture trong tab Xây project. Sau đó calibrated Nino backend và budget nghiên cứu riêng.",
-      "gate": "Smoke128 không mở hardware, scientific benchmark hoặc promotion policy.",
+      "status": "Goal100: GAZEBO + SMOKE384 ĐẠT · chưa research20k",
+      "action": "Trong TrainTD3 bấm Điền cấu hìnhGoal100 research20k chỉ điền form. Fresh researchh5/warmup10k, không resume384/common103; sau đó người dùng chọn khi bắt đầu lượt dài.",
+      "gate": "B0path failure vẫn giữ; smoke/evaldevelopment không xác nhận learned benefit. Chưa dùngval/test/hardware.",
       "sources": [
         "direction",
         "guided",
-        "implementation_nov4"
+        "implementation_nov4",
+        "unknown_step_software_10nov",
+        "goal100_integration_10nov"
       ]
     },
     {
@@ -1207,7 +1351,8 @@
     "[Đ] Ưu tiên motion contract + một diagnostic có video; sau đó mới bounded repeatability. Dự phòng dùng firmware RC hiện tại nếu GUI firmware chưa triển khai. Chưa cần train PPO/BC, flash hay tăng current để làm dashboard.",
     "[Đ] Hai báo cáo mới được tổng hợp thành residual velocity common/diff m/s, 20×5 frame; đây là ABI đề xuất, không kết quả học hoặc giới hạn hardware.",
     "[S] Replay SB3 giữ policy proposal khi projection thuộc environment. Accepted reference/final ROS/actuator target phải log riêng; không tráo action trong replay bằng một quy tắc chung.",
-    "[N] Module/API/YAML và GUI mới chỉ được chuẩn bị offline. Chưa có backend adapter sim mới được xác nhận, training budget hoặc real residual run."
+    "[N] Module/API/YAML và GUI mới chỉ được chuẩn bị offline. Chưa có backend adapter sim mới được xác nhận, training budget hoặc real residual run.",
+    "[09/11] Camera không prerequisite wheel ID/history. Real08/11 mới là SAC torque23D;6/8bag integrityOK,2corrupt; velocity backend được chọn cho SysID TD3, chưa motion ready."
   ],
   "sources": {
     "checklist": {
@@ -1331,6 +1476,51 @@
       "path": "/home/tuanmac/ninorobot/docs/NINO_SIM_PRESTOP_AUTHORITY_DRAFT_2026-11-08.md",
       "sha256": "ddc3c1fa4f155bd90553de78e85bcce2c702bf4b2190dfc1ae5a407f3193759b",
       "scope": "08/11: protocol/reference fixture only;0physics/training/hardware"
+    },
+    "real_08nov_review": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_REAL_08NOV_REVIEW_AND_BACKEND_2026-11-09.md",
+      "sha256": "946cf9949253e55f6e3bdb1c738f1ef33372d02729f53a4ddc4607bb96dcffb8",
+      "scope": "Direct SQL/CDR/config review of 8 Pi sessions; no motion; 6 integrity OK, 2 corrupt/incomplete"
+    },
+    "real_08nov_analysis": {
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/real_review_2026-11-09_103/analysis.json",
+      "sha256": "c53f74b2355b48db1550431e7a784f2ba96ef007efd2a217de69fb7cd0169354",
+      "scope": "Reproducible historical analysis; estimated poses, not GT; no TD3 deployment"
+    },
+    "sensor_live_09nov": {
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/real_review_2026-11-09_103/sensor_live/live_verification.json",
+      "sha256": "bc36b7eda68d60505338e70a0270b7228ec1d057cf3a6e6936ed39332490f436",
+      "scope": "Historical 12s pre-reboot sensor-only window; superseded for live readiness by latest_sensor_probe_09nov"
+    },
+    "real_velocity_preflight_09nov": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_REAL_VELOCITY_PREFLIGHT_2026-11-09.md",
+      "sha256": "2346cd91e95933e72436dbe13ae3f5ab73dfad23502c8aee7ab603153ba3b6b0",
+      "scope": "Guard integration5/5 isolated; offline preparation; hardware deferred by user, no physical stop/motion qualification"
+    },
+    "real_offline_recheck_09nov": {
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/real_velocity_prepare_2026-11-09/offline_recheck.json",
+      "sha256": "f864aa8a9db7b8ea378b1728156da3a2d24ca747aecb7312cf3ce5c85fd611ce",
+      "scope": "Readonly recheck of sealed copies:6/2,313555 healthy messages;431 files unchanged; not new robot data"
+    },
+    "latest_sensor_probe_09nov": {
+      "path": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/real_velocity_prepare_2026-11-09/live_verification.json",
+      "sha256": "6fc7df69d3de4dcb048ab58d19a6bdefc662138fa35b0b0e8243b4c43f35e100",
+      "scope": "Last post-reboot snapshot: no sensor samples/odom TF; USB absent. Hardware deferred, not readiness proof"
+    },
+    "architecture_review_09nov": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_PROJECT_ARCHITECTURE_AND_CONTROL_FLOW_2026-11-09.md",
+      "sha256": "0c04a04f93d873f6e6e6ddf874e4a20e1fe30dd585c6871ff30f2348a6fa40d7",
+      "scope": "Source-based whole-system overview; latest v2 checkpoint40860, task mismatch and real readiness limits; no new training/motion"
+    },
+    "unknown_step_software_10nov": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_UNKNOWN_STEP_SOFTWARE_PREPARATION_2026-11-10.md",
+      "sha256": "214e7ccb0da4c106eaedd299ec19af97dab09221699cac51b0bc01c4c77ecd7c",
+      "scope": "Software50tests và offline review50k; chưa Gazebo task mới, không là motion permission"
+    },
+    "goal100_integration_10nov": {
+      "path": "/home/tuanmac/ninorobot/docs/NINO_UNKNOWN_STEP_GAZEBO_AND_TD3_SMOKE_2026-11-10.md",
+      "sha256": "44a8297267d9e355f0958ee5e70d785cc398ef1f603b013474d35217e35f7140",
+      "scope": "7Gazebo970ticks; smoke384, chưa research20k/benefit/hardware"
     }
   },
   "quality_rules": [
@@ -3798,7 +3988,7 @@
     "network_failure_cause": null,
     "raw_or_training_modified": false
   },
-  "active_workstream": "sim_offline_preparation",
+  "active_workstream": "sim_goal100_frozen_comparison_closed_keep_B0_goal_stop_startup_review",
   "sim_prestop_authority_draft": {
     "status": "prepared_not_released",
     "config": "/home/tuanmac/ninorobot/src/nino_rl/config/prestop_tail_authority_draft_v1.json",
@@ -3813,6 +4003,243 @@
     "runtime_implemented": false,
     "reference_fixture_only": true,
     "requires_pi": false,
+    "hardware_actions": 0
+  },
+  "real_review_2026_11_09": {
+    "reviewed_sessions": 8,
+    "healthy_bags": 6,
+    "corrupt_or_incomplete": 2,
+    "healthy_messages": 313555,
+    "config_hash_entries": 171,
+    "copy_files_verified": 293,
+    "backend_selected": "firmware_velocity_reference_for_TD3_sysid",
+    "hardware_authority": 0,
+    "motion_ready": false,
+    "stop_guard_active": false,
+    "pi_ip": "192.168.0.103",
+    "sensor_launch": "/home/d/nino_runtime/sensor_restore_review_20261109_v1",
+    "historical_raws_modified": false,
+    "operator_outcomes_filled": false,
+    "sim_training_modified": false
+  },
+  "real_offline_preparation_2026_11_09": {
+    "hardware_deferred_by_user": true,
+    "sensor_ready_at_last_probe": false,
+    "usb_present_at_last_probe": false,
+    "guard_diagnostic_cases_passed": 5,
+    "guard_diagnostic_cases_total": 5,
+    "stop_guard_active": false,
+    "physical_stop_validated": false,
+    "hardware_authority": 0,
+    "motion_ready": false,
+    "new_motion_runs": 0,
+    "new_frame_captures": 0,
+    "profile": "real_collection_velocity_sysid.json",
+    "profile_motion_released": false,
+    "per_topic_counts_verified_healthy_bags": 6,
+    "sealed_files_unchanged": 431,
+    "simulation_and_training_evidence_unchanged": true,
+    "runtime_bundle_deployed_after_offline_changes": false
+  },
+  "project_architecture_review_2026_11_09": {
+    "reviewed_utc": "2026-11-09T14:20:21.451002+00:00",
+    "scope": "Active architecture/control/data/training source and latest saved job review; not an exhaustive read of every historical raw sample",
+    "latest_job": "/home/tuanmac/nino_research/td3_recovery_20261109/20261109T095403402007Z_common_v2_seed11_train",
+    "latest_job_status": "failed",
+    "latest_checkpoint": "/home/tuanmac/nino_research/td3_recovery_20261109/20261109T095403402007Z_common_v2_seed11_train/checkpoints/step_000000040860_interrupted",
+    "global_steps": 40860,
+    "optimizer_update_cycles": 30858,
+    "replay_size": 40860,
+    "checkpoint_files_checked": {
+      "model.zip": true,
+      "checkpoint.json": true,
+      "resume_identity.json": true
+    },
+    "full_replay_hash_recomputed": false,
+    "sim_training_launched": false,
+    "motor_commands_published": 0,
+    "new_controller_implementation": false,
+    "unknown_step_runtime_implemented": false,
+    "readiness_issue": "Studio discovery received no tf_static; paired QoS probe not executed due SSH loss",
+    "report": "/home/tuanmac/ninorobot/docs/NINO_PROJECT_ARCHITECTURE_AND_CONTROL_FLOW_2026-11-09.md"
+  },
+  "real_reconnect_2026_11_09": {
+    "last_verified_boot": "4294e98a-901f-45f8-b799-0e2ee7232bcc",
+    "sensor_samples_observed": true,
+    "network_last_check": "unreachable",
+    "current_process_liveness_verified": false,
+    "studio_preflight_ready": false,
+    "studio_missing_sensors": [
+      "/tf_static"
+    ],
+    "mcap_available": true,
+    "stop_guard_active": false,
+    "isolated_guard_cases_passed": 5,
+    "isolated_guard_cases_total": 5,
+    "motion_ready": false,
+    "hardware_authority": 0,
+    "manual_frame_captures": 0,
+    "motion_runs": 0,
+    "observer_namespace": "studio_observer_v1_15e498e31997ba82"
+  },
+  "sim_unknown_step_preparation_2026_11_10": {
+    "schema_version": 1,
+    "status": "software_prepared_not_gazebo_integrated",
+    "reviewed_utc": "2026-11-10T13:30:15.744509+00:00",
+    "source_root": "/home/tuanmac/ninorobot",
+    "sources": {
+      "src/nino_rl/nino_rl/unknown_step_runtime.py": "342af1a2ccd730c0d8e4c9318f7b516bf188967494bb3e03198e8b6405388028",
+      "src/nino_rl/nino_rl/unknown_step_environment.py": "164abc8b9e97ddc7a397875767c360904e81a5628e7ccacb869cf0b3501eebd6",
+      "src/nino_rl/test/test_unknown_step_runtime.py": "7334287c43c70233cf2771b0f67bd50ba14070450e4e7ab9bb1c22116e60aa3c",
+      "src/nino_rl/test/test_unknown_step_environment.py": "7de4b537e91de96a6597b4ff5ef15997016b4dba1b6ec645c337655257c2a8d9",
+      "src/nino_rl/test/test_unknown_step_task.py": "2dc4d04159577c6810c2f2fa808f212ad539896fc90e071d7ce5bcdb87ab2c27",
+      "src/nino_pi/nino_pi/sim_review.py": "05c960869c4025fc15528466723a23f26fd302d73fbe9f6c9b4846b92bc68899",
+      "src/nino_pi/test/test_unknown_step_preparation_badge.py": "5d7c2240a7e37e3b9b5664cb12f40ad2be6df573fd7a1e3afae0efcbad84b2a7",
+      "src/nino_control/nino_control/residual_pipeline.py": "7f62c7320120f966866b95a0bb2363c9c184e08fd7df1ca8607c2505fe909279",
+      "src/nino_control/nino_control/residual_velocity.py": "4126bfba0e273cd0232b14df08fc2254c55de1becefd79f54edcd448dfe735cb",
+      "src/nino_rl/nino_rl/residual_guidance.py": "e7b40e33875c71024827b84ec8dceedc96d6200166c8ca99b6b5ec5093a03cd1"
+    },
+    "fixture_report": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_unknown_step_preparation_2026-11-10/fixture_tests.xml",
+    "fixture_report_sha256": "79a7295a44f041312b5199f3863cc61f4ba291fae48fae55948ba1197c07e3d6",
+    "tests_passed": 50,
+    "gates": {
+      "software_fixture_pass": true,
+      "gazebo_integration_verified": false,
+      "training_released": false,
+      "hardware_authorized": false
+    },
+    "new_physics_launches": 0,
+    "new_optimizer_updates": 0,
+    "existing_run_review": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_unknown_step_preparation_2026-11-10/existing_run_review.json",
+    "existing_run_review_sha256": "ee85a17ae64433bfdce316a6fab47729e583ad388b0507cd7f4c51a6c741ddf0",
+    "numeric_thresholds": "synthetic_fixture_values_only_not_accepted_run_protocol",
+    "checkpoint_transfer": "common103_not_compatible_with_new_goal_task",
+    "report": "/home/tuanmac/ninorobot/docs/NINO_UNKNOWN_STEP_SOFTWARE_PREPARATION_2026-11-10.md",
+    "global_steps_old_task": 50000,
+    "old_job_status": "failed_evaluation",
+    "benefit_verified": false
+  },
+  "sim_unknown_step_gazebo_2026_11_10": {
+    "report": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/unknown_step_gazebo_integration_2026-11-10/integration_review.json",
+    "report_sha256": "0e6e5c32d226c7300ef98f8892ddbfbc99b380dfc04d9bde4faba261ddd6c23e",
+    "source_root": "/home/tuanmac/ninorobot",
+    "sources": {
+      "src/nino_rl/nino_rl/unknown_step_gazebo.py": "b24b25606f08781ad92f7d1f6c76c8e5d5a94c9607fef3ce799cff8709b763cc",
+      "src/nino_rl/nino_rl/unknown_step_task.py": "2dc94933cd8ec18a7201c26a7f99434c803a1516ccefa59fd7fc2f71c6184bd9",
+      "src/nino_rl/nino_rl/unknown_step_plan.py": "b74fdfccbb27137398137110da263107ec2690ada087f654ca3975075ea005b3",
+      "src/nino_rl/nino_rl/unknown_step_geometry.py": "c3ec98fbe11b6565fc83f5784cf2788c0d89757ef65741587f2d503e9ddca09b",
+      "src/nino_rl/nino_rl/unknown_step_runtime.py": "342af1a2ccd730c0d8e4c9318f7b516bf188967494bb3e03198e8b6405388028",
+      "src/nino_rl/nino_rl/unknown_step_environment.py": "164abc8b9e97ddc7a397875767c360904e81a5628e7ccacb869cf0b3501eebd6",
+      "src/nino_rl/nino_rl/unknown_step_runner.py": "e933f03b3cfac31a11625cf35d046cae4affb89675575b2db6f4f75c237ba437",
+      "src/nino_rl/nino_rl/goal_studio_contract.py": "5350c23a0f75fb7c794b6a2fe0e9a7fbb9ea2a9a8aee2d14da00b79fa6a6feb4",
+      "src/nino_rl/nino_rl/goal_training_studio.py": "a4196c69f7fd56e53104c529a8767288fe9d1bf5d19e718982178a028ae24234",
+      "src/nino_rl/nino_rl/training_studio_api_v3.py": "8ccf0c6afb1b343688a98f04314d51e2625dcc9d230f9766e0b3221e051f0f36",
+      "src/nino_rl/config/unknown_step_short_integration_v1.json": "e4309b528a3cf41a3d014f22e7b95e23555d716e936946d285cfa76ebf5fa4e5",
+      "src/nino_rl/config/unknown_step_short_gate_amendment_v1.json": "ba5de1b7711e0c03a1f4759ee092ccd108cd26da56b19d68dbb2b747e3c3d0f8",
+      "src/nino_rl/scripts/unknown_step_runner.sh": "9c2ffaf73a3614f7bef5052d03e3f3155bb667da0c72500a4a48c364c1361fdd",
+      "src/nino_rl/scripts/goal_training_studio.sh": "a9825ea4bcfa4cfe40c73b96134ab5d79613e5d779df5aac07df82d3c067fdba",
+      "src/nino_pi/nino_pi/td3_training_panel.py": "8e78c001eef3b01bd54dadf0473da376da2567c81f06e4383a905d1192ce87b3",
+      "src/nino_pi/nino_pi/training_live.py": "16213f38bef21d5dda07388d3ff6612c285d50fa2c122b58ab62233e9c33e91b",
+      "src/nino_pi/nino_pi/training_dashboard_data.py": "86ab0331a7ca10c088da281d004210e2d866fd4099741c063837c62cfea12c59",
+      "src/nino_pi/nino_pi/sim_review.py": "e9a2dd7bac24fcef6433c349cf248dd319a3109fe8cea4e22038730054b1637c"
+    },
+    "training_transitions": 384,
+    "critic_updates": 368,
+    "actor_updates": 184,
+    "baseline_successes": 2,
+    "baseline_attempts": 3,
+    "benefit_verified": false,
+    "long_training_started": false,
+    "hardware_actions": 0
+  },
+  "sim_goal100_research_review_2026_11_12": {
+    "report": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/training_review_retention_2026-11-12/assessment.json",
+    "report_sha256": "13328ce7123ae782e4d1e22aa31c70033322eeaf32167a55c40c3fde4681efc8",
+    "document": "/home/tuanmac/ninorobot/docs/NINO_TRAINING_REVIEW_AND_RETENTION_2026-11-12.md",
+    "plot": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/training_review_retention_2026-11-12/training_overview.png",
+    "retention": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/training_review_retention_2026-11-12/retention_plan.json",
+    "status": "training_complete_raw_qc_failed_no_evaluation",
+    "training_transitions": 20000,
+    "critic_updates": 10000,
+    "actor_updates": 5000,
+    "training_task_successes": 113,
+    "complete_training_episodes": 126,
+    "raw_qc_valid": false,
+    "evaluation_runs": 0,
+    "benefit_verified": false,
+    "hardware_actions": 0
+  },
+  "sim_goal100_frozen_evaluation_2026_11_14": {
+    "report": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/goal100_gap_and_checkpoint_evaluation_2026-11-14/evaluation_review.json",
+    "report_sha256": "e5d6ad9db6d6b98e2e4660425220c156be62ce1af1b9abbfd8780220fb5f4a44",
+    "document": "/home/tuanmac/ninorobot/docs/NINO_GOAL100_GAP_AND_FROZEN_CHECKPOINT_EVALUATION_2026-11-14.md",
+    "plot": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/goal100_gap_and_checkpoint_evaluation_2026-11-14/checkpoint_comparison.png",
+    "gap_review": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/goal100_gap_and_checkpoint_evaluation_2026-11-14/gap_review.json",
+    "ledger": "/home/tuanmac/nino_research/goal100_checkpoint_eval_20261114_v1/ledger.json",
+    "verdict": "no_strict_task_count_advantage_even_best_case_missing_in_this_pilot",
+    "attempts": 24,
+    "measurement_valid": 23,
+    "native_rows_verified": 3648,
+    "files_verified": 789,
+    "totals": {
+      "B0": {
+        "attempted": 6,
+        "valid": 6,
+        "successes": 5,
+        "allocated": 6,
+        "unknown": 0,
+        "successes_lower": 5,
+        "successes_upper": 5
+      },
+      "TD3_10k": {
+        "attempted": 6,
+        "valid": 6,
+        "successes": 5,
+        "allocated": 6,
+        "unknown": 0,
+        "successes_lower": 5,
+        "successes_upper": 5
+      },
+      "TD3_15k": {
+        "attempted": 6,
+        "valid": 6,
+        "successes": 4,
+        "allocated": 6,
+        "unknown": 0,
+        "successes_lower": 4,
+        "successes_upper": 4
+      },
+      "TD3_20k": {
+        "attempted": 6,
+        "valid": 5,
+        "successes": 4,
+        "allocated": 6,
+        "unknown": 1,
+        "successes_lower": 4,
+        "successes_upper": 5
+      }
+    },
+    "benefit_verified": false,
+    "new_training_steps": 0,
+    "hardware_actions": 0
+  },
+  "sim_episode_retention_2026_11_14": {
+    "status": "completed",
+    "report": "/home/tuanmac/ninorobot/docs/NINO_SIM_EPISODE_RETENTION_2026-11-14.md",
+    "report_sha256": "16374b4acb1572fe4a07ddb541b70609b2092330a41b230c0dbdc3cd8cbe6237",
+    "receipt": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_episode_retention_2026-11-14/retention_result.json",
+    "verification": "/home/tuanmac/Documents/Codex/2026-10-27/stm32-n-i-v-i-pi/artifacts/sim_episode_retention_2026-11-14/retention_verification.json",
+    "freed_file_bytes": 3620165194,
+    "permanently_deleted_raw_files": 36,
+    "evaluated_success_slots_pruned": 12,
+    "legacy_streams_losslessly_compressed": 206,
+    "evaluation_files_remaining_verified": 753,
+    "unknown_missing_files": 0,
+    "protected_files_verified": 3974,
+    "checkpoints_10k_15k_20k_and_replay_unchanged": true,
+    "current_qualification_unchanged": true,
+    "full_evaluation_raw_archive": false,
+    "new_training_steps": 0,
     "hardware_actions": 0
   }
 }

@@ -39,8 +39,8 @@ def main():
     sys.path[:0]=[str(ROOT/'src/nino_rl'),str(Path(__file__).parent)]
     import yaml
     from nino_rl.tuning_trials import digest,assert_trial_inputs
-    from train_rough_curriculum import Processes,assert_isolated,complete_evaluation
-    from prepare_rough_foundations import immutable
+    from experiment_processes import Processes,assert_isolated,complete_evaluation
+    from experiment_assets import immutable
     output=args.output.resolve(); output.mkdir(parents=True,exist_ok=True)
     contract=json.loads((ROOT/'rl_runs/flat_focused_optuna_v1/trial_plan.json').read_text())['trials']
     assert_trial_inputs(contract)

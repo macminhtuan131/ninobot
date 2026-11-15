@@ -88,9 +88,12 @@ def test_snapshot_selects_assisted_pose_and_preserves_raw_state_and_truth():
 
 def test_new_estimator_requires_a_new_training_contract():
     root = Path(__file__).parents[1] / 'config'
-    raw = load_config(root / 'rough_e1_stop_margin_check.yaml')
-    assisted = load_config(root / 'rough_e1_imu_assisted.yaml')
-    assert training_contract(assisted)['revision'] == 35
+    from copy import deepcopy
+    assisted = load_config(root / 'combined_flat_pi_tracking.yaml')
+    raw = deepcopy(assisted)
+    raw['odometry_assistance']['enabled'] = False
+    assert 'estimated_pose_source' in training_contract(assisted)
+    assert 'estimated_pose_source' not in training_contract(raw)
     with pytest.raises(ValueError, match='contract differs'):
         validate_resume(SimpleNamespace(nino_training_contract=training_contract(raw)), assisted)
     assert assisted['goal_tolerance_m'] == raw['goal_tolerance_m'] == .2

@@ -8,11 +8,12 @@ from .studio_runner import StudioRunner
 
 SCENARIO_HINTS = {
     'stationary': 'Baseline tĩnh (sensor_inventory): kiểm noise floor IMU, LiDAR, clock drift; không yêu cầu protocol chuyển động.',
-    'straight': 'SysID chạy thẳng (real_sysid): BẮT BUỘC nhập protocol_id đã review + khuyến nghị gắn camera/body reference kiểm tra trượt bánh.',
+    'straight': 'SysID chạy thẳng: cần protocol_id đã review. Wheel-response không cần camera; thước/mốc cho chuyển vị đầu–cuối, chưa cho slip/body latency.',
     'rotation': 'SysID quay tại chỗ (real_sysid): BẮT BUỘC nhập protocol_id đã review; đối chiếu gyro.z với hiệu vận tốc hai bánh.',
     'curve': 'SysID quỹ đạo cong (real_sysid): BẮT BUỘC nhập protocol_id đã review; đo đáp ứng ghép kênh (v, ω).',
     'stop_go': 'SysID tăng/giảm tốc & dừng (real_sysid): BẮT BUỘC nhập protocol_id đã review; đo trễ truyền động, deadzone và pre-stop tail.',
     'heldout': 'Đánh giá độc lập (real_evaluation): ghim cứng vào tập TEST khi chia split (không bao giờ trộn vào train/val).',
+    'velocity_sysid': 'Native velocity backend, tách PI/SAC torque. Điền controller_identity=firmware_velocity_reference và protocol đã review. Ghi final command/wheel/raw sensor/guard; torque hoặc MIT request trong phiên làm QC FAIL. Chọn kịch bản không bật motor. Camera không bắt buộc.',
 }
 
 
@@ -47,10 +48,10 @@ class StudioPanel(Q.QWidget):
             ('controller_identity','Nguồn/controller đang chạy','unknown'),
             ('firmware_identity','Binary/firmware đã xác minh','unknown'),
             ('pose_caster_note','Pose / caster ban đầu','unknown'),('floor_load_note','Sàn / tải / pin','unknown'),
-            ('body_reference','Reference thân xe / video / sync','unknown')]:
+            ('body_reference','Reference thân: thước/mốc hoặc estimator đã kiểm; chưa có ghi unknown','unknown')]:
             field=Q.QLineEdit(default);self.fields[key]=field;form.addRow(name,field)
         content.addLayout(form)
-        self.reference_button=Q.QPushButton('Reference bánh/thân · gắn video với session đã thu')
+        self.reference_button=Q.QPushButton('Video reference tùy chọn · không bắt buộc cho wheel SysID')
         self.reference_button.clicked.connect(self.open_body_reference);content.addWidget(self.reference_button)
         self.confirm=Q.QCheckBox('Tôi xác nhận metadata và điều kiện quan sát; Studio chỉ ghi. Không reboot cho tới khi bag đóng.')
         content.addWidget(self.confirm)

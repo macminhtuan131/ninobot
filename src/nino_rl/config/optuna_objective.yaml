@@ -10,9 +10,6 @@ weights:
   slip: 1.0
 scales:
   flat: {path_rmse_m: 0.05, vibration_m_s2: 3.0, slip: 0.20}
-  rough: {path_rmse_m: 0.05, vibration_m_s2: 1.6, slip: 0.05}
-  combined: {path_rmse_m: 0.05, vibration_m_s2: 3.0, slip: 0.20}
-  rocky: {path_rmse_m: 0.05, vibration_m_s2: 1.6, slip: 0.05}
 # Empty: freeze the base task's target seconds for each evaluated route.
 # Optional entries: E1: 31.0, N1: 58.5, S1: 58.5, or straight: 22.0.
 # Changing any entry requires a new study directory.

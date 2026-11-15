@@ -121,6 +121,16 @@ class ProjectPanel(Q.QWidget):
             + plan['physical_backend'] + '\n' + plan['actor_contract']
             + '\n'+sim_status+'\nHardware residual chưa mở; kết quả Sim không cấp quyền robot thật.')
         stages=plan.get('sim_stages',plan['stages']) if plan.get('active_workstream')=='sim_offline_preparation' else plan['stages']
+        review=None
+        if plan.get('active_workstream')=='sim_offline_preparation':
+            try:
+                from .sim_review import load
+                review=load()
+                self.direction_text.setText('SIM · REVIEW '+review['review_date']+'\n'+review['summary']
+                    +'\nĐây là hồ sơ review, không phải trạng thái live. Hardware residual chưa mở.')
+                stages=[dict(s,name=s['name']+' · '+s['status']) for s in review['steps']]
+            except (OSError,ValueError,KeyError,TypeError) as exc:
+                self.direction_text.setText('Review Sim CHƯA XÁC MINH: '+str(exc))
         self.stage_table.setRowCount(len(stages))
         for row, stage in enumerate(stages):
             for col, value in enumerate((stage['id'], stage['name'], stage['gate'])):
@@ -129,6 +139,9 @@ class ProjectPanel(Q.QWidget):
         self.stage_resize_timer.start(0)
         self.banner.setText(f"HỒ SƠ LOCAL · cập nhật {c['review_date']} · dữ liệu đến {c['data_cutoff']}\n"
                             + c["scope"] + "\n" + c["next_action"])
+        if review:
+            self.banner.setText(f"HỒ SƠ LOCAL · dữ liệu thật đến {c['data_cutoff']} · REVIEW SIM {review['review_date']}\n"
+                +c['scope']+'\n'+c['next_action']+'\nREVIEW SIM: '+review['summary'])
         for key, fields, table in self.tables:
             table.setRowCount(len(c[key]))
             for row, record in enumerate(c[key]):

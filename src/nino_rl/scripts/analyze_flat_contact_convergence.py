@@ -3,8 +3,8 @@
 import argparse,csv,json
 from pathlib import Path
 import numpy as np
-from train_rough_curriculum import complete_evaluation
-from analyze_rough_reactive_authority import window_metrics
+from experiment_processes import complete_evaluation
+from experiment_assets import window_metrics
 ROOT=Path(__file__).resolve().parents[3]
 
 def rows(path):
