@@ -10,6 +10,7 @@ from nino_rl.recovery_bank import configuration, sample_layout, write_world
 from nino_rl.recovery_contract import AcceptedCommonReference, StartBudget, RecoveryAdapter
 from nino_rl.recovery_curriculum import FAMILIES, FamilyCurriculum
 from nino_rl.recovery_task import RecoveryBands, RecoveryScore, RecoveryReward
+from nino_rl.recovery_motion import MotionTarget
 from nino_rl.unknown_step_runtime import UnknownTaskData, RewardSettings
 from test_unknown_step_runtime import controller_config, sample, settings, view
 
@@ -19,7 +20,10 @@ def scorer(**changes):
     task = settings(obstacle_near_m=None, obstacle_far_m=None, maximum_cross_track_m=.3, **changes)
     budget = StartBudget(.05, .03, .005, .005, .008, .03)
     heading = math.atan2(task.route_m[1][1], task.route_m[1][0])
-    return RecoveryScore(task, [dict(id='o1', near_m=.5, far_m=.6)],
+    class ZeroTargetScore(RecoveryScore):
+        def update(self, sample):
+            return super().update(sample, MotionTarget(0., 0.))
+    return ZeroTargetScore(task, [dict(id='o1', near_m=.5, far_m=.6)],
                          RecoveryBands(**c['recovery_bands']), budget, (0.,0.,heading))
 
 
@@ -175,7 +179,9 @@ def test_recovery_reward_is_once_only_and_failure_takes_precedence():
 def test_accepted_common_never_changes_baseline_yaw():
     limits = ReferenceLimits(.34273666, .6, .4, 1., .1, .04, .2)
     r = AcceptedCommonReference(limits)
-    r.previous = (.2, .2)
+    for _ in range(20):
+        r.compose((.2,0.), (0.,0.), .1, 1., permission=True, sensors_fresh=True,
+                  history_ready=True, command_age_s=0., emergency_stop=False, fault=False)
     trace = r.compose((.2, .06), (-.5, 0.), .1, 1., permission=True,
                       sensors_fresh=True, history_ready=True, command_age_s=0.,
                       emergency_stop=False, fault=False)
@@ -201,7 +207,10 @@ def test_scalar_projection_fuzz_respects_speed_yaw_slew_stop_and_owner():
         assert abs(trace['body_reference'][1]) <= c.yaw_rad_s+1e-8
         assert max(abs(a-b) for a,b in zip(wheels,before)) <= .04000001
         assert trace['accepted_policy_delta_wheel_m_s'][0] == trace['accepted_policy_delta_wheel_m_s'][1]
-    assert r.compose((0.,0.), (1.,0.), .1, 1., **flags)['accepted_policy_delta_wheel_m_s'] == (0.,0.)
+    for _ in range(30):
+        trace = r.compose((0.,0.), (1.,0.), .1, 1., **flags)
+        assert trace['proposed_residual_wheel_m_s'] == (0.,0.)
+    assert trace['accepted_reference_wheel_m_s'] == (0.,0.)
     flags['permission'] = False
     assert r.compose((.2,0.), (1.,0.), .1, 1., **flags)['body_reference'] == (0.,0.)
     assert r.latched
@@ -221,7 +230,7 @@ def test_new_adapter_rejects_old_identity_and_oracle_features():
         obs = new.observe(view(i*.1))
         trace = new.project([1.])
     assert obs.shape == (100,) and trace['replay_action'] == [1.]
-    assert trace['task_contract_id'].endswith('v2')
+    assert trace['task_contract_id'].endswith('v3')
 
 
 def test_four_families_sample_distinct_physical_geometry_reproducibly():
@@ -259,7 +268,7 @@ def test_curricula_are_independent_restore_rng_and_require_full_success():
     c = configuration()['curriculum']
     a, b = (FamilyCurriculum(f, 11, c) for f in FAMILIES[:2])
     good = dict(measurement_valid=True, task_success=True, all_obstacles_recovered=True,
-                terminated=True, truncated=False)
+                terminated=True, truncated=False, motion_quality_pass=True)
     for i in range(c['minimum_episodes']):
         a.record(str(i), 0, good)
     assert a.stage == 1 and b.stage == 0 and not b.results
@@ -282,10 +291,11 @@ def test_recovery_environment_keeps_oracle_out_of_history_and_versions_identity(
     budget = StartBudget(.05, .03, .005, .005, .008, .03)
     args = (controller_config(), ToyBackend(), task, reward, [],
             RecoveryBands(**c['recovery_bands']), budget, c['recovery_reward'])
-    a = RecoveryEnv(*args)
+    a = RecoveryEnv(*args, motion_quality=c['motion_quality'])
     b = RecoveryEnv(controller_config(), ToyBackend(), task, reward,
                     [dict(id='hidden', near_m=.6, far_m=.61)],
-                    RecoveryBands(**c['recovery_bands']), budget, c['recovery_reward'])
+                        RecoveryBands(**c['recovery_bands']), budget, c['recovery_reward'],
+                        motion_quality=c['motion_quality'])
     try:
         oa, _ = a.reset(seed=11)
         ob, _ = b.reset(seed=11)

@@ -69,6 +69,7 @@ def test_negative_soft_speed_limit_is_symmetric() -> None:
 def test_odometry_reset_publishes_authoritative_zero_sample() -> None:
     stamp = SimpleNamespace(nanoseconds=123)
     published = []
+    timing_resets = []
     drive = SimpleNamespace(
         x=2.0,
         y=-1.0,
@@ -86,6 +87,7 @@ def test_odometry_reset_publishes_authoritative_zero_sample() -> None:
         last_torque_ns=11,
         last_control_ns=12,
         last_odom_publish_ns=13,
+        control_timing=SimpleNamespace(reset=lambda: timing_resets.append(True)),
         get_clock=lambda: SimpleNamespace(now=lambda: stamp),
         _publish_odometry=lambda now, linear, angular: published.append(
             (now, linear, angular)
@@ -97,4 +99,5 @@ def test_odometry_reset_publishes_authoritative_zero_sample() -> None:
     assert (drive.x, drive.y, drive.yaw) == (0.0, 0.0, 0.0)
     assert published == [(stamp, 0.0, 0.0)]
     assert drive.last_odom_publish_ns == stamp.nanoseconds
+    assert timing_resets == [True]
     assert response.success

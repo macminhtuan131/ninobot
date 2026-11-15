@@ -1,5 +1,8 @@
 # Audit và sửa luồng TD3, vượt gờ và phục hồi quỹ đạo Nino
 
+> Cập nhật 15/11/2026: engine recovery hiện đã chuyển sang contract v3, có speed target độc lập và dốc 3°/4°/5°. Xem [bản cập nhật terrain/speed/slope](RL_TERRAIN_SPEED_SLOPE_ALIGNMENT_2026-11-15.md). Các kết quả v2 và hai lượt readiness trong bài dưới đây là lịch sử, không phải qualification v3.
+
+
 Ngày 15/11/2026. Mục tiêu là sửa sai lệch có thể tái hiện trước khi đầu tư train thêm. Báo cáo này áp dụng workspace `/home/tuanmac/ninorobot`, branch `Collecting-datas`, HEAD đầu phiên `aabd4faa9fb8ed8cef6f078fba464eb4a886182c`. Người dùng đã chọn workspace hiện tại, giữ tiến độ TD3 Goal100. Không chuyển sang branch hoặc remote trong attachment.
 
 ## 1. Quyết định hiện tại

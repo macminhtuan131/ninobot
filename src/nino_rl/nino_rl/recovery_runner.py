@@ -24,14 +24,16 @@ from .reliable_episode import EpisodeLifecycle
 from .residual_factory_workflow import repo
 from .residual_workflow import save
 from .studio_deferred_reset import DeferredResetVecEnv
-from .unknown_step_gazebo import UnknownStepBackend
+from .recovery_startup import RecoveryBackend, INITIALIZATION_ID
+from .recovery_sim_runtime import dependency_identity
 from .unknown_step_runtime import PhysicalSample, RewardSettings
 from . import unknown_step_plan
 from .unknown_step_runner import append, raw_qc, sources as inherited_sources
 
 
 def sources():
-    return dict(inherited=inherited_sources(), files=implementation_sources())
+    return dict(inherited=inherited_sources(), files=implementation_sources(),
+                simulation_runtime=dependency_identity())
 
 
 def runtime_configuration(config, layout):
@@ -40,11 +42,15 @@ def runtime_configuration(config, layout):
     c['purpose'] = CONTRACT_ID
     c['backend'].update(scenario_id=CONTRACT_ID, horizon_s=config['horizon_s'],
                         command_until_s=config['horizon_s'], max_episodes=1,
+                        cruise_m_s=config['cruise_m_s'],
+                        startup_initialization=INITIALIZATION_ID,
+                        simulation_runtime=dependency_identity(),
                         initial_pose_xy_yaw=layout['initial_pose_xy_yaw'])
     c['task'].update(command_until_s=config['horizon_s'], horizon_s=config['horizon_s'])
     g.update(baseline_id=CONTRACT_ID+'_follower', path_points_m=config['route_m'],
              goal_tolerance_m=config['start_budget']['estimated_stop_m'],
              maximum_corridor_error_m=config['maximum_cross_track_m'])
+    g['navigation']['straight_speed_m_s'] = config['cruise_m_s']
     task.update(protocol_id=CONTRACT_ID, command_until_s=config['horizon_s'],
                 horizon_s=config['horizon_s'], warmup_s=.5,
                 initial_pose_m_rad=list(layout['initial_pose_xy_yaw']))
@@ -57,9 +63,10 @@ def environment(config, layout, envelope, backend, controller=None):
     c, g, protocol, condition = runtime_configuration(config, layout)
     c = controller or c
     return RecoveryEnv(c, backend, TaskSettings(**layout['task_settings']),
-                       RewardSettings(**unknown_step_plan.protocol()['reward']), layout['obstacles'],
+                       RewardSettings(**config['task_reward']), layout['obstacles'],
                        RecoveryBands(**config['recovery_bands']), StartBudget(**config['start_budget']),
-                       config['recovery_reward'], dict(guidance=g, protocol=protocol, condition=condition))
+                       config['recovery_reward'], dict(guidance=g, protocol=protocol, condition=condition),
+                       macro_ramp=layout.get('macro_ramp'), motion_quality=config['motion_quality'])
 
 
 class SoftwareFixtureBackend:
@@ -205,7 +212,7 @@ def baseline(out, root, family, stage):
     lp = dict(training_episodes_per_seed_maximum=1, observer_start_deadline_s=15.,
               feedback_deadline_s=5., observer_ipc_grace_s=1., maximum_support_age_ns=40_000_000)
     backend = EpisodeLifecycle(c, out/'episodes', layout['world'], g, task, condition, lp,
-        backend_factory=lambda *args: UnknownStepBackend(*args, expected_envelope=bank['envelope']))
+        backend_factory=lambda *args: RecoveryBackend(*args, expected_envelope=bank['envelope']))
     env = environment(config, layout, bank['envelope'], backend)
     last = None
     try:
@@ -223,6 +230,8 @@ def baseline(out, root, family, stage):
         env.close()
     qc = raw_qc(out)
     return dict(family=family, stage=stage, layout_id=layout['id'], outcome=None if last is None else last['task'],
+                bank_sha256=hashlib.sha256((root/'inputs/bank.json').read_bytes()).hexdigest(),
+                world_sha256=layout['world_sha256'],
                 source_qc=qc, classical_baseline_only=True, optimizer_updates=0,
                 physical_gate_pass=bool(last and last['task']['task_success'] and qc['valid']),
                 held_out=False, learned_benefit_verified=False)

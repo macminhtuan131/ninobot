@@ -8,7 +8,7 @@ from pathlib import Path
 from nino_control.residual_velocity import ResidualReference, wheels_to_body
 from .unknown_step_runtime import SensorOnlyCommonAdapter, UnknownTaskData
 
-CONTRACT_ID = 'nino_recovery_history100_accepted_common_v2'
+CONTRACT_ID = 'nino_recovery_history100_accepted_common_v3'
 
 
 def implementation_sources():
@@ -59,11 +59,20 @@ class StartBudget:
 
 
 class AcceptedCommonReference(ResidualReference):
-    """Shape baseline, then intersect a single common delta with feasible bounds."""
+    """Independent baseline state, with a bounded equal accepted wheel delta."""
+    def reset(self):
+        super().reset()
+        self.baseline_reference = ResidualReference(self.limits)
+
     def compose(self, baseline, action, dt, authority=0., **health):
         old = self.previous
-        trace = super().compose(baseline, (0., 0.), dt, authority, **health)
-        if self.latched:
+        validation_health = dict(health, fault=True) if self.latched else health
+        trace = self.baseline_reference.compose(baseline, (0., 0.), dt, authority,
+                                                **validation_health)
+        trace['baseline_state_independent_of_policy'] = True
+        trace.setdefault('shaped_baseline_wheel_m_s', self.baseline_reference.previous)
+        if self.baseline_reference.latched:
+            self.previous, self.latched = (0., 0.), True
             return trace
         try:
             common, differential = action
@@ -76,7 +85,7 @@ class AcceptedCommonReference(ResidualReference):
             return trace
         limits = self.limits
         base = trace['shaped_baseline_wheel_m_s']
-        gain = limits.residual_wheel_m_s * authority if health['history_ready'] else 0.
+        gain = limits.residual_wheel_m_s * authority if health.get('history_ready', False) else 0.
         requested = gain * common if tuple(baseline) != (0., 0.) else 0.
         step = limits.wheel_acceleration_m_s2 * dt
         lower, upper = -gain, gain
@@ -86,7 +95,17 @@ class AcceptedCommonReference(ResidualReference):
         speed = sum(base) / 2.
         lower, upper = max(lower, -limits.forward_m_s-speed), min(upper, limits.forward_m_s-speed)
         if lower > upper + 1e-9:
-            raise RuntimeError('Shaped baseline has no feasible common correction')
+            self.previous, self.latched = (0., 0.), True
+            trace.update(body_reference=(0., 0.), accepted_reference_wheel_m_s=(0., 0.),
+                         reason='infeasible_common_with_independent_baseline')
+            return trace
+        sign_lower, sign_upper = lower, upper
+        if speed > 0:
+            sign_lower = max(lower, -speed)
+        elif speed < 0:
+            sign_upper = min(upper, -speed)
+        if sign_lower <= sign_upper:
+            lower, upper = sign_lower, sign_upper
         delta = max(lower, min(upper, requested))
         accepted = tuple(v + delta for v in base)
         self.previous = accepted
@@ -95,6 +114,8 @@ class AcceptedCommonReference(ResidualReference):
                      body_reference=wheels_to_body(*accepted, limits.separation_m),
                      accepted_policy_delta_wheel_m_s=(delta, delta),
                      feasible_common_interval_m_s=(lower, upper),
+                     baseline_state_independent_of_policy=True,
+                     direction_transition_due_to_slew=(speed*sum(accepted)<-1e-12),
                      implementation_revision=CONTRACT_ID,
                      reference_modified=abs(requested-delta) > 1e-9)
         return trace

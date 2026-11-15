@@ -2964,10 +2964,10 @@
     "semantic_hash": "a1117ed5beb86a1dfe5bc71395baf3fd"
   },
   "src/nino_rl/nino_rl/unknown_step_environment.py": {
-    "mtime": 1794317220.2315044,
-    "seen": 1794664508.1336102,
-    "ast_hash": "c1a9f217bf0a438fd4328bf104e9ffc4",
-    "semantic_hash": "c1a9f217bf0a438fd4328bf104e9ffc4"
+    "mtime": 1794748724.1434245,
+    "seen": 1794749653.0301044,
+    "ast_hash": "a2bfa04ed2b0f167a05b735c705dd286",
+    "semantic_hash": ""
   },
   "src/nino_rl/nino_rl/unknown_step_gazebo.py": {
     "mtime": 1794319432.9284785,
@@ -4500,10 +4500,10 @@
     "semantic_hash": "954b154b09aa3bb7967c69e56da22779"
   },
   "src/nino_rl/test/test_reliable_episode.py": {
-    "mtime": 1793931884.3967912,
-    "seen": 1794664508.1340456,
-    "ast_hash": "40c155f2f7f07ad2a97b8d69cdd70fc5",
-    "semantic_hash": "40c155f2f7f07ad2a97b8d69cdd70fc5"
+    "mtime": 1794749320.3564231,
+    "seen": 1794749653.0420055,
+    "ast_hash": "b692141b681387fe0ac0d4ec441f97b1",
+    "semantic_hash": ""
   },
   "src/nino_rl/test/test_reliable_eval_only.py": {
     "mtime": 1793934574.0827239,
@@ -5652,39 +5652,39 @@
     "semantic_hash": ""
   },
   "src/nino_rl/nino_rl/recovery_bank.py": {
-    "mtime": 1794742864.1109884,
-    "seen": 1794744014.922849,
-    "ast_hash": "f35849364a8393ad89e7449be8646d14",
+    "mtime": 1794747280.7612135,
+    "seen": 1794747786.3610215,
+    "ast_hash": "5ac1586f7543f06b00ac09a219f07dce",
     "semantic_hash": ""
   },
   "src/nino_rl/nino_rl/recovery_contract.py": {
-    "mtime": 1794743313.6736984,
-    "seen": 1794744014.9228518,
-    "ast_hash": "03aaa7dec62a536773ca2fd193df97e4",
+    "mtime": 1794747829.10128,
+    "seen": 1794747922.1054366,
+    "ast_hash": "5fc177b3399a7c8e0b11a5477673a240",
     "semantic_hash": ""
   },
   "src/nino_rl/nino_rl/recovery_curriculum.py": {
-    "mtime": 1794742864.110884,
-    "seen": 1794744014.9228544,
-    "ast_hash": "dd167f4f798edf844bec2a3f34074892",
+    "mtime": 1794746814.8607001,
+    "seen": 1794747786.361027,
+    "ast_hash": "b14d52a8eeedf94a179e02efeaf94140",
     "semantic_hash": ""
   },
   "src/nino_rl/nino_rl/recovery_environment.py": {
-    "mtime": 1794743466.6132069,
-    "seen": 1794744014.9228568,
-    "ast_hash": "3e22f49ae9d49b5325c9ca2a867846d3",
+    "mtime": 1794748914.0771005,
+    "seen": 1794749653.0271456,
+    "ast_hash": "c7f111a018645b59d7847da122bd3c1b",
     "semantic_hash": ""
   },
   "src/nino_rl/nino_rl/recovery_runner.py": {
-    "mtime": 1794743450.9012313,
-    "seen": 1794744014.922859,
-    "ast_hash": "b7e475da24259d127a5cb7cd2131aed9",
+    "mtime": 1794748958.0219762,
+    "seen": 1794749653.0272038,
+    "ast_hash": "44f3c8a7734a858cb0b9f1b7559a93a5",
     "semantic_hash": ""
   },
   "src/nino_rl/nino_rl/recovery_task.py": {
-    "mtime": 1794743378.7507927,
-    "seen": 1794744014.922861,
-    "ast_hash": "c6fcef9860955e8f1c7a34311ccdf05e",
+    "mtime": 1794748724.1434245,
+    "seen": 1794749653.0272098,
+    "ast_hash": "19004fbdae5d0b3cfbcef7f33b1264c2",
     "semantic_hash": ""
   },
   "src/nino_rl/nino_rl/sensor_integrity.py": {
@@ -5700,9 +5700,9 @@
     "semantic_hash": ""
   },
   "src/nino_rl/test/test_recovery_v2.py": {
-    "mtime": 1794743466.612982,
-    "seen": 1794744014.9392858,
-    "ast_hash": "22c00141ac0683f5ef505fb20588db16",
+    "mtime": 1794747427.0273037,
+    "seen": 1794747786.3772025,
+    "ast_hash": "a65b260148816368950d9607175ade92",
     "semantic_hash": ""
   },
   "src/nino_rl/test/test_sensor_integrity.py": {
@@ -7440,9 +7440,75 @@
     "semantic_hash": ""
   },
   "docs/RL_OBSTACLE_RECOVERY_AUDIT.md": {
-    "mtime": 1794743917.3026018,
-    "seen": 1794744014.941918,
-    "ast_hash": "ed54de6ac5c9b5d36d1157e47032e611",
+    "mtime": 1794747719.3843324,
+    "seen": 1794747786.3933368,
+    "ast_hash": "f22ed54d67f2ab97fffcf969d79b992d",
+    "semantic_hash": ""
+  },
+  "src/nino_rl/config/recovery_v3.yaml": {
+    "mtime": 1794747280.7602134,
+    "seen": 1794747786.35367,
+    "ast_hash": "c2a8d258fb3cd828460d33f16594ea30",
+    "semantic_hash": ""
+  },
+  "src/nino_rl/nino_rl/recovery_motion.py": {
+    "mtime": 1794747441.9802191,
+    "seen": 1794747786.3610325,
+    "ast_hash": "e40e7184399687a77e3fc4a759d800fa",
+    "semantic_hash": ""
+  },
+  "src/nino_rl/nino_rl/recovery_terrain.py": {
+    "mtime": 1794747441.9802191,
+    "seen": 1794747786.36104,
+    "ast_hash": "372b70aa8373d5a10d56ce86b927f468",
+    "semantic_hash": ""
+  },
+  "src/nino_rl/test/test_recovery_motion.py": {
+    "mtime": 1794747828.41424,
+    "seen": 1794747922.1204746,
+    "ast_hash": "acefd6a5c407b4cf003dfae0ea26c0ab",
+    "semantic_hash": ""
+  },
+  "src/nino_rl/test/test_recovery_terrain.py": {
+    "mtime": 1794746807.259138,
+    "seen": 1794747786.3772001,
+    "ast_hash": "0be38db76791a4b483e4d6ac84eadbe8",
+    "semantic_hash": ""
+  },
+  "docs/RL_TERRAIN_SPEED_SLOPE_ALIGNMENT_2026-11-15.md": {
+    "mtime": 1794747893.214673,
+    "seen": 1794747922.1371822,
+    "ast_hash": "e6e353fd447bbd08d35c0a0d174c551f",
+    "semantic_hash": ""
+  },
+  "src/nino_rl/nino_rl/recovery_startup.py": {
+    "mtime": 1794748914.0771005,
+    "seen": 1794749653.0272071,
+    "ast_hash": "c6a15675aa2f96dfffdfb0ff9db4bb98",
+    "semantic_hash": ""
+  },
+  "src/nino_rl/nino_rl/recovery_training.py": {
+    "mtime": 1794749363.95649,
+    "seen": 1794749653.0272624,
+    "ast_hash": "30881bc31c0416e5bdb784dcdc9c3ee2",
+    "semantic_hash": ""
+  },
+  "src/nino_rl/nino_rl/recovery_training_contract.py": {
+    "mtime": 1794749181.8439634,
+    "seen": 1794749653.0272648,
+    "ast_hash": "45848fda0f4413c0f8235545efbafc44",
+    "semantic_hash": ""
+  },
+  "src/nino_rl/test/test_recovery_startup.py": {
+    "mtime": 1794748914.0781004,
+    "seen": 1794749653.0419102,
+    "ast_hash": "de12365b955f1829d4e71d18af15d728",
+    "semantic_hash": ""
+  },
+  "src/nino_rl/test/test_recovery_training.py": {
+    "mtime": 1794749392.2998412,
+    "seen": 1794749653.0419579,
+    "ast_hash": "fa09dd6a14f8119d581b34e5629d3070",
     "semantic_hash": ""
   }
 }

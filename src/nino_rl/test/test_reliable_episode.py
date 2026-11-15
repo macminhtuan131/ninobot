@@ -3,7 +3,6 @@ from types import SimpleNamespace
 import json
 import pytest
 from nino_rl import reliable_episode as life
-from nino_rl import residual_reliable_td3 as job
 
 
 def lifecycle_fixture(tmp_path, monkeypatch, fail=None):
@@ -42,8 +41,8 @@ def lifecycle_fixture(tmp_path, monkeypatch, fail=None):
             self.closed = True;events.append(('backend_close', len(backends)))
             if fail == 'backend_close': raise RuntimeError('backend close failed')
     monkeypatch.setattr(life, 'graph', lambda n: [dict(qos=dict(reliability=1))])
-    c,g,t,condition=job.configuration(6.)
-    lifecycle=life.EpisodeLifecycle(c,tmp_path/'epochs','world',g,t,condition,job.protocol(),Backend,Observer)
+    lifecycle=life.EpisodeLifecycle({},tmp_path/'epochs','world',{},
+        dict(command_until_s=6.),{},dict(training_episodes_per_seed_maximum=8),Backend,Observer)
     return lifecycle, events, backends, observers
 
 
@@ -51,7 +50,7 @@ def test_eight_fresh_epochs_close_before_next_observer_and_no_cached_support(tmp
     lifecycle, events, backends, observers=lifecycle_fixture(tmp_path,monkeypatch)
     epochs=[]
     for i in range(8):
-        job.configure_episode(lifecycle,i)
+        lifecycle.protocol['command_until_s'] = (6.,8.)[i % 2]
         _, info=lifecycle.reset(seed=11 if i==0 else None)
         epochs.append(info['learner_episode_epoch'])
         assert lifecycle.current.primary_count == 2

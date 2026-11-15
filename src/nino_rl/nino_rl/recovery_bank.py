@@ -1,4 +1,4 @@
-"""Immutable four-family geometry plans. Mesh preparation is not contact proof."""
+"""Immutable recovery geometry plans. Mesh preparation is not contact proof."""
 from copy import deepcopy
 from dataclasses import asdict
 import hashlib
@@ -14,23 +14,41 @@ from .carved_floor import floor_model
 from .recovery_contract import CONTRACT_ID, StartBudget
 from .recovery_curriculum import FAMILIES
 from .recovery_task import RecoveryBands
+from .recovery_motion import MotionQuality
+from .unknown_step_runtime import RewardSettings
+from .recovery_terrain import ConnectedRamp, connected_floor_model
 from .residual_factory_workflow import repo
 from .residual_sim_pilot import prepare_worlds
 from .residual_workflow import save
 from . import unknown_step_plan
 
-CONFIG = repo()/'src/nino_rl/config/recovery_v2.yaml'
+CONFIG = repo()/'src/nino_rl/config/recovery_v3.yaml'
 
 
 def configuration(path=CONFIG):
     c = yaml.safe_load(Path(path).read_text())
-    if (c['schema_version'] != 2 or c['contract_id'] != CONTRACT_ID or c['interval_s'] != .1
+    if (c['schema_version'] != 3 or c['contract_id'] != CONTRACT_ID or c['interval_s'] != .1
             or c['budget']['hardware_actions'] != 0 or c['budget']['automatic_retries'] != 0):
         raise ValueError('Unsupported recovery contract')
     StartBudget(**c['start_budget'])
     RecoveryBands(**c['recovery_bands'])
+    MotionQuality(**c['motion_quality'])
+    RewardSettings(**c['task_reward'])
     if c['route_m'] != [[0., 0.], [4., 0.]]:
         raise ValueError('Initial Gazebo recovery release supports fixed 4 m east route only')
+    slope = c['families']['slope']
+    grades = slope['peak_grade_deg_by_stage']
+    if (len(grades) != c['curriculum']['maximum_stage']+1
+            or not np.isfinite(grades).all() or any(a > b for a, b in zip(grades, grades[1:]))
+            or not .0025 <= slope['mesh_spacing_m'] <= .01):
+        raise ValueError('Invalid slope curriculum or mesh spacing')
+    for grade in grades:
+        ramp = ConnectedRamp(slope['start_x_m'], slope['rise_length_m'], slope['plateau_length_m'],
+                             math.radians(grade), slope['blend_fraction'])
+        if not 0. < ramp.start_x_m < ramp.end_x_m < c['route_m'][-1][0]:
+            raise ValueError('Connected ramp must leave flat route aprons')
+    if not math.isfinite(c['cruise_m_s']) or not 0 < c['cruise_m_s'] <= .4:
+        raise ValueError('Recovery cruise must fit the forward reference speed limit')
     return c
 
 
@@ -47,7 +65,15 @@ def sample_layout(config, family, seed, stage, split='development'):
         initial = [float(rng.uniform(-c['initial_xy_proposal_m'], c['initial_xy_proposal_m']))
                    for _ in range(2)] + [float(rng.uniform(-c['initial_yaw_proposal_rad'], c['initial_yaw_proposal_rad']))]
     obstacles = []
-    count = 0 if family == 'clean' else stage+1
+    macro_ramp = None
+    mesh_spacing = None
+    if family == 'slope':
+        c = config['families']['slope']
+        ramp = ConnectedRamp(c['start_x_m'], c['rise_length_m'], c['plateau_length_m'],
+                             math.radians(c['peak_grade_deg_by_stage'][stage]), c['blend_fraction'])
+        macro_ramp, mesh_spacing = asdict(ramp), c['mesh_spacing_m']
+        obstacles = [dict(id='macro_ramp', kind='slope', near_m=ramp.start_x_m, far_m=ramp.end_x_m)]
+    count = 0 if family in ('clean', 'slope') else stage+1
     depth = float(rng.uniform(*config['families']['pothole']['depth_m']))
     kinds = ['cable' if family == 'short_obstacle' else 'pothole'] * count
     if family == 'mixed':
@@ -72,6 +98,7 @@ def sample_layout(config, family, seed, stage, split='development'):
         obstacles.append(dict(obstacle, id=f'item_{index}', near_m=x-support, far_m=x+support))
     payload = dict(contract_id=CONTRACT_ID, family=family, seed=seed, stage=stage, split=split,
                    initial_pose_xy_yaw=initial, obstacles=obstacles, floor_mu=1.,
+                   macro_ramp=macro_ramp, mesh_spacing_m=mesh_spacing,
                    physics_qualified=False, metadata_actor_input=False,
                    initial_pose_application='requested_spawn_then_independent_settled_start_gate')
     digest = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
@@ -82,14 +109,19 @@ def write_world(source, target, layout, cache):
     tree = ET.parse(source)
     world = tree.getroot().find('world')
     holes = [r for r in layout['obstacles'] if r['kind'] == 'pothole']
+    ramp = ConnectedRamp(**layout['macro_ramp']) if layout.get('macro_ramp') is not None else None
     meshes = []
-    if holes:
-        for floor in world.findall("model[@name='controlled_box_floor']"):
-            world.remove(floor)
-        config = dict(floor_bounds_xy_m=[-2., 8., -3.5, 3.5], mesh_spacing_m=.005,
+    if holes or ramp:
+        for name in ('controlled_box_floor', 'factory_contact_floor'):
+            for floor in world.findall(f"model[@name='{name}']"):
+                world.remove(floor)
+        config = dict(floor_bounds_xy_m=[-2., 8., -3.5, 3.5],
+                      mesh_spacing_m=layout.get('mesh_spacing_m') or .005,
                       flat_mesh_spacing_m=.08, floor_representation='continuous_mesh',
-                      pothole_depth_m=holes[0]['depth_m'])
-        sdf, meshes = floor_model([('pothole', r['x'], r['y'], r['radius_m']) for r in holes], config, cache)
+                      pothole_depth_m=holes[0]['depth_m'] if holes else .003)
+        features = [('pothole', r['x'], r['y'], r['radius_m']) for r in holes]
+        sdf, meshes = (connected_floor_model(ramp, features, config, cache) if ramp
+                       else floor_model(features, config, cache))
         world.append(ET.fromstring(sdf).find('model'))
     cables = [r for r in layout['obstacles'] if r['kind'] == 'cable']
     if cables:
@@ -97,9 +129,12 @@ def write_world(source, target, layout, cache):
         ET.SubElement(model, 'static').text = 'true'
         link = ET.SubElement(model, 'link', name='cables')
         for r in cables:
+            if ramp and any(abs(ramp.slope(x)) > 1e-12 for x in (r['near_m'], r['x'], r['far_m'])):
+                raise ValueError('Cable placement on changing grade requires a tangent-frame model')
+            height = (ramp.height(r['x']) if ramp else 0.) + r['radius_m']
             for tag in ('collision', 'visual'):
                 node = ET.SubElement(link, tag, name=r['id']+'_'+tag)
-                ET.SubElement(node, 'pose').text = f"{r['x']} 0 {r['radius_m']} {math.pi/2} 0 {r['angle_rad']}"
+                ET.SubElement(node, 'pose').text = f"{r['x']} 0 {height} {math.pi/2} 0 {r['angle_rad']}"
                 cylinder = ET.SubElement(ET.SubElement(node, 'geometry'), 'cylinder')
                 ET.SubElement(cylinder, 'radius').text = str(r['radius_m'])
                 ET.SubElement(cylinder, 'length').text = str(2*r['half_length_m'])

@@ -69,7 +69,7 @@ class UnknownStepEnv(gym.Env):
         self.adapter.reset()
         view, info = self.backend.reset(seed=seed)
         physical = self._sample(view, info)
-        initial = self.scorer.reset(physical)
+        initial = self._initial_score(physical, view, info)
         self.reward = TraversalReward(self.reward_settings, initial['goal_distance_m'])
         self.current_observation = self.adapter.observe(view)
         self.done = False
@@ -87,7 +87,7 @@ class UnknownStepEnv(gym.Env):
             view, _, backend_terminal, backend_truncated, info = self.backend.advance_reference(
                 *trace['body_reference'], self.settings.interval_s)
             physical = self._sample(view, info)
-            outcome = self.scorer.update(physical)
+            outcome = self._score(physical, trace)
             if self.adapter.pipeline.reference.latched:
                 # Projection/ownership faults are explicit failures when the
                 # measurement boundary itself is valid, never hidden successes.
@@ -110,6 +110,12 @@ class UnknownStepEnv(gym.Env):
             requested_scalar_action=trace['requested_scalar_action'],
             replay_action=trace['replay_action'], reference_trace=trace,
             truth_used_for_guidance=False)
+
+    def _score(self, physical, trace):
+        return self.scorer.update(physical)
+
+    def _initial_score(self, physical, view, info):
+        return self.scorer.reset(physical)
 
     def close(self):
         if not self.closed:

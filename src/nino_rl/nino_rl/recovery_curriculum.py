@@ -4,7 +4,7 @@ from copy import deepcopy
 
 import numpy as np
 
-FAMILIES = ('clean', 'short_obstacle', 'pothole', 'mixed')
+FAMILIES = ('clean', 'short_obstacle', 'pothole', 'mixed', 'slope')
 
 
 class FamilyCurriculum:
@@ -41,6 +41,7 @@ class FamilyCurriculum:
         success = (outcome.get('measurement_valid') is True
                    and outcome.get('task_success') is True
                    and outcome.get('all_obstacles_recovered') is True
+                   and outcome.get('motion_quality_pass') is True
                    and outcome.get('terminated') is True
                    and outcome.get('truncated') is False)
         self.results.append(success)

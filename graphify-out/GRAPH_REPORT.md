@@ -1,61 +1,61 @@
 # Graph Report - ninorobot  (2026-11-15)
 
 ## Corpus Check
-- 1241 files · ~689,133 words
+- 1252 files · ~699,089 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 770 file(s) not represented in the graph (top: .out 268, .exit 88, .tla 78)
-- WARNING: 770 of 2011 files seen (38%) have no supported extractor and are missing from this graph entirely. It may look complete while representing only part of the codebase.
+- WARNING: 770 of 2022 files seen (38%) have no supported extractor and are missing from this graph entirely. It may look complete while representing only part of the codebase.
 
 ## Summary
-- 14680 nodes · 33524 edges · 817 communities (637 shown, 180 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 1842 edges (avg confidence: 0.87)
+- 14917 nodes · 34216 edges · 826 communities (650 shown, 176 thin omitted)
+- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 1888 edges (avg confidence: 0.87)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `aabd4faa`
+- Built from commit: `1fdc0db4`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- Cấu hình và tuning
-- residual_workflow.py
+- test_tuning_history.py
+- pathlib
 - Giao tiếp robot ROS
-- CLI và chạy phiên
-- Tài nguyên thí nghiệm
-- common_training_studio_v2.py
+- integrate
+- sys
+- nino_rl/__init__.py
 - Biên thời gian encoder
-- run_flat_reward_validation.py
-- Audit governor và logger
+- numpy
+- argparse
 - hashlib
-- launch_substitutions
+- launch_actions
 - Bảng nghiên cứu Studio
-- test_tuning_trials.py
+- main
 - Đối chứng cùng thông tin
-- ResidualPipeline
+- ReferenceLimits
 - TD3 và đánh giá
 - GUI huấn luyện TD3
 - ROS observer và acquisition
-- Sàng lọc gain PI
+- test_pi_screen.py
 - PI vận tốc bánh
 - Tracking và reward
-- Coverage và exploration TD3
-- Audit động lực học
+- CoverageTD3
+- sim_chain_dynamics_audit.py
 - Evaluation và common103 v2
 - Ứng viên gain giữ
-- Pilot và thu phiên
-- hardware_audit.py
-- Kiểm thử H2 governor
+- run_frozen_governor_confirmation.py
+- gain_context.py
+- test_governor_h2_executor.py
 - Gym và lịch sử
-- Huấn luyện common v1
-- Authority trước dừng
+- assert_trial_inputs
+- prestop_authority_runner.py
 - Profile tham số TD3
 - QualifiedBackend
 - ModeWindow
-- Fixture gain và PI
-- Module residual coverage study v2
+- .agents/skills/statechart/scripts/ir.ts
+- test_coverage_study_v2.py
 - Cấu hình slam
-- Module slip reporting
-- numpy
+- GuidedCollection
+- test_coverage_sampling.py
 - Module carved floor
 - Cấu hình combined flat curriculum
 - Cấu hình combined flat curriculum
@@ -64,17 +64,17 @@
 - Cấu hình combined flat section
 - Cấu hình ppo
 - Cấu hình ppo
-- Backend vận tốc Gazebo
+- UnknownStepBackend
 - Cấu hình pilot
 - Công cụ probe
 - Module image to gazebo
 - Pi research jobs
 - Cấu hình factory floor pi
-- scientific_assessment
+- NextStepsPanel
 - json
 - Cấu hình gui data control
 - Cấu hình control.clear floor
-- pathlib
+- assess_capture
 - Cấu hình stm32 usb collection
 - Cấu hình qos
 - Cấu hình combined flat curriculum
@@ -90,33 +90,33 @@
 - test_recovery_v2.py
 - Pi sim benchmark panel
 - Pi collection runner
-- Pi training dashboard data
-- Module obstacle authority runtime
-- Công cụ analyze governor h2
-- Công cụ run governor h2
+- training_dashboard_data.py
+- recovery_training.py
+- run_governor_h2_replication.py
+- td3_experiment_matrix.py
 - Pi keyboard
-- Module td3 experiment matrix
+- test_causal_alignment_and_qc.py
 - Module pi stop validation preflight
-- Module gain context
+- test_gain_drive_kernel.py
 - ref_node_fs
 - collect_real_data.py
 - Module sim benchmark decision
 - Pi mode bridge
 - Cấu hình residual common td3
 - Cấu hình residual joint reliability
-- Module obstacle authority handoff
-- .agents/skills/statechart/scripts/test/chart.test.ts
+- fcntl
+- .agents/skills/statechart/scripts/run.ts
 - Cấu hình pilot
 - Pi state monitor
 - Cấu hình residual reliable eval
 - Module pi screen runner
 - Cấu hình navigation
-- mode_bridge.py
+- main
 - Module pi stop validation runner
 - Công cụ analyze governor h2
-- Công cụ run governor descriptive
+- test_studio_v2_review.py
 - test_improvements.py
-- Đánh giá checkpoint Goal100
+- FakeEnv
 - Cấu hình navigation
 - Pi data workflow
 - Cấu hình combined flat curriculum
@@ -124,30 +124,30 @@
 - Cấu hình combined flat curriculum
 - Cấu hình combined flat curriculum
 - Cấu hình combined flat section
-- Công cụ audit governor survey
-- Pi hardware audit
+- argparse
+- prune_completed_job
 - Cấu hình residual factory td3
 - Module acquisition frames
 - Module corridor odometry
-- Công cụ prepare governor contact
+- csv
 - .agents/skills/statechart/scripts/ir.ts
 - Cấu hình speed governor
-- time
+- test_recovery_terrain.py
 - Cấu hình residual guided baseline
 - Cấu hình residual guided td3
 - Dashboard tập và checkpoint
 - Cấu hình residual shadow.example
-- GuidedCollection
+- test_studio.py
 - Cấu hình residual guided contact
-- Module acquisition contract
+- test_acquisition_contract.py
 - Module governor cadence
 - Cấu hình navigation
 - Pi training live
 - Cấu hình factory floor governor
-- test_guided_baseline_v3.py
+- PiScreenBackend
 - Follower và dừng đích
-- Module trajectory metrics
-- Pi causal alignment
+- laya_training_monitor.py
+- FactoryVelocityBackend
 - .agents/skills/statechart/scripts/test/labels.ts
 - Module install
 - Pi gui capture
@@ -156,7 +156,7 @@
 - Cấu hình residual stop transfer
 - Cấu hình ppo
 - agent/skills/statechart/scripts/test/chart.test.ts
-- Module obstacle authority runner
+- test_unknown_step_runtime.py
 - Module install linorobot2
 - Cấu hình effort drive
 - pytest
@@ -168,7 +168,7 @@
 - Cấu hình combined flat feedback
 - Cấu hình factory floor curriculum
 - agent/skills/poteto-mode/scripts/watch-pr/types.ts
-- Module gain baseline qualification
+- evaluate
 - Công cụ td3 training gui
 - Pi body reference panel
 - Module reset standstill
@@ -180,32 +180,32 @@
 - Cấu hình residual sim pilot
 - Module obstacle authority draft
 - .agents/skills/poteto-mode/scripts/watch-pr/types.ts
-- Scoring vật lý Goal100
-- statistics
-- agent/skills/statechart/scripts/run.ts
-- Kiểm thử unknown step environment
+- test_unknown_step_environment.py
+- test_kinematics.py
+- agent/skills/statechart/scripts/test/config-fuzz.test.ts
+- test_classical_governor_tuning.py
 - Governor trạng thái phản ứng
 - Cấu hình navigation
 - Cấu hình residual joint reliability
-- Module policies
-- GatewayTests
+- load_config
+- subprocess
 - Cấu hình navigation
 - Cấu hình residual equal information
-- Module control v2
+- audit_governor_survey_phases.py
 - Ghép observation và clock
 - Cấu hình build
 - Cấu hình navigation
 - Cấu hình mapping
 - Cấu hình navigation
 - Cấu hình real collection qos
-- CommandsDialog
+- render_recipe
 - Pi hardware audit
 - Cấu hình residual classical common
 - agent/skills/statechart/scripts/test/labels.ts
 - Cấu hình navigation
 - Cấu hình navigation
 - Cấu hình navigation
-- Pi body reference
+- inspect_session
 - Cấu hình residual clear bias
 - Cấu hình navigation
 - Cấu hình combined flat curriculum
@@ -217,7 +217,7 @@
 - Cấu hình residual axis ablation
 - Cấu hình residual equal gazebo
 - Cấu hình ppo
-- Module studio v2 metrics
+- .agents/skills/statechart/scripts/test/config-fuzz.test.ts
 - Cấu hình pilot
 - Cấu hình pilot
 - .agents/skills/poteto-mode/scripts/watch-pr/policy.ts
@@ -231,18 +231,17 @@
 - Module governor logger
 - Cấu hình pilot
 - Cấu hình pilot
-- test_gt_governor_tuning.py
-- sys
+- test_recovery_motion.py
 - agent/skills/poteto-mode/scripts/check-plan.mjs
-- Module NINO UNKNOWN STEP TASK
-- Module studio deferred reset
-- Công cụ audit caster mechanical
+- test_residual_integration.py
+- complete_evaluation
+- summarize_contact_repeatability.py
 - Cấu hình navigation
-- Module research contact oracle
+- test_contact_oracle.py
 - Module coverage study plan
-- xml_etree_elementtree
-- Công cụ audit governor second
-- Kiểm thử reliable episode
+- run_crossing_authority.py
+- test_coverage_v2_integration.py
+- slope
 - Cấu hình joystick
 - Cấu hình combined flat curriculum
 - Cấu hình combined flat curriculum
@@ -254,7 +253,7 @@
 - Cấu hình ppo
 - Cấu hình ppo
 - Cấu hình ppo
-- acquisition_contract.py
+- os
 - agent/skills/poteto-mode/scripts/watch-pr/github.ts
 - Công cụ audit pi contact
 - Cấu hình pilot
@@ -264,15 +263,15 @@
 - Cấu hình ekf
 - Cấu hình navigation
 - Module speed governor
-- ResidualReference
+- test_guided_baseline_v3.py
 - Cấu hình combined flat pi
 - Cấu hình combined flat value
 - Cấu hình factory floor stability
 - Cấu hình td3 experiment matrix
-- residual_stop_transfer.py
+- run_flat_quiet_tail_workflow.py
 - .agents/skills/why/references/source-playbook.md
-- Module equal information v2
-- .agents/skills/statechart/scripts/test/config-fuzz.test.ts
+- sqlite3
+- prepare_governor_contact_sequence.py
 - Cấu hình joy
 - agent/skills/poteto-mode/scripts/watch-pr/policy.ts
 - Cấu hình combined flat curriculum
@@ -283,8 +282,9 @@
 - Cấu hình factory floor motion
 - Cấu hình flat proprioceptive research
 - Cấu hình residual velocity ppo
-- agent/skills/statechart/scripts/pipeline.ts
+- agent/skills/statechart/scripts/ir.ts
 - .agents/skills/poteto-mode/scripts/watch-pr/github.ts
+- agent/skills/statechart/scripts/frontends/view.ts
 - Module sensor monitor
 - ros__parameters
 - Nino: project, sensors, control, RL and current evidence
@@ -293,18 +293,18 @@
 - Cấu hình combined flat curriculum
 - Cấu hình flat proprioceptive research
 - Cấu hình residual velocity td3
-- Module acquisition contract
-- agent/skills/statechart/scripts/ir.ts
+- FakeProcess
+- agent/skills/statechart/scripts/frontends/marks.ts
 - .agents/skills/poteto-mode/scripts/watch-pr/cli.ts
-- Module research contact oracle
-- Công cụ summarize contact repeatability
+- FamilyCurriculum
+- .agents/skills/statechart/scripts/backends/mermaid.ts
 - Cấu hình pilot
 - Cấu hình pilot
-- test_research_panel.py
+- recovery_v3.yaml
 - agent/skills/statechart/scripts/test/differential.test.ts
 - .agents/skills/statechart/scripts/test/differential.test.ts
-- agent/skills/statechart/scripts/test/pipeline.test.ts
-- Pi project panel
+- ref_node_test
+- audit_governor_foundations.py
 - Kiểm thử mode gui
 - Cấu hình combined flat curriculum
 - Cấu hình combined flat curriculum
@@ -322,12 +322,12 @@
 - Cấu hình ppo
 - Cấu hình ppo
 - Cấu hình ppo
-- require_uninhibited_transition
+- PlannedCommonAdapterV2
 - agent/skills/poteto-help/SKILL.md
 - agent/skills/poteto-mode/scripts/watch-pr/cli.ts
-- Công cụ laya training monitor
+- .agents/skills/statechart/scripts/frontends/marks.ts
 - Cấu hình pilot
-- Kiểm thử classical common
+- math
 - Kiểm thử control v2
 - Cấu hình navigation
 - Cấu hình navigation
@@ -337,7 +337,7 @@
 - Cấu hình flat proprioceptive research
 - Cấu hình td3 experiment matrix
 - .agents/skills/poteto-help/SKILL.md
-- save
+- recovery_runner.py
 - Công cụ flat reward alignment
 - Kiểm thử governor cadence experiment
 - Kiểm thử studio startup repair
@@ -345,8 +345,8 @@
 - Cấu hình dev
 - Cấu hình navigation
 - .agents/skills/statechart/scripts/test/pipeline.test.ts
-- agent/skills/statechart/scripts/passes/regions.ts
-- Kiểm thử governor core
+- task_reward
+- pi_screen_context.py
 - Cấu hình factory floor lab
 - Cấu hình factory floor lab
 - Cấu hình factory floor lab
@@ -359,7 +359,7 @@
 - Cấu hình combined flat energy
 - Cấu hình factory floor governor
 - Cấu hình residual equal information
-- agent/skills/statechart/scripts/frontends/messages.ts
+- residual_coverage_study_v2.py
 - agent/skills/statechart/scripts/test/cli.test.ts
 - Cấu hình hardware
 - Cấu hình sim
@@ -379,7 +379,7 @@
 - Cấu hình td3 experiment matrix
 - Cấu hình td3 experiment matrix
 - Module tuning history
-- test_held_gain_candidate.py
+- ResidualPipeline
 - Cấu hình docker-compose
 - Cấu hình docker-compose
 - agent/skills/statechart/scripts/test/ConfigOracle.java
@@ -387,7 +387,7 @@
 - Cấu hình factory floor lab
 - Cấu hình factory floor lab
 - Cấu hình factory floor lab
-- agent/skills/poteto-mode/scripts/watch-pr/policy.test.ts
+- agent/skills/poteto-mode/scripts/watch-pr/github.test.ts
 - Cấu hình combined flat curriculum
 - Cấu hình combined flat curriculum
 - Cấu hình combined flat curriculum
@@ -399,7 +399,7 @@
 - Cấu hình flat proprioceptive research
 - Benchmark checklist
 - Benchmark checklist
-- agent/skills/statechart/scripts/test/config-fuzz.test.ts
+- archive_gt_governor_study.py
 - Công cụ common training studio
 - Công cụ common training studio
 - Công cụ evaluate goal checkpoints
@@ -433,13 +433,14 @@
 - Công cụ unknown step runner
 - Cấu hình pilot
 - Rationale template
-- Kiểm thử nav2 integration
+- test_governor_brake_delay.py
 - Rationale template
+- td3_training_panel.py
 - Công cụ run focused optuna
 - Cấu hình docker-compose
 - Cấu hình docker-compose
 - Cấu hình factory floor lab
-- Kiểm thử causal alignment and
+- ProjectPanel
 - Cấu hình combined flat curriculum
 - Cấu hình combined flat curriculum
 - Cấu hình combined flat curriculum
@@ -462,7 +463,6 @@
 - Cấu hình factory floor lab
 - Cấu hình factory floor lab
 - Cấu hình factory floor lab
-- Kiểm thử governor launch
 - Cấu hình combined flat curriculum
 - Cấu hình combined flat curriculum
 - Cấu hình combined flat curriculum
@@ -479,7 +479,7 @@
 - Cấu hình td3 experiment matrix
 - Cấu hình ppo
 - Cấu hình pilot
-- equal_information_v2.py
+- recovery_bands
 - Cấu hình docker-compose
 - Cấu hình docker-compose
 - Cấu hình docker-compose
@@ -504,7 +504,7 @@
 - Cấu hình residual velocity td3
 - Cấu hình ppo
 - Module training contract
-- training_dashboard_data.py
+- audit_governor_second_trigger.py
 - Công cụ install dependencies
 - Module setup tmux
 - Module install
@@ -526,14 +526,15 @@
 - Design red flags
 - Notes verification map
 - .agents/skills/statechart/scripts/backends/plain-text.ts
-- NextStepsPanel
+- test_reliable_episode.py
 - Output Format
-- .agents/skills/statechart/scripts/frontends/marks.ts
+- .agents/skills/statechart/scripts/test/chart.test.ts
 - Output Format
-- run_next
+- keyboard.py
+- test_reliable_eval_only.py
 - Recurring skip candidates
 - Recurring skip candidates
-- test_td3_training_panel.py
+- agent/skills/statechart/scripts/backends/mermaid.ts
 - TypeScript patterns
 - TypeScript patterns
 - agent/skills/poteto-mode/scripts/package.json
@@ -543,17 +544,18 @@
 - Nino: contact-informed speed adaptation over low floor obstacles
 - Thu thập dữ liệu robot thật Nino — Ubuntu24.04 / ROS2Jazzy / Pi5
 - Cách điền từng trường trong real_session.template.json
-- agent/skills/statechart/scripts/backends/mermaid.ts
+- budget
 - Epistemics
 - .agents/skills/poteto-mode/scripts/watch-pr/github.test.ts
 - Epistemics
-- DataPanel
+- collector_resilient.py
 - Flow
 - Why
 - Flow
 - Why
+- analyze_flat_contact_convergence.py
 - ClearWindow
-- recover_focused_optuna.py
+- start_budget
 - Explainer Prompt Template
 - Explainer Prompt Template
 - Review real 08/11, backend tiếp theo và sensor stack .103
@@ -574,9 +576,9 @@
 - Patterns to detect and fix
 - Goal100: review gap drive và so sánh frozen 10k/15k/20k — 14/11/2026
 - Sim TD3: bộ chấm goal và adapter gờ không biết trước
-- FamilyCurriculum
-- nino_pi/launch/navigation.launch.py
-- test_studio_training_integration.py
+- SyntheticLifecycle
+- test_recovery_startup.py
+- test_sim_task_v2.py
 - Word the prompt
 - Poteto help
 - GitHubReader
@@ -590,11 +592,11 @@
 - compilerOptions
 - Technical writing
 - Dữ liệu thật Nino: mục đích, phần đã có và kế hoạch không camera
-- launch_actions
+- CausalPlanarEstimator
 - IOTests
 - families
 - recovery_bands
-- test_obstacle_authority_stop8_handoff.py
+- ContactGate
 - Figure it out
 - How to make a bot UI
 - Reflect
@@ -603,7 +605,7 @@
 - Reflect
 - Velocity preflight và chuẩn bị offline — phần cứng để sau
 - budget
-- test_governor_foundations.py
+- 7. Kết quả kiểm chứng thực sự
 - Create a formal verification skill
 - Create a verification skill
 - How
@@ -618,7 +620,7 @@
 - Swarm
 - Goal100: Gazebo integration và smoke TD3 đã hoàn tất
 - Hướng đã chọn: gờ không biết trước, vượt được và bám quỹ đạo
-- TD3ParameterPanel
+- curriculum
 - Nino + firmware STM32H723 qua USB
 - Command → wheel response trên sàn sạch — bản chuẩn bị
 - start_budget
@@ -645,17 +647,18 @@
 - CounterView
 - FirstRule
 - TDD Bug Fix
-- sim.launch.py
+- test_classical_common.py
 - curriculum
-- synthetic_lifecycle
+- recovery_reward
 - CounterAction
 - MediaPlayerProps
 - CounterAction
 - MediaPlayerProps
+- test_motion_quality_draft.py
 - Dọn episode Sim sau đánh giá — 14/11/2026
 - 4. Kết quả chi tiết Goal100 research20k
 - pothole
-- FakeEnv
+- test_reliable_evaluation.py
 - Orchestrate
 - agent/skills/principle-guard-the-context-window/SKILL.md
 - agent/skills/reflect/references/synthesizer.md
@@ -696,11 +699,11 @@
 - TwoPhase
 - TypeGuard
 - UserNoDeadlock
-- visualize.launch.py
-- command_stack.launch.py
+- run_flat_reward_validation.py
+- job_gateway.py
 - recovery_reward
-- factory_floor_training.launch.py
-- reward_terms
+- test_cable_screen_reporting.py
+- FakeLifecycle
 - agent/skills/reflect/references/tooling-reviewer.md
 - agent/skills/show-me-your-work/scripts/log.sh
 - Render a chart
@@ -727,7 +730,7 @@
 - PickWorker
 - Shadow
 - TwoPhaseFixed
-- lasers.launch.py
+- TD3ParameterPanel
 - agent/skills/poteto-mode/playbooks/authoring-a-skill.md
 - agent/skills/poteto-mode/playbooks/autonomous-run.md
 - agent/skills/poteto-mode/playbooks/autopilot-full.md
@@ -802,195 +805,203 @@
 - .agents/skills/principle-type-system-discipline/SKILL.md
 - .agents/skills/reflect/references/divergent-reviewer.md
 - .agents/skills/reflect/references/judgment-reviewer.md
+- SimulationReadiness
+- test_actual_coordinator_only_sends_zero_and_closes_before_next_launch
+- analyze_governor_h2_replication.py
+- test_each_arm_uses_lifecycle_and_epoch_before_first_step
+- test_governor_launch.py
+- pothole
+- GatewayTests
+- motion_quality
 
 ## God Nodes (most connected - your core abstractions)
-1. `save()` - 228 edges
+1. `save()` - 244 edges
 2. `load_config()` - 177 edges
 3. `emit()` - 144 edges
 4. `RosRobotInterface` - 129 edges
 5. `ResearchPanel` - 97 edges
 6. `RobotState` - 90 edges
-7. `runtime_versions()` - 84 edges
+7. `runtime_versions()` - 86 edges
 8. `repo()` - 81 edges
 9. `source_fingerprint()` - 78 edges
 10. `job()` - 74 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Requested action is followed by projection` --references--> `ResidualReference`  [INFERRED]
-  docs/NINO_PROJECT_ARCHITECTURE_AND_CONTROL_FLOW_2026-11-09.md → src/nino_control/nino_control/residual_velocity.py
-- `8. Train/evaluate/deploy parity và migration` --references--> `DeferredResetVecEnv`  [INFERRED]
-  docs/RL_OBSTACLE_RECOVERY_AUDIT.md → src/nino_rl/nino_rl/studio_deferred_reset.py
+- `8. Kết quả kiểm chứng trong lượt này` --references--> `require_bank()`  [INFERRED]
+  docs/RL_TERRAIN_SPEED_SLOPE_ALIGNMENT_2026-11-15.md → src/nino_rl/nino_rl/recovery_runner.py
 - ``unknown_step_environment.py`` --references--> `UnknownStepEnv`  [INFERRED]
   docs/NINO_UNKNOWN_STEP_SOFTWARE_PREPARATION_2026-11-10.md → src/nino_rl/nino_rl/unknown_step_environment.py
+- `8. Train/evaluate/deploy parity và migration` --references--> `DeferredResetVecEnv`  [INFERRED]
+  docs/RL_OBSTACLE_RECOVERY_AUDIT.md → src/nino_rl/nino_rl/studio_deferred_reset.py
+- `Requested action is followed by projection` --references--> `ResidualReference`  [INFERRED]
+  docs/NINO_PROJECT_ARCHITECTURE_AND_CONTROL_FLOW_2026-11-09.md → src/nino_control/nino_control/residual_velocity.py
 - `4. Điều đã kiểm và chưa kiểm` --references--> `PhysicalSample`  [INFERRED]
   docs/NINO_UNKNOWN_STEP_SOFTWARE_PREPARATION_2026-11-10.md → src/nino_rl/nino_rl/unknown_step_runtime.py
-- `11. What the governor does` --references--> `ReactiveGovernor`  [INFERRED]
-  docs/NINO_PROJECT_ARCHITECTURE_AND_CONTROL_FLOW_2026-11-09.md → src/nino_control/nino_control/governor_core.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (817 total, 180 thin omitted)
+## Communities (826 total, 176 thin omitted)
 
-### Community 0 - "Cấu hình và tuning"
+### Community 0 - "test_tuning_history.py"
 Cohesion: 0.03
-Nodes (107): load_config(), merge(), main(), main(), benchmark_id(), compare_summaries(), prepare_evaluation_config(), run() (+99 more)
+Nodes (84): validate_model(), main(), main(), benchmark_id(), prepare_evaluation_config(), run(), initialize_actor(), policy_spec() (+76 more)
 
-### Community 1 - "residual_workflow.py"
-Cohesion: 0.04
-Nodes (82): export_actor(), PortableActor, create_shadow_node(), __init__(), joint_pair(), main(), actor_contract(), fixture_job() (+74 more)
+### Community 1 - "pathlib"
+Cohesion: 0.03
+Nodes (119): export_actor(), PortableActor, save_observation(), main(), main(), test_real_ros_subscription_gid_and_readonly_parameters(), test_live_monitor_and_native_recording(), simulation_seconds() (+111 more)
 
 ### Community 2 - "Giao tiếp robot ROS"
 Cohesion: 0.02
-Nodes (48): Future, vertical_acceleration(), quaternion_to_euler(), append_action_traces(), main(), run_preflight(), _wait_until(), RosRobotInterface (+40 more)
+Nodes (44): Future, append_action_traces(), main(), run_preflight(), _wait_until(), RosRobotInterface, remove_if_present(), spawn_request() (+36 more)
 
-### Community 3 - "CLI và chạy phiên"
-Cohesion: 0.05
-Nodes (48): main(), main(), test_real_ros_subscription_gid_and_readonly_parameters(), test_live_monitor_and_native_recording(), test_observer_lifecycle_and_no_motor_commands(), metadata_for_view(), load(), analyze_batch() (+40 more)
+### Community 3 - "integrate"
+Cohesion: 0.07
+Nodes (39): integrate(), interpolate(), interpolation_stamps(), native_slip_trace(), replay_native_trace(), slip_square(), synchronized_series(), synchronized_windows() (+31 more)
 
-### Community 4 - "Tài nguyên thí nghiệm"
-Cohesion: 0.06
-Nodes (96): stl_vertices(), episode_data(), main(), rms(), rows(), contact_stats(), main(), rows() (+88 more)
+### Community 4 - "sys"
+Cohesion: 0.11
+Nodes (34): audit(), digest(), flat_change(), flat_target(), immutable(), read(), replace(), scripted_scale() (+26 more)
 
-### Community 5 - "common_training_studio_v2.py"
-Cohesion: 0.04
-Nodes (79): budget(), campaign_budget(), identity(), inspect_checkpoint(), profiles(), require_campaign_disk(), require_disk(), require_resume() (+71 more)
+### Community 5 - "nino_rl/__init__.py"
+Cohesion: 0.03
+Nodes (105): budget(), identity(), inspect_checkpoint(), profiles(), require_disk(), require_resume(), validate_request(), budget() (+97 more)
 
 ### Community 6 - "Biên thời gian encoder"
 Cohesion: 0.05
-Nodes (65): atomic(), endpoint_supported(), graph(), main(), message_record(), read(), run(), receive() (+57 more)
+Nodes (59): atomic(), endpoint_supported(), graph(), main(), message_record(), read(), run(), receive() (+51 more)
 
-### Community 7 - "run_flat_reward_validation.py"
-Cohesion: 0.36
-Nodes (6): compare(), critic_summary(), main(), process_identity(), read(), verify_plans()
+### Community 7 - "numpy"
+Cohesion: 0.05
+Nodes (45): action_size(), baseline_action(), decode_action(), decode_control(), history_action(), make_observation(), ObservationHistory, StallWindow (+37 more)
 
-### Community 8 - "Audit governor và logger"
-Cohesion: 0.04
-Nodes (79): quaternion_rpy(), vertical_acceleration(), compare_main(), main(), main(), module(), split(), validate_request() (+71 more)
+### Community 8 - "argparse"
+Cohesion: 0.06
+Nodes (39): quaternion_rpy(), vertical_acceleration(), analyze(), energy(), identity(), main(), stamp(), analyze() (+31 more)
 
 ### Community 9 - "hashlib"
-Cohesion: 0.04
-Nodes (83): audit_replay(), LearningScore, require_identity(), zero_initialize(), checkpoint(), evaluate(), fingerprint(), main() (+75 more)
+Cohesion: 0.05
+Nodes (69): audit_replay(), LearningScore, require_identity(), zero_initialize(), checkpoint(), evaluate(), fingerprint(), main() (+61 more)
 
-### Community 10 - "launch_substitutions"
-Cohesion: 0.15
-Nodes (3): generate_launch_description(), generate_launch_description(), generate_launch_description()
+### Community 10 - "launch_actions"
+Cohesion: 0.06
+Nodes (16): generate_launch_description(), launch_rplidar(), generate_launch_description(), generate_launch_description(), generate_launch_description(), after_required_process(), generate_launch_description(), command_owner() (+8 more)
 
 ### Community 11 - "Bảng nghiên cứu Studio"
-Cohesion: 0.08
-Nodes (18): ResearchPanel, test_hardware_busy_blocks_offline_button_too(), test_closed_root_is_not_labeled_unconsumed_budget(), test_hardware_busy_blocks_offline_button_too(), test_locked_refresh_does_not_hash_dependencies_during_collection(), test_new_profile_shows_planned_learners_and_only_offline_button(), test_partial_row_uses_own_counts_after_an_earlier_learner_completed(), test_unverified_closed_artifact_cannot_display_pass_or_metrics() (+10 more)
+Cohesion: 0.07
+Nodes (37): ResearchRunner, retained_common_failure(), ResearchPanel, test_hardware_busy_blocks_offline_button_too(), test_hardware_busy_blocks_offline_button_too(), test_partial_row_uses_own_counts_after_an_earlier_learner_completed(), test_axis_ablation_separate_root_no_auto_job_and_closed_failure_blocks_retry(), test_classical_common_has_single_closed_budget_and_no_auto_job() (+29 more)
 
-### Community 12 - "test_tuning_trials.py"
-Cohesion: 0.04
-Nodes (66): action_size(), baseline_action(), history_action(), make_observation(), validate_action_mode(), validate_model(), wrap_angle(), flat_motion_command() (+58 more)
+### Community 12 - "main"
+Cohesion: 0.07
+Nodes (29): main(), begin(), boot_id(), can_begin(), claim_motion(), digest(), finish(), _load() (+21 more)
 
 ### Community 13 - "Đối chứng cùng thông tin"
 Cohesion: 0.04
-Nodes (85): audit_replay(), classical_request(), CommonScore, configuration(), environment(), __init__(), fingerprint(), identity() (+77 more)
+Nodes (82): audit_replay(), classical_request(), CommonScore, configuration(), environment(), __init__(), reset(), identity() (+74 more)
 
-### Community 14 - "ResidualPipeline"
-Cohesion: 0.16
-Nodes (4): ResidualPipeline, FeatureHistory, test_governor_uses_proxy_only_when_actual_target_missing(), test_history_stores_only_policy_contribution_not_baseline_ramp()
+### Community 14 - "ReferenceLimits"
+Cohesion: 0.08
+Nodes (18): body_to_wheels(), pair(), ReferenceLimits, ResidualReference, project(), wheels_to_body(), ResidualTests, step() (+10 more)
 
 ### Community 15 - "TD3 và đánh giá"
-Cohesion: 0.05
-Nodes (58): _on_step(), step(), _on_step(), step(), configuration(), dependency_record(), execute(), fingerprint() (+50 more)
+Cohesion: 0.04
+Nodes (88): prepared_training_environment(), compare(), configuration(), coverage_summary(), critic_audit(), evaluate(), execute(), fingerprint() (+80 more)
 
 ### Community 16 - "GUI huấn luyện TD3"
-Cohesion: 0.10
-Nodes (8): TD3TrainingPanel, test_goal_task_selected_in_studio_has_384_smoke_and_research_budget_without_starting(), test_refresh_does_not_reparse_profiles_and_start_detects_changed_catalog(), test_research_warmup_only_request_cannot_masquerade_as_learning(), test_resume_counts_previous_global_steps_toward_warmup(), test_gui_failed_job_keeps_raw_even_when_auto_cleanup_selected(), test_gui_finished_job_cleanup_is_background_and_keeps_checkpoint(), test_gui_and_storage_support_common103_v2_and_multiseed()
+Cohesion: 0.08
+Nodes (18): TD3TrainingPanel, TrainingRunner, test_goal_task_selected_in_studio_has_384_smoke_and_research_budget_without_starting(), test_refresh_does_not_reparse_profiles_and_start_detects_changed_catalog(), test_research_warmup_only_request_cannot_masquerade_as_learning(), test_resume_counts_previous_global_steps_toward_warmup(), app(), test_actual_qprocess_log_exit_and_qobject_event_dispatch() (+10 more)
 
 ### Community 17 - "ROS observer và acquisition"
-Cohesion: 0.07
-Nodes (9): CommandTimeout, main(), main(), main(), main(), ObserverShutdown, main(), SimulationReadiness (+1 more)
+Cohesion: 0.10
+Nodes (6): CommandTimeout, main(), main(), main(), main(), main()
 
-### Community 18 - "Sàng lọc gain PI"
-Cohesion: 0.07
-Nodes (41): GainReadinessBackend, diagnostic_support(), verify_transition(), PiScreenBackend, configuration(), environment(), __init__(), reset() (+33 more)
+### Community 18 - "test_pi_screen.py"
+Cohesion: 0.10
+Nodes (28): fixture(), Sink, expected_parameters(), require_audit(), require_ki(), require_parameters(), require_simulation_environment(), runtime_audit() (+20 more)
 
 ### Community 19 - "PI vận tốc bánh"
-Cohesion: 0.05
-Nodes (23): ControlTimingWindow, EffortDrive, main(), clamp(), integrate_wheel_odometry(), limit_effort_commands(), wheel_angular_targets(), conditional_integral() (+15 more)
+Cohesion: 0.09
+Nodes (5): ControlTimingWindow, EffortDrive, test_duplicate_and_gap_are_measured_before_pi_fallback(), test_missing_feedback_is_unavailable_and_nonfinite_does_not_break_control(), test_odometry_reset_publishes_authoritative_zero_sample()
 
 ### Community 20 - "Tracking và reward"
 Cohesion: 0.05
-Nodes (57): compute_reward(), decode_action(), decode_control(), catmull_rom_path(), compute_reward(), goal_reached(), is_wrong_direction(), lidar_sectors() (+49 more)
+Nodes (55): compute_reward(), catmull_rom_path(), compute_reward(), goal_reached(), is_wrong_direction(), lidar_sectors(), make_observation(), metrics_dict() (+47 more)
 
-### Community 21 - "Coverage và exploration TD3"
-Cohesion: 0.09
-Nodes (39): checkpoint_check(), compare(), configuration(), coverage_summary(), critic_audit(), evaluate(), execute(), fingerprint() (+31 more)
+### Community 21 - "CoverageTD3"
+Cohesion: 0.14
+Nodes (19): build(), CoverageTD3, checkpoint_check(), tensor_tree_equal(), checkpoint_check(), configuration(), critic_audit(), evaluate() (+11 more)
 
-### Community 22 - "Audit động lực học"
+### Community 22 - "sim_chain_dynamics_audit.py"
 Cohesion: 0.10
 Nodes (54): align_raw(), audit_cell(), fingerprint(), indexed_channels(), jsonrows(), main(), native_components(), read() (+46 more)
 
 ### Community 23 - "Evaluation và common103 v2"
-Cohesion: 0.10
-Nodes (23): actor_state(), compare(), evaluate(), execute(), fingerprint(), main(), protocol(), release_ready() (+15 more)
+Cohesion: 0.12
+Nodes (15): compare(), evaluate(), execute(), protocol(), checkpoint(), synthetic_lifecycle(), test_actual_eval_path_140_steps_real_validator_and_actor_purity(), test_consumed_or_corrupt_ledger_cannot_reopen_budget() (+7 more)
 
 ### Community 24 - "Ứng viên gain giữ"
-Cohesion: 0.13
-Nodes (28): DecisionSupport, fingerprint(), repo(), specification(), support_from_trace(), fixture_support(), fixtures(), main() (+20 more)
+Cohesion: 0.09
+Nodes (41): DecisionSupport, HeldGainCandidate, support_from_trace(), fixture_support(), fixtures(), packet(), read(), run() (+33 more)
 
-### Community 25 - "Pilot và thu phiên"
+### Community 25 - "run_frozen_governor_confirmation.py"
 Cohesion: 0.07
-Nodes (29): main(), begin(), boot_id(), can_begin(), claim_motion(), digest(), finish(), _load() (+21 more)
+Nodes (38): metadata_for_view(), analyze_batch(), clean(), batch(), clearance_time(), decide(), evaluate_results(), instrumentation_gate() (+30 more)
 
-### Community 26 - "hardware_audit.py"
-Cohesion: 0.14
-Nodes (12): command_output(), host_inventory(), power_snapshot(), load_signals(), bag_command(), inspect_bag(), load_config(), main() (+4 more)
+### Community 26 - "gain_context.py"
+Cohesion: 0.13
+Nodes (21): configuration(), environment(), __init__(), reset(), stamp(), step(), identity(), wrapper_parity() (+13 more)
 
-### Community 27 - "Kiểm thử H2 governor"
+### Community 27 - "test_governor_h2_executor.py"
 Cohesion: 0.06
-Nodes (40): sha(), bundle(), test_exact16_fake_cold_starts_and_no_reuse(), fake(), test_failures_and_missing_values_not_removed_or_zero_filled(), test_integrity_stops_batch_without_retry(), fake(), test_new_contract_keeps_parent_app_and_physics_unchanged() (+32 more)
+Nodes (41): sha(), make_schedule(), bundle(), test_exact16_fake_cold_starts_and_no_reuse(), fake(), test_failures_and_missing_values_not_removed_or_zero_filled(), test_integrity_stops_batch_without_retry(), fake() (+33 more)
 
 ### Community 28 - "Gym và lịch sử"
-Cohesion: 0.06
-Nodes (7): GovernorCadence, close(), NinoGazeboEnv, _prepare_initial_sensors(), _shutdown_ros_transport(), EpisodeTrajectory, test_trace_rejects_repeated_sensor_stamp_and_records_origin()
+Cohesion: 0.04
+Nodes (16): frame_from_state(), stamped_reference_valid(), chunk_steps(), GovernorCadence, close(), NinoGazeboEnv, _prepare_initial_sensors(), _shutdown_ros_transport() (+8 more)
 
-### Community 29 - "Huấn luyện common v1"
+### Community 29 - "assert_trial_inputs"
 Cohesion: 0.09
-Nodes (33): budget(), identity(), inspect_checkpoint(), profiles(), require_disk(), require_resume(), validate_request(), actor_steps() (+25 more)
+Nodes (40): plan(), compare_summaries(), summarize(), read_episode_rows(), score_episodes(), assert_trial_inputs(), digest(), patch_interface() (+32 more)
 
-### Community 30 - "Authority trước dừng"
-Cohesion: 0.09
-Nodes (34): compare(), configuration(), draft_path(), draft_plan(), environment(), _prepare(), reset(), step() (+26 more)
+### Community 30 - "prestop_authority_runner.py"
+Cohesion: 0.04
+Nodes (61): assess_zero_reset(), DecisionInputNotReady, require_uninhibited_transition(), DriveReadinessBackend, build_dr_world_sdf(), classical_request(), configuration(), environment() (+53 more)
 
 ### Community 31 - "Profile tham số TD3"
 Cohesion: 0.08
 Nodes (55): hardware_residual_scale, projection_required, schema, actor_lr, batch_size, buffer_size, critic_lr, exploration_noise (+47 more)
 
 ### Community 32 - "QualifiedBackend"
-Cohesion: 0.10
-Nodes (11): condition_metadata(), prepared_training_environment(), QualifiedBackend, training_environment(), reset(), training_environment(), reset(), test_invalid_or_conflicting_metadata_fails_before_request_or_overwrite() (+3 more)
+Cohesion: 0.14
+Nodes (7): condition_metadata(), QualifiedBackend, training_environment(), reset(), test_invalid_or_conflicting_metadata_fails_before_request_or_overwrite(), test_proxy_delegates_configuration_request_and_response_without_truth_access(), test_real_first_tick_reproduces_failure_and_metadata_only_fix_passes_validator()
 
 ### Community 33 - "ModeWindow"
-Cohesion: 0.17
-Nodes (4): card(), label(), ModeWindow, test_studio_default_and_separate_recorder_controls()
+Cohesion: 0.10
+Nodes (5): DataPanel, card(), label(), ModeWindow, test_studio_default_and_separate_recorder_controls()
 
-### Community 34 - "Fixture gain và PI"
-Cohesion: 0.08
-Nodes (33): fixture_backend(), advance(), kernel_ast_parity(), driver_parity(), fixture(), targets(), input_frame(), Sink (+25 more)
+### Community 34 - ".agents/skills/statechart/scripts/ir.ts"
+Cohesion: 0.12
+Nodes (40): append(), Arrow, ascending(), byText(), Chart, ChartState, ChartStep, Condition (+32 more)
 
-### Community 35 - "Module residual coverage study v2"
-Cohesion: 0.07
-Nodes (52): build(), CoverageTD3, checkpoint_check(), compare(), configuration(), coverage_summary(), critic_audit(), evaluate() (+44 more)
+### Community 35 - "test_coverage_study_v2.py"
+Cohesion: 0.12
+Nodes (13): compare(), identity(), protocol(), test_corrupt_ledger_fails_before_release_or_source(), test_decision_separates_candidate_unknown_and_no_go(), test_each_eval_arm_checks_namespace_then_140_steps_without_sampling(), test_failure_or_cancel_closes_all_later_slots_and_retains_ledger(), test_fixed_packets_are_selected_before_new_training() (+5 more)
 
 ### Community 36 - "Cấu hình slam"
 Cohesion: 0.04
 Nodes (51): angle_variance_penalty, base_frame, ceres_dogleg_type, ceres_linear_solver, ceres_loss_function, ceres_preconditioner, ceres_trust_strategy, coarse_angle_resolution (+43 more)
 
-### Community 37 - "Module slip reporting"
+### Community 37 - "GuidedCollection"
 Cohesion: 0.11
-Nodes (27): integrate(), interpolate(), interpolation_stamps(), slip_square(), synchronized_series(), crossing_time(), main(), phase_windows() (+19 more)
+Nodes (4): CollectionWizard, text(), GuidedCollection, GuidedTests
 
-### Community 38 - "numpy"
-Cohesion: 0.07
-Nodes (25): CoverageSampler, IndependentReplayBuffer, native_slip_trace(), replay_native_trace(), synchronized_windows(), path_metrics(), time_weights(), weighted_percentile() (+17 more)
+### Community 38 - "test_coverage_sampling.py"
+Cohesion: 0.13
+Nodes (8): CoverageSampler, IndependentReplayBuffer, test_first_step_through_actual_training_wrapper_and_real_validator(), packet(), test_independent_replay_keeps_timeout_semantics_and_global_rng(), test_invalid_packet_fails_without_advancing(), test_sampler_does_not_mutate_global_random_or_reset_counter_between_episodes(), test_warmup_shared_then_one_probe_per_four_open_and_balanced_cycles()
 
 ### Community 39 - "Module carved floor"
 Cohesion: 0.05
-Nodes (43): add_display_items(), box_pair(), depression_surface(), floor_tiles(), friction(), generate(), main(), make_world() (+35 more)
+Nodes (44): add_display_items(), box_pair(), depression_surface(), floor_tiles(), friction(), generate(), main(), make_world() (+36 more)
 
 ### Community 40 - "Cấu hình combined flat curriculum"
 Cohesion: 0.04
@@ -1020,9 +1031,9 @@ Nodes (50): reward, action_rate_weight, alignment_weight, attitude_pitch_thresho
 Cohesion: 0.04
 Nodes (50): reward, action_rate_weight, alignment_weight, attitude_pitch_threshold_rad, attitude_roll_threshold_rad, attitude_weight, body_rate_clip_sigma, body_rate_weight (+42 more)
 
-### Community 47 - "Backend vận tốc Gazebo"
-Cohesion: 0.09
-Nodes (16): FactoryVelocityBackend, simulation_seconds(), stamp(), TaskBackend, config(), test_episode_budget_is_enforced_before_new_launch(), test_factory_contract_is_distinct_from_hardware_and_old_fixture(), test_lost_ack_requires_full_independent_clock_proof_and_no_retry() (+8 more)
+### Community 47 - "UnknownStepBackend"
+Cohesion: 0.12
+Nodes (11): StudioStartupBackend, UnknownStepBackend, backend_for(), factory(), EstimatedGoalReference, fake_backend(), test_gazebo_view_replaces_planned_stop_with_estimator_goal_reference(), test_physical_boundary_uses_actual_truth_header_and_request_ack() (+3 more)
 
 ### Community 48 - "Cấu hình pilot"
 Cohesion: 0.04
@@ -1033,24 +1044,24 @@ Cohesion: 0.05
 Nodes (5): NinoFlatContactProbe, stream, NinoFlatResetProbe, lastTime, stream
 
 ### Community 50 - "Module image to gazebo"
-Cohesion: 0.05
-Nodes (9): main(), MapImageProcessor, on_cancel(), make_path_row(), on_generate(), on_name_change(), _on_done(), run_generation() (+1 more)
+Cohesion: 0.06
+Nodes (7): MapImageProcessor, on_cancel(), make_path_row(), on_generate(), on_name_change(), _on_done(), run_generation()
 
 ### Community 51 - "Pi research jobs"
-Cohesion: 0.08
-Nodes (27): coverage_release_ready(), drive_readiness_release_ready(), gain_baseline_release_ready(), guided_td3_consumed(), joint_reliability_fixture_ready(), ready_eval_release_ready(), retained_common_failure(), retained_coverage_failure() (+19 more)
+Cohesion: 0.07
+Nodes (33): coverage_release_ready(), drive_readiness_release_ready(), gain_baseline_release_ready(), guided_td3_consumed(), joint_reliability_fixture_ready(), ready_eval_release_ready(), retained_coverage_failure(), retained_eval_failure() (+25 more)
 
 ### Community 52 - "Cấu hình factory floor pi"
 Cohesion: 0.04
 Nodes (47): action_mode, adaptive_terrain, enabled, evaluation_features, initial_features, control_hz, bounds_xy_m, course_cable_randomization (+39 more)
 
-### Community 53 - "scientific_assessment"
-Cohesion: 0.19
-Nodes (10): completed_training(), continuation_summary(), scientific_assessment(), assessed_fixture(), fixture(), test_changed_or_inconsistent_evidence_is_rejected(), test_continuation_counters_and_scientific_decision_are_separate_from_new_authority(), test_live_continuation_never_claims_verified_replay_or_releases_job() (+2 more)
+### Community 53 - "NextStepsPanel"
+Cohesion: 0.17
+Nodes (8): NextStepsPanel, repository(), test_benchmark_decision_opens_document_without_starting_job(), test_roadmap_names_actual_next_step_without_releasing_learning(), test_changed_draft_does_not_leave_old_verified_outline(), test_default_sim_outline_and_branch_switch_preserve_hardware_and_authority(), test_draft_document_opens_without_starting_any_job(), test_installed_GUI_resolves_source_workspace_without_env()
 
 ### Community 54 - "json"
-Cohesion: 0.04
-Nodes (52): generate(), generate(), main(), route_preview(), assess_capture(), load_catalog(), quality_text(), load() (+44 more)
+Cohesion: 0.03
+Nodes (92): generate(), generate(), digest(), inspect_media(), make_observation(), session_identity(), main(), validate_connection() (+84 more)
 
 ### Community 55 - "Cấu hình gui data control"
 Cohesion: 0.05
@@ -1060,9 +1071,9 @@ Nodes (46): collision_monitor, ros__parameters, nino_command_gate, ros__paramete
 Cohesion: 0.05
 Nodes (46): collision_monitor, ros__parameters, nino_command_gate, ros__parameters, base_frame_id, base_shift_correction, cmd_vel_in_topic, cmd_vel_out_topic (+38 more)
 
-### Community 57 - "pathlib"
-Cohesion: 0.03
-Nodes (22): ImportTest, main(), render_recipe(), validate_connection(), job_command(), validated_metadata(), main(), command() (+14 more)
+### Community 57 - "assess_capture"
+Cohesion: 0.15
+Nodes (4): assess_capture(), load_catalog(), quality_text(), QualityTests
 
 ### Community 58 - "Cấu hình stm32 usb collection"
 Cohesion: 0.04
@@ -1113,64 +1124,64 @@ Cohesion: 0.04
 Nodes (46): reward_v2, applied_torque_scale_nm, attitude_weight, body_rate_weight, challenge_clear_bonus, challenge_entry_bonus, challenge_goal_bonus, effort_weight (+38 more)
 
 ### Community 70 - "test_recovery_v2.py"
-Cohesion: 0.06
-Nodes (39): `unknown_step_runtime.py`, configuration(), sample_layout(), write_world(), implementation_sources(), RecoveryAdapter, StartBudget, RecoveryEnv (+31 more)
+Cohesion: 0.11
+Nodes (30): configuration(), sample_layout(), StartBudget, RecoveryEnv, MotionTarget, require_bank(), RecoveryBands, RecoveryReward (+22 more)
 
 ### Community 71 - "Pi sim benchmark panel"
 Cohesion: 0.09
 Nodes (23): SimBenchmarkPanel, decision_fixture(), test_benchmark_buttons_only_open_existing_documents(), test_changed_context_preflight_cannot_leave_old_success_visible(), test_dynamics_panel_keeps_raw_unknown_and_draft_unreleased(), test_dynamics_tamper_clears_prior_success(), test_held_report_tamper_clears_success(), test_held_software_proof_does_not_promote_physics_or_learning() (+15 more)
 
 ### Community 72 - "Pi collection runner"
-Cohesion: 0.18
-Nodes (5): CollectionRunner, finish(), finish_recording(), progress(), GuidedTests
+Cohesion: 0.29
+Nodes (4): CollectionRunner, finish(), finish_recording(), progress()
 
-### Community 73 - "Pi training dashboard data"
-Cohesion: 0.26
-Nodes (17): DashboardReader, laya_summary(), test_goal_map_uses_its_episode_reset_layout_and_evaluation_scene(), append(), fixture(), row(), save(), test_checkpoint_Laya_uses_only_episodes_before_its_step() (+9 more)
+### Community 73 - "training_dashboard_data.py"
+Cohesion: 0.16
+Nodes (14): Episode, finite(), hull(), cross(), half(), multiply(), numbers(), pose() (+6 more)
 
-### Community 74 - "Module obstacle authority runtime"
-Cohesion: 0.09
-Nodes (13): c1_manifold(), assess(), grids(), append(), installation_parity(), ContactMailbox, OraclePiBackend, packet() (+5 more)
-
-### Community 75 - "Công cụ analyze governor h2"
-Cohesion: 0.07
-Nodes (47): analyze_run(), approach_check(), approach_pairs(), estimate(), evaluate(), extract_metrics(), observed(), finite() (+39 more)
-
-### Community 76 - "Công cụ run governor h2"
+### Community 74 - "recovery_training.py"
 Cohesion: 0.10
-Nodes (30): validate_schedule(), cadence_trace_check(), execute(), adapter(), collector(), verify(), require_release(), run_attempts() (+22 more)
+Nodes (39): require_components(), sources(), capture_rng(), EpisodeAssignment, inspect_recovery_checkpoint(), QualifiedRecoveryBank, read_json(), RecoverySmokeRequest (+31 more)
+
+### Community 75 - "run_governor_h2_replication.py"
+Cohesion: 0.09
+Nodes (32): cadence_trace_check(), execute(), adapter(), collector(), verify(), require_release(), run_attempts(), save() (+24 more)
+
+### Community 76 - "td3_experiment_matrix.py"
+Cohesion: 0.11
+Nodes (30): apply_profile(), load_profiles(), main(), number(), prepare_profile(), profiles_path(), validate_profile(), validate_runtime() (+22 more)
 
 ### Community 77 - "Pi keyboard"
-Cohesion: 0.10
-Nodes (12): CommandGate, main(), KeyboardState, KeyboardTeleop, main(), CommandSelection, test_release_stops_even_with_periodic_publishing(), test_reverse_turn_and_unknown_keys() (+4 more)
+Cohesion: 0.16
+Nodes (7): CommandGate, main(), CommandSelection, test_disabled_and_source_switch_cannot_replay_old_motion(), test_invalid_limits_rejected(), test_stale_invalid_and_overspeed_commands(), test_stop_latches_and_reset_requires_fresh_enable_and_command()
 
-### Community 78 - "Module td3 experiment matrix"
-Cohesion: 0.15
-Nodes (18): canonical_sha256(), check_profile_within_bounds(), compare_experiment_arms(), evaluate_deployment_gates(), evaluate_tuning_readiness(), load_matrix(), main(), matrix_path() (+10 more)
+### Community 78 - "test_causal_alignment_and_qc.py"
+Cohesion: 0.11
+Nodes (16): align_causal_frames(), ingest(), apply_frozen_normalization(), assign_grouped_splits(), causal_schema_sha256(), compute_normalization_stats(), _extract_wheel_velocities(), _finite_float() (+8 more)
 
 ### Community 79 - "Module pi stop validation preflight"
-Cohesion: 0.09
-Nodes (27): configuration(), environment(), __init__(), reset(), stamp(), step(), identity(), request() (+19 more)
+Cohesion: 0.13
+Nodes (16): configuration(), environment(), __init__(), reset(), stamp(), step(), SyntheticLifecycle, identity() (+8 more)
 
-### Community 80 - "Module gain context"
+### Community 80 - "test_gain_drive_kernel.py"
 Cohesion: 0.11
-Nodes (27): evaluate(), configuration(), environment(), __init__(), reset(), stamp(), step(), fingerprint() (+19 more)
+Nodes (21): fixture_backend(), advance(), kernel_ast_parity(), driver_parity(), targets(), input_frame(), snapshot(), GainEffortDrive (+13 more)
 
 ### Community 81 - "ref_node_fs"
-Cohesion: 0.04
-Nodes (58): commanderPackagePath, currentInstallKey(), ensureDependenciesInstalled(), installKeyPath, nodeModulesDirectory, checker, killGroup(), PINNED_FLAGS (+50 more)
+Cohesion: 0.03
+Nodes (59): commanderPackagePath, currentInstallKey(), ensureDependenciesInstalled(), installKeyPath, nodeModulesDirectory, checker, killGroup(), messageOf() (+51 more)
 
 ### Community 82 - "collect_real_data.py"
-Cohesion: 0.04
-Nodes (69): decoded(), metadata(), metadata_topic_mismatches(), records(), source_header(), sqlite_readonly(), bag_command(), inspect_bag() (+61 more)
+Cohesion: 0.08
+Nodes (28): metadata(), metadata_topic_mismatches(), records(), sqlite_readonly(), bag_command(), inspect_bag(), load_config(), main() (+20 more)
 
 ### Community 83 - "Module sim benchmark decision"
-Cohesion: 0.14
-Nodes (26): sources(), fingerprint(), fingerprint(), analyze(), causal_gain_request(), fingerprint(), ideal_authority(), main() (+18 more)
+Cohesion: 0.15
+Nodes (24): request(), analyze(), causal_gain_request(), fingerprint(), ideal_authority(), main(), read(), repo() (+16 more)
 
 ### Community 84 - "Pi mode bridge"
-Cohesion: 0.14
-Nodes (3): Session, State, ProtocolTests
+Cohesion: 0.13
+Nodes (4): main(), Session, State, ProtocolTests
 
 ### Community 85 - "Cấu hình residual common td3"
 Cohesion: 0.05
@@ -1178,22 +1189,22 @@ Nodes (39): abi_sha256, action, algorithm, batch_size, buffer_size, exploration_
 
 ### Community 86 - "Cấu hình residual joint reliability"
 Cohesion: 0.05
-Nodes (27): fixture, discovery_quiet_s, domain_id, final_drain_quiet_s, handshake_messages, handshake_stamp_ns, maximum_pause_duration_s, maximum_pause_start_lag_s (+19 more)
+Nodes (28): fixture, discovery_quiet_s, domain_id, final_drain_quiet_s, handshake_messages, handshake_stamp_ns, maximum_pause_duration_s, maximum_pause_start_lag_s (+20 more)
 
-### Community 87 - "Module obstacle authority handoff"
-Cohesion: 0.13
-Nodes (32): transfer(), validate_pair(), validate_software(), atomic_write(), encoded(), transfer(), validate_tests(), preflight() (+24 more)
-
-### Community 88 - ".agents/skills/statechart/scripts/test/chart.test.ts"
+### Community 87 - "fcntl"
 Cohesion: 0.05
-Nodes (84): boundRun(), chartRun(), configText(), Lines, linesOf(), parseDot(), parseState(), unescapeDot() (+76 more)
+Nodes (80): transfer(), validate_pair(), validate_software(), c1_manifold(), load(), atomic_write(), encoded(), transfer() (+72 more)
+
+### Community 88 - ".agents/skills/statechart/scripts/run.ts"
+Cohesion: 0.09
+Nodes (46): boundRun(), chartRun(), configText(), plainText(), CHART_STATES, ConfigSection, findLoop(), findTrace() (+38 more)
 
 ### Community 89 - "Cấu hình pilot"
 Cohesion: 0.05
 Nodes (38): action_mode, challenge_tracking, robot_clearance_margin_m, robot_contact_margin_m, control_hz, device, fixed_terrain_challenges, goal_capture_on_crossing (+30 more)
 
 ### Community 90 - "Pi state monitor"
-Cohesion: 0.10
+Cohesion: 0.11
 Nodes (26): display(), encode(), field_at(), main(), callback_for(), receive(), number(), Recorder (+18 more)
 
 ### Community 91 - "Cấu hình residual reliable eval"
@@ -1201,36 +1212,28 @@ Cohesion: 0.05
 Nodes (37): abi_sha256, action, checkpoint_sha256, 11, 22, 33, evaluation_order, arm (+29 more)
 
 ### Community 92 - "Module pi screen runner"
-Cohesion: 0.07
-Nodes (33): compare(), execute(), fingerprint(), fixture_patches(), run(), synthetic_summary(), synthetic_timing(), SyntheticLifecycle (+25 more)
+Cohesion: 0.09
+Nodes (29): job(), compare(), fixture_patches(), synthetic_summary(), synthetic_timing(), release_ready(), release_record(), fixture_results() (+21 more)
 
 ### Community 93 - "Cấu hình navigation"
 Cohesion: 0.05
 Nodes (37): ros__parameters, alpha1, alpha2, alpha3, alpha4, alpha5, always_reset_initial_pose, beam_skip_distance (+29 more)
 
-### Community 94 - "mode_bridge.py"
-Cohesion: 0.10
-Nodes (5): Demo, emit(), main(), DataIO, parameter_value()
-
 ### Community 95 - "Module pi stop validation runner"
-Cohesion: 0.10
-Nodes (28): compare(), evaluate(), execute(), protocol(), release_ready(), release_record(), fixture_results(), identity() (+20 more)
+Cohesion: 0.08
+Nodes (35): fixture_patches(), main(), run(), software_report(), synthetic_summary(), synthetic_timing(), verified_report(), compare() (+27 more)
 
 ### Community 96 - "Công cụ analyze governor h2"
 Cohesion: 0.14
 Nodes (33): timing_evidence(), decision(), forbid_processes(), governors(), math_floor(), synthetic_batch(), test_added_time_clearly_above_budget_fails_and_overlap_is_inconclusive(), test_arrival_failure_stays_counted_even_with_censored_metrics() (+25 more)
 
-### Community 97 - "Công cụ run governor descriptive"
-Cohesion: 0.13
-Nodes (17): validate_settings(), analyze(), diagnostic_window(), estimate(), report(), timing(), analyze(), configs() (+9 more)
+### Community 97 - "test_studio_v2_review.py"
+Cohesion: 0.16
+Nodes (10): physical_metrics(), request(), rows(), test_api_rejects_smoke_campaign_and_untyped_prune(), test_campaign_retention_failure_closes_remaining_seeds(), test_failed_task_is_not_diluted_into_a_small_tick_rate(), test_invalid_seed_campaign_cannot_start(), test_missing_target_and_unobserved_stop_remain_unknown() (+2 more)
 
 ### Community 98 - "test_improvements.py"
 Cohesion: 0.06
 Nodes (32): 4. Lỗi và sửa theo bằng chứng, Điều không nên sửa khi chưa có lỗi, ChallengeRegion, ChallengeTracker, ImuWindow, require_imu_support(), require_scan(), scan_valid() (+24 more)
-
-### Community 99 - "Đánh giá checkpoint Goal100"
-Cohesion: 0.07
-Nodes (38): EvaluationDeadline, evaluator_sources(), main(), matrix(), now(), policy_signature(), preflight(), protocol() (+30 more)
 
 ### Community 100 - "Cấu hình navigation"
 Cohesion: 0.06
@@ -1256,13 +1259,13 @@ Nodes (33): action_mode, challenge_tracking, robot_clearance_margin_m, robot_con
 Cohesion: 0.06
 Nodes (33): action_mode, challenge_tracking, robot_clearance_margin_m, robot_contact_margin_m, control_hz, device, fixed_terrain_challenges, goal_capture_on_crossing (+25 more)
 
-### Community 107 - "Công cụ audit governor survey"
-Cohesion: 0.12
-Nodes (25): read_csv(), accounting(), asof(), contact_summary(), context_rows(), equal(), executed_transitions(), flat_csv() (+17 more)
+### Community 107 - "argparse"
+Cohesion: 0.04
+Nodes (67): step(), step(), compare_main(), fingerprint(), main(), release_ready(), release_record(), retained_failure() (+59 more)
 
-### Community 108 - "Pi hardware audit"
-Cohesion: 0.12
-Nodes (18): clean(), endpoint_data(), graph_mermaid(), add(), label(), main(), receive(), markdown() (+10 more)
+### Community 108 - "prune_completed_job"
+Cohesion: 0.16
+Nodes (18): digest(), main(), _plan(), prune_completed_job(), read(), safe_file(), save(), simulation_lock() (+10 more)
 
 ### Community 109 - "Cấu hình residual factory td3"
 Cohesion: 0.06
@@ -1273,24 +1276,24 @@ Cohesion: 0.14
 Nodes (15): FrameWriter, read_frames(), validate_episode(), capture_sensor_qos(), compose_view(), decode(), scope(), test_byte_budget_exhaustion_is_explicit_without_eviction() (+7 more)
 
 ### Community 111 - "Module corridor odometry"
-Cohesion: 0.14
-Nodes (14): ImuEncoderOdometry, wrap(), CorridorOdometry, wall_position(), test_delayed_imu_never_uses_a_future_orientation(), test_encoder_increments_project_slope_and_survive_duplicate_packets(), test_gap_does_not_silently_credit_unknown_motion(), test_missing_imu_orientation_cannot_silently_become_perfect_heading() (+6 more)
+Cohesion: 0.16
+Nodes (12): ImuEncoderOdometry, wrap(), CorridorOdometry, wall_position(), test_delayed_imu_never_uses_a_future_orientation(), test_encoder_increments_project_slope_and_survive_duplicate_packets(), test_gap_does_not_silently_credit_unknown_motion(), test_missing_imu_orientation_cannot_silently_become_perfect_heading() (+4 more)
 
-### Community 112 - "Công cụ prepare governor contact"
-Cohesion: 0.11
-Nodes (24): asof(), covered(), balance(), main(), metrics(), sha(), write(), analyze() (+16 more)
+### Community 112 - "csv"
+Cohesion: 0.10
+Nodes (25): evaluate(), window(), analyze(), main(), read_rows(), analyze(), digest(), main() (+17 more)
 
 ### Community 113 - ".agents/skills/statechart/scripts/ir.ts"
-Cohesion: 0.07
-Nodes (82): fenced(), forever(), report(), stepsOf(), Answers, append(), Arrow, ascending() (+74 more)
+Cohesion: 0.14
+Nodes (37): fenced(), forever(), report(), stepsOf(), Answers, Bug, count(), defaultState() (+29 more)
 
 ### Community 114 - "Cấu hình speed governor"
 Cohesion: 0.06
 Nodes (31): nino_speed_governor, ros__parameters, body_rate_trigger_rad_s, confirmation_seconds, enabled, feedback_timeout_seconds, feedback_topic, imu_includes_gravity (+23 more)
 
-### Community 115 - "time"
-Cohesion: 0.07
-Nodes (41): execute(), fingerprint(), main(), release_ready(), release_record(), retained_failure(), run(), source() (+33 more)
+### Community 115 - "test_recovery_terrain.py"
+Cohesion: 0.17
+Nodes (14): write_world(), ConnectedRamp, test_steady_grade_speed_and_macro_attitude_are_not_disturbances(), emitted_mesh(), mesh_config(), ramp(), surface_height(), test_actual_stl_has_world_heights_upward_normals_and_shared_joins() (+6 more)
 
 ### Community 116 - "Cấu hình residual guided baseline"
 Cohesion: 0.06
@@ -1301,68 +1304,68 @@ Cohesion: 0.06
 Nodes (31): actions, evaluation_order, arm, repeat, scenario, evaluation_transitions_maximum, hardware_actions, initialization (+23 more)
 
 ### Community 118 - "Dashboard tập và checkpoint"
-Cohesion: 0.12
-Nodes (5): Scan, table(), text(), TrainingDashboard, WorldMap
+Cohesion: 0.10
+Nodes (21): DashboardReader, laya_summary(), Scan, table(), text(), TrainingDashboard, WorldMap, append() (+13 more)
 
 ### Community 119 - "Cấu hình residual shadow.example"
 Cohesion: 0.06
 Nodes (30): actor, history_frames, max_history_gap_s, privileged_inputs, algorithm, control_interval_s, experiment_contract, hardware_authority (+22 more)
 
-### Community 120 - "GuidedCollection"
-Cohesion: 0.14
-Nodes (3): CollectionWizard, text(), GuidedCollection
+### Community 120 - "test_studio.py"
+Cohesion: 0.11
+Nodes (21): collection_config(), config_root(), validate_metadata(), discovery(), emit(), main(), record(), save() (+13 more)
 
 ### Community 121 - "Cấu hình residual guided contact"
 Cohesion: 0.06
 Nodes (30): action, command_until_s, estimator, gyro_bias_rad_s, maximum_buffer, maximum_gap_s, functional_proposals, local_progress_marker_m (+22 more)
 
-### Community 122 - "Module acquisition contract"
-Cohesion: 0.22
-Nodes (21): finalize_view(), read_session(), sha(), verify_view(), closed_fixture(), ready(), session(), test_both_logger_failures_fail_closed_not_legacy_fallback() (+13 more)
+### Community 122 - "test_acquisition_contract.py"
+Cohesion: 0.12
+Nodes (38): check_delivery(), check_status(), create_session(), episode_publisher(), publish(), finalize_view(), publish_episode(), read_session() (+30 more)
 
 ### Community 123 - "Module governor cadence"
-Cohesion: 0.09
-Nodes (15): chunk_steps(), environment(), forbid_processes(), methods(), test_12_fake_attempts_ledger_before_adapter_and_no_simulation(), fake(), test_actual_environment_step_prefix_advances_exact100ms_and_issues5_commands(), test_full100ms_feature_window_not20ms_and_target_derivative_uses100ms() (+7 more)
+Cohesion: 0.10
+Nodes (15): environment(), forbid_processes(), methods(), test_12_fake_attempts_ledger_before_adapter_and_no_simulation(), fake(), test_actual_environment_step_prefix_advances_exact100ms_and_issues5_commands(), test_full100ms_feature_window_not20ms_and_target_derivative_uses100ms(), test_hard_fault_stops_without_extra_attempt() (+7 more)
 
 ### Community 124 - "Cấu hình navigation"
 Cohesion: 0.07
 Nodes (30): ros__parameters, alpha1, alpha2, alpha3, alpha4, alpha5, base_frame_id, global_frame_id (+22 more)
 
 ### Community 125 - "Pi training live"
-Cohesion: 0.16
-Nodes (19): alive(), discover(), LiveJob, normalized(), process_identity(), read_json(), event(), fixture() (+11 more)
+Cohesion: 0.17
+Nodes (17): alive(), discover(), LiveJob, normalized(), process_identity(), read_json(), event(), fixture() (+9 more)
 
 ### Community 126 - "Cấu hình factory floor governor"
 Cohesion: 0.07
 Nodes (29): evaluation_control_trace, extends, governor, enabled, execution, parameters, revision, body_rate_trigger_rad_s (+21 more)
 
-### Community 127 - "test_guided_baseline_v3.py"
-Cohesion: 0.13
-Nodes (11): CausalPlanarEstimator, BaselineScore, reset(), estimator(), sample(), test_duplicates_do_not_reintegrate_and_initial_pose_is_explicit(), test_existing_batch_does_not_reopen_budget(), test_future_wheel_is_never_used_for_earlier_gyro() (+3 more)
+### Community 127 - "PiScreenBackend"
+Cohesion: 0.09
+Nodes (9): GainReadinessBackend, ContactMailbox, OraclePiBackend, PiScreenBackend, reset_ast_parity(), test_backend_requires_matched_gain_ack_without_extra_physics(), test_mailbox_snapshot_copy_receipt_cutoff_capacity_and_cursor(), test_no_physics_release_fails_before_io_or_directory() (+1 more)
 
 ### Community 128 - "Follower và dừng đích"
-Cohesion: 0.17
-Nodes (15): apply_guidance(), GuidanceReference, PoseSample, fixtures(), EstimatedGoalReference, cfg(), pose(), test_actual_pipeline_handoff_preserves_abi_feedback_and_stops_stale_guidance() (+7 more)
+Cohesion: 0.19
+Nodes (13): ObservationAssembler, apply_guidance(), GuidanceReference, fixtures(), cfg(), pose(), test_actual_pipeline_handoff_preserves_abi_feedback_and_stops_stale_guidance(), test_bad_pose_contract_fails_closed() (+5 more)
 
-### Community 129 - "Module trajectory metrics"
-Cohesion: 0.13
-Nodes (16): wait_for_coverage(), wait_for_quiescent_timestamp(), _finite_xy(), main(), read_track(), timed_metrics(), write_trajectory_plot(), test_coverage_threshold_tolerates_only_floating_point_roundoff() (+8 more)
+### Community 129 - "laya_training_monitor.py"
+Cohesion: 0.35
+Nodes (8): classify(), latest_episode_log(), main(), mean(), monitored_episodes(), read_episodes(), report(), statistics()
 
-### Community 130 - "Pi causal alignment"
-Cohesion: 0.14
-Nodes (15): align_causal_frames(), ingest(), apply_frozen_normalization(), assign_grouped_splits(), causal_schema_sha256(), compute_normalization_stats(), _extract_wheel_velocities(), _finite_float() (+7 more)
+### Community 130 - "FactoryVelocityBackend"
+Cohesion: 0.10
+Nodes (13): FactoryVelocityBackend, TaskBackend, config(), test_episode_budget_is_enforced_before_new_launch(), test_lost_ack_requires_full_independent_clock_proof_and_no_retry(), test_missing_or_future_source_is_not_valid_boundary_feedback(), test_physics_requires_exact_completion_without_retry(), test_settling_requires_continuous_quiet_and_is_bounded() (+5 more)
 
 ### Community 131 - ".agents/skills/statechart/scripts/test/labels.ts"
-Cohesion: 0.05
-Nodes (60): ASCII, code(), encode(), esc(), firstOf, kindAt(), kindOf(), MARK_STYLES (+52 more)
+Cohesion: 0.06
+Nodes (48): mark(), BAD_COLORS, build(), Case, check(), Checked, color(), decoded() (+40 more)
 
 ### Community 132 - "Module install"
 Cohesion: 0.11
 Nodes (19): install.bash script, install_a1(), install_a2(), install_a3(), install_c1(), install_linorobot2_pkg(), install_microros(), install_s1() (+11 more)
 
 ### Community 133 - "Pi gui capture"
-Cohesion: 0.29
-Nodes (5): Capture, digest_file(), profile(), save(), CaptureTests
+Cohesion: 0.36
+Nodes (4): Capture, digest_file(), save(), CaptureTests
 
 ### Community 134 - "Cấu hình factory floor routes"
 Cohesion: 0.07
@@ -1381,12 +1384,12 @@ Cohesion: 0.07
 Nodes (28): challenge_tracking, robot_clearance_margin_m, robot_contact_margin_m, control_hz, device, goal_capture_on_crossing, goal_heading_tolerance_deg, goal_lateral_tolerance_m (+20 more)
 
 ### Community 138 - "agent/skills/statechart/scripts/test/chart.test.ts"
-Cohesion: 0.06
-Nodes (47): Lines, parseDot(), parseState(), unescapeDot(), markTexts(), readCounterexample(), readMarks(), ruleNames() (+39 more)
+Cohesion: 0.05
+Nodes (81): boundRun(), chartRun(), configText(), Lines, linesOf(), parseDot(), parseState(), unescapeDot() (+73 more)
 
-### Community 139 - "Module obstacle authority runner"
+### Community 139 - "test_unknown_step_runtime.py"
 Cohesion: 0.15
-Nodes (14): next_slot(), require_test_report(), review_slot(), save(), test_disabled_template_rejects_before_creating_root(), test_failure_consumes_one_slot_and_closes_without_retry(), test_nominal_world_validation_rejects_changed_radius(), test_one_slot_prefix_exhausts_without_launching_next() (+6 more)
+Nodes (21): `unknown_step_runtime.py`, _finite(), PhysicalSample, TraversalReward, TraversalScore, UnknownTaskData, test_quiet_goal_does_not_dilute_moving_speed_quality(), sample() (+13 more)
 
 ### Community 140 - "Module install linorobot2"
 Cohesion: 0.12
@@ -1397,8 +1400,8 @@ Cohesion: 0.07
 Nodes (26): effort_drive, ros__parameters, accept_cmd_vel, accept_torque, base_frame_id, command_timeout, control_rate, integral_limit (+18 more)
 
 ### Community 142 - "pytest"
-Cohesion: 0.04
-Nodes (43): StorageCleanup, digest(), main(), _plan(), prune_completed_job(), read(), safe_file(), save() (+35 more)
+Cohesion: 0.03
+Nodes (55): test_sampling_badge_preserves_unknown_and_cannot_release(), failure_record(), wait_for_coverage(), wait_for_quiescent_timestamp(), EpisodeTrajectory, _finite_xy(), main(), path_metrics() (+47 more)
 
 ### Community 143 - "Module causal source support"
 Cohesion: 0.09
@@ -1409,8 +1412,8 @@ Cohesion: 0.13
 Nodes (12): lookup_scenario(), ReactiveReference, scenario_bank(), scenario_cables(), sensor_frame(), SensorHistory, feedback(), state() (+4 more)
 
 ### Community 145 - "Module observer health"
-Cohesion: 0.15
-Nodes (12): check_sidecar(), ObserverHealth, Clock, test_injected_stage_stall_is_attributed_not_called_idle(), test_nested_contact_record_counts_one_callback_and_preserves_exception(), test_overflow_explicit_and_no_sidecar_io_until_close(), test_production_logger_sensor_state_contact_payloads_match_executed_source(), setup() (+4 more)
+Cohesion: 0.11
+Nodes (14): check_sidecar(), ObserverHealth, ObserverShutdown, Clock, test_injected_stage_stall_is_attributed_not_called_idle(), test_nested_contact_record_counts_one_callback_and_preserves_exception(), test_overflow_explicit_and_no_sidecar_io_until_close(), test_production_logger_sensor_state_contact_payloads_match_executed_source() (+6 more)
 
 ### Community 146 - "Cấu hình navigation"
 Cohesion: 0.08
@@ -1428,9 +1431,9 @@ Nodes (26): adaptive_terrain, bump_radius_m, cable_length_m, cable_radius_m, ena
 Cohesion: 0.05
 Nodes (56): FakeReaderOptions, BlockerVerdict, Check, CheckDetails, CheckRead, ChecksFastPath, CiBase, CiClean (+48 more)
 
-### Community 151 - "Module gain baseline qualification"
-Cohesion: 0.08
-Nodes (23): job(), compare(), protocol(), test_actual_coordinator_only_sends_zero_and_closes_before_next_launch(), advance_reference(), reset(), test_closed_or_foreign_root_rejected_before_release(), test_initial_support_cannot_be_unknown_or_outside_fixed_gate() (+15 more)
+### Community 151 - "evaluate"
+Cohesion: 0.15
+Nodes (11): compare(), evaluate(), execute(), protocol(), lifecycle(), test_actual_evaluate_gain_one_full_wrapper_and_real_validator(), test_comparison_is_descriptive_preserves_primary_and_grids(), test_failure_retains_attempt_and_closes_backend() (+3 more)
 
 ### Community 152 - "Công cụ td3 training gui"
 Cohesion: 0.09
@@ -1469,32 +1472,32 @@ Cohesion: 0.08
 Nodes (23): backend, command_until_s, horizon_s, max_episodes, extends, pilot, baseline_scenarios, command_until_s (+15 more)
 
 ### Community 161 - "Module obstacle authority draft"
-Cohesion: 0.23
-Nodes (14): finite(), load(), PostManifoldPlan, reference_preview(), decide(), packet(), test_budget_has_twelve_unique_cells_zero_authority_and_no_ki_confounds(), test_draft_rejects_budget_factor_and_gate_mutations() (+6 more)
+Cohesion: 0.22
+Nodes (13): finite(), PostManifoldPlan, reference_preview(), decide(), packet(), test_budget_has_twelve_unique_cells_zero_authority_and_no_ki_confounds(), test_draft_rejects_budget_factor_and_gate_mutations(), test_floor_and_wrong_c1_names_are_not_triggers() (+5 more)
 
 ### Community 162 - ".agents/skills/poteto-mode/scripts/watch-pr/types.ts"
 Cohesion: 0.05
 Nodes (56): FakeReaderOptions, BlockerVerdict, Check, CheckDetails, CheckRead, ChecksFastPath, CiBase, CiClean (+48 more)
 
-### Community 163 - "Scoring vật lý Goal100"
-Cohesion: 0.17
-Nodes (18): _angle(), PhysicalSample, TaskSettings, TraversalScore, sample(), settings(), test_arrival_requires_whole_geometry_and_continuous_actual_stop(), test_clear_floor_needs_goal_and_timeout_is_explicit_finite_task_failure() (+10 more)
+### Community 163 - "test_unknown_step_environment.py"
+Cohesion: 0.10
+Nodes (16): RecoveryAdapter, UnknownStepEnv, SensorOnlyCommonAdapter, test_new_adapter_rejects_old_identity_and_oracle_features(), environment(), test_bad_measurement_has_no_transition_and_requires_reset(), test_complete_episode_keeps_requested_projected_and_physical_evidence_separate(), test_external_cutoff_is_censored_not_a_task_failure_or_success() (+8 more)
 
-### Community 164 - "statistics"
-Cohesion: 0.08
-Nodes (24): stat(), evaluate(), window(), analyze(), digest(), main(), metrics(), paired_phase_audit() (+16 more)
+### Community 164 - "test_kinematics.py"
+Cohesion: 0.10
+Nodes (17): clamp(), integrate_wheel_odometry(), limit_effort_commands(), wheel_angular_targets(), conditional_integral(), test_clamp(), test_effort_is_slew_limited(), test_negative_soft_speed_limit_is_symmetric() (+9 more)
 
-### Community 165 - "agent/skills/statechart/scripts/run.ts"
-Cohesion: 0.07
-Nodes (50): boundRun(), chartRun(), configText(), isListField(), ListField, NAME, readConfig(), Section (+42 more)
+### Community 165 - "agent/skills/statechart/scripts/test/config-fuzz.test.ts"
+Cohesion: 0.06
+Nodes (40): isListField(), ListField, NAME, readConfig(), Section, SECTIONS, shown(), Token (+32 more)
 
-### Community 166 - "Kiểm thử unknown step environment"
-Cohesion: 0.16
-Nodes (13): environment(), test_bad_measurement_has_no_transition_and_requires_reset(), test_complete_episode_keeps_requested_projected_and_physical_evidence_separate(), test_external_cutoff_is_censored_not_a_task_failure_or_success(), test_full_checkpoint_identity_pins_task_and_reward_not_only_tensor_shape(), test_gym_contract_on_synthetic_backend(), ToyBackend, fake_backend() (+5 more)
+### Community 166 - "test_classical_governor_tuning.py"
+Cohesion: 0.29
+Nodes (9): report(), test_identical_metrics_have_fixed_reference_cost_one(), test_missing_measurement_not_fake_zero_or_physical_failure(), test_physical_failure_kept_even_when_contact_analysis_missing(), info_fixture(), score(), test_proposal_cost_survives_projection_and_failure_penalties_are_preserved(), test_reward_uses_nominal_not_accepted_policy_reference() (+1 more)
 
 ### Community 167 - "Governor trạng thái phản ứng"
-Cohesion: 0.13
-Nodes (18): GovernorFrame, GovernorSettings, ReactiveGovernor, make(), test_delay_is_two_intervals_and_hold_clock_starts_at_braking(), test_external_disable_discards_pending_event_without_advancing_clock(), test_faults_cancel_pending_immediately_and_latch(), test_negative_delay_rejected() (+10 more)
+Cohesion: 0.17
+Nodes (18): GovernorFrame, GovernorSettings, ReactiveGovernor, test_command_acceleration_allowance_and_body_stall_limit(), test_full_profile_remains_full_speed_but_checks_faults(), test_optional_vertical_trigger_ablation_preserves_release_and_faults(), test_optional_wheel_stall_recovery_is_bounded(), test_pulse_reaches_target_before_recovery() (+10 more)
 
 ### Community 168 - "Cấu hình navigation"
 Cohesion: 0.12
@@ -1504,9 +1507,13 @@ Nodes (23): ros__parameters, cost_scaling_factor, inflation_radius, plugin, ros_
 Cohesion: 0.09
 Nodes (22): actor_inference_calls, feedback_deadline_s, hardware_actions, maximum_support_age_ns, minimum_effect_accepted, observer_ipc_grace_s, observer_start_deadline_s, optimizer_updates (+14 more)
 
-### Community 170 - "Module policies"
-Cohesion: 0.12
-Nodes (7): HistoryActorCriticPolicy, HistoryFeatures, script(), test_ablation_preserves_input_and_unselected_component(), test_arrival_loss_cannot_select_an_ablation_as_better(), test_pi_centered_actor_does_not_transfer_critic_or_optimizer(), PolicyTests
+### Community 170 - "load_config"
+Cohesion: 0.04
+Nodes (40): ImportTest, validate_action_mode(), load_config(), merge(), initialize_speed_yaw_actor(), HistoryActorCriticPolicy, HistoryFeatures, arguments() (+32 more)
+
+### Community 171 - "subprocess"
+Cohesion: 0.11
+Nodes (17): audit(), main(), resolve(), settling_audit(), sustained_start(), main(), records(), case_schedule() (+9 more)
 
 ### Community 172 - "Cấu hình navigation"
 Cohesion: 0.09
@@ -1516,13 +1523,9 @@ Nodes (22): plugin, plugin, ros__parameters, plugin, assisted_teleop, backup, be
 Cohesion: 0.09
 Nodes (21): common_bound_m_s, control_interval_s, development_source_stops_s, hardware_actions, horizon_s, inherited_residual_scale_m_s, nominal_steady_m_s, offline_fixture_arms (+13 more)
 
-### Community 174 - "Module control v2"
-Cohesion: 0.15
-Nodes (3): ObservationHistory, StallWindow, TestEnvironmentContract
-
-### Community 175 - "Ghép observation và clock"
-Cohesion: 0.17
-Nodes (5): 5. How messages become usable control information, Clock differences, ObservationAssembler, fixture_world(), GazeboVelocityBackend
+### Community 174 - "audit_governor_survey_phases.py"
+Cohesion: 0.12
+Nodes (25): load(), read_csv(), accounting(), asof(), contact_summary(), context_rows(), equal(), executed_transitions() (+17 more)
 
 ### Community 176 - "Cấu hình build"
 Cohesion: 0.10
@@ -1544,9 +1547,13 @@ Nodes (21): plugin, ros__parameters, plugin, backup, behavior_plugins, cycle_fre
 Cohesion: 0.10
 Nodes (20): /imu/data, depth, durability, history, reliability, /joint_states, depth, durability (+12 more)
 
+### Community 181 - "render_recipe"
+Cohesion: 0.13
+Nodes (4): render_recipe(), CommandsDialog, CommandGuiTests, RecipeTests
+
 ### Community 182 - "Pi hardware audit"
-Cohesion: 0.11
-Nodes (23): callback(), receive(), diagnostic_level(), extract(), measurement_issues(), quantile(), quaternion(), stamp_ns() (+15 more)
+Cohesion: 0.07
+Nodes (42): clean(), command_output(), diagnostic_level(), endpoint_data(), extract(), graph_mermaid(), add(), label() (+34 more)
 
 ### Community 183 - "Cấu hình residual classical common"
 Cohesion: 0.10
@@ -1568,9 +1575,9 @@ Nodes (20): enabled, observation_sources, plugin, scan, obstacle_layer, scan, cl
 Cohesion: 0.11
 Nodes (19): amcl, behavior_server, bt_navigator, controller_server, global_costmap, global_costmap, local_costmap, local_costmap (+11 more)
 
-### Community 188 - "Pi body reference"
-Cohesion: 0.23
-Nodes (10): digest(), inspect_media(), make_observation(), save_observation(), session_identity(), fixture(), test_changed_manifest_unlinked_video_and_invalid_labels_fail_closed(), test_legacy_and_studio_identity_pin_not_raw_qc() (+2 more)
+### Community 188 - "inspect_session"
+Cohesion: 0.13
+Nodes (17): decoded(), source_header(), _arrow_type(), export_session(), strict_fields(), digest(), _inspect_annotations(), inspect_session() (+9 more)
 
 ### Community 189 - "Cấu hình residual clear bias"
 Cohesion: 0.10
@@ -1616,9 +1623,9 @@ Nodes (18): abi_sha256, action, actor_inference_calls, hardware_actions, maximum
 Cohesion: 0.11
 Nodes (19): ppo, activation, actor_layers, batch_size, clip_range, critic_layers, ent_coef, gae_lambda (+11 more)
 
-### Community 200 - "Module studio v2 metrics"
-Cohesion: 0.16
-Nodes (10): physical_metrics(), request(), rows(), test_api_rejects_smoke_campaign_and_untyped_prune(), test_campaign_retention_failure_closes_remaining_seeds(), test_failed_task_is_not_diluted_into_a_small_tick_rate(), test_invalid_seed_campaign_cannot_start(), test_missing_target_and_unobserved_stop_remain_unknown() (+2 more)
+### Community 200 - ".agents/skills/statechart/scripts/test/config-fuzz.test.ts"
+Cohesion: 0.06
+Nodes (40): isListField(), ListField, NAME, readConfig(), Section, SECTIONS, shown(), Token (+32 more)
 
 ### Community 201 - "Cấu hình pilot"
 Cohesion: 0.11
@@ -1661,8 +1668,8 @@ Cohesion: 0.11
 Nodes (17): device, extends, flat_curriculum, evaluation_stage, fixed_stage, replay_probability, ppo, batch_size (+9 more)
 
 ### Community 211 - "Module governor logger"
-Cohesion: 0.26
-Nodes (4): GovernorLogger, observed_callback(), decorate(), wrapped()
+Cohesion: 0.13
+Nodes (8): Lifecycle, finite_json(), GovernorLogger, IsolatedAcquisition, observed_callback(), decorate(), wrapped(), test_missing_or_nonfinite_data_remains_null_in_research_logs()
 
 ### Community 212 - "Cấu hình pilot"
 Cohesion: 0.11
@@ -1672,53 +1679,45 @@ Nodes (18): adaptive_terrain, add_per_level, bump_radius_m, cable_length_m, cabl
 Cohesion: 0.11
 Nodes (18): association_gate_m, bounds_xy_m, correction_gain, enabled, inlier_gate_m, laser_xyz_m, max_age_seconds, max_correction_m (+10 more)
 
-### Community 214 - "test_gt_governor_tuning.py"
-Cohesion: 0.43
-Nodes (5): rows(), test_all_six_points_have_distinct_depth_or_executed_timeout(), test_cost_uses_fixed_time_and_gt_slip_and_accepts_only_guarded_candidate(), test_missing_or_failed_reference_and_corrupt_measurement_never_become_zero_cost(), test_physical_failure_counts_even_when_contact_measurement_is_missing()
-
-### Community 215 - "sys"
-Cohesion: 0.07
-Nodes (22): main(), _resolve_src_pkg_dir(), coords_to_loc(), create_mesh_from_map(), process_map(), process_maps(), emit(), main() (+14 more)
+### Community 214 - "test_recovery_motion.py"
+Cohesion: 0.11
+Nodes (22): 1. Kết luận, 2. Luồng điều khiển và phạm vi policy, 3. Lỗi có bằng chứng và sửa ở đâu, 4. Nghĩa chính xác của speed stable, 5. Dốc và các loại địa hình, 6. Reward và tune có kiểm soát, 7. Việc tiếp theo và điểm dừng, 8. Kết quả kiểm chứng trong lượt này (+14 more)
 
 ### Community 216 - "agent/skills/poteto-mode/scripts/check-plan.mjs"
 Cohesion: 0.04
 Nodes (32): close, closeIndex, h1, HOW_TO_READ_MARKERS, howToRead, lines, PERF_ITEMS, problems (+24 more)
 
-### Community 217 - "Module NINO UNKNOWN STEP TASK"
-Cohesion: 0.31
-Nodes (6): controller_features(), load(), test_feature_boundary_rejects_missing_nonfinite_and_preserves_order(), test_misleading_contract_is_rejected_even_before_digest_check(), test_privileged_channels_cannot_enter_declared_controller_packet(), test_task_selected_by_user_is_not_a_physics_or_training_release()
+### Community 217 - "test_residual_integration.py"
+Cohesion: 0.16
+Nodes (13): analyze_registered_data(), fit(), read_dataset(), register(), response(), default_config(), VelocityBackend, test_fault_is_terminal_failure_and_time_limit_is_truncated() (+5 more)
 
-### Community 218 - "Module studio deferred reset"
-Cohesion: 0.23
-Nodes (5): model_and_callback(), ResetFailure, test_failed_next_reset_preserves_terminal_replay_and_model_boundary(), test_final_transition_does_not_start_an_unused_episode(), test_successful_next_reset_is_used_before_next_action()
-
-### Community 219 - "Công cụ audit caster mechanical"
-Cohesion: 0.38
-Nodes (8): audit(), transform(), binary_stl_vertices(), compose(), main(), matvec(), origin(), lookup()
+### Community 218 - "complete_evaluation"
+Cohesion: 0.29
+Nodes (16): complete_evaluation(), Processes, main(), main(), main(), main(), main(), main() (+8 more)
 
 ### Community 220 - "Cấu hình navigation"
 Cohesion: 0.12
 Nodes (17): ros__parameters, loopback_simulator, ros__parameters, base_frame_id, base_shift_correction, cmd_vel_in_topic, cmd_vel_out_topic, map_frame_id (+9 more)
 
-### Community 221 - "Module research contact oracle"
-Cohesion: 0.30
-Nodes (8): validate_environment_factory_contract(), OracleIntervention, contact(), frame(), test_matching_approach_despite_large_sensor_disturbance(), test_normal_evaluator_cannot_silently_mislabel_oracle_config(), test_oracle_cannot_override_feedback_failsafe_or_stop(), test_postcontact_ramp_release_recovery_and_no_retrigger()
+### Community 221 - "test_contact_oracle.py"
+Cohesion: 0.29
+Nodes (10): callback(), receive(), validate_environment_factory_contract(), OracleIntervention, contact(), frame(), test_matching_approach_despite_large_sensor_disturbance(), test_normal_evaluator_cannot_silently_mislabel_oracle_config() (+2 more)
 
 ### Community 222 - "Module coverage study plan"
 Cohesion: 0.21
 Nodes (8): load(), main(), default_config(), load(), validate(), validate(), test_drift_is_rejected(), test_matched_schedule_and_full_bounded_matrix()
 
-### Community 223 - "xml_etree_elementtree"
-Cohesion: 0.07
-Nodes (25): frame_from_state(), stamped_reference_valid(), digest(), link(), main(), rows(), digest(), main() (+17 more)
+### Community 223 - "run_crossing_authority.py"
+Cohesion: 0.16
+Nodes (10): stl_vertices(), contact_stats(), main(), rows(), scaled_mesh(), scripted_scale(), target_scale(), test_anticipation_and_reference_ramp_use_estimated_pose() (+2 more)
 
-### Community 224 - "Công cụ audit governor second"
-Cohesion: 0.21
-Nodes (11): asof(), compare_windows(), main(), read_case(), replay_quiet_armed(), sha(), summarize(), write() (+3 more)
+### Community 224 - "test_coverage_v2_integration.py"
+Cohesion: 0.20
+Nodes (3): synthetic_lifecycle(), test_only_version_and_declared_correction_change_scientific_plan(), test_v2_rejects_historical_root_before_release_source_or_physics()
 
-### Community 225 - "Kiểm thử reliable episode"
-Cohesion: 0.15
-Nodes (7): lifecycle_fixture(), test_any_failure_or_closure_failure_closes_other_owner_and_prevents_retry(), test_eight_fresh_epochs_close_before_next_observer_and_no_cached_support(), test_keyboard_interrupt_during_reset_closes_both_and_no_new_epoch(), factory(), test_launch_limit_closes_last_epoch_without_ninth_creation(), test_preexisting_support_in_new_backend_is_rejected()
+### Community 225 - "slope"
+Cohesion: 0.12
+Nodes (17): initial_xy_proposal_m, initial_yaw_proposal_rad, families, clean, mixed, short_obstacle, slope, contact_qualified (+9 more)
 
 ### Community 226 - "Cấu hình joystick"
 Cohesion: 0.12
@@ -1764,17 +1763,17 @@ Nodes (16): adaptive_terrain, add_per_level, bump_radius_m, cable_length_m, cabl
 Cohesion: 0.12
 Nodes (16): policy_v2, history_frames, imu_includes_gravity, imu_max_latest_lag_seconds, imu_min_coverage, imu_strict_coverage, imu_topic, imu_wait_timeout_seconds (+8 more)
 
-### Community 237 - "acquisition_contract.py"
-Cohesion: 0.17
-Nodes (13): check_delivery(), check_status(), create_session(), episode_publisher(), publish(), publish_episode(), wait_pair(), finite_json() (+5 more)
+### Community 237 - "os"
+Cohesion: 0.06
+Nodes (19): generate_launch_description(), main(), _resolve_src_pkg_dir(), main(), _resolve_src_pkg_dir(), coords_to_loc(), create_mesh_from_map(), process_map() (+11 more)
 
 ### Community 238 - "agent/skills/poteto-mode/scripts/watch-pr/github.ts"
-Cohesion: 0.11
-Nodes (37): realRuntime(), at(), buildReviewThreads(), checkDetails(), CommandResult, enumValue(), firstLine(), gateOr() (+29 more)
+Cohesion: 0.13
+Nodes (33): at(), checkDetails(), CommandResult, enumValue(), firstLine(), gateOr(), GhGitHubReader, graphqlArgs() (+25 more)
 
 ### Community 239 - "Công cụ audit pi contact"
-Cohesion: 0.18
-Nodes (15): analyze(), asof(), force_summary(), load_row(), main(), make_plots(), peak_context(), phase_sensitivity() (+7 more)
+Cohesion: 0.25
+Nodes (13): analyze(), asof(), force_summary(), load_row(), main(), make_plots(), peak_context(), phase_sensitivity() (+5 more)
 
 ### Community 240 - "Cấu hình pilot"
 Cohesion: 0.12
@@ -1800,9 +1799,9 @@ Nodes (13): ekf_filter_node, ros__parameters, base_link_frame, frequency, imu0, 
 Cohesion: 0.14
 Nodes (14): simple_charging_dock, docking_threshold, external_detection_rotation_pitch, external_detection_rotation_roll, external_detection_rotation_yaw, external_detection_timeout, external_detection_translation_x, external_detection_translation_y (+6 more)
 
-### Community 247 - "ResidualReference"
-Cohesion: 0.07
-Nodes (22): body_to_wheels(), feature_frame(), pair(), ReferenceLimits, ResidualReference, project(), wheels_to_body(), ResidualTests (+14 more)
+### Community 247 - "test_guided_baseline_v3.py"
+Cohesion: 0.14
+Nodes (13): BaselineScore, environment(), __init__(), reset(), estimator(), sample(), test_duplicates_do_not_reintegrate_and_initial_pose_is_explicit(), test_environment_forbids_any_residual_action_before_physics() (+5 more)
 
 ### Community 248 - "Cấu hình combined flat pi"
 Cohesion: 0.14
@@ -1820,29 +1819,29 @@ Nodes (13): extends, research_map, optuna_allowed, revision, stage, training_all
 Cohesion: 0.14
 Nodes (14): hyperparameter_bounds, actor_lr, batch_size, buffer_size, critic_lr, exploration_noise, gamma, learning_starts (+6 more)
 
-### Community 252 - "residual_stop_transfer.py"
-Cohesion: 0.14
-Nodes (19): configuration(), decision(), evaluate(), fingerprint(), main(), parent(), protocol(), rollout() (+11 more)
+### Community 252 - "run_flat_quiet_tail_workflow.py"
+Cohesion: 0.22
+Nodes (18): analyze_flat(), metrics(), report(), window_metrics(), checkpoint_steps(), newest_checkpoint(), main(), run() (+10 more)
 
 ### Community 253 - ".agents/skills/why/references/source-playbook.md"
 Cohesion: 0.04
 Nodes (36): Source playbooks, Code Archaeology (git + in-repo), How to search it, What this source contains, Common pitfalls, Databricks Analytics & System Tables, How to search it, Investigation patterns that tend to pay off (+28 more)
 
-### Community 254 - "Module equal information v2"
-Cohesion: 0.14
-Nodes (8): 13. The actual reward being trained, CommonScoreV2, reset(), step(), PlannedCommonAdapterV2, reset(), OracleAdapter, test_adapter_declared_warmup_does_not_latch_but_late_missing_history_does()
+### Community 254 - "sqlite3"
+Cohesion: 0.18
+Nodes (10): database(), register(), sessions(), test_local_index_keeps_raw_quality_separate(), main(), active_workers(), main(), recover() (+2 more)
 
-### Community 255 - ".agents/skills/statechart/scripts/test/config-fuzz.test.ts"
-Cohesion: 0.06
-Nodes (39): isListField(), ListField, NAME, readConfig(), Section, SECTIONS, shown(), Token (+31 more)
+### Community 255 - "prepare_governor_contact_sequence.py"
+Cohesion: 0.17
+Nodes (16): analyze(), closed_contact_end(), main(), negative_support(), planned_protocol(), post_reset_readiness(), sequence_windows(), sha() (+8 more)
 
 ### Community 256 - "Cấu hình joy"
 Cohesion: 0.15
 Nodes (12): yaw, x, y, axis_angular, axis_linear, scale_angular, scale_linear, yaw (+4 more)
 
 ### Community 257 - "agent/skills/poteto-mode/scripts/watch-pr/policy.ts"
-Cohesion: 0.10
-Nodes (41): main(), discoverStack(), orderStack(), resolveChecks(), activeRows(), applyQueueSnapshot(), assessGitHubMerge(), AUTOMATION_TOKENS (+33 more)
+Cohesion: 0.09
+Nodes (43): fakeReader(), activeRows(), applyQueueSnapshot(), assessGitHubMerge(), AUTOMATION_TOKENS, blockerVerdict(), ciBlocker(), classifyPr() (+35 more)
 
 ### Community 258 - "Cấu hình combined flat curriculum"
 Cohesion: 0.15
@@ -1876,13 +1875,17 @@ Nodes (13): screen, cold_start_each_episode, final_maximum_other_quality_ratio, 
 Cohesion: 0.15
 Nodes (12): algorithm, algorithm_parameters, PPO, extends, batch_size, clip_range, ent_coef, gae_lambda (+4 more)
 
-### Community 266 - "agent/skills/statechart/scripts/pipeline.ts"
-Cohesion: 0.12
-Nodes (38): fenced(), forever(), report(), stepsOf(), Answers, Bug, count(), defaultState() (+30 more)
+### Community 266 - "agent/skills/statechart/scripts/ir.ts"
+Cohesion: 0.07
+Nodes (83): fenced(), forever(), report(), stepsOf(), Answers, append(), Arrow, ascending() (+75 more)
 
 ### Community 267 - ".agents/skills/poteto-mode/scripts/watch-pr/github.ts"
 Cohesion: 0.13
 Nodes (33): at(), checkDetails(), CommandResult, enumValue(), firstLine(), gateOr(), GhGitHubReader, graphqlArgs() (+25 more)
+
+### Community 268 - "agent/skills/statechart/scripts/frontends/view.ts"
+Cohesion: 0.09
+Nodes (26): checkView(), Inspect, isFunction(), isPlainObject(), isString(), Json, json(), jsonVars() (+18 more)
 
 ### Community 270 - "ros__parameters"
 Cohesion: 0.05
@@ -1912,25 +1915,17 @@ Nodes (12): reactive_reference, acceleration_tau_seconds, acceleration_threshold
 Cohesion: 0.17
 Nodes (12): TD3, batch_size, buffer_size, gamma, gradient_steps, learning_rate, learning_starts, policy_delay (+4 more)
 
-### Community 277 - "Module acquisition contract"
-Cohesion: 0.24
-Nodes (6): Lifecycle, atomic_json(), IsolatedAcquisition, test_all_arms_use_same_acquisition_and_no_old_release(), test_invalid_measurement_blocks_comparison_but_retains_every_assigned_slot(), test_matching_release_accepts_executor_file_path_and_rejects_drift()
-
-### Community 278 - "agent/skills/statechart/scripts/ir.ts"
-Cohesion: 0.11
-Nodes (35): ascending(), byText(), Condition, ESCAPES, Find, findLoop(), findTrace(), functionKey() (+27 more)
+### Community 278 - "agent/skills/statechart/scripts/frontends/marks.ts"
+Cohesion: 0.21
+Nodes (18): markTexts(), readMarks(), ruleNames(), BRACKET, isDigit(), isLineEnd(), isSpace(), isWord() (+10 more)
 
 ### Community 279 - ".agents/skills/poteto-mode/scripts/watch-pr/cli.ts"
-Cohesion: 0.10
+Cohesion: 0.09
 Nodes (30): CliOptions, CliRuntime, main(), nonNegativeNumber(), parseArgs(), positiveInteger(), positiveNumber(), prNumber() (+22 more)
 
-### Community 280 - "Module research contact oracle"
+### Community 281 - ".agents/skills/statechart/scripts/backends/mermaid.ts"
 Cohesion: 0.24
-Nodes (7): ContactGate, environment_factory(), _governor_command(), __init__(), on_oracle_contact(), reset(), test_oracle_ignores_floor_and_reset_contacts()
-
-### Community 281 - "Công cụ summarize contact repeatability"
-Cohesion: 0.21
-Nodes (5): exact_sign_flip(), main(), paired_metrics(), plot_blocks(), test_five_agreeing_blocks_cannot_reach_two_sided_point_zero_five()
+Nodes (13): ASCII, code(), encode(), esc(), firstOf, kindAt(), kindOf(), MARK_STYLES (+5 more)
 
 ### Community 282 - "Cấu hình pilot"
 Cohesion: 0.17
@@ -1940,9 +1935,9 @@ Nodes (12): drive_controller, parameters, integral_limit, max_effort_rate, max_v
 Cohesion: 0.17
 Nodes (12): flat_curriculum, advance_success_rate, enabled, evaluation_stage, fixed_stage, replay_probability, stages, window_episodes (+4 more)
 
-### Community 284 - "test_research_panel.py"
-Cohesion: 0.12
-Nodes (26): ResearchRunner, test_axis_ablation_separate_root_no_auto_job_and_closed_failure_blocks_retry(), test_classical_common_has_single_closed_budget_and_no_auto_job(), test_clear_bias_workflow_starts_with_read_only_diagnostic_not_training(), test_common_td3_profile_budget_and_no_automatic_job(), test_contact_screen_has_separate_root_and_no_job_on_open(), test_equal_contract_profile_is_offline_and_consumed_budget_cannot_retry(), test_equal_gazebo_has_four_launch_budget_and_no_automatic_job() (+18 more)
+### Community 284 - "recovery_v3.yaml"
+Cohesion: 0.15
+Nodes (10): continuous_stop_s, contract_id, cruise_m_s, horizon_s, interval_s, maximum_cross_track_m, route_m, schema_version (+2 more)
 
 ### Community 285 - "agent/skills/statechart/scripts/test/differential.test.ts"
 Cohesion: 0.08
@@ -1952,9 +1947,13 @@ Nodes (30): answer(), ATOM, Atom, Case, caseOf(), Claim, claimOf(), COLORS (+22 
 Cohesion: 0.08
 Nodes (30): answer(), ATOM, Atom, Case, caseOf(), Claim, claimOf(), COLORS (+22 more)
 
-### Community 287 - "agent/skills/statechart/scripts/test/pipeline.test.ts"
-Cohesion: 0.08
-Nodes (28): checkView(), Inspect, isFunction(), isPlainObject(), isString(), Json, json(), jsonVars() (+20 more)
+### Community 287 - "ref_node_test"
+Cohesion: 0.14
+Nodes (16): firstLine(), pad(), plainText(), PREFIX, printed(), render(), runtime(), LEVEL (+8 more)
+
+### Community 288 - "audit_governor_foundations.py"
+Cohesion: 0.31
+Nodes (6): audit(), contact_health(), finite_max(), main(), replay(), report()
 
 ### Community 290 - "Cấu hình combined flat curriculum"
 Cohesion: 0.18
@@ -2020,29 +2019,29 @@ Nodes (11): domain_randomization, enabled, heading_bias_deg, heading_noise_std_d
 Cohesion: 0.18
 Nodes (11): navigation, cmd_vel_topic, goal_pose, goal_slowdown_distance_m, minimum_approach_speed_m_s, stale_seconds, start_pose, straight_speed_m_s (+3 more)
 
-### Community 306 - "require_uninhibited_transition"
-Cohesion: 0.12
-Nodes (13): assess_zero_reset(), DecisionInputNotReady, require_uninhibited_transition(), fixture(), test_joint_observer_support_and_quiet_do_not_replace_drive_acknowledgement(), test_missing_proposal_never_becomes_a_fabricated_zero_request(), test_missing_stale_or_nonzero_reset_is_blocked(), test_recorded_inhibit_precedes_action_and_reproduces_real_validator_error() (+5 more)
+### Community 306 - "PlannedCommonAdapterV2"
+Cohesion: 0.17
+Nodes (6): 13. The actual reward being trained, CommonScoreV2, reset(), step(), PlannedCommonAdapterV2, reset()
 
 ### Community 307 - "agent/skills/poteto-help/SKILL.md"
 Cohesion: 0.07
 Nodes (17): Gather what changed, Ketchup, Visuals, Write the reply, Ketchup video, Render, Slides, Subtitles (+9 more)
 
 ### Community 308 - "agent/skills/poteto-mode/scripts/watch-pr/cli.ts"
-Cohesion: 0.11
-Nodes (21): CliOptions, CliRuntime, nonNegativeNumber(), parseArgs(), positiveInteger(), positiveNumber(), prNumber(), RawOptions (+13 more)
+Cohesion: 0.10
+Nodes (30): CliOptions, CliRuntime, main(), nonNegativeNumber(), parseArgs(), positiveInteger(), positiveNumber(), prNumber() (+22 more)
 
-### Community 309 - "Công cụ laya training monitor"
-Cohesion: 0.35
-Nodes (8): classify(), latest_episode_log(), main(), mean(), monitored_episodes(), read_episodes(), report(), statistics()
+### Community 309 - ".agents/skills/statechart/scripts/frontends/marks.ts"
+Cohesion: 0.23
+Nodes (17): markTexts(), readMarks(), ruleNames(), BRACKET, isDigit(), isLineEnd(), isSpace(), isWord() (+9 more)
 
 ### Community 310 - "Cấu hình pilot"
 Cohesion: 0.18
 Nodes (11): domain_randomization, enabled, heading_bias_deg, heading_noise_std_deg, motor_delay_ms, observation_dropout, phase_scales, position_bias_m (+3 more)
 
-### Community 311 - "Kiểm thử classical common"
-Cohesion: 0.35
-Nodes (7): setup(), steady(), test_invalid_inputs_and_zero_source_cannot_enable_compensation(), test_physical_failure_retains_one_attempt_and_closes_remaining_slots(), test_ramp_and_withdrawal_pass_through_unchanged_projection(), test_schedule_has_fixed_amplitude_and_withdraws_at_boundary(), view()
+### Community 311 - "math"
+Cohesion: 0.05
+Nodes (26): create_shadow_node(), main(), actor_contract(), feature_frame(), stat(), fingerprint(), repo(), specification() (+18 more)
 
 ### Community 313 - "Cấu hình navigation"
 Cohesion: 0.20
@@ -2076,13 +2075,13 @@ Nodes (9): deployment_safety_gates, gate_id, mandatory, title, experiments, froz
 Cohesion: 0.07
 Nodes (17): Gather what changed, Ketchup, Visuals, Write the reply, Ketchup video, Render, Slides, Subtitles (+9 more)
 
-### Community 321 - "save"
-Cohesion: 0.05
-Nodes (50): actor_steps(), DriveReadinessBackend, _on_step(), ReliableBoundaryBackend, prepare(), baseline(), environment(), main() (+42 more)
+### Community 321 - "recovery_runner.py"
+Cohesion: 0.04
+Nodes (82): actor_steps(), EvaluationDeadline, evaluator_sources(), main(), matrix(), now(), policy_signature(), preflight() (+74 more)
 
 ### Community 322 - "Công cụ flat reward alignment"
-Cohesion: 0.22
-Nodes (4): aligned_reward(), impact_terms(), record_value_diagnostics(), scaled_environment()
+Cohesion: 0.15
+Nodes (8): aligned_reward(), impact_terms(), record_value_diagnostics(), scaled_environment(), fresh_scaled_critic_audit(), gae_targets(), gradient_audit(), main()
 
 ### Community 324 - "Kiểm thử studio startup repair"
 Cohesion: 0.33
@@ -2104,13 +2103,13 @@ Nodes (9): action_type, enabled, footprint_topic, min_points, simulation_time_st
 Cohesion: 0.09
 Nodes (27): checkView(), Inspect, isFunction(), isPlainObject(), isString(), Json, json(), jsonVars() (+19 more)
 
-### Community 329 - "agent/skills/statechart/scripts/passes/regions.ts"
-Cohesion: 0.19
-Nodes (25): append(), Arrow, Chart, ChartState, ChartStep, hasRule(), holds(), Labels (+17 more)
+### Community 329 - "task_reward"
+Cohesion: 0.18
+Nodes (11): task_reward, accepted_action, accepted_action_change, cross_scale_m, cross_track, failure, heading, heading_scale_rad (+3 more)
 
-### Community 330 - "Kiểm thử governor core"
-Cohesion: 0.42
-Nodes (8): test_command_acceleration_allowance_and_body_stall_limit(), test_full_profile_remains_full_speed_but_checks_faults(), test_pulse_reaches_target_before_recovery(), test_rearm_does_not_require_cruising_at_098(), test_stale_invalid_and_stall_are_latched_before_output(), test_sustained_braking_then_recovery_and_hysteresis(), test_zero_reference_cannot_be_overridden_by_minimum_forward(), warmed()
+### Community 330 - "pi_screen_context.py"
+Cohesion: 0.21
+Nodes (17): configuration(), environment(), __init__(), reset(), stamp(), step(), identity(), request() (+9 more)
 
 ### Community 331 - "Cấu hình factory floor lab"
 Cohesion: 0.22
@@ -2137,8 +2136,8 @@ Cohesion: 0.22
 Nodes (9): loop_rate, stop_on_failure, wait_at_waypoint, waypoint_task_executor_plugin, enabled, plugin, waypoint_pause_duration, waypoint_follower (+1 more)
 
 ### Community 339 - "DataBridge"
-Cohesion: 0.14
-Nodes (3): DataBridge, DemoIO, CoordinatorTests
+Cohesion: 0.12
+Nodes (4): DataBridge, DemoIO, Workflow, CoordinatorTests
 
 ### Community 340 - "Cấu hình combined flat energy"
 Cohesion: 0.22
@@ -2152,13 +2151,13 @@ Nodes (8): extends, research_map, revision, stage, simulation_model, caster_whee
 Cohesion: 0.22
 Nodes (9): missing_marker, not_stopped, physical_failure, reward, id, penalties, request_cost_scale_m_s, velocity_scale_m_s (+1 more)
 
-### Community 343 - "agent/skills/statechart/scripts/frontends/messages.ts"
-Cohesion: 0.13
-Nodes (22): firstLine(), pad(), plainText(), PREFIX, printed(), render(), runtime(), linesOf() (+14 more)
+### Community 343 - "residual_coverage_study_v2.py"
+Cohesion: 0.26
+Nodes (16): coverage_summary(), fingerprint(), main(), offline_preflight(), read(), reference_packets(), release_ready(), release_record() (+8 more)
 
 ### Community 344 - "agent/skills/statechart/scripts/test/cli.test.ts"
-Cohesion: 0.09
-Nodes (15): contents(), corpus, drawn(), fakeBun(), here, launcher, launcherTools(), overBudget() (+7 more)
+Cohesion: 0.10
+Nodes (14): contents(), corpus, drawn(), fakeBun(), here, launcher, launcherTools(), overBudget() (+6 more)
 
 ### Community 345 - "Cấu hình hardware"
 Cohesion: 0.25
@@ -2228,13 +2227,9 @@ Nodes (8): baseline_arm, candidate_arms, episodes_per_seed, experiment_id, min_s
 Cohesion: 0.25
 Nodes (8): baseline_arm, candidate_arms, episodes_per_seed, evaluate_on_perturbed_heldout, experiment_id, min_seeds, question, E3
 
-### Community 362 - "Module tuning history"
-Cohesion: 0.32
-Nodes (3): _on_step(), sync_adaptive_terrain_state(), CurrentParameters
-
-### Community 363 - "test_held_gain_candidate.py"
-Cohesion: 0.23
-Nodes (17): HeldGainCandidate, packet(), primed(), support(), test_authority_and_source_faults_immediately_clear_held_state(), test_constant_reference_during_wheel_transient_cannot_update_estimate(), test_epoch_and_explicit_reset_clear_cache_and_trusted_history(), test_finite_history_cannot_identify_static_gain_against_hidden_lag() (+9 more)
+### Community 363 - "ResidualPipeline"
+Cohesion: 0.18
+Nodes (6): 6. The exact observation history, Why the trained model has 103 inputs, ResidualPipeline, __init__(), joint_pair(), FeatureHistory
 
 ### Community 364 - "Cấu hình docker-compose"
 Cohesion: 0.29
@@ -2264,9 +2259,9 @@ Nodes (7): display_items, id, kind, length_m, radius_m, x_m, y_m
 Cohesion: 0.29
 Nodes (7): threshold, angle_deg, height_m, id, length_m, x_m, y_m
 
-### Community 371 - "agent/skills/poteto-mode/scripts/watch-pr/policy.test.ts"
-Cohesion: 0.12
-Nodes (18): failedCheck(), fakeReader(), passingCheck(), pendingCheck(), ChecksUnavailable, parsePrUrl(), resolveContext(), context (+10 more)
+### Community 371 - "agent/skills/poteto-mode/scripts/watch-pr/github.test.ts"
+Cohesion: 0.18
+Nodes (11): failedCheck(), pendingCheck(), buildReviewThreads(), ChecksUnavailable, isBugbot(), passKey(), resolveChecks(), resolveReviewThreads() (+3 more)
 
 ### Community 372 - "Cấu hình combined flat curriculum"
 Cohesion: 0.29
@@ -2312,9 +2307,9 @@ Nodes (14): Before you run anything, Benchmark checklist, Other perf material, R
 Cohesion: 0.09
 Nodes (14): Before you run anything, Benchmark checklist, Other perf material, Report, The questions, Attack the Premise, Build the Lever, Encode Lessons in Structure (+6 more)
 
-### Community 383 - "agent/skills/statechart/scripts/test/config-fuzz.test.ts"
-Cohesion: 0.11
-Nodes (19): Checks, BREAKS, COMMENTS, GAPS, here, INSERTS, isRecord(), KEYWORDS (+11 more)
+### Community 383 - "archive_gt_governor_study.py"
+Cohesion: 0.18
+Nodes (9): main(), route_preview(), load_run(), main(), read_trajectory(), main(), copy(), sha() (+1 more)
 
 ### Community 384 - "Công cụ common training studio"
 Cohesion: 0.29
@@ -2448,9 +2443,17 @@ Nodes (7): angle_deg, diameter_m, name, terrain_curriculum, cable_x_m, enabled, 
 Cohesion: 0.10
 Nodes (18): Alternatives considered, Next implementation step, Open questions and risks, Problem, Rationale template, Shape, Synthesis decision, Tradeoffs accepted (+10 more)
 
+### Community 417 - "test_governor_brake_delay.py"
+Cohesion: 0.33
+Nodes (6): make(), test_delay_is_two_intervals_and_hold_clock_starts_at_braking(), test_external_disable_discards_pending_event_without_advancing_clock(), test_faults_cancel_pending_immediately_and_latch(), test_negative_delay_rejected(), test_stop_and_reset_discard_pending_without_delayed_replay()
+
 ### Community 418 - "Rationale template"
 Cohesion: 0.10
 Nodes (18): Alternatives considered, Next implementation step, Open questions and risks, Problem, Rationale template, Shape, Synthesis decision, Tradeoffs accepted (+10 more)
+
+### Community 419 - "td3_training_panel.py"
+Cohesion: 0.13
+Nodes (6): main(), main(), StorageCleanup, test_old_training_shortcut_opens_Studio(), test_training_is_one_top_level_Studio_tab_without_duplicate(), window()
 
 ### Community 420 - "Công cụ run focused optuna"
 Cohesion: 0.33
@@ -2467,6 +2470,10 @@ Nodes (6): container_name, environment, image, network_mode, volumes, kasmvnc
 ### Community 423 - "Cấu hình factory floor lab"
 Cohesion: 0.33
 Nodes (6): randomized_single, angle_range_deg, cable_radius_range_m, depth_range_m, x_range_m, y_range_m
+
+### Community 424 - "ProjectPanel"
+Cohesion: 0.16
+Nodes (5): ProjectPanel, test_reference_form_leaves_unmeasured_quantities_unknown(), test_reviewed_gap_and_draft_are_visible_without_promoting_body_claims(), test_roadmap_review_done_leads_to_unreleased_single_diagnostic(), test_project_direction_uses_sim_stages_without_claiming_hardware_evidence()
 
 ### Community 425 - "Cấu hình combined flat curriculum"
 Cohesion: 0.33
@@ -2552,10 +2559,6 @@ Nodes (5): adaptive_zone, initial_features, maximum_features, x_m, y_m
 Cohesion: 0.40
 Nodes (5): goal_halls, bounds_xy_m, direction, goal_pose, id
 
-### Community 447 - "Kiểm thử governor launch"
-Cohesion: 0.60
-Nodes (3): owner(), test_default_smoother_owner_is_preserved(), test_governor_is_sole_reference_limiter_in_optional_pipeline()
-
 ### Community 448 - "Cấu hình combined flat curriculum"
 Cohesion: 0.40
 Nodes (5): curriculum, enabled, fixed_phase, phase_order, phase_steps
@@ -2620,9 +2623,9 @@ Nodes (5): curriculum, enabled, fixed_phase, phase_order, phase_steps
 Cohesion: 0.40
 Nodes (5): curriculum, enabled, fixed_phase, phase_order, phase_steps
 
-### Community 464 - "equal_information_v2.py"
-Cohesion: 0.16
-Nodes (12): build_dr_world_sdf(), classical_request(), configuration(), environment(), __init__(), fingerprint(), identity(), sample_dr_params() (+4 more)
+### Community 464 - "recovery_bands"
+Cohesion: 0.22
+Nodes (9): recovery_bands, cross_track_m, exit_multiplier, heading_rad, hold_s, maximum_recovery_s, speed_error_m_s, tilt_rad (+1 more)
 
 ### Community 465 - "Cấu hình docker-compose"
 Cohesion: 0.50
@@ -2653,8 +2656,8 @@ Cohesion: 0.26
 Nodes (19): raw_qc(), test_another_episode_cannot_supply_a_missing_channel(), test_complete_independent_episodes_pass(), test_duplicate_headers_are_explicit_quality_failures(), test_episode_directory_without_reset_metadata_has_no_invented_epoch(), test_episode_reasons_and_legacy_summaries_preserve_the_observed_evidence(), test_large_gap_in_one_episode_invalidates_the_dataset(), test_malformed_raw_json_is_an_explicit_failure() (+11 more)
 
 ### Community 472 - "Audit và sửa luồng TD3, vượt gờ và phục hồi quỹ đạo Nino"
-Cohesion: 0.10
-Nodes (19): 10. Commands và điểm dừng, 11. Outline còn lại và stop rules, 1. Quyết định hiện tại, 2. Phạm vi kiểm tra và bảo toàn tiến độ, 3. Pipeline nào đang tồn tại?, 5. Contract dữ liệu theo field, 7. Kết quả kiểm chứng thực sự, 8. Train/evaluate/deploy parity và migration (+11 more)
+Cohesion: 0.12
+Nodes (17): 10. Commands và điểm dừng, 11. Outline còn lại và stop rules, 12. Knowledge graph và provenance, 1. Quyết định hiện tại, 2. Phạm vi kiểm tra và bảo toàn tiến độ, 3. Pipeline nào đang tồn tại?, 5. Contract dữ liệu theo field, 6. Recovery, reward và bốn family (+9 more)
 
 ### Community 474 - "Cấu hình combined flat curriculum"
 Cohesion: 0.50
@@ -2712,9 +2715,9 @@ Nodes (4): training, allowed, backend_validation_artifact, budget_transitions
 Cohesion: 0.50
 Nodes (4): path, default_goal_x_m, lookahead_m, point_spacing_m
 
-### Community 489 - "training_dashboard_data.py"
-Cohesion: 0.16
-Nodes (14): Episode, finite(), hull(), cross(), half(), multiply(), numbers(), pose() (+6 more)
+### Community 489 - "audit_governor_second_trigger.py"
+Cohesion: 0.21
+Nodes (11): asof(), compare_windows(), main(), read_case(), replay_quiet_armed(), sha(), summarize(), write() (+3 more)
 
 ### Community 492 - "Module install"
 Cohesion: 0.67
@@ -2745,28 +2748,32 @@ Cohesion: 0.11
 Nodes (16): Create a note, Driving it with control-notes, Gotchas, How to get to it (user POV), Sub-features, Baseline preconditions, Driving conventions, Feature entry contract (+8 more)
 
 ### Community 515 - ".agents/skills/statechart/scripts/backends/plain-text.ts"
-Cohesion: 0.16
-Nodes (14): firstLine(), pad(), plainText(), PREFIX, printed(), render(), runtime(), LEVEL (+6 more)
+Cohesion: 0.27
+Nodes (8): firstLine(), pad(), PREFIX, printed(), render(), runtime(), PART, plain()
 
-### Community 516 - "NextStepsPanel"
+### Community 516 - "test_reliable_episode.py"
 Cohesion: 0.15
-Nodes (10): NextStepsPanel, repository(), test_roadmap_review_done_leads_to_unreleased_single_diagnostic(), test_benchmark_decision_opens_document_without_starting_job(), test_roadmap_names_actual_next_step_without_releasing_learning(), test_changed_draft_does_not_leave_old_verified_outline(), test_default_sim_outline_and_branch_switch_preserve_hardware_and_authority(), test_draft_document_opens_without_starting_any_job() (+2 more)
+Nodes (7): lifecycle_fixture(), test_any_failure_or_closure_failure_closes_other_owner_and_prevents_retry(), test_eight_fresh_epochs_close_before_next_observer_and_no_cached_support(), test_keyboard_interrupt_during_reset_closes_both_and_no_new_epoch(), factory(), test_launch_limit_closes_last_epoch_without_ninth_creation(), test_preexisting_support_in_new_backend_is_rejected()
 
 ### Community 517 - "Output Format"
 Cohesion: 0.11
 Nodes (17): Competing Hypotheses, Confidence Summary, Epistemics Framework, Instructions, Investigator Findings, Output Format, Quality Check Before Returning, Sources Consulted (+9 more)
 
-### Community 518 - ".agents/skills/statechart/scripts/frontends/marks.ts"
-Cohesion: 0.24
-Nodes (16): markTexts(), readMarks(), ruleNames(), BRACKET, isDigit(), isLineEnd(), isSpace(), isWord() (+8 more)
+### Community 518 - ".agents/skills/statechart/scripts/test/chart.test.ts"
+Cohesion: 0.06
+Nodes (46): Lines, linesOf(), parseDot(), parseState(), unescapeDot(), readCounterexample(), actionOf(), cutMessage() (+38 more)
 
 ### Community 519 - "Output Format"
 Cohesion: 0.11
 Nodes (17): Competing Hypotheses, Confidence Summary, Epistemics Framework, Instructions, Investigator Findings, Output Format, Quality Check Before Returning, Sources Consulted (+9 more)
 
-### Community 521 - "run_next"
-Cohesion: 0.19
-Nodes (13): evaluate_attempt(), main(), qualify(), run_next(), verify_world(), configuration(), environment(), fixture_backend() (+5 more)
+### Community 520 - "keyboard.py"
+Cohesion: 0.24
+Nodes (5): KeyboardState, KeyboardTeleop, main(), test_release_stops_even_with_periodic_publishing(), test_reverse_turn_and_unknown_keys()
+
+### Community 521 - "test_reliable_eval_only.py"
+Cohesion: 0.21
+Nodes (9): seal(), test_changed_budget_or_gate_rejected_before_launch(), test_corrupt_ledger_never_reopens_job(), test_dependency_record_json_roundtrip_and_all_final_checkpoints(), test_fixed_budget_order_and_no_training_release(), test_parent_tamper_wrong_failure_or_incomplete_seed_fails_closed(), test_slot_failure_or_cancel_closes_rest_and_keeps_consumed_ledger(), test_ten_slots_keep_order_context_and_no_optimizer() (+1 more)
 
 ### Community 522 - "Recurring skip candidates"
 Cohesion: 0.12
@@ -2776,9 +2783,9 @@ Nodes (16): Ask by default, Bugbot triage, Candidate learnings from recent babys
 Cohesion: 0.12
 Nodes (16): Ask by default, Bugbot triage, Candidate learnings from recent babysits, Contract-test drift claims are cheaply verifiable — run the test first, Decision rubric, Existing framework or component invariant covers the warning, Intentional UI or design-system visual changes, Learned pattern format (+8 more)
 
-### Community 524 - "test_td3_training_panel.py"
-Cohesion: 0.22
-Nodes (7): TrainingRunner, app(), test_actual_qprocess_log_exit_and_qobject_event_dispatch(), test_finished_error_is_visible_and_partial_result_not_called_success(), test_other_work_blocks_training_but_does_not_start_anything(), test_scientific_recommendation_does_not_launch_or_globally_ban_training(), test_smoke_and_train_have_explicit_distinct_budgets()
+### Community 524 - "agent/skills/statechart/scripts/backends/mermaid.ts"
+Cohesion: 0.24
+Nodes (13): ASCII, code(), encode(), esc(), firstOf, kindAt(), kindOf(), MARK_STYLES (+5 more)
 
 ### Community 525 - "TypeScript patterns"
 Cohesion: 0.12
@@ -2816,9 +2823,9 @@ Nodes (15): 1. Bộ này làm gì?, 2. Dữ liệu nào cần? Lấy bằng các
 Cohesion: 0.13
 Nodes (15): 10. Lệnh chỉ đọc để tìm thông tin ban đầu trên Pi, 11. Ví dụ cấu trúc và nguồn bằng chứng, 12. Tạo bản session đứng yên từ template, giữ unknown, 1. Quy ước chung, 2. Chỉ cần bắt đầu như thế nào?, 3. Thông tin chung, 4. hardware — thiết bị, driver và encoder, 5. geometry_and_load — đo cơ khí (+7 more)
 
-### Community 534 - "agent/skills/statechart/scripts/backends/mermaid.ts"
-Cohesion: 0.24
-Nodes (13): ASCII, code(), encode(), esc(), firstOf, kindAt(), kindOf(), MARK_STYLES (+5 more)
+### Community 534 - "budget"
+Cohesion: 0.25
+Nodes (8): budget, automatic_retries, gazebo_transitions, hardware_actions, maximum_launches, minimum_free_bytes, software_smoke_transitions, wall_deadline_s
 
 ### Community 535 - "Epistemics"
 Cohesion: 0.14
@@ -2831,6 +2838,10 @@ Nodes (11): failedCheck(), pendingCheck(), buildReviewThreads(), ChecksUnavailab
 ### Community 537 - "Epistemics"
 Cohesion: 0.14
 Nodes (13): 1. Direct, 2. Supported, 3. Inferred, 4. Speculative, 5. Unknown, Avoid Rationalization, Before Finalizing, Confidence Tiers (+5 more)
+
+### Community 538 - "collector_resilient.py"
+Cohesion: 0.22
+Nodes (9): load_signals(), bag_command(), inspect_bag(), load_config(), main(), save(), session_issues(), stop_child() (+1 more)
 
 ### Community 539 - "Flow"
 Cohesion: 0.15
@@ -2848,9 +2859,17 @@ Nodes (12): 0. Check for an existing skill, 1. Mine their history, 2. Ask the us
 Cohesion: 0.15
 Nodes (12): Common Failure Modes to Avoid, Discovery, Investigator roster, one per available evidence category, Operating Posture, Output Format, Step 1. Understand the Target and the Question, Step 2. Establish the Code Anchor, Step 3. Spawn Parallel Investigators (+4 more)
 
-### Community 545 - "recover_focused_optuna.py"
+### Community 543 - "analyze_flat_contact_convergence.py"
+Cohesion: 0.24
+Nodes (9): episode_data(), main(), rms(), rows(), analyze(), ratio(), mean(), safe_window() (+1 more)
+
+### Community 544 - "ClearWindow"
+Cohesion: 0.15
+Nodes (4): ClearWindow, DataIO, parameter_value(), SceneTests
+
+### Community 545 - "start_budget"
 Cohesion: 0.29
-Nodes (6): main(), active_workers(), main(), recover(), retry_startup(), check_controller()
+Nodes (7): start_budget, estimated_stop_m, maximum_initial_error_m, maximum_initial_heading_rad, odometry_uncertainty_m, physical_goal_m, stopping_uncertainty_m
 
 ### Community 546 - "Explainer Prompt Template"
 Cohesion: 0.17
@@ -2932,17 +2951,13 @@ Nodes (10): 1. Kết luận đo được, 2. Gap cũ đã được review, 3. Đ
 Cohesion: 0.20
 Nodes (9): 1. Quyết định, 2. Cập nhật kết quả train thực sự đã có, 3. Phần mềm đã thêm, 4. Điều đã kiểm và chưa kiểm, 5. Studio, 6. Ba bước tiếp theo, Integrity và phạm vi evaluation, Sim TD3: bộ chấm goal và adapter gờ không biết trước (+1 more)
 
-### Community 566 - "FamilyCurriculum"
-Cohesion: 0.24
-Nodes (5): 6. Recovery, reward và bốn family, Recovery mới, Reward, FamilyCurriculum, test_curricula_are_independent_restore_rng_and_require_full_success()
+### Community 567 - "test_recovery_startup.py"
+Cohesion: 0.27
+Nodes (7): RetainedSourceGuard, bootstrap(), journal(), test_incomplete_or_invalid_startup_support_is_rejected(), test_retained_source_guard_checks_incremental_gaps_before_return(), test_settling_motion_is_integrated_before_the_first_policy_decision(), test_truth_channels_and_future_samples_do_not_change_bootstrap_estimate()
 
-### Community 567 - "nino_pi/launch/navigation.launch.py"
-Cohesion: 0.33
-Nodes (5): check_map(), generate_launch_description(), validate_map(), test_real_map_relative_image_and_missing_file(), test_world_and_absent_map_rejected()
-
-### Community 568 - "test_studio_training_integration.py"
-Cohesion: 0.20
-Nodes (3): test_old_training_shortcut_opens_Studio(), test_training_is_one_top_level_Studio_tab_without_duplicate(), window()
+### Community 568 - "test_sim_task_v2.py"
+Cohesion: 0.26
+Nodes (8): reset(), TaskScore, info(), test_fixed_deadline_is_terminal_not_timeout(), step(), test_independent_target_cannot_be_changed_by_executed_boost(), test_task_requires_two_continuous_quiet_seconds_after_shaped_zero(), test_zero_source_is_not_body_stop_and_stall_is_not_task_success()
 
 ### Community 569 - "Word the prompt"
 Cohesion: 0.22
@@ -2996,9 +3011,9 @@ Nodes (9): initial_xy_proposal_m, initial_yaw_proposal_rad, families, clean, mix
 Cohesion: 0.22
 Nodes (9): recovery_bands, cross_track_m, exit_multiplier, heading_rad, hold_s, maximum_recovery_s, speed_error_m_s, tilt_rad (+1 more)
 
-### Community 586 - "test_obstacle_authority_stop8_handoff.py"
-Cohesion: 0.33
-Nodes (5): case(), test_crash_blocks_execution_and_keeps_consumption(), test_mismatch_or_refill_rejected_without_changing_ledger(), test_stop6_and_reader_evidence_gate(), write()
+### Community 586 - "ContactGate"
+Cohesion: 0.24
+Nodes (7): ContactGate, environment_factory(), _governor_command(), __init__(), on_oracle_contact(), reset(), test_oracle_ignores_floor_and_reset_contacts()
 
 ### Community 587 - "Figure it out"
 Cohesion: 0.25
@@ -3032,9 +3047,9 @@ Nodes (7): 1. Đã làm trước lần reboot tiếp theo, 2. Frame IMU: source 
 Cohesion: 0.25
 Nodes (8): budget, automatic_retries, gazebo_transitions, hardware_actions, maximum_launches, minimum_free_bytes, software_smoke_transitions, wall_deadline_s
 
-### Community 595 - "test_governor_foundations.py"
-Cohesion: 0.29
-Nodes (4): failure_record(), test_aborted_evaluation_is_not_a_success_or_a_zero_impact_episode(), test_candidate_cannot_run_with_wrong_world_or_unverified_model(), test_incomplete_replay_is_not_reported_as_zero_false_triggers()
+### Community 595 - "7. Kết quả kiểm chứng thực sự"
+Cohesion: 0.33
+Nodes (6): 7. Kết quả kiểm chứng thực sự, Baseline và regressions, Dữ liệu lịch sử để tránh quy nhầm nguyên nhân, Gazebo startup, Những metric đã có và chưa có kết quả, TD3 software smoke
 
 ### Community 596 - "Create a formal verification skill"
 Cohesion: 0.29
@@ -3091,6 +3106,10 @@ Nodes (7): 1. Kết luận, 2. Task và dữ liệu đã khóa, 3. B0 và một 
 ### Community 609 - "Hướng đã chọn: gờ không biết trước, vượt được và bám quỹ đạo"
 Cohesion: 0.29
 Nodes (7): 1. Sửa cách đặt bài toán, 2. “Không biết gờ” nghĩa chính xác là gì?, 3. Đánh giá vượt được và bám đường, 4. Tránh “không biết” chỉ trên tên gọi, 5. Baseline, Governor, History và TD3 trong hướng này, 6. Việc tiếp theo, theo thứ tự, Hướng đã chọn: gờ không biết trước, vượt được và bám quỹ đạo
+
+### Community 610 - "curriculum"
+Cohesion: 0.33
+Nodes (6): curriculum, earlier_stage_probability, maximum_stage, minimum_episodes, success_fraction, window
 
 ### Community 611 - "Nino + firmware STM32H723 qua USB"
 Cohesion: 0.29
@@ -3192,9 +3211,17 @@ Nodes (5): AlsoNotOne breaks, FirstRule, NoDeadlock breaks, NotOne breaks, NotOn
 Cohesion: 0.33
 Nodes (5): Final Response, Guardrails, If a Failing Test Is Impractical, TDD Bug Fix, Workflow
 
+### Community 639 - "test_classical_common.py"
+Cohesion: 0.35
+Nodes (7): setup(), steady(), test_invalid_inputs_and_zero_source_cannot_enable_compensation(), test_physical_failure_retains_one_attempt_and_closes_remaining_slots(), test_ramp_and_withdrawal_pass_through_unchanged_projection(), test_schedule_has_fixed_amplitude_and_withdraws_at_boundary(), view()
+
 ### Community 640 - "curriculum"
 Cohesion: 0.33
 Nodes (6): curriculum, earlier_stage_probability, maximum_stage, minimum_episodes, success_fraction, window
+
+### Community 641 - "recovery_reward"
+Cohesion: 0.33
+Nodes (6): recovery_reward, clearance_bonus, recovery_bonus, speed_error_scale_m_s, speed_weight, stability_weight
 
 ### Community 642 - "CounterAction"
 Cohesion: 0.40
@@ -3211,6 +3238,10 @@ Nodes (4): CounterAction, NotFour breaks, NotThree breaks, Rules that hold
 ### Community 645 - "MediaPlayerProps"
 Cohesion: 0.40
 Nodes (4): EventuallyPlays breaks, MediaPlayerProps, QuietWhenStopped breaks, Rules that hold
+
+### Community 646 - "test_motion_quality_draft.py"
+Cohesion: 0.33
+Nodes (6): load(), reference_plan(), test_no_silent_change_or_fake_release(), test_preparation_never_releases_physics_or_accepts_factory_thresholds(), test_slow_control_matches_command_segment_time_only(), test_stop_overlap_and_incomplete_recovery_are_rejected_before_physics()
 
 ### Community 647 - "Dọn episode Sim sau đánh giá — 14/11/2026"
 Cohesion: 0.40
@@ -3376,29 +3407,61 @@ Nodes (3): Rules not checked, TypeGuard, TypeOK breaks
 Cohesion: 0.50
 Nodes (3): CHECK_DEADLOCK breaks, NoDeadlock breaks, UserNoDeadlock
 
+### Community 691 - "run_flat_reward_validation.py"
+Cohesion: 0.36
+Nodes (6): compare(), critic_summary(), main(), process_identity(), read(), verify_plans()
+
+### Community 692 - "job_gateway.py"
+Cohesion: 0.39
+Nodes (7): emit(), main(), recorder_snapshot(), result_data(), run(), cancel(), validate()
+
 ### Community 693 - "recovery_reward"
 Cohesion: 0.50
 Nodes (4): recovery_reward, clearance_bonus, recovery_bonus, stability_weight
 
+### Community 694 - "test_cable_screen_reporting.py"
+Cohesion: 0.31
+Nodes (5): example(), test_cable_tilt_does_not_override_independent_physical_success(), test_missing_contact_analysis_keeps_native_arrival_failure(), test_missing_stop_window_is_not_promoted(), test_physical_failure_is_not_promoted_by_successful_stopping()
+
+### Community 818 - "test_actual_coordinator_only_sends_zero_and_closes_before_next_launch"
+Cohesion: 0.33
+Nodes (4): test_actual_coordinator_only_sends_zero_and_closes_before_next_launch(), advance_reference(), reset(), view()
+
+### Community 819 - "analyze_governor_h2_replication.py"
+Cohesion: 0.06
+Nodes (59): validate_settings(), analyze(), diagnostic_window(), estimate(), report(), timing(), analyze_run(), approach_check() (+51 more)
+
+### Community 821 - "test_governor_launch.py"
+Cohesion: 0.60
+Nodes (3): owner(), test_default_smoother_owner_is_preserved(), test_governor_is_sole_reference_limiter_in_optional_pipeline()
+
+### Community 822 - "pothole"
+Cohesion: 0.40
+Nodes (5): pothole, contact_qualified, depth_m, lateral_m, radius_m
+
+### Community 824 - "motion_quality"
+Cohesion: 0.50
+Nodes (4): motion_quality, maximum_cross_track_rmse_m, maximum_heading_rmse_rad, maximum_speed_rmse_m_s
+
 ## Knowledge Gaps
-- **170 isolated node(s):** `TMUXINATOR_CONFIG`, `PYTHONPATH`, `ROS_DOMAIN_ID`, `NINO_REPO`, `PYTHONPATH` (+165 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 7450 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **180 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **170 isolated node(s):** `PYTHONPATH`, `NINO_REPO`, `PYTHONPATH`, `PYTHONPATH`, `PYTHONPATH` (+165 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 7546 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **176 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `fixture` connect `Cấu hình residual joint reliability` to `Cấu hình và tuning`, `test_tuning_trials.py`, `Sàng lọc gain PI`, `Module gain baseline qualification`, `Kiểm thử H2 governor`, `Cấu hình residual joint reliability`, `test_studio_training_integration.py`, `pathlib`, `Pi sim benchmark panel`, `test_obstacle_authority_stop8_handoff.py`, `Công cụ analyze governor h2`, `Module pi stop validation preflight`, `Module gain context`, `Module obstacle authority handoff`, `Module pi screen runner`, `Module pi stop validation runner`, `Công cụ analyze governor h2`, `Module governor cadence`, `Pi training live`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **What connects `TMUXINATOR_CONFIG`, `PYTHONPATH`, `ROS_DOMAIN_ID` to the rest of the system?**
+- **Why does `RosRobotInterface` connect `Giao tiếp robot ROS` to `test_improvements.py`, `numpy`, `Module carved floor`, `Module tuning history`, `pytest`, `Module corridor odometry`, `ROS observer và acquisition`, `Tracking và reward`, `Module reset standstill`, `Gym và lịch sử`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **What connects `PYTHONPATH`, `NINO_REPO`, `PYTHONPATH` to the rest of the system?**
   _170 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Cấu hình và tuning` be split into smaller, more focused modules?**
-  _Cohesion score 0.0316304471498464 - nodes in this community are weakly interconnected._
-- **Why does `save()` connect `save` to `Follower và dừng đích`, `residual_workflow.py`, `common_training_studio_v2.py`, `Biên thời gian encoder`, `run_next`, `hashlib`, `Module obstacle authority runner`, `Đối chứng cùng thông tin`, `TD3 và đánh giá`, `Sàng lọc gain PI`, `Coverage và exploration TD3`, `Evaluation và common103 v2`, `Huấn luyện common v1`, `Authority trước dừng`, `QualifiedBackend`, `Fixture gain và PI`, `Module residual coverage study v2`, `test_recovery_v2.py`, `Module obstacle authority runtime`, `Module pi stop validation preflight`, `Module gain context`, `Module sim benchmark decision`, `Module obstacle authority handoff`, `raw_qc`, `Module pi screen runner`, `Module pi stop validation runner`, `Đánh giá checkpoint Goal100`, `time`, `residual_stop_transfer.py`?**
+- **Should `test_tuning_history.py` be split into smaller, more focused modules?**
+  _Cohesion score 0.03410486537553141 - nodes in this community are weakly interconnected._
+- **Why does `Capture` connect `Pi gui capture` to `pathlib`, `DataBridge`, `json`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Should `pathlib` be split into smaller, more focused modules?**
+  _Cohesion score 0.027659718005801793 - nodes in this community are weakly interconnected._
+- **Why does `Nino RL: bám đường, giữ tốc độ và thêm dốc vừa phải` connect `test_recovery_motion.py` to `recovery_v3.yaml`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **Should `residual_workflow.py` be split into smaller, more focused modules?**
-  _Cohesion score 0.0408016443987667 - nodes in this community are weakly interconnected._
-- **Why does `ResearchPanel` connect `Bảng nghiên cứu Studio` to `ModeWindow`, `TD3ParameterPanel`, `NextStepsPanel`, `Pi sim benchmark panel`, `test_td3_training_panel.py`, `GUI huấn luyện TD3`, `Pi research jobs`, `pathlib`, `test_research_panel.py`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **Should `Giao tiếp robot ROS` be split into smaller, more focused modules?**
-  _Cohesion score 0.01710914454277286 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.017437181436108378 - nodes in this community are weakly interconnected._
