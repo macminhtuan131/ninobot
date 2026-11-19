@@ -201,7 +201,7 @@ def verify_replay_row(model, row, index):
             (replay.next_observations[index, 0], row['next_observation']),
             (replay.actions[index, 0], row['replay_action'])):
         np.testing.assert_allclose(actual, expected, atol=2e-6, rtol=0.)
-    np.testing.assert_allclose(replay.actions[index, 0], [row['requested_scalar_action']],
+    np.testing.assert_allclose(replay.actions[index, 0], row['requested_scalar_action'],
                                atol=2e-6, rtol=0.)
     if (replay.rewards[index, 0] != np.float32(row['reward'])
             or bool(replay.dones[index, 0]) != row['done']
@@ -242,12 +242,15 @@ def write_checkpoint(model, out, identity, state, qc, replay_audit, *, boundary,
     save(pending/'replay_audit.json', replay_audit)
     with (pending/'rng.pkl').open('wb') as stream:
         pickle.dump(capture_rng(model), stream, protocol=pickle.HIGHEST_PROTOCOL)
-    save(pending/'checkpoint.json', dict(kind=CHECKPOINT_KIND,
+    metadata = dict(kind=CHECKPOINT_KIND,
         global_steps=state['transitions'], replay_size=int(model.replay_buffer.size()),
         critic_updates=int(model._n_updates), actor_updates=actor_steps(model),
         stored_episode_boundary=bool(boundary), episode_qc_pass=qc.get('valid') is True,
         qualified=bool(qualified), resumable=resumable,
-        continuation='next_fresh_episode_only', physical_continuation_reproduced=False))
+        continuation='next_fresh_episode_only', physical_continuation_reproduced=False)
+    if 'smoke_protocol' in identity:
+        metadata['smoke_protocol'] = deepcopy(identity['smoke_protocol'])
+    save(pending/'checkpoint.json', metadata)
     save(pending/'manifest.json', {name: sha(pending/name) for name in sorted(REQUIRED_FILES)})
     inspect_recovery_checkpoint(pending, expected_identity=identity)
     pending.rename(target)
@@ -349,8 +352,21 @@ def _learn(out, request, qualified, identity, inspected=None):
         from . import recovery_runner as runner
         current_sources = runner.sources()
         source_identity_pass = current_sources == identity.get('source_pins', current_sources)
+        family_transitions = {family: sum(row['assignment']['family'] == family
+            for row in rows) for family in request.families}
+        family_coverage_pass = (not request.protocol.all_families
+                                or all(family_transitions.values()))
         valid = bool(error is None and closure_error is None and qc.get('valid') is True
-                     and replay_audit['valid'] and source_identity_pass)
+                     and replay_audit['valid'] and source_identity_pass and family_coverage_pass)
+        for passed, reason in ((error is None, 'exception'),
+                (closure_error is None, 'closure_failure'),
+                (qc.get('valid') is True, 'source_qc_failure'),
+                (replay_audit['valid'], 'replay_audit_failure'),
+                (source_identity_pass, 'source_identity_changed'),
+                (family_coverage_pass, 'family_coverage_failure')):
+            if not passed:
+                stop_reason = reason
+                break
         boundary = bool(env.last and env.last['done'] and env.phase == 'closed'
                         and len(env.completed)+len(env.censored) == env.launch_attempts)
         if model is not None:
@@ -373,6 +389,9 @@ def _learn(out, request, qualified, identity, inspected=None):
             physical_completed_episodes=len(env.completed),
             learned_benefit_verified=False, generalization_verified=False,
             loaded_contact_verified=False, hardware_actions=0)
+        if request.protocol.all_families:
+            result.update(smoke_protocol=request.protocol.identity(),
+                family_transitions=family_transitions, family_coverage_pass=family_coverage_pass)
         save(out/'result.json', result)
         if closure_error and error is None:
             raise RuntimeError(closure_error)

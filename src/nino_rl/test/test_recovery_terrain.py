@@ -177,3 +177,17 @@ def test_configuration_rejects_invalid_slope_contract(tmp_path, key, value):
     path.write_text(yaml.safe_dump(config))
     with pytest.raises(ValueError):
         configuration(path)
+
+
+def test_recovery_world_paces_physics_without_changing_step_or_geometry(tmp_path):
+    source, target = tmp_path/'source.sdf', tmp_path/'paced.sdf'
+    source.write_text('<sdf><world name="test"><physics name="native">'
+        '<max_step_size>0.001</max_step_size><real_time_factor>1</real_time_factor>'
+        '</physics><model name="floor"/></world></sdf>')
+    config = configuration()
+    layout = sample_layout(config,'clean',1511,0)
+    write_world(source,target,layout,tmp_path/'meshes',scheduling=config['simulation_scheduling'])
+    world = ET.parse(target).getroot().find('world')
+    assert world.findtext('physics/max_step_size') == '0.001'
+    assert world.findtext('physics/real_time_factor') == '0.2'
+    assert world.find('model').attrib == {'name':'floor'}

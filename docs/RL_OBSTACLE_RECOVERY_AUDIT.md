@@ -1,5 +1,7 @@
 # Audit và sửa luồng TD3, vượt gờ và phục hồi quỹ đạo Nino
 
+> Cập nhật 16/11/2026. Bounded trainer đã có. Gazebo B0 sàn sạch/gờ thấp/dốc 3° đạt; pothole timeout. TD3 Gazebo dừng trước transition đầu vì drive gap 52 ms. Xem [readiness mới nhất](RECOVERY_SIM_READINESS_2026-11-16.md). Các kết quả bên dưới là lịch sử.
+
 > Cập nhật 15/11/2026: engine recovery hiện đã chuyển sang contract v3, có speed target độc lập và dốc 3°/4°/5°. Xem [bản cập nhật terrain/speed/slope](RL_TERRAIN_SPEED_SLOPE_ALIGNMENT_2026-11-15.md). Các kết quả v2 và hai lượt readiness trong bài dưới đây là lịch sử, không phải qualification v3.
 
 

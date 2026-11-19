@@ -55,6 +55,30 @@ def test_start_yaw_uncertainty_is_coupled_to_remaining_distance():
     assert controller['backend']['initial_pose_xy_yaw'] == task['initial_pose_m_rad']
 
 
+@pytest.mark.parametrize('stop_radius', [.01, .031])
+def test_recovery_follower_obeys_configured_estimated_stop_radius(stop_radius):
+    from nino_rl.recovery_runner import runtime_configuration
+    from nino_rl.residual_guidance import PoseSample
+    from nino_rl.unknown_step_runtime import EstimatedGoalReference
+    config = configuration()
+    config['start_budget']['estimated_stop_m'] = stop_radius
+    StartBudget(**config['start_budget'])
+    layout = sample_layout(config, 'clean', 1511, 0)
+    _, guidance, _, _ = runtime_configuration(config, layout)
+    follower = EstimatedGoalReference(guidance, epoch='configured_stop_radius')
+    for stamp, distance, moving in [(1., stop_radius+.01, True),
+                                    (1.1, stop_radius*.99, False)]:
+        follower.update_pose(PoseSample(4.-distance, 0., 0., stamp, stamp,
+            guidance['pose_frame_id'], guidance['pose_source'],
+            guidance['clock_id'], 'configured_stop_radius'))
+        result = follower.command(stamp, permission=True)
+        assert result['valid']
+        if moving:
+            assert result['reference'][0] > 0.
+        else:
+            assert result['reference'] == [0., 0.]
+
+
 def test_clearance_is_not_recovery_and_one_frame_is_not_success():
     s = scorer()
     s.reset(point(0., 0.))

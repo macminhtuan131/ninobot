@@ -8,9 +8,12 @@ cruise_m_s: 0.2
 maximum_cross_track_m: 0.20
 source_age_s: 0.04
 continuous_stop_s: 2.0
+simulation_scheduling:
+  real_time_factor: 0.2
+  maximum_control_gap_s: 0.004
 start_budget:
   physical_goal_m: 0.05
-  estimated_stop_m: 0.03
+  estimated_stop_m: 0.01
   odometry_uncertainty_m: 0.005
   stopping_uncertainty_m: 0.005
   maximum_initial_error_m: 0.008
@@ -59,6 +62,7 @@ families:
     radius_m: [0.002, 0.003]
     angle_rad: [-0.35, 0.35]
   pothole:
+    floor_representation: tiles_and_patches
     depth_m: [0.003, 0.006]
     radius_m: [0.06, 0.09]
     lateral_m: [-0.18, 0.18]

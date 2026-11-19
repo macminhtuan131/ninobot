@@ -8,7 +8,8 @@ import time
 PREFIX='@@NINO_RESEARCH@@'
 MODULES={'nino_rl.training_studio_api','nino_rl.common_training_studio','nino_rl.td3_training_studio',
          'nino_rl.training_studio_api_v2','nino_rl.common_training_studio_v2',
-         'nino_rl.training_studio_api_v3','nino_rl.goal_training_studio'}
+         'nino_rl.training_studio_api_v3','nino_rl.goal_training_studio',
+         'nino_rl.recovery_v4_campaign','nino_rl.recovery_v4_training_studio'}
 
 
 def read_json(path,default=None):
@@ -42,6 +43,16 @@ def discover(roots=None,proc=Path('/proc')):
             root=Path(argv[argv.index('--output')+1]).expanduser().resolve()
             if roots is not None and root not in roots:continue
             request=read_json(request_path)
+            if isinstance(request,dict) and argv[argv.index('-m')+1]=='nino_rl.recovery_v4_campaign':
+                if 'train' not in argv:continue
+                progress=read_json(root/'progress.json',{})
+                result.append(dict(pid=int(process.name),start_time=process_identity(process),
+                    proc=str(process),root=str(root),directory=str(root),engine='recovery107_v4',
+                    request_path=str(request_path),request=dict(request,
+                        timesteps=request.get('transitions',0),scenario=request.get('families',['clean'])[0],
+                        profile='recovery_v4_research',wall_minutes=request.get('wall_seconds',0)//60),
+                    log_path=None,campaign_directory=None,native_campaign=True))
+                continue
             if not isinstance(request,dict) or type(request.get('timesteps')) is not int or request['timesteps']<=0:continue
             log=None
             try:
@@ -154,6 +165,26 @@ class LiveJob:
                     if match:self.event['critic_updates_reported']=int(match.group(1))
                 if event.get('message'):shown.append(event['message'])
             else:shown.append(line)
+        if self.worker.get('native_campaign'):
+            progress=self.document('progress.json',dict,{})
+            job=self.document('job.json',dict,{})
+            final=self.document('result.json',dict,{})
+            total=self.worker['request'].get('transitions',self.worker['request']['timesteps'])
+            current=progress.get('global_steps',0)
+            worker_alive=alive(self.worker)
+            status=progress.get('status','running')
+            if status=='running' and not worker_alive:status='worker_missing'
+            paths=[str(p.parent) for p in sorted((self.directory/'checkpoints').glob('step_*/manifest.json'))]
+            try:age=max(0,time.time()-(self.directory/'progress.json').stat().st_mtime)
+            except OSError:age=None
+            return dict(worker=self.worker,status=status,worker_alive=worker_alive,
+                directory=str(self.directory),starting_global_steps=self.start,global_steps=current,
+                additional_steps=max(0,current-self.start),total_steps=total,
+                progress=current/total if total else 0,phase=progress.get('phase','prepare'),
+                critic_updates=progress.get('critic_updates'),actor_updates=progress.get('actor_updates'),
+                critic_count_is_logged=False,result=final,final_result=bool(final),
+                error=progress.get('error') or job.get('error'),coverage={},checkpoints=paths,
+                evaluation_runs=0,log_lines=shown[-300:],log_age_s=age)
         job=self.document('job.json',dict,{})
         coverage=self.document('coverage.json',dict,{})
         final_result=self.document('result.json',dict,{})

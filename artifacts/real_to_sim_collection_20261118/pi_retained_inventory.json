@@ -1,0 +1,899 @@
+{
+  "captured_utc": "2026-11-18T04:19:45.226492+00:00",
+  "host": "d@192.168.0.112",
+  "scope": "Retained metadata and read-only SQLite topic counts for six known sessions. No live sensor readiness or motor test.",
+  "sessions": [
+    {
+      "session_id": "20261117_120235_ry42tV",
+      "metadata_message_count": 247935,
+      "storage_message_count": 247935,
+      "topics": [
+        {
+          "name": "/amcl_pose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 82
+        },
+        {
+          "name": "/cmd_vel",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 572
+        },
+        {
+          "name": "/cmd_vel_nav",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 554
+        },
+        {
+          "name": "/cmd_vel_smoothed",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 572
+        },
+        {
+          "name": "/collision_monitor_state",
+          "type": "nav2_msgs/msg/CollisionMonitorState",
+          "count": 0
+        },
+        {
+          "name": "/goal_pose",
+          "type": "geometry_msgs/msg/PoseStamped",
+          "count": 1
+        },
+        {
+          "name": "/imu/bridge",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 27652
+        },
+        {
+          "name": "/imu/data",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 27981
+        },
+        {
+          "name": "/imu/debug",
+          "type": "std_msgs/msg/Float64MultiArray",
+          "count": 2798
+        },
+        {
+          "name": "/initialpose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 2
+        },
+        {
+          "name": "/joint_states",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 27831
+        },
+        {
+          "name": "/map",
+          "type": "nav_msgs/msg/OccupancyGrid",
+          "count": 1
+        },
+        {
+          "name": "/motor_enable",
+          "type": "std_msgs/msg/Bool",
+          "count": 3
+        },
+        {
+          "name": "/motor_fb",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 27977
+        },
+        {
+          "name": "/motor_status",
+          "type": "std_msgs/msg/UInt8",
+          "count": 27976
+        },
+        {
+          "name": "/navigate_to_pose/_action/status",
+          "type": "action_msgs/msg/GoalStatusArray",
+          "count": 2
+        },
+        {
+          "name": "/odom",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 27137
+        },
+        {
+          "name": "/odom/unfiltered",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 27831
+        },
+        {
+          "name": "/plan",
+          "type": "nav_msgs/msg/Path",
+          "count": 28
+        },
+        {
+          "name": "/rosout",
+          "type": "rcl_interfaces/msg/Log",
+          "count": 666
+        },
+        {
+          "name": "/scan",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 3945
+        },
+        {
+          "name": "/scan_raw",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 3945
+        },
+        {
+          "name": "/tf",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 40378
+        },
+        {
+          "name": "/tf_static",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 1
+        }
+      ],
+      "config_sha256": {
+        "13_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "09_features.py": "762771035f66bedc45fb9bc0ce3dee3ba8bfed18f86bdf73c18219a64cbcf15b",
+        "08_node.py": "f39208d29bc5705e185677769b9e6067aeea25f350dc81062ade9cf44caabe97",
+        "14_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "12_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "16_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "10_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "02_hardware.local.json": "228549029dbc34731c9535d04bb94864d543e7b28a635dec0a484b6379040c8d",
+        "17_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "05_navigation_session.py": "6bcdd9305295d07f6833a55c19f31ddf935e76fa668b78c5606d526f7a5c67b8",
+        "01_phong_moi_20261117_113426.pgm": "7a6fa71fc94e08f586e1c00defc07c1619d22a4d949ec372e984495cd36b67f4",
+        "11_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "06_robot.launch.py": "30a68bbb8bc77999bb4765487eea345b2a6a308a1e2a31ce40debc8223587a74",
+        "03_measure_real_run.py": "8705aff889bc07aebc7fb38cf55a70e2c35b5ff4d07702d0f8e41f339b25b7f9",
+        "15_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "07_core.py": "9f80282368ad9dad81966f3e06e6ba1b9955e4da4de81e5b0dc34fb482b0ad8a",
+        "04_compare_real_runs.py": "fd4781b6331bf97aeb31679e85ecbf13f09f1357700e63a65a3d4e2d1d8c30c0",
+        "00_phong_moi_20261117_113426.yaml": "0bbe15d6d18976e4837173799ca69e28c45178900c69ab0dcafda407f336fbd0"
+      }
+    },
+    {
+      "session_id": "20261117_121346_5eVAXV",
+      "metadata_message_count": 45584,
+      "storage_message_count": 45584,
+      "topics": [
+        {
+          "name": "/amcl_pose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 54
+        },
+        {
+          "name": "/cmd_vel",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 1022
+        },
+        {
+          "name": "/cmd_vel_nav",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 1003
+        },
+        {
+          "name": "/cmd_vel_smoothed",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 1022
+        },
+        {
+          "name": "/collision_monitor_state",
+          "type": "nav2_msgs/msg/CollisionMonitorState",
+          "count": 0
+        },
+        {
+          "name": "/goal_pose",
+          "type": "geometry_msgs/msg/PoseStamped",
+          "count": 1
+        },
+        {
+          "name": "/imu/bridge",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 4652
+        },
+        {
+          "name": "/imu/data",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 4933
+        },
+        {
+          "name": "/imu/debug",
+          "type": "std_msgs/msg/Float64MultiArray",
+          "count": 493
+        },
+        {
+          "name": "/initialpose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 0
+        },
+        {
+          "name": "/joint_states",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 4744
+        },
+        {
+          "name": "/map",
+          "type": "nav_msgs/msg/OccupancyGrid",
+          "count": 1
+        },
+        {
+          "name": "/motor_enable",
+          "type": "std_msgs/msg/Bool",
+          "count": 1
+        },
+        {
+          "name": "/motor_fb",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 4933
+        },
+        {
+          "name": "/motor_status",
+          "type": "std_msgs/msg/UInt8",
+          "count": 4931
+        },
+        {
+          "name": "/navigate_to_pose/_action/status",
+          "type": "action_msgs/msg/GoalStatusArray",
+          "count": 2
+        },
+        {
+          "name": "/odom",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 4520
+        },
+        {
+          "name": "/odom/unfiltered",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 4744
+        },
+        {
+          "name": "/plan",
+          "type": "nav_msgs/msg/Path",
+          "count": 49
+        },
+        {
+          "name": "/rosout",
+          "type": "rcl_interfaces/msg/Log",
+          "count": 346
+        },
+        {
+          "name": "/scan",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 658
+        },
+        {
+          "name": "/scan_raw",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 658
+        },
+        {
+          "name": "/tf",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 6816
+        },
+        {
+          "name": "/tf_static",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 1
+        }
+      ],
+      "config_sha256": {
+        "13_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "17_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "09_features.py": "762771035f66bedc45fb9bc0ce3dee3ba8bfed18f86bdf73c18219a64cbcf15b",
+        "08_node.py": "f39208d29bc5705e185677769b9e6067aeea25f350dc81062ade9cf44caabe97",
+        "12_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "18_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "10_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "02_hardware.local.json": "228549029dbc34731c9535d04bb94864d543e7b28a635dec0a484b6379040c8d",
+        "05_navigation_session.py": "6bcdd9305295d07f6833a55c19f31ddf935e76fa668b78c5606d526f7a5c67b8",
+        "01_phong_moi_20261117_113426.pgm": "7a6fa71fc94e08f586e1c00defc07c1619d22a4d949ec372e984495cd36b67f4",
+        "15_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "11_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "16_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "06_robot.launch.py": "30a68bbb8bc77999bb4765487eea345b2a6a308a1e2a31ce40debc8223587a74",
+        "03_measure_real_run.py": "8705aff889bc07aebc7fb38cf55a70e2c35b5ff4d07702d0f8e41f339b25b7f9",
+        "07_core.py": "9f80282368ad9dad81966f3e06e6ba1b9955e4da4de81e5b0dc34fb482b0ad8a",
+        "14_initial_pose.json": "a73c15611ba1c0fe0a105cff2589878802fe0e5aeee305b75b4e0f6c8f8afd2c",
+        "04_compare_real_runs.py": "fd4781b6331bf97aeb31679e85ecbf13f09f1357700e63a65a3d4e2d1d8c30c0",
+        "00_phong_moi_20261117_113426.yaml": "0bbe15d6d18976e4837173799ca69e28c45178900c69ab0dcafda407f336fbd0"
+      }
+    },
+    {
+      "session_id": "20261117_121720_h1RvN8",
+      "metadata_message_count": 63944,
+      "storage_message_count": 63944,
+      "topics": [
+        {
+          "name": "/amcl_pose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 83
+        },
+        {
+          "name": "/cmd_vel",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 1777
+        },
+        {
+          "name": "/cmd_vel_nav",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 1702
+        },
+        {
+          "name": "/cmd_vel_smoothed",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 1777
+        },
+        {
+          "name": "/collision_monitor_state",
+          "type": "nav2_msgs/msg/CollisionMonitorState",
+          "count": 0
+        },
+        {
+          "name": "/goal_pose",
+          "type": "geometry_msgs/msg/PoseStamped",
+          "count": 1
+        },
+        {
+          "name": "/imu/bridge",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 6509
+        },
+        {
+          "name": "/imu/data",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 6697
+        },
+        {
+          "name": "/imu/debug",
+          "type": "std_msgs/msg/Float64MultiArray",
+          "count": 670
+        },
+        {
+          "name": "/initialpose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 0
+        },
+        {
+          "name": "/joint_states",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 6584
+        },
+        {
+          "name": "/map",
+          "type": "nav_msgs/msg/OccupancyGrid",
+          "count": 1
+        },
+        {
+          "name": "/motor_enable",
+          "type": "std_msgs/msg/Bool",
+          "count": 1
+        },
+        {
+          "name": "/motor_fb",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 6697
+        },
+        {
+          "name": "/motor_status",
+          "type": "std_msgs/msg/UInt8",
+          "count": 6697
+        },
+        {
+          "name": "/navigate_to_pose/_action/status",
+          "type": "action_msgs/msg/GoalStatusArray",
+          "count": 2
+        },
+        {
+          "name": "/odom",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 6332
+        },
+        {
+          "name": "/odom/unfiltered",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 6584
+        },
+        {
+          "name": "/plan",
+          "type": "nav_msgs/msg/Path",
+          "count": 84
+        },
+        {
+          "name": "/rosout",
+          "type": "rcl_interfaces/msg/Log",
+          "count": 421
+        },
+        {
+          "name": "/scan",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 904
+        },
+        {
+          "name": "/scan_raw",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 904
+        },
+        {
+          "name": "/tf",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 9516
+        },
+        {
+          "name": "/tf_static",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 1
+        }
+      ],
+      "config_sha256": {
+        "13_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "17_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "09_features.py": "762771035f66bedc45fb9bc0ce3dee3ba8bfed18f86bdf73c18219a64cbcf15b",
+        "08_node.py": "f39208d29bc5705e185677769b9e6067aeea25f350dc81062ade9cf44caabe97",
+        "12_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "18_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "10_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "02_hardware.local.json": "228549029dbc34731c9535d04bb94864d543e7b28a635dec0a484b6379040c8d",
+        "05_navigation_session.py": "6bcdd9305295d07f6833a55c19f31ddf935e76fa668b78c5606d526f7a5c67b8",
+        "01_phong_moi_20261117_113426.pgm": "7a6fa71fc94e08f586e1c00defc07c1619d22a4d949ec372e984495cd36b67f4",
+        "15_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "11_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "16_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "06_robot.launch.py": "30a68bbb8bc77999bb4765487eea345b2a6a308a1e2a31ce40debc8223587a74",
+        "03_measure_real_run.py": "8705aff889bc07aebc7fb38cf55a70e2c35b5ff4d07702d0f8e41f339b25b7f9",
+        "07_core.py": "9f80282368ad9dad81966f3e06e6ba1b9955e4da4de81e5b0dc34fb482b0ad8a",
+        "14_initial_pose.json": "a73c15611ba1c0fe0a105cff2589878802fe0e5aeee305b75b4e0f6c8f8afd2c",
+        "04_compare_real_runs.py": "fd4781b6331bf97aeb31679e85ecbf13f09f1357700e63a65a3d4e2d1d8c30c0",
+        "00_phong_moi_20261117_113426.yaml": "0bbe15d6d18976e4837173799ca69e28c45178900c69ab0dcafda407f336fbd0"
+      }
+    },
+    {
+      "session_id": "20261117_122123_NbHSXj",
+      "metadata_message_count": 31120,
+      "storage_message_count": 31120,
+      "topics": [
+        {
+          "name": "/amcl_pose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 51
+        },
+        {
+          "name": "/cmd_vel",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 526
+        },
+        {
+          "name": "/cmd_vel_nav",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 512
+        },
+        {
+          "name": "/cmd_vel_smoothed",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 530
+        },
+        {
+          "name": "/collision_monitor_state",
+          "type": "nav2_msgs/msg/CollisionMonitorState",
+          "count": 0
+        },
+        {
+          "name": "/goal_pose",
+          "type": "geometry_msgs/msg/PoseStamped",
+          "count": 1
+        },
+        {
+          "name": "/imu/bridge",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 3216
+        },
+        {
+          "name": "/imu/data",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 3451
+        },
+        {
+          "name": "/imu/debug",
+          "type": "std_msgs/msg/Float64MultiArray",
+          "count": 345
+        },
+        {
+          "name": "/initialpose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 0
+        },
+        {
+          "name": "/joint_states",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 3281
+        },
+        {
+          "name": "/map",
+          "type": "nav_msgs/msg/OccupancyGrid",
+          "count": 1
+        },
+        {
+          "name": "/motor_enable",
+          "type": "std_msgs/msg/Bool",
+          "count": 1
+        },
+        {
+          "name": "/motor_fb",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 3451
+        },
+        {
+          "name": "/motor_status",
+          "type": "std_msgs/msg/UInt8",
+          "count": 3451
+        },
+        {
+          "name": "/navigate_to_pose/_action/status",
+          "type": "action_msgs/msg/GoalStatusArray",
+          "count": 2
+        },
+        {
+          "name": "/odom",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 3092
+        },
+        {
+          "name": "/odom/unfiltered",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 3281
+        },
+        {
+          "name": "/plan",
+          "type": "nav_msgs/msg/Path",
+          "count": 26
+        },
+        {
+          "name": "/rosout",
+          "type": "rcl_interfaces/msg/Log",
+          "count": 307
+        },
+        {
+          "name": "/scan",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 463
+        },
+        {
+          "name": "/scan_raw",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 463
+        },
+        {
+          "name": "/tf",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 4668
+        },
+        {
+          "name": "/tf_static",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 1
+        }
+      ],
+      "config_sha256": {
+        "13_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "17_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "09_features.py": "762771035f66bedc45fb9bc0ce3dee3ba8bfed18f86bdf73c18219a64cbcf15b",
+        "08_node.py": "f39208d29bc5705e185677769b9e6067aeea25f350dc81062ade9cf44caabe97",
+        "12_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "18_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "10_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "02_hardware.local.json": "228549029dbc34731c9535d04bb94864d543e7b28a635dec0a484b6379040c8d",
+        "05_navigation_session.py": "6bcdd9305295d07f6833a55c19f31ddf935e76fa668b78c5606d526f7a5c67b8",
+        "01_phong_moi_20261117_113426.pgm": "7a6fa71fc94e08f586e1c00defc07c1619d22a4d949ec372e984495cd36b67f4",
+        "15_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "11_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "16_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "06_robot.launch.py": "30a68bbb8bc77999bb4765487eea345b2a6a308a1e2a31ce40debc8223587a74",
+        "03_measure_real_run.py": "8705aff889bc07aebc7fb38cf55a70e2c35b5ff4d07702d0f8e41f339b25b7f9",
+        "07_core.py": "9f80282368ad9dad81966f3e06e6ba1b9955e4da4de81e5b0dc34fb482b0ad8a",
+        "14_initial_pose.json": "a73c15611ba1c0fe0a105cff2589878802fe0e5aeee305b75b4e0f6c8f8afd2c",
+        "04_compare_real_runs.py": "fd4781b6331bf97aeb31679e85ecbf13f09f1357700e63a65a3d4e2d1d8c30c0",
+        "00_phong_moi_20261117_113426.yaml": "0bbe15d6d18976e4837173799ca69e28c45178900c69ab0dcafda407f336fbd0"
+      }
+    },
+    {
+      "session_id": "20261117_122526_OwllD9",
+      "metadata_message_count": 30757,
+      "storage_message_count": 30757,
+      "topics": [
+        {
+          "name": "/amcl_pose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 58
+        },
+        {
+          "name": "/cmd_vel",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 556
+        },
+        {
+          "name": "/cmd_vel_nav",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 538
+        },
+        {
+          "name": "/cmd_vel_smoothed",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 556
+        },
+        {
+          "name": "/collision_monitor_state",
+          "type": "nav2_msgs/msg/CollisionMonitorState",
+          "count": 2
+        },
+        {
+          "name": "/goal_pose",
+          "type": "geometry_msgs/msg/PoseStamped",
+          "count": 1
+        },
+        {
+          "name": "/imu/bridge",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 3215
+        },
+        {
+          "name": "/imu/data",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 3317
+        },
+        {
+          "name": "/imu/debug",
+          "type": "std_msgs/msg/Float64MultiArray",
+          "count": 332
+        },
+        {
+          "name": "/initialpose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 0
+        },
+        {
+          "name": "/joint_states",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 3281
+        },
+        {
+          "name": "/map",
+          "type": "nav_msgs/msg/OccupancyGrid",
+          "count": 1
+        },
+        {
+          "name": "/motor_enable",
+          "type": "std_msgs/msg/Bool",
+          "count": 1
+        },
+        {
+          "name": "/motor_fb",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 3338
+        },
+        {
+          "name": "/motor_status",
+          "type": "std_msgs/msg/UInt8",
+          "count": 3334
+        },
+        {
+          "name": "/navigate_to_pose/_action/status",
+          "type": "action_msgs/msg/GoalStatusArray",
+          "count": 2
+        },
+        {
+          "name": "/odom",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 3099
+        },
+        {
+          "name": "/odom/unfiltered",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 3281
+        },
+        {
+          "name": "/plan",
+          "type": "nav_msgs/msg/Path",
+          "count": 27
+        },
+        {
+          "name": "/rosout",
+          "type": "rcl_interfaces/msg/Log",
+          "count": 308
+        },
+        {
+          "name": "/scan",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 450
+        },
+        {
+          "name": "/scan_raw",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 451
+        },
+        {
+          "name": "/tf",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 4608
+        },
+        {
+          "name": "/tf_static",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 1
+        }
+      ],
+      "config_sha256": {
+        "13_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "17_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "09_features.py": "762771035f66bedc45fb9bc0ce3dee3ba8bfed18f86bdf73c18219a64cbcf15b",
+        "08_node.py": "f39208d29bc5705e185677769b9e6067aeea25f350dc81062ade9cf44caabe97",
+        "12_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "18_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "10_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "02_hardware.local.json": "228549029dbc34731c9535d04bb94864d543e7b28a635dec0a484b6379040c8d",
+        "05_navigation_session.py": "6bcdd9305295d07f6833a55c19f31ddf935e76fa668b78c5606d526f7a5c67b8",
+        "01_phong_moi_20261117_113426.pgm": "7a6fa71fc94e08f586e1c00defc07c1619d22a4d949ec372e984495cd36b67f4",
+        "15_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "11_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "16_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "06_robot.launch.py": "30a68bbb8bc77999bb4765487eea345b2a6a308a1e2a31ce40debc8223587a74",
+        "03_measure_real_run.py": "8705aff889bc07aebc7fb38cf55a70e2c35b5ff4d07702d0f8e41f339b25b7f9",
+        "07_core.py": "9f80282368ad9dad81966f3e06e6ba1b9955e4da4de81e5b0dc34fb482b0ad8a",
+        "14_initial_pose.json": "a73c15611ba1c0fe0a105cff2589878802fe0e5aeee305b75b4e0f6c8f8afd2c",
+        "04_compare_real_runs.py": "fd4781b6331bf97aeb31679e85ecbf13f09f1357700e63a65a3d4e2d1d8c30c0",
+        "00_phong_moi_20261117_113426.yaml": "0bbe15d6d18976e4837173799ca69e28c45178900c69ab0dcafda407f336fbd0"
+      }
+    },
+    {
+      "session_id": "20261117_122752_FYBrKr",
+      "metadata_message_count": 65839,
+      "storage_message_count": 65839,
+      "topics": [
+        {
+          "name": "/amcl_pose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 51
+        },
+        {
+          "name": "/cmd_vel",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 567
+        },
+        {
+          "name": "/cmd_vel_nav",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 555
+        },
+        {
+          "name": "/cmd_vel_smoothed",
+          "type": "geometry_msgs/msg/Twist",
+          "count": 573
+        },
+        {
+          "name": "/collision_monitor_state",
+          "type": "nav2_msgs/msg/CollisionMonitorState",
+          "count": 0
+        },
+        {
+          "name": "/goal_pose",
+          "type": "geometry_msgs/msg/PoseStamped",
+          "count": 1
+        },
+        {
+          "name": "/imu/bridge",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 7159
+        },
+        {
+          "name": "/imu/data",
+          "type": "sensor_msgs/msg/Imu",
+          "count": 7292
+        },
+        {
+          "name": "/imu/debug",
+          "type": "std_msgs/msg/Float64MultiArray",
+          "count": 729
+        },
+        {
+          "name": "/initialpose",
+          "type": "geometry_msgs/msg/PoseWithCovarianceStamped",
+          "count": 0
+        },
+        {
+          "name": "/joint_states",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 7211
+        },
+        {
+          "name": "/map",
+          "type": "nav_msgs/msg/OccupancyGrid",
+          "count": 1
+        },
+        {
+          "name": "/motor_enable",
+          "type": "std_msgs/msg/Bool",
+          "count": 2
+        },
+        {
+          "name": "/motor_fb",
+          "type": "sensor_msgs/msg/JointState",
+          "count": 7307
+        },
+        {
+          "name": "/motor_status",
+          "type": "std_msgs/msg/UInt8",
+          "count": 7285
+        },
+        {
+          "name": "/navigate_to_pose/_action/status",
+          "type": "action_msgs/msg/GoalStatusArray",
+          "count": 2
+        },
+        {
+          "name": "/odom",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 7026
+        },
+        {
+          "name": "/odom/unfiltered",
+          "type": "nav_msgs/msg/Odometry",
+          "count": 7211
+        },
+        {
+          "name": "/plan",
+          "type": "nav_msgs/msg/Path",
+          "count": 28
+        },
+        {
+          "name": "/rosout",
+          "type": "rcl_interfaces/msg/Log",
+          "count": 305
+        },
+        {
+          "name": "/scan",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 1008
+        },
+        {
+          "name": "/scan_raw",
+          "type": "sensor_msgs/msg/LaserScan",
+          "count": 1008
+        },
+        {
+          "name": "/tf",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 10517
+        },
+        {
+          "name": "/tf_static",
+          "type": "tf2_msgs/msg/TFMessage",
+          "count": 1
+        }
+      ],
+      "config_sha256": {
+        "13_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "17_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "09_features.py": "762771035f66bedc45fb9bc0ce3dee3ba8bfed18f86bdf73c18219a64cbcf15b",
+        "08_node.py": "f39208d29bc5705e185677769b9e6067aeea25f350dc81062ade9cf44caabe97",
+        "12_bridge.yaml": "3581afddcd86a2f27acf1a68e8528c8055eaa580494344d8ccaac2b361d43e1c",
+        "18_nav2.yaml": "ef19fa08d93a2ea0e58af64201cda35c8c4dad1d60a9293967fc97870b87bb79",
+        "10_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "02_hardware.local.json": "228549029dbc34731c9535d04bb94864d543e7b28a635dec0a484b6379040c8d",
+        "05_navigation_session.py": "6bcdd9305295d07f6833a55c19f31ddf935e76fa668b78c5606d526f7a5c67b8",
+        "01_phong_moi_20261117_113426.pgm": "7a6fa71fc94e08f586e1c00defc07c1619d22a4d949ec372e984495cd36b67f4",
+        "15_real.yaml": "47f4f674c613bc77de67988c97e29d7fd8ac3b812d7d84fd308981b0e930b9f9",
+        "11_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "16_robot.yaml": "d0bab6bbd739c259aa000dfdd8f30496269033e2979980e273c196c278f17f72",
+        "06_robot.launch.py": "30a68bbb8bc77999bb4765487eea345b2a6a308a1e2a31ce40debc8223587a74",
+        "03_measure_real_run.py": "8705aff889bc07aebc7fb38cf55a70e2c35b5ff4d07702d0f8e41f339b25b7f9",
+        "07_core.py": "9f80282368ad9dad81966f3e06e6ba1b9955e4da4de81e5b0dc34fb482b0ad8a",
+        "14_initial_pose.json": "a73c15611ba1c0fe0a105cff2589878802fe0e5aeee305b75b4e0f6c8f8afd2c",
+        "04_compare_real_runs.py": "fd4781b6331bf97aeb31679e85ecbf13f09f1357700e63a65a3d4e2d1d8c30c0",
+        "00_phong_moi_20261117_113426.yaml": "0bbe15d6d18976e4837173799ca69e28c45178900c69ab0dcafda407f336fbd0"
+      }
+    }
+  ],
+  "available_frame_tools": {
+    "collect_imu_frame.py": true,
+    "collect_imu_frame.sh": true,
+    "evaluate_frame.py": true
+  }
+}

@@ -91,7 +91,7 @@ class FakeInner:
         scalar = float(action[0])
         return self.observation.copy(), 1., term, trunc, dict(task=outcome,
             observation=previous.tolist(), next_observation=self.observation.tolist(),
-            requested_scalar_action=scalar, replay_action=[scalar],
+            requested_scalar_action=[scalar], replay_action=[scalar],
             physical_sample=dict(stamp_s=self.n*.1))
 
 
@@ -275,6 +275,34 @@ def test_td3_stores_384_requested_actions_and_three_terminal_observations(tmp_pa
         inspect_recovery_checkpoint(result['checkpoint'])
 
 
+def test_actual_recovery_environment_action_trace_matches_sb3_replay(tmp_path, monkeypatch):
+    from dataclasses import asdict
+    from nino_rl import unknown_step_plan
+    req = request(tmp_path, ('clean',))
+    bank = qualified(tmp_path, ('clean',))
+    task = asdict(unknown_step_plan.task_settings(dict(
+        corners_m=[(x,y,z) for x in (-.3,.3) for y in (-.25,.25) for z in (-.05,.2)],
+        sha256='software_fixture'), dict(bump_x_m=None)))
+    task.update(route_m=bank.bank['config']['route_m'], maximum_seconds=40.)
+    bank.bank['layouts'][0]['task_settings'] = task
+    class IdealLifecycle(FakeLifecycle):
+        def reset(self, seed=None):
+            super().reset(seed)
+            self.current = runner.SoftwareFixtureBackend(self.config)
+            return self.current.reset(seed)
+
+        def advance_reference(self, *args):
+            return self.current.advance_reference(*args)
+    out = tmp_path/'learn'
+    out.mkdir()
+    backend = IdealLifecycle(out)
+    env = RecoveryBankEnv(out,req,bank,lifecycle=backend,qc=fixture_qc)
+    monkeypatch.setattr(training,'RecoveryBankEnv',lambda *_:env)
+    result = training._learn(out,req,bank,dict(checkpoint_kind=CHECKPOINT_KIND,test_fixture=True))
+    assert result['global_transitions'] == result['replay_rows_verified'] == 384
+    assert result['actor_updates'] > 0 and result['critic_updates'] > 0
+
+
 def test_physical_failure_consumes_four_launches_without_extra_reset(tmp_path, monkeypatch):
     req, env, backend, identity, out = run_fixture_optimizer(tmp_path, monkeypatch, terminal_at=3)
     result = training._learn(out, req, env.qualified, identity)
@@ -287,6 +315,7 @@ def test_physical_failure_consumes_four_launches_without_extra_reset(tmp_path, m
 
 
 @pytest.mark.parametrize('faults,prefix,attempts', [
+    (dict(fail_step=(0, 1)), 0, 1),
     (dict(fail_reset=1), 2, 2), (dict(fail_step=(0, 2)), 1, 1),
     (dict(fail_close=True), 2, 1)])
 def test_failed_attempt_keeps_stored_prefix_and_diagnostic_bundle(tmp_path, monkeypatch,
@@ -298,6 +327,7 @@ def test_failed_attempt_keeps_stored_prefix_and_diagnostic_bundle(tmp_path, monk
     assert result['global_transitions'] == result['replay_rows_verified'] == prefix
     assert result['launch_attempts'] == attempts
     assert result['status'] == 'failed' and result['checkpoint_qualified'] is False
+    assert result['stop_reason'] == 'exception'
     inspect_recovery_checkpoint(result['checkpoint'], expected_identity=identity)
     with pytest.raises(ValueError, match='Diagnostic'):
         inspect_recovery_checkpoint(result['checkpoint'], require_resumable=True)

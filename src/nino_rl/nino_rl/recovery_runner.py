@@ -44,13 +44,15 @@ def runtime_configuration(config, layout):
                         command_until_s=config['horizon_s'], max_episodes=1,
                         cruise_m_s=config['cruise_m_s'],
                         startup_initialization=INITIALIZATION_ID,
+                        simulation_scheduling=config['simulation_scheduling'],
                         simulation_runtime=dependency_identity(),
                         initial_pose_xy_yaw=layout['initial_pose_xy_yaw'])
     c['task'].update(command_until_s=config['horizon_s'], horizon_s=config['horizon_s'])
     g.update(baseline_id=CONTRACT_ID+'_follower', path_points_m=config['route_m'],
              goal_tolerance_m=config['start_budget']['estimated_stop_m'],
              maximum_corridor_error_m=config['maximum_cross_track_m'])
-    g['navigation']['straight_speed_m_s'] = config['cruise_m_s']
+    g['navigation'].update(straight_speed_m_s=config['cruise_m_s'],
+                           goal_stop_tolerance_m=config['start_budget']['estimated_stop_m'])
     task.update(protocol_id=CONTRACT_ID, command_until_s=config['horizon_s'],
                 horizon_s=config['horizon_s'], warmup_s=.5,
                 initial_pose_m_rad=list(layout['initial_pose_xy_yaw']))

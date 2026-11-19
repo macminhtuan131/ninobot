@@ -19,6 +19,7 @@
     {"name": "/scan_raw", "required": false, "purpose": "Original LiDAR messages before deskew if available."},
     {"name": "/tf", "required": false, "purpose": "Dynamic frame context and odometry TF if running."},
     {"name": "/cmd_vel_teleop", "required": false, "purpose": "Source request if this source is actually used; make required in a run-specific full-chain contract."},
+    {"name": "/cmd_vel_nav", "required": false, "purpose": "Nav2 source observed in Pi .112 bags on 17 November. Make required when claiming navigation source-to-final tracing."},
     {"name": "/teleop/cmd_vel", "required": false, "purpose": "Alternative Pi teleop source if actually used. Recording does not start that teleop guard."},
     {"name": "/cmd_vel_selected", "required": false, "purpose": "Selected reference if this stage exists; not an actuator target."},
     {"name": "/cmd_vel_smoothed", "required": false, "purpose": "Reference after shaping if this stage exists; preserve separately from final command."},
@@ -30,6 +31,14 @@
     {"name": "/imu/bridge", "required": false, "purpose": "Derived IMU for checking raw/bridge correspondence."},
     {"name": "/odom/unfiltered", "required": false, "purpose": "Encoder odometry with declared geometry, not body ground truth."},
     {"name": "/odom", "required": false, "purpose": "Estimator output; not independent truth when encoder/IMU are fused."},
-    {"name": "/diagnostics", "required": false, "purpose": "Existing system/driver fault reports if published."}
+    {"name": "/diagnostics", "required": false, "purpose": "Existing system/driver fault reports if published."},
+    {"name": "/imu/debug", "required": false, "purpose": "Raw diagnostic channel observed on Pi .112; retain original type/fields without assuming calibrated axes or units."},
+    {"name": "/amcl_pose", "required": false, "purpose": "Localization context observed on Pi .112. Not independently validated body ground truth."},
+    {"name": "/plan", "required": false, "purpose": "Navigation reference path for reconstructing task context."},
+    {"name": "/map", "required": false, "purpose": "Latched occupancy map context. Save the original map files and configuration separately too."},
+    {"name": "/goal_pose", "required": false, "purpose": "Observed goal requests, distinct from the accepted action goal and its outcome."},
+    {"name": "/initialpose", "required": false, "purpose": "Observed localization initialization requests, not measured initial body pose."},
+    {"name": "/navigate_to_pose/_action/status", "required": false, "purpose": "Navigation action state changes. Save the operator outcome and failure reason separately."},
+    {"name": "/rosout", "required": false, "purpose": "Runtime warnings and faults as context; not a substitute for raw sensor data."}
   ]
 }

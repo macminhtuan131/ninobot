@@ -143,6 +143,8 @@ class DashboardReader:
         self.evaluation_reader=None
         request=read_json(self.directory/'request.json') or read_json(self.directory/'job.json',{}).get('request',{})
         self.request=request
+        self.native_campaign='transitions' in request
+        self.native_trace_index=0
         if request.get('resume'):
             p=Path(request['resume']).expanduser();p=p.parent if p.is_file() else p
             meta=read_json(p/'checkpoint.json',{})
@@ -150,6 +152,21 @@ class DashboardReader:
         self.trace=self.directory/'environment_trace.jsonl'
         if not self.trace.is_file():self.trace=self.directory/'training_trace.jsonl'
     def poll(self,interrupted=lambda:False):
+        snapshot=None
+        for _ in range(32 if self.native_campaign else 1):
+            cursor=self.native_trace_index
+            snapshot=self._poll_once(interrupted)
+            if interrupted() or self.native_trace_index==cursor:break
+        return snapshot
+
+    def _poll_once(self,interrupted=lambda:False):
+        if self.native_campaign:
+            files=sorted((self.directory/'episode_records').glob('episode_*/environment_trace.jsonl'),
+                key=lambda p:int(p.parent.name.split('_')[-1]))
+            if self.native_trace_index<len(files):
+                target=files[self.native_trace_index]
+                if target!=self.trace:
+                    self.trace=target;self.offset=0;self.buffer=b'';self.inode=None
         if self.offset==0 and (self.directory/'environment_trace.jsonl').is_file():self.trace=self.directory/'environment_trace.jsonl'
         try:
             stat=self.trace.stat();identity=(stat.st_dev,stat.st_ino)
@@ -166,11 +183,19 @@ class DashboardReader:
                 except ValueError:
                     self.errors.append('JSONL lỗi trước EOF; global offset từ đó chưa xác định, không suy diễn episode')
                     self.start_known=False;continue
+                if self.native_campaign:
+                    sample=row.get('physical_sample',{})
+                    values=sample.get('pose_m_rad',[])
+                    if len(values)==6:row['truth_pose_m_rad']=[values[0],values[1],values[5]]
+                    task=dict(row.get('task',{}))
+                    if finite(task.get('target_speed_error_m_s')):
+                        task['velocity_error_m_s']=task['target_speed_error_m_s']
+                    row['task']=task
                 self.total+=1
                 index=row.get('episode')
                 if index is None:
                     index=0 if self.current is None else self.current.index+int(bool(self.current.last.get('done')))
-                step=row.get('timestep',self.start+self.total if self.start_known else None)
+                step=row.get('global_step',row.get('timestep',self.start+self.total if self.start_known else None))
                 if self.current is None or index!=self.current.index:
                     if self.current:self.episodes.append(self.current.summary('closed' if not self.current.last.get('done') else 'running'))
                     self.current=Episode(index,step)
@@ -178,7 +203,9 @@ class DashboardReader:
             backlog=max(0,stat.st_size-self.offset)
         except FileNotFoundError:backlog=0
         except (OSError,ValueError,TypeError) as exc:self.errors.append(str(exc));backlog=0
-        job=read_json(self.directory/'job.json',{});status=job.get('status','unknown')
+        job=read_json(self.directory/'job.json',{});status=job.get('status',read_json(self.directory/'progress.json',{}).get('status','unknown'))
+        if self.native_campaign and self.current and self.current.last.get('done') and not backlog:
+            if self.native_trace_index+1<len(files):self.native_trace_index+=1
         episodes=list(self.episodes)
         if self.current:episodes.append(self.current.summary(status if not backlog else 'running'))
         # A reset (including SB3's final auto-reset) can publish the NEXT world
@@ -203,6 +230,7 @@ class DashboardReader:
             if not self.config:self.config=read_json(self.directory/'training_config.json',{})
         reset=self.config.get('reset',{})
         path=reset.get('guidance_contract',{}).get('configuration',{}).get('path_points_m',[])
+        if not path:path=self.config.get('environment_identity',{}).get('task',{}).get('route_m',[])
         checkpoints=[]
         for p in sorted((self.directory/'checkpoints').glob('*/checkpoint.json')):
             if p.parent.name.startswith('.') or not (p.parent/'manifest.json').is_file():continue
@@ -211,7 +239,7 @@ class DashboardReader:
                 if meta:self.checkpoint_cache[str(p)]=meta
             meta=self.checkpoint_cache.get(str(p),{});global_step=meta.get('global_steps')
             included=[e for e in episodes if e['end_step'] is not None and global_step is not None and e['end_step']<=global_step]
-            checkpoints.append(dict(path=str(p.parent),global_steps=global_step,critic_updates=meta.get('optimizer_updates'),
+            checkpoints.append(dict(path=str(p.parent),global_steps=global_step,critic_updates=meta.get('critic_updates',meta.get('optimizer_updates')),
                 replay_size=meta.get('replay_size'),reason=meta.get('reason'),window=window_statistics(included),
                 trace_caught_up=self.start_known and global_step is not None and self.start+self.total>=global_step))
         current=self.current.summary(status) if self.current else {}

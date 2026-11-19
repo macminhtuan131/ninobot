@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "purpose": "Operator annotations for a retained real-to-sim trial. Not controller configuration or a motion release. Save outside the sealed raw session.",
+  "session_id": null,
+  "raw_manifest_path_sha256": null,
+  "raw_sha256_manifest_path_sha256": null,
+  "protocol_path_sha256": null,
+  "collection_profile_path_sha256": null,
+  "condition_id": null,
+  "repetition_index": null,
+  "dataset_split": null,
+  "dataset_split_options": ["development", "held_out"],
+  "split_declared_before_capture_evidence": null,
+  "surface_payload_geometry_caster_condition_evidence": null,
+  "source_config_snapshot_paths_sha256": [],
+  "actual_motion_protocol_and_limits_evidence": null,
+  "event_time_basis": {
+    "clock_domain": null,
+    "host_boot_id": null,
+    "origin_definition": null,
+    "relation_to_bag_receipt_clock": null,
+    "offset_uncertainty_s": null,
+    "drift_bound_s": null,
+    "note": "Operator timestamps are labels with uncertainty. They do not establish exact command execution or body response times."
+  },
+  "event_name_options": ["baseline_start", "reference_ramp_start", "hold_start", "zero_request", "physical_rest_observed", "trial_end", "abort", "contact_observed"],
+  "event_entry_template": {
+    "name": null,
+    "time_s_from_origin": null,
+    "time_uncertainty_s": null,
+    "source_operator_or_artifact": null,
+    "evidence_path_sha256": null
+  },
+  "events": [],
+  "body_reference_path_sha256": null,
+  "outcome": null,
+  "abort_or_failure_or_censoring_reason": null,
+  "qc": {
+    "raw_closure_and_hashes_verified": null,
+    "required_topic_types_mapping_units_verified": null,
+    "command_and_feedback_window_gap_summary_path_sha256": null,
+    "conflicting_torque_or_mit_requests_present": null,
+    "firmware_mode_owner_and_stop_evidence_reviewed": null,
+    "imu_mounting_reconciled_for_body_xyz": null,
+    "eligible_claim_and_exclusions": null,
+    "physical_calibration_accepted": false,
+    "td3_replay_eligible": false
+  }
+}

@@ -20,16 +20,29 @@ class TrainingRunner(C.QObject):
         from nino_rl.training_studio_api_v3 import validate_request
         if self.busy:return False
         request=validate_request(request);root=Path(root).expanduser().resolve()
+        native_qualify=request.get('engine')=='recovery107_v4' and request.get('mode')=='qualify'
         (root/'requests').mkdir(parents=True,exist_ok=True);token=uuid.uuid4().hex
-        path=root/'requests'/(token+'.json');path.write_text(json.dumps(request,indent=2)+'\n')
+        path=root/'requests'/(token+'.json')
+        if native_qualify:
+            from nino_rl.recovery_v4_studio_contract import canonical_request
+            native=dict(request,schema_version=1)
+            native.pop('engine',None)
+            path.write_text(json.dumps(canonical_request(native),indent=2)+'\n')
+        else:path.write_text(json.dumps(request,indent=2)+'\n')
         (root/'ui_logs').mkdir(exist_ok=True);self.log_path=root/'ui_logs'/(token+'.log')
         self.last={};self.buffer=b'';self.cancelling=False
-        script=('goal_training_studio.sh' if request.get('engine')=='unknown_goal100_v1' else
+        script=('recovery_v4_training_studio.sh' if request.get('engine')=='recovery107_v4' else
+                'goal_training_studio.sh' if request.get('engine')=='unknown_goal100_v1' else
                 'common_training_studio_v2.sh' if request.get('engine')=='common103_v2' else 'common_training_studio.sh')
         p=C.QProcess(self);self.process=p;p.setProcessChannelMode(C.QProcess.MergedChannels)
         p.readyReadStandardOutput.connect(self.read);p.finished.connect(self.finish);p.errorOccurred.connect(self.error)
-        p.start('/usr/bin/setsid',['/bin/bash',str(repository()/'src/nino_rl/scripts'/script),
-            '--request',str(path),'--output',str(root)])
+        arguments=['/bin/bash',str(repository()/'src/nino_rl/scripts'/script),'--request',str(path),'--output',str(root)]
+        if native_qualify:
+            directory=Path(request['prepared_root']).expanduser()/'qualification'
+            arguments=['/bin/bash',str(repository()/'src/nino_rl/scripts/recovery_v4_campaign.sh'),'qualify',
+                '--request',str(path),'--output',str(directory)]
+            self.update.emit(dict(directory=str(directory),phase='qualification',message='Gazebo qualification, 3 frozen baselines.'))
+        p.start('/usr/bin/setsid',arguments)
         return True
     def read(self):
         if not self.process:return
@@ -111,6 +124,8 @@ class TD3TrainingPanel(Q.QWidget):
         # Keep live state above the parameter form, visible without scrolling.
         self.progress=Q.QProgressBar();layout.addWidget(self.progress)
         self.status=Q.QLabel('Chưa chạy. Smoke dùng model mới/profile smoke; Train dùng số bước bạn nhập.');self.status.setWordWrap(True);layout.addWidget(self.status)
+        self.live_workers=Q.QComboBox();self.live_workers.currentIndexChanged.connect(self.select_live_worker)
+        layout.addWidget(self.live_workers)
         live_row=Q.QHBoxLayout();self.find_live_button=Q.QPushButton('Theo dõi lượt train đang chạy')
         self.find_live_button.clicked.connect(self.find_live);live_row.addWidget(self.find_live_button)
         self.live_note=Q.QLabel('Tự tìm worker local; có thể mở lại Studio trong khi job đang chạy.')
@@ -126,6 +141,11 @@ class TD3TrainingPanel(Q.QWidget):
         self.engine=Q.QComboBox()
         for name,label in ENGINES.items():self.engine.addItem(label,name)
         form.addRow('Contract / trainer',self.engine)
+        self.prepared_root=Q.QLineEdit(str(Path.home()/'nino_research/recovery_v4_prepared_20261119_02'))
+        form.addRow('Prepared root v4',self.prepared_root)
+        self.qualify_button=Q.QPushButton('Kiểm nghiệm Gazebo v4 · 3 baseline')
+        self.qualify_button.clicked.connect(lambda:self.start('qualify'))
+        form.addRow(self.qualify_button)
         self.scenario=Q.QComboBox()
         for value,label in self.engine_modules['common103_v1'].SCENARIOS.items():self.scenario.addItem(label,value)
         self.profile=Q.QComboBox()
@@ -136,7 +156,7 @@ class TD3TrainingPanel(Q.QWidget):
         self.interval=Q.QSpinBox();self.interval.setRange(0,1_000_000_000);self.interval.setValue(5000);self.interval.setSpecialValueText('Chỉ checkpoint cuối / khi dừng')
         self.wall=Q.QSpinBox();self.wall.setRange(1,10080);self.wall.setValue(180);self.wall.setSuffix(' phút')
         form.addRow('Map mô phỏng',self.scenario);form.addRow('Profile TD3',self.profile)
-        form.addRow('Timesteps học thêm',self.timesteps);form.addRow('Seed (khóa khi resume)',self.seed)
+        self.timesteps_label=Q.QLabel('Timesteps học thêm');form.addRow(self.timesteps_label,self.timesteps);form.addRow('Seed (khóa khi resume)',self.seed)
         form.addRow('Checkpoint mỗi N bước thêm',self.interval);form.addRow('Wall-time tối đa',self.wall)
         self.parameter_note=Q.QLabel();self.parameter_note.setWordWrap(True);layout.addWidget(self.parameter_note)
         self.profile.currentIndexChanged.connect(self.show_parameters);self.show_parameters()
@@ -212,7 +232,7 @@ class TD3TrainingPanel(Q.QWidget):
     def show_parameters(self):
         if self.profile.currentData() not in self.parameter_profiles:return
         p=self.parameter_profiles[self.profile.currentData()]['algorithm'];common=self.engine.currentData() in ('common103_v1','common103_v2')
-        memory=p['buffer_size']*((103 if common else 100)*2+(1 if common or self.engine.currentData()=='unknown_goal100_v1' else 2)+4)*4/1024**2
+        memory=p['buffer_size']*((107 if self.engine.currentData()=='recovery107_v4' else 103 if common else 100)*2+(1 if common or self.engine.currentData()=='unknown_goal100_v1' else 2)+4)*4/1024**2
         self.parameter_note.setText(f"MLP {p['network_arch']} · LR {p['actor_lr']} · warmup {p['learning_starts']} · batch {p['batch_size']} · replay {p['buffer_size']:,} (arrays khoảng {memory:.1f} MiB). Smoke luôn dùng profile smoke h5; profile smoke chỉ kiểm pipeline. Research profile là cấu hình khởi đầu, chưa tune cho Nino. Không đổi profile checkpoint khi resume.")
         if hasattr(self,'train'):self.refresh()
 
@@ -226,7 +246,7 @@ class TD3TrainingPanel(Q.QWidget):
         for value,label in module.SCENARIOS.items():self.scenario.addItem(label,value)
         common_v1=name=='common103_v1';common_v2=name=='common103_v2';common=common_v1 or common_v2
         goal=name=='unknown_goal100_v1'
-        self.timesteps.setMaximum(20000 if common_v1 or goal else 100000 if common_v2 else 1_000_000_000)
+        self.timesteps.setMaximum(200000 if name=='recovery107_v4' else 20000 if common_v1 or goal else 100000 if common_v2 else 1_000_000_000)
         if goal:
             self.profile.setCurrentIndex(self.profile.findData('nino_td3_research_h5_v1'))
         self.multi_seed.setVisible(common_v2)
@@ -259,7 +279,25 @@ class TD3TrainingPanel(Q.QWidget):
                 'Research h5 warmup10k; chọn20k là lượt học dài mới, chưa tự chạy. Checkpoint common103 không tương thích.')
             self.auto_evaluate.setText('Development: B0/TD3 × 3 layout; chưa dùng validation/test được giữ riêng')
             self.parameters_button.setText('Xem effective profile Goal100 · smoke384 / research h5')
+        if name=='recovery107_v4':
+            self.profile.setCurrentIndex(self.profile.findData('recovery_v4_research'))
+            self.contract_note.setText('SIMULATOR v4 · 107D / 1D slowdown. Neutral -1; 0 yêu cầu giảm 0,01 m/s. '
+                'Train/tune/heldout riêng; không resume v3. 1 Smoke phần mềm → 2 Kiểm nghiệm Gazebo → 3 Train. '
+                'Runner xác minh receipt và source hash; smoke không chứng minh vượt gờ hoặc lợi ích policy.')
+            self.auto_evaluate.setChecked(False)
+            self.auto_evaluate.setText('Heldout chạy riêng sau checkpoint; không tự promote theo reward')
+            self.interval.setValue(25000)
+            self.wall.setValue(5760)
+            self.prepared_root.show()
+            self.qualify_button.show()
+        else:
+            self.prepared_root.hide()
+            self.qualify_button.hide()
         self.smoke.setText('1 · Smoke test · 384 bước mới' if goal else '1 · Smoke test · 64 bước mới')
+        self.assessment_note.setVisible(name!='recovery107_v4' and bool(self.assessment))
+        self.goal_preset.setVisible(name!='recovery107_v4')
+        self.timesteps_label.setText('Global budget v4 (gồm bước đã học)' if name=='recovery107_v4' else 'Timesteps học thêm')
+        self.auto_evaluate.setEnabled(name!='recovery107_v4')
         self.show_parameters()
 
     def prepare_goal_research(self):
@@ -273,7 +311,7 @@ class TD3TrainingPanel(Q.QWidget):
 
     def open_parameters(self):
         name=self.engine.currentData()
-        if name not in ('common103_v1','common103_v2','unknown_goal100_v1'):
+        if name not in ('common103_v1','common103_v2','unknown_goal100_v1','recovery107_v4'):
             self.parametersRequested.emit();return
         dialog=Q.QDialog(self);dialog.setWindowTitle(f'Effective profile · {name} · chưa tune');dialog.resize(700,650)
         layout=Q.QVBoxLayout(dialog)
@@ -290,7 +328,8 @@ class TD3TrainingPanel(Q.QWidget):
             if not self.resume_info or self.checkpoint_path.text()!=self.resume_info['path']:
                 return None,'Chọn/kiểm checkpoint để tính warmup còn lại; worker sẽ xác minh bundle trước khi load.'
             start=self.resume_info['global_steps']
-        eligible=max(0,start+self.timesteps.value()-max(start,warmup))
+        target=self.timesteps.value() if self.engine.currentData()=='recovery107_v4' else start+self.timesteps.value()
+        eligible=max(0,target-max(start,warmup))
         if eligible==0:
             return False,f'CHƯA CÓ BƯỚC HỌC: warmup {warmup:,}, global bắt đầu {start:,}, học thêm {self.timesteps.value():,}. Tăng số bước để vượt warmup; Smoke vẫn dùng64bước/profile smoke.'
         message=f'Warmup {warmup:,} · global bắt đầu {start:,} · tối đa {eligible:,} bước thêm sau warmup có thể cập nhật. Số update thực xem ở kết quả; không phải bảo đảm hội tụ.'
@@ -314,6 +353,12 @@ class TD3TrainingPanel(Q.QWidget):
             self.checkpoint_path.setText(info['path']);self.scenario.setCurrentIndex(self.scenario.findData(info['scenario']))
             self.profile.setCurrentIndex(self.profile.findData(info['profile']));self.seed.setValue(info['seed']);self.resume.setChecked(True)
             self.checkpoint_note.setText(f"Global {info['global_steps']} · updates {info['optimizer_updates']} · replay {info['replay_size']}. Đã đọc metadata; worker sẽ kiểm toàn bộ hash/runtime trước khi load. Timesteps là số bước thêm; simulator bắt đầu episode mới.")
+            if info['engine']=='recovery107_v4':
+                plan=info['identity']['request']
+                self.prepared_root.setText(plan['prepared_root'])
+                self.timesteps.setValue(plan['transitions'])
+                self.interval.setValue(plan['checkpoint_every'])
+                self.checkpoint_note.setText(f"Global {info['global_steps']} · v4 giữ nguyên global budget {plan['transitions']}. Episode mới; model/optimizer/replay/RNG được khôi phục, physics không bit-exact.")
             self.refresh();return True
         except (OSError,ValueError,KeyError,TypeError) as exc:
             self.checkpoint_note.setText('Không load được checkpoint: '+str(exc));return False
@@ -336,6 +381,8 @@ class TD3TrainingPanel(Q.QWidget):
         if is_multi:
             payload['multi_seeds']=[11,22,33]
             payload['auto_prune_raw']=self.auto_cleanup.isChecked()
+        if eng=='recovery107_v4':
+            payload['prepared_root']=self.prepared_root.text().strip()
         request=validate_request(payload)
         if eng in ('common103_v1','common103_v2','unknown_goal100_v1'):
             inner=dict(split(request)[1])
@@ -415,6 +462,13 @@ class TD3TrainingPanel(Q.QWidget):
                    f"Relative linear RMS gain vs Classical: {cmp.get('relative_linear_rms_gain',0)*100:.2f}% · jerk ratio: {cmp.get('jerk_ratio_vs_baseline',0):.3f}\n")
             self.results.setPlainText(intro+'\n'+json.dumps(result,ensure_ascii=False,indent=2));self.output.setCurrentIndex(1)
             return
+        if 'global_transitions' in result and 'transitions' not in result:
+            result=dict(result,transitions=result['global_transitions'],
+                starting_global_steps=0,global_steps=result['global_transitions'],
+                optimizer_updates_this_job=result.get('critic_updates',0),
+                checkpoint=result.get('checkpoint') or '',final_segment_right_censored=False)
+        if 'global_steps' not in result:
+            self.results.setPlainText(json.dumps(result,ensure_ascii=False,indent=2));return
         intro=f"THÊM {result['transitions']} bước · global {result['starting_global_steps']} → {result['global_steps']} · optimizer +{result['optimizer_updates_this_job']}\n"
         if 'actor_updates_this_job' in result:intro+=f"Critic +{result['optimizer_updates_this_job']} · actor +{result['actor_updates_this_job']} · engine {result.get('engine')}\n"
         intro+='Checkpoint: '+result['checkpoint']+'\n'
@@ -480,13 +534,39 @@ class TD3TrainingPanel(Q.QWidget):
         path=request.get('resume') or ''
         self.resume_info=dict(path=path,global_steps=self.live_reader.start) if path else None
         self.checkpoint_path.setText(path);self.resume.setChecked(bool(path))
+        if worker['engine']=='recovery107_v4':self.prepared_root.setText(request.get('prepared_root',''))
         if path:self.checkpoint_note.setText('Job đang theo dõi resume từ: '+path+' · chỉ đọc metadata; chưa QC cuối.')
+    def select_live_worker(self,index):
+        worker=self.live_workers.itemData(index)
+        if not worker:return
+        from .training_live import LiveJob
+        if self.live_reader and self.live_reader.worker['pid']==worker['pid']:return
+        self.live_reader=LiveJob(worker);self.follow_live=True
+        self.location.setText(worker['root']);self.show_live_request()
+        self.poll_live()
+
     def poll_live(self):
         if self.closing or self.watch_closed or not self.observe_external:return
         if self.runner.busy:
-            self.live_note.setText('GUI đang sở hữu worker này; tiến độ lấy từ process trực tiếp.');return
+            if self.engine.currentData()=='recovery107_v4' and self.current_directory:
+                path=self.current_directory/'campaign'
+                try:
+                    value=json.loads((path/'progress.json').read_text())
+                    n,total=value['global_steps'],value['target_steps']
+                    self.progress.setRange(0,total);self.progress.setValue(n)
+                    self.live_metrics.setText(f"GLOBAL {n:,}/{total:,} · critic {value.get('critic_updates','?')} · actor {value.get('actor_updates','?')}")
+                    self.dashboard.set_job(path)
+                except (OSError,ValueError,KeyError):pass
+            self.live_note.setText('GUI đang sở hữu worker này; tiến độ lấy từ process và progress.json.');return
         from .training_live import discover,LiveJob
         was_busy=self.external_running
+        workers=discover(None if self.watch_all_roots else [self.root()])
+        selected=self.live_reader.worker['pid'] if self.live_reader else None
+        self.live_workers.blockSignals(True);self.live_workers.clear()
+        for worker in workers:
+            self.live_workers.addItem(f"{worker['request'].get('scenario','task')} · PID {worker['pid']} · {worker['directory']}",worker)
+            if worker['pid']==selected:self.live_workers.setCurrentIndex(self.live_workers.count()-1)
+        self.live_workers.blockSignals(False)
         if self.live_reader and self.live_reader.worker.get('campaign_directory'):
             workers=discover(None if self.watch_all_roots else [self.root()])
             matched=[w for w in workers if w.get('campaign_directory')==self.live_reader.worker['campaign_directory']]
@@ -549,7 +629,7 @@ class TD3TrainingPanel(Q.QWidget):
         super().closeEvent(event)
     def refresh(self):
         locked=self.busy or self.blocked() or self.closing
-        for w in (self.location,self.choose_root,self.timesteps,self.interval,self.wall,self.resume,self.browse_checkpoint,self.checkpoint_path,self.auto_evaluate,self.auto_cleanup):w.setEnabled(not locked)
+        for w in (self.prepared_root,self.qualify_button,self.location,self.choose_root,self.timesteps,self.interval,self.wall,self.resume,self.browse_checkpoint,self.checkpoint_path,self.auto_evaluate,self.auto_cleanup):w.setEnabled(not locked)
         self.multi_seed.setEnabled(not locked and not self.resume.isChecked() and self.engine.currentData()=='common103_v2')
         for w in (self.engine,self.scenario,self.profile):w.setEnabled(not locked and not self.resume.isChecked())
         self.seed.setEnabled(not locked and not self.resume.isChecked() and not (self.engine.currentData()=='common103_v2' and self.multi_seed.isChecked()))

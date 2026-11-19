@@ -1,5 +1,7 @@
 # Nino RL: bám đường, giữ tốc độ và thêm dốc vừa phải
 
+> Cập nhật 16/11/2026. Bounded trainer đã được nối. Sau sửa clock/verifier, B0 sàn sạch/gờ thấp/dốc 3° đạt trong Gazebo; pothole timeout. TD3 Gazebo bị chặn ở bước đầu vì drive gap 52 ms, chưa có replay/optimizer update. Xem [readiness hiện tại](RECOVERY_SIM_READINESS_2026-11-16.md). Các câu “chưa nối/chưa chạy” bên dưới là trạng thái lịch sử ngày 15/11.
+
 Ngày 15/11/2026. Review và sửa trên workspace Nino hiện tại. Các con số cấu hình dưới đây là đề xuất nghiên cứu trong mô phỏng. Chưa là yêu cầu nhà máy hoặc giới hạn robot thật.
 
 ## 1. Kết luận

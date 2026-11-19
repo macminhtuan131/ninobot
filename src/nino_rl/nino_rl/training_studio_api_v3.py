@@ -5,15 +5,20 @@ from pathlib import Path
 
 from . import training_studio_api_v2 as prior
 from . import goal_studio_contract as goal
+from . import recovery_v4_studio_contract as recovery
 
-ENGINES = dict(prior.ENGINES, **{goal.ENGINE:'Gờ không biết · Goal100D/1D · tới goal, không lịch stop'})
+ENGINES = dict(prior.ENGINES, **{goal.ENGINE:'Gờ không biết · Goal100D/1D · tới goal, không lịch stop',
+    recovery.ENGINE:'Recovery v4 · 107D/1D · chỉ giảm tốc · SIMULATOR'})
 
 
 def module(engine):
-    return goal if engine==goal.ENGINE else prior.module(engine)
+    return recovery if engine==recovery.ENGINE else goal if engine==goal.ENGINE else prior.module(engine)
 
 
 def split(request):
+    if request.get('schema_version')==2 and request.get('engine')==recovery.ENGINE:
+        raw=dict(request);raw.pop('engine');raw['schema_version']=1
+        return recovery.ENGINE,recovery.validate_request(raw)
     if request.get('schema_version')==2 and request.get('engine')==goal.ENGINE:
         raw=dict(request);raw.pop('engine');raw['schema_version']=1
         return goal.ENGINE,goal.validate_request(raw)
@@ -28,6 +33,8 @@ def validate_request(request):
 def inspect_checkpoint(path,**kwargs):
     p=Path(path).expanduser().resolve();p=p.parent if p.is_file() else p
     m=json.loads((p/'manifest.json').read_text())
+    if (p/'checkpoint.json').is_file() and json.loads((p/'checkpoint.json').read_text()).get('kind')==recovery.CHECKPOINT_KIND:
+        return recovery.inspect_checkpoint(path,**kwargs)
     if m.get('kind')==goal.CHECKPOINT_KIND:
         return goal.inspect_checkpoint(path,**kwargs)
     return prior.inspect_checkpoint(path,**kwargs)
@@ -39,6 +46,9 @@ def main(argv=None):
     parser.add_argument('--output',required=True,type=Path)
     args=parser.parse_args(argv);raw=json.loads(args.request.read_text())
     engine,request=split(raw)
+    if engine==recovery.ENGINE:
+        from .recovery_v4_training_studio import main as run
+        return run(argv)
     if engine!=goal.ENGINE:
         return prior.main(argv)
     from .goal_training_studio import run

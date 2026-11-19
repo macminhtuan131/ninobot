@@ -13,6 +13,40 @@ REQUIRED_FILES = frozenset(('model.zip', 'replay_buffer.pkl', 'identity.json',
     'checkpoint.json', 'job_state.json', 'rng.pkl', 'source_qc.json', 'replay_audit.json'))
 
 
+@dataclass(frozen=True)
+class SmokeProtocol:
+    schema_version: int
+    mode: str
+    name: str
+    transitions: int
+    maximum_launches: int
+    episode_transition_limit: int = 128
+    all_families: bool = False
+
+    def identity(self):
+        return dict(schema_version=self.schema_version, mode=self.mode, name=self.name)
+
+    def budget(self):
+        return dict(transitions=self.transitions, maximum_launches=self.maximum_launches,
+                    episode_transition_limit=self.episode_transition_limit)
+
+
+SMOKE_PROTOCOLS = {
+    1: SmokeProtocol(1, 'live-smoke', 'nino_recovery_live_smoke_v1', 384, 4),
+    2: SmokeProtocol(2, 'all-families-live-smoke',
+                     'nino_recovery_all_families_smoke_v1', 640, 6, all_families=True),
+}
+
+
+def smoke_protocol(schema_version, mode):
+    if type(schema_version) is not int or schema_version not in SMOKE_PROTOCOLS:
+        raise ValueError('Unsupported recovery smoke schema')
+    protocol = SMOKE_PROTOCOLS[schema_version]
+    if mode != protocol.mode:
+        raise ValueError('Recovery smoke mode does not match its schema')
+    return protocol
+
+
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
@@ -48,6 +82,13 @@ class RecoverySmokeRequest:
         if set(raw)-allowed or not {'prepared_root', 'families'} <= set(raw):
             raise ValueError('Unknown or missing recovery request fields')
         value = dict(raw)
+        schema_version = value.get('schema_version', 1)
+        if type(schema_version) is not int or schema_version not in SMOKE_PROTOCOLS:
+            raise ValueError('Unsupported recovery smoke schema')
+        protocol = SMOKE_PROTOCOLS[schema_version]
+        value.setdefault('mode', protocol.mode)
+        for name, expected in protocol.budget().items():
+            value.setdefault(name, expected)
         for name in ('prepared_root', 'resume'):
             item = value.get(name)
             if item is not None:
@@ -61,9 +102,7 @@ class RecoverySmokeRequest:
             raise ValueError('Select distinct known recovery families')
         value['families'] = tuple(families)
         request = cls(**value)
-        exact = dict(schema_version=1, transitions=384, maximum_launches=4,
-                     episode_transition_limit=128)
-        for name, expected in exact.items():
+        for name, expected in protocol.budget().items():
             if type(getattr(request, name)) is not int or getattr(request, name) != expected:
                 raise ValueError('Unsupported fixed smoke budget: '+name)
         for name, lower, upper in (('seed', 0, 2**31-1), ('wall_seconds', 1, 3600),
@@ -71,9 +110,16 @@ class RecoverySmokeRequest:
             number = getattr(request, name)
             if type(number) is not int or not lower <= number <= upper:
                 raise ValueError('Invalid recovery resource setting: '+name)
-        if request.mode != 'live-smoke' or request.profile != PROFILE:
+        smoke_protocol(request.schema_version, request.mode)
+        if request.profile != PROFILE:
             raise ValueError('Only the explicit bounded recovery smoke is supported')
+        if protocol.all_families and set(request.families) != set(FAMILIES):
+            raise ValueError('All-family smoke requires all five recovery families')
         return request
+
+    @property
+    def protocol(self):
+        return smoke_protocol(self.schema_version, self.mode)
 
     def state(self):
         value = asdict(self)
@@ -193,7 +239,7 @@ def training_identity(request, qualified):
     profile = profiles()[request.profile]
     if profile['algorithm']['train_freq'] != 1 or profile['algorithm']['gradient_steps'] != 1:
         raise ValueError('Deferred recovery reset requires one-step TD3 rollouts')
-    return dict(checkpoint_kind=CHECKPOINT_KIND, contract_id=CONTRACT_ID,
+    identity = dict(checkpoint_kind=CHECKPOINT_KIND, contract_id=CONTRACT_ID,
         bank_sha256=qualified.bank_sha256, source_pins_sha256=qualified.source_pins_sha256,
         source_pins=runner.sources(), families=list(request.families), seed=request.seed,
         budget=dict(transitions=request.transitions, maximum_launches=request.maximum_launches,
@@ -203,6 +249,9 @@ def training_identity(request, qualified):
         recovery_configuration=config,
         baselines={f'{f}_s{s}': value for (f, s), value in qualified.baselines.items()},
         hardware_authorized=False, learned_benefit_verified=False)
+    if request.schema_version != 1:
+        identity['smoke_protocol'] = request.protocol.identity()
+    return identity
 
 
 def inspect_recovery_checkpoint(path, *, expected_identity=None, require_resumable=False):
@@ -215,9 +264,28 @@ def inspect_recovery_checkpoint(path, *, expected_identity=None, require_resumab
     if (meta.get('kind') != CHECKPOINT_KIND or identity.get('checkpoint_kind') != CHECKPOINT_KIND
             or (expected_identity is not None and identity != expected_identity)):
         raise ValueError('Incompatible recovery checkpoint identity')
+    named = identity.get('smoke_protocol')
+    if named is None:
+        protocol = SMOKE_PROTOCOLS[1]
+        if 'smoke_protocol' in meta:
+            raise ValueError('Checkpoint smoke protocol differs from its identity')
+    else:
+        if not isinstance(named, dict):
+            raise ValueError('Invalid checkpoint smoke protocol')
+        protocol = smoke_protocol(named.get('schema_version'), named.get('mode'))
+        families = identity.get('families')
+        if (named != protocol.identity() or meta.get('smoke_protocol') != named
+                or not protocol.all_families
+                or not isinstance(families, list) or len(families) != len(FAMILIES)
+                or any(type(f) is not str for f in families)
+                or set(families) != set(FAMILIES)):
+            raise ValueError('Checkpoint smoke protocol differs from its identity')
+    if ('budget' in identity and identity['budget'] != protocol.budget()) or (
+            protocol.all_families and identity.get('budget') != protocol.budget()):
+        raise ValueError('Checkpoint smoke budget differs from its protocol')
     transitions, launches = state.get('transitions'), state.get('launch_attempts')
-    if (type(transitions) is not int or not 0 <= transitions <= 384
-            or type(launches) is not int or not 0 <= launches <= 4
+    if (type(transitions) is not int or not 0 <= transitions <= protocol.transitions
+            or type(launches) is not int or not 0 <= launches <= protocol.maximum_launches
             or meta.get('global_steps') != transitions or meta.get('replay_size') != transitions
             or type(replay.get('rows_verified')) is not int
             or not 0 <= replay['rows_verified'] <= transitions

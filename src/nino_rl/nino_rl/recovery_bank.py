@@ -34,8 +34,12 @@ def configuration(path=CONFIG):
     RecoveryBands(**c['recovery_bands'])
     MotionQuality(**c['motion_quality'])
     RewardSettings(**c['task_reward'])
+    if c['simulation_scheduling'] != dict(real_time_factor=.2, maximum_control_gap_s=.004):
+        raise ValueError('Unsupported recovery physics pacing or PI timing bound')
     if c['route_m'] != [[0., 0.], [4., 0.]]:
         raise ValueError('Initial Gazebo recovery release supports fixed 4 m east route only')
+    if c['families']['pothole'].get('floor_representation') != 'tiles_and_patches':
+        raise ValueError('Recovery depressions require local patches and nonoverlapping solid floor tiles')
     slope = c['families']['slope']
     grades = slope['peak_grade_deg_by_stage']
     if (len(grades) != c['curriculum']['maximum_stage']+1
@@ -99,15 +103,24 @@ def sample_layout(config, family, seed, stage, split='development'):
     payload = dict(contract_id=CONTRACT_ID, family=family, seed=seed, stage=stage, split=split,
                    initial_pose_xy_yaw=initial, obstacles=obstacles, floor_mu=1.,
                    macro_ramp=macro_ramp, mesh_spacing_m=mesh_spacing,
+                   floor_representation=(config['families']['pothole']['floor_representation']
+                       if any(r['kind'] == 'pothole' for r in obstacles)
+                       else 'continuous_mesh' if macro_ramp else 'box'),
+                   floor_merge_flat_tiles=any(r['kind'] == 'pothole' for r in obstacles) and macro_ramp is None,
                    physics_qualified=False, metadata_actor_input=False,
                    initial_pose_application='requested_spawn_then_independent_settled_start_gate')
     digest = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
     return dict(payload, id=f'{family}_{split}_{seed}_s{stage}_{digest[:12]}')
 
 
-def write_world(source, target, layout, cache):
+def write_world(source, target, layout, cache, *, scheduling=None):
     tree = ET.parse(source)
     world = tree.getroot().find('world')
+    if scheduling is not None:
+        physics = world.find('physics')
+        if physics is None or float(physics.findtext('max_step_size')) != .001:
+            raise ValueError('Recovery scheduling requires native 1 ms physics')
+        physics.find('real_time_factor').text = str(scheduling['real_time_factor'])
     holes = [r for r in layout['obstacles'] if r['kind'] == 'pothole']
     ramp = ConnectedRamp(**layout['macro_ramp']) if layout.get('macro_ramp') is not None else None
     meshes = []
@@ -117,7 +130,8 @@ def write_world(source, target, layout, cache):
                 world.remove(floor)
         config = dict(floor_bounds_xy_m=[-2., 8., -3.5, 3.5],
                       mesh_spacing_m=layout.get('mesh_spacing_m') or .005,
-                      flat_mesh_spacing_m=.08, floor_representation='continuous_mesh',
+                      flat_mesh_spacing_m=.08, floor_representation=layout['floor_representation'],
+                      merge_flat_tiles=layout['floor_merge_flat_tiles'],
                       pothole_depth_m=holes[0]['depth_m'] if holes else .003)
         features = [('pothole', r['x'], r['y'], r['radius_m']) for r in holes]
         sdf, meshes = (connected_floor_model(ramp, features, config, cache) if ramp
@@ -163,7 +177,8 @@ def prepare(out, config_path=CONFIG):
             for stage in range(config['curriculum']['maximum_stage']+1):
                 layout = sample_layout(config, family, seed+stage, stage, split)
                 target = out/(layout['id']+'.sdf')
-                meshes = write_world(source, target, layout, out/'meshes')
+                meshes = write_world(source, target, layout, out/'meshes',
+                                     scheduling=config['simulation_scheduling'])
                 task = deepcopy(base_task)
                 task.update(route_m=config['route_m'], obstacle_near_m=None, obstacle_far_m=None,
                             maximum_cross_track_m=config['maximum_cross_track_m'],

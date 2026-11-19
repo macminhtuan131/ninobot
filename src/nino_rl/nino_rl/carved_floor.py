@@ -104,6 +104,24 @@ def level_tiles(bounds, patches):
             if not any(p[0] < (x0+x1)/2 < p[1] and p[2] < (y0+y1)/2 < p[3] for p in patches)]
 
 
+def coalesced_tiles(tiles):
+    for start, fixed in ((2, 0), (0, 2)):
+        groups = {}
+        for tile in tiles:
+            groups.setdefault(tuple(tile[fixed:fixed+2]), []).append(tuple(tile[start:start+2]))
+        merged = []
+        for span, intervals in sorted(groups.items()):
+            runs = []
+            for lower, upper in sorted(intervals):
+                if runs and runs[-1][1] == lower:
+                    runs[-1] = (runs[-1][0], upper)
+                else:
+                    runs.append((lower, upper))
+            merged.extend(span+run if fixed == 0 else run+span for run in runs)
+        tiles = merged
+    return sorted(tiles)
+
+
 def continuous_axes(bounds, patches, spacing, flat_spacing=.04):
     """One shared grid: fine at depressions, coarse only on exactly level floor.
 
@@ -253,6 +271,11 @@ def floor_model(features, config, cache):
     groups = grouped_bounds(items,spacing)
     bounds = tuple(float(v) for v in config["floor_bounds_xy_m"])
     tiles = level_tiles(bounds,groups)
+    merge_tiles = config.get("merge_flat_tiles", False)
+    if type(merge_tiles) is not bool:
+        raise ValueError("merge_flat_tiles must be a boolean")
+    if merge_tiles:
+        tiles = coalesced_tiles(tiles)
     root = ET.Element("sdf",version="1.9")
     model = ET.SubElement(root,"model",name="factory_contact_floor")
     ET.SubElement(model,"static").text = "true"

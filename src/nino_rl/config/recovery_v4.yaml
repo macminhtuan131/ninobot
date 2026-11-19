@@ -1,0 +1,43 @@
+schema_version: 1
+contract_id: nino_recovery_slowdown_v4_software_contract
+release: software_contract_only
+numeric_status: experimental_proposals_not_operational_thresholds
+projection:
+  max_slowdown_m_s: 0.02
+  wheel_speed_m_s: 0.4
+  forward_m_s: 0.4
+  yaw_rad_s: 0.5
+  wheel_acceleration_m_s2: 0.1
+  separation_m: 0.34273666
+  maximum_source_age_s: 0.04
+  maximum_command_age_s: 0.2
+  maximum_interval_s: 0.15
+  history_frames: 5
+mission:
+  route_length_m: 4.0
+  cruise_m_s: 0.2
+  startup_acceleration_m_s2: 0.1
+  approach_distance_m: 0.4
+  deadline_s: 40.0
+reward:
+  route_length_m: 4.0
+  corridor_m: 0.1
+  cross_scale_m: 0.05
+  heading_scale_rad: 0.5
+  speed_scale_m_s: 0.05
+  progress_weight: 1.0
+  cross_weight: 0.1
+  heading_weight: 0.1
+  speed_weight: 0.1
+  time_weight: 0.02
+  action_weight: 0.01
+  action_change_weight: 0.001
+  stability_weight: 0.01
+  success_bonus: 5.0
+  failure_penalty: 10.0
+  deadline_s: 40.0
+algorithm:
+  name: TD3
+  learning_rate: 0.0003
+curriculum:
+  maximum_stage: 0

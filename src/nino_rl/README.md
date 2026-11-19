@@ -1,3 +1,17 @@
+# Nino RL
+
+**Cập nhật 19/11/2026.** Hai campaign v3 đã kết thúc ở 48.025 transition sạch và 50.000 transition gờ. Pilot deterministic 18/18 case đạt task và measurement QC, nhưng chưa chứng minh TD3 hơn classical cùng constant residual. [Review báo cáo](../../docs/NINO_POLICY_REWARD_REPORT_REVIEW_2026-11-19.md) sửa các đề xuất về neutral action, progress reward, stale STOP và timeout. [Contract slowdown v4 và test](../../docs/RECOVERY_V4_CONTRACT.md) là nhánh opt-in kiểm software, chưa thay thế environment, GUI hoặc campaign v3. Các cập nhật bên dưới là lịch sử.
+
+**Hai campaign song song 18/11/2026.** [Sàn sạch và gờ 50k chạy đồng thời](../../docs/RECOVERY_PARALLEL_TRAINING_2026-11-18.md). Clean giữ tiến độ đang có; gờ có model và replay riêng trong namespace mạng, IPC, PID, shared memory và lock riêng. Concurrent readiness gờ đạt task_success, source QC, 34 hashes và 828 boundary checks. Scope gờ đã chạy; đọc progress.json từng run hoặc parallel_status.json hiện hành. Queue tuần tự cũ đã handoff gờ và không mở lượt trùng. [Bản sửa startup và replay trước đó](../../docs/RECOVERY_CLEAN_OBSTACLE_50K_2026-11-18.md). Các mục dưới giữ lịch sử.
+
+**Cập nhật 18/11/2026.** [Real velocity và replay đối chiếu Sim](../../docs/REAL_TO_SIM_VELOCITY_REVIEW_2026-11-18.md). Đã trích xuất sáu phiên velocity thật; năm phiên đủ support cho grouped fit/holdout, một phiên thiếu lệnh nội bộ giữ diagnostic. Chưa chấp nhận hệ số fit để sửa physics. Campaign 50k ngày 17/11 đã lỗi ở 2.922 transitions, checkpoint boundary vẫn được giữ.
+
+**Hiện hành 17/11/2026.** [Campaign 50k và đánh giá chất lượng](../../docs/RECOVERY_TD3_50K_CAMPAIGN_2026-11-17.md). [Rà soát truncation và kiểm chứng lại training dài](../../docs/RECOVERY_LONG_TRAINING_RECHECK_2026-11-17.md). [Kết quả readiness và campaign đầu](../../docs/RECOVERY_LONG_TRAINING_RELEASE_2026-11-17.md). Nhánh đang triển khai là recovery TD3, observation 100 chiều và residual vận tốc chung một chiều, gồm sàn sạch, gờ cứng, hõm, mixed và dốc. [Hướng dẫn campaign nghiên cứu](../../docs/RECOVERY_LONG_TRAINING_2026-11-17.md) mô tả readiness, training đầy đủ episode, checkpoint và giới hạn lưu trữ.
+
+Các cập nhật có ngày bên dưới là lịch sử. Những mô tả cũ về observation 300 chiều, torque residual, PPO hoặc “general training disabled” không phải cấu hình của campaign recovery hiện tại. Checkpoint chỉ tương thích khi identity trùng khớp.
+
+## Lịch sử và các experiment cũ
+
 > **08/11 — đã dọn run lịch sử:** `rl_runs` chỉ còn marker/khóa ngân sách; dữ liệu Sim hiện tại ở `~/nino_research` được giữ nguyên. [Phạm vi và kiểm chứng](../../docs/NINO_LEGACY_RUNS_CLEANUP_2026-11-08.md).
 
 > **08/11 — đã bỏ rough/rocky course:** giữ factory/flat; đã tách helper dùng chung và kiểm tương thích checkpoint TD3 20k/25k/30k. [Phạm vi xóa và kiểm chứng](../../docs/NINO_COURSE_RETIREMENT_2026-11-08.md).
